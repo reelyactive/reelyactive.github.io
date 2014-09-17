@@ -13,6 +13,14 @@ section {
   margin-top: 4.5em;
 }
 
+h1 {
+  font-size: 36pt;
+}
+
+h2 {
+  font-size: 24pt;
+}
+
 a {
   color: #0770a2;
   text-decoration: none;
@@ -42,11 +50,11 @@ a {
   box-shadow: 0 0 0.15em 0 rgba(0,0,0,0.1);
 }
 
-#header img {
-  display: block;
-  margin: 0 auto;
-  height: 3em;
-}
+  #header img {
+    display: block;
+    margin: 0 auto;
+    height: 3em;
+  }
 
 #intro {
   min-width: 480px;
@@ -58,6 +66,12 @@ a {
 
   #intro p {
     text-align: justify;
+  }
+
+  #intro img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 #footer {
