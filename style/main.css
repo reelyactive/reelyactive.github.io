@@ -56,7 +56,7 @@ a {
     height: 3em;
   }
 
-#intro {
+#content {
   min-width: 480px;
   width: 50%;
   max-width: 960px;
@@ -64,11 +64,11 @@ a {
   margin-right: auto;
 }
 
-  #intro p {
+  #content p {
     text-align: justify;
   }
 
-  #intro img {
+  #content img {
     display: block;
     margin-left: auto;
     margin-right: auto;
