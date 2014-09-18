@@ -19,6 +19,7 @@ h1 {
 
 h2 {
   font-size: 24pt;
+  margin-top: 3em;
 }
 
 a {
@@ -35,6 +36,12 @@ a {
   a:hover {
      text-shadow: 0px 1px 1px #aaaaaa;
   }
+
+code {
+  font-size: 14pt;
+  line-height: 1em;
+  margin-left: 3em;
+}
 
 br .clear {
   clear: both;
@@ -75,6 +82,8 @@ br .clear {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
   }
 
 #projects {
