@@ -87,11 +87,17 @@ br .clear {
   }
 
 #projects {
+  width: 100%;
+  background: #eeeeee;
+}
+
+#projects .list {
   min-width: 480px;
   width: 80%;
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 1em;
 }
 
   #projects .project {
