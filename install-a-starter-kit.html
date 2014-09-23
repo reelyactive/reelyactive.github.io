@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Install a reelyActive Starter Kit</title>
+    <link rel="stylesheet" href="style/main.css">
+  </head>
+  <body>
+    <header id="header">
+      <a href="index.html"> <img src="images/diyActive.png"> </a>
+    </header>
+    <section id="content">
+      <h1> Install a Starter Kit </h1>
+      <p> Here we'll present how to install a starter kit.  At the end of this tutorial you'll have a stream of sensor data arriving at your PC/server ready to be processed by any of our open source software. </p>
+      <p> You should have in front of you at least one of the following kits </p>
+      <img src="images/starterkits.jpg">
+      <h2> Installing Node.js </h2>
+      <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms. &nbsp; <a href="http://nodejs.org/download/" target="_blank">Let's do it &nbsp; ></a> </p>
+      <h2> Connect Power </h2>
+      <p> Take the wall adapter provided with your kit and plug it into the mains.  If you don't have access to a North American outlet, you'll need an adapter.  Don't worry about the voltage, we've provided you with a kick-ass adapter with global compatibility and enough power to drive reely long reels with plenty of reelceivers. </p>
+      <p> Plug the barrel connector of the wall adapter into the receptacle on the hub (black box).  You should hear a faint beeping sound.  That's good! </p>
+      <h2> Connect the Reel </h2>
+      <p> Now we can connect the reelceivers in a daisy-chain configuration we call a reel. This is pure plug-n-play simplicity, just take into account the following:
+        <ul>
+          <li> The reelceivers are <i>directional</i>, make sure that the little arrow on the back that says "Towards Hub" points towards the hub!
+          <li> The order in which reelceivers are connected is not important: you can mix Bluetooth Smart and 915MHz reelceivers in any combination - just respect the directionality!
+          <li> Reelceivers don't communicate via Ethernet, even if they use the same Cat5 cables as Ethernet.  Be sure to plug them into the cable coming out of the hub that is marked "Reel".
+        </ul>
+      </p>
+      <img src="images/reel.jpg">
+      <p> Daisy chain all of your reelceivers to the hub (you'll need to supply the additional cables, any network cable will do).  Each reelceiver's LED should blink if it is receiving power.  Good job!
+      </p>
+      <h2> Connect the Hub to your PC/server </h2>
+      <p> Only one cable left unplugged!  Now it's time to connect the hub to your PC or server.  Simply plug the Ethernet cable of the hub directly to your PC or server. </p>
+      <p> That was easy!  Next up: the joys of IP settings... </p>
+      <h2> Change the IP address of your PC/server </h2>
+      <p> We'll be honest, we wish you didn't have to deal with this step. It's the biggest source of friction in an otherwise relatively frictionless installation. But we'll get through it together. (Ask about our USB hub and other alternatives which eliminate this step!) </p>
+      <p> We preconfigured the IP settings on your hub and sent you the details which are likely the following: </p>
+      <code> Hub IP: 192.168.1.100 </code> <br>
+      <code> Target IP: 192.168.101 </code>
+      <p> Now you'll need to change the IP address of your PC/server to match that of the target IP above.  If you don't know how to do this, search the Internet for "How to change my IP address in OS" where OS is the name of your operating system.  Thanks in advance for your patience and understanding! </p>
+      <p> We're just one step away from the joy of seeing data streaming to your console! </p>
+      <h2> Run barnowl </h2>
+      <p> At this point, the hardware is actually streaming data to your PC/server and all you need to do is listen for it.  Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
+      <img src="images/barnowl.jpg">
+      <p> Create a new directory called hello-barnowl, then from that directory run: </p>
+      <code> npm install barnowl </code>
+      <p> In the same directory, create a file called hello-barnowl.js and paste in the following code: </p>
+      <code> var barnowl = require('barnowl'); </code> <br>
+      <code> var middleware = new barnowl(); </code> <br>
+      <code> middleware.bind('udp', '192.168.1.101:50000'); </code>
+      <code> // Enter your PC's IP address above!!! </code> <br><br>
+      <code> middleware.on('visibilityEvent', function(data) { </code> <br>
+      <code> &nbsp; &nbsp; console.log(data); </code> <br>
+      <code> }); </code>
+      <p> Now simply run: </p>
+      <code> node hello-barnowl.js </code>
+      <p> and you should see data being output to the console.  These are radio transmissions being captured by the reelceivers.  It works! </p>
+      <h2> Optional: changing the hub IP settings </h2>
+      <p> If you don't like the IP address settings we've provided, you're free to change them. To do so, you'll need to log on to the hub using a web browser and make the changes.  Log on to the hub by typing its IP address in your browser, for example: </p>
+      <code> 192.168.1.100 </code>
+      <p> When prompted, enter <i>admin</i> as the username and leave the password field <i>blank</i>. You should see a screen similar to this: </p> 
+      <img src="images/gw215-home.png">
+      <p> To change the target IP settings, click on COM1 which will provide the following options.  Enter in the target IP address(es), you can specify up to four ranges.  By default we use port 50000 but you can use any free port.  Don't forget to save your configuration! </p>
+      <img src="images/gw215-com.png">
+      <p> To change the IP settings of the hub itself, click on Networking which will provide the following options.  Enter in the desired IP settings, or select DHCP mode if the hub will be connected to a network which will provide a dynamic address.  Don't forget to save your configuration! </p>
+      <img src="images/gw215-network.png">
+      <p> Once you change the IP address of the hub and cycle power, it will use that new address.  Note that if the new address is outside of the subnet of the old address, you won't be able to log back on without first changing your PC/server's IP address.  Just a heads up! </p>
+      <h2> What's next? </h2>
+      <p> With the hardware in place, you're ready to start exploring the capabilities of the reelyActive platform: everything from our <a href="https://github.com/reelyactive/locationdemo">locationdemo</a> to <a href="make-a-smartspace.html">making your own Smart Space</a>.  Enjoy! </p>
+    </section>
+    <footer id="footer">
+      <a href="index.html"> diyActive Home </a> &nbsp; | &nbsp;
+      <a href="http://context.reelyactive.com"> &copy; reelyActive 2014 </a>
+    </footer>
+  </body>
+</html>
