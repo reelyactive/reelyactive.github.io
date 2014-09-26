@@ -34,6 +34,16 @@
       <code> } </code>
       <p> Now run your code as follows to see data packets output to the console: </p>
       <code> node baby-barnowl.js </code>
+      <h2> Wait, what's a tiraid? </h2>
+      <p> A tiraid combines three elements:
+        <ul>
+          <li> <b>ti</b>mestamp
+          <li> <b>ra</b>dio decodings
+          <li> <b>id</b>entifier
+        </ul>
+      </p>
+      <p> These are in fact the three core elements of hyperlocal context (which you can learn more about <a href="http://context.reelyactive.com/context.html" target="_blank">on the reelyActive website</a>).  Radio decodings and location are effectively equivalent if the location of the decoding devices is known (as is typically the case for fixed infrastructure). </p>
+      <p> The data produced by barnowl is always structured as these three elements.  In the following sections, we'll see how we can filter based on these criteria. </p>
       <h2> Filtering packets by signal strength </h2>
       <p> Perhaps we're only interested in outputting data to the console for devices that are physically close to a reelceiver.  In other words, we only display the data when the signal strength is above a threshold. To do so, we simply wrap the <i>console.log(data);</i> from the previous example in an if statement which tests the signal strength or rssi (Received Signal Strength Indication): </p>
       <code> var rssi = tiraid.radioDecodings[0].rssi; </code> <br>
