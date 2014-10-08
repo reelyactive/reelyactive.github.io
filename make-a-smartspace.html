@@ -46,12 +46,43 @@
       <p> You should see the following two lines on the console: </p>
       <code> hlc-server is listening on port 3001 </code> <br>
       <code> smartspaces-server is listening on port 3000 </code>
-      <p> Open your favourite web brower and open the following pages:
-        <ul>
-          <li> <a href="http://localhost:3000" target="_blank">localhost:3000</a> for the Smart Spaces web experience
-          <li> <a href="http://localhost:3001" target="_blank">localhost:3001</a> for the Hyperlocal Context server
-        </ul>
-      </p>
+      <p> Now let's test out hlc-server and then configure smartspaces. </p>
+      <h2> Testing hlc-server </h2>
+      <p> Open your favourite web brower and browse to <a href="http://localhost:3001" target="_blank">localhost:3001</a> for the hlc-server landing page.  It should look something like this: </p>
+      <img src="images/hlcLanding.png">
+      <p> Now let's follow the suggestion and type <i>test</i> in the search bar and click Search.  This will take us to <a href="http://localhost:3001/at/test" target="_blank">localhost:3001/at/test</a> which is effectively asking the API "what is at <i>test</i>", where <i>test</i> is the name of a place.  You should see the following output: </p>
+      <code> { </code> <br>
+      <code> &nbsp; _meta: { </code> <br>
+      <code> &nbsp; &nbsp; message: "ok", </code> <br>
+      <code> &nbsp; &nbsp; statusCode: 200 </code> <br>
+      <code> &nbsp; }, </code> <br>
+      <code> &nbsp; _links: { </code> <br>
+      <code> &nbsp; &nbsp; self: { </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; href: "http://localhost:3001/at/test" </code> <br>
+      <code> &nbsp; &nbsp; } </code> <br>
+      <code> &nbsp; }, </code> <br>
+      <code> &nbsp; devices: { </code> <br>
+      <code> &nbsp; &nbsp; 001bc50940100000: { </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; identifier: { </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; type: "EUI-64", </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; value: "001bc50940100000" </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; }, </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; url: "http://reelyactive.com/metadata/test.json", </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; href: "http://localhost:3001/id/001bc50940100000" </code> <br>
+      <code> &nbsp; &nbsp; } </code> <br>
+      <code> &nbsp; } </code> <br>
+      <code> } </code> <br>
+      <p> While this is a hardcoded output for test purposes, it nonetheless respects the standard format of all API responses.  Effectively, what it says is that a device with identifier <i>001bc50940100000</i> is detected at the <i>test</i> place, and that this device is linked with metadata at <a href="http://reelyactive.com/metadata/test.json" target="_blank">reelyactive.com/metadata/test.json</a>.  The metadata link is what smartspaces will use to display information about the device. </p>
+      <h2> Configuring smartspaces </h2>
+      <p> Now let's configure smartspaces so that we can visualise what's at the <i>test</i> place.  Browse to <a href="http://localhost:3000/manage" target="_blank">localhost:3000/manage</a> to get started.  Since this is your first time running smartspaces, you'll be prompted to choose a password.  Go ahead and do this. </p>
+      <p> In the management interface, you should see the option to <i>Add a new place</i>.  Select this option so that we can create a <i>test</i> place to visualise the data from hlc-server.  You should see the following: </p>
+      <img src="images/addTheBarn.png">
+      <p> Fill in the fields as shown above.  The <i>Place Name</i> will be displayed in the smartspaces website (we chose The Barn because we suppose that's where barn owls live, right?).  The <i>Identifier</i> uniquely identifies the place, in our case <i>test</i>.  The <i>API root</i> is the path to the API (the <i>Identifier</i> will be appended to this to complete the URL).  And the Twitter feed will be displayed as part of the social scene.</p>
+      <p> Click the Add button.  Next we'll see what's happening at The Barn! </p>
+      <h2> Visiting the Smart Barn </h2>
+      <p> Browse to <a href="http://localhost:3000/test" target="_blank">localhost:3000/test</a> to visit The Barn as a Smart Space.  If everything went to plan, you should be rewarded with a barn owl floating in a bubble!  Have fun exploring The Barn! </p>
+      <img src="images/theBarn.png">
+      <p> Yes, we also find it humourous that it says <i>Who</i>'s here and that's the sound an owl makes. </p>
       <h2> What's next? </h2>
       <p> More to come soon, be sure to check back! </p>
     </section>
