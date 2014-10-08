@@ -24,8 +24,9 @@
       <p> It's as simple as three lines of code!  First you load barnowl, second, you create an instance of barnowl and, third, you tell that instance where to listen for packets.  Create a new file called baby-barnowl.js in the same directory and paste in the following lines of code: </p>
       <code> var barnowl = require('barnowl'); </code> <br>
       <code> var middleware = new barnowl(); </code> <br>
-      <code> middleware.bind('udp', '192.168.1.101:50000'); </code>
-      <p> Chances are you'll need to change the IP address in that third line of code to the IP address of your PC/server which is receiving the packets.  We discuss this in more detail in the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit</a> tutorial. </p>
+      <code> middleware.bind({ protocol: 'udp', </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; path: '192.168.1.101:50000' }); </code>
+      <p> Chances are you'll need to change the IP address in that final line of code to the IP address of your PC/server which is receiving the packets.  We discuss this in more detail in the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit</a> tutorial. </p>
       <p> If you run this code, it will listen for and process any received packets.  In order to do something useful we'll need to handle the output as we'll show next. </p>
       <h2> Printing packets to the console </h2>
       <p> Barnowl outputs <i>visibilityEvents</i> which our code can listen for. To listen for these events and output the data to the console (something potentially useful), paste in these additional lines of code: </p>
