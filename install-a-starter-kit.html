@@ -47,7 +47,8 @@
       <p> In the same directory, create a file called hello-barnowl.js and paste in the following code: </p>
       <code> var barnowl = require('barnowl'); </code> <br>
       <code> var middleware = new barnowl(); </code> <br>
-      <code> middleware.bind('udp', '192.168.1.101:50000'); </code>
+      <code> middleware.bind({ protocol: 'udp', </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; path: '192.168.1.101:50000' }); </code> <br>
       <code> // Enter your PC's IP address above!!! </code> <br><br>
       <code> middleware.on('visibilityEvent', function(data) { </code> <br>
       <code> &nbsp; &nbsp; console.log(data); </code> <br>
