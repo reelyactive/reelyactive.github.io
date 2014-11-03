@@ -18,9 +18,9 @@
     </header>
     <section id="content">
       <h1> Host a JSON Silo </h1>
-      <p> Here we'll present how to host your very own JSON Silo identical to our public silo which you can check out at <a href="http://myjson.info" target="_blank">myjson.info</a>. </p>
+      <p> Here we'll present how to host your very own JSON Silo identical to our public silo which you can check out at <a href="http://myjson.info" target="_blank">myjson.info</a>.  A JSON Silo stores and shares digital personae: machine-readable representations of people and things. </p>
       <img src="images/moreSilo.jpg">
-      <p> Will Ferrell is right, and that's why we're showing you how to take complete control over your digital personae and share them as freely as you wish via your own hosted instance of <a href="https://www.npmjs.org/package/json-silo" target="_blank">json-silo</a>. </p>
+      <p> <a href="http://en.wikipedia.org/wiki/More_cowbell">Will Ferrell's bandmates are right</a>, and that's why we're showing you how to take complete control over your digital personae and share them as freely as you wish via your own hosted instance of <a href="https://www.npmjs.org/package/json-silo" target="_blank">json-silo</a>. </p>
       <h2> Installing Node.js </h2>
       <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms. &nbsp; <a href="http://nodejs.org/download/" target="_blank">Let's do it &nbsp; ></a> </p>
       <h2> Installing json-silo </h2>
@@ -73,14 +73,63 @@
       <code> &nbsp; &nbsp; } </code> <br>
       <code> &nbsp; } </code> <br>
       <code> } </code> <br>
+      <p> Notice how <i>your</i> JSON URL is among the list of devices?  That's because you checked in.  A computer could parse through this list of digital personae to form a contextual understanding of who/what is present at The Barn. </p>
       <p> If you've read the <a href="make-a-smart-space.html" target="_blank">Make a Smart Space</a> tutorial, you'll notice that this is an identical API response format as that of hlc-server.  It's no coincidence!  You can use json-silo in place of hlc-server to allow for manual check-ins at locations that don't have hardware infrastructure. </p>
-      <p> If you're keen to see the digital persona you entered floating around in a smartspaces bubble, follow the instructions from the <a href="make-a-smart-space.html" target="_blank">Make a Smart Space</a> tutorial, but when configuring smartspaces, instead set the API root to <i>http://localhost:3002/at/</i> so that it points to json-silo rather than hlc-server.  Then browse to <a href="http://localhost:3000/test" target="_blank">localhost:3000/test</a> to see The Barn Smart Space. </p>
+      <p> If you're keen to see the digital persona you entered floating around in a smartspaces bubble, follow the instructions from the <a href="make-a-smart-space.html" target="_blank">Make a Smart Space</a> tutorial, but when configuring smartspaces, instead set the API root to <i>http://localhost:3002/at/</i> so that it points to json-silo rather than hlc-server.  Then browse to <a href="http://localhost:3000/test" target="_blank">localhost:3000/test</a> to see The Barn as a Smart Space. </p>
       <h2> Take a break! </h2>
       <p> The last feature we need to test is whether the digital persona you entered will actually self-destruct after an hour.  Since you probably have the better part of that hour to kill, why not watch the <a href="http://vimeo.com/91715361" target="_blank">Saturday Night Live skit</a> that inspired the "More Silo" meme.  And then some more videos, you know, while you're waiting for that hour to pass.  Then, once it has, refresh the browser tab that had your JSON and you should see the following: </p>
       <code> { } </code>
       <p> It really did self-destruct! </p>
+      <h1> Host on Azure </h1>
+      <p> As we mentioned above, if we run json-silo in the cloud, our digital personae would be accessible across the Internet.  In this section we'll show you how elegantly simple it is to host json-silo as a website on Microsoft Azure.  If you already have an account and git installed on your local machine this will be a breeze. </p>
+      <h2> Get an Azure Account </h2>
+      <p> If you're a startup and you're not already a BizSpark member, get on that now, seriously!  Take advantage of all the free stuff, including Azure credits, which would come in handy right now, wouldn't they? &nbsp; <a href="http://www.microsoft.com/bizspark/" target="_blank">Let's do it &nbsp; ></a> </p>
+      <p> Otherwise, if you don't already have an Azure account, visit <a href="http://azure.microsoft.com/" target="_blank">azure.microsoft.com</a> and click on <i>Free Trial</i>.  Follow the steps until you have an account. </p>
+      <h2> Install git </h2>
+      <p> If you don't already have git installed, be sure to do so.  Installation is easy on all platforms. &nbsp; <a href="http://git-scm.com/downloads" target="_blank">Let's do it &nbsp; ></a> </p>
+      <h2> Create an Azure Website </h2>
+      <p> Okay, now check out how easy it is to create a website with Azure, git and Node.js.  Open <a href="http://azure.microsoft.com/en-us/documentation/articles/web-sites-nodejs-develop-deploy-mac/" target="_blank">this tutorial</a> and follow all the steps in the <i>Create an Azure Website and enable Git publishing</i> section, which should start like this: </p>
+      <img src="images/azureNewWebsite.png">
+      <p> When you get through that section, STOP! Once the git repository is ready, read on below where we'll show you exactly what to do next. </p>
+      <h2> Prepare the local git repository </h2>
+      <p> On your local machine, return to the myjson directory we created earlier.  We'll update our code to be Azure-friendly and then check it in.  First, update the file server.js to contain the following: </p>
+      <code> var server = require('json-silo'); </code> <br>
+      <code> var options = { httpPort: 1337, </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; useCors: true, </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; hlcServerUrl: "http://www.hyperlocalcontext.com", </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; smartspacesUrl: "http://smartspac.es", </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; password: "moresilo" }; </code> <br>
+      <code> var app = new server(options); </code>
+      <p> You can, of course, choose a better password.  Then, in the same directory, create a file called package.json which contains the following: </p>
+      <code> { </code> <br>
+      <code> &nbsp; "name": "myjsonsilo", </code> <br>
+      <code> &nbsp; "description": "...", </code> <br>
+      <code> &nbsp; "engines": { </code> <br>
+      <code> &nbsp; &nbsp; "node": ">=0.10.0" </code> <br>
+      <code> &nbsp; }, </code> <br>
+      <code> &nbsp; "dependencies": { </code> <br>
+      <code> &nbsp; &nbsp; "json-silo": ">=0.1.3" </code> <br>
+      <code> &nbsp; } </code> <br>
+      <code> } </code> <br>
+      <p> This file tells Azure to install the json-silo package and what version of Node.js to use.  You can change the name and fill in your own description if you like. </p>
+      <p> Now we can check in your code locally using git.  In the same directory, from the command line type: </p>
+      <code> git init </code> <br>
+      <code> git add server.js </code> <br>
+      <code> git add package.json </code> <br>
+      <code> git commit -m "Initial commit" </code>
+      <p> Your code is now checked in locally, all that's left is to publish it to Azure! </p>
+      <h2> Publish your website to Azure </h2>
+      <p> Where you left off the Azure tutorial, you should have arrived at a screen which provided you a git repository URL like the following: </p>
+      <code>https://username@myjsonsilo.scm. ... .git</code>
+      <p> Now we'll add that as a remote directory to which we'll push our local commit.  Again, in the same local directory, from the command line type: </p>
+      <code> git remote add azure [URL from above] </code> <br>
+      <code> git push azure master </code> <br>
+      <p> If you don't see any errors on the command line, your website should be live in a few seconds! </p>
+      <h2> Visit your hosted silo </h2>
+      <p> Open your favourite web brower and browse to <i>myjsonsilo.azurewebsites.net</i>, or whatever name you selected, to visit your hosted JSON Silo.  Click the Login link at the bottom of the page and enter the password you specified in server.js.  Now you're ready to create digital personae that can be shared over the Internet! </p>
       <h2> What's next? </h2>
-      <p> More to come soon, be sure to check back! </p>
+      <p> Read the documentation on <a href="https://www.npmjs.org/package/json-silo" target="_blank">json-silo</a> to learn about the additional options and features not specified in this tutorial. </p>
+      <p> <a href="http://context.reelyactive.com/contact.html" target="_blank">Contact us</a> if you'd like your <i>virtual</i> Smart Space to be hosted on <a href="http://smartspac.es" target="_blank">smartspac.es</a>.  
     </section>
     <footer id="footer">
       <a href="index.html"> diyActive Home </a> &nbsp; | &nbsp;
