@@ -45,10 +45,10 @@
       <p> If you have one of our <a href="http://shop.reelyactive.com/collections/starter-kits" target="_blank">starter kits</a>, be sure to read our <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit</a> tutorial. If not, don't worry, you can still test everything without any hardware. </p>
       <h2> Running everything together </h2>
       <p> In the smartspaces directory you created above, open a new file called server.js and paste in the following code: </p>
-      <code> var ssServer = require('smartspaces'); </code> <br>
-      <code> var hlcServer = require('hlc-server'); </code> <br><br>
-      <code> var ssApp = new ssServer(); </code> <br>
-      <code> var hlcApp = new hlcServer(); </code> <br>
+      <code> var smartspaces = require('smartspaces'); </code> <br>
+      <code> var hlcserver = require('hlc-server'); </code> <br><br>
+      <code> var ui = new smartspaces(); </code> <br>
+      <code> var server = new hlcserver( { useCors: true } ); </code> <br>
       <p> To fire up both servers, simply run: </p>
       <code> node server.js </code>
       <h2> Did it work? </h2>
