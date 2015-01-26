@@ -92,6 +92,18 @@
       <p> Browse to <a href="http://localhost:3000/test" target="_blank">localhost:3000/test</a> to visit The Barn as a Smart Space.  If everything went to plan, you should be rewarded with a barn owl floating in a bubble!  Have fun exploring The Barn! </p>
       <img src="images/theBarn.png">
       <p> Yes, we also find it humourous that it says <i>Who</i>'s here and that's the sound an owl makes. </p>
+      <h2> Create Your Smart Space </h2>
+      <p> Now that you've successfully run the demo, the next step is to create your own Smart Space that can receive guests other than our barn owl.  To do so, you'll need a <a href="https://www.npmjs.com/package/json-silo" target="_blank">json-silo</a> to create and store the profiles of all the guests visiting your space.  Simply follow the first section of the <a href="http://localhost:3000/test" target="_blank">Host a JSON Silo tutorial</a> which will then point you back to this tutorial. </p>
+      <h2> All Together Now! </h2>
+      <p> Running your own Smart Space with hardware requires just a single additional line of code where we tell the server where to listen for the data stream.  Your server.js file should now look like this: </p>
+      <code> var smartspaces = require('smartspaces'); </code> <br>
+      <code> var hlcserver = require('hlc-server'); </code> <br>
+      <code> var jsonsilo = require('json-silo'); </code> <br><br>
+      <code> var ui = new smartspaces(); </code> <br>
+      <code> var server = new hlcserver( { useCors: true } ); </code> <br>
+      <code> var silo = new jsonsilo( { useCors: true } ); </code> <br><br>
+      <code> server.bind('udp', '192.168.1.101:50000'); </code> <br>
+      <p> Make sure that the last line of code correctly points to the source of the data stream!  If you're using a <a href="http://shop.reelyactive.com/collections/starter-kits" target="_blank">starter kit</a>, you can find all the details in the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit tutorial</a>. </p>
       <h2> What's next? </h2>
       <p> More to come soon, be sure to check back! </p>
     </section>
