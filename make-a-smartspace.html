@@ -102,7 +102,7 @@
       <code> var ui = new smartspaces(); </code> <br>
       <code> var server = new hlcserver( { useCors: true } ); </code> <br>
       <code> var silo = new jsonsilo( { useCors: true } ); </code> <br><br>
-      <code> server.bind('udp', '192.168.1.101:50000'); </code> <br>
+      <code> server.bind( { protocol: 'udp', path: '192.168.1.101:50000' } ); </code> <br>
       <p> Make sure that the last line of code correctly points to the source of the data stream!  If you're using a <a href="http://shop.reelyactive.com/collections/starter-kits" target="_blank">starter kit</a>, you can find all the details in the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit tutorial</a>. </p>
       <h2> What's next? </h2>
       <p> More to come soon, be sure to check back! </p>
