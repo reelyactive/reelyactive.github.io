@@ -67,7 +67,7 @@ br .clear {
   }
 
 #content {
-  min-width: 480px;
+  min-width: 640px;
   width: 50%;
   max-width: 960px;
   margin-left: auto;
