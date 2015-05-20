@@ -19,7 +19,20 @@
     <section id="content">
       <h1> Integrate your Mobile App </h1>
       <img src="images/mobileIntegration.jpg">
-      <p> Mobile applications can seamlessly integrate with reelyActive Smart Spaces using Bluetooth Smart (BLE) technology.  Apple devices since the iPhone 4S support Bluetooth Smart, and more recent Android devices, as well as those of other platforms, also support this technology.  This tutorial is divided based on how the mobile device and the reelyActive infrastructure discover one another, either:
+      <p> Mobile applications can seamlessly integrate with reelyActive Smart Spaces using Bluetooth Smart (BLE) technology.  Apple devices since the iPhone 4S support Bluetooth Smart, and more recent Android devices, as well as those of other platforms, also support this technology. </p>
+      <h2> Our mobile SDKs </h2>
+      <p> Everyone loves open source SDKs!  Ours are maintained by our partners at <a href="http://sidereo.com" target="_blank">Sidereo</a> and currently support the following mobile platforms:
+        <ul>
+          <li> Android: &nbsp;
+               <a href="https://github.com/reelyactive/ble-android-sdk/" target="_blank">SDK</a> &nbsp; | &nbsp;
+               <a href="http://reelyactive.github.io/ble-android-sdk/" target="_blank">Documentation</a> 
+          <li> iOS: &nbsp;
+               <a href="https://github.com/reelyactive/ble-ios-sdk/" target="_blank">SDK</a>
+        </ul>
+        Read on to understand what these SDKs are doing behind the scenes.
+      </p>
+      <h2> Toward Mutual Assured Discovery </h2>
+      <p> This tutorial is divided based on how the mobile device and the reelyActive infrastructure discover one another, either:
         <ul>
           <li> <a href="#reelToMobile">the reelyActive infrastructure advertises itself to the mobile device</a>, <i>or</i>
           <li> <a href="#mobileToReel">the mobile device advertises itself to the reelyActive infrastructure</a>, <i>or</i>
@@ -28,6 +41,7 @@
         Confused?  First watch this two-minute video:
       </p>
       <div class="embed-container"><iframe src="http://www.youtube.com/embed/CsYNHXSlVQY?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div>
+      <p> For even more detail, read our blog post: <a href="http://reelyactive.com/blog/archives/158" target="_blank">Radio location demystified</a>. </p>
       <a id="reelToMobile"></a>
       <h2> reelyActive advertises &#10142; mobile device </h2>
       <img src="images/reelToMobile.png">
@@ -50,7 +64,7 @@
           <li> extract all the data of interest from the query response
         </ol>
       </p>
-      <p> We'll provide platform-specific details soon.  For iOS devices, you can use the <a href="https://itunes.apple.com/ca/app/lightblue-bluetooth-low-energy/id557428110" target="_blank">LightBlue app</a> for inspiration, and for Android devices try <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a>.
+      <p> There are third-party apps which detect Bluetooth Smart devices in range, such as our reelceivers.  For iOS devices, you can use the <a href="https://itunes.apple.com/ca/app/lightblue-bluetooth-low-energy/id557428110" target="_blank">LightBlue app</a> for inspiration, and for Android devices try <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a>.
       <a id="mobileToReel"></a>
       <h2> Mobile device advertises &#10142; reelyActive </h2>
       <img src="images/mobileToReel.png">
@@ -78,7 +92,7 @@
       <code> &nbsp; } </code> <br>
       <code> } </code> <br>
       <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID, major and minor.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
-      <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/hlc-server" target="_blank">hlc-server</a> (our API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to <i>http://yourapi.com/majorminor</i> to access metadata associated with your app user. </p>
+      <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to <i>http://yourapi.com/majorminor</i> to access metadata associated with your app user. </p>
       <h3> Advertise a service </h3>
       <p> An alternative with less vendor-lock-in than Apple's iBeacons is to advertise a service and accompany this with a unique identifier included in another <a href="https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile" target="_blank">Advertising Data Type</a>.  For instance, the completeLocalName Advertising Data Type could be used as follows: </p>
       <code> UUID: 128-bits </code> <br>
@@ -95,7 +109,9 @@
       <code> } </code> <br>
       <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeAdvertiser.html#startAdvertising(android.bluetooth.le.AdvertiseSettings, android.bluetooth.le.AdvertiseData, android.bluetooth.le.AdvertiseCallback)" target="_blank">startAdvertising()</a> function. </p>
       <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID and completeLocalName.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
-      <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/hlc-server" target="_blank">hlc-server</a> (our API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to <i>http://yourapi.com/completeLocalName</i> to access metadata associated with your app user. </p>
+      <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to <i>http://yourapi.com/completeLocalName</i> to access metadata associated with your app user. </p>
+      <h3> UriBeacon </h3>
+      <p> An alternative which seamlessly integrates with our platform is the UriBeacon service.  Read all about it at <a href="http://uribeacon.org" target="_blank">uribeacon.org</a>.  In this case, the URL is included in the advertising packet, so there's no need to update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>, the metadata associated with your app would already be detected by our platform. </p>
       <a id="reelMobileHybrid"></a>
       <h2> Hybrid bliss: reelyActive &#8644; mobile device </h2>
       <img src="images/reelMobileHybrid.png">
@@ -115,7 +131,7 @@
       <p> To complete the integration, you would register in our API (<a href="https://www.npmjs.org/package/hlc-server" target="_blank">hlc-server</a>) the association between the 48-bit advertiser address and a URL that returns metadata specific to that app user.  That's precisely what we did in the video below: </p>
       <div class="embed-container"><iframe src="http://www.youtube.com/embed/MGZm6rUU6_g?rel=0&controls=0&showinfo=0&modestbranding&start=69" frameborder="0" allowfullscreen></iframe></div>
       <h2> What's next? </h2>
-      <p> Platform-specific instructions will be available soon, be sure to check back! </p>
+      <p> Platform-specific instructions will continue to be added, be sure to check back! </p>
     </section>
     <footer id="footer">
       <a href="index.html"> diyActive Home </a> &nbsp; | &nbsp;
