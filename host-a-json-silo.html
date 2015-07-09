@@ -32,7 +32,8 @@
       <h2> Running the silo </h2>
       <p> In the myjson directory you created above, open a new file called server.js and paste in the following code: </p>
       <code> var server = require('json-silo'); </code> <br>
-      <code> var app = new server({ useCors: true }); </code>
+      <code> var app = new server( { useCors: true, </code> <br>
+      <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; password: null } ); </code>
       <p> To fire up the silo, simply run: </p>
       <code> node server.js </code>
       <h2> Did it work? </h2>
@@ -136,7 +137,7 @@
     </section>
     <footer id="footer">
       <a href="index.html"> diyActive Home </a> &nbsp; | &nbsp;
-      <a href="http://context.reelyactive.com"> &copy; reelyActive 2014 </a>
+      <a href="http://context.reelyactive.com"> &copy; reelyActive 2014-2015 </a>
     </footer>
   </body>
 </html>
