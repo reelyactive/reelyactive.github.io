@@ -1,156 +1,82 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   background: #fff;
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
-  font-size: 18pt;
-  line-height: 1.75em;
-  color: #39454b;
-  letter-spacing: 0.5px;
-  margin: 0;
+  margin-bottom: 60px;
 }
 
-section {
-  margin-top: 4.5em;
+/* Begin Bootstrap 3 navbar override */
+.navbar-default {
+    background-color: #0770a2;
+    border-color: #06638f;
 }
-
-h1 {
-  font-size: 36pt;
+.navbar-default .navbar-brand {
+    color: #ddd;
 }
-
-h2 {
-  font-size: 24pt;
-  margin-top: 3em;
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #fff;
 }
-
-a {
-  color: #0770a2;
-  text-decoration: none;
-
-  -moz-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+.navbar-default .navbar-nav > li > a {
+    color: #ddd;
 }
-
-  a:hover {
-     text-shadow: 0px 1px 1px #aaaaaa;
-  }
-
-code {
-  font-size: 13pt;
-  line-height: 1em;
-  margin-left: 3em;
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #fff;
 }
-
-br .clear {
-  clear: both;
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #ddd;
+    background-color: #076a99;
 }
-
-#header {
-  position: fixed;
-  z-index: 10000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  background: #fff;
-  background: rgba(255,255,255,0.95);
-  height: 3em;
-  line-height: 3em;
-  box-shadow: 0 0 0.15em 0 rgba(0,0,0,0.1);
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #ddd;
+    background-color: #06638f;
 }
-
-  #header img {
-    display: block;
-    margin: 0 auto;
-    height: 3em;
-  }
-
-#content {
-  min-width: 640px;
-  width: 50%;
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #ddd;
+    border-bottom-color: #ddd;
 }
-
-  #content p {
-    text-align: justify;
-  }
-
-  #content img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    max-width: 100%;
-  }
-
-#projects {
-  width: 100%;
-  background: #eeeeee;
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
 }
-
-#projects .list {
-  min-width: 480px;
-  width: 80%;
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 1em;
+.navbar-default .navbar-nav > .open > a .caret, 
+.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #ddd;
+    border-bottom-color: #ddd;
 }
-
-  #projects .project {
-    margin: 1em 0;
-    clear: both;
-  }
-
-  #projects .visual {
-    width: 25%;
-    float: left;
-  }
-
-    #projects .visual img {
-      width: 100%;
+.navbar-default .navbar-toggle {
+    border-color: #ddd;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #06638f;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ddd;
     }
-
-  #projects .description {
-    width: 75%;
-    float: left;
-  }
-
-  #projects .description h2 {
-    margin-top: 0;
-    margin-left: 2em;
-  }
-
-  #projects .description p {
-    margin-left: 2em;
-    text-align: justify;
-  }
-
-#footer {
-  position: relative;
-  height: 5em;
-  line-height: 5em;
-  margin: 0;
-  background: #4997bd;
-  color: #999;
-  color: rgba(255,255,255,0.5);
-  overflow: hidden;
-  text-align: center;
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #fff;
+    }
 }
+/* End Bootstrap 3 navbar override */
 
-  #footer a {
-    color: #999;
-    color: rgba(255,255,255,0.5);
-  }
-
-  #footer a:hover {
-    color: rgba(255,255,255,0.7);
-  }
-
+/* Begin YouTube embedded video support */
 .embed-container {
   position: relative; 
   padding-bottom: 56.25%;
@@ -168,4 +94,27 @@ br .clear {
     left: 0;
     width: 100%;
     height: 100%;
+  }
+/* End YouTube video support */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  margin-top: 30px;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  color: #ddd;
+  background-color: #0770a2;
+  text-align: center;
+  overflow: hidden;
+}
+
+  .footer a {
+    color: #ddd;
+  }
+
+  .footer a:hover {
+    color: #fff;
+    text-decoration: none;
   }

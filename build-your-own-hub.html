@@ -1,8 +1,12 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Build your own reelyActive hub</title>
+    <title>diyActive: Build your own Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.1/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -12,71 +16,152 @@
       ga('send', 'pageview');
     </script>
   </head>
-  <body>
-    <header id="header">
-      <a href="index.html"> <img src="images/diyActive.png"> </a>
-    </header>
-    <section id="content">
-      <h1> Build your own hub </h1>
-      <p> In order for <a href="http://shop.reelyactive.com/collections/infrastructure" target="_blank">reelceivers</a> to communicate their data over a network and/or the Internet, they need to connect via a hub. </p>
-      <img src="images/hubAndReel.png">
-      <p> The hub converts their serial data packets into IP data packets.  Some hubs may instead convert the serial data packets into some other format that a computer can, in turn, convert to IP packets.  The hub also provides power to the reelceivers.  We include a hub with our <a href="http://shop.reelyactive.com/collections/starter-kits" target="_blank">starter kits</a> for out-of-the-box connectivity, but with basic tools and a little bit of effort, you can enjoy building your own hub.  In this tutorial, we'll show you how! </p>
-      <h2> Build a USB hub </h2>
-      <p> Here you'll learn how to build a USB hub which allows you to connect a reel directly to your computer, server, Raspberry Pi or anything with USB host capability.  This is arguably the quickest, easiest and most cost-effective way to connect a short reel to a computing device.  The only limitation is the 5VDC power supplied by the USB port: don't expect to connect dozens of reelceivers over hundreds of metres!  But with a good USB port, you might successfully connect a few reelceivers over tens of metres. </p>
-      <img src="images/usbHub-Parts.jpg">
-      <p> Here are the parts you'll need:
-        <ul>
-          <li> a Cat5 cable with one RJ-45 connector (i.e. an "Ethernet" cable cut in half)
-          <li> an FTDI USB-RS422-PCB board (<a href="http://www.digikey.ca/product-search/en?KeyWords=768-1044-ND" target="_blank">buy on DigiKey</a>)
-          <li> (recommended) a 2-3cm diameter clear shrink tube cut to 3cm length
-          <li> (recommended) a 1-1.5cm diameter opaque shrink tube cut to 2.5cm length
-        </ul>
-      </p>
-      <p> You'll also need the following tools:
-        <ul>
-          <li> a soldering iron
-          <li> some solder
-          <li> wire cutters and strippers (or simply a knife)
-          <li> a heat gun (or hair dryer, or lighter...)
-        </ul>
-      </p>
-      <img src="images/usbHub-Cat5.jpg">
-      <p> First, slip the opaque shrink tube onto the Cat5 cable.  Seriously, do this <i>first</i> because otherwise you'll forget and then regret your mistake after you've started soldering...  We're speaking from experience here!  Then trim off about 2cm of the sheathing. </p>
-      <img src="images/usbHub-Pads.jpg">
-      <p> Add a touch of solder to the six indicated pads on the board.  Also add a touch of solder to Pin 1 of each of the 8-pin ICs, as also indicated by the little orange arrows. </p>
-      <img src="images/usbHub-BluePair.jpg">
-      <p> Strip 1-2mm off the blue pair of wires and solder one to each Pin 1 of those 8-pin ICs.  The blue pair carry the positive voltage of the reel which in this case will be around 5VDC.  Take care not to short them with any other pins! </p>
-      <img src="images/usbHub-GreenPair.jpg">
-      <p> Trim the green pair of wires and one of the brown wires so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
-        <ul>
-          <li> solid green
-          <li> green/white
-          <li> brown or brown/white (doesn't matter)
-        </ul>
-      </p>
-      <p> The green pair carry the serial data from the hub to the reel.  Note that this is the most meticulous part of the whole operation.  It helps if you can secure the board in a vise.  Don't worry, after this, it's smooth sailing. </p>
-      <img src="images/usbHub-OrangePair.jpg">
-      <p> Flip the board and trim the orange pair of wires and the other brown wire so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
-        <ul>
-          <li> brown or brown/white (doesn't matter)
-          <li> solid orange
-          <li> orange/white
-        </ul>
-      </p>
-      <p> The orange pair carry the serial data from the reel to the hub.  The brown pair carry ground, hence their order doesn't matter. </p>
-      <p> Now you (should) have a functional USB hub!  This is a good time to test it out with the <a href="barnowl-baby-steps.html" target="_blank">Barnowl Baby Steps</a> tutorial.  If the hub works we can move on to the fun part of shrink tubing it which protects against shorts and acts as a strain relief. </p>
-      <img src="images/usbHub-ClearShrink.jpg">
-      <p> Place the clear shrink tubing over the assembly so that about 2mm overlaps with the USB connecter.  Then blast it with the heat gun so that it makes a nice snug fit.  We selected clear shrink wrap so that the LEDs remain visible. </p>
-      <img src="images/usbHub-OpaqueShrink.jpg">
-      <p> Slide the opaque shrink tubing over the assembly so that it overlaps both the board and the sheathed part of the Cat5 cable.  Then blast it too with the heat gun so that it makes a nice snug fit. </p>
-      <img src="images/usbHub-Complete.jpg">
-      <p> Congratulations, you've got yourself a USB hub! </p>
-      <h2> What's next? </h2>
-      <p> Check out <a href="index.html">the other tutorials on diyActive</a> to make good use of your new hub.  You can also refer to the <a href="https://www.npmjs.com/package/barnowl" target="_blank">barnowl documentation</a> to learn more about how to configure your hub for your operating system.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>!  </p>
-    </section>
-    <footer id="footer">
-      <a href="index.html"> diyActive Home </a> &nbsp; | &nbsp;
-      <a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
-    </footer>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://context.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html"> diyActive </a></li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://www.hyperlocalcontext.com" target="_blank">
+                    www.hyperlocalcontext.com
+                  </a>
+                </li>
+                <li>
+                  <a href="http://smartspac.es" target="_blank">
+                    smartspac.es
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li>
+                  <a href="http://context.reelyactive.com" target="_blank">
+                    Our website
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="row">
+        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+          <h1> Build your own hub </h1>
+          <p> In order for <a href="http://shop.reelyactive.com/collections/infrastructure" target="_blank">reelceivers</a> to communicate their data over a network and/or the Internet, they need to connect via a hub. </p>
+          <img src="images/hubAndReel.png"
+               class="img-responsive center-block">
+          <p> The hub converts their serial data packets into IP data packets.  Some hubs may instead convert the serial data packets into some other format that a computer can, in turn, convert to IP packets.  The hub also provides power to the reelceivers.  We include a hub with our <a href="http://shop.reelyactive.com/collections/starter-kits" target="_blank">starter kits</a> for out-of-the-box connectivity, but with basic tools and a little bit of effort, you can enjoy building your own hub.  In this tutorial, we'll show you how! </p>
+          <h2> Build a USB hub </h2>
+          <p> Here you'll learn how to build a USB hub which allows you to connect a reel directly to your computer, server, Raspberry Pi or anything with USB host capability.  This is arguably the quickest, easiest and most cost-effective way to connect a short reel to a computing device.  The only limitation is the 5VDC power supplied by the USB port: don't expect to connect dozens of reelceivers over hundreds of metres!  But with a good USB port, you might successfully connect a few reelceivers over tens of metres. </p>
+          <img src="images/usbHub-Parts.jpg"
+               class="img-responsive center-block">
+          <p> Here are the parts you'll need:
+            <ul>
+              <li> a Cat5 cable with one RJ-45 connector (i.e. an "Ethernet" cable cut in half)
+              <li> an FTDI USB-RS422-PCB board (<a href="http://www.digikey.ca/product-search/en?KeyWords=768-1044-ND" target="_blank">buy on DigiKey</a>)
+              <li> (recommended) a 2-3cm diameter clear shrink tube cut to 3cm length
+              <li> (recommended) a 1-1.5cm diameter opaque shrink tube cut to 2.5cm length
+            </ul>
+          </p>
+          <p> You'll also need the following tools:
+            <ul>
+              <li> a soldering iron
+              <li> some solder
+              <li> wire cutters and strippers (or simply a knife)
+              <li> a heat gun (or hair dryer, or lighter...)
+            </ul>
+          </p>
+          <img src="images/usbHub-Cat5.jpg"
+               class="img-responsive center-block">
+          <p> First, slip the opaque shrink tube onto the Cat5 cable.  Seriously, do this <i>first</i> because otherwise you'll forget and then regret your mistake after you've started soldering...  We're speaking from experience here!  Then trim off about 2cm of the sheathing. </p>
+          <img src="images/usbHub-Pads.jpg"
+               class="img-responsive center-block">
+          <p> Add a touch of solder to the six indicated pads on the board.  Also add a touch of solder to Pin 1 of each of the 8-pin ICs, as also indicated by the little orange arrows. </p>
+          <img src="images/usbHub-BluePair.jpg"
+               class="img-responsive center-block">
+          <p> Strip 1-2mm off the blue pair of wires and solder one to each Pin 1 of those 8-pin ICs.  The blue pair carry the positive voltage of the reel which in this case will be around 5VDC.  Take care not to short them with any other pins! </p>
+          <img src="images/usbHub-GreenPair.jpg"
+               class="img-responsive center-block">
+          <p> Trim the green pair of wires and one of the brown wires so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
+            <ul>
+              <li> solid green
+              <li> green/white
+              <li> brown or brown/white (doesn't matter)
+            </ul>
+          </p>
+          <p> The green pair carry the serial data from the hub to the reel.  Note that this is the most meticulous part of the whole operation.  It helps if you can secure the board in a vise.  Don't worry, after this, it's smooth sailing. </p>
+          <img src="images/usbHub-OrangePair.jpg"
+               class="img-responsive center-block">
+          <p> Flip the board and trim the orange pair of wires and the other brown wire so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
+            <ul>
+              <li> brown or brown/white (doesn't matter)
+              <li> solid orange
+              <li> orange/white
+            </ul>
+          </p>
+          <p> The orange pair carry the serial data from the reel to the hub.  The brown pair carry ground, hence their order doesn't matter. </p>
+          <p> Now you (should) have a functional USB hub!  This is a good time to test it out with the <a href="barnowl-baby-steps.html" target="_blank">Barnowl Baby Steps</a> tutorial.  If the hub works we can move on to the fun part of shrink tubing it which protects against shorts and acts as a strain relief. </p>
+          <img src="images/usbHub-ClearShrink.jpg"
+               class="img-responsive center-block">
+          <p> Place the clear shrink tubing over the assembly so that about 2mm overlaps with the USB connecter.  Then blast it with the heat gun so that it makes a nice snug fit.  We selected clear shrink wrap so that the LEDs remain visible. </p>
+          <img src="images/usbHub-OpaqueShrink.jpg"
+               class="img-responsive center-block">
+          <p> Slide the opaque shrink tubing over the assembly so that it overlaps both the board and the sheathed part of the Cat5 cable.  Then blast it too with the heat gun so that it makes a nice snug fit. </p>
+          <img src="images/usbHub-Complete.jpg"
+               class="img-responsive center-block">
+          <p> Congratulations, you've got yourself a USB hub! </p>
+          <h2> What's next? </h2>
+          <p> Check out <a href="index.html">the other tutorials on diyActive</a> to make good use of your new hub.  You can also refer to the <a href="https://www.npmjs.com/package/barnowl" target="_blank">barnowl documentation</a> to learn more about how to configure your hub for your operating system.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
+          <p class="text-center">
+            <a class="btn btn-success" href="index.html"
+               role="button"> Return to diyActive </a>
+          </p>
+        </div>
+        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+      </div>
+      <footer class="footer">
+        <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://context.reelyactive.com">
+          &copy; reelyActive 2015
+        </a>
+      </footer>
+    </div>
   </body>
 </html>

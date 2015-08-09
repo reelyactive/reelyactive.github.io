@@ -1,8 +1,12 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Integrate your Mobile App with reelyActive Smart Spaces</title>
+    <title>diyActive: Integrate your Mobile App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.1/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -13,153 +17,229 @@
     </script>
   </head>
   <body>
-    <header id="header">
-      <a href="index.html"> <img src="images/diyActive.png"> </a>
-    </header>
-    <section id="content">
-      <h1> Integrate your Mobile App </h1>
-      <img src="images/mobileIntegration.jpg">
-      <p> Mobile applications can seamlessly integrate with reelyActive Smart Spaces using Bluetooth Smart (BLE) technology.  Apple devices since the iPhone 4S support Bluetooth Smart, and more recent Android devices, as well as those of other platforms, also support this technology. </p>
-      <a id="mobileSDKs"></a>
-      <h2> Our mobile SDKs </h2>
-      <p> <i>Who doesn't love open source SDKs?</i> &nbsp; Ours are maintained by our partners at <a href="http://sidereo.com" target="_blank">Sidereo</a> and currently support the following mobile platforms:
-        <ul>
-          <li> <b>Android:</b> &nbsp;
-               <a href="https://github.com/reelyactive/ble-android-sdk/" target="_blank">SDK</a> &nbsp; | &nbsp;
-               <a href="http://reelyactive.github.io/ble-android-sdk/" target="_blank">Documentation</a> 
-          <li> <b>iOS:</b> &nbsp;
-               <a href="https://github.com/reelyactive/ble-ios-sdk/" target="_blank">SDK</a>
-        </ul>
-        Read on to understand what these SDKs are doing behind the scenes.
-      </p>
-      <h2> Toward Mutual Assured Detection </h2>
-      <p> This tutorial is divided based on how the mobile device and the reelyActive infrastructure discover one another, either:
-        <ul>
-          <li> <a href="#reelToMobile">the reelyActive infrastructure advertises itself to the mobile device</a>, <i>or</i>
-          <li> <a href="#mobileToReel">the mobile device advertises itself to the reelyActive infrastructure</a>, <i>or</i>
-          <li> <a href="#reelMobileHybrid">both happen in harmony</a>
-        </ul>
-        Confused?  First watch this two-minute video:
-      </p>
-      <div class="embed-container"><iframe src="http://www.youtube.com/embed/CsYNHXSlVQY?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div>
-      <p> For even more detail, read our blog post: <a href="http://reelyactive.com/blog/archives/158" target="_blank">Radio location demystified</a>. </p>
-      <a id="reelToMobile"></a>
-      <h2> reelyActive advertises &#10142; mobile device </h2>
-      <img src="images/reelToMobile.png">
-      <p> Our Bluetooth Smart reelceivers continuously advertise the following information which can be decoded by any listening Bluetooth Smart devices in range: </p>
-      <code> completeLocalName: reelyActive </code> <br>
-      <code> 128-bit UUID: 7265656c794163746976652055554944 </code> <br>
-      <code> EUI-64 identifier (Service Data): 001bc5094xxxxxxx </code> <br>
-      <code> MAC address: xx:xx:xx:xx:xx:xx </code> <br>
-      <p> The completeLocalName and 128-bit UUID are generic to all reelceivers, while the EUI-64 and MAC uniquely identify each reelceiver (hence the x values above). </p>
-      <h3> How do I make use of this in my app? </h3>
-      <p> Your app can discover the context of its current location and all the other devices present in just four steps:
-        <ol>
-          <li> subscribe to the reelyActive 128-bit UUID
-          <li> when a reelceiver is detected (by its UUID)
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://context.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html"> diyActive </a></li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://www.hyperlocalcontext.com" target="_blank">
+                    www.hyperlocalcontext.com
+                  </a>
+                </li>
+                <li>
+                  <a href="http://smartspac.es" target="_blank">
+                    smartspac.es
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li>
+                  <a href="http://context.reelyactive.com" target="_blank">
+                    Our website
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="row">
+        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+          <h1> Integrate your Mobile App </h1>
+          <img src="images/mobileIntegration.jpg"
+               class="img-responsive center-block">
+          <p> Mobile applications can seamlessly integrate with reelyActive Smart Spaces using Bluetooth Smart (BLE) technology.  Apple devices since the iPhone 4S support Bluetooth Smart, and more recent Android devices, as well as those of other platforms, also support this technology. </p>
+          <a id="mobileSDKs"></a>
+          <h2> Our mobile SDKs </h2>
+          <p> <i>Who doesn't love open source SDKs?</i> &nbsp; Ours are maintained by our partners at <a href="http://sidereo.com" target="_blank">Sidereo</a> and currently support the following mobile platforms:
             <ul>
-              <li> determine which reelceiver is detected with the greatest signal strength (RSSI)
-              <li> take the EUI-64 identifier of that reelceiver
+              <li> <b>Android:</b> &nbsp;
+                   <a href="https://github.com/reelyactive/ble-android-sdk/" target="_blank">SDK</a> &nbsp; | &nbsp;
+                   <a href="http://reelyactive.github.io/ble-android-sdk/" target="_blank">Documentation</a> 
+              <li> <b>iOS:</b> &nbsp;
+                   <a href="https://github.com/reelyactive/ble-ios-sdk/" target="_blank">SDK</a>
             </ul>
-          <li> query our contextual API (<a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>) based on that EUI-64 identifier
-          <li> extract all the data of interest from the query response
-        </ol>
-      </p>
-      <p> There are third-party apps which detect Bluetooth Smart devices in range, such as our reelceivers.  For iOS devices, you can use the <a href="https://itunes.apple.com/ca/app/lightblue-bluetooth-low-energy/id557428110" target="_blank">LightBlue app</a> for inspiration, and for Android devices try <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a>.
-      <a id="mobileToReel"></a>
-      <h2> Mobile device advertises &#10142; reelyActive </h2>
-      <img src="images/mobileToReel.png">
-      <p> Currently only iOS devices and a tiny subset of Android Lollipop devices support Bluetooth Smart peripheral mode which allows the spontaneous transmission of advertising packets (which can be detected by our reelceivers).  <i>BUT</i> there's still a clever way to get devices from other platforms to integrate with reelyActive infrastructure: <a href="#reelMobileHybrid">read the next section!</a> </p>
-      <p> In order for the mobile device to fully integrate with our infrastructure, it needs to transmit advertising data that allows it to be uniquely identified.  There are a few options, each described in a subsection below. </p>
-      <a id="iBeacons"></a>
-      <h3> iBeacons </h3>
-      <p> An iOS device can send iBeacons packets which contain, among other things, the following data: </p>
-      <code> UUID: 128-bits </code> <br>
-      <code> Major ID: 16-bits </code> <br>
-      <code> Minor ID: 16-bits </code> <br>
-      <p> Our Bluetooth Smart reelceivers decipher each of these identifiers, so the app need only transmit some combination of the three which makes the device uniquely identifiable. An app will typically use a single UUID and then assign non-conflicting major and minor values to all participating devices. </p>
-      <p> For instance, if you use the <a href="https://itunes.apple.com/ca/app/locate-beacon/id738709014" target="_blank">Radius Networks Locate Beacon app</a> and select the iBeacon Transmitter option with major set to 0 and minor set to 1, our API will return the following (some fields trimmed for clarity): </p>
-      <code> identifier: { </code> <br>
-      <code> &nbsp; type: "ADVA-48", </code> <br>
-      <code> &nbsp; value: "123456789abc", </code> <br>
-      <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
-      <code> &nbsp; advData: { </code> <br>
-      <code> &nbsp; &nbsp; manufacturerSpecificData: { </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; iBeacon: { </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; &nbsp; uuid: "1675e3a3932a458c9ed907a290622635", </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; &nbsp; major: "0000", </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; &nbsp; minor: "0001", </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; } </code> <br>
-      <code> &nbsp; &nbsp; } </code> <br>
-      <code> &nbsp; } </code> <br>
-      <code> } </code> <br>
-      <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID, major and minor.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
-      <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to, for example, <i>http://yourapi.com/majorminor</i> to access metadata associated with your app user. </p>
-      <a id="advertiseAService"></a>
-      <h3> Advertise a service </h3>
-      <p> An alternative with less vendor-lock-in than Apple's iBeacons is to advertise a service and accompany this with a unique identifier included in another <a href="https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile" target="_blank">Advertising Data Type</a>.  For instance, the completeLocalName Advertising Data Type could be used as follows: </p>
-      <code> UUID: 128-bits </code> <br>
-      <code> completeLocalName: an ASCII string </code> <br>
-      <p> Our Bluetooth Smart reelceivers decipher each of these, so the app need only transmit some combination of the two which makes the device uniquely identifiable. An app will typically use a single UUID and then assign non-conflicting completeLocalName values to all participating devices.  In this case, here's what our API will return (some fields trimmed for clarity): </p>
-      <code> identifier: { </code> <br>
-      <code> &nbsp; type: "ADVA-48", </code> <br>
-      <code> &nbsp; value: "123456789abc", </code> <br>
-      <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
-      <code> &nbsp; advData: { </code> <br>
-      <code> &nbsp; &nbsp; complete128BitUUIDs: "a114b00bie5888a114b00bie5888caca" </code> <br>
-      <code> &nbsp; &nbsp; completeLocalName: "barnowl" </code> <br>
-      <code> &nbsp; } </code> <br>
-      <code> } </code> <br>
-      <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeAdvertiser.html#startAdvertising(android.bluetooth.le.AdvertiseSettings, android.bluetooth.le.AdvertiseData, android.bluetooth.le.AdvertiseCallback)" target="_blank">startAdvertising()</a> function. </p>
-      <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID and completeLocalName.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
-      <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to, for example, <i>http://yourapi.com/completeLocalName</i> to access metadata associated with your app user. </p>
-      <a id="uriBeacon"></a>
-      <h3> UriBeacon </h3>
-      <p> An appealing alternative which avoids vendor-lock-in and seamlessly integrates with our platform is the UriBeacon service.  This service includes a URL in the advertising packet, which <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a> can automatically decode, eliminating the need for creating an explicit association via <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>.  The UriBeacon packet includes: </p>
-      <code> 16-bit UUID: fed8 </code> <br>
-      <code> Service data: an encoded URI/URL </code> <br>
-      <p> The UriBeacon service is part of <a href="http://google.github.io/physical-web/" target="_blank">the Google Physical Web project</a>, and you can find source code for mobile applications on their <a href="https://github.com/google/physical-web" target="_blank">GitHub page</a>.  Here's what our API will return (some fields trimmed for clarity): </p>
-      <code> identifier: { </code> <br>
-      <code> &nbsp; type: "ADVA-48", </code> <br>
-      <code> &nbsp; value: "123456789abc", </code> <br>
-      <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
-      <code> &nbsp; advData: { </code> <br>
-      <code> &nbsp; &nbsp; serviceData: { </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; uuid: "fed8" </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; data: "00f2027265656c7961637469766507" </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; uriBeacon: { </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; &nbsp; invisibleHint: false </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; &nbsp; txPower: "-14dBm" </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; &nbsp; url: "http://reelyactive.com" </code> <br>
-      <code> &nbsp; &nbsp; &nbsp; } </code> <br>
-      <code> &nbsp; &nbsp; } </code> <br>
-      <code> &nbsp; } </code> <br>
-      <code> } </code> <br>
-      <p> As you can see, the URL is right there in the packet.  How convenient! </p>
-      <a id="reelMobileHybrid"></a>
-      <h2> Hybrid bliss: reelyActive &#8644; mobile device </h2>
-      <img src="images/reelMobileHybrid.png">
-      <p> Our Bluetooth Smart reelceivers continuously advertise themselves to mobile devices in range using an ADV_DISCOVER_IND packet.  What's special about this type of packet is that it encourages nearby "curious" devices, like smartphones, to send a SCAN_REQ packet, which the reelceiver quickly follows up with a SCAN_RESP packet.  This mechanism is part of the Bluetooth Core Specification. </p>
-      <p> <i>Why should we care?</i> &nbsp; Well, the SCAN_REQ packet contains the mobile device's 48-bit advertiser address, and, in many cases, this is the device's static Bluetooth MAC address.  If so, the reelyActive platform can uniquely identify the device simply because it scanned for Bluetooth devices! </p>
-      <p> For instance, here's what our API will return when a mobile device sends a SCAN_REQ (some fields trimmed for clarity): </p>
-      <code> identifier: { </code> <br>
-      <code> &nbsp; type: "ADVA-48", </code> <br>
-      <code> &nbsp; value: "123456789abc", </code> <br>
-      <code> &nbsp; advHeader: {  </code> <br>
-      <code> &nbsp; &nbsp; type: "SCAN_REQ", </code> <br>
-      <code> &nbsp; &nbsp; txAdd: "public" </code> <br>
-      <code> &nbsp; } </code> <br>
-      <code> } </code> <br>
-      <p> As you can see, the API allows the mobile device to be uniquely identified by its 48-bit advertiser address (123456789abc) because, in this case, the <i>txAdd: "public"</i> flag indicates that this address is constant (it is uniquely assigned by the IEEE).  All your app needs to do is to periodically run a Bluetooth scan (like <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a> does) so that it can be discovered by nearby reelceivers. </p>
-      <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeScanner.html#startScan(android.bluetooth.le.ScanCallback)" target="_blank">startScan()</a> function. </p>
-      <p> To complete the integration, you would register in our contextual API (<a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>) the association between the 48-bit advertiser address and a URL that returns metadata specific to that app user.  That's precisely what we did in the video below: </p>
-      <div class="embed-container"><iframe src="http://www.youtube.com/embed/MGZm6rUU6_g?rel=0&controls=0&showinfo=0&modestbranding&start=69" frameborder="0" allowfullscreen></iframe></div>
-      <h2> What's next? </h2>
-      <p> Platform-specific instructions will continue to be added, be sure to check back! </p>
-    </section>
-    <footer id="footer">
-      <a href="index.html"> diyActive Home </a> &nbsp; | &nbsp;
-      <a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
-    </footer>
+            Read on to understand what these SDKs are doing behind the scenes.
+          </p>
+          <h2> Toward Mutual Assured Detection </h2>
+          <p> This tutorial is divided based on how the mobile device and the reelyActive infrastructure discover one another, either:
+            <ul>
+              <li> <a href="#reelToMobile">the reelyActive infrastructure advertises itself to the mobile device</a>, <i>or</i>
+              <li> <a href="#mobileToReel">the mobile device advertises itself to the reelyActive infrastructure</a>, <i>or</i>
+              <li> <a href="#reelMobileHybrid">both happen in harmony</a>
+            </ul>
+            Confused?  First watch this two-minute video:
+          </p>
+          <div class="embed-container"><iframe src="http://www.youtube.com/embed/CsYNHXSlVQY?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div>
+          <p> For even more detail, read our blog post: <a href="http://reelyactive.com/blog/archives/158" target="_blank">Radio location demystified</a>. </p>
+          <a id="reelToMobile"></a>
+          <h2> reelyActive advertises &#10142; mobile device </h2>
+          <img src="images/reelToMobile.png"
+               class="img-responsive center-block">
+          <p> Our Bluetooth Smart reelceivers continuously advertise the following information which can be decoded by any listening Bluetooth Smart devices in range: </p>
+          <code> completeLocalName: reelyActive </code> <br>
+          <code> 128-bit UUID: 7265656c794163746976652055554944 </code> <br>
+          <code> EUI-64 identifier (Service Data): 001bc5094xxxxxxx </code> <br>
+          <code> MAC address: xx:xx:xx:xx:xx:xx </code> <br>
+          <p> The completeLocalName and 128-bit UUID are generic to all reelceivers, while the EUI-64 and MAC uniquely identify each reelceiver (hence the x values above). </p>
+          <h3> How do I make use of this in my app? </h3>
+          <p> Your app can discover the context of its current location and all the other devices present in just four steps:
+            <ol>
+              <li> subscribe to the reelyActive 128-bit UUID
+              <li> when a reelceiver is detected (by its UUID)
+                <ul>
+                  <li> determine which reelceiver is detected with the greatest signal strength (RSSI)
+                  <li> take the EUI-64 identifier of that reelceiver
+                </ul>
+              <li> query our contextual API (<a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>) based on that EUI-64 identifier
+              <li> extract all the data of interest from the query response
+            </ol>
+          </p>
+          <p> There are third-party apps which detect Bluetooth Smart devices in range, such as our reelceivers.  For iOS devices, you can use the <a href="https://itunes.apple.com/ca/app/lightblue-bluetooth-low-energy/id557428110" target="_blank">LightBlue app</a> for inspiration, and for Android devices try <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a>.
+          <a id="mobileToReel"></a>
+          <h2> Mobile device advertises &#10142; reelyActive </h2>
+          <img src="images/mobileToReel.png"
+               class="img-responsive center-block">
+          <p> Currently only iOS devices and a tiny subset of Android Lollipop devices support Bluetooth Smart peripheral mode which allows the spontaneous transmission of advertising packets (which can be detected by our reelceivers).  <i>BUT</i> there's still a clever way to get devices from other platforms to integrate with reelyActive infrastructure: <a href="#reelMobileHybrid">read the next section!</a> </p>
+          <p> In order for the mobile device to fully integrate with our infrastructure, it needs to transmit advertising data that allows it to be uniquely identified.  There are a few options, each described in a subsection below. </p>
+          <a id="iBeacons"></a>
+          <h3> iBeacons </h3>
+          <p> An iOS device can send iBeacons packets which contain, among other things, the following data: </p>
+          <code> UUID: 128-bits </code> <br>
+          <code> Major ID: 16-bits </code> <br>
+          <code> Minor ID: 16-bits </code> <br>
+          <p> Our Bluetooth Smart reelceivers decipher each of these identifiers, so the app need only transmit some combination of the three which makes the device uniquely identifiable. An app will typically use a single UUID and then assign non-conflicting major and minor values to all participating devices. </p>
+          <p> For instance, if you use the <a href="https://itunes.apple.com/ca/app/locate-beacon/id738709014" target="_blank">Radius Networks Locate Beacon app</a> and select the iBeacon Transmitter option with major set to 0 and minor set to 1, our API will return the following (some fields trimmed for clarity): </p>
+          <code> identifier: { </code> <br>
+          <code> &nbsp; type: "ADVA-48", </code> <br>
+          <code> &nbsp; value: "123456789abc", </code> <br>
+          <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
+          <code> &nbsp; advData: { </code> <br>
+          <code> &nbsp; &nbsp; manufacturerSpecificData: { </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; iBeacon: { </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; &nbsp; uuid: "1675e3a3932a458c9ed907a290622635", </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; &nbsp; major: "0000", </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; &nbsp; minor: "0001", </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; } </code> <br>
+          <code> &nbsp; &nbsp; } </code> <br>
+          <code> &nbsp; } </code> <br>
+          <code> } </code> <br>
+          <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID, major and minor.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
+          <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to, for example, <i>http://yourapi.com/majorminor</i> to access metadata associated with your app user. </p>
+          <a id="advertiseAService"></a>
+          <h3> Advertise a service </h3>
+          <p> An alternative with less vendor-lock-in than Apple's iBeacons is to advertise a service and accompany this with a unique identifier included in another <a href="https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile" target="_blank">Advertising Data Type</a>.  For instance, the completeLocalName Advertising Data Type could be used as follows: </p>
+          <code> UUID: 128-bits </code> <br>
+          <code> completeLocalName: an ASCII string </code> <br>
+          <p> Our Bluetooth Smart reelceivers decipher each of these, so the app need only transmit some combination of the two which makes the device uniquely identifiable. An app will typically use a single UUID and then assign non-conflicting completeLocalName values to all participating devices.  In this case, here's what our API will return (some fields trimmed for clarity): </p>
+          <code> identifier: { </code> <br>
+          <code> &nbsp; type: "ADVA-48", </code> <br>
+          <code> &nbsp; value: "123456789abc", </code> <br>
+          <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
+          <code> &nbsp; advData: { </code> <br>
+          <code> &nbsp; &nbsp; complete128BitUUIDs: "a114b00bie5888a114b00bie5888caca" </code> <br>
+          <code> &nbsp; &nbsp; completeLocalName: "barnowl" </code> <br>
+          <code> &nbsp; } </code> <br>
+          <code> } </code> <br>
+          <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeAdvertiser.html#startAdvertising(android.bluetooth.le.AdvertiseSettings, android.bluetooth.le.AdvertiseData, android.bluetooth.le.AdvertiseCallback)" target="_blank">startAdvertising()</a> function. </p>
+          <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID and completeLocalName.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
+          <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to, for example, <i>http://yourapi.com/completeLocalName</i> to access metadata associated with your app user. </p>
+          <a id="uriBeacon"></a>
+          <h3> UriBeacon </h3>
+          <p> An appealing alternative which avoids vendor-lock-in and seamlessly integrates with our platform is the UriBeacon service.  This service includes a URL in the advertising packet, which <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a> can automatically decode, eliminating the need for creating an explicit association via <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>.  The UriBeacon packet includes: </p>
+          <code> 16-bit UUID: fed8 </code> <br>
+          <code> Service data: an encoded URI/URL </code> <br>
+          <p> The UriBeacon service is part of <a href="http://google.github.io/physical-web/" target="_blank">the Google Physical Web project</a>, and you can find source code for mobile applications on their <a href="https://github.com/google/physical-web" target="_blank">GitHub page</a>.  Here's what our API will return (some fields trimmed for clarity): </p>
+          <code> identifier: { </code> <br>
+          <code> &nbsp; type: "ADVA-48", </code> <br>
+          <code> &nbsp; value: "123456789abc", </code> <br>
+          <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
+          <code> &nbsp; advData: { </code> <br>
+          <code> &nbsp; &nbsp; serviceData: { </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; uuid: "fed8" </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; data: "00f2027265656c7961637469766507" </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; uriBeacon: { </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; &nbsp; invisibleHint: false </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; &nbsp; txPower: "-14dBm" </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; &nbsp; url: "http://reelyactive.com" </code> <br>
+          <code> &nbsp; &nbsp; &nbsp; } </code> <br>
+          <code> &nbsp; &nbsp; } </code> <br>
+          <code> &nbsp; } </code> <br>
+          <code> } </code> <br>
+          <p> As you can see, the URL is right there in the packet.  How convenient! </p>
+          <a id="reelMobileHybrid"></a>
+          <h2> Hybrid bliss: reelyActive &#8644; mobile device </h2>
+          <img src="images/reelMobileHybrid.png"
+               class="img-responsive center-block">
+          <p> Our Bluetooth Smart reelceivers continuously advertise themselves to mobile devices in range using an ADV_DISCOVER_IND packet.  What's special about this type of packet is that it encourages nearby "curious" devices, like smartphones, to send a SCAN_REQ packet, which the reelceiver quickly follows up with a SCAN_RESP packet.  This mechanism is part of the Bluetooth Core Specification. </p>
+          <p> <i>Why should we care?</i> &nbsp; Well, the SCAN_REQ packet contains the mobile device's 48-bit advertiser address, and, in many cases, this is the device's static Bluetooth MAC address.  If so, the reelyActive platform can uniquely identify the device simply because it scanned for Bluetooth devices! </p>
+          <p> For instance, here's what our API will return when a mobile device sends a SCAN_REQ (some fields trimmed for clarity): </p>
+          <code> identifier: { </code> <br>
+          <code> &nbsp; type: "ADVA-48", </code> <br>
+          <code> &nbsp; value: "123456789abc", </code> <br>
+          <code> &nbsp; advHeader: {  </code> <br>
+          <code> &nbsp; &nbsp; type: "SCAN_REQ", </code> <br>
+          <code> &nbsp; &nbsp; txAdd: "public" </code> <br>
+          <code> &nbsp; } </code> <br>
+          <code> } </code> <br>
+          <p> As you can see, the API allows the mobile device to be uniquely identified by its 48-bit advertiser address (123456789abc) because, in this case, the <i>txAdd: "public"</i> flag indicates that this address is constant (it is uniquely assigned by the IEEE).  All your app needs to do is to periodically run a Bluetooth scan (like <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a> does) so that it can be discovered by nearby reelceivers. </p>
+          <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeScanner.html#startScan(android.bluetooth.le.ScanCallback)" target="_blank">startScan()</a> function. </p>
+          <p> To complete the integration, you would register in our contextual API (<a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>) the association between the 48-bit advertiser address and a URL that returns metadata specific to that app user.  That's precisely what we did in the video below: </p>
+          <div class="embed-container"><iframe src="http://www.youtube.com/embed/MGZm6rUU6_g?rel=0&controls=0&showinfo=0&modestbranding&start=69" frameborder="0" allowfullscreen></iframe></div>
+          <h2> What's next? </h2>
+          <p> Platform-specific instructions will continue to be added, be sure to check back! </p>
+          <p class="text-center">
+            <a class="btn btn-success" href="index.html"
+               role="button"> Return to diyActive </a>
+          </p>
+        </div>
+        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+      </div>
+      <footer class="footer">
+        <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://context.reelyactive.com">
+          &copy; reelyActive 2014-2015
+        </a>
+      </footer>
+    </div>
   </body>
 </html>
