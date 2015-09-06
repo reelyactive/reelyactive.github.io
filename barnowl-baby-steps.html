@@ -94,28 +94,26 @@
                role="button"> Let's do it </a>
           </p>
           <h2> Installing barnowl </h2>
-          <p> The easy way is via npm.  Create a new directory called baby-barnowl, then from that directory run: </p>
-          <code> npm install barnowl </code>
+          <p> The easy way is via npm.  Create a new directory called baby-barnowl, then from that directory run: <br> <code> npm install barnowl </code> </p>
           <p> Yeah, that's it, you're done! </p>
           <hr>
           <p> If you prefer to install from github, instead clone the <a href="https://github.com/reelyactive/barnowl" target="_blank">barnowl repository</a>. </p>
           <h2> Running barnowl and telling it where to listen </h2>
           <p> It's as simple as three lines of code!  First you load barnowl, second, you create an instance of barnowl and, third, you tell that instance where to listen for packets.  Create a new file called baby-barnowl.js in the same directory and paste in the following lines of code: </p>
-          <code> var barnowl = require('barnowl'); </code> <br>
-          <code> var middleware = new barnowl(); </code> <br>
-          <code> middleware.bind({ protocol: 'udp', </code> <br>
-          <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; path: '192.168.1.101:50000' }); </code>
-          <p> Chances are you'll need to change the IP address in that final line of code to the IP address of your PC/server which is receiving the packets.  We discuss this in more detail in the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit</a> tutorial.  If you <i>don't</i> have hardware, instead replace the third line with the following: </p>
-          <code> middleware.bind({ protocol: 'test', </code> <br>
-          <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; path: 'default' }); </code>
+          <pre>
+var barnowl = require('barnowl');
+var middleware = new barnowl();
+middleware.bind({ protocol: 'test',
+                  path: 'default' }); </pre>
+          <p> If you've already completed the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit</a> tutorial, you'll likely want to update the protocol and path to listen for your hardware.  The 'test' protocol specified above will initiate a packet generator that can be used in the absence of hardware. </p>
           <p> If you run this code, it will listen for and process any received packets.  In order to do something useful we'll need to handle the output as we'll show next. </p>
           <h2> Printing packets to the console </h2>
           <p> Barnowl outputs <i>visibilityEvents</i> which our code can listen for. To listen for these events and output the data to the console (something potentially useful), paste in these additional lines of code: </p>
-          <code> middleware.on('visibilityEvent', function(tiraid) { </code> <br>
-          <code> &nbsp; &nbsp; console.log(tiraid); // Useful code goes here </code> <br>
-          <code> }); </code>
-          <p> Now run your code as follows to see data packets output to the console: </p>
-          <code> node baby-barnowl.js </code>
+          <pre>
+middleware.on('visibilityEvent', function(tiraid) {
+  console.log(tiraid); // Useful code goes here
+});       </pre>
+          <p> Now run your code as follows to see data packets output to the console: <br> <code> node baby-barnowl.js </code> </p>
           <h2> Wait, what's a tiraid? </h2>
           <p> A tiraid combines three elements:
             <ul>
@@ -128,20 +126,22 @@
           <p> The data produced by barnowl is always structured as these three elements.  In the following sections, we'll see how we can filter based on these criteria. </p>
           <h2> Filtering packets by signal strength </h2>
           <p> Perhaps we're only interested in outputting data to the console for devices that are physically close to a reelceiver.  In other words, we only display the data when the signal strength is above a threshold. To do so, we simply wrap the <i>console.log(data);</i> from the previous example in an if statement which tests the signal strength or rssi (Received Signal Strength Indication): </p>
-          <code> var rssi = tiraid.radioDecodings[0].rssi; </code> <br>
-          <code> if(rssi > 180) { </code> <br>
-          <code> &nbsp; &nbsp; console.log(tiraid); </code> <br>
-          <code> } </code> <br>
+          <pre>
+var rssi = tiraid.radioDecodings[0].rssi;
+if(rssi > 160) {
+  console.log(tiraid);
+}         </pre>
           <p> Now run your code again and try moving the detected wireless device(s) closer and farther away from the reelceiver(s). </p>
           <h2> Filtering packets by identifier </h2>
           <p> Perhaps we're only interested in outputting data to the console for a specific device.  In other words, we only display the data when it is associated with a given device identifier. To do so, we again wrap the <i>console.log(data);</i> from the previous example in an if statement which tests the identifier: </p>
-          <code> var identifier = tiraid.identifier.value; </code> <br>
-          <code> if(identifier === "001bc50940100000") { </code> <br>
-          <code> &nbsp; &nbsp; console.log(tiraid); </code> <br>
-          <code> } </code> <br>
+          <pre>
+var identifier = tiraid.identifier.value;
+if(identifier === '001bc50940100000') {
+  console.log(tiraid);
+}         </pre>
           <p> Now run your code again and confirm that only packets from the given device are being output to the console. </p>
           <h2> What's next? </h2>
-          <p> More to come soon, be sure to check back! </p>
+          <p> Check out <a href="http://reelyactive.github.io/barstool/" target="_blank">barstool</a> and <a href="http://reelyactive.github.io/advlib/" target="_blank">advlib</a> for more low-level interaction, or follow our <a href="make-a-smartspace.html">Make a Smart Space tutorial</a> for higher-level interaction. </p>
           <p class="text-center">
             <a class="btn btn-success" href="index.html"
                role="button"> Return to diyActive </a>
