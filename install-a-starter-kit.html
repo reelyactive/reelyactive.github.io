@@ -92,11 +92,13 @@
               <img src="images/minimalStarterKit.jpg"
                    class="img-responsive center-block">
               <h2> Installing Node.js </h2>
-              <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms. </p>
-              <p class="text-center">
-                <a class="btn btn-primary" href="http://nodejs.org/download/"
-                   role="button"> Let's do it </a>
-              </p>
+              <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms.  At the time of writing, the <a href="https://www.npmjs.com/package/serialport#how-to-use">serialport package</a> required for the USB connectivity is <u>only guaranteed to be compatible up to Node v0.10.x</u>, <a href="https://nodejs.org/download/release/latest-v0.10.x/">the latest version of which</a> you can download for common platforms via the links below: </p>
+              <ul>
+                <li> Linux <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40-linux-x86.tar.gz" target="_blank">32-bit</a> | <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40-linux-x64.tar.gz" target="_blank">64-bit</a>
+                <li> <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40.pkg" target="_blank">Mac</a>
+                <li> Windows <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40-x86.msi" target="_blank">32-bit</a> | <a href="https://nodejs.org/download/release/latest-v0.10.x/x64/node-v0.10.40-x64.msi" target="_blank">64-bit</a>
+              </ul>
+              <p> Not sure if you have Node installed or a compatible version? From the command line run: <br> <code> node --version </code> </p>
               <h2> Connect the Reelceiver </h2>
               <p> Plug the reelceiver into the hub so that the Hub &#8594; arrow points towards the hub.  Note that the reelceiver will still power on if it's connected in the wrong orientation, but it will <i>not</i> communicate with the hub. </p>
               <h2> Connect the Hub to your PC/server </h2>
@@ -115,21 +117,22 @@ serialPort.list(function (err, ports) {
   });
 });</pre>
               <p> Now run: <br> <code> node serial-list.js </code> </p>
-              <p> In the output you should see one or more devices listed. Note the path to the one which has FTDI_USB-RS422_Cable in its id.  For instance, on Linux the path would typically be /dev/ttyUSB0 as shown below: </p>
+              <p> In the output you should see one or more devices listed. We're interested in the one which has FTDI_USB-RS422_Cable in its id.  For instance, on Linux you might see the following: </p>
               <pre>
 path: /dev/ttyUSB0
 id:   usb-FTDI_USB-RS422_Cable_FTVVPHTW-if00-port0</pre>
+              <p> Note your path (ex: /dev/ttyUSB0 or COM5) as we'll need to include it in the next step. </p>
               <h2> Run barnowl </h2>
               <p> Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
               <img src="images/barnowl.jpg"
                    class="img-responsive center-block">
               <p> In the hello-barnowl directory run: <br> <code> npm install barnowl </code> </p>
-              <p> then create a file called hello-barnowl.js and paste in the following code: </p>
+              <p> then create a file called hello-barnowl.js and paste in the following code, updating the path as required: </p>
               <pre>
 var barnowl = require('barnowl');
 var middleware = new barnowl();
 middleware.bind({ protocol: 'serial', 
-                  path: '/dev/ttyUSB0' }); // Copy your path here!!!
+                  path: '/dev/ttyUSB0' }); <b>// Update your path here!!!</b>
 middleware.on('visibilityEvent', function(data) { 
   console.log(data); 
 });           </pre>
@@ -144,8 +147,8 @@ middleware.on('visibilityEvent', function(data) {
               <h2> Installing Node.js </h2>
               <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms. </p>
               <p class="text-center">
-                <a class="btn btn-primary" href="http://nodejs.org/download/"
-                   role="button"> Let's do it </a>
+                <a class="btn btn-primary" href="https://nodejs.org"
+                   target="_blank" role="button"> Let's do it </a>
               </p>
               <h2> Connect Power </h2>
               <p> Take the wall adapter provided with your kit and plug it into the mains.  If you don't have access to a North American outlet, you'll need an adapter.  Don't worry about the voltage, we've provided you with a kick-ass adapter with global compatibility and enough power to drive reely long reels with plenty of reelceivers. </p>
@@ -167,9 +170,11 @@ middleware.on('visibilityEvent', function(data) {
               <p> That was easy!  Next up: the joys of IP settings... </p>
               <h2> Change the IP address of your PC/server </h2>
               <p> We'll be honest, we wish you didn't have to deal with this step. It's the biggest source of friction in an otherwise relatively frictionless installation. But we'll get through it together. (Ask about our USB hub and other alternatives which eliminate this step!) </p>
-              <p> We preconfigured the IP settings on your hub and sent you the details which are likely the following: <br>
-                <code> Hub IP: 192.168.1.100 </code> <br>
-                <code> Target IP: 192.168.1.101 </code>
+              <p> We preconfigured the IP settings on your hub and sent you the details which are likely the following:
+                <ul>
+                  <li> <b>Hub IP:</b> &nbsp; 192.168.1.100
+                  <li> <b>Target IP:</b> &nbsp; 192.168.1.101
+                </ul>
               </p>
               <p> Now you'll need to change the IP address of your PC/server to match that of the target IP above.  If you don't know how to do this, search the Internet for "How to change my IP address in OS" where OS is the name of your operating system.  Thanks in advance for your patience and understanding! </p>
               <p> We're just one step away from the joy of seeing data streaming to your console! </p>
@@ -183,14 +188,14 @@ middleware.on('visibilityEvent', function(data) {
 var barnowl = require('barnowl');
 var middleware = new barnowl();
 middleware.bind({ protocol: 'serial', 
-                  path: '192.168.1.101:50000' }); // Server IP address here!!!
+                  path: '192.168.1.101:50000' }); <b>// Server IP address here!!!</b>
 middleware.on('visibilityEvent', function(data) { 
   console.log(data); 
 });           </pre>
               <p> Now simply run: <br> <code> node hello-barnowl.js </code> </p>
               <p> and you should see data being output to the console.  These are radio transmissions being captured by the reelceivers.  It works! </p>
               <h2> Optional: changing the hub IP settings </h2>
-              <p> If you don't like the IP address settings we've provided, you're free to change them. To do so, you'll need to log on to the hub using a web browser and make the changes.  Log on to the hub by typing its IP address in your browser, for example: <br> <code> 192.168.1.100 </code> </p>
+              <p> If you don't like the IP address settings we've provided, you're free to change them. To do so, you'll need to log on to the hub using a web browser and make the changes.  Log on to the hub by typing its IP address in your browser, for example: <a href="http://192.168.1.100" target="_blank"> 192.168.1.100 </a> </p>
               <p> When prompted, enter <i>admin</i> as the username and leave the password field <i>blank</i>. You should see a screen similar to this: </p> 
               <img src="images/gw215-home.png"
                   class="img-responsive center-block">
