@@ -92,13 +92,11 @@
               <img src="images/minimalStarterKit.jpg"
                    class="img-responsive center-block">
               <h2> Installing Node.js </h2>
-              <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms.  At the time of writing, the <a href="https://www.npmjs.com/package/serialport#how-to-use">serialport package</a> required for the USB connectivity is <u>only guaranteed to be compatible up to Node v0.10.x</u>, <a href="https://nodejs.org/download/release/latest-v0.10.x/">the latest version of which</a> you can download for common platforms via the links below: </p>
-              <ul>
-                <li> Linux <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40-linux-x86.tar.gz" target="_blank">32-bit</a> | <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40-linux-x64.tar.gz" target="_blank">64-bit</a>
-                <li> <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40.pkg" target="_blank">Mac</a>
-                <li> Windows <a href="https://nodejs.org/download/release/latest-v0.10.x/node-v0.10.40-x86.msi" target="_blank">32-bit</a> | <a href="https://nodejs.org/download/release/latest-v0.10.x/x64/node-v0.10.40-x64.msi" target="_blank">64-bit</a>
-              </ul>
-              <p> Not sure if you have Node installed or a compatible version? From the command line run: <br> <code> node --version </code> </p>
+              <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms. </p>
+              <p class="text-center">
+                <a class="btn btn-primary" href="https://nodejs.org"
+                   target="_blank" role="button"> Let's do it </a>
+              </p>
               <h2> Connect the Reelceiver </h2>
               <p> Plug the reelceiver into the hub so that the Hub &#8594; arrow points towards the hub.  Note that the reelceiver will still power on if it's connected in the wrong orientation, but it will <i>not</i> communicate with the hub. </p>
               <h2> Connect the Hub to your PC/server </h2>
@@ -106,8 +104,31 @@
               <h2> Install serialport </h2>
               <p> In order to listen for the serial data stream, we'll first need to install the serialport package for Node.js.  Create a new directory called hello-barnowl, then from that directory run: <br> <code> npm install serialport </code> </p>              
               <p>  If you experience any problems with the latter, consult the <a href="https://github.com/voodootikigod/node-serialport#to-install" target="_blank">serialport package documentation</a> for specific instructions. </p>
+              <h2> Run barnowl </h2>
+              <p> Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
+              <img src="images/barnowl.jpg"
+                   class="img-responsive center-block">
+              <p> In the hello-barnowl directory run: <br> <code> npm install barnowl </code> </p>
+              <p> then create a file called hello-barnowl.js and paste in the following code: </p>
+              <pre>
+var barnowl = require('barnowl');
+var middleware = new barnowl();
+middleware.bind({ protocol: 'serial', 
+                  path: 'auto' }); <b>// See notes below</b>
+middleware.on('visibilityEvent', function(data) { 
+  console.log(data); 
+});           </pre>
+              <p> Now simply run: <br> <code> node hello-barnowl.js </code> </p>
+              <p> and, all going well, the <i>path</i> to your USB Hub will be auto-detected and data will be output to the console.  These are radio transmissions being captured by the reelceivers.  It works! </p>
+              <p> The next section explains how to set the exact path to your USB Hub which is necessary if auto-detection doesn't work. </p>
               <h2> Determine the path to your USB serial port </h2>
-              <p> In the hello-barnowl directory, create a file called serial-list.js and paste in the following code: </p>
+              <p> Even if auto-detection fails, all of the candidate paths to the USB Hub should nonetheless be listed in the console output.  For example you might see: </p>
+              <ul>
+                <li> Auto serial path: '/dev/ttyUSB0' was selected
+                <li> Alternate serial path: '/dev/ttyUSB1' is a FTDI device.
+              </ul>
+              <p> In this case, edit hello-barnowl.js and specify the alternate path '/dev/ttyUSB1' in place of 'auto' and run again.  Repeat for all alternates until it works. </p>
+              <p> If that <i>still</i> doesn't work, in the hello-barnowl directory, create a file called serial-list.js and paste in the following code: </p>
               <pre>
 var serialPort = require('serialport');
 serialPort.list(function (err, ports) {
@@ -121,23 +142,7 @@ serialPort.list(function (err, ports) {
               <pre>
 path: /dev/ttyUSB0
 id:   usb-FTDI_USB-RS422_Cable_FTVVPHTW-if00-port0</pre>
-              <p> Note your path (ex: /dev/ttyUSB0 or COM5) as we'll need to include it in the next step. </p>
-              <h2> Run barnowl </h2>
-              <p> Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
-              <img src="images/barnowl.jpg"
-                   class="img-responsive center-block">
-              <p> In the hello-barnowl directory run: <br> <code> npm install barnowl </code> </p>
-              <p> then create a file called hello-barnowl.js and paste in the following code, updating the path as required: </p>
-              <pre>
-var barnowl = require('barnowl');
-var middleware = new barnowl();
-middleware.bind({ protocol: 'serial', 
-                  path: '/dev/ttyUSB0' }); <b>// Update your path here!!!</b>
-middleware.on('visibilityEvent', function(data) { 
-  console.log(data); 
-});           </pre>
-              <p> Now simply run: <br> <code> node hello-barnowl.js </code> </p>
-              <p> and you should see data being output to the console.  These are radio transmissions being captured by the reelceivers.  It works! </p>
+              <p> Copy the path (ex: /dev/ttyUSB0 or COM5) into hello-barnowl.js and run it again. </p>
             </tab>
             <tab heading="BLE/Original Starter Kit">
               <br>
