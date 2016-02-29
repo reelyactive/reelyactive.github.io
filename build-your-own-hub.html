@@ -80,152 +80,154 @@
           </ul>
         </div>
       </nav>
-      <div class="row">
-        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-          <h1> Build your own hub </h1>
-          <p> In order for <a href="http://shop.reelyactive.com/collections/infrastructure" target="_blank">reelceivers</a> to communicate their data over a network and/or the Internet, they need to connect via a hub. </p>
-          <img src="images/hubAndReel.png"
-               class="img-responsive center-block">
-          <p> The hub converts their serial data packets into IP data packets.  Some hubs may instead convert the serial data packets into some other format that a computer can, in turn, convert to IP packets.  The hub also provides power to the reelceivers.  We include a hub with our <a href="http://shop.reelyactive.com/collections/starter-kits" target="_blank">starter kits</a> for out-of-the-box connectivity, but with basic tools and a little bit of effort, you can enjoy building your own hub.  In this tutorial, we'll show you how! </p>
-          <p class="text-center">
-            <a class="btn btn-primary" href="#usb-hub"
-               role="button"> Build a USB hub </a> &nbsp;
-            <a class="btn btn-primary" href="#ip-hub"
-               role="button"> Build an IP hub </a>
-          </p>
-          <h2 id="usb-hub"> Build a USB hub </h2>
-          <p> Here you'll learn how to build a USB hub which allows you to connect a reel directly to your computer, server, Raspberry Pi or anything with USB host capability.  This is arguably the quickest, easiest and most cost-effective way to connect a short reel to a computing device.  The only limitation is the 5VDC power supplied by the USB port: don't expect to connect dozens of reelceivers over hundreds of metres!  But with a good USB port, you might successfully connect a few reelceivers over tens of metres. </p>
-          <img src="images/usbHub-Parts.jpg"
-               class="img-responsive center-block">
-          <p> Here are the parts you'll need:
-            <ul>
-              <li> a Cat5 cable with one RJ-45 connector (i.e. an "Ethernet" cable cut in half)
-              <li> an FTDI USB-RS422-PCB board (<a href="http://www.digikey.ca/product-search/en?KeyWords=768-1044-ND" target="_blank">buy on DigiKey</a>)
-              <li> (recommended) a 2-3cm diameter clear shrink tube cut to 3cm length
-              <li> (recommended) a 1-1.5cm diameter opaque shrink tube cut to 2.5cm length
-            </ul>
-          </p>
-          <p> You'll also need the following tools:
-            <ul>
-              <li> a soldering iron
-              <li> some solder
-              <li> wire cutters and strippers (or simply a knife)
-              <li> a heat gun (or hair dryer, or lighter...)
-            </ul>
-          </p>
-          <img src="images/usbHub-Cat5.jpg"
-               class="img-responsive center-block">
-          <p> First, slip the opaque shrink tube onto the Cat5 cable.  Seriously, do this <i>first</i> because otherwise you'll forget and then regret your mistake after you've started soldering...  We're speaking from experience here!  Then trim off about 2cm of the sheathing. </p>
-          <img src="images/usbHub-Pads.jpg"
-               class="img-responsive center-block">
-          <p> Add a touch of solder to the six indicated pads on the board.  Also add a touch of solder to Pin 1 of each of the 8-pin ICs, as also indicated by the little orange arrows. </p>
-          <img src="images/usbHub-BluePair.jpg"
-               class="img-responsive center-block">
-          <p> Strip 1-2mm off the blue pair of wires and solder one to each Pin 1 of those 8-pin ICs.  The blue pair carry the positive voltage of the reel which in this case will be around 5VDC.  Take care not to short them with any other pins! </p>
-          <img src="images/usbHub-GreenPair.jpg"
-               class="img-responsive center-block">
-          <p> Trim the green pair of wires and one of the brown wires so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
-            <ul>
-              <li> solid green
-              <li> green/white
-              <li> brown or brown/white (doesn't matter)
-            </ul>
-          </p>
-          <p> The green pair carry the serial data from the hub to the reel.  Note that this is the most meticulous part of the whole operation.  It helps if you can secure the board in a vise.  Don't worry, after this, it's smooth sailing. </p>
-          <img src="images/usbHub-OrangePair.jpg"
-               class="img-responsive center-block">
-          <p> Flip the board and trim the orange pair of wires and the other brown wire so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
-            <ul>
-              <li> brown or brown/white (doesn't matter)
-              <li> solid orange
-              <li> orange/white
-            </ul>
-          </p>
-          <p> The orange pair carry the serial data from the reel to the hub.  The brown pair carry ground, hence their order doesn't matter. </p>
-          <p> Now you (should) have a functional USB hub!  This is a good time to test it out with the <a href="barnowl-baby-steps.html" target="_blank">Barnowl Baby Steps</a> tutorial.  If the hub works we can move on to the fun part of shrink tubing it which protects against shorts and acts as a strain relief. </p>
-          <img src="images/usbHub-ClearShrink.jpg"
-               class="img-responsive center-block">
-          <p> Place the clear shrink tubing over the assembly so that about 2mm overlaps with the USB connecter.  Then blast it with the heat gun so that it makes a nice snug fit.  We selected clear shrink wrap so that the LEDs remain visible. </p>
-          <img src="images/usbHub-OpaqueShrink.jpg"
-               class="img-responsive center-block">
-          <p> Slide the opaque shrink tubing over the assembly so that it overlaps both the board and the sheathed part of the Cat5 cable.  Then blast it too with the heat gun so that it makes a nice snug fit. </p>
-          <img src="images/usbHub-Complete.jpg"
-               class="img-responsive center-block">
-          <p> Congratulations, you've got yourself a USB hub! </p>
-          <h2 id="ip-hub"> Build an IP-connected hub </h2>
-          <p> Here you'll learn how to build an IP-connected hub which allows you to connect a reel to an IP network via Ethernet or WiFi.  Specifically, you'll learn how to create the cable harness to interface a reel with a family of off-the-shelf industrial serial-IP converters.  The hub and reelceivers can be powered with up to 45VDC allowing for maximum reel lengths. </p>
-          <img src="images/ipHub-Parts.jpg"
-               class="img-responsive center-block">
-          <p> Here are the parts you'll need:
-            <ul>
-              <li> a Cat5 cable with one RJ-45 connector (i.e. an "Ethernet" cable cut in half)
-              <li> a DB9 connector (<a href="http://www.digikey.ca/product-search/en?KeyWords=G17S0900110EU-ND" target="_blank">buy on DigiKey</a>)
-              <li> a DC power connector (<a href="http://www.digikey.ca/product-search/en?KeyWords=PR-002A" target="_blank">buy on DigiKey</a>)
-              <li> a two-lead DC power cable (shown pre-assembled with the above)
-              <li> opaque shrink tube
-              <li> (not shown) an Atop SE590x or SW550x serial-IP converter (<a href="https://www.neteon.net/brands/atop-professional-serial-ethernet-solutions.html" target="_blank">buy via Neteon</a>)
-            </ul>
-          </p>
-          <p> You'll also need the following tools:
-            <ul>
-              <li> a soldering iron
-              <li> some solder
-              <li> wire cutters and strippers (or simply a knife)
-              <li> a heat gun (or hair dryer, or lighter...)
-            </ul>
-          </p>
-          <img src="images/ipHub-Cat5.jpg"
-               class="img-responsive center-block">
-          <p> First, take the Cat5 cable that's been cut in half and strip off at least 8cm of the sheathing.  This cable will connect to the first reelceiver either directly or via a patch panel, so plan ahead by choosing an appropriate cable length. </p>
-          <img src="images/ipHub-ComShrink.jpg"
-               class="img-responsive center-block">
-          <p> Cut a piece of opaque shrink tube long enough to cover all but a few millimeters of the exposed twisted pairs.  Slide it over the green and orange pairs (these carry the downlink and uplink communications, respectively).  Strip 1-2mm off each of the communications wires. </p>
-          <img src="images/ipHub-ComNeg.jpg"
-               class="img-responsive center-block">
-          <p> Solder the negative communication wires to the DB9 connector as follows:
-            <ul>
-              <li> solid green &#10142; pin 8
-              <li> solid orange &#10142; pin 7
-            </ul>
-          </p>
-          <img src="images/ipHub-ComPos.jpg"
-               class="img-responsive center-block">
-          <p> Flip the DB9 connector and solder the positive communication wires as follows:
-            <ul>
-              <li> green-white &#10142; pin 2
-              <li> orange-white &#10142; pin 3
-            </ul>
-            Note that there are far more elegant ways to solder to a DB9 connector, which we recommend for anything more than the quick-and-dirty installation we're demonstrating here.
-          </p>
-          <img src="images/ipHub-PowerShrink.jpg"
-               class="img-responsive center-block">
-          <p> Cut the length of the blue and brown pairs down by no more than half.  Strip 6-7mm off each of the wires and then twist each pair together.  Cut a piece of opaque shrink tube to cover all but 1cm of the exposed twisted pairs.  Slide it over the blue and brown pairs (these carry the positive voltage and ground, respectively). </p>
-          <p> Now blast all the shrink tubing with the heat gun so that it makes a nice snug fit. </p>
-          <img src="images/ipHub-Power.jpg"
-               class="img-responsive center-block">
-          <p> It's time to connect the cable harness to the hub.  Here we'll assume you've already prepared the power connector and leads of the desired length.  First we'll connect the power wires as follows:
-            <ul>
-              <li> blue pair and positive lead &#10142; V+
-              <li> brown pair and negative lead &#10142; V-
-            </ul>
-          </p>
-          <img src="images/ipHub-Complete.jpg"
-               class="img-responsive center-block">
-          <p> All that's left is to plug the DB9 connector into the COM receptacle and we're done!  Test the setup by plugging the DC connector into a DC power supply between 9VDC and 45VDC and observe the hub powering on. </p>
-          <p> Configuration of the hub itself is outside the scope of this tutorial, but is covered in our Install A Starter Kit tutorial. </p>
-          <p class="text-center">
-            <a class="btn btn-primary" href="install-a-starter-kit.html"
-               role="button"> Configure the IP hub </a>
-          </p>
-          <h2> What's next? </h2>
-          <p> Check out <a href="index.html">the other tutorials on diyActive</a> to make good use of your new hub.  You can also refer to the <a href="https://www.npmjs.com/package/barnowl" target="_blank">barnowl documentation</a> to learn more about how to configure your hub for your operating system.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
-          <p class="text-center">
-            <a class="btn btn-success" href="index.html"
-               role="button"> Return to diyActive </a>
-          </p>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1> Build your own hub </h1>
+            <p> In order for <a href="http://shop.reelyactive.com/collections/infrastructure" target="_blank">reelceivers</a> to communicate their data over a network and/or the Internet, they need to connect via a hub. </p>
+            <img src="images/hubAndReel.png"
+                 class="img-responsive center-block">
+            <p> The hub converts their serial data packets into IP data packets.  Some hubs may instead convert the serial data packets into some other format that a computer can, in turn, convert to IP packets.  The hub also provides power to the reelceivers.  We include a hub with our <a href="http://shop.reelyactive.com/collections/starter-kits" target="_blank">starter kits</a> for out-of-the-box connectivity, but with basic tools and a little bit of effort, you can enjoy building your own hub.  In this tutorial, we'll show you how! </p>
+            <p class="text-center">
+              <a class="btn btn-primary" href="#usb-hub"
+                 role="button"> Build a USB hub </a> &nbsp;
+              <a class="btn btn-primary" href="#ip-hub"
+                 role="button"> Build an IP hub </a>
+            </p>
+            <h2 id="usb-hub"> Build a USB hub </h2>
+            <p> Here you'll learn how to build a USB hub which allows you to connect a reel directly to your computer, server, Raspberry Pi or anything with USB host capability.  This is arguably the quickest, easiest and most cost-effective way to connect a short reel to a computing device.  The only limitation is the 5VDC power supplied by the USB port: don't expect to connect dozens of reelceivers over hundreds of metres!  But with a good USB port, you might successfully connect a few reelceivers over tens of metres. </p>
+            <img src="images/usbHub-Parts.jpg"
+                 class="img-responsive center-block">
+            <p> Here are the parts you'll need:
+              <ul>
+                <li> a Cat5 cable with one RJ-45 connector (i.e. an "Ethernet" cable cut in half)
+                <li> an FTDI USB-RS422-PCB board (<a href="http://www.digikey.ca/product-search/en?KeyWords=768-1044-ND" target="_blank">buy on DigiKey</a>)
+                <li> (recommended) a 2-3cm diameter clear shrink tube cut to 3cm length
+                <li> (recommended) a 1-1.5cm diameter opaque shrink tube cut to 2.5cm length
+              </ul>
+            </p>
+            <p> You'll also need the following tools:
+              <ul>
+                <li> a soldering iron
+                <li> some solder
+                <li> wire cutters and strippers (or simply a knife)
+                <li> a heat gun (or hair dryer, or lighter...)
+              </ul>
+            </p>
+            <img src="images/usbHub-Cat5.jpg"
+                 class="img-responsive center-block">
+            <p> First, slip the opaque shrink tube onto the Cat5 cable.  Seriously, do this <i>first</i> because otherwise you'll forget and then regret your mistake after you've started soldering...  We're speaking from experience here!  Then trim off about 2cm of the sheathing. </p>
+            <img src="images/usbHub-Pads.jpg"
+                 class="img-responsive center-block">
+            <p> Add a touch of solder to the six indicated pads on the board.  Also add a touch of solder to Pin 1 of each of the 8-pin ICs, as also indicated by the little orange arrows. </p>
+            <img src="images/usbHub-BluePair.jpg"
+                 class="img-responsive center-block">
+            <p> Strip 1-2mm off the blue pair of wires and solder one to each Pin 1 of those 8-pin ICs.  The blue pair carry the positive voltage of the reel which in this case will be around 5VDC.  Take care not to short them with any other pins! </p>
+            <img src="images/usbHub-GreenPair.jpg"
+                 class="img-responsive center-block">
+            <p> Trim the green pair of wires and one of the brown wires so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
+              <ul>
+                <li> solid green
+                <li> green/white
+                <li> brown or brown/white (doesn't matter)
+              </ul>
+            </p>
+            <p> The green pair carry the serial data from the hub to the reel.  Note that this is the most meticulous part of the whole operation.  It helps if you can secure the board in a vise.  Don't worry, after this, it's smooth sailing. </p>
+            <img src="images/usbHub-OrangePair.jpg"
+                 class="img-responsive center-block">
+            <p> Flip the board and trim the orange pair of wires and the other brown wire so that they meet the pads shown above without bending.  Then strip 1-2mm off each.  Solder them to their respective pads, from top to bottom in the above image the order is:
+              <ul>
+                <li> brown or brown/white (doesn't matter)
+                <li> solid orange
+                <li> orange/white
+              </ul>
+            </p>
+            <p> The orange pair carry the serial data from the reel to the hub.  The brown pair carry ground, hence their order doesn't matter. </p>
+            <p> Now you (should) have a functional USB hub!  This is a good time to test it out with the <a href="barnowl-baby-steps.html" target="_blank">Barnowl Baby Steps</a> tutorial.  If the hub works we can move on to the fun part of shrink tubing it which protects against shorts and acts as a strain relief. </p>
+            <img src="images/usbHub-ClearShrink.jpg"
+                 class="img-responsive center-block">
+            <p> Place the clear shrink tubing over the assembly so that about 2mm overlaps with the USB connecter.  Then blast it with the heat gun so that it makes a nice snug fit.  We selected clear shrink wrap so that the LEDs remain visible. </p>
+            <img src="images/usbHub-OpaqueShrink.jpg"
+                 class="img-responsive center-block">
+            <p> Slide the opaque shrink tubing over the assembly so that it overlaps both the board and the sheathed part of the Cat5 cable.  Then blast it too with the heat gun so that it makes a nice snug fit. </p>
+            <img src="images/usbHub-Complete.jpg"
+                 class="img-responsive center-block">
+            <p> Congratulations, you've got yourself a USB hub! </p>
+            <h2 id="ip-hub"> Build an IP-connected hub </h2>
+            <p> Here you'll learn how to build an IP-connected hub which allows you to connect a reel to an IP network via Ethernet or WiFi.  Specifically, you'll learn how to create the cable harness to interface a reel with a family of off-the-shelf industrial serial-IP converters.  The hub and reelceivers can be powered with up to 45VDC allowing for maximum reel lengths. </p>
+            <img src="images/ipHub-Parts.jpg"
+                 class="img-responsive center-block">
+            <p> Here are the parts you'll need:
+              <ul>
+                <li> a Cat5 cable with one RJ-45 connector (i.e. an "Ethernet" cable cut in half)
+                <li> a DB9 connector (<a href="http://www.digikey.ca/product-search/en?KeyWords=G17S0900110EU-ND" target="_blank">buy on DigiKey</a>)
+                <li> a DC power connector (<a href="http://www.digikey.ca/product-search/en?KeyWords=PR-002A" target="_blank">buy on DigiKey</a>)
+                <li> a two-lead DC power cable (shown pre-assembled with the above)
+                <li> opaque shrink tube
+                <li> (not shown) an Atop SE590x or SW550x serial-IP converter (<a href="https://www.neteon.net/brands/atop-professional-serial-ethernet-solutions.html" target="_blank">buy via Neteon</a>)
+              </ul>
+            </p>
+            <p> You'll also need the following tools:
+              <ul>
+                <li> a soldering iron
+                <li> some solder
+                <li> wire cutters and strippers (or simply a knife)
+                <li> a heat gun (or hair dryer, or lighter...)
+              </ul>
+            </p>
+            <img src="images/ipHub-Cat5.jpg"
+                 class="img-responsive center-block">
+            <p> First, take the Cat5 cable that's been cut in half and strip off at least 8cm of the sheathing.  This cable will connect to the first reelceiver either directly or via a patch panel, so plan ahead by choosing an appropriate cable length. </p>
+            <img src="images/ipHub-ComShrink.jpg"
+                 class="img-responsive center-block">
+            <p> Cut a piece of opaque shrink tube long enough to cover all but a few millimeters of the exposed twisted pairs.  Slide it over the green and orange pairs (these carry the downlink and uplink communications, respectively).  Strip 1-2mm off each of the communications wires. </p>
+            <img src="images/ipHub-ComNeg.jpg"
+                 class="img-responsive center-block">
+            <p> Solder the negative communication wires to the DB9 connector as follows:
+              <ul>
+                <li> solid green &#10142; pin 8
+                <li> solid orange &#10142; pin 7
+              </ul>
+            </p>
+            <img src="images/ipHub-ComPos.jpg"
+                 class="img-responsive center-block">
+            <p> Flip the DB9 connector and solder the positive communication wires as follows:
+              <ul>
+                <li> green-white &#10142; pin 2
+                <li> orange-white &#10142; pin 3
+              </ul>
+              Note that there are far more elegant ways to solder to a DB9 connector, which we recommend for anything more than the quick-and-dirty installation we're demonstrating here.
+            </p>
+            <img src="images/ipHub-PowerShrink.jpg"
+                 class="img-responsive center-block">
+            <p> Cut the length of the blue and brown pairs down by no more than half.  Strip 6-7mm off each of the wires and then twist each pair together.  Cut a piece of opaque shrink tube to cover all but 1cm of the exposed twisted pairs.  Slide it over the blue and brown pairs (these carry the positive voltage and ground, respectively). </p>
+            <p> Now blast all the shrink tubing with the heat gun so that it makes a nice snug fit. </p>
+            <img src="images/ipHub-Power.jpg"
+                 class="img-responsive center-block">
+            <p> It's time to connect the cable harness to the hub.  Here we'll assume you've already prepared the power connector and leads of the desired length.  First we'll connect the power wires as follows:
+              <ul>
+                <li> blue pair and positive lead &#10142; V+
+                <li> brown pair and negative lead &#10142; V-
+              </ul>
+            </p>
+            <img src="images/ipHub-Complete.jpg"
+                 class="img-responsive center-block">
+            <p> All that's left is to plug the DB9 connector into the COM receptacle and we're done!  Test the setup by plugging the DC connector into a DC power supply between 9VDC and 45VDC and observe the hub powering on. </p>
+            <p> Configuration of the hub itself is outside the scope of this tutorial, but is covered in our Install A Starter Kit tutorial. </p>
+            <p class="text-center">
+              <a class="btn btn-primary" href="install-a-starter-kit.html"
+                 role="button"> Configure the IP hub </a>
+            </p>
+            <h2> What's next? </h2>
+            <p> Check out <a href="index.html">the other tutorials on diyActive</a> to make good use of your new hub.  You can also refer to the <a href="https://www.npmjs.com/package/barnowl" target="_blank">barnowl documentation</a> to learn more about how to configure your hub for your operating system.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
+            <p class="text-center">
+              <a class="btn btn-success" href="index.html"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
         </div>
-        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
       </div>
       <footer class="footer">
         <a href="index.html"> diyActive </a> &nbsp; | &nbsp;

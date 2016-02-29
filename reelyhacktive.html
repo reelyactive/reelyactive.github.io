@@ -80,29 +80,31 @@
           </ul>
         </div>
       </nav>
-      <div class="row">
-        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-          <h1> reely<i>Hack</i>tive </h1>
-          <p> What can <i>you</i> do with <a href="http://context.reelyactive.com/technology.html" target="_blank">reelyActive technology</a> in a hackathon weekend? </p>
-          <carousel interval="4000">
-            <slide ng-repeat="slide in hackSlides" active="slide.active">
-              <a ng-href="{{slide.href}}" target="_blank">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                  <h2>{{slide.caption}}</h2>
-                </div>
-              </a>
-            </slide>
-          </carousel>
-          <h2> Cool, now what? </h2>
-          <p> Click on anything above that interests you.  Also check out <a href="index.html">the other tutorials on diyActive</a> which highlight plenty of things you can do yourself.  At hackathons we'll try to provide <a href="http://shop.reelyactive.com/products/starterkit-min" target="_blank">starter kits</a> as well as a <a href="http://www.hyperlocalcontext.com" target="_blank">live API</a> for anyone to hack on.  And if you need help, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
-          <p class="text-center">
-            <a class="btn btn-success" href="index.html"
-               role="button"> Return to diyActive </a>
-          </p>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1> reely<i>Hack</i>tive </h1>
+            <p> What can <i>you</i> do with <a href="http://context.reelyactive.com/technology.html" target="_blank">reelyActive technology</a> in a hackathon weekend? </p>
+            <carousel interval="4000">
+              <slide ng-repeat="slide in hackSlides" active="slide.active">
+                <a ng-href="{{slide.href}}" target="_blank">
+                  <img ng-src="{{slide.image}}" style="margin:auto;">
+                  <div class="carousel-caption">
+                    <h2>{{slide.caption}}</h2>
+                  </div>
+                </a>
+              </slide>
+            </carousel>
+            <h2> Cool, now what? </h2>
+            <p> Click on anything above that interests you.  Also check out <a href="index.html">the other tutorials on diyActive</a> which highlight plenty of things you can do yourself.  At hackathons we'll try to provide <a href="http://shop.reelyactive.com/products/starterkit-min" target="_blank">starter kits</a> as well as a <a href="http://www.hyperlocalcontext.com" target="_blank">live API</a> for anyone to hack on.  And if you need help, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
+            <p class="text-center">
+              <a class="btn btn-success" href="index.html"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
         </div>
-        <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
       </div>
       <footer class="footer">
         <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
