@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>diyActive: #HackTheHouse with reelyActive</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://context.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html"> diyActive </a></li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://www.hyperlocalcontext.com" target="_blank">
+                    www.hyperlocalcontext.com
+                  </a>
+                </li>
+                <li>
+                  <a href="http://smartspac.es" target="_blank">
+                    smartspac.es
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li>
+                  <a href="http://context.reelyactive.com" target="_blank">
+                    Our website
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1> #HackTheHouse with reelyActive </h1>
+            <p> What can <i>you</i> do with <a href="http://context.reelyactive.com/technology.html" target="_blank">reelyActive technology</a> at <a href="http://notman.ca/" target="_blank">Notman House</a>? </p>
+            <h2> I'm impatient! </h2>
+            <p> Click on the buttons below to experience some <i>open source</i> web applications using our <b>live sensor feed</b> from the house: </p>
+            <p class="text-center">
+              <a class="btn btn-primary" href="http://smartspac.es/notman"
+                 role="button" target="_blank"> Smart Space </a> &nbsp;
+              <a class="btn btn-primary" href="http://www.hyperlocalcontext.com/contextat/directory/notman"
+                 role="button" target="_blank"> Contextual API </a> &nbsp;
+              <a class="btn btn-primary" href="http://maison-notman-house.github.io/notman-reelyactive-dashboard/"
+                 role="button" target="_blank"> Dashboard </a>
+            </p>
+            <h2> Live sensor feed? </h2>
+            <p> Indeed!  There are at least 7 of our <a href="http://context.reelyactive.com/technology.html#sensors" target="_blank">reelceivers</a> permanently installed in the house.  And their live sensor feed is <i>openly</i> accessible from our cloud platform via:
+              <ul>
+                <li> a REST API
+                <li> websockets
+              </ul>
+            </p>
+            <h2> What do the sensors sense? </h2>
+            <p> Each reelceiver detects <b>Bluetooth devices</b> that are in range.  This includes devices such as:
+              <ul>
+                <li> smartphones
+                <li> wearables
+                <li> beacons
+                <li> laptops
+                <li> Smart TVs
+                <li> etc.
+              </ul>
+            </p>
+            <h2> What does the platform provide? </h2>
+            <p> For devices which support Bluetooth Smart (aka BLE or Bluetooth 4.x) and send advertising packets, our platform will:
+              <ul>
+                <li> <b>locate</b> which sensor they're nearest
+                <li> <b>identify</b> them uniquely
+                <li> <b>decode</b> the data they send
+                <li> <b>timestamp</b> their activity
+              </ul>
+            </p>
+            <h2> What's next? </h2>
+            <p> We'll be updating this page as the hackathon progresses and open source integrations are added.  Check back regularly! </p>
+            <p class="text-center">
+              <a class="btn btn-success" href="index.html"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://context.reelyactive.com">
+          &copy; reelyActive 2016
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
