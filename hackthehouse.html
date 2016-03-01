@@ -89,7 +89,7 @@
                  class="img-responsive center-block">
             <br>
             <h1> reelyActive at Notman House </h1>
-            <p> What can <i>you</i> do with <a href="http://context.reelyactive.com/technology.html" target="_blank">reelyActive technology</a> at <a href="http://notman.ca/" target="_blank">Notman House</a>? </p>
+            <p> What can <i>you</i> do with <a href="http://context.reelyactive.com/technology.html" target="_blank">reelyActive technology</a> at <a href="http://notman.ca/hackthehouse/" target="_blank">Notman House</a>? </p>
             <h2> I'm impatient! </h2>
             <p> Click on the buttons below to experience some <i>open source</i> web applications using our <b>live sensor feed</b> from the house: </p>
             <p class="text-center">
@@ -107,6 +107,8 @@
                 <li> websockets
               </ul>
             </p>
+            <img src="images/hackthehouse-reel.png"
+                 class="img-responsive center-block">
             <h2> What do the sensors sense? </h2>
             <p> Each reelceiver detects <b>Bluetooth devices</b> that are in range.  This includes devices such as:
               <ul>
@@ -118,16 +120,18 @@
                 <li> etc.
               </ul>
             </p>
+            <img src="images/mobileToReel.png"
+                 class="img-responsive center-block">
             <h2> Where are the sensors located? </h2>
             <p> The following image, adapted from the <a href="https://my.matterport.com/show/?m=CdDj13wQ6jT" target="_blank"> Matterport 3D Showcase </a> highlights the sensor locations and their directories.  Each sensor has sufficient range to cover at least the wing of the floor on which it is located. </p>
             <img src="images/hackthehouse-matterport.png"
                  class="img-responsive center-block">
-            <h3> What's the context on the first floor? </h3>
-            <p class="text-center"> <b> Query: </b>
+            <h3> <u>Example</u>: What's the context on the first floor? </h3>
+            <p class="text-center"> <b> Ask our API: </b>
               <a href="http://www.hyperlocalcontext.com/contextat/directory/notman:first" target="_blank"> /contextat/directory/notman:first </a>
             </p>
             <h2> What does the platform provide? </h2>
-            <p> For compatible Bluetooth Smart (aka BLE or Bluetooth 4.x) devices, our platform will:
+            <p> In two words, <a href="http://context.reelyactive.com/context.html" target="_blank">Hyperlocal Context</a>.  For compatible Bluetooth Smart (aka BLE or Bluetooth 4.x) devices, our platform will:
               <ul>
                 <li> <b>locate</b> which sensor they're nearest
                 <li> <b>identify</b> them uniquely
@@ -135,9 +139,17 @@
                 <li> <b>timestamp</b> their activity
               </ul>
             </p>
-            <h3> Where is the Distech Controls display? </h3>
-            <p class="text-center"> <b> Query: </b>
+            <h3> <u>Example</u>: Where is the Distech Controls display? </h3>
+            <p class="text-center"> <b> Ask our API: </b>
               <a href="http://www.hyperlocalcontext.com/whereis/transmitter/78bdbc3bbb74" target="_blank"> /whereis/transmitter/78bdbc3bbb74 </a>
+            </p>
+            <h2> Where does the data go? </h2>
+            <p> The reelyActive cloud collects and forwards the real-time sensor data stream.  <i>No historical data is saved on our servers.</i>  The real-time data is consumed via our REST API or websockets, and it is also <a href="https://www.npmjs.com/package/barnacles#connecting-with-services" target="_blank">forwarded to partner services</a> including:
+              <ul>
+                <li> mnubo
+                <li> Google Analytics
+              </ul>
+              If you'd like to add your service, just let us know!
             </p>
             <h2> What's next? </h2>
             <p> We'll be updating this page as the hackathon progresses and open source integrations are added.  Check back regularly! </p>
