@@ -85,7 +85,10 @@
         <div class="row">
           <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
           <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-            <h1> #HackTheHouse with reelyActive </h1>
+            <img src="images/hackthehouse-logo.jpg"
+                 class="img-responsive center-block">
+            <br>
+            <h1> reelyActive at Notman House </h1>
             <p> What can <i>you</i> do with <a href="http://context.reelyactive.com/technology.html" target="_blank">reelyActive technology</a> at <a href="http://notman.ca/" target="_blank">Notman House</a>? </p>
             <h2> I'm impatient! </h2>
             <p> Click on the buttons below to experience some <i>open source</i> web applications using our <b>live sensor feed</b> from the house: </p>
@@ -100,7 +103,7 @@
             <h2> Live sensor feed? </h2>
             <p> Indeed!  There are at least 7 of our <a href="http://context.reelyactive.com/technology.html#sensors" target="_blank">reelceivers</a> permanently installed in the house.  And their live sensor feed is <i>openly</i> accessible from our cloud platform via:
               <ul>
-                <li> a REST API
+                <li> <a href="http://context.reelyactive.com/api.html" target="_blank">a REST API</a>
                 <li> websockets
               </ul>
             </p>
@@ -115,14 +118,26 @@
                 <li> etc.
               </ul>
             </p>
+            <h2> Where are the sensors located? </h2>
+            <p> The following image, adapted from the <a href="https://my.matterport.com/show/?m=CdDj13wQ6jT" target="_blank"> Matterport 3D Showcase </a> highlights the sensor locations and their directories.  Each sensor has sufficient range to cover at least the wing of the floor on which it is located. </p>
+            <img src="images/hackthehouse-matterport.png"
+                 class="img-responsive center-block">
+            <h3> What's the context on the first floor? </h3>
+            <p class="text-center"> <b> Query: </b>
+              <a href="http://www.hyperlocalcontext.com/contextat/directory/notman:first" target="_blank"> /contextat/directory/notman:first </a>
+            </p>
             <h2> What does the platform provide? </h2>
-            <p> For devices which support Bluetooth Smart (aka BLE or Bluetooth 4.x) and send advertising packets, our platform will:
+            <p> For compatible Bluetooth Smart (aka BLE or Bluetooth 4.x) devices, our platform will:
               <ul>
                 <li> <b>locate</b> which sensor they're nearest
                 <li> <b>identify</b> them uniquely
                 <li> <b>decode</b> the data they send
                 <li> <b>timestamp</b> their activity
               </ul>
+            </p>
+            <h3> Where is the Distech Controls display? </h3>
+            <p class="text-center"> <b> Query: </b>
+              <a href="http://www.hyperlocalcontext.com/whereis/transmitter/78bdbc3bbb74" target="_blank"> /whereis/transmitter/78bdbc3bbb74 </a>
             </p>
             <h2> What's next? </h2>
             <p> We'll be updating this page as the hackathon progresses and open source integrations are added.  Check back regularly! </p>
