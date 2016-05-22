@@ -94,22 +94,20 @@
                 <img src="images/minimalStarterKit.jpg"
                      class="img-responsive center-block">
                 <h2> Installing Node.js </h2>
-                <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms. </p>
+                <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms.  We recommend you select the LTS version. </p>
                 <p class="text-center">
                   <a class="btn btn-primary" href="https://nodejs.org"
                      target="_blank" role="button"> Let's do it </a>
                 </p>
                 <h2> Connect the Reelceiver </h2>
-                <p> Plug the reelceiver into the hub so that the Hub &#8594; arrow points towards the hub.  Note that the reelceiver will still power on if it's connected in the wrong orientation, but it will <i>not</i> communicate with the hub. </p>
+                <p> Plug the reelceiver into the hub so that the <b>Hub &#8594;</b> arrow points towards the hub.  Note that the reelceiver will still power on if it's connected in the wrong orientation, but it will <i>not</i> communicate with the hub. </p>
                 <h2> Connect the Hub to your PC/server </h2>
                 <p> Plug the other end of the hub into a free USB port on your PC or server.  The reelceiver should power on as indicated by its blinking LED. </p>
                 <h2> Install serialport </h2>
                 <p> In order to listen for the serial data stream, we'll first need to install the serialport package for Node.js.  Create a new directory called hello-barnowl, then from that directory run: <br> <code> npm install serialport </code> </p>              
-                <p>  If you experience any problems with the latter, consult the <a href="https://github.com/voodootikigod/node-serialport#to-install" target="_blank">serialport package documentation</a> for specific instructions. </p>
+                <p>  If you experience any problems with the latter, consult the <a href="https://github.com/EmergingTechnologyAdvisors/node-serialport#installation-instructions" target="_blank">serialport package documentation</a> for specific instructions. </p>
                 <h2> Run barnowl </h2>
                 <p> Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
-                <img src="images/barnowl.jpg"
-                     class="img-responsive center-block">
                 <p> In the hello-barnowl directory run: <br> <code> npm install barnowl </code> </p>
                 <p> then create a file called hello-barnowl.js and paste in the following code: </p>
                 <pre>
@@ -117,12 +115,15 @@ var barnowl = require('barnowl');
 var middleware = new barnowl();
 middleware.bind({ protocol: 'serial', 
                   path: 'auto' }); <b>// See notes below</b>
-middleware.on('visibilityEvent', function(data) { 
-  console.log(data); 
+middleware.on('visibilityEvent', function(tiraid) { 
+  console.log(tiraid); 
 });             </pre>
                 <p> Now simply run: <br> <code> node hello-barnowl.js </code> </p>
                 <p> and, all going well, the <i>path</i> to your USB Hub will be auto-detected and data will be output to the console.  These are radio transmissions being captured by the reelceivers.  It works! </p>
-                <p> The next section explains how to set the exact path to your USB Hub which is necessary if auto-detection doesn't work. </p>
+                <img src="images/barnowl-setup.png"
+                     class="img-responsive center-block">
+                <hr>
+                <p> <i>The next section explains how to set the exact path to your USB Hub which is necessary if auto-detection doesn't work.</i> </p>
                 <h2> Determine the path to your USB serial port </h2>
                 <p> Even if auto-detection fails, all of the candidate paths to the USB Hub should nonetheless be listed in the console output.  For example you might see: </p>
                 <ul>
@@ -146,73 +147,86 @@ path: /dev/ttyUSB0
 id:   usb-FTDI_USB-RS422_Cable_FTVVPHTW-if00-port0</pre>
                 <p> Copy the path (ex: /dev/ttyUSB0 or COM5) into hello-barnowl.js and run it again. </p>
               </tab>
-              <tab heading="BLE/Original Starter Kit">
+              <tab heading="BLE Starter Kit">
                 <br>
-                <p> You should have in front of you one of the following kits: </p>
-                <img src="images/starterkits.jpg"
+                <p> You should have in front of you the following kit: </p>
+                <img src="images/starterkitBLE.jpg"
                      class="img-responsive center-block">
                 <h2> Installing Node.js </h2>
-                <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms. </p>
+                <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms.  We recommend you select the LTS version. </p>
                 <p class="text-center">
                   <a class="btn btn-primary" href="https://nodejs.org"
                      target="_blank" role="button"> Let's do it </a>
                 </p>
                 <h2> Connect Power </h2>
                 <p> Take the wall adapter provided with your kit and plug it into the mains.  If you don't have access to a North American outlet, you'll need an adapter.  Don't worry about the voltage, we've provided you with a kick-ass adapter with global compatibility and enough power to drive reely long reels with plenty of reelceivers. </p>
-                <p> Plug the barrel connector of the wall adapter into the receptacle on the hub (black box).  You should hear a faint beeping sound.  That's good! </p>
+                <p> Plug the barrel connector of the wall adapter into the receptacle on the hub's cable harness.  You should hear a beeping sound.  That's good! </p>
                 <h2> Connect the Reel </h2>
                 <p> Now we can connect the reelceivers in a daisy-chain configuration we call a reel. This is pure plug-n-play simplicity, just take into account the following:
                   <ul>
-                    <li> The reelceivers are <i>directional</i>, make sure that the little arrow on the back that says "Towards Hub" points towards the hub!
-                    <li> The order in which reelceivers are connected is not important: you can mix Bluetooth Smart and 915MHz reelceivers in any combination - just respect the directionality!
-                    <li> Reelceivers don't communicate via Ethernet, even if they use the same Cat5 cables as Ethernet.  Be sure to plug them into the cable coming out of the hub that is marked "Reel".
+                    <li> The reelceivers are <i>directional</i>.  Plug the reelceiver into the cable harness of the hub so that the <b>Hub &#8594;</b> arrow points towards the hub.  Note that the reelceiver will still power on if it's connected in the wrong orientation, but it will <i>not</i> communicate with the hub.
+                    <li> The order in which reelceivers are connected is not important: you can even mix reelceiver types - just respect the directionality!
+                    <li> Reelceivers don't communicate via Ethernet, even if they use the same Cat5 cables as Ethernet.  Be sure to plug them into the hub's cable harness, not LAN1 or LAN2!
                   </ul>
                 </p>
                 <img src="images/reel.jpg"
                      class="img-responsive center-block">
                 <p> Daisy chain all of your reelceivers to the hub (you'll need to supply the additional cables, any network cable will do).  Each reelceiver's LED should blink if it is receiving power.  Good job!
                 </p>
-                <h2> Connect the Hub to your PC/server </h2>
-                <p> Only one cable left unplugged!  Now it's time to connect the hub to your PC or server.  Simply plug the Ethernet cable of the hub directly to your PC or server. </p>
+                <h2> Connect the Hub to your Ethernet switch </h2>
+                <p> Connect one end of a network cable (not provided) to LAN2 on the hub, and the other end to a free port on your Ethernet switch.  If the switch is DHCP-enabled, the hub will automatically obtain an IP address and be connected to your network. </p>
                 <p> That was easy!  Next up: the joys of IP settings... </p>
-                <h2> Change the IP address of your PC/server </h2>
-                <p> We'll be honest, we wish you didn't have to deal with this step. It's the biggest source of friction in an otherwise relatively frictionless installation. But we'll get through it together. (Ask about our USB hub and other alternatives which eliminate this step!) </p>
-                <p> We preconfigured the IP settings on your hub and sent you the details which are likely the following:
+                <h2> Direct the packets to your PC/server </h2>
+                <p> We'll now make two critical assumptions:
+                  <ol>
+                    <li> Your PC/server is on the same network as the hub and you know how to determine its IP address
+                    <li> You know how to determine the IP address assigned to the hub by your switch
+                  </ol>
+                </p>
+                <p> If that's not the case, please <a href="#ip-direct">read this</a>.  Otherwise, open a browser window and log on to the hub by entering its IP address.  The default login credentials are:
                   <ul>
-                    <li> <b>Hub IP:</b> &nbsp; 192.168.1.100
-                    <li> <b>Target IP:</b> &nbsp; 192.168.1.101
+                    <li> <b>Username:</b> &nbsp; admin
+                    <li> <b>Password:</b> &nbsp; (blank)
                   </ul>
                 </p>
-                <p> Now you'll need to change the IP address of your PC/server to match that of the target IP above.  If you don't know how to do this, search the Internet for "How to change my IP address in OS" where OS is the name of your operating system.  Thanks in advance for your patience and understanding! </p>
-                <p> We're just one step away from the joy of seeing data streaming to your console! </p>
-                <h2> Run barnowl </h2>
-                <p> At this point, the hardware is actually streaming data to your PC/server and all you need to do is listen for it.  Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
-                <img src="images/barnowl.jpg"
+                <p> Select Serial - COM1 from the menu at left.  Then specify the IP address of your PC/server as Destination IP Address 1.  In the example below we selected 192.168.1.101. </p>
+                <img src="images/se5901-com.png"
                      class="img-responsive center-block">
+                <p> Click Save & Apply.  In a moment, packets will be routed to your PC/server via UDP. </p>
+                <h2 id="barnowl-udp"> Run barnowl </h2>
+                <p> Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
                 <p> Create a new directory called hello-barnowl, then from that directory run: <br> <code> npm install barnowl </code> </p>
                 <p> In the same directory, create a file called hello-barnowl.js and paste in the following code: </p>
                 <pre>
 var barnowl = require('barnowl');
 var middleware = new barnowl();
-middleware.bind({ protocol: 'serial', 
+middleware.bind({ protocol: 'udp', 
                   path: '192.168.1.101:50000' }); <b>// Server IP address here!!!</b>
-middleware.on('visibilityEvent', function(data) { 
-  console.log(data); 
+middleware.on('visibilityEvent', function(tiraid) { 
+  console.log(tiraid); 
 });             </pre>
                 <p> Now simply run: <br> <code> node hello-barnowl.js </code> </p>
                 <p> and you should see data being output to the console.  These are radio transmissions being captured by the reelceivers.  It works! </p>
-                <h2> Optional: changing the hub IP settings </h2>
-                <p> If you don't like the IP address settings we've provided, you're free to change them. To do so, you'll need to log on to the hub using a web browser and make the changes.  Log on to the hub by typing its IP address in your browser, for example: <a href="http://192.168.1.100" target="_blank"> 192.168.1.100 </a> </p>
-                <p> When prompted, enter <i>admin</i> as the username and leave the password field <i>blank</i>. You should see a screen similar to this: </p> 
-                <img src="images/gw215-home.png"
-                    class="img-responsive center-block">
-                <p> To change the target IP settings, click on COM1 which will provide the following options.  Enter in the target IP address(es), you can specify up to four ranges.  By default we use port 50000 but you can use any free port.  Don't forget to save your configuration! </p>
-                <img src="images/gw215-com.png"
+                <img src="images/barnowl-setup.png"
                      class="img-responsive center-block">
-                <p> To change the IP settings of the hub itself, click on Networking which will provide the following options.  Enter in the desired IP settings, or select DHCP mode if the hub will be connected to a network which will provide a dynamic address.  Don't forget to save your configuration! </p>
-                <img src="images/gw215-network.png"
+                <hr>
+                <h2 id="ip-direct"> Alternative: direct-connect to hub </h2>
+                <p> It is possible to directly connect your PC to the hub and receive the data stream.  In this section we'll explain how. </p>
+                <p> Connect one end of a network cable (not provided) to LAN1 on the hub, and the other end to your PC.  Now you'll need to change the IP address of your PC to <b>10.0.50.101</b>. If you don't know how to do this, search the Internet for "How to change my IP address in OS" where OS is the name of your operating system. </p>
+                <p> Open a browser window and log on to the hub by entering its IP address: <b>10.0.50.100</b>.  The default login credentials are:
+                  <ul>
+                    <li> <b>Username:</b> &nbsp; admin
+                    <li> <b>Password:</b> &nbsp; (blank)
+                  </ul>
+                </p>
+                <p> Select Serial - COM1 from the menu at left.  Then specify the IP address of your PC as Destination IP Address 1: <b>10.0.50.101</b>. </p>
+                <img src="images/se5901-com-direct.png"
                      class="img-responsive center-block">
-                <p> Once you change the IP address of the hub and cycle power, it will use that new address.  Note that if the new address is outside of the subnet of the old address, you won't be able to log back on without first changing your PC/server's IP address.  Just a heads up! </p>
+                <p> Click Save & Apply. </p>
+                <p> Select Network Settings from the menu at left.  Then ensure that LAN1 is selected as Default Gateway. </p>
+                <img src="images/se5901-network-direct.png"
+                     class="img-responsive center-block">
+                <p> Click Save & Apply.  In a moment, packets will be routed to your PC via UDP.  Now you can <a href="#barnowl-udp">run barnowl</a> taking care to specify <b>10.0.50.101:50000</b> as your path. </p>
               </tab>
             </tabset>
             <hr>
