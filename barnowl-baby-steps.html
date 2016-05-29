@@ -96,18 +96,18 @@
                  role="button" target="_blank"> Let's do it </a>
             </p>
             <h2> Installing barnowl </h2>
-            <p> The easy way is via npm.  Create a new directory called baby-barnowl, then from that directory run: <br> <code> npm install barnowl </code> </p>
+            <p> The easy way is via npm.  Create a new directory called <b>baby-barnowl</b>, then from that directory run: <br> <code> npm install barnowl </code> </p>
             <p> Yeah, that's it, you're done! </p>
             <hr>
             <p> If you prefer to install from github, instead clone the <a href="https://github.com/reelyactive/barnowl" target="_blank">barnowl repository</a>. </p>
             <h2> Running barnowl and telling it where to listen </h2>
-            <p> It's as simple as three lines of code!  First you load barnowl, second, you create an instance of barnowl and, third, you tell that instance where to listen for packets.  Create a new file called baby-barnowl.js in the same directory and paste in the following lines of code: </p>
+            <p> It's as simple as three lines of code!  First you load barnowl, second, you create an instance of barnowl and, third, you tell that instance where to listen for packets.  Create a new file called <b>baby-barnowl.js</b> in the same directory and paste in the following lines of code: </p>
             <pre>
 var barnowl = require('barnowl');
 var middleware = new barnowl();
 middleware.bind({ protocol: 'test',
                   path: 'default' }); </pre>
-            <p> If you've already completed the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit</a> tutorial, you'll likely want to update the protocol and path to listen for your hardware.  The 'test' protocol specified above will initiate a packet generator that can be used in the absence of hardware. </p>
+            <p> If you've already completed the <a href="install-a-starter-kit.html" target="_blank">Install a Starter Kit</a> tutorial, you'll likely want to update the <i>protocol</i> and <i>path</i> to listen for your hardware.  The 'test' protocol specified above will initiate a packet generator that can be used in the absence of hardware. </p>
             <p> If you run this code, it will listen for and process any received packets.  In order to do something useful we'll need to handle the output as we'll show next. </p>
             <h2> Printing packets to the console </h2>
             <p> Barnowl outputs <i>visibilityEvents</i> which our code can listen for. To listen for these events and output the data to the console (something potentially useful), paste in these additional lines of code: </p>
@@ -127,7 +127,7 @@ middleware.on('visibilityEvent', function(tiraid) {
             <p> These are in fact the three core elements of hyperlocal context (which you can learn more about <a href="http://context.reelyactive.com/context.html" target="_blank">on the reelyActive website</a>).  Radio decodings and location are effectively equivalent if the location of the decoding devices is known (as is typically the case for fixed infrastructure). </p>
             <p> The data produced by barnowl is always structured as these three elements.  In the following sections, we'll see how we can filter based on these criteria. </p>
             <h2> Filtering packets by signal strength </h2>
-            <p> Perhaps we're only interested in outputting data to the console for devices that are physically close to a reelceiver.  In other words, we only display the data when the signal strength is above a threshold. To do so, we simply wrap the <i>console.log(data);</i> from the previous example in an if statement which tests the signal strength or rssi (Received Signal Strength Indication): </p>
+            <p> Perhaps we're only interested in outputting data to the console for devices that are physically close to a reelceiver.  In other words, we only display the data when the signal strength is above a threshold. To do so, we simply wrap the <i>console.log(tiraid);</i> from the previous example in an if statement which tests the signal strength or rssi (Received Signal Strength Indication): </p>
             <pre>
 var rssi = tiraid.radioDecodings[0].rssi;
 if(rssi > 160) {
@@ -142,6 +142,41 @@ if(identifier === '001bc50940100000') {
   console.log(tiraid);
 }           </pre>
             <p> Now run your code again and confirm that only packets from the given device are being output to the console. </p>
+            <h2> Going one step further with reelib </h2>
+            <p> The <a href="https://www.npmjs.com/package/reelib" target="_blank">reelib</a> package is a library for common reelyActive methods.  Next we'll show how it simplifies printing the data stream to the console or to a file.  Install reelib as follows: <br> <code> npm install reelib </code> </p>
+            <h3> Prettier printing to the console </h3>
+            <p> Create a new file called <b>baby-barnowl-print.js</b> and paste in the following code: </p>
+            <pre>
+var barnowl = require('barnowl');
+var reelib = require('reelib');
+
+var middleware = new barnowl();
+middleware.bind({ protocol: 'test',
+                  path: 'default' });
+
+middleware.on('visibilityEvent', function(tiraid) {
+  console.log(reelib.tiraid.toShortString(tiraid));
+});         </pre>
+            <p> Now run your code as follows to see data packets output to the console in a single line: <br> <code> node baby-barnowl-print.js </code> </p>
+            <h3> Logging data to a file </h3>
+            <p> Create a new file called <b>baby-barnowl-log.js</b> and paste in the following code: </p>
+            <pre>
+var barnowl = require('barnowl');
+var reelib = require('reelib');
+var fs = require('fs');
+
+var middleware = new barnowl();
+middleware.bind({ protocol: 'test',
+                  path: 'default' });
+
+fs.appendFile('log.csv', reelib.tiraid.CSV_HEADER + '\r\n');
+
+middleware.on('visibilityEvent', function(tiraid) {
+  var csv = reelib.tiraid.toCSVString(tiraid);
+  fs.appendFile('log.csv', csv + '\r\n');
+});         </pre>
+            <p> Now run your code as follows for the data to be written as comma-separated values to the file <b>log.csv</b>: <br> <code> node baby-barnowl-log.js </code> </p>
+            <p> You can easily analyze and graph the data by opening <b>log.csv</b> in a spreadsheet program such as Excel or Google Sheets. </p>
             <h2> What's next? </h2>
             <p> Check out <a href="http://reelyactive.github.io/barstool/" target="_blank">barstool</a> and <a href="http://reelyactive.github.io/advlib/" target="_blank">advlib</a> for more low-level interaction, or follow our <a href="make-a-smartspace.html">Make a Smart Space tutorial</a> for higher-level interaction. </p>
             <p class="text-center">
