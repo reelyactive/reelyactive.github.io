@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>diyActive: Integrate your Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://context.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html"> diyActive </a></li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://www.hyperlocalcontext.com" target="_blank">
+                    www.hyperlocalcontext.com
+                  </a>
+                </li>
+                <li>
+                  <a href="http://smartspac.es" target="_blank">
+                    smartspac.es
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li>
+                  <a href="http://context.reelyactive.com" target="_blank">
+                    Our website
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1> Integrate your Service </h1>
+            <img src="images/serviceIntegration.png"
+                 class="img-responsive center-block">
+            <p> The reelyActive platform is designed to forward a real-time stream of events to complementary services.  First we'll define the event data that your service will need to ingest, and second, we'll describe how to complete the integration. </p>
+            <a id="events"></a>
+            <h2> Event data </h2>
+            <p> There's just one type of data, an event, which is represented as JSON.  An event always has the following structure:</p>
+<pre>
+{
+  "event": "appearance",
+  "tiraid": {
+    "identifier": { ... },
+    "radioDecodings": [ ... ],
+    "timestamp": "2016-01-01T01:23:45.678Z"
+  }
+}
+</pre>
+            <p> The <i>event</i> and <i>tiraid</i> are described next. </p>
+            <h3> event </h3>
+            <p> There are four event types, each described below. </p>
+            <h4> appearance </h4>
+            <p> Indicates that the device is detected for the first time at a point of interest.  Typically, this means that the device has come within range of a radio receiver. </p>
+            <h4> displacement </h4>
+            <p> Indicates that the device has moved to a different point of interest.  Specifically, it indicates that the device is detected at a stronger RSSI by a different radio receiver than previously. </p>
+            <h4> keep-alive </h4>
+            <p> Indicates that the device continues to be detected and has not displaced.  The keep-alive is sent periodically (typically every few seconds) to indicate that the device remains at the same point of interest. </p>
+            <h4> disappearance </h4>
+            <p> Indicates that the device is no longer detected at any point of interest.  Typically, this means that the device has gone out of range of all radio receivers. </p>
+            <h3> tiraid </h3>
+            <p> A tiraid consists of three components (<u>ti</u>-<u>ra</u>-<u>id</u>), each described below. </p>
+            <h4> <u>ti</u>mestamp </h4>
+            <p> <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 timestamp</a>, represented as a String.  Includes date and time of day in <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank">UTC</a>, with millisecond precision.  Example:</p>
+<pre>2016-01-01T01:23:45.678Z</pre>
+            <p> The timestamp represents the platform's interpretation of the time of the device's radio transmission which triggered the event. </p>
+            <h4> <u>ra</u>dioDecodings </h4>
+            <p> Array of radioDecoding objects.  Each radioDecoding includes the <i>identifier</i> of the radio receiver, as well as the Received Signal Strength Indication, or <i>rssi</i>.  Example:</p>
+<pre>
+{
+  "identifier": {
+    "type": "EUI-64",
+    "value": "001bc50940800000"
+  }
+  "rssi": 128
+}
+</pre>
+            <h4> <u>id</u>entifier </h4>
+            <p> The identifier of the radio transmitter device, which includes the entire payload of its transmission.  Example:</p>
+<pre>
+{
+  "type": "ADVA-48",
+  "value": "112233445566",
+  "advHeader": {
+    "type": "SCAN_REQ",
+    "length": 12,
+    "txAdd": "random",
+    "rxAdd": "public"
+  },
+  "advData": {}
+}
+</pre>
+            <p> The identifier <i>value</i> is the means by which the system distinguishes devices and thereby interprets events. </p>
+            <h2> Ingesting data </h2>
+            <p> Your service can ingest data as HTTP POSTs, over websockets, or using a custom service.  Each option is presented in its own tab below. </p>
+            <tabset>
+              <!----- HTTP POST -------------------------------------------->
+              <tab heading="HTTP POST">
+                <p> In this case, the reelyActive platform will POST events to your API. </p>
+                <h3> Integration testbench </h3>
+                <p> Paste the following into a file called <b>post-test.js</b>: </p>
+<pre>
+var barnowl = require("barnowl");
+var barnacles = require("barnacles");
+var middleware = new barnowl( { n: 2 } );
+var notifications = new barnacles();
+ 
+middleware.bind( { protocol: 'test', path: 'default' } );
+notifications.bind( { barnowl: middleware } );
+
+notifications.addService({
+    service: "barnaclesrest",
+    hostname: "localhost",
+    port: 3010,
+});
+</pre>
+                <p> Then from the command line, run the following, in order: <br>
+                <code> npm install barnowl </code> <br>
+                <code> npm install barnacles </code> <br>
+                <code> node post-test </code> </p>
+                <p> Your service should now expect events to be POSTed to <b>http://localhost:3010/events</b> </p>
+              </tab>
+              <!----- Websockets ------------------------------------------->
+              <tab heading="Websockets">
+                <p> Info to come. </p>
+              </tab>
+              <!----- Custom services -------------------------------------->
+              <tab heading="Custom services">
+                <p> Info to come. </p>
+              </tab>
+            </tabset>
+            <hr>
+            <h2> What's next? </h2>
+            <p> More to come, be sure to check back! </p>
+            <p class="text-center">
+              <a class="btn btn-success" href="index.html"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://context.reelyactive.com">
+          &copy; reelyActive 2016
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
