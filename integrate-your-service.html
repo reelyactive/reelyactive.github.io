@@ -108,41 +108,45 @@
             <tabset>
               <!----- event ------------------------------------------------->
               <tab heading="event">
-                <p> There are four event types, each described in the animation and table below. </p>
+                <p> There are four <b>event</b> types, each described in the animation and table below. </p>
                 <img src="images/service-events.gif"
                      class="img-responsive center-block">
                 <table class="table table-hover">
-                  <tr>
-                    <th> Event type </th>
-                    <th> Description </th>
-                  </tr>
-                  <tr>
-                    <td> appearance </td>
-                    <td> Indicates that the device is detected for the first time at a point of interest.  Typically, this means that the device has come within range of a radio receiver. </td>
-                  </tr>
-                  <tr>
-                    <td> keep-alive </td>
-                    <td> Indicates that the device continues to be detected and has not displaced.  The keep-alive is sent periodically (typically every few seconds) to indicate that the device remains at the same point of interest. </td>
-                  </tr>
-                  <tr>
-                    <td> displacement </td>
-                    <td> Indicates that the device has moved to a different point of interest.  Specifically, it indicates that the device is detected at a stronger RSSI by a different radio receiver than previously. </td>
-                  </tr>
-                  <tr>
-                    <td> disappearance </td>
-                    <td> Indicates that the device is no longer detected at any point of interest.  Typically, this means that the device has gone out of range of all radio receivers. </td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th> Event type </th>
+                      <th> Description </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> appearance </td>
+                      <td> Indicates that the device is detected for the first time at a point of interest.  Typically, this means that the device has come within range of a radio receiver. </td>
+                    </tr>
+                    <tr>
+                      <td> keep-alive </td>
+                      <td> Indicates that the device continues to be detected and has not displaced.  The keep-alive is sent periodically (typically every few seconds) to indicate that the device remains at the same point of interest. </td>
+                    </tr>
+                    <tr>
+                      <td> displacement </td>
+                      <td> Indicates that the device has moved to a different point of interest.  Specifically, it indicates that the device is detected at a stronger RSSI by a different radio receiver than previously. </td>
+                    </tr>
+                    <tr>
+                      <td> disappearance </td>
+                      <td> Indicates that the device is no longer detected at any point of interest.  Typically, this means that the device has gone out of range of all radio receivers. </td>
+                    </tr>
+                  </tbody>
                 </table>
               </tab>
               <!----- tiraid ------------------------------------------------>
               <tab heading="tiraid">
-                <p> A tiraid consists of three components (<u>ti</u>-<u>ra</u>-<u>id</u>), each described below. </p>
+                <p> A <b>tiraid</b> consists of three components (<u>ti</u>-<u>ra</u>-<u>id</u>), each described below. </p>
                 <h3> <u>ti</u>mestamp </h3>
                 <p> <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 timestamp</a>, represented as a String.  Includes date and time of day in <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank">UTC</a>, with millisecond precision.  Example:</p>
 <pre>2016-01-01T01:23:45.678Z</pre>
                 <p> The timestamp represents the platform's interpretation of the time of the device's radio transmission which triggered the given event. </p>
                 <h3> <u>ra</u>dioDecodings </h3>
-                <p> Array of radioDecoding objects.  Each radioDecoding includes the <i>identifier</i> of the radio receiver, as well as the Received Signal Strength Indication, or <i>rssi</i>.  Example:</p>
+                <p> Array of radioDecoding objects ordered from strongest [0] to weakest [n-1].  Each radioDecoding includes the <i>identifier</i> of the radio receiver, as well as the Received Signal Strength Indication, or <i>rssi</i>.  Example:</p>
 <pre>
 {
   "identifier": {
@@ -152,6 +156,7 @@
   "rssi": 128
 }
 </pre>
+                <p> The first radioDecoding in the array, <i>tiraid.radioDecodings[0]</i>, represents the radio receiver closest to the device, in other words, the device's location. </p>
                 <h3> <u>id</u>entifier </h3>
                 <p> The identifier of the radio transmitter device, which includes the entire payload of its transmission.  Example:</p>
 <pre>
@@ -167,8 +172,9 @@
   "advData": {}
 }
 </pre>
-                <p> The identifier <i>value</i> is the means by which the system distinguishes devices and thereby interprets events. </p>
+                <p> The identifier value, <i>tiraid.identifier.value</i>, is the means by which the system distinguishes devices and thereby interprets events. </p>
             </tabset>
+            <hr>
             <h2> Ingesting data </h2>
             <p> Your service can ingest data as HTTP POSTs, over websockets, or using a custom service.  Each option is presented in its own tab below. </p>
             <tabset>
