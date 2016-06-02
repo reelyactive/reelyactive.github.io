@@ -93,7 +93,7 @@
             <img src="images/serviceIntegration.png"
                  class="img-responsive center-block"
                  style="background-color:#fafafa">
-            <p> The reelyActive platform is designed to forward a real-time stream of events to complementary services.  First we'll define the event data that your service will need to ingest, and second, we'll describe how to complete the integration. </p>
+            <p> The reelyActive platform is designed to forward a real-time stream of events to complementary services.  First we'll define the <a href="#events">event data</a> that your service will need to ingest, then we'll describe the means by which your service can <a href="#ingestion">ingest the data</a>, and, finally, we'll suggest how to <a href="#storage">store the data</a>. </p>
             <a id="events"></a>
             <h2> Event data </h2>
             <p> There's just one type of data, an event, which is represented as JSON.  An event always has the following structure:</p>
@@ -154,9 +154,9 @@
 {
   "identifier": {
     "type": "EUI-64",
-    "value": "001bc50940800000"
+    "value": "001bc50940810000"
   }
-  "rssi": 128
+  "rssi": 169
 }
 </pre>
                 <p> The first radioDecoding in the array, <i>tiraid.radioDecodings[0]</i>, represents the radio receiver closest to the device, in other words, the device's location. </p>
@@ -178,6 +178,7 @@
                 <p> The identifier value, <i>tiraid.identifier.value</i>, is the means by which the system distinguishes devices and thereby interprets events. </p>
             </tabset>
             <hr>
+            <a id="ingestion"></a>
             <h2> Ingesting data </h2>
             <p> Your service can ingest data as HTTP POSTs, over websockets, or using a custom service.  Each option is presented in its own tab below. </p>
             <tabset>
@@ -245,6 +246,19 @@ notifications.addService({
               </tab>
             </tabset>
             <hr>
+            <a id="storage"></a>
+            <h2> Storing data </h2>
+            <p> If your service will store event data to a database, we suggest (at least) the following properties in flattened format: </p>
+<pre>
+{
+  "event": "appearance",
+  "time": 1451611425,
+  "device_id": "112233445566",
+  "receiver_id": "001bc50940810000",
+  "rssi": 169
+}
+</pre>
+            <p> The presented values are taken from the tiraid example above.  Note that the <i>time</i> is stored as <a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix time</a>. </p>
             <h2> What's next? </h2>
             <p> More to come, be sure to check back! </p>
             <p class="text-center">
