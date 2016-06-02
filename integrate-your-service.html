@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.min.js"></script>
+    <script type="text/javascript" src="js/socket.min.js"></script>
+    <script type="text/javascript" src="js/beaver.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -18,8 +21,8 @@
     </script>
   </head>
   <body>
-  <body ng-app="diyActive">
-    <div ng-controller="InteractionCtrl">
+  <body ng-app="service">
+    <div ng-controller="ServiceCtrl">
       <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle"
@@ -206,11 +209,39 @@ notifications.addService({
               </tab>
               <!----- Websockets ------------------------------------------->
               <tab heading="Websockets">
-                <p> Info to come. </p>
+                <p> In this case, your service will connect to the websocket at a specific URL. </p>
+                <p> Test your service with a live feed via <b>http://www.hyperlocalcontext.com/reelyactive</b> and you should receive the following: </p>
+
+                <table class="table table-hover">
+                  <caption> REAL-TIME EVENT STREAM </caption>
+                  <thead>
+                    <tr>
+                      <th> Transmitter ID </th>
+                      <th> Event </th>
+                      <th> Receiver ID </th>
+                      <th> RSSI </th>
+                      <th> Timestamp </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="(id, event) in events">
+                      <td> <tt> {{event.tiraid.identifier.value}} </tt> </td>
+                      <td> {{event.type}} </td>
+                      <td>
+                        <tt>
+                          {{event.tiraid.radioDecodings[0].identifier.value}}
+                        </tt>
+                      </td>
+                      <td> {{event.tiraid.radioDecodings[0].rssi}} </td>
+                      <td> {{event.tiraid.timestamp}} </td>
+                    </tr>
+                  </tbody>
+                </table>
               </tab>
               <!----- Custom services -------------------------------------->
               <tab heading="Custom services">
-                <p> Info to come. </p>
+                <p> In this case, you'll write a custom service that we'll integrate into our code base.  This is reserved for cases where HTTP POST and websockets are inappropriate. </p>
+                <p> Visit the <a href="https://github.com/reelyactive/barnacles/tree/master/lib/services" target="_blank">barnacles/lib/services</a> directory on our GitHub for code examples of the existing custom services. </p>
               </tab>
             </tabset>
             <hr>
