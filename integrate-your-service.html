@@ -188,12 +188,12 @@
                 <h3> Integration testbench </h3>
                 <p> Paste the following into a file called <b>post-test.js</b>: </p>
 <pre>
-var barnowl = require("barnowl");
-var barnacles = require("barnacles");
+var barnowl = require('barnowl');
+var barnacles = require('barnacles');
 var middleware = new barnowl( { n: 2 } );
 var notifications = new barnacles();
  
-middleware.bind( { protocol: 'test', path: 'default' } );
+middleware.bind( { protocol: "test", path: "default" } );
 notifications.bind( { barnowl: middleware } );
 
 notifications.addService({
@@ -259,7 +259,17 @@ notifications.addService({
   "rssi": 169
 }
 </pre>
-            <p> The presented values are taken from the tiraid example above.  Note that the <i>time</i> is stored as <a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix time</a>. </p>
+            <p> The presented values are taken from the tiraid example above.  We recommend using the <a href="https://www.npmjs.com/package/reelib#toflattenedevent" target="_blank">toFlattened()</a> method of our <a href="https://www.npmjs.com/package/reelib" target="_blank">reelib</a> package to flatten the event data in a standard format.  Install and reference the package, respectively, as follows: <br>
+            <code> npm install reelib </code> </p>
+<pre>
+var reelib = require('reelib');
+
+var event; // See Ingesting Data section
+
+var flattenedEvent = reelib.event.toFlattened(event);
+
+console.log(flattenedEvent);
+</pre>
             <h2> What's next? </h2>
             <p> More to come, be sure to check back! </p>
             <p class="text-center">
