@@ -1,7 +1,20 @@
 angular.module('diyActive', [ 'ui.bootstrap' ])
 
   // Interaction controller
-  .controller('InteractionCtrl', function($scope) {
+  .controller('InteractionCtrl', function($scope, $window, $location) {
+
+    // Select tab to display (default is tutorials)
+    var tab = $window.location.search.split("tab=").pop().split('&').shift();
+    var hasTab = $window.location.search.indexOf("tab=") !== -1;
+
+    $scope.tabs = { tutorials: false, integrations: false,
+                    hackathons: false, software: false };
+    if(hasTab && $scope.tabs.hasOwnProperty(tab)) {
+      $scope.tabs[tab] = true;
+    }
+    else {
+      $scope.tabs.tutorials = true;
+    }
 
     // reelyHacktive carousel
     $scope.hackSlides = [
