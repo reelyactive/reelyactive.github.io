@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>diyActive: Integrate your Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/cormorant.js"></script>
+    <script type="text/javascript" src="js/product.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+  <body ng-app="product">
+    <div ng-controller="ProductCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://context.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html"> diyActive </a></li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://www.hyperlocalcontext.com" target="_blank">
+                    www.hyperlocalcontext.com
+                  </a>
+                </li>
+                <li>
+                  <a href="http://smartspac.es" target="_blank">
+                    smartspac.es
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li>
+                  <a href="http://context.reelyactive.com" target="_blank">
+                    Our website
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <!--<img src="images/productIntegration.png"
+                 class="img-responsive center-block img-thumbnail">-->
+            <h1> Integrate your Product </h1>
+            <p> The reelyActive platform recognises and represents people, products and places within physical spaces via any radio-identifiable devices they may carry. Here we'll explain how to integrate <i>your</i> <a href="#identification">identifiable</a> product by ensuring it is appropriately <a href="#representation">represented</a> on the web and <a href="#association">associated</a> within our platform. </p>
+            <a id="identification"></a>
+            <h2> Identification </h2>
+            <p> <i><b>Your product needs to be uniquely identifiable by radio.</b></i> </p>
+            <p> Our platform currently supports the billions of Bluetooth Low Energy (BLE) devices in existence.  Each of these has the potential to broadcast a unique identifier which can be recognised by devices in range, such as our reelceivers.  The following examples illustrate how individual products, or products of a specific brand, are identified. </p>
+            <table class="table table-hover">
+              <caption> EXAMPLES OF PRODUCTS IDENTIFIABLE BY BLE </caption>
+              <thead>
+                <tr>
+                  <th> Product </th>
+                  <th> Identifier Type </th>
+                  <th> Identifier Value (Hexadecimal) </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> Tile </td>
+                  <td> 16-bit UUID </td>
+                  <td> <tt>feed</tt> </td>
+                </tr>
+                <tr>
+                  <td> Samsung Products </td>
+                  <td> 16-bit Company Code </td>
+                  <td> <tt>0075</tt> </td>
+                </tr>
+                <tr>
+                  <td> Nexus Player </td>
+                  <td> 128-bit UUID </td>
+                  <td> <tt>cbbfe0e1f7f3420684e084cbb3d09dfc</tt> </td>
+                </tr>
+                <tr>
+                  <td> Estimote Beacon </td>
+                  <td> iBeacon UUID </td>
+                  <td> <tt>b9407f30f5f8466eaff925556b57fe6d</tt> </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> If you have a Bluetooth Low Energy product, and you know the identifier it broadcasts, great!  If you don't know what identifier it broadcasts, if at all, ask your engineering team. </p>
+            <p> Don't have a Bluetooth Low Energy product?  Do not despair.  In future we intend to integrate RAIN RFID devices which are likely to number in the trillions! &nbsp; <i>Read on nonetheless - if nothing else you'll learn a nifty SEO trick!</i> </p>
+            <a id="representation"></a>
+            <h2> Representation </h2>
+            <p> <i><b>Your product needs to be represented in a format that computers can understand.</b></i> </p>
+            <p> Our platform understands products <a href="https://developers.google.com/search/docs/guides/intro-structured-data" target="_blank">the same way as the major search engines</a>: using <a href="https://schema.org/" target="_blank">schema.org</a> and <a href="http://json-ld.org/" target="_blank">JSON-LD</a>.  Don't worry if those are unfamiliar terms, you don't actually need to know what they mean nor how they work! </p>
+            <h3> Represent your product </h3>
+            <p> All you need to do is to represent your product by pasting some code into its website.  Simply create that code by filling in the fields below, then click Export to Web. </p>
+            <div class="row">
+              <div class="col-xs-12 col-md-5">
+                <form role="form">
+
+                  <div class="form-group">
+                    <label for="productName"> Name: </label>
+                      <input type="text" ng-change='change()'
+                             placeholder="Bluetooth Smart Reelceiver"
+                             class="form-control" ng-model="product.name"
+                             tooltip="Ex:Bluetooth Smart Reelceiver"
+                             tooltip-placement="right" id="productName"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="productManufacturer"> Manufacturer: </label>
+                      <input type="text" placeholder="reelyActive"
+                             class="form-control" tooltip-placement="right"
+                             ng-model="product.manufacturer.name"
+                             ng-change='change()' tooltip="Ex:reelyActive"
+                             id="productManufacturer"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="productModel"> Model: </label>
+                      <input type="text" placeholder="RA-R436"
+                             class="form-control" ng-model="product.model"
+                             ng-change='change()' tooltip="Ex:RA-R436"
+                             tooltip-placement="right" id="productModel"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="productUrl"> Product URL: </label>
+                      <input type="url" placeholder="http://shop.reelyactive.com/products/ra-r436"
+                             class="form-control" ng-model="product.url"
+                             ng-change='change()' id="productUrl"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="imageUrl"> Image URL: </label>
+                      <input type="url" placeholder="http://reelyactive.com/products/ra-r436/portrait.jpg"
+                             class="form-control" ng-model="product.image"
+                             ng-change='change()' id="imageUrl"/>
+                  </div>
+                </form>
+              </div>
+              <div class="col-xs-12 col-md-7">
+                <pre>{{json | json}}</pre>
+                <p class="text-center">
+                  <button class="btn btn-primary" ng-click="webify()">
+                    Export to web
+                  </button>
+                </p>
+              </div>
+            </div>
+            <h3> Confirm the product representation </h3>
+            <p> Did it work?  Check by entering the URL of your product below and pressing the button to attempt to fetch the code. </p>
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="url">Product URL</label>
+                <input type="url" class="form-control" id="url" ng-model="url"
+                       placeholder="http://myproduct.info">
+              </div>
+              <button type="submit" class="btn btn-default"
+                      ng-click="fetchStory(url)">Fetch</button>
+            </form> 
+            <br>
+            <pre ng-show="fetchedStory"> {{fetchedStory}} </pre>
+            <a id="association"></a>
+            <h2> Association </h2>
+            <p> <i><b>Your product identifier needs to be associated with its representation.</b></i> </p>
+            <p> Simply <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> if you'd like us to enter the association into our platform.  All we'll need is:
+              <ul>
+                <li> the <a href="#identification">identifier</a> type and value
+                <li> the URL of your product <a href="#representation">representation</a>
+              </ul>
+            </p>
+            <p> We'll prompty add the association in our open source <a href="https://www.npmjs.com/package/chickadee" target="_blank">chickadee</a> package. </p>
+            <h2> What's next? </h2>
+            <p> We'd much rather see an open, distributed and standardised lookup mechanism for associations as we've presented in our <a href="http://context.reelyactive.com/science.html" target="_blank">scientific research</a>.  If you're working on such a project or would like to collaborate, please <a href="http://context.reelyactive.com/contact.html" target="_blank">get in touch</a>. </p>
+            <p> Alternatively, consider having your product broadcast an <a href="https://github.com/google/eddystone/tree/master/eddystone-url" target="_blank">Eddystone-URL</a> packet.  In this case the association is implicit and no additional integration with our platform is required! </p>
+            <p class="text-center">
+              <a class="btn btn-success" href="index.html"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://context.reelyactive.com">
+          &copy; reelyActive 2016
+        </a>
+      </footer>
+    </div>
+
+    <!----- Start Modal ----->
+    <script type="text/ng-template" id="export.html">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          Structured data for the web
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p> Copy the following markup into either the head or body of the product webpage: </p>
+        <pre>{{markup}}</pre>
+        <p class="text-right"> This is great for search engine optimisation (SEO) too! </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button"
+                ng-click="dismiss()"> Dismiss </button>
+      </div>
+    </script>
+    <!----- End Modal ----->
+
+  </body>
+</html>
