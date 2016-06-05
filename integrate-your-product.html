@@ -91,7 +91,10 @@
                  class="img-responsive center-block img-thumbnail">-->
             <h1> Integrate your Product </h1>
             <p> The reelyActive platform recognises and represents people, products and places within physical spaces via any radio-identifiable devices they may carry. Here we'll explain how to integrate <i>your</i> <a href="#identification">identifiable</a> product by ensuring it is appropriately <a href="#representation">represented</a> on the web and <a href="#association">associated</a> within our platform. </p>
+            <p><br><br></p>
             <a id="identification"></a>
+            <img src="images/product-identification.png"
+                 class="img-responsive center-block">
             <h2> Identification </h2>
             <p> <i><b>Your product needs to be uniquely identifiable by radio.</b></i> </p>
             <p> Our platform currently supports the billions of Bluetooth Low Energy (BLE) devices in existence.  Each of these has the potential to broadcast a unique identifier which can be recognised by devices in range, such as our reelceivers.  The following examples illustrate how individual products, or products of a specific brand, are identified. </p>
@@ -129,7 +132,11 @@
             </table>
             <p> If you have a Bluetooth Low Energy product, and you know the identifier it broadcasts, great!  If you don't know what identifier it broadcasts, if at all, ask your engineering team. </p>
             <p> Don't have a Bluetooth Low Energy product?  Do not despair.  In future we intend to integrate RAIN RFID devices which are likely to number in the trillions! &nbsp; <i>Read on nonetheless - if nothing else you'll learn a nifty SEO trick!</i> </p>
+            <hr>
+            <p><br><br></p>
             <a id="representation"></a>
+            <img src="images/product-representation.png"
+                 class="img-responsive center-block">
             <h2> Representation </h2>
             <p> <i><b>Your product needs to be represented in a format that computers can understand.</b></i> </p>
             <p> Our platform understands products <a href="https://developers.google.com/search/docs/guides/intro-structured-data" target="_blank">the same way as the major search engines</a>: using <a href="https://schema.org/" target="_blank">schema.org</a> and <a href="http://json-ld.org/" target="_blank">JSON-LD</a>.  Don't worry if those are unfamiliar terms, you don't actually need to know what they mean nor how they work! </p>
@@ -198,7 +205,11 @@
             </form> 
             <br>
             <pre ng-show="fetchedStory"> {{fetchedStory}} </pre>
+            <hr>
+            <p><br><br></p>
             <a id="association"></a>
+            <img src="images/product-association.png"
+                 class="img-responsive center-block">
             <h2> Association </h2>
             <p> <i><b>Your product identifier needs to be associated with its representation.</b></i> </p>
             <p> Simply <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> if you'd like us to enter the association into our platform.  All we'll need is:
@@ -208,6 +219,7 @@
               </ul>
             </p>
             <p> We'll prompty add the association in our open source <a href="https://www.npmjs.com/package/chickadee" target="_blank">chickadee</a> package. </p>
+            <p><br><br></p>
             <h2> What's next? </h2>
             <p> We'd much rather see an open, distributed and standardised lookup mechanism for associations as we've presented in our <a href="http://context.reelyactive.com/science.html" target="_blank">scientific research</a>.  If you're working on such a project or would like to collaborate, please <a href="http://context.reelyactive.com/contact.html" target="_blank">get in touch</a>. </p>
             <p> Alternatively, consider having your product broadcast an <a href="https://github.com/google/eddystone/tree/master/eddystone-url" target="_blank">Eddystone-URL</a> packet.  In this case the association is implicit and no additional integration with our platform is required! </p>
