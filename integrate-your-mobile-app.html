@@ -145,8 +145,30 @@
             <h2> Mobile device advertises &#10142; reelyActive </h2>
             <img src="images/mobileToReel.png"
                  class="img-responsive center-block">
-            <p> Currently only iOS devices and a tiny subset of Android Lollipop devices support Bluetooth Smart peripheral mode which allows the spontaneous transmission of advertising packets (which can be detected by our reelceivers).  <i>BUT</i> there's still a clever way to get devices from other platforms to integrate with reelyActive infrastructure: <a href="#reelMobileHybrid">read the next section!</a> </p>
+            <p> Currently, iOS devices since the iPhone 4S and more recent Android devices support Bluetooth Low Energy peripheral mode which allows the spontaneous transmission of advertising packets (which can be detected by our reelceivers).  <i>Nonetheless,</i> there's still a clever way to get devices from other platforms to integrate with reelyActive infrastructure: <a href="#reelMobileHybrid">read the next section!</a> </p>
             <p> In order for the mobile device to fully integrate with our infrastructure, it needs to transmit advertising data that allows it to be uniquely identified.  There are a few options, each described in a subsection below. </p>
+            <a id="advertiseAService"></a>
+            <h3> Advertise a service </h3>
+            <p> Our mobile SDKs allow you to specify a 128-bit UUID, also known as a service, to identify your app, or even individual users.  This can be accompanied by another <a href="https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile" target="_blank">Advertising Data Type</a>.  For instance, the completeLocalName Advertising Data Type could complement the UUID as follows: </p>
+            <code> UUID: 128-bits </code> <br>
+            <code> completeLocalName: an ASCII string </code> <br>
+            <p> Our Bluetooth Low Energy reelceivers decipher each of these, so the app need only transmit some combination of the two which makes the device uniquely identifiable.  In this case, here's what our API will return (some fields trimmed for clarity): </p>
+            <code> identifier: { </code> <br>
+            <code> &nbsp; type: "ADVA-48", </code> <br>
+            <code> &nbsp; value: "123456789abc", </code> <br>
+            <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
+            <code> &nbsp; advData: { </code> <br>
+            <code> &nbsp; &nbsp; complete128BitUUIDs: "a114b00bie5888a114b00bie5888caca" </code> <br>
+            <code> &nbsp; &nbsp; completeLocalName: "barnowl" </code> <br>
+            <code> &nbsp; } </code> <br>
+            <code> } </code> <br>
+            <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeAdvertiser.html#startAdvertising(android.bluetooth.le.AdvertiseSettings, android.bluetooth.le.AdvertiseData, android.bluetooth.le.AdvertiseCallback)" target="_blank">startAdvertising()</a> function. </p>
+            <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID and completeLocalName.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
+            <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to, for example, <i>http://yourapi.com/completeLocalName</i> to access metadata associated with your app user. </p>
+            <h4> reelyApp UUIDs </h4>
+            <p> reelyApp for Android advertises <tt>7265656c7941707020416e64726f6964</tt> </p>
+            <p> reelyApp for iOS advertises <tt>7265656c7941707020666f7220694f53</tt> </p>
+            <p> Both of these feature defined associations in <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>. </p>
             <a id="iBeacons"></a>
             <h3> iBeacons </h3>
             <p> An iOS device can send iBeacons packets which contain, among other things, the following data: </p>
@@ -171,24 +193,6 @@
             <code> } </code> <br>
             <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID, major and minor.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
             <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to, for example, <i>http://yourapi.com/majorminor</i> to access metadata associated with your app user. </p>
-            <a id="advertiseAService"></a>
-            <h3> Advertise a service </h3>
-            <p> An alternative with less vendor-lock-in than Apple's iBeacons is to advertise a service and accompany this with a unique identifier included in another <a href="https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile" target="_blank">Advertising Data Type</a>.  For instance, the completeLocalName Advertising Data Type could be used as follows: </p>
-            <code> UUID: 128-bits </code> <br>
-            <code> completeLocalName: an ASCII string </code> <br>
-            <p> Our Bluetooth Smart reelceivers decipher each of these, so the app need only transmit some combination of the two which makes the device uniquely identifiable. An app will typically use a single UUID and then assign non-conflicting completeLocalName values to all participating devices.  In this case, here's what our API will return (some fields trimmed for clarity): </p>
-            <code> identifier: { </code> <br>
-            <code> &nbsp; type: "ADVA-48", </code> <br>
-            <code> &nbsp; value: "123456789abc", </code> <br>
-            <code> &nbsp; advHeader: { txAdd: "random" }, </code> <br>
-            <code> &nbsp; advData: { </code> <br>
-            <code> &nbsp; &nbsp; complete128BitUUIDs: "a114b00bie5888a114b00bie5888caca" </code> <br>
-            <code> &nbsp; &nbsp; completeLocalName: "barnowl" </code> <br>
-            <code> &nbsp; } </code> <br>
-            <code> } </code> <br>
-            <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeAdvertiser.html#startAdvertising(android.bluetooth.le.AdvertiseSettings, android.bluetooth.le.AdvertiseData, android.bluetooth.le.AdvertiseCallback)" target="_blank">startAdvertising()</a> function. </p>
-            <p> As you can see, the API allows the mobile device to be uniquely identified by the UUID and completeLocalName.  Notice also that it identifies the mobile device by its 48-bit advertiser address (123456789abc), however, the <i>txAdd: "random"</i> flag indicates that this address isn't constant.  In other words, the advertiser address can be expected to change over time. </p>
-            <p> To complete the integration, you would <a href="http://context.reelyactive.com/contact.html" target="_blank">contact us</a> so that we can update <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a> (our contextual API) to associate your UUID with the URL of an API that <i>you</i> would host.  Users of our API would then be pointed to, for example, <i>http://yourapi.com/completeLocalName</i> to access metadata associated with your app user. </p>
             <a id="uriBeacon"></a>
             <h3> UriBeacon </h3>
             <p> An appealing alternative which avoids vendor-lock-in and seamlessly integrates with our platform is the UriBeacon service.  This service includes a URL in the advertising packet, which <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a> can automatically decode, eliminating the need for creating an explicit association via <a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>.  The UriBeacon packet includes: </p>
