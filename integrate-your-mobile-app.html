@@ -121,7 +121,7 @@
             <h2> reelyActive advertises &#10142; mobile device </h2>
             <img src="images/reelToMobile.png"
                  class="img-responsive center-block">
-            <p> Our Bluetooth Smart reelceivers continuously advertise the following information which can be decoded by any listening Bluetooth Smart devices in range: </p>
+            <p> Our Bluetooth Low Energy reelceivers continuously advertise the following information which can be decoded by any listening Bluetooth Low Energy devices in range: </p>
             <code> completeLocalName: reelyActive </code> <br>
             <code> 128-bit UUID: 7265656c794163746976652055554944 </code> <br>
             <code> EUI-64 identifier (Service Data): 001bc5094xxxxxxx </code> <br>
@@ -140,7 +140,7 @@
                 <li> extract all the data of interest from the query response
               </ol>
             </p>
-            <p> There are third-party apps which detect Bluetooth Smart devices in range, such as our reelceivers.  For iOS devices, you can use the <a href="https://itunes.apple.com/ca/app/lightblue-bluetooth-low-energy/id557428110" target="_blank">LightBlue app</a> for inspiration, and for Android devices try <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a>.
+            <p> There are third-party apps which detect Bluetooth Low Energy devices in range, such as our reelceivers.  For iOS devices, you can use the <a href="https://itunes.apple.com/ca/app/lightblue-bluetooth-low-energy/id557428110" target="_blank">LightBlue app</a> for inspiration, and for Android devices try <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a>.
             <a id="mobileToReel"></a>
             <h2> Mobile device advertises &#10142; reelyActive </h2>
             <img src="images/mobileToReel.png"
@@ -175,7 +175,7 @@
             <code> UUID: 128-bits </code> <br>
             <code> Major ID: 16-bits </code> <br>
             <code> Minor ID: 16-bits </code> <br>
-            <p> Our Bluetooth Smart reelceivers decipher each of these identifiers, so the app need only transmit some combination of the three which makes the device uniquely identifiable. An app will typically use a single UUID and then assign non-conflicting major and minor values to all participating devices. </p>
+            <p> Our Bluetooth Low Energy reelceivers decipher each of these identifiers, so the app need only transmit some combination of the three which makes the device uniquely identifiable. An app will typically use a single UUID and then assign non-conflicting major and minor values to all participating devices. </p>
             <p> For instance, if you use the <a href="https://itunes.apple.com/ca/app/locate-beacon/id738709014" target="_blank">Radius Networks Locate Beacon app</a> and select the iBeacon Transmitter option with major set to 0 and minor set to 1, our API will return the following (some fields trimmed for clarity): </p>
             <code> identifier: { </code> <br>
             <code> &nbsp; type: "ADVA-48", </code> <br>
@@ -223,7 +223,7 @@
             <h2> Hybrid bliss: reelyActive &#8644; mobile device </h2>
             <img src="images/reelMobileHybrid.png"
                  class="img-responsive center-block">
-            <p> Our Bluetooth Smart reelceivers continuously advertise themselves to mobile devices in range using an ADV_DISCOVER_IND packet.  What's special about this type of packet is that it encourages nearby "curious" devices, like smartphones, to send a SCAN_REQ packet, which the reelceiver quickly follows up with a SCAN_RESP packet.  This mechanism is part of the Bluetooth Core Specification. </p>
+            <p> Our Bluetooth Low Energy reelceivers continuously advertise themselves to mobile devices in range using an ADV_DISCOVER_IND packet.  What's special about this type of packet is that it encourages nearby "curious" devices, like smartphones, to send a SCAN_REQ packet, which the reelceiver quickly follows up with a SCAN_RESP packet.  This mechanism is part of the Bluetooth Core Specification. </p>
             <p> <i>Why should we care?</i> &nbsp; Well, the SCAN_REQ packet contains the mobile device's 48-bit advertiser address, and, in many cases, this is the device's static Bluetooth MAC address.  If so, the reelyActive platform can uniquely identify the device simply because it scanned for Bluetooth devices! </p>
             <p> For instance, here's what our API will return when a mobile device sends a SCAN_REQ (some fields trimmed for clarity): </p>
             <code> identifier: { </code> <br>
