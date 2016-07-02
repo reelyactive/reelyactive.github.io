@@ -7,7 +7,7 @@ angular.module('diyActive', [ 'ui.bootstrap' ])
     var tab = $window.location.search.split("tab=").pop().split('&').shift();
     var hasTab = $window.location.search.indexOf("tab=") !== -1;
 
-    $scope.tabs = { tutorials: false, integrations: false,
+    $scope.tabs = { tutorials: false, integrations: false, hubs: false,
                     hackathons: false, software: false };
     if(hasTab && $scope.tabs.hasOwnProperty(tab)) {
       $scope.tabs[tab] = true;
