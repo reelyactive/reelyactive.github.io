@@ -89,14 +89,28 @@
             <p> In order for <a href="http://shop.reelyactive.com/collections/infrastructure" target="_blank">reelceivers</a> to communicate their data over a network and/or the Internet, they need to connect via a hub. </p>
             <img src="images/piHub-connected.jpg"
                  class="img-responsive center-block">
-            <p> A Pi hub provides power to the reelceivers and converts their serial data packets into IP data packets using our open source software for Node.js.  In this tutorial, we'll show you how to put these all together! </p>
+            <p> A Pi hub provides power to the reelceivers and converts their serial data packets into IP data packets using our open source software for Node.js.  And, if your Pi has an integrated BLE radio, it can even work standalone! </p>
             <div class="well">
-              <h1> Arrived here from Hackaday? </h1>
-              <p> There's a nifty way to use the on-board Bluetooth of the Pi 3 <b>standalone</b> <a href="http://hackaday.com/2016/08/01/sniffing-bluetooth-devices-with-a-raspberry-pi/" target="_blank">as we showed Brian at HOPE</a>.  We're adding the details today, check back real soon!</p>
-              <p> If you're really impatient, just follow our <a href="http://reelyactive.github.io/barnowl-baby-steps.html" target="_blank">Barnowl Baby Steps tutorial</a> and <a href="https://www.npmjs.com/package/barnowl#hci-bluetooth" target="_blank">listen on the HCI interface</a> for some quick gratification. ;-) </p>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <a href="http://hackaday.com/2016/08/01/sniffing-bluetooth-devices-with-a-raspberry-pi/">
+                    <img src="images/hackaday-pi-ble.jpg"
+                         class="img-responsive center-block">
+                  </a>
+                </div>
+                <div class="col-xs-12 col-sm-8"> 
+                  <h2> As presented on Hackaday </h2>
+                  <p> At the Eleventh HOPE conference, we showed off a standalone Raspberry Pi 3 Bluetooth Low Energy (BLE) sniffer to the Hackaday crew, which they found cool enough to share with their readers. </p>
+                  <p> You'll find instructions below to replicate the setup and more, making use of the integrated BLE radio.  Just add power and network and you have yourself a versatile sub-$100 tool/toy! </p>
+                  <a class="btn btn-primary" href="http://hackaday.com/2016/08/01/sniffing-bluetooth-devices-with-a-raspberry-pi/"
+                     role="button"> Read the Hackaday Post </a>
+                </div>
+              </div>
             </div>
             <h2> Hardware Prerequisites </h2>
-            <p> You'll need a Raspberry Pi (this tutorial assumes the Pi 3) and our minimal starter kit, both of which can be purchased by following the links below.  If you prefer to get your hands dirty with the reelyActive kit, you can also <a href="build-your-own-hub.html#usb-hub" target="_blank">Build your own USB Hub</a> and purchase <a href="http://shop.reelyactive.com/products/ra-r436" target="_blank">the reelceiver</a>. </p>
+            <p> You'll need both a Raspberry Pi and our minimal starter kit, <i>unless</i> you intend to run standalone on a Pi with an integrated BLE radio (ex: Pi 3).  In that case, our starter kit is optional. </p>
+            <p> Both items can be purchased by following the links below.  If you prefer to get your hands dirty with the reelyActive kit, you can also <a href="build-your-own-hub.html#usb-hub" target="_blank">Build your own USB Hub</a> and purchase <a href="http://shop.reelyactive.com/products/ra-r436" target="_blank">the reelceiver</a>.
+            </p>
             <p class="text-center">
               <a class="btn btn-primary" role="button"
                  href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b/">
@@ -133,32 +147,44 @@ cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/node node
 sudo ln -s /usr/local/node/bin/npm npm
             </pre>
-            <p> Close and re-open the terminal.  Confirm that v4.4.7 appears when you run <code>node -v</code>.  Node.js is now installed.
-            <h2> Install pi-relay </h2>
-            <p> Now we can install the reelyActive open source code which will stream the real-time data to a remote server.  Open a terminal on the Pi and execute the following in order: </p>
-            <pre> 
+            <p> Close and re-open the terminal.  Confirm that v4.4.7 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
+            <h2> Decide what to run </h2>
+            <p> Now we have to choose among <a href="http://reelyactive.github.io/?tab=software" target="_blank">the many options of open source software</a> to run!  You can install any and all of the tab-selectable options below, but you'll typically run only one at a time. </p>
+            <tabset>
+              <tab heading="pi-suite (Hackaday)">
+                <h2> Install pi-suite </h2>
+                <p> <b>Select this option to run the <a href="http://hackaday.com/2016/08/01/sniffing-bluetooth-devices-with-a-raspberry-pi/" target="_blank">Hackaday-style</a> suite of software, standalone </b> (requires a Pi with integrated BLE). </p>
+                <p> More info coming soon! </p>
+              </tab>
+              <tab heading="pi-relay">
+                <h2> Install pi-relay </h2>
+                <p> <b>Select this option to stream the real-time data to a remote server such as <a href="http://getpareto.com" target="_blank">Pareto</a> </b> (a trial of which is included with the purchase of a starter kit). </p>
+                <p> Open a terminal on the Pi and execute the following in order: </p>
+                <pre> 
 mkdir ~/reelyActive
 cd ~/reelyActive
 git clone https://github.com/reelyactive/pi-relay.git
 cd pi-relay
 npm install
-            </pre>
-            <p> This will fetch and install the open source code from our GitHub to a folder called reelyActive/pi-relay.  You can check out the code via the button below. </p>
-            <p class="text-center">
-              <a class="btn btn-primary" role="button" 
-                 href="https://github.com/reelyactive/pi-relay"
-                 target="_blank"> Open pi-relay </a>
-            </p>
-            <h2> Run pi-relay </h2>
-            <p> With the minimal starter kit connected to the USB port of the Pi, open a terminal and run the following command: </p>
-            <pre>node /home/pi/reelyActive/pi-relay/pi-relay</pre> 
-            <p> Within a few seconds you should see a stream of decodings printed to the console. </p>
-            <h3> (Optional) Auto-Run on Boot </h3>
-            <p> The following (optional) steps configure the Pi to run pi-relay automatically (in the background) on boot, based on <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">this tutorial</a>.  This is useful for a standalone, headless installation where power interruptions may occur. </p>
-            <p> Open a terminal on the Pi and run the following command: </p>
-            <pre>sudo nano /etc/rc.local</pre>
-            <p> Edit the file by adding <code>node /home/pi/reelyActive/pi-relay/pi-relay &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
-            <p> Reboot and confirm that, once Raspbian boots, there is activity on the starter kit USB hub's LED indicating that execution of the progam has started. </p>
+                </pre>
+                <p> This will fetch and install the open source code from our GitHub to a folder called reelyActive/pi-relay.  You can check out the code via the button below. </p>
+                <p class="text-center">
+                  <a class="btn btn-primary" role="button" 
+                     href="https://github.com/reelyactive/pi-relay"
+                     target="_blank"> Open pi-relay </a>
+                </p>
+                <h2> Run pi-relay </h2>
+                <p> With the minimal starter kit connected to the USB port of the Pi, open a terminal and run the following command: </p>
+                <pre>node /home/pi/reelyActive/pi-relay/pi-relay</pre> 
+                <p> Within a few seconds you should see a stream of decodings printed to the console. </p>
+                <h3> (Optional) Auto-Run on Boot </h3>
+                <p> The following (optional) steps configure the Pi to run pi-relay automatically (in the background) on boot, based on <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">this tutorial</a>.  This is useful for a standalone, headless installation where power interruptions may occur. </p>
+                <p> Open a terminal on the Pi and run the following command: </p>
+                <pre>sudo nano /etc/rc.local</pre>
+                <p> Edit the file by adding <code>node /home/pi/reelyActive/pi-relay/pi-relay &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
+                <p> Reboot and confirm that, once Raspbian boots, there is activity on the starter kit USB hub's LED indicating that execution of the progam has started. </p>
+              </tab>
+            </tabset>
             <h2> What's next? </h2>
             <p> Our starter kits include a three-month trial of our <a href="http://getpareto.com" target="_blank">Pareto platform</a> which is the easiest way to put your data to good use.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
             <p class="text-center">
