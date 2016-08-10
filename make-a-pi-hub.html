@@ -189,6 +189,17 @@ npm install
                 <p> This query will return the most recent BLE packet of each device received by the Pi. </p>
                 <h4> Context at receiver id </h4>
                 <p> This query will return a contextual representation of all the devices detected by the Pi. </p>
+                <h3> (Optional) Boot into Kiosk Mode </h3>
+                <p> The following (optional) steps configure the Pi to open a full-screen browser on boot.  This is useful for a standalone Pi connected to a display. </p>
+                <p> Open a terminal on the Pi and run the following command which installs a package that facilitates running the browser in full-screen mode: </p>
+                <pre>sudo apt-get install matchbox-window-manager</pre>
+                <p> Run the following command: </p>
+                <pre>sudo nano /etc/rc.local </pre>
+                <p> Edit the file by adding <code>sleep 30; sudo xinit /home/pi/reelyActive/pi-suite/display &</code> above <code>exit 0</code> (just below the optional Auto-Run on Boot line added earlier) </p>
+                <p> Then configure the Pi to boot into a console.  Run from the command line: </p>
+                <pre>sudo raspi-config</pre>
+                <p> Then from the Boot Options menu select Console Autologin.  Select Finish and then accept the option to reboot. </p>
+                <p> Observe that the Pi boots into a console, pauses, and then opens the browser full-screen.  It should do this after every power cycle.  You can change the default boot page by editing the /pi-suite/display file. </p> 
                 <h2> But wait, there's more! </h2>
                 <p> The code that is running also enables the following features: </p>
                 <ul>
