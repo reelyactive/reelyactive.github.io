@@ -184,7 +184,7 @@ sudo ln -s /usr/local/node/bin/forever forever
                 <h4> Update /etc/rc.local </h4>
                 <p> Open a terminal on the Pi and run the following command: </p>
                 <pre>sudo nano /etc/rc.local</pre>
-                <p> Edit the file by adding <code>forever start /home/pi/reelyActive/pi-suite/pi-suite.js &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
+                <p> Edit the file by adding <code>sudo forever start /home/pi/reelyActive/pi-suite/pi-suite.js &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
                 <p> Reboot and confirm that, once Raspbian boots, there is activity on the starter kit USB hub's LED indicating that execution of the progam has started. </p>
                 <h2> Browse the Hyperlocal Context </h2>
                 <p> If your Pi is connected to a keyboard, mouse and display, browse to <i>http://localhost</i> to see the Hyperlocal Context page. </p>
