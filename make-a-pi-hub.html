@@ -174,9 +174,17 @@ npm install
                 <p> Within a few seconds you should see the a console message indicating the id to query the receiver.  <b>Note this id.</b> </p>
                 <h3> (Optional) Auto-Run on Boot </h3>
                 <p> The following (optional) steps configure the Pi to run pi-suite automatically (in the background) on boot, based on <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">this tutorial</a>.  This is useful for a standalone, headless installation where power interruptions may occur. </p>
+                <h4> Install forever </h4>
+                <p> First we'll install the forever package globally, which allows us to keep our programs running <i>forever</i>, restarting them automatically should they crash.  Open a terminal on the Pi and execute the following in order: </p>
+                <pre>
+sudo npm install forever -g
+cd /usr/local/bin
+sudo ln -s /usr/local/node/bin/forever forever
+                </pre> 
+                <h4> Update /etc/rc.local </h4>
                 <p> Open a terminal on the Pi and run the following command: </p>
                 <pre>sudo nano /etc/rc.local</pre>
-                <p> Edit the file by adding <code>node /home/pi/reelyActive/pi-suite/pi-suite &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
+                <p> Edit the file by adding <code>forever start /home/pi/reelyActive/pi-suite/pi-suite.js &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
                 <p> Reboot and confirm that, once Raspbian boots, there is activity on the starter kit USB hub's LED indicating that execution of the progam has started. </p>
                 <h2> Browse the Hyperlocal Context </h2>
                 <p> If your Pi is connected to a keyboard, mouse and display, browse to <i>http://localhost</i> to see the Hyperlocal Context page. </p>
