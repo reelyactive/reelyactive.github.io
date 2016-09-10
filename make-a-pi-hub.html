@@ -186,6 +186,10 @@ git clone https://github.com/reelyactive/pi-suite.git
 cd pi-suite
 npm install
             </pre>
+            <h3> Configure pi-suite </h3>
+            <p> By default pi-suite expects a Raspberry Pi 3, and will listen on its BLE radio.  To listen via a starter kit, and/or to forward the data to Pareto, and/or to log the data to file, edit <a href="https://github.com/reelyactive/pi-suite/blob/master/pi-suite.js" target="_blank">pi-suite.js</a> with the command <code>nano ~/reelyActive/pi-suite/pi-suite.js</code>.</p>
+            <p> Simply comment or uncomment the desired options by adding or removing two backslashes at the start of each concerned line.  Press Ctrl-X to save the file and exit. </p>
+            <h3> All set! </h3>
             <p> Are you running on a Raspberry Pi 3 and impatient to see if it works? </p>
             <p class="text-center" ng-hide="showTest">
               <button type="button" class="btn btn-default"
