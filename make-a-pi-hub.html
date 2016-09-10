@@ -168,103 +168,36 @@ cd /usr/local/bin
 sudo npm install forever -g
 sudo ln -s /usr/local/node/bin/forever forever
             </pre>
-            <h2> Decide what to run </h2>
-            <p> Now we have to choose among <a href="http://reelyactive.github.io/?tab=software" target="_blank">the many options of open source software</a> to run!  You can install any and all of the tab-selectable options below, but you'll typically run only one at a time. </p>
-            <tabset>
-              <tab heading="pi-suite (Hackaday)">
-                <h2> Install pi-suite </h2>
-                <p> <b>Select this option to run the <a href="http://hackaday.com/2016/08/01/sniffing-bluetooth-devices-with-a-raspberry-pi/" target="_blank">Hackaday-style</a> suite of software, standalone </b> (requires a Pi with integrated BLE). </p>
-                <p> Open a terminal on the Pi and execute the following in order: </p>
-                <pre> 
+            <h2> Install pi-suite </h2>
+            <p> The pi-suite is a collection of <a href="http://reelyactive.github.io/?tab=software" target="_blank">reelyActive open source software</a> which allows your Pi to: </p>
+            <ul>
+              <li> listen for BLE devices by itself (Raspberry Pi 3+)
+              <li> listen for BLE devices via a reelyActive starter kit
+              <li> interpret the packets of these BLE devices
+              <li> host webpages displaying the interpreted data
+              <li> display these webpages via HDMI
+              <li> forward the live data stream to a remote server
+            </ul>
+            <p> From the command line on the Pi, execute the following in order: </p>
+            <pre> 
 mkdir ~/reelyActive
 cd ~/reelyActive
 git clone https://github.com/reelyactive/pi-suite.git
 cd pi-suite
 npm install
-                </pre>
-                <p> This will fetch and install the open source code from our GitHub to a folder called reelyActive/pi-suite.  You can check out the code via the button below. </p>
-                <p class="text-center">
-                  <a class="btn btn-primary" role="button" 
-                     href="https://github.com/reelyactive/pi-suite"
-                     target="_blank"> Open pi-suite </a>
-                </p>
-                <h2> Run pi-suite </h2>
-                <p> Open a terminal and run the following command: </p>
-                <pre>sudo node /home/pi/reelyActive/pi-suite/pi-suite</pre> 
-                <p> Within a few seconds you should see the a console message indicating the id to query the receiver.  <b>Note this id.</b> </p>
-                <h3> (Optional) Auto-Run on Boot </h3>
-                <p> The following (optional) steps configure the Pi to run pi-suite automatically (in the background) on boot, based on <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">this tutorial</a>.  This is useful for a standalone, headless installation where power interruptions may occur. </p>
-                <h4> Install forever </h4>
-                <p> First we'll install the forever package globally, which allows us to keep our programs running <i>forever</i>, restarting them automatically should they crash.  Open a terminal on the Pi and execute the following in order: </p>
-                <pre>
-sudo npm install forever -g
-cd /usr/local/bin
-sudo ln -s /usr/local/node/bin/forever forever
-                </pre>
-                <h4> Update /etc/rc.local </h4>
-                <p> Open a terminal on the Pi and run the following command: </p>
-                <pre>sudo nano /etc/rc.local</pre>
-                <p> Edit the file by adding <code>sudo forever start /home/pi/reelyActive/pi-suite/pi-suite.js &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
-                <p> Reboot and confirm that, once Raspbian boots, there is activity on the starter kit USB hub's LED indicating that execution of the progam has started. </p>
-                <h2> Browse the Hyperlocal Context </h2>
-                <p> If your Pi is connected to a keyboard, mouse and display, browse to <i>http://localhost</i> to see the Hyperlocal Context page. </p>
-                <p> Otherwise, browse to your Pi over the network via its IP address.  For instance, if the Pi's IP address is 12.34.56.78 you would browse to <i>http://12.34.56.78</i>.  To learn the Pi's IP address, run <code>ifconfig</code> in the console. </p>
-                <h3> Query your Pi </h3>
-                <p> The Hyperlocal Context page will show the number of BLE packets and devices it is processing, and will allow you to query the BLE receiver on your Pi.  In the search bar, <b>enter the id you noted from the console earlier.</b> </p>
-                <img src="images/piHub-hlc.png"
-                     class="img-responsive center-block">
-                <h4> What at receiver id </h4>
-                <p> This query will return the most recent BLE packet of each device received by the Pi. </p>
-                <h4> Context at receiver id </h4>
-                <p> This query will return a contextual representation of all the devices detected by the Pi. </p>
-                <h3> (Optional) Boot into Kiosk Mode </h3>
-                <p> The following (optional) steps configure the Pi to open a full-screen browser on boot.  This is useful for a standalone Pi connected to a display. </p>
-                <p> Open a terminal on the Pi and run the following command which installs a package that facilitates running the browser in full-screen mode: </p>
-                <pre>sudo apt-get install matchbox-window-manager</pre>
-                <p> Run the following command: </p>
-                <pre>sudo nano /etc/rc.local </pre>
-                <p> Edit the file by adding <code>sleep 30; sudo xinit /home/pi/reelyActive/pi-suite/display &</code> above <code>exit 0</code> (just below the optional Auto-Run on Boot line added earlier) </p>
-                <p> Then configure the Pi to boot into a console.  Run from the command line: </p>
-                <pre>sudo raspi-config</pre>
-                <p> Then from the Boot Options menu select Console Autologin.  Select Finish and then accept the option to reboot. </p>
-                <p> Observe that the Pi boots into a console, pauses, and then opens the browser full-screen.  It should do this after every power cycle.  You can change the default boot page by editing the /pi-suite/display file. </p> 
-                <h2> But wait, there's more! </h2>
-                <p> The code that is running also enables the following features: </p>
-                <ul>
-                  <li> all events are logged to a file in the local directory called eventlog-############.csv
-                  <li> all events are available in real-time using socket.io (on <i>http://localhost/events</i>)
-                </ul>
-                <p> Easily create your own custom dashboard using the socket.io feed and our <a href="https://github.com/reelyactive/dashboard-template-angular" target="_blank">dashboard-template-angular</a> code.  And of course, don't hesitate to <a href="http://context.reelyactive.com/contact.html" target="_blank">get in touch</a> if you'd like to share your complementary projects. </p>
-              </tab>
-              <tab heading="pi-relay">
-                <h2> Install pi-relay </h2>
-                <p> <b>Select this option to stream the real-time data to a remote server such as <a href="http://getpareto.com" target="_blank">Pareto</a> </b> (a trial of which is included with the purchase of a starter kit). </p>
-                <p> Open a terminal on the Pi and execute the following in order: </p>
-                <pre> 
-mkdir ~/reelyActive
-cd ~/reelyActive
-git clone https://github.com/reelyactive/pi-relay.git
-cd pi-relay
-npm install
-                </pre>
-                <p> This will fetch and install the open source code from our GitHub to a folder called reelyActive/pi-relay.  You can check out the code via the button below. </p>
-                <p class="text-center">
-                  <a class="btn btn-primary" role="button" 
-                     href="https://github.com/reelyactive/pi-relay"
-                     target="_blank"> Open pi-relay </a>
-                </p>
-                <h2> Run pi-relay </h2>
-                <p> With the minimal starter kit connected to the USB port of the Pi, open a terminal and run the following command: </p>
-                <pre>node /home/pi/reelyActive/pi-relay/pi-relay</pre> 
-                <p> Within a few seconds you should see a stream of decodings printed to the console. </p>
-                <h3> (Optional) Auto-Run on Boot </h3>
-                <p> The following (optional) steps configure the Pi to run pi-relay automatically (in the background) on boot, based on <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">this tutorial</a>.  This is useful for a standalone, headless installation where power interruptions may occur. </p>
-                <p> Open a terminal on the Pi and run the following command: </p>
-                <pre>sudo nano /etc/rc.local</pre>
-                <p> Edit the file by adding <code>node /home/pi/reelyActive/pi-relay/pi-relay &</code> above <code>exit 0</code>.  Then press Ctrl-X to exit, and Y to save. </p>
-                <p> Reboot and confirm that, once Raspbian boots, there is activity on the starter kit USB hub's LED indicating that execution of the progam has started. </p>
-              </tab>
-            </tabset>
+            </pre>
+            <p> Are you running on a Raspberry Pi 3 and impatient to see if it works? </p>
+            <p class="text-center" ng-hide="showTest">
+              <button type="button" class="btn btn-default"
+                      ng-click="showTest = !showTest">Yes!</button>
+            </p>
+            <div collapse="!showTest">
+              <h3> Run pi-suite </h3>
+              <p> From the command line on the Pi, where you should still be in the ~/reelyActive/pi-suite folder, execute the following: </p>
+              <pre>sudo node pi-suite</pre>
+              <p> Now browse to the Pi.  If you have the Pi connected to a monitor, simply browse to <a href="http://127.0.0.1" target="blank">127.0.0.1</a> (localhost).  If you're running the Pi headless, instead browse to the Pi's IP address from another machine on the local network.  You can obtain its IP address with the <code>ifconfig</code> command. </p>
+              <p> Once you've finished your initial exploration of the various webpages displaying the live data, press Ctrl-X to terminate the execution of pi-suite before proceeding with the next steps. </p>
+            </div>
             <hr>
             <h2> What's next? </h2>
             <p> Our starter kits include a three-month trial of our <a href="http://getpareto.com" target="_blank">Pareto platform</a> which is the easiest way to put your data to good use.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
