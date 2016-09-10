@@ -196,8 +196,27 @@ npm install
               <p> From the command line on the Pi, where you should still be in the ~/reelyActive/pi-suite folder, execute the following: </p>
               <pre>sudo node pi-suite</pre>
               <p> Now browse to the Pi.  If you have the Pi connected to a monitor, simply browse to <a href="http://127.0.0.1" target="blank">127.0.0.1</a> (localhost).  If you're running the Pi headless, instead browse to the Pi's IP address from another machine on the local network.  You can obtain its IP address with the <code>ifconfig</code> command. </p>
-              <p> Once you've finished your initial exploration of the various webpages displaying the live data, press Ctrl-X to terminate the execution of pi-suite before proceeding with the next steps. </p>
+              <p> Once you've finished your initial exploration of the various webpages displaying the live data, press Ctrl-C to terminate the execution of pi-suite before proceeding with the next steps. </p>
             </div>
+            <h2> Configure run-on-boot with kiosk display </h2>
+            <p> In this final optional step we'll configure the Pi to run pi-suite automatically on boot, as well as display its webpage on any monitor via the HDMI port. </p>
+            <h3> Install kiosk display packages </h3>
+            <p> In order for the Pi to display a webpage in kiosk mode, we'll need the iceweasel browser (which handles JavaScript much better than the default Epiphany browser) and a window manager.  From the command line, execute the following: </p>
+            <pre> 
+sudo apt install iceweasel
+sudo apt-get install matchbox-window-manager unclutter
+            </pre>
+            <h3> Configure run-on-boot </h3>
+            <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following two lines <u>above</u> the <i>exit 0</i> line: </p>
+            <pre> 
+sudo forever start /home/pi/reelyActive/pi-suite/pi-suite.js
+sleep 30; sudo xinit /home/pi/reelyActive/pi-suite/display-iceweasel &
+            </pre>
+            <p> Press Ctrl-X to save and exit the editor. </p>
+            <h3> Configure console autologin </h3>
+            <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i>. </p>
+            <h3> Reboot </h3>
+            <p> Reboot the Pi with the command <code>sudo reboot</code> or with a power cycle.  Confirm that after a minute or so you can browse to the Pi and observe the webpage decoding BLE devices.  Also confirm that the webpage is projected on an HDMI-connected monitor (connect the monitor <i>before</i> the reboot so that the resolution can be detected). </p>
             <hr>
             <h2> What's next? </h2>
             <p> Our starter kits include a three-month trial of our <a href="http://getpareto.com" target="_blank">Pareto platform</a> which is the easiest way to put your data to good use.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
