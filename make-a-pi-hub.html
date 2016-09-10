@@ -120,23 +120,29 @@
                 Buy a Starter Kit </a>
             </p>
             <h2> Preparing the Pi </h2>
-            <p> Assuming you're starting with an out-of-the-box Pi, the following preparation is required. </p>
-            <h3> SD Card </h3>
-            <p> The Pi's filesystem resides on an SD card.  If your Pi came with a prepared SD card, lucky you, you get to skip this step! </p>
-            <p> The <a href="https://www.raspberrypi.org/help/quick-start-guide/" target="_blank">Quick Start Guide</a> suggests an 8GB class 4 SD card, which we encourage you to purchase from an established vendor.  If the card doesn't come formatted as FAT32, you'll need to do so (read the INSTRUCTIONS-README.txt included in the NOOBS ZIP file). </p>
-            <p> <a href="https://www.raspberrypi.org/downloads/" target="_blank">Download NOOBS</a> and unzip the contents to the root folder of the SD card.  You're all set! </p>
-            <h3> Initial Boot </h3>
-            <p> Connect the following to your Pi:
-              <ul>
-                <li> the prepared SD card in its slot
-                <li> a USB keyboard in one of the USB ports
-                <li> a USB mouse in another USB port
-                <li> a monitor via the HDMI port
-              </ul>
+            <p> Does your Pi already have NOOBS/Raspbian installed and is connected to the Internet? </p>
+            <p class="text-center" ng-hide="showPrep">
+              <button type="button" class="btn btn-default"
+                      ng-click="showPrep = !showPrep">No, I need to do this!</button>
             </p>
-            <p> Then power the Pi through a <u>high-quality</u> USB power source (ex: phone charger).  Follow the instructions on screen to install the Raspbian operating system.  This procedure will take some time.  Perhaps enjoy a slice or two of delicious raspberry pie while you wait? </p>
-            <h3> Connect to Network </h3>
-            <p> After Raspbian boots, connect the Pi to the Internet via either WiFi or Ethernet using the on-screen tools.  The Pi is ready! </p> 
+            <div collapse="!showPrep">
+              <h3> SD Card </h3>
+              <p> The Pi's filesystem resides on an SD card.  If your Pi came with a prepared SD card, lucky you, you get to skip this step! </p>
+              <p> The <a href="https://www.raspberrypi.org/help/quick-start-guide/" target="_blank">Quick Start Guide</a> suggests an 8GB class 4 SD card, which we encourage you to purchase from an established vendor.  If the card doesn't come formatted as FAT32, you'll need to do so (read the INSTRUCTIONS-README.txt included in the NOOBS ZIP file). </p>
+              <p> <a href="https://www.raspberrypi.org/downloads/" target="_blank">Download NOOBS</a> and unzip the contents to the root folder of the SD card.  You're all set! </p>
+              <h3> Initial Boot </h3>
+              <p> Connect the following to your Pi:
+                <ul>
+                  <li> the prepared SD card in its slot
+                  <li> a USB keyboard in one of the USB ports
+                  <li> a USB mouse in another USB port
+                  <li> a monitor via the HDMI port
+                </ul>
+              </p>
+              <p> Then power the Pi through a <u>high-quality</u> USB power source (ex: phone charger).  Follow the instructions on screen to install the Raspbian operating system.  This procedure will take some time.  Perhaps enjoy a slice or two of delicious raspberry pie while you wait? </p>
+              <h3> Connect to Network </h3>
+              <p> After Raspbian boots, connect the Pi to the Internet via either WiFi or Ethernet using the on-screen tools.  The Pi is ready! </p> 
+            </div>
             <h2> Install Node.js </h2>
             <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  Open a terminal on the Pi and execute the following in order (optionally change 4.4.7 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
             <pre> 
@@ -180,7 +186,7 @@ npm install
 sudo npm install forever -g
 cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/forever forever
-                </pre> 
+                </pre>
                 <h4> Update /etc/rc.local </h4>
                 <p> Open a terminal on the Pi and run the following command: </p>
                 <pre>sudo nano /etc/rc.local</pre>
