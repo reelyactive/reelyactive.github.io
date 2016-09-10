@@ -143,17 +143,25 @@
               <h3> Connect to Network </h3>
               <p> After Raspbian boots, connect the Pi to the Internet via either WiFi or Ethernet using the on-screen tools.  The Pi is ready! </p> 
             </div>
-            <h2> Install Node.js </h2>
-            <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  Open a terminal on the Pi and execute the following in order (optionally change 4.4.7 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
+            <h2> Install Node.js and forever </h2>
+            <p> <a href="https://nodejs.org" target="_blank">Node.js</a> is a JavaScript runtime which runs libraries (such as our own) from the largest ecosystem of open source libraries in the world.  The <a href="https://www.npmjs.com/package/forever" target="_blank">forever</a> package is one of these libraries, and it will keep our programs running forever, even if they crash. </p>
+            <h3> Install Node.js </h3>
+            <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  From the command line on the Pi, execute the following in order (optionally change 4.5.0 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
             <pre> 
-wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-armv7l.tar.xz
-tar -xf node-v4.4.7-linux-armv7l.tar.xz
-sudo mv node-v4.4.7-linux-armv7l /usr/local/node
+wget https://nodejs.org/dist/v4.5.0/node-v4.5.0-linux-armv7l.tar.xz
+tar -xf node-v4.5.0-linux-armv7l.tar.xz
+sudo mv node-v4.5.0-linux-armv7l /usr/local/node
 cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/node node
 sudo ln -s /usr/local/node/bin/npm npm
             </pre>
-            <p> Close and re-open the terminal.  Confirm that v4.4.7 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
+            <p> Confirm that v4.5.0 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
+            <h3> Install forever </h3>
+            <pre> 
+cd /usr/local/bin
+sudo npm install forever -g
+sudo ln -s /usr/local/node/bin/forever forever
+            </pre>
             <h2> Decide what to run </h2>
             <p> Now we have to choose among <a href="http://reelyactive.github.io/?tab=software" target="_blank">the many options of open source software</a> to run!  You can install any and all of the tab-selectable options below, but you'll typically run only one at a time. </p>
             <tabset>
