@@ -210,13 +210,14 @@ npm install
             <p> In order for the Pi to display a webpage in kiosk mode, we'll need the iceweasel browser (which handles JavaScript much better than the default Epiphany browser) and a window manager.  From the command line, execute the following: </p>
             <pre> 
 sudo apt install iceweasel
-sudo apt-get install matchbox-window-manager unclutter
+sudo apt-get install matchbox-window-manager xautomation unclutter
             </pre>
             <h3> Configure run-on-boot </h3>
-            <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following two lines <u>above</u> the <i>exit 0</i> line: </p>
+            <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following three lines <u>above</u> the <i>exit 0</i> line: </p>
             <pre> 
 sudo forever start /home/pi/reelyActive/pi-suite/pi-suite.js
 sleep 30; sudo xinit /home/pi/reelyActive/pi-suite/display-iceweasel &
+sleep 30; xte "key F11" -x:0
             </pre>
             <p> Press Ctrl-X to save and exit the editor. </p>
             <h3> Configure console autologin </h3>
