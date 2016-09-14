@@ -247,7 +247,18 @@ static domain_name_servers=10.0.50.1
 interface eth0
 fallback static_eth0
                 </pre>
-                <p> When all else fails, to log on to the Pi, directly connect your computer to the Pi via Ethernet, set your computer's IP address to 10.0.50.101, and <code>ssh pi@10.0.50.100</code>.
+                <p> When all else fails, to log on to the Pi, directly connect your computer to the Pi via Ethernet, set your computer's IP address to 10.0.50.101, and <code>ssh pi@10.0.50.100</code> </p>.
+              </tab>
+              <tab heading="WiFi networks">
+                <p> The Pi can easily be pre-configured to connect to multiple WiFi networks.  This feature is useful if the Pi is moved to different locations, each with their own WiFi credentials.  To pre-configure WiFi credentials, from the command line, open the wpa_supplicant.conf file for editing with the command <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code> and paste the following block of code, once for each network, at the bottom of the file. </p>
+                <pre> 
+network={
+  ssid="ENTER_SSID_HERE"
+  psk="ENTER_PASSWORD_HERE"
+  key_mgmt=WPA-PSK
+}
+                </pre>
+                <p> Don't forget to enter the SSID and password for each network with much care!  Although networks commonly use a pre-shared key (PSK) for authentication, as specified in the example above, it may be necessary to tweak the settings as discussed in details <a href="https://wiki.archlinux.org/index.php/WPA_supplicant" target="_blank">here</a>. </p>
               </tab>
             </tabset>
             <hr>
