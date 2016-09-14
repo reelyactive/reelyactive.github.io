@@ -224,6 +224,32 @@ sleep 30; xte "key F11" -x:0
             <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i>. </p>
             <h3> Reboot </h3>
             <p> Reboot the Pi with the command <code>sudo reboot</code> or with a power cycle.  Confirm that after a minute or so you can browse to the Pi and observe the webpage decoding BLE devices.  Also confirm that the webpage is projected on an HDMI-connected monitor (connect the monitor <i>before</i> the reboot so that the resolution can be detected). </p>
+            <h2> Optional features </h2>
+            <p> Consider implementing the following optional features. </p>
+            <tabset>
+              <tab heading="Scheduled reboots">
+                <p> Scheduled reboots ensure that the Pi will eventually recover from any soft failure.  To force daily reboots via a cron job, from the command line, open the crontab file for editing with the command <code>sudo nano /etc/crontab</code> and paste the following line of code <u>above</u> the closing #. </p>
+                <pre> 
+0  5    * * *   root    reboot
+                </pre> 
+                <p> The 5 signifies 5am.  Adjust this and the other parameters as your application requires. </p>
+              </tab>
+              <tab heading="Ethernet fallback">
+                <p> Ethernet fallback ensures that you can always directly connect to your Pi at a known static IP.  The Pi will assume the static IP on its Ethernet port in the absence of a DHCP server.  To enable Ethernet fallback, from the command line, open the dhcpcd.conf file for editing with the command <code>sudo nano /etc/dhcpcd.conf</code> and paste the following lines of code at the bottom of the file. </p>
+                <pre> 
+# Define static profile
+profile static_eth0
+static ip_address=10.0.50.100/24
+static routers=10.0.50.1
+static domain_name_servers=10.0.50.1
+
+# Fallback to static profile on eth0
+interface eth0
+fallback static_eth0
+                </pre>
+                <p> When all else fails, to log on to the Pi, directly connect your computer to the Pi via Ethernet, set your computer's IP address to 10.0.50.101, and <code>ssh pi@10.0.50.100</code>.
+              </tab>
+            </tabset>
             <hr>
             <h2> What's next? </h2>
             <p> Our starter kits include a three-month trial of our <a href="http://getpareto.com" target="_blank">Pareto platform</a> which is the easiest way to put your data to good use.  Also, if you build your own unique hub and would like to share your project, <a href="http://context.reelyactive.com/contact.html" target="_blank">please get in touch</a>! </p>
