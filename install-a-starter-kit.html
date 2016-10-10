@@ -143,16 +143,18 @@ console.log('Browse to http://localhost:3001');   // Friendly reminder </pre>
                 <p> You should have in front of you the following kit: </p>
                 <img src="images/starterkitBLE.jpg"
                      class="img-responsive center-block">
-                <h2> Installing Node.js </h2>
+                <h2> Install Node.js </h2>
                 <p> If you don't already have Node.js installed, be sure to do so first!  Installation is easy on all platforms.  We recommend you select the LTS version. </p>
                 <p class="text-center">
                   <a class="btn btn-primary" href="https://nodejs.org"
                      target="_blank" role="button"> Let's do it </a>
                 </p>
-                <h2> Connect Power </h2>
+                <h2> Install the Hardware </h2>
+                <p> <i> Take care to stick it in the right hole! </i> &nbsp;  Seriously, read on... </p>
+                <h3> Connect Power </h3>
                 <p> Take the wall adapter provided with your kit and plug it into the mains.  If you don't have access to a North American outlet, you'll need an adapter.  Don't worry about the voltage, we've provided you with a kick-ass adapter with global compatibility and enough power to drive reely long reels with plenty of reelceivers. </p>
                 <p> Plug the barrel connector of the wall adapter into the receptacle on the hub's cable harness.  You should hear a beeping sound.  That's good! </p>
-                <h2> Connect the Reel </h2>
+                <h3> Connect the Reel </h3>
                 <p> Now we can connect the reelceivers in a daisy-chain configuration we call a reel. This is pure plug-n-play simplicity, just take into account the following:
                   <ul>
                     <li> The reelceivers are <i>directional</i>.  Plug the reelceiver into the cable harness of the hub so that the <b>Hub &#8594;</b> arrow points towards the hub.  Note that the reelceiver will still power on if it's connected in the wrong orientation, but it will <i>not</i> communicate with the hub.
@@ -162,12 +164,13 @@ console.log('Browse to http://localhost:3001');   // Friendly reminder </pre>
                 </p>
                 <img src="images/reel.jpg"
                      class="img-responsive center-block">
-                <p> Daisy chain all of your reelceivers to the hub (you'll need to supply the additional cables, any network cable will do).  Each reelceiver's LED should blink if it is receiving power.  Good job!
+                <p> Daisy chain all of your reelceivers to the hub (you'll need to supply the additional cables, any standard network cable will do).  Each reelceiver's LED should blink if it is receiving power.  Good job!
                 </p>
-                <h2> Connect the Hub to your Ethernet switch </h2>
+                <h2> Configure the Network </h2>
+                <h3> Connect the Hub to your Ethernet switch </h3>
                 <p> Connect one end of a network cable (not provided) to LAN2 on the hub, and the other end to a free port on your Ethernet switch.  If the switch is DHCP-enabled, the hub will automatically obtain an IP address and be connected to your network. </p>
                 <p> That was easy!  Next up: the joys of IP settings... </p>
-                <h2> Direct the packets to your PC/server </h2>
+                <h3> Direct the packets to your PC/server </h3>
                 <p> We'll now make two critical assumptions:
                   <ol>
                     <li> Your PC/server is on the same network as the hub and you know how to determine its IP address
@@ -184,45 +187,63 @@ console.log('Browse to http://localhost:3001');   // Friendly reminder </pre>
                 <img src="images/se5901-com.png"
                      class="img-responsive center-block">
                 <p> Click Save & Apply.  In a moment, packets will be routed to your PC/server via UDP. </p>
-                <h2 id="barnowl-udp"> Run barnowl </h2>
-                <p> Here we'll run <a href="https://www.npmjs.org/package/barnowl" target="_blank">barnowl</a>, our open source middleware package which listens for the data stream, processes it and outputs the result. </p>
-                <p> Create a new directory called hello-barnowl, then from that directory run: <br> <code> npm install barnowl </code> </p>
-                <p> In the same directory, create a file called hello-barnowl.js and paste in the following code: </p>
+                <h2> Install the Software </h2>
+                <p> This tutorial assumes you have basic familiarity working from the console. </p>
+                <h3> Download server-udp.js </h3>
+                <p> Create a new directory called reelyActive.  Download <a href="resources/server-udp.js" target="_blank">server-udp.js</a> to that directory. </p>
+                <p> <i>Alternatively</i>, create the server-udp.js file and paste in the following code: </p>
                 <pre>
-var barnowl = require('barnowl');
-var middleware = new barnowl();
-middleware.bind({ protocol: 'udp', 
-                  path: '192.168.1.101:50000' }); <b>// Server IP address here!!!</b>
-middleware.on('visibilityEvent', function(tiraid) { 
-  console.log(tiraid); 
-});             </pre>
-                <p> Now simply run: <br> <code> node hello-barnowl.js </code> </p>
-                <p> and you should see data being output to the console.  These are radio transmissions being captured by the reelceivers.  It works! </p>
+var server = require('hlc-server');               // Import the package
+var app = new server();                           // Fire up the server
+app.bind( { protocol: 'udp',                      // Listen for UDP
+            path: '<b>192.168.1.101</b>:50000' } );      //   on this IP address
+console.log('Browse to http://localhost:3001');   // Friendly reminder </pre>
+                <div class="well well-sm"> <b> IMPORTANT: </b> edit the fourth line of code to reflect your server's IP address <i>(Destination IP Address 1)</i>! </div>
+                <h3> Install Software Packages </h3>
+                <p> The above code depends on our hlc-server package.  From the console, browse to the reelyActive directory you created.  Then run the following command: <br> <code> npm install hlc-server </code> </p>
+                <h2> Run the Software </h2>
+                <p> From the console, again from the reelyActive directory you created, run the following command: <br> <code> node server-udp </code> </p>
+                <p> Point your browser to <a href="http://localhost:3001" target="_blank"> http://localhost:3001 </a> (or to port 3001 on your server's IP address if not running locally) and you should be rewarded with a screen like this: </p>
+                <img src="images/hlcLanding.png"
+                     class="img-responsive center-block">
+                <h3> Explore the Bubblescape and Sensorscape </h3>
+                <p> Click on the <a href="http://localhost:3001/bubblescape/" target="_blank"> bubblescape button </a> for a visualisation of all devices detected by the reelceiver. </p>
+                <p> Click on the <a href="http://localhost:3001/sensorscape/" target="_blank"> sensorscape button </a> for a visualisation of the real-time sensor data from compatible devices (ex: Estimote Nearables) detected by the reelceiver. </p>
+                <h3> Query the APIs </h3>
+                <p> Enter the 16-digit identifier of any reelceiver into the query box and then select from the pull-downs: </p>
+                <ul>
+                  <li> Context at | receiver id </li>
+                  <li> What at | receiver id </li>
+                </ul>
+                <p> to discover what devices are detected by that reelceiver, in contextual and RTLS representations, respectively. </p>
                 <img src="images/barnowl-setup.png"
                      class="img-responsive center-block">
-                <hr>
-                <h2 id="ip-direct"> Alternative: direct-connect to hub </h2>
-                <p> It is possible to directly connect your PC to the hub and receive the data stream.  In this section we'll explain how. </p>
-                <p> Connect one end of a network cable (not provided) to LAN1 on the hub, and the other end to your PC.  Now you'll need to change the IP address of your PC to <b>10.0.50.101</b>. If you don't know how to do this, search the Internet for "How to change my IP address in OS" where OS is the name of your operating system. </p>
-                <p> Open a browser window and log on to the hub by entering its IP address: <b>10.0.50.100</b>.  The default login credentials are:
-                  <ul>
-                    <li> <b>Username:</b> &nbsp; admin
-                    <li> <b>Password:</b> &nbsp; (blank)
-                  </ul>
-                </p>
-                <p> Select Serial - COM1 from the menu at left.  Then specify the IP address of your PC as Destination IP Address 1: <b>10.0.50.101</b>. </p>
-                <img src="images/se5901-com-direct.png"
-                     class="img-responsive center-block">
-                <p> Click Save & Apply. </p>
-                <p> Select Network Settings from the menu at left.  Then ensure that LAN1 is selected as Default Gateway. </p>
-                <img src="images/se5901-network-direct.png"
-                     class="img-responsive center-block">
-                <p> Click Save & Apply.  In a moment, packets will be routed to your PC via UDP.  Now you can <a href="#barnowl-udp">run barnowl</a> taking care to specify <b>10.0.50.101:50000</b> as your path. </p>
+                <p> &nbsp; </p>
+                <accordion id="ip-direct">
+                  <accordion-group heading="Alternative: direct-connect to hub (Click to expand)">
+                    <p> It is possible to directly connect your PC to the hub and receive the data stream.  In this section we'll explain how. </p>
+                    <p> Connect one end of a network cable (not provided) to LAN1 on the hub, and the other end to your PC.  Now you'll need to change the IP address of your PC to <b>10.0.50.101</b>. If you don't know how to do this, search the Internet for "How to change my IP address in OS" where OS is the name of your operating system. </p>
+                    <p> Open a browser window and log on to the hub by entering its IP address: <b>10.0.50.100</b>.  The default login credentials are:
+                      <ul>
+                        <li> <b>Username:</b> &nbsp; admin
+                        <li> <b>Password:</b> &nbsp; (blank)
+                      </ul>
+                    </p>
+                    <p> Select Serial - COM1 from the menu at left.  Then specify the IP address of your PC as Destination IP Address 1: <b>10.0.50.101</b>. </p>
+                    <img src="images/se5901-com-direct.png"
+                         class="img-responsive center-block">
+                    <p> Click Save & Apply. </p>
+                    <p> Select Network Settings from the menu at left.  Then ensure that LAN1 is selected as Default Gateway. </p>
+                    <img src="images/se5901-network-direct.png"
+                         class="img-responsive center-block">
+                    <p> Click Save & Apply.  In a moment, packets will be routed to your PC via UDP.  Now you can run server-udp.js taking care to specify <b>10.0.50.101:50000</b> as your path. </p>
+                  </accordion-group>
+                </accordion>
               </tab>
             </tabset>
             <hr>
             <h2> What's next? </h2>
-            <p> With the hardware in place, you're ready to start exploring the capabilities of the reelyActive platform.  Read our <a href="barnowl-baby-steps.html">Barnowl Baby Steps</a> tutorial to build on what you've already done.  Or try <a href="make-a-smartspace.html">making your own Smart Space</a>.  Enjoy! </p>
+            <p> With the hardware in place, you're ready to start exploring the capabilities of the reelyActive platform.  Try <a href="http://context.reelyactive.com/start.html" target="_blank">reelyApp</a> with the bubblescape.  Read our <a href="integrate-your-service.html">Integrate your Service</a> tutorial to build higher-level applications on top of the code you're running, for instance using our <a href="https://github.com/reelyactive/dashboard-template-angular" target="_blank">dashboard-template-angular</a> as a starting point.  Or read our <a href="barnowl-baby-steps.html">Barnowl Baby Steps</a> tutorial to get down and dirty into the lower levels.  Enjoy! </p>
             <p class="text-center">
               <a class="btn btn-success" href="index.html"
                  role="button"> Return to diyActive </a>
