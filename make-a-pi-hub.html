@@ -230,11 +230,11 @@ sudo apt-get install matchbox-window-manager xautomation unclutter
             <h3> Configure run-on-boot </h3>
             <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following three lines <u>above</u> the <i>exit 0</i> line: </p>
             <pre> 
-sudo forever start /home/pi/reelyActive/pi-suite/pi-suite.js
+sudo forever start /home/pi/reelyActive/pi-suite/pi-suite-pareto.js
 sleep 30; sudo xinit /home/pi/reelyActive/pi-suite/display-iceweasel &
 sleep 30; xte "key F11" -x:0
             </pre>
-            <p> Press Ctrl-X to save and exit the editor. </p>
+            <p> Press Ctrl-X to save and exit the editor.  Note that if you don't have a starter kit and selected the Pi 3 configuration, you'll need to change the first line to instead run <b>pi-suite.js</b>. </p>
             <h3> Configure console autologin </h3>
             <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i>. </p>
             <h3> Reboot </h3>
