@@ -93,24 +93,28 @@
             <p> The reelyActive platform is designed to forward a real-time stream of events to complementary services.  First we'll define the <a href="#events">event data</a> that your service will need to ingest, then we'll describe the means by which your service can <a href="#ingestion">ingest the data</a>, and, finally, we'll suggest how to <a href="#storage">store the data</a>. </p>
             <a id="events"></a>
             <h2> Event data </h2>
-            <p> There's just one type of data, an event, which is represented as JSON.  An event always has the following structure:</p>
+            <p> There's just one type of data, an <b>event</b>, which is represented as JSON.  An <b>event</b> is the consequence of an interaction between a radio-identifiable device and receiver infrastructure. </p>
+            <h3> Types of event </h3>
+            <p> There are four <i>types</i> of <b>event</b>, as illustrated in the animation below. </p>
+            <img src="images/service-events.gif"
+                 class="img-responsive center-block">
+            <h3> Basic event structure </h3>
+            <p> An <b>event</b> always has the following basic structure: </p>
 <pre>
 {
   "event": "appearance",
-  "tiraid": {
-    "identifier": { ... },
-    "radioDecodings": [ ... ],
-    "timestamp": "2016-01-01T01:23:45.678Z"
-  }
+  "time": 1420075425678,
+  "deviceId": "fee150bada55",
+  "receiverId": "001bc50940810000",
+  "rssi": 150,
+  "tiraid": { /* Included for legacy purposes only */ }
 }
 </pre>
-            <p> The <i>event</i> and <i>tiraid</i> are each presented in their own tab below. </p>
+            <p> The individual properties are each presented in their own tab below. </p>
             <tabset>
               <!----- event ------------------------------------------------->
               <tab heading="event">
-                <p> There are four <b>event</b> types, each described in the animation and table below. </p>
-                <img src="images/service-events.gif"
-                     class="img-responsive center-block">
+                <p> An <b>event</b> can take one of four <i>types</i>, each described in the table below: </p>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -120,32 +124,56 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td> appearance </td>
-                      <td> Indicates that the device is detected for the first time at a point of interest.  Typically, this means that the device has come within range of a radio receiver. </td>
+                      <td><tt> "appearance" </tt></td>
+                      <td> Indicates that the device is detected for the first time at a point of interest. <br> <i> Typically, this means that the device has come within range of a radio receiver. </i> </td>
                     </tr>
                     <tr>
-                      <td> keep-alive </td>
-                      <td> Indicates that the device continues to be detected and has not displaced.  The keep-alive is sent periodically (typically every few seconds) to indicate that the device remains at the same point of interest. </td>
+                      <td><tt> "keep-alive" </tt></td>
+                      <td> Indicates that the device continues to be detected and has not displaced. <br> <i> The keep-alive is sent periodically (typically every few seconds) to indicate that the device remains at the same point of interest. </i> </td>
                     </tr>
                     <tr>
-                      <td> displacement </td>
-                      <td> Indicates that the device has moved to a different point of interest.  Specifically, it indicates that the device is detected at a stronger RSSI by a different radio receiver than previously. </td>
+                      <td><tt> "displacement" </tt></td>
+                      <td> Indicates that the device has moved to a different point of interest. <br> <i> Specifically, it indicates that the device is detected at a stronger RSSI by a different radio receiver than previously. </i> </td>
                     </tr>
                     <tr>
-                      <td> disappearance </td>
-                      <td> Indicates that the device is no longer detected at any point of interest.  Typically, this means that the device has gone out of range of all radio receivers. </td>
+                      <td><tt> "disappearance" </tt></td>
+                      <td> Indicates that the device is no longer detected at any point of interest. <br> <i> Typically, this means that the device has gone out of range of all radio receivers. </i> </td>
                     </tr>
                   </tbody>
                 </table>
               </tab>
+              <!----- time -------------------------------------------------->
+              <tab heading="time">
+                <p> The <i>time</i> of an <b>event</b> is expressed as a number.  It is the number of milliseconds since the Unix epoch (January 1st, 1970 UTC). </p>
+                <pre>1420075425678</pre>
+                <p> The above is equivalent to 01 Jan 2015 01:23:45.678 GMT. </p>
+              </tab>
+              <!----- deviceId ---------------------------------------------->
+              <tab heading="deviceId">
+                <p> The <i>deviceId</i> of an <b>event</b> is expressed as a hexadecimal string.  It represents the (normally) unique identifier of the device to which the <b>event</b> corresponds.  In the case of Bluetooth Low Energy devices, this is the MAC address (which may be public or random, the distinction being made in the <i>tiraid</i>).  The <i>deviceId</i> does NOT include dashes or colons. </p>
+                <pre>"fee150bada55"</pre>
+                <p> The above is equivalent to the 48-bit identifier <tt>fe:e1:50:ba:da:55</tt> (human-friendly representation). </p>
+              </tab>
+              <!----- receiverId -------------------------------------------->
+              <tab heading="receiverId">
+                <p> The <i>receiverId</i> of an <b>event</b> is expressed as a hexadecimal string.  It represents the unique identifier of the radio receiver which detects the device with the strongest signal strength in relation to the corresponding <b>event</b>.  In the case of reelyActive reelceivers, this is the EUI-64 identifier. </p>
+                <pre>"001bc50940810000"</pre>
+                <p> The above is equivalent to the 48-bit identifier <tt>00-1b-c5-09-40-81-00-00</tt> (human-friendly representation). </p>
+              </tab>
+              <!----- rssi -------------------------------------------------->
+              <tab heading="rssi">
+                <p> The <i>rssi</i> of an <b>event</b> is expressed as a number.  It represents the received signal strength as a unitless number, with greater values corresponding to greater received signal strength.  In the case of reelyActive reelceivers, each unit represents 0.5dBm and the offset is constant for a given model, allowing for direct comparison. </p>
+                <pre>150</pre>
+                <p> The above is a unitless value which could be converted to an absolute value if a calibration is performed. </p>
+              </tab>
               <!----- tiraid ------------------------------------------------>
               <tab heading="tiraid">
-                <p> A <b>tiraid</b> consists of three components (<u>ti</u>-<u>ra</u>-<u>id</u>), each described below. </p>
-                <h3> <u>ti</u>mestamp </h3>
+                <p> The <i>tiraid</i> of an <b>event</b> is included for legacy purposes (its pertinent properties are already included in the flattened <b>event</b>), and consists of three components (<u>ti</u>-<u>ra</u>-<u>id</u>), each described below. </p>
+                <h4> <u>ti</u>mestamp </h4>
                 <p> <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 timestamp</a>, represented as a String.  Includes date and time of day in <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank">UTC</a>, with millisecond precision.  Example:</p>
 <pre>2016-01-01T01:23:45.678Z</pre>
                 <p> The timestamp represents the platform's interpretation of the time of the device's radio transmission which triggered the given event. </p>
-                <h3> <u>ra</u>dioDecodings </h3>
+                <h4> <u>ra</u>dioDecodings </h4>
                 <p> Array of radioDecoding objects ordered from strongest [0] to weakest [n-1].  Each radioDecoding includes the <i>identifier</i> of the radio receiver, as well as the Received Signal Strength Indication, or <i>rssi</i>.  Example:</p>
 <pre>
 {
@@ -157,7 +185,7 @@
 }
 </pre>
                 <p> The first radioDecoding in the array, <i>tiraid.radioDecodings[0]</i>, represents the radio receiver closest to the device, in other words, the device's location. </p>
-                <h3> <u>id</u>entifier </h3>
+                <h4> <u>id</u>entifier </h4>
                 <p> The identifier of the radio transmitter device, which includes the entire payload of its transmission.  Example:</p>
 <pre>
 {
@@ -173,6 +201,67 @@
 }
 </pre>
                 <p> The identifier value, <i>tiraid.identifier.value</i>, is the means by which the system distinguishes devices and thereby interprets events. </p>
+            </tabset>
+            <hr>
+            <p> &nbsp; </p>
+            <h3> Contextual event structure </h3>
+            <p> An <b>event</b> may include contextual metadata about both the device and the receiver.  In this case several properties are added to the basic structure, as follows: </p>
+<pre>
+{
+  "event": "appearance",
+  "time": 1420075425678,
+  "deviceId": "fee150bada55",
+  "deviceAssociationIds": [],
+  "deviceUrl": "http://myjson.info/stories/test",
+  "deviceTags": [ 'test' ],
+  "receiverId": "001bc50940810000",
+  "receiverUrl": "http://sniffypedia.org/Product/reelyActive_RA-R436/",
+  "receiverTags": [ 'test' ],
+  "receiverDirectory": "test",
+  "rssi": 150,
+  "tiraid": { /* Included for legacy purposes only */ }
+}
+</pre>
+            <p> The <i>additional</i> properties are each presented in their own tab below. </p>
+            <tabset>
+              <!----- deviceAssociationIds ---------------------------------->
+              <tab heading="deviceAssociationIds">
+                <p> The <i>deviceAssociationIds</i> of an <b>event</b> is expressed as an array of hexadecimal strings.  Each hexadecimal string represents a complementary device identifier included in its payload(s).  In the case of Bluetooth Low Energy devices, this can include 16-bit and 128-bit UUIDs, 16-bit company codes, as well as 160-bit concatenated iBeacon identifiers, among others.  These identifiers do NOT include dashes or colons. </p>
+                <pre>[ '004c', 'dab59c4fa4d6ee286bfe8e0000bbc2bb12345678' ]</pre>
+                <p> The above is equivalent to an iBeacon with UUID <tt>dab59c4f-a4d6-ee28-6bfe-8e0000bbc2bb</tt>, Major: <tt>1234</tt> and Minor: <tt>5678</tt>.  It includes Apple's company code: <tt>0x004c</tt>. </p>
+              </tab>
+              <!----- deviceUrl --------------------------------------------->
+              <tab heading="deviceUrl">
+                <p> The <i>deviceUrl</i> of an <b>event</b> is expressed as a string.  It represents a Uniform Resource Locator (URL) associated with the device, linking it to metadata. </p>
+                <pre>"http://myjson.info/stories/test"</pre>
+                <p> The above is a link to <a href="http://myjson.info/stories/test" target="_blank">http://myjson.info/stories/test</a> which <a href="http://reelyactive.github.io/cormorant/?url=http://myjson.info/stories/test" target="_blank">contains metadata as JSON-LD</a> within a human-friendly HTML representation. </p>
+              </tab>
+              <!----- deviceTags -------------------------------------------->
+              <tab heading="deviceTags">
+                <p> The <i>deviceTags</i> of an <b>event</b> is expressed as an array of strings.  Each string represents a classifier for the device. </p>
+                <pre>[ 'test' ]</pre>
+                <p> The above indicates that the device is part of a <tt>test</tt> class. </p>
+              </tab>
+              <!----- receiverUrl ------------------------------------------->
+              <tab heading="receiverUrl">
+                <p> The <i>receiverUrl</i> of an <b>event</b> is expressed as a string.  It represents a Uniform Resource Locator (URL) associated with the receiver, linking it to metadata. </p>
+                <pre>"http://sniffypedia.org/Product/reelyActive_RA-R436/"</pre>
+                <p> The above is a link to <a href="http://sniffypedia.org/Product/reelyActive_RA-R436/" target="_blank">http://sniffypedia.org/Product/reelyActive_RA-R436/</a> which <a href="http://reelyactive.github.io/cormorant/?url=http://sniffypedia.org/Product/reelyActive_RA-R436/" target="_blank">contains metadata as JSON-LD</a> within a human-friendly HTML representation. </p>
+              </tab>
+              <!----- receiverTags ------------------------------------------>
+              <tab heading="receiverTags">
+                <p> The <i>receiverTags</i> of an <b>event</b> is expressed as an array of strings.  Each string represents a classifier for the receiver. </p>
+                <pre>[ 'test' ]</pre>
+                <p> The above indicates that the receiver is part of a <tt>test</tt> class. </p>
+              </tab>
+              <!----- receiverDirectory ------------------------------------->
+              <tab heading="receiverDirectory">
+                <p> The <i>receiverDirectory</i> of an <b>event</b> is expressed as a string.  It represents a hierarchical directory structure which specifies the semantic location of one or more points of interest.  The levels of hierarchy are colon-separated. </p>
+                <pre>"test"</pre>
+                <p> The above indicates that the receiver is part of the <tt>test</tt> directory. </p>
+                <pre>"test:subarea"</pre>
+                <p> The above indicates that the receiver is part of the <tt>subarea</tt> of the <tt>test</tt> directory. </p>
+              </tab>
             </tabset>
             <hr>
             <p><br><br></p>
