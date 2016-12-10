@@ -237,7 +237,7 @@ sleep 30; xte "key F11" -x:0
             </pre>
             <p> Press Ctrl-X to save and exit the editor.  Note that if you don't have a starter kit and selected the Pi 3 configuration, you'll need to change the first line to instead run <b>pi-suite.js</b>. </p>
             <h3> Configure console autologin </h3>
-            <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i>. </p>
+            <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i> (which may be under a Desktop/CLI sub-menu). </p>
             <h3> Reboot </h3>
             <p> Reboot the Pi with the command <code>sudo reboot</code> or with a power cycle.  Confirm that after a minute or so you can browse to the Pi and observe the webpage decoding BLE devices.  Also confirm that the webpage is projected on an HDMI-connected monitor (connect the monitor <i>before</i> the reboot so that the resolution can be detected). </p>
             <h2> Optional features </h2>
