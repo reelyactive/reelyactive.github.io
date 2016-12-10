@@ -152,16 +152,17 @@ sudo apt-get upgrade
             <h2> Install Node.js and forever </h2>
             <p> <a href="https://nodejs.org" target="_blank">Node.js</a> is a JavaScript runtime which runs libraries (such as our own) from the largest ecosystem of open source libraries in the world.  The <a href="https://www.npmjs.com/package/forever" target="_blank">forever</a> package is one of these libraries, and it will keep our programs running forever, even if they crash. </p>
             <h3> Install Node.js </h3>
-            <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  From the command line on the Pi, execute the following in order (optionally change 4.5.0 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
+            <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  From the command line on the Pi, execute the following in order (optionally change 6.9.2 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
             <pre> 
-wget https://nodejs.org/dist/v4.5.0/node-v4.5.0-linux-armv7l.tar.xz
-tar -xf node-v4.5.0-linux-armv7l.tar.xz
-sudo mv node-v4.5.0-linux-armv7l /usr/local/node
+cd ~/Downloads
+wget https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-armv7l.tar.xz
+tar -xf node-v6.9.2-linux-armv7l.tar.xz
+sudo mv node-v6.9.2-linux-armv7l /usr/local/node
 cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/node node
 sudo ln -s /usr/local/node/bin/npm npm
             </pre>
-            <p> Confirm that v4.5.0 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
+            <p> Confirm that v6.9.2 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
             <h3> Install forever </h3>
             <pre> 
 cd /usr/local/bin
