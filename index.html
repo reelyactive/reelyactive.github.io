@@ -16,6 +16,42 @@
       ga('create', 'UA-49659454-2', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <!-- Metadata, the non-Schema/JSON-LD way. Inefficiencies. Yuck! -->
+    <meta name="description" content="Do-it-yourself with reelyActive hardware and open source software.">
+    <meta itemprop="name" content="diyActive">
+    <meta itemprop="description" content="Do-it-yourself with reelyActive hardware and open source software.">
+    <meta itemprop="image" content="images/diyActive.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@reelyActive">
+    <meta name="twitter:title" content="diyActive">
+    <meta name="twitter:description" content="Do-it-yourself with reelyActive hardware and open source software.">
+    <meta name="twitter:creator" content="@reelyActive">
+    <meta name="twitter:image:src" content="images/diyActive.png">
+    <meta property="og:title" content="diyActive" />
+    <meta property="og:url" content="https://reelyactive.github.io" />
+    <meta property="og:image" content="images/diyActive.png" />
+    <meta property="og:description" content="Do-it-yourself with reelyActive hardware and open source software." />
+    <meta property="og:site_name" content="diyActive" />
+
+    <!-- Metadata, the Schema/JSON-LD way. Yay! -->
+    <script type="application/ld+json">
+    {
+      "@context": {
+        "schema": "http://schema.org/"
+      },
+      "@graph": [
+        {
+          "@id": "diyactive",
+          "@type": "schema:WebPage",
+          "schema:name": "diyActive",
+          "schema:url": "https://reelyactive.github.io/",
+          "schema:creator": "http://reelyactive.com",
+          "schema:image": "https://reelyactive.github.io/images/diyActive.png"
+        }
+      ]
+    }
+    </script>
   </head>
   <body ng-app="diyActive">
     <div ng-controller="InteractionCtrl">
