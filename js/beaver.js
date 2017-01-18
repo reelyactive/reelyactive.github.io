@@ -4,7 +4,7 @@
  */
 
 
-DEFAULT_ASSOCIATIONS_API_URL = 'http://www.hyperlocalcontext.com/associations/';
+DEFAULT_ASSOCIATIONS_API_URL = 'https://www.hyperlocalcontext.com/associations/';
 
 
 angular.module('reelyactive.beaver', [])
