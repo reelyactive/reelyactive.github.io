@@ -229,6 +229,7 @@ npm install
 sudo apt install iceweasel
 sudo apt-get install matchbox-window-manager xautomation unclutter
             </pre>
+            <p> <i> If your platform does not have the Xorg display server pre-installed, you can install it by executing </i> <tt>sudo apt-get install --no-install-recommends xserver-xorg</tt> <i> and then </i> <tt>sudo apt-get install --no-install-recommends xinit</tt> <i> from the command line. </i> </p>
             <h3> Configure run-on-boot </h3>
             <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following three lines <u>above</u> the <i>exit 0</i> line: </p>
             <pre> 
