@@ -3,7 +3,7 @@
   <head>
     <title>diyActive: Integrate your Mobile App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Guide to integrating mobile apps with the reelyActive platform using Bluetooth Low Energy technology. Your app will be both discoverable and able to discover hyperlocal context.">
+    <meta name="description" content="Use reelyActive open source mobile SDKs to make your app discoverable via Bluetooth Low Energy (BLE). Eddystone works too!">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
@@ -237,8 +237,7 @@
             <code> } </code> <br>
             <p> As you can see, the API allows the mobile device to be uniquely identified by its 48-bit advertiser address (123456789abc) because, in this case, the <i>txAdd: "public"</i> flag indicates that this address is constant (it is uniquely assigned by the IEEE).  All your app needs to do is to periodically run a Bluetooth scan (like <a href="https://play.google.com/store/apps/details?id=uk.co.alt236.btlescan">Bluetooth LE Scanner</a> does) so that it can be discovered by nearby reelceivers. </p>
             <p> For Android, consult the documentation related to the <a href="https://developer.android.com/reference/android/bluetooth/le/BluetoothLeScanner.html#startScan(android.bluetooth.le.ScanCallback)" target="_blank">startScan()</a> function. </p>
-            <p> To complete the integration, you would register in our contextual API (<a href="https://www.npmjs.org/package/chickadee" target="_blank">chickadee</a>) the association between the 48-bit advertiser address and a URL that returns metadata specific to that app user.  That's precisely what we did in the video below: </p>
-            <div class="embed-container"><iframe src="https://www.youtube.com/embed/MGZm6rUU6_g?rel=0&controls=0&showinfo=0&modestbranding&start=69" frameborder="0" allowfullscreen></iframe></div>
+            <div class="embed-container"><iframe src="https://www.youtube.com/embed/eamCXiNkUuE?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div>
             <h2> What's next? </h2>
             <p> Platform-specific instructions will continue to be added, be sure to check back! </p>
             <p class="text-center">
