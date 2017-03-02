@@ -1,12 +1,15 @@
 https://reelyactive.github.io/index.html
 https://reelyactive.github.io/barnowl-baby-steps.html
+https://reelyactive.github.io/gateways-and-hubs.html
 https://reelyactive.github.io/hackthehouse.html
 https://reelyactive.github.io/install-a-starter-kit.html
+https://reelyactive.github.io/integration.html
 https://reelyactive.github.io/integrate-your-mobile-app.html
 https://reelyactive.github.io/integrate-your-product.html
 https://reelyactive.github.io/integrate-your-service.html
 https://reelyactive.github.io/make-a-pi-hub.html
 https://reelyactive.github.io/make-a-tessel-hub.html
+https://reelyactive.github.io/open-source-software.html
 https://reelyactive.github.io/reelyhacktive.html
 https://reelyactive.github.io/advlib/index.html
 https://reelyactive.github.io/angular-style-guide/index.html
