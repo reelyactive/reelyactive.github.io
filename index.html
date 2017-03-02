@@ -3,10 +3,10 @@
   <head>
     <title>reelyActive Developers | diyActive</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="js/diyactive.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -74,41 +74,41 @@
              ng-click="navCollapsed = true">
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href> diyActive </a></li>
-            <li class="dropdown" dropdown on-toggle="toggled(open)">
-              <a href class="dropdown-toggle" dropdown-toggle role="button"
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
                  data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
                 Quick links <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu">
-                <li>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
                   <a href="https://github.com/reelyactive/" target="_blank">
                     reelyActive on GitHub
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://www.npmjs.com/~reelyactive" target="_blank">
                     reelyActive on npmjs
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="http://www.reelyactive.com" target="_blank">
                     reelyActive website
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://getpareto.com" target="_blank">
                     Pareto by reelyActive
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="https://shop.reelyactive.com" target="_blank">
                     Our online store
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://reelyactive.com/blog/" target="_blank">
                     Our blog
                   </a>
@@ -128,9 +128,9 @@
           </div>
           <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4"></div>
         </div>
-        <tabset>
+        <uib-tabset>
           <!----- Projects & Tutorials Tab ---------------------------------->
-          <tab heading="Projects & Tutorials" active="tabs.tutorials">
+          <uib-tab heading="Projects & Tutorials" active="tabs.tutorials">
             <div class="row">
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
               <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
@@ -224,9 +224,9 @@
               </div>
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
             </div>
-          </tab>
+          </uib-tab>
           <!----- Integrations Tab ------------------------------------------>
-          <tab heading="Integrations" active="tabs.integrations">
+          <uib-tab heading="Integrations" active="tabs.integrations">
             <div class="row">
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
               <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
@@ -284,9 +284,9 @@
               </div>
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
             </div>
-          </tab>
+          </uib-tab>
           <!----- Hubs Tab -------------------------------------------->
-          <tab heading="Hubs" active="tabs.hubs">
+          <uib-tab heading="Hubs" active="tabs.hubs">
             <div class="row">
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
               <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
@@ -344,9 +344,9 @@
               </div>
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
             </div>
-          </tab>
+          </uib-tab>
           <!----- Hackathons Tab -------------------------------------------->
-          <tab heading="Hackathons" active="tabs.hackathons">
+          <uib-tab heading="Hackathons" active="tabs.hackathons">
             <div class="row">
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
               <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
@@ -388,9 +388,9 @@
               </div>
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
             </div>
-          </tab>
+          </uib-tab>
           <!----- Open Source Software Tab ---------------------------------->
-          <tab heading="Open source software" active="tabs.software">
+          <uib-tab heading="Open source software" active="tabs.software">
             <div class="row">
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
               <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
@@ -792,13 +792,15 @@
               </div>
               <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
             </div>
-          </tab>
-        </tabset>
+          </uib-tab>
+        </uib-tabset>
       </div>
       <footer class="footer">
-        <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
         <a href="http://www.reelyactive.com"
-           tooltip="We believe in an open Internet of Things"
+           uib-tooltip="We believe in an open Internet of Things"
            tooltip-placement="right">
           &copy; reelyActive 2014-2017
         </a>
