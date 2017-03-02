@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Integrate with the reelyActive platform | diyActive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Instructions for integrating your product, service or mobile app with the reelyActive platform.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="http://www.reelyactive.com" target="_blank">
+                    reelyActive website
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://getpareto.com" target="_blank">
+                    Pareto by reelyActive
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://reelyactive.com/blog/" target="_blank">
+                    Our blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1>
+              Integration with the reelyActive platform <br>
+              <small> Products, services and mobile applictions </small> 
+            </h1>
+            <h2> Here's how to integrate with our platform: </h2>
+            <div class="well">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3">
+                  <a href="integrate-your-mobile-app.html">
+                    <img src="images/mobileIntegration.png"
+                         class="img-responsive center-block">
+                  </a>
+                </div>
+                <div class="col-xs-12 col-sm-9"> 
+                  <h2> Integrate your Mobile App </h2>
+                  <p> Guide to integrating mobile apps with the reelyActive platform using Bluetooth Low Energy technology.  Your app will be both discoverable and able to discover hyperlocal context. </p>
+                  <a class="btn btn-primary" role="button"
+                     href="integrate-your-mobile-app.html"> Let's do it </a>
+                </div>
+              </div>
+            </div>
+            <div class="well">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3">
+                  <a href="integrate-your-service.html">
+                    <img src="images/serviceIntegration.png"
+                         class="img-responsive center-block">
+                  </a>
+                </div>
+                <div class="col-xs-12 col-sm-9"> 
+                  <h2> Integrate your Service </h2>
+                  <p> Guide to integrating services on top of the reelyActive platform.  Your service will consume a real-time stream of events represented in JSON format.</p>
+                  <a class="btn btn-primary" role="button"
+                     href="integrate-your-service.html"> Let's do it </a>
+                </div>
+              </div>
+            </div>
+            <div class="well">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3">
+                  <a href="integrate-your-product.html">
+                    <img src="images/productIntegration.png"
+                         class="img-responsive center-block">
+                  </a>
+                </div>
+                <div class="col-xs-12 col-sm-9"> 
+                  <h2> Integrate your Product </h2>
+                  <p> Guide to integrating products with the reelyActive platform.  Your product will be radio-identifiable and digitally represented in a standard format on the web.</p>
+                  <a class="btn btn-primary" role="button"
+                     href="integrate-your-product.html"> Let's do it </a>
+                </div>
+              </div>
+            </div>
+            <p>&nbsp;</p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://www.reelyactive.com"
+           uib-tooltip="We believe in an open Internet of Things"
+           tooltip-placement="right">
+          &copy; reelyActive 2014-2017
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
