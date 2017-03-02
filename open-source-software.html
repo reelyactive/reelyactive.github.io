@@ -1,0 +1,505 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>reelyActive Open Source Software (OSS)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Exhaustive directory of reelyActive open source software with links to repositories and live demos.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="http://www.reelyactive.com" target="_blank">
+                    reelyActive website
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://getpareto.com" target="_blank">
+                    Pareto by reelyActive
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://reelyactive.com/blog/" target="_blank">
+                    Our blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1>
+              reelyActive Open Source Software (OSS)<br>
+              <small> The exhaustive list of repositories and live demos </small> 
+            </h1>
+            <h2> Here's everything we did ourselves: </h2>
+            <table class="table table-hover">
+              <tr>
+                <th> Name </th>
+                <th> GitHub </th>
+                <th> npmjs </th>
+                <th> Live Demo </th>
+                <th> License </th>
+              </tr>
+              <tr>
+                <td> barnowl </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/barnowl"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/barnowl"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> barnacles </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/barnacles"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/barnacles"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> barterer </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/barterer"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/barterer"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> chickadee </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/chickadee"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/chickadee"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> json-silo </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/json-silo"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/json-silo"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="http://myjson.info"
+                     target="_blank"> myjson.info </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> hlc-server </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/hlc-server"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/hlc-server"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="http://www.hyperlocalcontext.com"
+                     target="_blank"> hyperlocalcontext.com </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> smartspaces </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/smartspaces-server" target="_blank"> S </a> /
+                  <a href="https://github.com/reelyactive/smartspaces-client" target="_blank"> C </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/smartspaces"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="http://smartspac.es"
+                     target="_blank"> smartspac.es </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                         target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> advlib </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/advlib"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/advlib"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="http://reelyactive.github.io/advlib"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> barstool </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/barstool"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://reelyactive.github.io/barstool"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> jsonerator </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/jsonerator"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://reelyactive.github.io/jsonerator"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> midiot </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/midiot"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/midiot"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> starling </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/starling"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/starling"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> reelib </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/reelib"
+                     target="_blank"> Link </a>
+                </td>
+                <td>
+                  <a href="https://www.npmjs.com/package/reelib"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> beaver </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/beaver"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://reelyactive.github.io/beaver"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> cormorant </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/cormorant"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://reelyactive.github.io/cormorant"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> cuttlefish </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/cuttlefish"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://reelyactive.github.io/cuttlefish"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> web-ble-demo </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/web-ble-demo"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://reelyactive.github.io/web-ble-demo"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> digital-signage-demo </td>
+                <td> 
+                  <a href="https://github.com/reelyactive/digital-signage-demo"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td> &nbsp; </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+            </table>
+            <h2> Here's how we do it: </h2>
+            <table class="table table-hover">
+              <tr>
+                <th> Name </th>
+                <th> GitHub </th>
+                <th> Live Demo </th>
+                <th> Covers </th>
+                <th> License </th>
+              </tr>
+              <tr>
+                <td> node-style-guide </td>
+                <td>
+                  <a href="https://github.com/reelyactive/node-style-guide"
+                     target="_blank"> Link </a>
+                </td>
+                <td> &nbsp; </td>
+                <td> 
+                  <a href="https://nodejs.org/" target="_blank"> Node.js </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+              <tr>
+                <td> angular-style-guide </td>
+                <td>
+                  <a href="https://github.com/reelyactive/angular-style-guide"
+                     target="_blank"> Link </a>
+                </td>
+                <td> 
+                  <a href="http://reelyactive.github.io/angular-style-guide"
+                     target="_blank"> gh-pages </a>
+                </td>
+                <td> 
+                  <a href="https://angularjs.org/"
+                     target="_blank"> AngularJS </a>, <br>
+                  <a href="https://angular-ui.github.io/bootstrap/"
+                     target="_blank"> Angular UI Bootstrap </a>, <br>
+                  <a href="http://getbootstrap.com/css/"
+                     target="_blank"> Bootstrap CSS </a>, <br>
+                  HTML
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/MIT"
+                     target="_blank"> MIT </a>
+                </td>
+              </tr>
+            </table>
+            <h2> Here's what our friends helped us do: </h2>
+            <table class="table table-hover">
+              <tr>
+                <th> Name </th>
+                <th> GitHub </th>
+                <th> Contributor </th>
+                <th> License </th>
+              </tr>
+              <tr>
+                <td> ble-android-sdk </td>
+                <td>
+                  <a href="https://github.com/reelyactive/ble-android-sdk"
+                     target="_blank"> Link </a>
+                </td>
+                <td> 
+                  <a href="http://sidereo.com/"
+                     target="_blank"> Sidereo </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/Apache-2.0"
+                     target="_blank"> Apache 2.0 </a>
+                </td>
+              </tr>
+              <tr>
+                <td> ble-ios-sdk </td>
+                <td>
+                  <a href="https://github.com/reelyactive/ble-ios-sdk"
+                     target="_blank"> Link </a>
+                </td>
+                <td> 
+                  <a href="http://sidereo.com/"
+                     target="_blank"> Sidereo </a>
+                </td>
+                <td>
+                  <a href="http://opensource.org/licenses/Apache-2.0"
+                     target="_blank"> Apache 2.0 </a>
+                </td>
+              </tr>
+            </table>
+            <p>&nbsp;</p>
+         </div>
+         <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://www.reelyactive.com"
+           uib-tooltip="We believe in an open Internet of Things"
+           tooltip-placement="right">
+          &copy; reelyActive 2014-2017
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
