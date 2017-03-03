@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script type="text/javascript" src="js/landing.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -54,7 +54,7 @@
     }
     </script>
   </head>
-  <body ng-app="diyActive">
+  <body ng-app="landing">
     <div ng-controller="InteractionCtrl">
       <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -119,681 +119,212 @@
         </div>
       </nav>
       <div class="container-fluid">
+        <!----- Title ------------------------------------------------------->
         <div class="row">
           <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4"></div>
           <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4">
             <img src="images/diyActive.png"
-                 class="img-responsive center-block">
-            <h2 class="text-center" tooltip="This is a great quote from the film The 40 Year Old Virgin"> Do you like to do-it-yourself? </h2>
+                 class="img-responsive center-block"
+                 uib-tooltip="Do-it-yourself with reelyActive"
+                 tooltip-placement="bottom">
+            <h2 class="text-center"> reelyActive for Developers </h2>
+            <hr>
+            <p> Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples grouped by topic below. </p>
+            <hr>
           </div>
           <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4"></div>
         </div>
-        <uib-tabset>
-          <!----- Projects & Tutorials Tab ---------------------------------->
-          <uib-tab heading="Projects & Tutorials" active="tabs.tutorials">
-            <div class="row">
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
-              <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-                <h2> Here are some projects and tutorials to try yourself: </h2>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="install-a-starter-kit.html">
-                        <img src="images/starterkitBLE.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Install a Starter Kit </h2>
-                      <p> Step-by-step guide to installing one of our starter kits and visualising the real-time data via our open source web applications. </p>
-                      <a class="btn btn-primary" href="install-a-starter-kit.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="barnowl-baby-steps.html">
-                        <img src="images/barnowlBabySteps.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Barnowl Baby Steps </h2>
-                      <p> Learn how to do something useful with barnowl, our free middleware package for Node.js which is central to all our software. </p>
-                      <a class="btn btn-primary" href="barnowl-baby-steps.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <!--<div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="quickyactive.html">
-                        <img src="images/quickyActive.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9">
-                      <h2> quickyActive </h2>
-                      <p> The fastest, friendliest way to get started!  Create Smart Spaces on your computer in just five minutes with our open-source software. </p>
-                      <a class="btn btn-primary" href="quickyactive.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="make-a-smartspace.html">
-                        <img src="images/smartspacesStack.png"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Make a Smart Space </h2>
-                      <p> Step-by-step guide to an interactive webpage that displays who (and what) is present at a location and what they're sharing via social media. </p>
-                      <a class="btn btn-primary" href="make-a-smartspace.html"
-                         role="button"> Let's do it </a>
-                      <a class="btn btn-default" role="button" target="_blank"
-                         href="https://www.youtube.com/watch?v=MGZm6rUU6_g">
-                        Watch the video
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="host-a-json-silo.html">
-                        <img src="images/moreSilo.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Host a JSON Silo </h2>
-                      <p> Step-by-step guide to hosting your very own data silo where you can store your digital personae compatible with Smart Spaces. </p>
-                      <a class="btn btn-primary" href="host-a-json-silo.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>-->
-                <h3 class="text-center">But wait, there's more! <small>Browse the other tabs above &#8593;&#8593;&#8593;</small></h3>
-                <p>&nbsp;</p>
-              </div>
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        <!----- System overview --------------------------------------------->
+        <div class="tight-gutter row">
+          <div class="col-sm-0 col-md-1"></div>
+          <!----- Devices ----->
+          <div class="col-sm-12 col-md-2 collapse"
+               uib-collapse="isElementCollapsed[0]">
+            <h3 class="element-bg-header"
+                style="background: #043851"> Devices </h3>
+            <img src="images/system-devices.gif"
+                 class="img-responsive center-block">
+            <div class="text-center vertical-pad">
+              <button ng-click="selectElement(0)" class="btn"
+                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
+                {{ isElementFocus ? 'Back to overview' : 'More details' }}
+              </button>
             </div>
-          </uib-tab>
-          <!----- Integrations Tab ------------------------------------------>
-          <uib-tab heading="Integrations" active="tabs.integrations">
-            <div class="row">
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
-              <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-                <h2> Here's how to integrate with our platform: </h2>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="integrate-your-mobile-app.html">
-                        <img src="images/mobileIntegration.png"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Integrate your Mobile App </h2>
-                      <p> Guide to integrating mobile apps with the reelyActive platform using Bluetooth Low Energy technology.  Your app will be both discoverable and able to discover hyperlocal context. </p>
-                      <a class="btn btn-primary" role="button"
-                         href="integrate-your-mobile-app.html"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="integrate-your-service.html">
-                        <img src="images/serviceIntegration.png"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Integrate your Service </h2>
-                      <p> Guide to integrating services on top of the reelyActive platform.  Your service will consume a real-time stream of events represented in JSON format.</p>
-                      <a class="btn btn-primary" role="button"
-                         href="integrate-your-service.html"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="integrate-your-product.html">
-                        <img src="images/productIntegration.png"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Integrate your Product </h2>
-                      <p> Guide to integrating products with the reelyActive platform.  Your product will be radio-identifiable and digitally represented in a standard format on the web.</p>
-                      <a class="btn btn-primary" role="button"
-                         href="integrate-your-product.html"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="text-center">But wait, there's more! <small>Browse the other tabs above &#8593;&#8593;&#8593;</small></h3>
-                <p>&nbsp;</p>
-              </div>
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          </div>
+          <div class="col-sm-12 col-md-8 collapse"
+               uib-collapse="!isElementFocus || isElementCollapsed[0]">
+            <h3 class="element-header"> Low-power wireless transmitters </h3>
+            <div class="well well-sm">
+              <h4> Tutorials </h4>
+              <ul>
+                <li> <a href="integrate-your-product.html"> Integrate your Product </a>
+                <li> <a href="integrate-your-mobile-app.html"> Integrate your Mobile Application </a>
+              </ul>
+              <h4> Mobile Applications </h4>
+              <ul>
+                <li> <a href="http://www.reelyactive.com/reelyapp/" target="_blank"> reelyApp: </a> quickly and easily validate the concept of "advertising" oneself
+                <li> <a href="https://github.com/reelyactive/ble-android-sdk" target="_blank"> SDK for Android </a>
+                <li> <a href="https://github.com/reelyactive/ble-ios-sdk" target="_blank"> SDK for iOS </a>
+              </ul>
+              <h4> Shop </h4>
+              <ul>
+                <li> <a href="https://shop.reelyactive.com/products/ra-t411" target="_blank"> reelyActive 915MHz active RFID tags </a>
+              </ul>
+              <h4> Blog </h4>
+              <ul>
+                <li> <a href="http://reelyactive.com/blog/archives/158" target="_blank"> Radio location demystified </a>
             </div>
-          </uib-tab>
-          <!----- Hubs Tab -------------------------------------------->
-          <uib-tab heading="Hubs" active="tabs.hubs">
-            <div class="row">
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
-              <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-                <h2> Here's how to make your own hub: </h2>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="build-your-own-hub.html">
-                        <img src="images/buildYourOwnHub.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Build your own Hub </h2>
-                      <p> Step-by-step guide to build your own hub which connects reelyActive reelceivers to any computing device. </p>
-                      <a class="btn btn-primary" href="build-your-own-hub.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="make-a-tessel-hub.html">
-                        <img src="images/tesselHub.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Make a Tessel Hub </h2>
-                      <p> Step-by-step guide to build your own hub from an inexpensive <a href="https://tessel.io/" target="_blank">Tessel 2</a> which supports WiFi and Ethernet connectivity and runs Node.js out-of-the-box. </p>
-                      <a class="btn btn-primary" href="make-a-tessel-hub.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="make-a-pi-hub.html">
-                        <img src="images/piHub.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> Make a Raspberry Pi Hub </h2>
-                      <p> Step-by-step guide to build your own hub from the ubiquitous <a href="https://www.raspberrypi.org" target="_blank">Raspberry Pi</a> which supports WiFi and Ethernet connectivity. </p>
-                      <a class="btn btn-primary" href="make-a-pi-hub.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="text-center">But wait, there's more! <small>Browse the other tabs above &#8593;&#8593;&#8593;</small></h3>
-                <p>&nbsp;</p>
-              </div>
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          </div>
+          <!----- Reel ----->
+          <div class="col-sm-12 col-md-2 collapse"
+               uib-collapse="isElementCollapsed[1]">
+            <h3 class="element-bg-header"
+                style="background: #065a82"> Reel </h3>
+            <img src="images/system-reel.gif"
+                 class="img-responsive center-block">
+            <div class="text-center vertical-pad">
+              <button ng-click="selectElement(1)" class="btn"
+                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
+                {{ isElementFocus ? 'Back to overview' : 'More details' }}
+              </button>
             </div>
-          </uib-tab>
-          <!----- Hackathons Tab -------------------------------------------->
-          <uib-tab heading="Hackathons" active="tabs.hackathons">
-            <div class="row">
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
-              <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-                <h2> Here's how to hack our platform: </h2>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="reelyhacktive.html">
-                        <img src="images/reelyHacktive.jpg"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9">
-                      <h2> reely<i>Hack</i>tive </h2>
-                      <p> A brief overview of what you might to achieve in a hackathon weekend by hacking on our platform. </p>
-                      <a class="btn btn-primary" href="reelyhacktive.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="well">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                      <a href="hackthehouse.html">
-                        <img src="images/hackthehouse.png"
-                             class="img-responsive center-block">
-                      </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-9"> 
-                      <h2> #HackTheHouse </h2>
-                      <p> Everything you need to know about our technology for the Notman House <a href="http://notman.ca/hackthehouse/" target="_blank">#HackTheHouse</a> hackathon series. </p>
-                      <a class="btn btn-primary" href="hackthehouse.html"
-                         role="button"> Let's do it </a>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="text-center">But wait, there's more! <small>Browse the other tabs above &#8593;&#8593;&#8593;</small></h3>
-                <p>&nbsp;</p>
-              </div>
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          </div>
+          <div class="col-sm-12 col-md-8 collapse"
+               uib-collapse="!isElementFocus || isElementCollapsed[1]">
+            <h3 class="element-header"> Daisy-chainable reelceivers </h3>
+            <div class="well well-sm">
+              <h4> Tutorials </h4>
+              <ul>
+                <li> <a href="install-a-starter-kit.html"> Install a starter kit </a>
+              </ul>
+              <h4> Scientific publications </h4>
+              <ul>
+                <li> <a href="http://ieeexplore.ieee.org/document/6758528/" target="_blank"> Towards a simple, versatile, distributed low-power wireless M2M infrastructure </a>
+              </ul>
+              <h4> Shop </h4>
+              <ul>
+                <li> <a href="https://shop.reelyactive.com/products/ra-r436" target="_blank"> reelyActive BLE reelceivers </a>
+                <li> <a href="https://shop.reelyactive.com/products/ra-r432" target="_blank"> reelyActive 915MHz reelceivers </a>
+              </ul>
             </div>
-          </uib-tab>
-          <!----- Open Source Software Tab ---------------------------------->
-          <uib-tab heading="Open source software" active="tabs.software">
-            <div class="row">
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
-              <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-                <h2> Here's everything we did ourselves: </h2>
-                <table class="table table-hover">
-                  <tr>
-                    <th> Name </th>
-                    <th> GitHub </th>
-                    <th> npmjs </th>
-                    <th> Live Demo </th>
-                    <th> License </th>
-                  </tr>
-                  <tr>
-                    <td> barnowl </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/barnowl"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/barnowl"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> barnacles </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/barnacles"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/barnacles"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> barterer </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/barterer"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/barterer"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> chickadee </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/chickadee"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/chickadee"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> json-silo </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/json-silo"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/json-silo"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="http://myjson.info"
-                         target="_blank"> myjson.info </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> hlc-server </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/hlc-server"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/hlc-server"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="http://www.hyperlocalcontext.com"
-                         target="_blank"> hyperlocalcontext.com </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> smartspaces </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/smartspaces-server" target="_blank"> S </a> /
-                      <a href="https://github.com/reelyactive/smartspaces-client" target="_blank"> C </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/smartspaces"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="http://smartspac.es"
-                         target="_blank"> smartspac.es </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> advlib </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/advlib"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/advlib"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="http://reelyactive.github.io/advlib"
-                         target="_blank"> gh-pages </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> barstool </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/barstool"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://reelyactive.github.io/barstool"
-                         target="_blank"> gh-pages </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> jsonerator </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/jsonerator"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://reelyactive.github.io/jsonerator"
-                         target="_blank"> gh-pages </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> midiot </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/midiot"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/midiot"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> starling </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/starling"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/starling"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> reelib </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/reelib"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td>
-                      <a href="https://www.npmjs.com/package/reelib"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> beaver </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/beaver"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://reelyactive.github.io/beaver"
-                         target="_blank"> gh-pages </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> cormorant </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/cormorant"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://reelyactive.github.io/cormorant"
-                         target="_blank"> gh-pages </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> cuttlefish </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/cuttlefish"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://reelyactive.github.io/cuttlefish"
-                         target="_blank"> gh-pages </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> web-ble-demo </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/web-ble-demo"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://reelyactive.github.io/web-ble-demo"
-                         target="_blank"> gh-pages </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> digital-signage-demo </td>
-                    <td> 
-                      <a href="https://github.com/reelyactive/digital-signage-demo"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td> &nbsp; </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                </table>
-                <h2> Here's how we do it: </h2>
-                <table class="table table-hover">
-                  <tr>
-                    <th> Name </th>
-                    <th> GitHub </th>
-                    <th> Live Demo </th>
-                    <th> Covers </th>
-                    <th> License </th>
-                  </tr>
-                  <tr>
-                    <td> node-style-guide </td>
-                    <td>
-                      <a href="https://github.com/reelyactive/node-style-guide"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> &nbsp; </td>
-                    <td> 
-                      <a href="https://nodejs.org/" target="_blank"> Node.js </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> angular-style-guide </td>
-                    <td>
-                      <a href="https://github.com/reelyactive/angular-style-guide" target="_blank"> Link </a>
-                    </td>
-                    <td> 
-                      <a href="http://reelyactive.github.io/angular-style-guide" target="_blank"> gh-pages </a>
-                    </td>
-                    <td> 
-                      <a href="https://angularjs.org/"
-                         target="_blank"> AngularJS </a>, <br>
-                      <a href="https://angular-ui.github.io/bootstrap/"
-                         target="_blank"> Angular UI Bootstrap </a>, <br>
-                      <a href="http://getbootstrap.com/css/"
-                         target="_blank"> Bootstrap CSS </a>, <br>
-                      HTML
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/MIT"
-                         target="_blank"> MIT </a>
-                    </td>
-                  </tr>
-                </table>
-                <h2> Here's what our friends helped us do: </h2>
-                <table class="table table-hover">
-                  <tr>
-                    <th> Name </th>
-                    <th> GitHub </th>
-                    <th> Contributor </th>
-                    <th> License </th>
-                  </tr>
-                  <tr>
-                    <td> ble-android-sdk </td>
-                    <td>
-                      <a href="https://github.com/reelyactive/ble-android-sdk"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> 
-                      <a href="http://sidereo.com/"
-                         target="_blank"> Sidereo </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/Apache-2.0"
-                         target="_blank"> Apache 2.0 </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> ble-ios-sdk </td>
-                    <td>
-                      <a href="https://github.com/reelyactive/ble-ios-sdk"
-                         target="_blank"> Link </a>
-                    </td>
-                    <td> 
-                      <a href="http://sidereo.com/"
-                         target="_blank"> Sidereo </a>
-                    </td>
-                    <td>
-                      <a href="http://opensource.org/licenses/Apache-2.0"
-                         target="_blank"> Apache 2.0 </a>
-                    </td>
-                  </tr>
-                </table>
-                <h3 class="text-center">But wait, there's more! <small>Browse the other tabs above &#8593;&#8593;&#8593;</small></h3>
-                <p>&nbsp;</p>
-              </div>
-              <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          </div>
+          <!----- Gateway/Hub ----->
+          <div class="col-sm-12 col-md-2 collapse"
+               uib-collapse="isElementCollapsed[2]">
+            <h3 class="element-bg-header"
+                style="background: #0770a2"> Gateway/Hub </h3>
+            <img src="images/system-hubs.gif"
+                 class="img-responsive center-block">
+            <div class="text-center vertical-pad">
+              <button ng-click="selectElement(2)" class="btn"
+                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
+                {{ isElementFocus ? 'Back to overview' : 'More details' }}
+              </button>
             </div>
-          </uib-tab>
-        </uib-tabset>
+          </div>
+          <div class="col-sm-12 col-md-8 collapse"
+               uib-collapse="!isElementFocus || isElementCollapsed[2]">
+            <h3 class="element-header"> Bridges between the physical and digital worlds </h3>
+            <div class="well well-sm">
+              <h4> Tutorials </h4>
+              <ul>
+                <li> <a href="install-a-starter-kit.html"> Install a starter kit </a>
+                <li> <a href="build-your-own-hub.html"> Build your own hub </a>
+                <li> <a href="make-a-tessel-hub.html"> Make a Tessel hub </a>
+                <li> <a href="make-a-pi-hub.html"> Make a Pi hub </a>
+              </ul>
+              <h4> Shop </h4>
+              <ul>
+                <li> <a href="https://shop.reelyactive.com/products/usb-hub" target="_blank"> reelyActive USB hub </a>
+              </ul>
+            </div>
+          </div>
+          <!----- Software ----->
+          <div class="col-sm-12 col-md-2 collapse"
+               uib-collapse="isElementCollapsed[3]">
+            <h3 class="element-bg-header"
+                style="background: #388cb4"> Software </h3>
+            <img src="images/system-software.gif"
+                 class="img-responsive center-block">
+            <div class="text-center vertical-pad">
+              <button ng-click="selectElement(3)" class="btn"
+                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
+                {{ isElementFocus ? 'Back to overview' : 'More details' }}
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-8 collapse"
+               uib-collapse="!isElementFocus || isElementCollapsed[3]">
+            <h3 class="element-header"> Real-time identification, location and data propagation </h3>
+            <div class="well well-sm">
+              <h4> Tutorials </h4>
+              <ul>
+                <li> <a href="integrate-your-service.html"> Integrate your service </a>
+                <li> <a href="barnowl-baby-steps.html"> Barnowl baby steps </a>
+              </ul>
+              <h4> Online tools </h4>
+              <ul>
+                <li> <a href="https://reelyactive.github.io/advlib/" target="_blank"> advlib: </a> decode and interpret raw BLE and Active RFID packets
+                <li> <a href="https://sniffypedia.org"> Sniffypedia.org: </a> open, collaborative repository of "sniffable" things, represented as structured data.
+              </ul>
+              <h4> SaaS </h4>
+              <ul>
+                <li> <a href="https://getpareto.com" target="_blank"> Get Pareto by reelyActive </a>
+              </ul>
+              <h4> Scientific publications </h4>
+              <ul>
+                <li> <a href="http://reelyactive.com/science/reelyActive-IoT2015.pdf" target="_blank"> Low-Power Wireless Advertising Software Library for Distributed M2M and Contextual IoT </a>
+              </ul>
+              <h4> Directories and Style Guides </h4>
+              <ul>
+                <li> <a href="open-source-software.html"> Exhaustive list of reelyActive open source software </a>
+                <li> <a href="https://github.com/reelyactive/node-style-guide" target="_blank"> reelyActive's Node.js style guide </a>
+                <li> <a href="https://github.com/reelyactive/angular-style-guide" target="_blank"> reelyActive's AngularJS style guide </a>
+              </ul>
+            </div>
+          </div>
+          <!----- Applications ----->
+          <div class="col-sm-12 col-md-2 collapse"
+               uib-collapse="isElementCollapsed[4]">
+            <h3 class="element-bg-header"
+                style="background: #83b7d1"> Applications </h3>
+            <img src="images/system-applications.gif"
+                 class="img-responsive center-block">
+            <div class="text-center vertical-pad">
+              <button ng-click="selectElement(4)" class="btn"
+                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
+                {{ isElementFocus ? 'Back to overview' : 'More details' }}
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-8 collapse"
+               uib-collapse="!isElementFocus || isElementCollapsed[4]">
+            <h3 class="element-header"> The power of real-time hyperlocal context </h3>
+            <div class="well well-sm">
+              <h4> Tutorials </h4>
+              <ul>
+                <li> <a href="reelyhacktive.html"> reelyHacktive: </a> applications for hackathons
+              </ul>
+              <h4> Examples </h4>
+              <ul>
+                <li> <a href="https://reelyactive.github.io/canned-bubbles/" target="_blank"> "Canned Bubbles": </a> visualise who/what is present at various venues
+                <li> <a href="https://reelyactive.github.io/beaver/" target="_blank"> beaver.js: </a> build client-side web experiences from a real-time location event stream
+              </ul>
+              <h4> Art </h4>
+              <ul>
+                <li> Generative music from BLE packet traffic ( <a href="https://soundcloud.com/reelyactive" target="_blank"> Soundcloud </a> | <a href="https://www.youtube.com/watch?v=CUhbfyi2ab4&feature=youtu.be&list=PL11WqaPQMVvNMT66MVxi-XqIQld6zY3tx" target="_blank"> YouTube </a> ) created using <a href="https://www.npmjs.com/package/midiot" target="_blank"> midiot </a>
+                <li> Interactive museum experiences: <a href="https://youtu.be/2JIL8y61tu0" target="_blank"> MuseoMix 2014 </a> & <a href="https://youtu.be/81PBWpIHuzs" target="_blank"> MuseoMix 2015 </a>
+              </ul>
+              <h4> Blog </h4>
+              <ul>
+                <li> <a href="http://reelyactive.com/blog/archives/1066" target="_blank"> "Advertise" yourself with The Physical Web, and beyond... </a>
+                <li> <a href="http://reelyactive.com/blog/archives/1013" target="_blank"> Hearable Nearables </a>
+                <li> <a href="http://reelyactive.com/blog/archives/870" target="_blank"> Three years Beyond the Beacon: the Physical Web just got Personal </a>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-0 col-md-1"></div>
+        </div>
       </div>
       <footer class="footer">
         <a href="/"
