@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>diyActive: Make a C.H.I.P. Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Step-by-step guide to build a CHIP Pro Bluetooth sniffer from scratch.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="http://www.reelyactive.com" target="_blank">
+                    reelyActive website
+                  </a>
+                </li>
+                <li>
+                  <a href="https://getpareto.com" target="_blank">
+                    Pareto by reelyActive
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="https://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li>
+                  <a href="https://reelyactive.com/blog/" target="_blank">
+                    Our blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1> Make a CHIP Pro hub </h1>
+            <p> The CHIP Pro is an inexpensive Linux computer with native Bluetooth support.  Since at <a href="http://www.reelyactive.com" target="_blank">reelyActive</a> we're passionate about <a href="http://www.reelyactive.com/advertise/" target="_blank">the endless possibilities of detecting "advertising" Bluetooth Low Energy (BLE) devices</a>, we were excited to make the CHIP Pro into a sniffer using <a href="https://github.com/reelyactive/pi-suite" target="_blank">our open source code</a> (<a href="make-a-pi-hub.html" target="_blank">like we did with the Raspberry Pi 3</a>).  In this tutorial we'll take you step-by-step through building a reliable, standalone BLE sniffer from a CHIP Pro running Debian. </p>
+            <p class="bg-danger lead">
+              <b>NOTICE:</b> As of the time of writing the <a href="https://bbs.nextthing.co/t/chip-pro-bluetooth-driver-not-available/" target="_blank">CHIP Pro Bluetooth Driver is not available</a>.  With any luck, when the driver becomes available, the following will work out-of-the-box like it does on the Raspberry Pi 3.
+            </p>
+            <h2> Hardware Prerequisites </h2>
+            <p> You'll need a CHIP Pro (or equivalent) Dev Kit. </p>
+            <p class="text-center">
+              <a class="btn btn-primary" role="button"
+                 href="https://getchip.com/pages/chippro">
+                Buy a CHIP Pro </a> &nbsp;
+            </p>
+            <h2> Preparing the CHIP Pro </h2>
+            <p> Flash your CHIP Pro by opening <a href="http://flash.getchip.com/pro" target="_blank">their FLASHER webpage</a> with the Chrome (or Chromium) browser and following the on-screen instructions.  When prompted select the <b>Debian OS</b> option. </p>
+            <img src="images/chip-debian.png"
+                 class="img-responsive center-block">
+            <p> You should see the following screen once flashing is complete. </p>
+            <img src="images/chip-flashed.png"
+                 class="img-responsive center-block">
+            <p> Unplug the CHIP Pro from your PC's USB port and then plug it back in again.  The CHIP Pro should boot up and accept a connection from your PC over USB.  See <a href="https://docs.getchip.com/chip_pro_devkit.html#connect-and-control" target="_blank">Connect and Control</a> for details on how to connect.  On Linux the command is likely <code> screen /dev/ttyUSB0 115200 </code> with default username and password both <b>chip</b>. </p>
+            <h3> Connect to WiFi </h3>
+            <p> Connected to the CHIP Pro, run the following from the command line, substituting <i>your</i> WiFi SSID and password: </p>
+            <pre>sudo nmcli d wifi connect "Your SSID" password "Your Password" ifname wlan0</pre>
+            <h3> Update packages </h3>
+            <p> It is good practice to ensure that the software on the CHIP Pro is up to date before proceeding with any software installation.  From the command line on the CHIP Pro, execute the following in order: </p>
+            <pre> 
+sudo apt-get update
+sudo apt-get upgrade
+            </pre>
+            <h3> Install required packages </h3>
+            <p> The Debian OS on the CHIP Pro is necessarily lite given the limited flash memory size.  Here we'll install the packages we need to run the sniffer code (<i>xz-utils</i> to unzip the Node.js tarball, <i>build-essential</i> and <i>python</i> to compile npm packages, and <i>libudev-dev</i> for BLE sniffing).  From the command line on the CHIP Pro, execute the following in order: </p>
+            <pre> 
+sudo apt-get install xz-utils
+sudo apt-get install build-essential
+sudo apt-get install python
+sudo apt-get install libudev-dev
+            </pre>
+            <p> Note that <i>build-essential</i> and <i>python</i> eat up a lot of disk space.  There won't be much free space left on the CHIP Pro once we complete the full installation </p>
+            <h2> Install Node.js and forever </h2>
+            <p> <a href="https://nodejs.org" target="_blank">Node.js</a> is a JavaScript runtime which runs libraries (such as our own) from the largest ecosystem of open source libraries in the world.  The <a href="https://www.npmjs.com/package/forever" target="_blank">forever</a> package is one of these libraries, and it will keep our programs running forever, even if they crash. </p>
+            <h3> Install Node.js </h3>
+            <p> From the command line on the CHIP Pro, execute the following in order (optionally change 6.9.2 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
+            <pre>
+mkdir ~/Downloads 
+cd ~/Downloads
+wget https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-armv7l.tar.xz
+tar -xf node-v6.9.2-linux-armv7l.tar.xz
+sudo mv node-v6.9.2-linux-armv7l /usr/local/node
+rm node-v6.9.2-linux-armv7l.tar.xz 
+cd /usr/local/bin
+sudo ln -s /usr/local/node/bin/node node
+sudo ln -s /usr/local/node/bin/npm npm
+            </pre>
+            <p> Confirm that v6.9.2 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
+            <h3> Install forever </h3>
+            <pre> 
+cd /usr/local/bin
+sudo npm install forever -g
+sudo ln -s /usr/local/node/bin/forever forever
+            </pre>
+            <h2> Install chip-suite </h2>
+            <p> The <a href="https://github.com/reelyactive/chip-suite/" target="_blank">chip-suite is a collection of <a href="https://reelyactive.github.io/open-source-software.html" target="_blank">reelyActive open source software</a> which allows your CHIP Pro to: </p>
+            <ul>
+              <li> listen for BLE devices on its integrated radio
+              <li> listen for BLE devices via a reelyActive starter kit
+              <li> interpret the packets of these BLE devices
+              <li> host webpages displaying the interpreted data
+              <li> forward the live data stream to a remote server
+            </ul>
+            <p> From the command line on the CHIP Pro, execute the following in order: </p>
+            <pre> 
+mkdir ~/reelyActive
+mkdir ~/reelyActive/chip-suite
+cd ~/reelyActive/chip-suite
+wget reelyactive.github.io/resources/chip-suite.tar.xz
+tar -xf chip-suite.tar.xz
+rm chip-suite.tar.xz
+npm install
+            </pre>
+            <h2> Start Sniffing! </h2>
+            <p> From the command line on the CHIP Pro, where you should still be in the ~/reelyActive/chip-suite folder, execute the following: </p>
+            <pre>sudo node chip-suite</pre>
+            <p class="bg-danger lead">
+              <b>NOTICE:</b> You're likely to see an error message at this point given that at the time of writing the <a href="https://bbs.nextthing.co/t/chip-pro-bluetooth-driver-not-available/" target="_blank">CHIP Pro Bluetooth Driver is not available</a>.  With any luck, when the driver becomes available, the following will work out-of-the-box like it does on the Raspberry Pi 3.
+            </p>
+            <p> The console output should include a line that says <b>Browse to your CHIP Pro at http://xxx.xxx.xxx.xxx</b> with the IP address of your CHIP Pro in place of the x values.  Copy the link and open it in your browser. </p>
+            <img src="images/piHub-hlc-server.gif"
+                 class="img-responsive center-block"><br>
+            <h3> Become a bubble! </h3>
+            <p> The <i>bubblescape</i> is a visualisation of all the BLE devices sniffed by your CHIP Pro.  <i>Fancy yourself as a bubble?</i>  Install <a href="http://www.reelyactive.com/reelyapp/">reelyApp</a> on your Android or iOS device to experience the following: </p>
+            <div class="embed-container"><iframe src="https://www.youtube.com/embed/eamCXiNkUuE?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div><br>
+            <p> Once you've finished your initial exploration of the various webpages displaying the live data, press Ctrl-C to terminate the execution of chip-suite before proceeding with the next steps (still to come...) </p>
+
+            <h2> What's next? </h2>
+            <p> Create a beautiful dashboard to display what the CHIP Pro sniffs!  Base your web application on our <a href="https://github.com/reelyactive/dashboard-template-angular" target="_blank">dashboard-template-angular</a> or <a href="https://github.com/reelyactive/beaver" target="_blank">beaver.js</a> which tap into the live socket.io data feed from our open source software running on the CHIP Pro. </p>
+            <p> If you build your own unique hub and would like to share your project, <a href="http://www.reelyactive.com/contact/" target="_blank">please get in touch</a>! </p>
+            <p class="text-center">
+              <a class="btn btn-default" href="make-a-pi-hub.html"
+                 role="button"> Make a Pi Hub </a>
+              <a class="btn btn-default" href="make-a-tessel-hub.html"
+                 role="button"> Make a Tessel Hub </a>
+              <a class="btn btn-success" href="index.html"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="/"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://www.reelyactive.com">
+          &copy; reelyActive 2017
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
