@@ -9,6 +9,7 @@ https://reelyactive.github.io/integrate-your-product.html
 https://reelyactive.github.io/integrate-your-service.html
 https://reelyactive.github.io/make-a-pi-hub.html
 https://reelyactive.github.io/make-a-tessel-hub.html
+https://reelyactive.github.io/mascot-stories.html
 https://reelyactive.github.io/open-source-software.html
 https://reelyactive.github.io/reelyhacktive.html
 https://reelyactive.github.io/advlib/index.html
