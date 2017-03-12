@@ -89,7 +89,7 @@
               The Reel Architecture and Protocol <br>
               <small> Daisy-chaining sensors using standard network cables </small> 
             </h1>
-            <p> In 2012, we at reelyActive introduced the reel, a novel concept which allows sensors to be quickly and easily daisy-chained using standard network cables which provide both power and communications.  Based on the co-founders previous experience with wireless RFID readers and camera infrastructure deployments <i> &mdash; power and networking were always the primary point of failure &mdash; </i> the reel was designed to deliver both power and communications reliably and cost-effectively over a single, ubiquitous cable. </p>
+            <p> In 2012, we at <a href="http://www.reelyactive.com" target="_blank">reelyActive</a> introduced the reel, a novel concept which allows sensors to be quickly and easily daisy-chained using standard network cables which provide both power and communications.  Based on the co-founders previous experience with wireless RFID readers and camera infrastructure deployments <i> &mdash; power and networking were always the primary point of failure &mdash; </i> the reel was designed to deliver both power and communications reliably and cost-effectively over a single, ubiquitous cable. </p>
             <img src="images/reel.jpg" class="img-responsive"> <br>
             <p> In 2013, we chose to publish, <i>rather than patent,</i> the reel concept. Our scientific article <a href="http://ieeexplore.ieee.org/document/6758528/" target="_blank">Towards a Simple, Versatile, Distributed Low-Power Wireless M2M Infrastructure</a> was presented at the 1st IEEE M2MCIP Workshop in Sydney, Australia. We'll spare the scientific details here and instead focus on the practical aspects of deployment and integration of the reel. </p>
             <blockquote> The name reelyActive is indeed a combination of <i>reel</i> and <i>active</i> &mdash; the latter referring to <i>active</i> radio-frequency identification. </blockquote>
@@ -99,12 +99,68 @@
               <li> <a href="https://en.wikipedia.org/wiki/Category_5_cable" target="_blank">Cat5e</a> or equivalent cable
               <li> <a href="https://en.wikipedia.org/wiki/Modular_connector#8P8C" target="_blank">8P8C</a> <i>(colloquially &mdash; but unofficially &mdash; RJ45)</i> plugs following the <a href="https://en.wikipedia.org/wiki/TIA/EIA-568#T568A_and_T568B_termination" target="_blank">T568B wiring scheme</a>
             </ul>
-            <p> Indeed, "network cables" rolls off the tongue much better than "Cat5e with T568B 8P8C plugs"... </p>
+            <p> Indeed, "network cables" rolls off the tongue much better than "Cat5e with T568B 8P8C plugs", and the following image should provide clarity. </p>
             <img src="images/reel-cable-breakout.jpg" class="img-responsive">
+            <div class="well">
+              <h1 class="text-center">
+                Reel &ne; PoE <br>
+                <small> It's not Power over Ethernet. </small> <br>
+                <small> It's not even Ethernet! </small>
+              </h1>
+              <p> While the reel is <i>inspired</i> by PoE Alternative B (power over spare-pairs), it in fact uses RS-422 rather than Ethernet and supports voltages between 5VDC and 45VDC as we'll detail below.  Should you accidentally connect a reelceiver to standardised PoE power sourcing equipment (PSE) <i> &mdash; it happens! &mdash; </i> rest assured that both devices are designed to fail-safe. </p>
+            </div>
             <h3> Power pairs </h3>
-            <p> Blue and brown.  5VDC to 45VDC.  "Brown is ground." </p>
+            <p> The blue and brown pairs carry power from a <i>single</i> source to all devices on the reel.  The blue pair is positive and the brown pair is negative. <i>"Brown is ground"</i> can be a helpful mnemonic. </p>
+            <table class="table table-bordered table-striped">
+              <caption> REEL POWER SPECIFICATION </caption>
+              <thead>
+                <th> Condition </th>
+                <th> Voltage </th>
+                <th> Max reel length </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> Minimum operational potential across blue-brown </td>
+                  <td> 5VDC </td>
+                  <td> Several metres </td>
+                </tr>
+                <tr>
+                  <td> Recommended potential across blue-brown </td>
+                  <td> 24VDC </td>
+                  <td> >100m <i>(observed)</i> </td>
+                </tr>
+                <tr>
+                  <td> Maximum operational potential across blue-brown </td>
+                  <td> 45VDC </td>
+                  <td> >1km <i>(theoretical)</i> </td>
+                </tr>
+                <tr>
+                  <td> Absolute maximum potential across blue-brown </td>
+                  <td> 60VDC </td>
+                  <td> N/A <i>(non-operational)</i> </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> Applied (non-transient) potential above 60VDC may damage the devices on the reel. </p>
+            <h4> Recommendations </h4>
+            <ul>
+              <li> check each cable for compliance with T568B
+              <li> check each cable for isolation between blue and brown pairs
+              <li> use a certified power supply from an established vendor with:
+                <ul>
+                  <li> over voltage protection
+                  <li> over current protection
+                  <li> short circuit protection
+                </ul>
+            </ul>
             <h3> Communications pairs </h3>
-            <p> Orange and green.  Orange is from reel to hub/gateway.  Green is from hub/gateway to reel. </p>
+            <p> The orange and green pairs carry balanced communications from reel to hub and from hub to reel, respectively.  Communication respects the <a href="https://en.wikipedia.org/wiki/RS-422" target="_blank">RS-422</a> technical standard which provides reliable differential signalling over long distances. </p>
+            <h4> Recommendations </h4>
+            <ul>
+              <li> check each cable for compliance with T568B
+              <li> limit the length of any single cable in the reel to 100m
+            </ul>
+            <p> Should you intend to push the limits of RS-422, <a href="http://www.ti.com/lit/an/slla070d/slla070d.pdf" target="_blank">this TI Application Report</a> will likely prove helpful. </p>
             <h2> Reel communication architecture </h2>
             <p> RS-422.  Repeated at every sensor. </p>
             <h2> Serial interface </h2>
