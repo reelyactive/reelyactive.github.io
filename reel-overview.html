@@ -179,9 +179,39 @@
               <li> EMI absorption
             </ul>
             <h2> Serial interface </h2>
-            <p> RS-422.  100 Ohm termination resistor across orange pair. </p>
-            <h3> SN65HVD379 </h3>
-            <p> Circuit schematic to come. </p>
+            <p> Because it uses asynchronous serial communication, the reel can communicate with almost any computer serving as a hub or gateway.  Any computer with a UART, which includes even the simplest 8-bit microcontrollers, can communicate with the reel.  The serial communication parameters are as follows: </p>
+            <table class="table table-bordered table-striped">
+              <caption> REEL SERIAL COMMUNICATION PARAMETERS </caption>
+              <thead>
+                <th> Parameter </th>
+                <th> Value </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> Bit rate </td>
+                  <td> 230400 bps </td>
+                </tr>
+                <tr>
+                  <td> Data bits </td>
+                  <td> 8 </td>
+                </tr>
+                <tr>
+                  <td> Parity </td>
+                  <td> None </td>
+                </tr>
+                <tr>
+                  <td> Stop bits </td>
+                  <td> 1 </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> If the host computer natively supports RS-422 and/or RS-485, interfacing is as simple as connecting the orange and green pairs to the RX and TX terminals respectively.  The orange pair should be terminated with a 100 Ohm resistor (across the pair). </p>
+            <p> If the host computer has but a UART, a simple interface circuit consisting of a single active and passive component is required, for example the following. </p>
+            <h3> SN65HVD379 reel interface </h3>
+            <p> Microcontrollers which support 3.3V I/O can connect to the reel with the following circuit comprising a <a href="http://www.ti.com/product/SN65HVD379" target="_blank">TI SN65HVD379</a> and a 100 Ohm resistor. </p>
+            <img src="images/reel-SN65HVD379-interface.png"
+                 class="img-responsive"> <br>
+            <p> A reference design of this circuit, <a href="https://upverter.com/reelyActive/2496e3e56d134520/t2-reel-module/" target="_blank">t2-reel-module</a>, which interfaces with a <a href="make-a-tessel-hub.html" target="_blank">Tessel 2 hub</a>, is available as open hardware on Upverter, and can be easily adapted to other microcontrollers.  Please <a href="http://www.reelyactive.com/contact/" target="_blank">let us know</a> if you do so we can share with the community! </p>
             <h2> Reel packet decoding </h2>
             <p> See <a href="https://www.npmjs.com/package/barnowl" target="_blank">barnowl</a> </p>
           </div>
