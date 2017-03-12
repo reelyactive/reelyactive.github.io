@@ -154,15 +154,30 @@
                 </ul>
             </ul>
             <h3> Communications pairs </h3>
-            <p> The orange and green pairs carry balanced communications from reel to hub and from hub to reel, respectively.  Communication respects the <a href="https://en.wikipedia.org/wiki/RS-422" target="_blank">RS-422</a> technical standard which provides reliable differential signalling over long distances. </p>
+            <p> The orange and green pairs carry balanced serial communications from reel to hub and from hub to reel, respectively.  Communication respects the <a href="https://en.wikipedia.org/wiki/RS-422" target="_blank">RS-422</a> technical standard which provides reliable differential signalling over long distances. </p>
             <h4> Recommendations </h4>
             <ul>
               <li> check each cable for compliance with T568B
               <li> limit the length of any single cable in the reel to 100m
             </ul>
             <p> Should you intend to push the limits of RS-422, <a href="http://www.ti.com/lit/an/slla070d/slla070d.pdf" target="_blank">this TI Application Report</a> will likely prove helpful. </p>
-            <h2> Reel communication architecture </h2>
-            <p> RS-422.  Repeated at every sensor. </p>
+            <h2> Reel architecture </h2>
+            <p> The following diagram illustrates the reel architecture for two daisy-chained reelceivers. </p>
+            <img src="images/reel-architecture.png" class="img-responsive">
+            <h3> Reel communication architecture </h3>
+            <p> The above diagram illustrates the following: </p>
+            <ul>
+              <li> each reelceiver acts as a RS-422 repeater for communication in each direction
+              <li> communication from hub to reel (green pair) is broadcast to all reelceivers simultaneously
+              <li> communication from reel to hub (orange pair) is processed by each reelceiver in turn
+            </ul>
+            <h3> Reel power architecture </h3>
+            <p> The above diagram illustrates how power is routed from reelceiver to reelceiver (blue and brown pairs), passing through a filter at each.  The filter is a passive circuit providing: </p>
+            <ul>
+              <li> high-frequency noise reduction
+              <li> voltage spike suppression
+              <li> EMI absorption
+            </ul>
             <h2> Serial interface </h2>
             <p> RS-422.  100 Ohm termination resistor across orange pair. </p>
             <h3> SN65HVD379 </h3>
