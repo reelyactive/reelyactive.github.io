@@ -127,8 +127,37 @@
                       ng-click="showPrep = !showPrep">No, I need to do this!</button>
             </p>
             <tabset collapse="!showPrep">
-              <tab heading="Jessie Lite (Recommended)">
-                <p> This is our preferred setup for a lean, efficient Raspberry Pi!  <i>Every byte of memory counts!</i> </p>
+              <tab heading="Quickest">
+                <p> Setup your SD card from a disk image that <i>already</i> has Jessie Lite, Node.js and our software installed.  This is the <i>same</i> setup as in the <b>From Scratch</b> option, except we did the work for you so that you can skip ahead for instant gratification! </p>
+                <h3> SD Card </h3>
+                <p> Download our disk image from <a href="https://reelyactive.com/downloads/2017-03-15-reelyactive-pi-suite.tar.xz" target="_blank">reelyactive.com/downloads/2017-03-15-reelyactive-pi-suite.tar.xz</a>.  Then follow the instructions (<a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md" target="_blank">Linux</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md" target="_blank">Mac</a> or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank">Windows</a>) to transfer the image to an SD card of at least 4GB. </p>
+                <p> The image is pre-configured as follows: </p>
+                <ul>
+                  <li> Jessie Lite (2017-03-02)
+                  <li> Node.js v6.10.0
+                  <li> reelyActive pi-suite@0.2.5
+                  <li> Ethernet fallback to IP 10.0.50.100
+                  <li> ssh enabled with password <i>berryinsecure</i>
+                </ul>
+                <h3> First Connection </h3>
+                <p> Complete the following in order: </p>
+                <ol>
+                  <li> insert the SD card in the Pi
+                  <li> connect the Pi to your PC via a network cable
+                  <li> apply power to the Pi
+                  <li> configure your PC's Ethernet adapter to use an address in the same subnet as the Pi (ex: 10.0.50.101)
+                </ol>
+                <p> From the command line, ssh into the Pi as follows: </p>
+                <pre>ssh pi@10.0.50.100</pre>
+                <p> The default password will be <i>berryinsecure</i>. You're now connected to the Pi. </p>
+                <h3> raspi-config </h3>
+                <p> Configure the Pi by running the following from the command line: </p>
+                <pre>sudo raspi-config</pre>
+                <p> From the text-based menu, select the option to change the user password. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in.  Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot.</p>
+                <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> &nbsp; <b> Skip ahead to <a href="#startsniffing">Start Sniffing!</a> </b> </p>
+              </tab>
+              <tab heading="From Scratch">
+                <p> This is the <i>same</i> setup as in the <b>Quickest</b> option, only starting from scratch using the latest Jessie Lite image and the most recent versions of Node.js and our software. </p>
                 <h3> SD Card </h3>
                 <p> Download the latest Raspbian Jessie Lite image from <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">www.raspberrypi.org/downloads/raspbian/</a>.  Then follow the instructions (<a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md" target="_blank">Linux</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md" target="_blank">Mac</a> or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank">Windows</a>) to transfer the image to an SD card of at least 4GB. </p>
                 <h3> Basic settings </h3>
@@ -166,8 +195,8 @@ fallback static_eth0
                 <p> From the text-based menu, select the option to change the user password. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in.  Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot.</p>
                 <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> </p>
               </tab>
-              <tab heading="NOOBS">
-                <p> Take this beginner-friendly route if you intend to run your Pi as a multi-purpose computer with mouse and keyboard attached. </p>
+              <tab heading="NOOBS with GUI">
+                <p> Take this beginner-friendly route if you intend to run your Pi as a multi-purpose computer with mouse and keyboard attached.  Otherwise we highly recommend the other options which are optimised for performance. </p>
                 <h3> SD Card </h3>
                 <p> The Pi's filesystem resides on an SD card.  If your Pi came with a prepared SD card, lucky you, you get to skip this step! </p>
                 <p> The <a href="https://www.raspberrypi.org/help/quick-start-guide/" target="_blank">Quick Start Guide</a> suggests an 8GB class 4 SD card, which we encourage you to purchase from an established vendor.  If the card doesn't come formatted as FAT32, you'll need to do so (read the INSTRUCTIONS-README.txt included in the NOOBS ZIP file). </p>
@@ -232,7 +261,7 @@ git clone https://github.com/reelyactive/pi-suite.git
 cd pi-suite
 npm install
             </pre>
-            <h2> Start Sniffing! </h2>
+            <h2 id="startsniffing"> Start Sniffing! </h2>
             <p> Choose your configuration below and get up and running in an instant. </p>
             <tabset>
               <tab heading="I have a Pi 3">
