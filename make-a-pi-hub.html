@@ -126,11 +126,12 @@
               <button type="button" class="btn btn-default"
                       ng-click="showPrep = !showPrep">No, I need to do this!</button>
             </p>
+            <p> Choose from one of the three options below: </p>
             <tabset collapse="!showPrep">
               <tab heading="Quickest">
-                <p> Setup your SD card from a disk image that <i>already</i> has Jessie Lite, Node.js and our software installed.  This is the <i>same</i> setup as in the <b>From Scratch</b> option, except we did the work for you so that you can skip ahead for instant gratification! </p>
+                <p> Setup your SD card from a disk image that <i>already</i> has Jessie Lite, Node.js and our software installed.  This is the <i>same</i> setup as in the <b>From Scratch</b> option, except we did most of the work for you so that you can skip ahead for instant gratification! </p>
                 <h3> SD Card </h3>
-                <p> Download our disk image from <a href="https://reelyactive.com/downloads/2017-03-15-reelyactive-pi-suite.tar.xz" target="_blank">reelyactive.com/downloads/2017-03-15-reelyactive-pi-suite.tar.xz</a>.  Then follow the instructions (<a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md" target="_blank">Linux</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md" target="_blank">Mac</a> or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank">Windows</a>) to transfer the image to an SD card of at least 4GB. </p>
+                <p> Download and unzip our disk image <a href="https://reelyactive.com/downloads/2017-03-15-reelyactive-pi-suite.tar.xz" target="_blank">2017-03-15-reelyactive-pi-suite.img</a>.  Then follow the instructions (<a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md" target="_blank">Linux</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md" target="_blank">Mac</a> or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank">Windows</a>) to transfer the image to an SD card of at least 4GB. </p>
                 <p> The image is pre-configured as follows: </p>
                 <ul>
                   <li> Jessie Lite (2017-03-02)
@@ -154,7 +155,7 @@
                 <p> Configure the Pi by running the following from the command line: </p>
                 <pre>sudo raspi-config</pre>
                 <p> From the text-based menu, select the option to change the user password. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in.  Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot.</p>
-                <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> &nbsp; <b> Skip ahead to <a href="#startsniffing">Start Sniffing!</a> </b> </p>
+                <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> &nbsp; <b> Skip ahead to <a href="make-a-pi-hub.html#startsniffing">Start Sniffing!</a> </b> </p>
               </tab>
               <tab heading="From Scratch">
                 <p> This is the <i>same</i> setup as in the <b>Quickest</b> option, only starting from scratch using the latest Jessie Lite image and the most recent versions of Node.js and our software. </p>
