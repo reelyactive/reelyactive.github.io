@@ -5,6 +5,7 @@ https://reelyactive.github.io/experience-generative-art.html
 https://reelyactive.github.io/gateways-and-hubs.html
 https://reelyactive.github.io/hackthehouse.html
 https://reelyactive.github.io/install-a-starter-kit.html
+https://reelyactive.github.io/install-an-offline-demo.html
 https://reelyactive.github.io/integration.html
 https://reelyactive.github.io/integrate-your-mobile-app.html
 https://reelyactive.github.io/integrate-your-product.html

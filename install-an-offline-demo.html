@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Install an offline demo | diyActive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Instructions to install and operate the reelyActive open source platform for offline demos and presentations.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="http://www.reelyactive.com" target="_blank">
+                    reelyActive website
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://getpareto.com" target="_blank">
+                    Pareto by reelyActive
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://reelyactive.com/blog/" target="_blank">
+                    Our blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1>
+              Install an offline demo <br>
+              <small> Enjoy our full open source platform without Internet connectivity </small> 
+            </h1>
+            <h2> Install Node.js </h2>
+            <p> Do you have <b>Node.js</b> installed? </p>
+            <a ng-class="node === true ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="node = true"> Yes </a>
+            <a ng-class="node === false ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="node = false"> No </a>
+            <a class="btn btn-default" ng-click="node = null"> Unsure </a>
+
+            <!----- Node.js installed ----->
+            <div ng-show="node === true">
+              <h3> You're all set! </h3>
+              <p> Proceed to install the code </p>
+            </div>
+            <!----- Install Node.js ----->
+            <div ng-show="node === false">
+              <h3> Install Node.js <br>
+                   <small> Installation is easy on all platforms </small> </h3>
+              <p> Click the button below to access the Node.js downloads page and then select the LTS version (recommended). </p>
+              <p class="text-center">
+                <a class="btn btn-primary" href="https://nodejs.org"
+                   target="_blank" role="button"> Install Node.js </a>
+            </p>
+            </div>
+            <!----- Test for Node.js ----->
+            <div ng-show="node === null">
+              <h3> Verify if you have Node.js installed </h3>
+              <p> Open a terminal or command prompt, type <code>node --version</code> and press Enter. </p>
+              <img src="images/node-version.gif"
+                   class="img-responsive center-block"><br>
+              <p> If the output is something like <b>vx.x.x</b>, you do indeed have Node.js installed and can click <a ng-click="node = true"><i>Yes</i></a> above.  Otherwise click <a ng-click="node = false"><i>No</i></a> above. </p>
+            </div>
+
+            <h2> Install the code </h2>
+            <p> Do you have <b>git</b> installed? </p>
+            <a ng-class="git === true ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="git = true"> Yes </a>
+            <a ng-class="git === false ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="git = false"> No </a>
+            <a class="btn btn-default" ng-click="git = null">Unsure</a>
+
+            <!----- Instructions with git ----->
+            <div ng-show="git === true">
+              <h3> Let's install with git <br>
+                   <small> Should be quick and painless </small> </h3>
+              <p> From the command line, browse to the folder in which you'd like the code to reside, then run: </p>
+              <pre> 
+git clone --recursive https://github.com/reelyactive/offline-platform-demo
+cd offline-platform-demo
+npm install
+              </pre>
+              <p> All the code and dependencies are now installed. </p>
+            </div>
+            <!----- Instructions without git ----->
+            <div ng-show="git === false">
+              <h3> Let's install the old-fashioned way <br>
+                   <small> A few extra steps, but straightforward nonetheless </small> </h3>
+              <p> Click the button below to download the master.zip archive from the <a href="https://github.com/reelyactive/offline-platform-demo" target="_blank">offline-platform-demo</a> repository on the reelyActive GitHub. </p>
+              <p class="text-center">
+                <a href="https://github.com/reelyactive/offline-platform-demo/archive/master.zip" class="btn btn-primary"> Download master.zip </a>
+              </p>
+              <p> Unzip the file to a local folder where you'd like the code to reside.  We'll assume the folder name will be <b>offline-platform-demo</b>. </p>
+              <p> Click the button below to download the gh-pages.zip archive from the <a href="https://github.com/reelyactive/sniffypedia" target="_blank">sniffypedia</a> repository on the reelyActive GitHub. </p>
+              <p class="text-center">
+                <a href="https://github.com/reelyactive/sniffypedia/archive/gh-pages.zip" class="btn btn-primary"> Download gh-pages.zip </a>
+              </p>
+              <p> Unzip the contents of the archive to the <b>offline-platform-demo/sniffypedia</b> folder.  Your folder hierarchy should look like: </p>
+              <img src="images/offlinePlatformDemo-hierarchy.png"
+                   class="img-responsive center-block"><br>
+              <p> Open a terminal or command prompt, browse to the <b>offline-platform-demo</b> folder, type <code>npm install</code> and press Enter. </p>
+              <img src="images/offlinePlatformDemo-npminstall.png"
+                   class="img-responsive center-block"><br>
+              <p> All the code and dependencies are now installed. </p>
+            </div>
+            <!----- Test for git ----->
+            <div ng-show="git === null">
+              <h3> Verify if you have git installed </h3>
+              <p> Open a terminal or command prompt, type <code>git --version</code> and press Enter. </p>
+              <img src="images/git-version.gif"
+                   class="img-responsive center-block"><br>
+              <p> If the output is something like <b>git version x.x.x</b>, you do indeed have git installed and can click <a ng-click="git = true"><i>Yes</i></a> above.  Otherwise click <a ng-click="git = false"><i>No</i></a> above. </p>
+            </div>
+
+            <h2> Run the demo </h2>
+            <p> Do you have a starter kit connected to your computer? </p>
+            <a ng-class="ready === true ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="ready = true"> Yes </a>
+            <a class="btn btn-default" ng-click="ready = null">Unsure</a>
+
+            <!----- Ready ----->
+            <div ng-show="ready === true">
+              <h3> Let's fire up the server <br>
+                   <small> One final command to go! </small> </h3>
+              <p> Open a terminal or command prompt, browse to the <b>offline-platform-demo</b> folder, type <code>node server</code> and press Enter. </p>
+              <img src="images/offlinePlatformDemo-nodeserver.png"
+                   class="img-responsive center-block"><br>
+              <p> The platform is now running, and the console output will encourage you to browse to <a href="http://localhost:3001" target="_blank">localhost:3001</a> where you can access the demos and APIs through the following interface: </p>
+              <img src="images/hlcLanding.png"
+                   class="img-responsive center-block"><br>
+              <p> If you see bubbles in the bubblescape, the installation was successful.  The content of the bubbles is being sourced from your local sniffypedia instance! </p>
+            </div>
+
+            <!----- Unsure if ready ----->
+            <div ng-show="ready === null">
+              <h3> Connect a starter kit <br>
+                   <small> Be sure to stick it in the right hole! </small> </h3>
+              <p> Plug the reelceiver into the hub so that the <b>Hub &#8594;</b> arrow points towards the hub.  Note that the reelceiver will still power on if it's connected in the wrong orientation, but it will <i>not</i> communicate with the hub.  Watch the video for details.</p>
+              <div class="embed-container"><iframe src="https://www.youtube.com/embed/bbwgdcXSs5M?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div><br>
+            </div>
+
+            <hr>
+            <h2> What's next? </h2>
+            <p> If the bubblescape, sensorscape and graphical APIs aren't enough for your demo, you can easily build your own custom demo by following our <a href="build-web-apps-with-beaver.html">Build web apps with beaver.js tutorial</a>. </p>
+            <p class="text-center">
+              <a class="btn btn-default" href="build-web-apps-with-beaver.html"
+                 role="button"> Build web apps with beaver.js </a>
+              <a class="btn btn-success" href="/"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://www.reelyactive.com"
+           uib-tooltip="We believe in an open Internet of Things"
+           tooltip-placement="right">
+          &copy; reelyActive 2017
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
