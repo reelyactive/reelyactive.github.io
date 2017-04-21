@@ -90,6 +90,20 @@
               Install an offline demo <br>
               <small> Enjoy our full open source platform without Internet connectivity </small> 
             </h1>
+            <div uib-carousel interval="4000">
+              <div uib-slide index="0">
+                <img ng-src="images/meme-offline-conference.jpg"
+                     class="img-responsive">
+              </div>
+              <div uib-slide index="1">
+                <img ng-src="images/meme-offline-flight.jpg"
+                     class="img-responsive">
+              </div>
+              <div uib-slide index="2">
+                <img ng-src="images/meme-offline-outdoors.jpg"
+                     class="img-responsive">
+              </div>
+            </div>
             <h2> Install Node.js </h2>
             <p> Do you have <b>Node.js</b> installed? </p>
             <a ng-class="node === true ? 'btn btn-warning' : 'btn btn-default'"
