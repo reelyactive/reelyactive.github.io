@@ -4,10 +4,10 @@
     <title>diyActive: Make a Raspberry Pi Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Step-by-step guide to build a Raspberry Pi 3 Bluetooth sniffer from scratch, with real-time kiosk-mode display.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="js/diyactive.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,42 +37,42 @@
         <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
              ng-click="navCollapsed = true">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html"> diyActive </a></li>
-            <li class="dropdown" dropdown on-toggle="toggled(open)">
-              <a href class="dropdown-toggle" dropdown-toggle role="button"
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
                  data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
                 Quick links <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu">
-                <li>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
                   <a href="https://github.com/reelyactive/" target="_blank">
                     reelyActive on GitHub
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://www.npmjs.com/~reelyactive" target="_blank">
                     reelyActive on npmjs
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="http://www.reelyactive.com" target="_blank">
                     reelyActive website
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://getpareto.com" target="_blank">
                     Pareto by reelyActive
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="https://shop.reelyactive.com" target="_blank">
                     Our online store
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://reelyactive.com/blog/" target="_blank">
                     Our blog
                   </a>
@@ -105,6 +105,39 @@
                 </div>
               </div>
             </div>
+            <h2> <del>Hears</del> Here's what you'll get<br>
+                 <small> Access any of these pages by browsing to the Pi </small> </h2>
+            <div uib-carousel interval="4000">
+              <div uib-slide index="0">
+                <img ng-src="images/piHub-dashboard.png"
+                     class="img-responsive">
+                <div class="carousel-caption">
+                  <h1> Dashboard </h1>
+                </div>
+              </div>
+              <div uib-slide index="1">
+                <img ng-src="images/piHub-barterer.png"
+                     class="img-responsive">
+                <div class="carousel-caption">
+                  <h1> Infrastructure APIs </h1>
+                </div>
+              </div>
+              <div uib-slide index="2">
+                <img ng-src="images/piHub-chickadee.png"
+                     class="img-responsive">
+                <div class="carousel-caption">
+                  <h1> Contextual APIs </h1>
+                </div>
+              </div>
+              <div uib-slide index="3">
+                <img ng-src="images/piHub-bubblescape.jpg"
+                     class="img-responsive">
+                <div class="carousel-caption">
+                  <h1> The bubblescape </h1>
+                </div>
+              </div>
+            </div><br>
+            <p> You'll also have access to REST APIs and a real-time data stream over websockets. </p>
             <h2> Hardware Prerequisites </h2>
             <p> You'll need a Raspberry Pi 3 (or equivalent) with native Bluetooth capability in order to make a standalone sniffer. </p>
             <p> If you have a non-Bluetooth Pi, do not despair!  You can connect a purpose-built reelyActive starter kit to your Pi via USB for even-better sniffage! </p>
@@ -126,9 +159,9 @@
               <button type="button" class="btn btn-default"
                       ng-click="showPrep = !showPrep">No, I need to do this!</button>
             </p>
-            <p> Choose from one of the three options below: </p>
-            <tabset collapse="!showPrep">
-              <tab heading="Quickest">
+            <uib-tabset uib-collapse="!showPrep">
+              <p> Choose from one of the three options below: </p>
+              <uib-tab heading="Quickest">
                 <p> Setup your SD card from a disk image that <i>already</i> has Jessie Lite, Node.js and our software installed.  This is the <i>same</i> setup as in the <b>From Scratch</b> option, except we did most of the work for you so that you can skip ahead for instant gratification! </p>
                 <h3> SD Card </h3>
                 <p> Download our compressed disk image <a href="https://reelyactive.com/downloads/2017-03-15-reelyactive-pi-suite.tar.xz" target="_blank">2017-03-15-reelyactive-pi-suite.tar.xz</a>. </p>
@@ -158,8 +191,8 @@
                 <pre>sudo raspi-config</pre>
                 <p> From the text-based menu, select the option to change the user password. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in.  Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot.</p>
                 <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> &nbsp; <b> Skip ahead to <a href="make-a-pi-hub.html#startsniffing">Start Sniffing!</a> </b> </p>
-              </tab>
-              <tab heading="From Scratch">
+              </uib-tab>
+              <uib-tab heading="From Scratch">
                 <p> This is the <i>same</i> setup as in the <b>Quickest</b> option, only starting from scratch using the latest Jessie Lite image and the most recent versions of Node.js and our software. </p>
                 <h3> SD Card </h3>
                 <p> Download the latest Raspbian Jessie Lite image from <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">www.raspberrypi.org/downloads/raspbian/</a>.  Then follow the instructions (<a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md" target="_blank">Linux</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md" target="_blank">Mac</a> or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank">Windows</a>) to transfer the image to an SD card of at least 4GB. </p>
@@ -197,8 +230,8 @@ fallback static_eth0
                 <pre>sudo raspi-config</pre>
                 <p> From the text-based menu, select the option to change the user password. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in.  Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot.</p>
                 <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> </p>
-              </tab>
-              <tab heading="NOOBS with GUI">
+              </uib-tab>
+              <uib-tab heading="NOOBS with GUI">
                 <p> Take this beginner-friendly route if you intend to run your Pi as a multi-purpose computer with mouse and keyboard attached.  Otherwise we highly recommend the other options which are optimised for performance. </p>
                 <h3> SD Card </h3>
                 <p> The Pi's filesystem resides on an SD card.  If your Pi came with a prepared SD card, lucky you, you get to skip this step! </p>
@@ -216,8 +249,8 @@ fallback static_eth0
                 <p> Then power the Pi through a <u>high-quality</u> USB power source (ex: phone charger).  Follow the instructions on screen to install the Raspbian operating system.  This procedure will take some time.  Perhaps enjoy a slice or two of delicious raspberry pie while you wait? </p>
                 <h3> Connect to Network </h3>
                 <p> After Raspbian boots, connect the Pi to the Internet via either WiFi or Ethernet using the on-screen tools.  <i>The Pi is ready!</i> </p> 
-              </tab>
-            </tabset>
+              </uib-tab>
+            </uib-tabset>
             <hr collapse="!showPrep">
             <h3> Update packages </h3>
             <p> It is good practice to ensure that the software on the Pi is up to date before proceeding with any software installation.  From the command line on the Pi, execute the following in order: </p>
@@ -226,10 +259,23 @@ sudo apt-get update
 sudo apt-get upgrade
             </pre>
             <h2> Install Node.js and forever </h2>
-            <p> <a href="https://nodejs.org" target="_blank">Node.js</a> is a JavaScript runtime which runs libraries (such as our own) from the largest ecosystem of open source libraries in the world.  The <a href="https://www.npmjs.com/package/forever" target="_blank">forever</a> package is one of these libraries, and it will keep our programs running forever, even if they crash. </p>
-            <h3> Install Node.js </h3>
-            <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  From the command line on the Pi, execute the following in order (optionally change 6.9.2 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
-            <pre> 
+            <p> Do you have <b>Node.js</b> and <b>forever</b> installed? </p>
+            <a ng-class="node === true ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="node = true"> Yes </a>
+            <a ng-class="node === false ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="node = false"> No </a>
+            <a class="btn btn-default" ng-click="node = null"> Unsure </a>
+
+            <!----- Node.js installed ----->
+            <div ng-show="node === true">
+              <h3> You're all set! </h3>
+              <p> Proceed to install pi-suite </p>
+            </div>
+            <!----- Install Node.js ----->
+            <div ng-show="node === false">
+              <h3> Install Node.js </h3>
+              <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  From the command line on the Pi, execute the following in order (optionally change 6.9.2 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
+              <pre> 
 cd ~/Downloads
 wget https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-armv7l.tar.xz
 tar -xf node-v6.9.2-linux-armv7l.tar.xz
@@ -237,14 +283,25 @@ sudo mv node-v6.9.2-linux-armv7l /usr/local/node
 cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/node node
 sudo ln -s /usr/local/node/bin/npm npm
-            </pre>
-            <p> Confirm that v6.9.2 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
-            <h3> Install forever </h3>
-            <pre> 
+              </pre>
+              <p> Confirm that v6.9.2 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
+              <h3> Install forever </h3>
+              <pre> 
 cd /usr/local/bin
 sudo npm install forever -g
 sudo ln -s /usr/local/node/bin/forever forever
-            </pre>
+              </pre>
+            </div>
+            <!----- Test for Node.js ----->
+            <div ng-show="node === null">
+              <p> <a href="https://nodejs.org" target="_blank">Node.js</a> is a JavaScript runtime which runs libraries (such as our own) from the largest ecosystem of open source libraries in the world.  The <a href="https://www.npmjs.com/package/forever" target="_blank">forever</a> package is one of these libraries, and it will keep our programs running forever, even if they crash. </p>
+
+              <h3> Verify if you have Node.js installed </h3>
+              <p> Open a terminal or command prompt, type <code>node --version</code> and press Enter. </p>
+              <img src="images/node-version.gif"
+                   class="img-responsive center-block"><br>
+              <p> If the output is something like <b>vx.x.x</b>, you do indeed have Node.js installed.  Repeat the test with <code>forever --version</code>.  If both are installed, click <a ng-click="node = true"><i>Yes</i></a> above.  Otherwise click <a ng-click="node = false"><i>No</i></a> above. </p>
+            </div>
             <h2> Install pi-suite </h2>
             <p> The pi-suite is a collection of <a href="http://reelyactive.github.io/?tab=software" target="_blank">reelyActive open source software</a> which allows your Pi to: </p>
             <ul>
@@ -266,8 +323,8 @@ npm install
             </pre>
             <h2 id="startsniffing"> Start Sniffing! </h2>
             <p> Choose your configuration below and get up and running in an instant. </p>
-            <tabset>
-              <tab heading="I have a Pi 3">
+            <uib-tabset>
+              <uib-tab heading="I have a Pi 3">
                 <h3> Run pi-suite </h3>
                 <p> From the command line on the Pi, where you should still be in the ~/reelyActive/pi-suite folder, execute the following: </p>
                 <pre>sudo node pi-suite</pre>
@@ -278,8 +335,8 @@ npm install
                 <p> The <i>bubblescape</i> is a visualisation of all the BLE devices sniffed by your Pi.  <i>Fancy yourself as a bubble?</i>  Install <a href="http://www.reelyactive.com/reelyapp/">reelyApp</a> on your Android or iOS device to experience the following: </p>
                 <div class="embed-container"><iframe src="https://www.youtube.com/embed/eamCXiNkUuE?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div><br>
                 <p> Once you've finished your initial exploration of the various webpages displaying the live data, press Ctrl-C to terminate the execution of pi-suite before proceeding with the next steps. </p>
-              </tab>
-              <tab heading="I have a starter kit">
+              </uib-tab>
+              <uib-tab heading="I have a starter kit">
                 <h3> Connect your starter kit </h3>
                 <p> Connect your starter kit to any free USB port on the Pi taking care to respect the reelceiver directionality, as shown in the video. </p>
                 <div class="embed-container"><iframe src="https://www.youtube.com/embed/bbwgdcXSs5M?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div>
@@ -296,51 +353,73 @@ npm install
                 <p> The <i>bubblescape</i> is a visualisation of all the BLE devices sniffed by your Pi.  <i>Fancy yourself as a bubble?</i>  Install <a href="http://www.reelyactive.com/reelyapp/">reelyApp</a> on your Android or iOS device to experience the following: </p>
                 <div class="embed-container"><iframe src="https://www.youtube.com/embed/eamCXiNkUuE?rel=0&controls=0&showinfo=0&modestbranding" frameborder="0" allowfullscreen></iframe></div><br>
                 <p> Once you've finished your initial exploration of the various webpages displaying the live data, press Ctrl-C to terminate the execution of pi-suite-pareto before proceeding with the next steps. </p>
-              </tab>
-              <tab heading="I have neither">
+              </uib-tab>
+              <uib-tab heading="I have neither">
                 <p> Unfortunately that means you have no Bluetooth Low Energy radio on which to listen, as indicated in the Hardware Prerequisites section.  May we suggest you purchase a <a href="http://shop.reelyactive.com/products/starterkit-min" target="_blank">starter kit</a>? </p>
-              </tab>
-            </tabset>
+              </uib-tab>
+            </uib-tabset>
             <hr>
             <p> &nbsp; </p>
             <h2> Configure run-on-boot with kiosk display </h2>
-            <p> In this final <u>OPTIONAL</u> step we'll configure the Pi to run pi-suite automatically on boot, as well as display its webpage on any monitor via the HDMI port. </p>
-            <h3> Install kiosk display packages </h3>
-            <p> In order for the Pi to display a webpage in kiosk mode, we'll need the iceweasel browser (which handles JavaScript much better than the default Epiphany browser) and a window manager.  From the command line, execute the following: </p>
-            <pre> 
+            <p> Would you like to do this? </p>
+            <a ng-class="kiosk === true ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="kiosk = true"> Yes </a>
+            <a ng-class="kiosk === false ? 'btn btn-warning' : 'btn btn-default'"
+               ng-click="kiosk = false"> No </a>
+            <a class="btn btn-default" ng-click="kiosk = null"> Unsure </a>
+
+            <!----- Configure kiosk ----->
+            <div ng-show="kiosk === true">
+              <h3> Install kiosk display packages </h3>
+              <p> In order for the Pi to display a webpage in kiosk mode, we'll need the iceweasel browser (which handles JavaScript much better than the default Epiphany browser) and a window manager.  From the command line, execute the following: </p>
+              <pre> 
 sudo apt install iceweasel
 sudo apt-get install matchbox-window-manager xautomation unclutter
-            </pre>
-            <h4> Install Xorg (special case) </h4>
-            <p> This step applies <u>only</u> if your Pi is running <i>Jessie Lite</i> which doesn't have a GUI pre-installed.  If you're already able to boot into a friendly desktop environment, <i> skip this step </i>.  From the command line, execute the following: </p>
-            <pre> 
+              </pre>
+              <h4> Install Xorg (special case) </h4>
+              <p> This step applies <u>only</u> if your Pi is running <i>Jessie Lite</i> which doesn't have a GUI pre-installed.  If you're already able to boot into a friendly desktop environment, <i> skip this step </i>.  From the command line, execute the following: </p>
+              <pre> 
 sudo apt-get install --no-install-recommends xserver-xorg
 sudo apt-get install --no-install-recommends xinit
 sudo apt-get install --no-install-recommends x11-xserver-utils
-            </pre>
-            <h3> Configure run-on-boot </h3>
-            <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following three lines <u>above</u> the <i>exit 0</i> line: </p>
-            <pre> 
+              </pre>
+              <h3> Configure run-on-boot </h3>
+              <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following three lines <u>above</u> the <i>exit 0</i> line: </p>
+              <pre> 
 sudo forever start /home/pi/reelyActive/pi-suite/pi-suite.js
 sleep 30; sudo xinit /home/pi/reelyActive/pi-suite/display-iceweasel &
 sleep 30; xte "key F11" -x:0
-            </pre>
-            <p> Press Ctrl-X to save and exit the editor.  Note that if you're using the Pi as a hub for a <a href="https://shop.reelyactive.com/products/starterkit-min" target="_blank">reelyActive starter kit</a> that should forward the real-time data to <a href="https://getpareto.com" target="_blank">Pareto</a>, you'll need to change the first line to instead run <b>pi-suite-pareto.js</b>. </p>
-            <h3> Configure console autologin </h3>
-            <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i> (which may be under a Desktop/CLI sub-menu). </p>
-            <h3> Reboot </h3>
-            <p> Reboot the Pi with the command <code>sudo reboot</code> or with a power cycle.  Confirm that after a minute or so you can browse to the Pi and observe the webpage decoding BLE devices.  Also confirm that the webpage is projected on an HDMI-connected monitor (connect the monitor <i>before</i> the reboot so that the resolution can be detected). </p>
+              </pre>
+              <p> Press Ctrl-X to save and exit the editor.  Note that if you're using the Pi as a hub for a <a href="https://shop.reelyactive.com/products/starterkit-min" target="_blank">reelyActive starter kit</a> that should forward the real-time data to <a href="https://getpareto.com" target="_blank">Pareto</a>, you'll need to change the first line to instead run <b>pi-suite-pareto.js</b>. </p>
+              <h3> Configure console autologin </h3>
+              <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i> (which may be under a Desktop/CLI sub-menu). </p>
+              <h3> Reboot </h3>
+              <p> Reboot the Pi with the command <code>sudo reboot</code> or with a power cycle.  Confirm that after a minute or so you can browse to the Pi and observe the webpage decoding BLE devices.  Also confirm that the webpage is projected on an HDMI-connected monitor (connect the monitor <i>before</i> the reboot so that the resolution can be detected). </p>
+            </div>
+            <!----- Don't configure kiosk ----->
+            <div ng-show="kiosk === false">
+              <h3> You can always do it later if you like! </h3>
+              <p> Check out the other optional features below. </p>
+            </p>
+            </div>
+            <!----- Should I configure kiosk? ----->
+            <div ng-show="kiosk === null">
+              <h3> It's up to you! </h3>
+              <p> This final <u>OPTIONAL</u> step configures the Pi to run pi-suite automatically on boot, as well as display its webpage on any monitor via the HDMI port. </p>
+              <p> If that's what you'd like to do, click <a ng-click="kiosk = true"><i>Yes</i></a> above. </p>
+            </div>
+
             <h2> Optional features </h2>
             <p> Consider implementing the following optional features. </p>
-            <tabset>
-              <tab heading="Scheduled reboots">
+            <uib-tabset>
+              <uib-tab heading="Scheduled reboots">
                 <p> Scheduled reboots ensure that the Pi will eventually recover from any soft failure.  To force daily reboots via a cron job, from the command line, open the crontab file for editing with the command <code>sudo nano /etc/crontab</code> and paste the following line of code <u>above</u> the closing #. </p>
                 <pre> 
 0  5    * * *   root    reboot
                 </pre> 
                 <p> The 5 signifies 5am.  Adjust this and the other parameters as your application requires. </p>
-              </tab>
-              <tab heading="Ethernet fallback">
+              </uib-tab>
+              <uib-tab heading="Ethernet fallback">
                 <p> Ethernet fallback ensures that you can always directly connect to your Pi at a known static IP.  The Pi will assume the static IP on its Ethernet port in the absence of a DHCP server.  To enable Ethernet fallback, from the command line, open the dhcpcd.conf file for editing with the command <code>sudo nano /etc/dhcpcd.conf</code> and paste the following lines of code at the bottom of the file. </p>
                 <pre> 
 # Define static profile
@@ -354,8 +433,8 @@ interface eth0
 fallback static_eth0
                 </pre>
                 <p> When all else fails, to log on to the Pi, directly connect your computer to the Pi via Ethernet, set your computer's IP address to 10.0.50.101, and <code>ssh pi@10.0.50.100</code> </p>.
-              </tab>
-              <tab heading="WiFi networks">
+              </uib-tab>
+              <uib-tab heading="WiFi networks">
                 <p> The Pi can easily be pre-configured to connect to multiple WiFi networks.  This feature is useful if the Pi is moved to different locations, each with their own WiFi credentials.  To pre-configure WiFi credentials, from the command line, open the wpa_supplicant.conf file for editing with the command <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code> and paste the following block of code, once for each network, at the bottom of the file. </p>
                 <pre> 
 network={
@@ -365,12 +444,12 @@ network={
 }
                 </pre>
                 <p> Don't forget to enter the SSID and password for each network with much care!  Although networks commonly use a pre-shared key (PSK) for authentication, as specified in the example above, it may be necessary to tweak the settings as discussed in details <a href="https://wiki.archlinux.org/index.php/WPA_supplicant" target="_blank">here</a>. </p>
-              </tab>
-              <tab heading="More">
+              </uib-tab>
+              <uib-tab heading="More">
                 <p> Enable additional features such as data logging by editing <a href="https://github.com/reelyactive/pi-suite/blob/master/pi-suite.js" target="_blank">pi-suite.js</a> with the command <code>nano ~/reelyActive/pi-suite/pi-suite.js</code> or <a href="https://github.com/reelyactive/pi-suite/blob/master/pi-suite-pareto.js" target="_blank">pi-suite-pareto.js</a> with the command <code>nano ~/reelyActive/pi-suite/pi-suite-pareto.js</code>.</p>
                 <p> Simply comment or uncomment the desired options by adding or removing two backslashes at the start of each concerned line.  Press Ctrl-X to save the file and exit. </p>
-              </tab>
-            </tabset>
+              </uib-tab>
+            </uib-tabset>
             <p> &nbsp; </p>
             <h2> Prefer Software-as-a-Service? </h2>
             <img src="images/pareto-by-reelyactive.jpg"
@@ -399,8 +478,12 @@ network={
         </div>
       </div>
       <footer class="footer">
-        <a href="index.html"> diyActive </a> &nbsp; | &nbsp;
-        <a href="http://www.reelyactive.com">
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://www.reelyactive.com"
+           uib-tooltip="We believe in an open Internet of Things"
+           tooltip-placement="right">
           &copy; reelyActive 2016-2017
         </a>
       </footer>
