@@ -139,7 +139,7 @@
             </div><br>
             <p> You'll also have access to REST APIs and a real-time data stream over websockets. </p>
             <h2> Hardware Prerequisites </h2>
-            <p> You'll need a Raspberry Pi 3 (or equivalent) with native Bluetooth capability in order to make a standalone sniffer. </p>
+            <p> You'll need a <b>Raspberry Pi 3</b> (or equivalent) with native Bluetooth capability in order to make a <i>standalone</i> sniffer. </p>
             <p> If you have a non-Bluetooth Pi, do not despair!  You can connect a purpose-built reelyActive starter kit to your Pi via USB for even-better sniffage! </p>
             <img src="images/piHub-connected.jpg"
                  class="img-responsive center-block">
@@ -294,16 +294,15 @@ sudo ln -s /usr/local/node/bin/forever forever
             </div>
             <!----- Test for Node.js ----->
             <div ng-show="node === null">
-              <p> <a href="https://nodejs.org" target="_blank">Node.js</a> is a JavaScript runtime which runs libraries (such as our own) from the largest ecosystem of open source libraries in the world.  The <a href="https://www.npmjs.com/package/forever" target="_blank">forever</a> package is one of these libraries, and it will keep our programs running forever, even if they crash. </p>
-
               <h3> Verify if you have Node.js installed </h3>
+              <p> <a href="https://nodejs.org" target="_blank">Node.js</a> is a JavaScript runtime which runs libraries (such as our own) from the largest ecosystem of open source libraries in the world.  The <a href="https://www.npmjs.com/package/forever" target="_blank">forever</a> package is one of these libraries, and it will keep our programs running forever, even if they crash. </p>
               <p> Open a terminal or command prompt, type <code>node --version</code> and press Enter. </p>
               <img src="images/node-version.gif"
                    class="img-responsive center-block"><br>
               <p> If the output is something like <b>vx.x.x</b>, you do indeed have Node.js installed.  Repeat the test with <code>forever --version</code>.  If both are installed, click <a ng-click="node = true"><i>Yes</i></a> above.  Otherwise click <a ng-click="node = false"><i>No</i></a> above. </p>
             </div>
             <h2> Install pi-suite </h2>
-            <p> The pi-suite is a collection of <a href="http://reelyactive.github.io/?tab=software" target="_blank">reelyActive open source software</a> which allows your Pi to: </p>
+            <p> The <b>pi-suite</b> is a collection of <a href="http://reelyactive.github.io/?tab=software" target="_blank">reelyActive open source software</a> which allows your Pi to: </p>
             <ul>
               <li> listen for BLE devices by itself (Raspberry Pi 3+)
               <li> listen for BLE devices via a reelyActive starter kit
