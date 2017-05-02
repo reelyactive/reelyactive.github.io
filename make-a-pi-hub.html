@@ -274,7 +274,20 @@ sudo apt-get upgrade
             <!----- Install Node.js ----->
             <div ng-show="node === false">
               <h3> Install Node.js </h3>
-              <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  From the command line on the Pi, execute the following in order (optionally change 6.9.2 below throughout to the latest LTS version as indicated <a href="https://nodejs.org" target="_blank">here</a>): </p>
+              <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  The following table suggests <i>known working versions</i> for different variants of the Pi </p>
+              <table class="table">
+                <tr>
+                  <th> Raspberry Pi 3 </th>
+                  <td> node-v6.9.2-linux-armv7l </td>
+                  <td> <a href="https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-armv7l.tar.xz"> URL </a> </td>
+                </tr>
+                <tr>
+                  <th> Raspberry Pi Zero (W) </th>
+                  <td> node-v4.8.2-linux-armv6l </td>
+                  <td> <a href="https://nodejs.org/dist/v4.8.2/node-v4.8.2-linux-armv6l.tar.xz"> URL </a> </td>
+                </tr>
+              </table>
+              <p> From the command line on the Pi, execute the following in order, substituting the URL and Node version as per the table above: </p>
               <pre> 
 cd ~/Downloads
 wget https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-armv7l.tar.xz
@@ -284,7 +297,7 @@ cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/node node
 sudo ln -s /usr/local/node/bin/npm npm
               </pre>
-              <p> Confirm that v6.9.2 appears when you run <code>node -v</code>.  Node.js is now installed. </p>
+              <p> Confirm that v6.9.2 (or the version you installed) appears when you run <code>node --version</code>.  Node.js is now installed. </p>
               <h3> Install forever </h3>
               <pre> 
 cd /usr/local/bin
