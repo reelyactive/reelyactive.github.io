@@ -424,12 +424,16 @@ sleep 30; xte "key F11" -x:0
             <h2> Optional features </h2>
             <p> Consider implementing the following optional features. </p>
             <uib-tabset>
-              <uib-tab heading="Scheduled reboots">
-                <p> Scheduled reboots ensure that the Pi will eventually recover from any soft failure.  To force daily reboots via a cron job, from the command line, open the crontab file for editing with the command <code>sudo nano /etc/crontab</code> and paste the following line of code <u>above</u> the closing #. </p>
+              <uib-tab heading="WiFi networks">
+                <p> The Pi can easily be pre-configured to connect to multiple WiFi networks.  This feature is useful if the Pi is moved to different locations, each with their own WiFi credentials.  To pre-configure WiFi credentials, from the command line, open the wpa_supplicant.conf file for editing with the command <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code> and paste the following block of code, once for each network, at the bottom of the file. </p>
                 <pre> 
-0  5    * * *   root    reboot
-                </pre> 
-                <p> The 5 signifies 5am.  Adjust this and the other parameters as your application requires. </p>
+network={
+  ssid="ENTER_SSID_HERE"
+  psk="ENTER_PASSWORD_HERE"
+  key_mgmt=WPA-PSK
+}
+                </pre>
+                <p> Don't forget to enter the SSID and password for each network with much care!  Although networks commonly use a pre-shared key (PSK) for authentication, as specified in the example above, it may be necessary to tweak the settings as discussed in details <a href="https://wiki.archlinux.org/index.php/WPA_supplicant" target="_blank">here</a>. </p>
               </uib-tab>
               <uib-tab heading="Ethernet fallback">
                 <p> Ethernet fallback ensures that you can always directly connect to your Pi at a known static IP.  The Pi will assume the static IP on its Ethernet port in the absence of a DHCP server.  To enable Ethernet fallback, from the command line, open the dhcpcd.conf file for editing with the command <code>sudo nano /etc/dhcpcd.conf</code> and paste the following lines of code at the bottom of the file. </p>
@@ -446,16 +450,12 @@ fallback static_eth0
                 </pre>
                 <p> When all else fails, to log on to the Pi, directly connect your computer to the Pi via Ethernet, set your computer's IP address to 10.0.50.101, and <code>ssh pi@10.0.50.100</code> </p>.
               </uib-tab>
-              <uib-tab heading="WiFi networks">
-                <p> The Pi can easily be pre-configured to connect to multiple WiFi networks.  This feature is useful if the Pi is moved to different locations, each with their own WiFi credentials.  To pre-configure WiFi credentials, from the command line, open the wpa_supplicant.conf file for editing with the command <code>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code> and paste the following block of code, once for each network, at the bottom of the file. </p>
+              <uib-tab heading="Scheduled reboots">
+                <p> Scheduled reboots ensure that the Pi will eventually recover from any soft failure.  To force daily reboots via a cron job, from the command line, open the crontab file for editing with the command <code>sudo nano /etc/crontab</code> and paste the following line of code <u>above</u> the closing #. </p>
                 <pre> 
-network={
-  ssid="ENTER_SSID_HERE"
-  psk="ENTER_PASSWORD_HERE"
-  key_mgmt=WPA-PSK
-}
-                </pre>
-                <p> Don't forget to enter the SSID and password for each network with much care!  Although networks commonly use a pre-shared key (PSK) for authentication, as specified in the example above, it may be necessary to tweak the settings as discussed in details <a href="https://wiki.archlinux.org/index.php/WPA_supplicant" target="_blank">here</a>. </p>
+0  5    * * *   root    reboot
+                </pre> 
+                <p> The 5 signifies 5am.  Adjust this and the other parameters as your application requires. </p>
               </uib-tab>
               <uib-tab heading="More">
                 <p> Enable additional features such as data logging by editing <a href="https://github.com/reelyactive/pi-suite/blob/master/pi-suite.js" target="_blank">pi-suite.js</a> with the command <code>nano ~/reelyActive/pi-suite/pi-suite.js</code> or <a href="https://github.com/reelyactive/pi-suite/blob/master/pi-suite-pareto.js" target="_blank">pi-suite-pareto.js</a> with the command <code>nano ~/reelyActive/pi-suite/pi-suite-pareto.js</code>.</p>
