@@ -25,5 +25,4 @@ https://reelyactive.github.io/bubblescape/index.html
 https://reelyactive.github.io/cormorant/index.html
 https://reelyactive.github.io/cuttlefish/index.html
 https://reelyactive.github.io/dashboard-template-angular/index.html
-https://reelyactive.github.io/node-style-guide/index.html
 https://reelyactive.github.io/web-ble-demo/index.html
