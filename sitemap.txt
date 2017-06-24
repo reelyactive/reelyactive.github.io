@@ -2,6 +2,7 @@ https://reelyactive.github.io/index.html
 https://reelyactive.github.io/barnowl-baby-steps.html
 https://reelyactive.github.io/build-web-apps-with-beaver.html
 https://reelyactive.github.io/experience-generative-art.html
+https://reelyactive.github.io/forward-sensor-data-to-initial-state.html
 https://reelyactive.github.io/gateways-and-hubs.html
 https://reelyactive.github.io/hackthehouse.html
 https://reelyactive.github.io/install-a-starter-kit.html
