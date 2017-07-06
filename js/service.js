@@ -1,4 +1,4 @@
-DEFAULT_SOCKET_URL = 'https://www.hyperlocalcontext.com/reelyactive';
+DEFAULT_SOCKET_URL = 'https://www.hyperlocalcontext.com';
 EVENT_HISTORY = 5;
 
 angular.module('service', [ 'ui.bootstrap', 'btford.socket-io',
