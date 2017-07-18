@@ -164,7 +164,7 @@
               <tbody>
                 <tr>
                   <td><tt> "appearance" </tt></td>
-                  <td> <p> Indicates that the device is detected for the first time at a point of interest. </p> <i> This means that either the device has come within range of a radio receiver or started transmitting. </i> </td>
+                  <td> <p> Indicates that the device is detected for the first time at a point of interest. </p> <i> This means that either the device has come within range of a radio receiver or has started transmitting. </i> </td>
                 </tr>
                 <tr>
                   <td><tt> "keep-alive" </tt></td>
@@ -176,7 +176,7 @@
                 </tr>
                 <tr>
                   <td><tt> "disappearance" </tt></td>
-                  <td> <p> Indicates that the device is no longer detected at any point of interest. </p> <i> This means that the device has either gone out of range of all radio receivers or stopped transmitting. </i> </td>
+                  <td> <p> Indicates that the device is no longer detected at any point of interest. </p> <i> This means that the device has either gone out of range of all radio receivers or has stopped transmitting. </i> </td>
                 </tr>
               </tbody>
             </table>
@@ -231,6 +231,42 @@
                   <td> <tt>receiverDirectory</tt> </td>
                   <td> String </td>
                   <td> <p> The hierarchical directory structure which specifies the semantic location of one or more points of interest.  The levels of hierarchy are colon-separated. </p> <i><u>Example</u>:</i> <tt>"farm:barn"</tt> indicates a semantic location called <i>barn</i> contained within a semantic location called <i>farm</i>. </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> &nbsp; </p>
+            <!----- Positioning event structure ----------------------------->
+            <h2>
+              Positioning event structure <br>
+              <small> The addition of real-time position </small>
+            </h2>
+            <p> The following JSON represents the <i>additional</i> properties of a positioning <b>event</b>, which estimates the 2D or 3D <i>position</i> of the <b>event</b>, as detailed below. </p>
+<pre>
+{
+  /* In addition to the event properties above... */
+  "position": [ 0.0, 0.0 ],
+  "positioningMethod": "strongestReceiver"
+}
+</pre>
+            <table class="table table-hover table-reelyactive">
+              <caption> POSITIONING EVENT PROPERTIES </caption>
+              <thead>
+                <tr>
+                  <th> Property </th>
+                  <th> Type </th>
+                  <th> Description </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> <tt>position</tt> </td>
+                  <td> Array of Number </td>
+                  <td> <p> The estimated real-time position of the device, represented as a GeoJSON position.  The array consists of either two or three values, representing a 2D or 3D position, respectively. </p> <i><u>Example</u>:</i> <tt>[ 0.0, 0.0 ]</tt> is the origin in 2D. </td>
+                </tr>
+                <tr>
+                  <td> <tt>positioningMethod</tt> </td>
+                  <td> String </td>
+                  <td> <p> The name of the method used to estimate the position. </p> <i><u>Example</u>:</i> <tt>strongestReceiver</tt> simply applies the position of the strongest receiver of the device's transmissions. </td>
                 </tr>
               </tbody>
             </table>
