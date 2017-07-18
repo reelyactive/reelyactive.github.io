@@ -1,21 +1,14 @@
 DEFAULT_SOCKET_URL = 'https://www.hyperlocalcontext.com/';
 EVENT_HISTORY = 5;
 
-angular.module('service', [ 'ui.bootstrap', 'btford.socket-io',
-                            'reelyactive.beaver'])
-
-// Socket.io factory
-.factory('Socket', function(socketFactory) {
-  return socketFactory({
-    ioSocket: io.connect(DEFAULT_SOCKET_URL)
-  });
-})
+angular.module('service', [ 'ui.bootstrap', 'reelyactive.beaver'])
 
 // Service controller
-.controller('ServiceCtrl', function($scope, Socket, beaver) {
+.controller('ServiceCtrl', function($scope, beaver) {
   $scope.events = [];
 
-  beaver.listen(Socket);
+  var socket = io.connect(DEFAULT_SOCKET_URL);
+  beaver.listen(socket);
 
   beaver.on('appearance', function(event) {
     updateEvents('appearance', event);
@@ -38,5 +31,6 @@ angular.module('service', [ 'ui.bootstrap', 'btford.socket-io',
     if (length > EVENT_HISTORY) {
       $scope.events.pop();
     }
+    $scope.$apply();
   }
 });

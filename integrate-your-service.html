@@ -4,10 +4,10 @@
     <title>diyActive: Integrate your Service</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Guide to integrating services on top of the reelyActive platform. Your service will consume a real-time stream of events represented in JSON format.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
     <script type="text/javascript" src="js/socket.min.js"></script>
     <script type="text/javascript" src="js/beaver.js"></script>
@@ -41,42 +41,42 @@
         <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
              ng-click="navCollapsed = true">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html"> diyActive </a></li>
-            <li class="dropdown" dropdown on-toggle="toggled(open)">
-              <a href class="dropdown-toggle" dropdown-toggle role="button"
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
                  data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
                 Quick links <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu">
-                <li>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
                   <a href="https://github.com/reelyactive/" target="_blank">
                     reelyActive on GitHub
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://www.npmjs.com/~reelyactive" target="_blank">
                     reelyActive on npmjs
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="http://www.reelyactive.com" target="_blank">
                     reelyActive website
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://getpareto.com" target="_blank">
                     Pareto by reelyActive
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="https://shop.reelyactive.com" target="_blank">
                     Our online store
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://reelyactive.com/blog/" target="_blank">
                     Our blog
                   </a>
@@ -112,9 +112,9 @@
 }
 </pre>
             <p> The individual properties are each presented in their own tab below. </p>
-            <tabset>
+            <uib-tabset>
               <!----- event ------------------------------------------------->
-              <tab heading="event">
+              <uib-tab heading="event">
                 <p> An <b>event</b> can take one of four <i>types</i>, each described in the table below: </p>
                 <table class="table table-hover">
                   <thead>
@@ -142,33 +142,33 @@
                     </tr>
                   </tbody>
                 </table>
-              </tab>
+              </uib-tab>
               <!----- time -------------------------------------------------->
-              <tab heading="time">
+              <uib-tab heading="time">
                 <p> The <i>time</i> of an <b>event</b> is expressed as a number.  It is the number of milliseconds since the Unix epoch (January 1st, 1970 UTC). </p>
                 <pre>1420075425678</pre>
                 <p> The above is equivalent to 01 Jan 2015 01:23:45.678 GMT. </p>
-              </tab>
+              </uib-tab>
               <!----- deviceId ---------------------------------------------->
-              <tab heading="deviceId">
+              <uib-tab heading="deviceId">
                 <p> The <i>deviceId</i> of an <b>event</b> is expressed as a hexadecimal string.  It represents the (normally) unique identifier of the device to which the <b>event</b> corresponds.  In the case of Bluetooth Low Energy devices, this is the MAC address (which may be public or random, the distinction being made in the <i>tiraid</i>).  The <i>deviceId</i> does NOT include dashes or colons. </p>
                 <pre>"fee150bada55"</pre>
                 <p> The above is equivalent to the 48-bit identifier <tt>fe:e1:50:ba:da:55</tt> (human-friendly representation). </p>
-              </tab>
+              </uib-tab>
               <!----- receiverId -------------------------------------------->
-              <tab heading="receiverId">
+              <uib-tab heading="receiverId">
                 <p> The <i>receiverId</i> of an <b>event</b> is expressed as a hexadecimal string.  It represents the unique identifier of the radio receiver which detects the device with the strongest signal strength in relation to the corresponding <b>event</b>.  In the case of reelyActive reelceivers, this is the EUI-64 identifier. </p>
                 <pre>"001bc50940810000"</pre>
                 <p> The above is equivalent to the 48-bit identifier <tt>00-1b-c5-09-40-81-00-00</tt> (human-friendly representation). </p>
-              </tab>
+              </uib-tab>
               <!----- rssi -------------------------------------------------->
-              <tab heading="rssi">
+              <uib-tab heading="rssi">
                 <p> The <i>rssi</i> of an <b>event</b> is expressed as a number.  It represents the received signal strength as a unitless number, with greater values corresponding to greater received signal strength.  In the case of reelyActive reelceivers, each unit represents 0.5dBm and the offset is constant for a given model, allowing for direct comparison. </p>
                 <pre>150</pre>
                 <p> The above is a unitless value which could be converted to an absolute value if a calibration is performed. </p>
-              </tab>
+              </uib-tab>
               <!----- tiraid ------------------------------------------------>
-              <tab heading="tiraid">
+              <uib-tab heading="tiraid">
                 <p> The <i>tiraid</i> of an <b>event</b> is included for legacy purposes (its pertinent properties are already included in the flattened <b>event</b>), and consists of three components (<u>ti</u>-<u>ra</u>-<u>id</u>), each described below. </p>
                 <h4> <u>ti</u>mestamp </h4>
                 <p> <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 timestamp</a>, represented as a String.  Includes date and time of day in <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time" target="_blank">UTC</a>, with millisecond precision.  Example:</p>
@@ -202,7 +202,8 @@
 }
 </pre>
                 <p> The identifier value, <i>tiraid.identifier.value</i>, is the means by which the system distinguishes devices and thereby interprets events. </p>
-            </tabset>
+              </uib-tab>
+            </uib-tabset>
             <hr>
             <p> &nbsp; </p>
             <h3> Contextual event structure </h3>
@@ -224,15 +225,15 @@
 }
 </pre>
             <p> The <i>additional</i> properties are each presented in their own tab below. </p>
-            <tabset>
+            <uib-tabset>
               <!----- deviceAssociationIds ---------------------------------->
-              <tab heading="deviceAssociationIds">
+              <uib-tab heading="deviceAssociationIds">
                 <p> The <i>deviceAssociationIds</i> of an <b>event</b> is expressed as an array of hexadecimal strings.  Each hexadecimal string represents a complementary device identifier included in its payload(s).  In the case of Bluetooth Low Energy devices, this can include 16-bit and 128-bit UUIDs, 16-bit company codes, as well as 160-bit concatenated iBeacon identifiers, among others.  These identifiers do NOT include dashes or colons. </p>
                 <pre>[ '004c', 'dab59c4fa4d6ee286bfe8e0000bbc2bb12345678' ]</pre>
                 <p> The above is equivalent to an iBeacon with UUID <tt>dab59c4f-a4d6-ee28-6bfe-8e0000bbc2bb</tt>, Major: <tt>1234</tt> and Minor: <tt>5678</tt>.  It includes Apple's company code: <tt>0x004c</tt>. </p>
-              </tab>
+              </uib-tab>
               <!----- deviceUrl --------------------------------------------->
-              <tab heading="deviceUrl">
+              <uib-tab heading="deviceUrl">
                 <p> The <i>deviceUrl</i> of an <b>event</b> is expressed as a string.  It represents a Uniform Resource Locator (URL) associated with the device, linking it to metadata. </p>
                 <pre>"http://myjson.info/stories/test"</pre>
                 <p> The above is a link to <a href="https://myjson.info/stories/test" target="_blank">http://myjson.info/stories/test</a> which <a href="http://reelyactive.github.io/cormorant/?url=http://myjson.info/stories/test" target="_blank">contains metadata as JSON-LD</a> within a human-friendly HTML representation. </p>
@@ -242,36 +243,36 @@
                 <p> The <i>deviceTags</i> of an <b>event</b> is expressed as an array of strings.  Each string represents a classifier for the device. </p>
                 <pre>[ 'test' ]</pre>
                 <p> The above indicates that the device is part of a <tt>test</tt> class. </p>
-              </tab>
+              </uib-tab>
               <!----- receiverUrl ------------------------------------------->
-              <tab heading="receiverUrl">
+              <uib-tab heading="receiverUrl">
                 <p> The <i>receiverUrl</i> of an <b>event</b> is expressed as a string.  It represents a Uniform Resource Locator (URL) associated with the receiver, linking it to metadata. </p>
                 <pre>"http://sniffypedia.org/Product/reelyActive_RA-R436/"</pre>
                 <p> The above is a link to <a href="https://sniffypedia.org/Product/reelyActive_RA-R436/" target="_blank">http://sniffypedia.org/Product/reelyActive_RA-R436/</a> which <a href="http://reelyactive.github.io/cormorant/?url=http://sniffypedia.org/Product/reelyActive_RA-R436/" target="_blank">contains metadata as JSON-LD</a> within a human-friendly HTML representation. </p>
-              </tab>
+              </uib-tab>
               <!----- receiverTags ------------------------------------------>
-              <tab heading="receiverTags">
+              <uib-tab heading="receiverTags">
                 <p> The <i>receiverTags</i> of an <b>event</b> is expressed as an array of strings.  Each string represents a classifier for the receiver. </p>
                 <pre>[ 'test' ]</pre>
                 <p> The above indicates that the receiver is part of a <tt>test</tt> class. </p>
-              </tab>
+              </uib-tab>
               <!----- receiverDirectory ------------------------------------->
-              <tab heading="receiverDirectory">
+              <uib-tab heading="receiverDirectory">
                 <p> The <i>receiverDirectory</i> of an <b>event</b> is expressed as a string.  It represents a hierarchical directory structure which specifies the semantic location of one or more points of interest.  The levels of hierarchy are colon-separated. </p>
                 <pre>"test"</pre>
                 <p> The above indicates that the receiver is part of the <tt>test</tt> directory. </p>
                 <pre>"test:subarea"</pre>
                 <p> The above indicates that the receiver is part of the <tt>subarea</tt> of the <tt>test</tt> directory. </p>
-              </tab>
-            </tabset>
+              </uib-tab>
+            </uib-tabset>
             <hr>
             <p><br><br></p>
             <a id="ingestion"></a>
             <h2> Ingesting data </h2>
             <p> Your service can ingest data as HTTP POSTs, over websockets, or using a custom service.  Each option is presented in its own tab below. </p>
-            <tabset>
+            <uib-tabset>
               <!----- HTTP POST -------------------------------------------->
-              <tab heading="HTTP POST">
+              <uib-tab heading="HTTP POST">
                 <p> In this case, the reelyActive platform will POST events to your API. </p>
                 <h3> Integration testbench </h3>
                 <p> Paste the following into a file called <b>post-test.js</b>: </p>
@@ -295,9 +296,9 @@ notifications.addService({
                 <code> npm install barnacles </code> <br>
                 <code> node post-test </code> </p>
                 <p> Your service should now expect events to be POSTed to <b>http://localhost:3010/events</b> </p>
-              </tab>
+              </uib-tab>
               <!----- Websockets ------------------------------------------->
-              <tab heading="Websockets">
+              <uib-tab heading="Websockets">
                 <p> In this case, your service will connect to the websocket at a specific URL. </p>
                 <p> Test your service with a live feed via <b>https://www.hyperlocalcontext.com</b> and you should receive the following: </p>
 
@@ -326,13 +327,13 @@ notifications.addService({
                     </tr>
                   </tbody>
                 </table>
-              </tab>
+              </uib-tab>
               <!----- Custom services -------------------------------------->
-              <tab heading="Custom services">
+              <uib-tab heading="Custom services">
                 <p> In this case, you'll write a custom service that we'll integrate into our code base.  This is reserved for cases where HTTP POST and websockets are inappropriate. </p>
                 <p> Visit the <a href="https://github.com/reelyactive/barnacles/tree/master/lib/services" target="_blank">barnacles/lib/services</a> directory on our GitHub for code examples of the existing custom services. </p>
-              </tab>
-            </tabset>
+              </uib-tab>
+            </uib-tabset>
             <hr>
             <p><br><br></p>
             <a id="storage"></a>
