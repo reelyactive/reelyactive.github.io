@@ -100,17 +100,20 @@
 {
   "time": 1420075425678,
   "deviceId": "fee150bada55",
+  "deviceAssociationIds": [ "004c" ],
   "receiverId": "001bc50940810000",
   "rssi": 150,
   "event": "appearance"
 }
 </pre>
-            <table class="table table-hover">
+            <table class="table table-hover table-reelyactive">
               <caption> BASIC EVENT PROPERTIES </caption>
               <thead>
-                <th> Property </th>
-                <th> Type </th>
-                <th> Description </th>
+                <tr>
+                  <th> Property </th>
+                  <th> Type </th>
+                  <th> Description </th>
+                </tr>
               </thead>
               <tbody>
                 <tr>
@@ -121,7 +124,12 @@
                 <tr>
                   <td> <tt>deviceId</tt> </td>
                   <td> String </td>
-                  <td> <p>The (normally) unique identifier of the transmitting device to which the <b>event</b> corresponds.  Expressed as a lowercase hexadecimal string without colons or dashes.</p> <i><u>Example</u>:</i> <tt>"fee150bada55"</tt> is equivalent to the 48-bit BLE advertiser address <tt>fe:e1:50:ba:da:55</tt>.</td>
+                  <td> <p> The (normally) unique identifier of the transmitting device to which the <b>event</b> corresponds.  Expressed as a lowercase hexadecimal string without colons or dashes.</p> <i><u>Example</u>:</i> <tt>"fee150bada55"</tt> is equivalent to the 48-bit BLE advertiser address <tt>fe:e1:50:ba:da:55</tt>.</td>
+                </tr>
+                <tr>
+                  <td> <tt>deviceAssociationIds</tt> </td>
+                  <td> Array of String </td>
+                  <td> <p> The list of complementary device identifiers included in the payload(s) of the device.  Each is expressed as a lowercase hexadecimal string without colons or dashes.</p> <i><u>Example</u>:</i> <tt>[ "004c" ]</tt> is equivalent to the 16-bit BLE company identifier for Apple, Inc.</td>
                 </tr>
                 <tr>
                   <td> <tt>receiverId</tt> </td>
@@ -146,7 +154,7 @@
             </h3>
             <img src="images/service-events.gif"
                  class="img-responsive center-block">
-            <table class="table table-hover">
+            <table class="table table-hover table-reelyactive">
               <thead>
                 <tr>
                   <th> Event type </th>
@@ -172,24 +180,61 @@
                 </tr>
               </tbody>
             </table>
+            <p> &nbsp; </p>
             <!----- Contextual event structure ------------------------------>
             <h2>
               Contextual event structure <br>
               <small> The addition of any associated metadata </small>
             </h2>
-            <p> The following JSON represents the <i>additional</i> properties of a contextual <b>event</b>, which is detailed below. </p>
+            <p> The following JSON represents the <i>additional</i> properties of a contextual <b>event</b>, which associates <i>meaning</i> to the identifiers of <i>what</i> is <i>where</i>, as detailed below. </p>
 <pre>
 {
   /* In addition to the basic event properties above... */
-  "deviceAssociationIds": [],
   "deviceUrl": "https://myjson.info/stories/test",
-  "deviceTags": [ 'test' ],
+  "deviceTags": [ "mascot", "reelyActive" ],
   "receiverUrl": "https://sniffypedia.org/Product/reelyActive_RA-R436/",
-  "receiverTags": [ 'test' ],
-  "receiverDirectory": "test"
+  "receiverTags": [ "indoors" ],
+  "receiverDirectory": "farm:barn"
 }
 </pre>
-            <p> Description to come. </p>
+            <table class="table table-hover table-reelyactive">
+              <caption> CONTEXTUAL EVENT PROPERTIES </caption>
+              <thead>
+                <tr>
+                  <th> Property </th>
+                  <th> Type </th>
+                  <th> Description </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> <tt>deviceUrl</tt> </td>
+                  <td> String </td>
+                  <td> <p> The Uniform Resource Locator (URL) associated with the device, at which metadata is expected to be found. </p> <i><u>Example</u>:</i> <tt>"https://myjson.info/stories/test"</tt> points to the profile for our mascot. </td>
+                </tr>
+                <tr>
+                  <td> <tt>deviceTags</tt> </td>
+                  <td> Array of String </td>
+                  <td> <p> Each tag represents a classifier for the device, which can be used to facilitate filtering and querying. </p> <i><u>Example</u>:</i> <tt>[ "mascot", "reelyActive" ]</tt> would classify the device as being associated with both a <i>mascot</i> and <i>reelyActive</i>. </td>
+                </tr>
+                <tr>
+                  <td> <tt>receiverUrl</tt> </td>
+                  <td> String </td>
+                  <td> <p> The Uniform Resource Locator (URL) associated with the receiver, at which metadata is expected to be found. </p> <i><u>Example</u>:</i> <tt>"https://sniffypedia.org/Product/reelyActive_RA-R436/"</tt> points to the profile for a reelyActive reelceiver. </td>
+                </tr>
+                <tr>
+                  <td> <tt>receiverTags</tt> </td>
+                  <td> Array of String </td>
+                  <td> <p> Each tag represents a classifier for the receiver, which can be used to facilitate filtering and querying. </p> <i><u>Example</u>:</i> <tt>[ "indoors" ]</tt> would classify the receiver as being associated with <i>indoors</i>. </td>
+                </tr>
+                <tr>
+                  <td> <tt>receiverDirectory</tt> </td>
+                  <td> String </td>
+                  <td> <p> The hierarchical directory structure which specifies the semantic location of one or more points of interest.  The levels of hierarchy are colon-separated. </p> <i><u>Example</u>:</i> <tt>"farm:barn"</tt> indicates a semantic location called <i>barn</i> contained within a semantic location called <i>farm</i>. </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> &nbsp; </p>
             <!----- Session event structure --------------------------------->
             <h2>
               Session event structure <br>
