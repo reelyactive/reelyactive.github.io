@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+    <script type="text/javascript" src="js/beaver.js"></script>
+    <script type="text/javascript" src="js/pareto-client.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -18,8 +20,8 @@
       ga('send', 'pageview');
     </script>
   </head>
-  <body ng-app="diyActive">
-    <div ng-controller="InteractionCtrl">
+  <body ng-app="websocket">
+    <div ng-controller="ServiceCtrl">
       <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle"
@@ -101,8 +103,41 @@
                  target="_blank" role="button"> Log in to your account </a>
             </p>
             <h2> Generate an API token </h2>
-            <p> From your Pareto dashboard, navigate to the Accounts page which will include the option to generate an API token, as shown below.  You'll need this token in the next step.  And remember to protect your API key &mdash; <i>it's private!</i> </p>
+            <p> From your Pareto dashboard, navigate to the Accounts page which will include the option to generate an API token, as shown below.  You'll need this token in the next step.  And remember to protect your API token &mdash; <i>it's private!</i> </p>
             <img src="images/pareto-apiToken.png" class="img-responsive">
+            <h2> Test your token right here and now </h2>
+            <p> This webpage includes a Javascript websocket client which will connect to Pareto and display the real-time events below when you connect with your API token. </p>
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="token">&nbsp; Token:</label>
+                <input type="text" class="form-control" id="token" size="32"
+                       ng-model="token" placeholder="{{placeholder}}">
+              </div>
+              <button type="submit" class="btn btn-warning"
+                      ng-click="connect(token)">Connect</button>
+              <button ng-show="connected" ng-click="toggle()"
+                      ng-class="paused ? 'btn btn-success' : 'btn btn-primary'">
+                {{paused ? 'Resume' : 'Pause'}}
+              </button>
+            </form>
+            <div ng-if="connected">
+              <p> &nbsp; </p>
+              <table class="table table-hover">
+                <caption> MOST RECENT EVENT </caption>
+                <thead>
+                  <tr>
+                    <th> Property </th>
+                    <th> Value </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="(property, value) in currentEvent">
+                    <td>{{property}}</td>
+                    <td><tt>{{value}}</tt></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <h2> Create and run a socket.io client </h2>
             <p> You can create a socket.io client in a few lines of code using Node.js (which if you don't have installed, you can <a href="https://nodejs.org" target="_blank">download here</a>).  Create a file called <b>server.js</b> and paste in the following code, inserting the API token you generated in the previous step: </p>
             <pre> 
