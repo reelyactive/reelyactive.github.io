@@ -154,13 +154,35 @@
                 </tr>
               </tbody>
             </table>
+            <p> &nbsp; </p>
             <h2 id="routing">
               Routing <br>
-              <small> Connecting the POIs on the floorplan </small>
+              <small> Connecting the reelceivers on the floorplan </small>
             </h2>
-            <p> &nbsp; </p>
+            <p> Once the infrastructure placement is complete, the next step is to route the cables for the daisy-chain configuration.  Routing can be performed such as to facilitate deployment provided it respects the following limits on <b>reelceivers per reel</b> and <b>cable lengths</b>. </p>
+            <table class="table table-hover table-reelyactive">
+              <caption> REEL ROUTING CONSTRAINTS </caption>
+              <thead>
+                <tr>
+                  <th> Constraint </th>
+                  <th> Details </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th> Reelceivers per reel </th>
+                  <td> <p> Any single reel should include no more than 6 reelceivers for typical applications. </p> <i> Applications with sparse wireless traffic can nonetheless reliably support additional reelceivers. </i> </td>
+                </tr>
+                <tr>
+                  <th> Cable lengths </th>
+                  <td> <p> No single cable run in the reel shall exceed 100m. </p> <i> This includes service loops and patch cord extensions! </i> </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> The following floorplan shows one possibility for routing the 12 reelceivers on three reels originating from the server room, each following a logical path along a row of support columns. </p>
             <img src="images/deployment-cables-on-map.png"
                  class="img-responsive"> <br>
+            <p> &nbsp; </p>
             <h2 id="cabling">
               Cabling <br>
               <small> Running the cables in the space </small>
@@ -168,6 +190,7 @@
             <p> &nbsp; </p>
             <img src="images/deployment-drop.jpg"
                  class="img-responsive"> <br>
+            <p> &nbsp; </p>
             <h2 id="serving">
               Serving <br>
               <small> Connecting the reels to the IP network </small>
