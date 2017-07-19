@@ -182,6 +182,37 @@
             <p> The following floorplan shows one possibility for routing the 12 reelceivers on three reels originating from the server room, each following a logical path along a row of support columns. </p>
             <img src="images/deployment-cables-on-map.png"
                  class="img-responsive"> <br>
+            <h3> Cable identification </h3>
+            <p> We propose the following convention for identifying each cable, which is illustrated on the floorplan below. </p>
+            <table class="table table-hover table-reelyactive">
+              <caption> CABLE IDENTIFICATION CONVENTION </caption>
+              <thead>
+                <tr>
+                  <th> Character(s) </th>
+                  <th> Purpose </th>
+                  <th> Details </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th> First </th>
+                  <th> Floor </th>
+                  <td> The floor number on which the cable is installed.  If the floor number is greater than 9, then the identifier will have one or more additional characters.  If the floor number is less than 0, apply 'S' as a prefix. </td>
+                </tr>
+                <tr>
+                  <th> Second </th>
+                  <th> Reel </th>
+                  <td> A single-character reel identifier, starting with 'A' for each floor.  Consider omitting 'I' and 'O' to avoid confusion with floor/offset numbers.  If the number of reels on the floor exceeds 'Z', continue with 'AA', 'AB' and so forth.  </td>
+                </tr>
+                <tr>
+                  <th> Third </th>
+                  <th> Offset </th>
+                  <td> The number of offsets from the server room (i.e. hub connection) starting from 0.  If the offset number is greater than 9, then the identifier will have additional characters. </td>
+                </tr>
+              </tbody>
+            </table>
+            <img src="images/deployment-cables-on-map-labelled.png"
+                 class="img-responsive"> <br>
             <p> &nbsp; </p>
             <h2 id="cabling">
               Cabling <br>
