@@ -17,6 +17,7 @@ https://reelyactive.github.io/make-a-tessel-hub.html
 https://reelyactive.github.io/mascot-stories.html
 https://reelyactive.github.io/open-source-software.html
 https://reelyactive.github.io/pareto-socket-client.html
+https://reelyactive.github.io/reel-deployment.html
 https://reelyactive.github.io/reely-overview.html
 https://reelyactive.github.io/reelyhacktive.html
 https://reelyactive.github.io/advlib/index.html
