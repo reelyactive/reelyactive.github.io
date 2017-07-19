@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Deploying a reelyActive reel | diyActive</title>
+    <title>Deploying reelyActive reels | diyActive</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="How to deploy a reel of daisy-chained reelceivers in a building, from server room to each point of interest.">
+    <meta name="description" content="How to deploy reels of daisy-chained reelceivers in a space, from the server room to each point of interest.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
@@ -89,17 +89,74 @@
               Reel Deployment Overview <br>
               <small> How to deploy reelyActive daisy-chained reelceivers to cover a space </small> 
             </h1>
-            <p> &nbsp; </p>
-            <h2 id="siteplan">
+            <p> A reel is a daisy-chain configuration which reliably and cost-effectively extends infrastructure coverage over wide areas.  This tutorial outlines the four steps to deploying reels to cover a space, namely: </p>
+            <p class="text-center">
+              <a class="btn btn-default btn-sm"
+                 href="#planning"> Planning </a> &nbsp;
+              <a class="btn btn-default btn-sm"
+                 href="#routing"> Routing </a> &nbsp;
+              <a class="btn btn-default btn-sm"
+                 href="#cabling"> Cabling </a> &nbsp;
+              <a class="btn btn-default btn-sm"
+                 href="#serving"> Serving </a> &nbsp;
+            </p>
+            <h2 id="planning">
               Planning <br>
-              <small> Placing the dots on the floorplan </small>
+              <small> Placing the reelceivers on the floorplan </small>
             </h2>
-            <p> &nbsp; </p>
+            <p> The initial step is planning where to deploy the infrastructure  within the space.  This is typically accomplished using floorplans.  Based on the application, infrastructure can be placed to maximise <b>zone coverage</b> and/or to provide granularity at specific <b>points of interest (POIs)</b>. </p>
+            <table class="table table-hover table-reelyactive">
+              <caption> INFRASTRUCTURE PLACEMENT STRATEGIES </caption>
+              <thead>
+                <tr>
+                  <th> Strategy </th>
+                  <th> Description </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th> Zone coverage </th>
+                  <td> <p> Infrastructure is placed at regular spacing intervals, often in a grid pattern, providing complete and uniform coverage of the space.  To facilitate deployment, it is common to place infrastructure on regular structural features such as support columns. </p> <i> Typical spacing is every 7m or one reelceiver for every 50m<sup>2</sup>. </i> </td>
+                </tr>
+                <tr>
+                  <th> Points of Interest </th>
+                  <td> <p> Infrastructure is placed at specific POIs where proximity or granular location is important. </p> <i> POI location accuracy is best within 2-3m range. </i> </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> The following floorplan serves as an example of a hybrid approach where: </p>
+            <ul>
+              <li> 11 reelceivers are placed on support columns to provide <b>zone coverage</b>
+              <li> 1 reelceiver is placed in a conference room to provide <b>POI</b> location granularity
+            </ul>
             <img src="images/deployment-reelceivers-on-map.png"
                  class="img-responsive"> <br>
+            <table class="table table-hover table-reelyactive">
+              <caption> INFRASTRUCTURE PLACEMENT CONSIDERATIONS </caption>
+              <thead>
+                <tr>
+                  <th> Consideration </th>
+                  <th> Details </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th> Mounting height </th>
+                  <td> <p> Reelceivers should be mounted at a height similar to that of the devices they are intended to detect &mdash; this is especially critical for POIs.  For zone coverage, it is advisable to mount slightly higher to maximise line-of-sight over the spacing interval radius. </p> <i> For standard 3m ceilings, mounting at any height, including above a false-ceiling, is generally acceptable. </i> </td>
+                </tr>
+                <tr>
+                  <th> Line-of-sight </th>
+                  <td> <p> Reelceivers should be mounted away from metal and from massive obstructions such as concrete (unless the latter are to intentionally limit coverage of specific areas).  Line-of-sight should be maximised throughout the target coverage area. </p> <i> When mounting on support columns, ensure at least a few centimetres spacing from the metal/concrete. </i> </td>
+                </tr>
+                <tr>
+                  <th> Physical access </th>
+                  <td> Reelceivers should be mounted such that they are physically accessible for maintenance or inspection should the need arise. </td>
+                </tr>
+              </tbody>
+            </table>
             <h2 id="routing">
               Routing <br>
-              <small> Connecting the dots on the floorplan </small>
+              <small> Connecting the POIs on the floorplan </small>
             </h2>
             <p> &nbsp; </p>
             <img src="images/deployment-cables-on-map.png"
