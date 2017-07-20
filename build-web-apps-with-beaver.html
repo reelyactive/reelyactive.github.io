@@ -123,14 +123,14 @@
             <p> To run the code, simply open the <b>index.html</b> file in your favourite web browser and you should see a screen like this: </p>
             <img src="images/beaver-example.png" class="img-responsive">
             <h2> Tap into your own data stream </h2>
-            <p> In the example code, <b>beaver.js</b> is sourcing data from https://www.hyperlocalcontext.com/reelyactive using socket.io. &nbsp; <i>If you browse to that URL, you won't see anything &mdash; it expects a websocket connection! </i> &nbsp; Next we'll point <b>beaver.js</b> to your own data stream. </p>
+            <p> In the example code, <b>beaver.js</b> is sourcing data from https://www.hyperlocalcontext.com/ using socket.io. &nbsp; <i>If you browse to that URL, you won't see anything &mdash; it expects a websocket connection! </i> &nbsp; Next we'll point <b>beaver.js</b> to your own data stream. </p>
             <p> Open the file <b>js/dashboard.js</b> and you should see DEFAULT_SOCKET_URL at the top.  This is where we tell <b>beaver.js</b> where to connect and listen.  Change it as follows: </p>
             <pre>DEFAULT_SOCKET_URL = 'http://localhost:3001';</pre>
             <p> Now, if you're running an hlc-server instance on the same machine, either as specified in the <a href="pareto-socket-client.html">Connect a websocket client to Pareto</a> tutorial, the <a href="make-a-pi-hub.html">Make a Raspberry Pi Hub</a> tutorial, or the <a href="https://www.npmjs.com/package/hlc-server#hello-hyperlocal-context" target="_blank">Hello Hyperlocal Context</a> example, you should be providing a live data feed on localhost:3001. </p>
             <p> Again, open (or refresh) the <b>index.html</b> file in your favourite web browser and you should see live data &mdash; <i>this time your own!</i> </p>
             <h2> How does the example work? </h2>
             <p> Before adapting the example, let's take a look at what each file does. </p>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-reelyactive">
               <caption> FILES IN THE BEAVER.JS EXAMPLE </caption>
               <thead>
                 <tr>
@@ -140,23 +140,23 @@
               </thead>
               <tbody>
                 <tr>
-                  <td> index.html </td>
+                  <th> index.html </th>
                   <td> The main file in the web application, it specifies to the browser all the supporting files to load and the viewable content.  You'll surely want to edit what's between the <i>body</i> tags. </td>
                 </tr>
                 <tr>
-                  <td> style/reelyactive.css </td>
+                  <th> style/reelyactive.css </th>
                   <td> The Cascading Style Sheet which defines the reelyActive look-and-feel.  Don't like <i>#0770a2</i> blue?  Change it in this file. </td>
                 </tr>
                 <tr>
-                  <td> js/dashboard.js </td>
+                  <th> js/dashboard.js </th>
                   <td> The main JavaScript code of the web application, it instructs beaver.js where to connect and listen, and does useful things with the real-time events that beaver.js emits.  You'll surely want to edit (at least) the <i>handleEvent(event)</i> function. </td>
                 </tr>
                 <tr>
-                  <td> js/beaver.js </td>
+                  <th> js/beaver.js </th>
                   <td> The JavaScript code that connects and listens to the data feed, processes it, and emits events for your own JavaScript code to handle.  There is no need to edit this code. </td>
                 </tr>
                 <tr>
-                  <td> js/socket.min.js </td>
+                  <th> js/socket.min.js </th>
                   <td> The JavaScript code by <a href="https://github.com/btford" target="_blank">btford</a> that implements socket.io for Angular.js.  There is no need to edit this code. </td>
                 </tr>
               </tbody>

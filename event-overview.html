@@ -106,7 +106,7 @@
   "event": "appearance"
 }
 </pre>
-            <table class="table table-hover table-reelyactive">
+            <table class="table table-striped table-reelyactive">
               <caption> BASIC EVENT PROPERTIES </caption>
               <thead>
                 <tr>
@@ -117,32 +117,32 @@
               </thead>
               <tbody>
                 <tr>
-                  <td> <tt>time</tt> </td>
+                  <th> <tt>time</tt> </th>
                   <td> Number </td>
                   <td> <p> The time at which the <b>event</b> occurred, represented as the number of milliseconds since the Unix epoch (January 1st, 1970 UTC). </p> <i><u>Example</u>:</i> <tt>1420075425678</tt> is equivalent to 01 Jan 2015 01:23:45.678 GMT. </td>
                 </tr>
                 <tr>
-                  <td> <tt>deviceId</tt> </td>
+                  <th> <tt>deviceId</tt> </th>
                   <td> String </td>
                   <td> <p> The (normally) unique identifier of the transmitting device to which the <b>event</b> corresponds.  Expressed as a lowercase hexadecimal string without colons or dashes.</p> <i><u>Example</u>:</i> <tt>"fee150bada55"</tt> is equivalent to the 48-bit BLE advertiser address <tt>fe:e1:50:ba:da:55</tt>.</td>
                 </tr>
                 <tr>
-                  <td> <tt>deviceAssociationIds</tt> </td>
+                  <th> <tt>deviceAssociationIds</tt> </th>
                   <td> Array of String </td>
                   <td> <p> The list of complementary device identifiers included in the payload(s) of the device.  Each is expressed as a lowercase hexadecimal string without colons or dashes.</p> <i><u>Example</u>:</i> <tt>[ "004c" ]</tt> is equivalent to the 16-bit BLE company identifier for Apple, Inc.</td>
                 </tr>
                 <tr>
-                  <td> <tt>receiverId</tt> </td>
+                  <th> <tt>receiverId</tt> </th>
                   <td> String </td>
                   <td> <p> The unique identifier of the receiver which detects the device with the strongest signal strength in relation to the corresponding <b>event</b>.  Expressed as a lowercase hexadecimal string without colons or dashes. </p> <i><u>Example</u>:</i> <tt>"001bc50940810000"</tt> is equivalent to the EUI-64 reelceiver address <tt>00-1b-c5-09-40-81-00-00</tt>. </td>
                 </tr>
                 <tr>
-                  <td> <tt>rssi</tt> </td>
+                  <th> <tt>rssi</tt> </th>
                   <td> Number </td>
                   <td> <p> The received signal strength indication (RSSI) as a unitless number, with greater values corresponding to greater received signal strength.  In the case of reelyActive reelceivers, each unit represents 0.5dBm and the offset is constant for a given model, allowing for direct comparison. </p> <i><u>Example</u>:</i> <tt>183</tt> is 1.5dBm stronger than <tt>180</tt>. </td>
                 </tr>
                 <tr>
-                  <td> <tt>event</tt> </td>
+                  <th> <tt>event</tt> </th>
                   <td> String </td>
                   <td> <p> The nature of the <b>event</b> which is of one of the following four types, further detailed in the next section: <ul><li><tt>"appearance"</tt> <li><tt>"keep-alive"</tt> <li><tt>"displacement"</tt> <li><tt>"disappearance"</tt> </ul> </p> </td>
                 </tr>
@@ -154,7 +154,7 @@
             </h3>
             <img src="images/service-events.gif"
                  class="img-responsive center-block">
-            <table class="table table-hover table-reelyactive">
+            <table class="table table-striped table-reelyactive">
               <thead>
                 <tr>
                   <th> Event type </th>
@@ -163,19 +163,19 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><tt> "appearance" </tt></td>
+                  <th><tt> "appearance" </tt></th>
                   <td> <p> Indicates that the device is detected for the first time at a point of interest. </p> <i> This means that either the device has come within range of a radio receiver or has started transmitting. </i> </td>
                 </tr>
                 <tr>
-                  <td><tt> "keep-alive" </tt></td>
+                  <th><tt> "keep-alive" </tt></th>
                   <td> <p> Indicates that the device continues to be detected and has not displaced. </p> <i> The keep-alive is sent periodically (typically every few seconds) to indicate that the device remains at the same point of interest. </i> </td>
                 </tr>
                 <tr>
-                  <td><tt> "displacement" </tt></td>
+                  <th><tt> "displacement" </tt></th>
                   <td> <p> Indicates that the device has moved closer to a different point of interest. </p> <i> Specifically, it indicates that the device is detected at a stronger RSSI by a different radio receiver than previously. </i> </td>
                 </tr>
                 <tr>
-                  <td><tt> "disappearance" </tt></td>
+                  <th><tt> "disappearance" </tt></th>
                   <td> <p> Indicates that the device is no longer detected at any point of interest. </p> <i> This means that the device has either gone out of range of all radio receivers or has stopped transmitting. </i> </td>
                 </tr>
               </tbody>
@@ -197,7 +197,7 @@
   "receiverDirectory": "farm:barn"
 }
 </pre>
-            <table class="table table-hover table-reelyactive">
+            <table class="table table-striped table-reelyactive">
               <caption> CONTEXTUAL EVENT PROPERTIES </caption>
               <thead>
                 <tr>
@@ -208,27 +208,27 @@
               </thead>
               <tbody>
                 <tr>
-                  <td> <tt>deviceUrl</tt> </td>
+                  <th> <tt>deviceUrl</tt> </th>
                   <td> String </td>
                   <td> <p> The Uniform Resource Locator (URL) associated with the device, at which metadata is expected to be found. </p> <i><u>Example</u>:</i> <tt>"https://myjson.info/stories/test"</tt> points to the profile for our mascot. </td>
                 </tr>
                 <tr>
-                  <td> <tt>deviceTags</tt> </td>
+                  <th> <tt>deviceTags</tt> </th>
                   <td> Array of String </td>
                   <td> <p> Each tag represents a classifier for the device, which can be used to facilitate filtering and querying. </p> <i><u>Example</u>:</i> <tt>[ "mascot", "reelyActive" ]</tt> would classify the device as being associated with both a <i>mascot</i> and <i>reelyActive</i>. </td>
                 </tr>
                 <tr>
-                  <td> <tt>receiverUrl</tt> </td>
+                  <th> <tt>receiverUrl</tt> </th>
                   <td> String </td>
                   <td> <p> The Uniform Resource Locator (URL) associated with the receiver, at which metadata is expected to be found. </p> <i><u>Example</u>:</i> <tt>"https://sniffypedia.org/Product/reelyActive_RA-R436/"</tt> points to the profile for a reelyActive reelceiver. </td>
                 </tr>
                 <tr>
-                  <td> <tt>receiverTags</tt> </td>
+                  <th> <tt>receiverTags</tt> </th>
                   <td> Array of String </td>
                   <td> <p> Each tag represents a classifier for the receiver, which can be used to facilitate filtering and querying. </p> <i><u>Example</u>:</i> <tt>[ "indoors" ]</tt> would classify the receiver as being associated with <i>indoors</i>. </td>
                 </tr>
                 <tr>
-                  <td> <tt>receiverDirectory</tt> </td>
+                  <th> <tt>receiverDirectory</tt> </th>
                   <td> String </td>
                   <td> <p> The hierarchical directory structure which specifies the semantic location of one or more points of interest.  The levels of hierarchy are colon-separated. </p> <i><u>Example</u>:</i> <tt>"farm:barn"</tt> indicates a semantic location called <i>barn</i> contained within a semantic location called <i>farm</i>. </td>
                 </tr>
@@ -248,7 +248,7 @@
   "positioningMethod": "strongestReceiver"
 }
 </pre>
-            <table class="table table-hover table-reelyactive">
+            <table class="table table-striped table-reelyactive">
               <caption> POSITIONING EVENT PROPERTIES </caption>
               <thead>
                 <tr>
@@ -259,12 +259,12 @@
               </thead>
               <tbody>
                 <tr>
-                  <td> <tt>position</tt> </td>
+                  <th> <tt>position</tt> </th>
                   <td> Array of Number </td>
                   <td> <p> The estimated real-time position of the device, represented as a GeoJSON position.  The array consists of either two or three values, representing a 2D or 3D position, respectively. </p> <i><u>Example</u>:</i> <tt>[ 0.0, 0.0 ]</tt> is the origin in 2D. </td>
                 </tr>
                 <tr>
-                  <td> <tt>positioningMethod</tt> </td>
+                  <th> <tt>positioningMethod</tt> </th>
                   <td> String </td>
                   <td> <p> The name of the method used to estimate the position. </p> <i><u>Example</u>:</i> <tt>strongestReceiver</tt> simply applies the position of the strongest receiver of the device's transmissions. </td>
                 </tr>
