@@ -280,10 +280,32 @@
 <pre>
 {
   /* In addition to the event properties above... */
-  "sessionId": "341f64ce-c001-babe-d0e5-cbf75095135e"
+  "sessionId": "341f64ce-c001-babe-d0e5-cbf75095135e",
+  "sessionDuration": 600000
 }
 </pre>
-            <p> Description to come. </p>
+            <table class="table table-striped table-reelyactive">
+              <caption> SESSION EVENT PROPERTIES </caption>
+              <thead>
+                <tr>
+                  <th> Property </th>
+                  <th> Type </th>
+                  <th> Description </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th> <tt>sessionId</tt> </th>
+                  <td> String </td>
+                  <td> <p> The 128-bit UUID assigned to the device's current session.  Generated deterministically from the device's identifier(s).  It is the physical analog to a Google Analytics <tt>clientId</tt> which "anonymously identifies a browser instance." </p> <i> A device with a non-cyclic identifier will always generate the same sessionId. </td>
+                </tr>
+                <tr>
+                  <th> <tt>sessionDuration</tt> </th>
+                  <td> Number </td>
+                  <td> <p> The duration, in milliseconds, since the start of the current session.  Once a session expires (after 5 minutes of non-detection, by default), any subsequent session will start with a <tt>sessionDuration</tt> of 0. </p> <i><u>Example</u>:</i> <tt>60000</tt> represents a session that has lasted 1 minute so far. </td>
+                </tr>
+              </tbody>
+            </table>
             <p> &nbsp; </p>
             <h2> Where do events come from? </h2>
             <img src="images/pareto-by-reelyactive.jpg"
