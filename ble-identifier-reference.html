@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Bluetooth Low Energy (BLE) identifier reference | diyActive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A just-technical-enough overview of BLE device identification, including examples of device behaviour.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="http://www.reelyactive.com" target="_blank">
+                    reelyActive website
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://getpareto.com" target="_blank">
+                    Pareto by reelyActive
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://reelyactive.com/blog/" target="_blank">
+                    Our blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <h1>
+              Bluetooth Low Energy (BLE) Identifier Reference <br>
+              <small> Overview of BLE device identification </small> 
+            </h1>
+            <p> At reelyActive, we often get asked questions like <i>"how much can one know about a person's smartphone from its Bluetooth packets?"</i> or <i>"can I recognise subsequent visits of the same device?"</i> &nbsp; This is intended to be a just-technical-enough reference for anyone to not only find answers to such questions but, more importantly, to understand why. </p>
+            <p> The following is a primer on radio-frequency identification using BLE.  Specifics on the identifiers can be found below. </p>.
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe src="//www.slideshare.net/slideshow/embed_code/key/8vIKvMlPpRIveE" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+            </div>
+            <h2> Mandatory identifier <br>
+                 <small> What has 48-bits and comes in three flavours? </small> </h2>
+            <p> The <b>advertiser address</b> is the one and only mandatory identifier in a BLE advertising packet.  It has the form <tt>12:34:56:78:9a:bc</tt>. </p>
+            <p> BLE includes a feature which allows this identifier to be either <b><i>public</i></b> (IEEE-assigned) or <b><i>random</i></b> (manufacturer-assigned).  Moreover, when random, the device manufacturer is free to change the identifier dynamically, should they so choose.  The result is the following three flavours: </p>
+            <ul>
+              <li>
+                <tt>public static</tt>
+                <ul>
+                  <li> manufacturer selects unique identifier from a block of IEEE-assigned addresses </li>
+                  <li> by definition, this identifier must remain static </li>
+                </ul>
+              </li>
+              <li>
+                <tt>random static</tt>
+                <ul>
+                  <li> manufacturer assigns unique identifier at its discretion </li>
+                  <li> manufacturer elects for this identifier to remain static </li>
+                </ul>
+              </li>
+              <li>
+                <tt>random dynamic</tt>
+                <ul>
+                  <li> manufacturer assigns unique identifier at its discretion </li>
+                  <li> manufacturer elects to change this identifier periodically </li>
+                </ul>
+              </li>
+            </ul>
+            <p> There <i>IS</i> a mandatory flag to indicate whether the address is public or random.  However, there <i>IS NOT</i> a flag to indicate whether a random address is static or dynamic.  In other words: </p>
+            <blockquote> the only way to know if a device's <i>random</i> advertiser address will periodically change is through observation </blockquote>
+
+            <table class="table table-striped table-reelyactive">
+              <caption> COMMON QUESTIONS ABOUT THE 48-BIT ADVERTISER ADDRESS </caption>
+              <thead>
+                <tr>
+                  <th> Question </th>
+                  <th> <tt>public static</tt> </th>
+                  <th> <tt>random static</tt> </th>
+                  <th> <tt>random dynamic</tt> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> Can I implicitly recognise the product? </td>
+                  <td> No* </td>
+                  <td> No </td>
+                  <td> No </td>
+                </tr>
+                <tr>
+                  <td> Can I explicitly associate with a person/product? </td>
+                  <td> Yes </td>
+                  <td> Yes </td>
+                  <td> No </td>
+                </tr>
+                <tr>
+                  <td> Can I recognise the device again if it leaves and comes back? </td>
+                  <td> Yes </td>
+                  <td> Yes </td>
+                  <td> No </td>
+                </tr>
+                <tr>
+                  <td> Is the identifier guaranteed to be unique? </td>
+                  <td> Yes </td>
+                  <td> No </td>
+                  <td> No </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="text-right"> <i>*it is nonetheless possible to look up the chip manufacturer from <a href="https://regauth.standards.ieee.org/standards-ra-web/pub/view.html#registries" target="_blank">this registry</a>.</i> </p>
+            <h2> Optional identifiers <br>
+                 <small> But wait, there may be more! </small> </h2>
+            <p> Beyond the mandatory identifier, the standard BLE advertising packet supports up to 31 bytes more payload which may contain additional identifiers. </p>
+            <h3> 16-bit UUID </h3>
+            <p> A <b>16-bit UUID</b> represents a defined service.  It has the form <tt>0x1234</tt>. </p>
+            <p> The Bluetooth SIG has reserved a block of 512 such UUIDs for member companies, <a href="https://www.bluetooth.com/specifications/assigned-numbers/16-bit-uuids-for-members" target="_blank">listed here</a>.  It is therefore possible to look up the member company from the UUID.  reelyActive maintains this lookup feature in <a href="https://sniffypedia.org" target="_blank">Sniffypedia</a>. </p>
+            <h4> Eddystone </h4>
+            <p> Google's <b>Eddystone</b> service uses the UUID <b><tt>0xfeaa</tt></b>.  More details to come. </p>
+            <h3> Manufacturer Specific Data </h3>
+            <p> Manufacturer Specific Data is accompanied by a 16-bit company identifier.  It has the form <tt>0x1234</tt>. </p>
+            <p> The Bluetooth SIG assigns the company identifiers which are <a href="https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers" target="_blank">listed here</a>.  It is therefore possible to look up the member company from the company identifier.  reelyActive maintains this lookup feature in <a href="https://sniffypedia.org" target="_blank">Sniffypedia</a>. </p>
+            <h4> iBeacon </h4>
+            <p> <b>Apple</b> is assigned the company code <b><tt>0x004c</tt></b>.  More details to come. </p>
+            <!--<h3> Local Name </h3>
+            <p> Bob's iPhone. </p>-->
+            <hr>
+            <h2> What's next? </h2>
+            <p> Explore Sniffypedia, check out advlib, or return to the diyActive home page. </p>
+            <p class="text-center">
+              <a class="btn btn-default" href="https://sniffypedia.org"
+                 role="button"> Sniffypedia </a>
+              <a class="btn btn-default" href="https://github.com/reelyactive/advlib#advlib"
+                 role="button"> advlib </a>
+              <a class="btn btn-success" href="/"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
+        <a href="http://www.reelyactive.com"
+           uib-tooltip="We believe in an open Internet of Things"
+           tooltip-placement="right">
+          &copy; reelyActive 2017
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
