@@ -162,26 +162,74 @@
             <uib-tabset uib-collapse="!showPrep">
               <p> Choose from one of the three options below: </p>
               <uib-tab heading="Quickest">
-                <p> Setup your SD card from a disk image that <i>already</i> has Jessie Lite, Node.js and our software installed.  This is the <i>same</i> setup as in the <b>From Scratch</b> option, except we did most of the work for you so that you can skip ahead for instant gratification! </p>
+                <blockquote> Setup your SD card from a disk image that <i>already</i> has Stretch Lite, Node.js and our software installed.  This is the <i>same</i> setup as in the <b>From Scratch</b> option, except we did most of the work for you so that you can skip ahead for instant gratification! </blockquote>
                 <h3> SD Card </h3>
-                <p> Download our compressed disk image <a href="https://reelyactive.com/downloads/2017-03-15-reelyactive-pi-suite.tar.xz" target="_blank">2017-03-15-reelyactive-pi-suite.tar.xz</a>. </p>
-                <p> Unzip this file to obtain the 1.4GB disk image: <i>2017-03-15-reelyactive-pi-suite.img</i> </p>
-                <p> Then follow the instructions (<a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md" target="_blank">Linux</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md" target="_blank">Mac</a> or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank">Windows</a>) to transfer the image to an SD card of at least 4GB. </p>
-                <p> The image is pre-configured as follows: </p>
-                <ul>
-                  <li> Jessie Lite (2017-03-02)
-                  <li> Node.js v6.10.0
-                  <li> reelyActive pi-suite@0.2.5
-                  <li> Ethernet fallback to IP 10.0.50.100
-                  <li> ssh enabled with password <i>berryinsecure</i>
-                </ul>
+                <p> Download our compressed disk image which is pre-configured as follows. </p>
+                <p class="text-center">
+                  <a href="https://reelyactive.com/downloads/2017-09-04-reelyactive-pi.tar.xz" class="btn btn-default">Download disk image</a>
+                </p>
+                <table class="table table-striped table-reelyactive">
+                  <caption> REELYACTIVE-PI DISK IMAGE CONFIGURATION </caption>
+                  <thead>
+                    <tr>
+                      <th> Parameter </th>
+                      <th> Value </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> Disk Image Version </td>
+                      <td> 2017-09-04-reelyactive-pi </td>
+                    </tr>
+                    <tr>
+                      <td> Raspbian Version </td>
+                      <td> Stretch Lite (2017-08-16) </td>
+                    </tr>
+                    <tr>
+                      <td> Node.js Version </td>
+                      <td> 6.11.2 </td>
+                    </tr>
+                    <tr>
+                      <td> Pre-installed software </td>
+                      <td> <a href="https://github.com/reelyactive/pi-suite" target="_blank">pi-suite</a>, <a href="https://www.npmjs.com/package/generable" target="_blank">generable</a>, <a href="https://reelyactive.github.io/install-an-offline-demo.html" target="_blank">offline-demo</a> </td>
+                    </tr>
+                    <tr>
+                      <td> Pre-configured WiFi </td>
+                      <td> SSID: <i>reelyActive</i>, password: <i>owl-in-one</i> </td>
+                    </tr>
+                    <tr>
+                      <td> Pre-configured Ethernet </td>
+                      <td> DHCP client with fallback to DHCP server, IP: <i>10.0.50.100</i> </td>
+                    </tr>
+                    <tr>
+                      <td> Hostname </td>
+                      <td> reelyActive-pi </td>
+                    </tr>
+                    <tr>
+                      <td> SSH </td>
+                      <td> Enabled. Username: <b>pi</b>, password: <b>berryinsecure</b>. </td>
+                    </tr>
+                    <tr>
+                      <td> Serial </td>
+                      <td> Hardware enabled.  Login disabled. </td>
+                    </tr>
+                    <tr>
+                      <td> I2C </td>
+                      <td> Enabled </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p> Unzip <i>2017-09-04-reelyactive-pi.tar.xz</i> to obtain the 2.1GB disk image: <i>2017-09-04-reelyactive-pi.img</i> </p>
+                <p> Transfer the image to an SD card of at least 4GB.  There's finally a friendly, cross-platform way to do this using <a href="https://etcher.io/">Etcher</a>:</p>
+                <img src="images/piHub-etcher.png"
+                     class="img-responsive center-block">
                 <h3> First Connection </h3>
                 <p> Complete the following in order: </p>
                 <ol>
                   <li> insert the SD card in the Pi
                   <li> connect the Pi to your PC via a network cable
                   <li> apply power to the Pi
-                  <li> configure your PC's Ethernet adapter to use an address in the same subnet as the Pi (ex: 10.0.50.101)
+                  <li> wait about one minute for the Pi to boot
                 </ol>
                 <p> From the command line, ssh into the Pi as follows: </p>
                 <pre>ssh pi@10.0.50.100</pre>
@@ -189,20 +237,32 @@
                 <h3> raspi-config </h3>
                 <p> Configure the Pi by running the following from the command line: </p>
                 <pre>sudo raspi-config</pre>
-                <p> From the text-based menu, select the option to change the user password. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in.  Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot.</p>
+                <p> From the text-based menu, complete the following: </p>
+                <ol>
+                  <li> Select the option to <i>Change User Password</i>. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in. </li>
+                  <li> Select the option to <i>Expand Filesystem</i> under Advanced Options.  This will ensure that all of the available space on the SD card is available. </li>
+                </ol>
+                <p> Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot. </p>
                 <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> &nbsp; <b> Skip ahead to <a href="make-a-pi-hub.html#startsniffing">Start Sniffing!</a> </b> </p>
               </uib-tab>
               <uib-tab heading="From Scratch">
-                <p> This is the <i>same</i> setup as in the <b>Quickest</b> option, only starting from scratch using the latest Jessie Lite image and the most recent versions of Node.js and our software. </p>
+                <blockquote> This is the <i>same</i> setup as in the <b>Quickest</b> option, only starting from scratch using the latest Stretch Lite image and the most recent versions of Node.js and our software. </blockquote>
                 <h3> SD Card </h3>
-                <p> Download the latest Raspbian Jessie Lite image from <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">www.raspberrypi.org/downloads/raspbian/</a>.  Then follow the instructions (<a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md" target="_blank">Linux</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md" target="_blank">Mac</a> or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md" target="_blank">Windows</a>) to transfer the image to an SD card of at least 4GB. </p>
+                <p> Download the latest Raspbian Stretch Lite image from <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">www.raspberrypi.org/downloads/raspbian/</a>. </p>
+                <p> Transfer the image to an SD card of at least 4GB.  There's finally a friendly, cross-platform way to do this using <a href="https://etcher.io/">Etcher</a>:</p>
+                <img src="images/piHub-etcher.png"
+                     class="img-responsive center-block">
                 <h3> Basic settings </h3>
                 <p> Enable SSH (it is disabled by default) by browsing to the root of the /boot folder of the SD card and running from the command line: </p>
                 <pre>sudo touch ./ssh</pre>
+                <p> Disable consistent network device naming (introduced in Stretch) by editing the cmdline.txt file in the same /boot folder: </p>
+                <pre>sudo nano /boot/cmdline.txt</pre>
+                <p> Paste the following to the end of the first line of the file and save: </p>
+                <pre> net.ifnames=0</pre>
                 <p> Enable Ethernet static fallback so that you can directly connect the Pi to your PC and SSH in to a known IP address.  Browse to the root of the / folder of the SD card and, from the command line open the dhcpcd.conf file for editing: </p>
                 <pre>sudo nano /etc/dhcpcd.conf</pre>
                 <p> Paste the following lines at the bottom of the file and save: </p>
-                <pre>
+                <pre> 
 # Define static profile
 profile static_eth0
 static ip_address=10.0.50.100/24
@@ -225,14 +285,36 @@ fallback static_eth0
                 <p> From the command line, ssh into the Pi as follows: </p>
                 <pre>ssh pi@10.0.50.100</pre>
                 <p> The default password will be <i>raspberry</i>. You're now connected to the Pi. </p>
+                <h3> dnsmasq </h3>
+                <p> Configure the Pi to act as a DHCP server on the Ethernet port when no external DHCP server is available.  From the command line, run the following: </p>
+                <pre> 
+sudo apt-get install dnsmasq
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.default
+                </pre>
+                <p> This will install the dnsmasq software.  Configure the DHCP server by creating and editing the new dnsmasq.conf file: </p>
+                <pre>sudo nano /etc/dnsmasq.conf</pre>
+                <p> Paste in the following lines and save: </p>
+                <pre> 
+interface=eth0
+dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h
+                </pre>
+                <p> This will configure the Ethernet interface to serve IP addresses in the range from 10.0.50.2-99 using DHCP, with a 12-hour lease. Restart the service from the command line for changes to take effect: </p>
+                <pre>sudo service dnsmasq restart</pre>
                 <h3> raspi-config </h3>
                 <p> Configure the Pi by running the following from the command line: </p>
                 <pre>sudo raspi-config</pre>
-                <p> From the text-based menu, select the option to change the user password. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in.  Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot.</p>
+                <p> From the text-based menu, complete the following: </p>
+                <ol>
+                  <li> Select the option to <i>Change User Password</i>. Choose a password that cannot be easily guessed, but is nonetheless straightforward to enter from the command line next time you'll ssh in. </li>
+                  <li> Select the option to <i>Expand Filesystem</i> under Advanced Options.  This will ensure that all of the available space on the SD card is available. </li>
+                  <li> Select the option for <i>Serial</i> under Interfacing Options.  Select <i>No</i> to a login shell being accessible over serial.  Select <i>Yes</i> to enable the serial port hardware. </li>
+                  <li> Select the option for <i>I2C</i> under Interfacing Options.  Select <i>Yes</i> to enable the ARM I2C interface. </li>
+                </ol>
+                <p> Select <i>Finish</i>, then select <i>Yes</i> when asked to reboot. </p>
                 <p> SSH back into the Pi once the reboot is complete (using the new password).  <i>The Pi is ready!</i> </p>
               </uib-tab>
               <uib-tab heading="NOOBS with GUI">
-                <p> Take this beginner-friendly route if you intend to run your Pi as a multi-purpose computer with mouse and keyboard attached.  Otherwise we highly recommend the other options which are optimised for performance. </p>
+                <blockquote> Take this beginner-friendly route if you intend to run your Pi as a multi-purpose computer with mouse and keyboard attached.  Otherwise we highly recommend the other options which are optimised for performance. </blockquote>
                 <h3> SD Card </h3>
                 <p> The Pi's filesystem resides on an SD card.  If your Pi came with a prepared SD card, lucky you, you get to skip this step! </p>
                 <p> The <a href="https://www.raspberrypi.org/help/quick-start-guide/" target="_blank">Quick Start Guide</a> suggests an 8GB class 4 SD card, which we encourage you to purchase from an established vendor.  If the card doesn't come formatted as FAT32, you'll need to do so (read the INSTRUCTIONS-README.txt included in the NOOBS ZIP file). </p>
@@ -278,8 +360,8 @@ sudo apt-get upgrade
               <table class="table">
                 <tr>
                   <th> Raspberry Pi 3 </th>
-                  <td> node-v6.9.2-linux-armv7l </td>
-                  <td> <a href="https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-armv7l.tar.xz"> URL </a> </td>
+                  <td> node-v6.11.2-linux-armv7l </td>
+                  <td> <a href="https://nodejs.org/dist/v6.11.2/node-v6.11.2-linux-armv7l.tar.xz"> URL </a> </td>
                 </tr>
                 <tr>
                   <th> Raspberry Pi Zero (W) </th>
@@ -290,14 +372,14 @@ sudo apt-get upgrade
               <p> From the command line on the Pi, execute the following in order, substituting the URL and Node version as per the table above: </p>
               <pre> 
 cd ~/Downloads
-wget https://nodejs.org/dist/v6.9.2/node-v6.9.2-linux-armv7l.tar.xz
-tar -xf node-v6.9.2-linux-armv7l.tar.xz
-sudo mv node-v6.9.2-linux-armv7l /usr/local/node
+wget https://nodejs.org/dist/v6.11.2/node-v6.11.2-linux-armv7l.tar.xz
+tar -xf node-v6.11.2-linux-armv7l.tar.xz
+sudo mv node-v6.11.2-linux-armv7l /usr/local/node
 cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/node node
 sudo ln -s /usr/local/node/bin/npm npm
               </pre>
-              <p> Confirm that v6.9.2 (or the version you installed) appears when you run <code>node --version</code>.  Node.js is now installed. </p>
+              <p> Confirm that v6.11.2 (or the version you installed) appears when you run <code>node --version</code>.  Node.js is now installed. </p>
               <h3> Install forever </h3>
               <pre> 
 cd /usr/local/bin
@@ -315,7 +397,7 @@ sudo ln -s /usr/local/node/bin/forever forever
               <p> If the output is something like <b>vx.x.x</b>, you do indeed have Node.js installed.  Repeat the test with <code>forever --version</code>.  If both are installed, click <a ng-click="node = true"><i>Yes</i></a> above.  Otherwise click <a ng-click="node = false"><i>No</i></a> above. </p>
             </div>
             <h2> Install pi-suite </h2>
-            <p> The <b>pi-suite</b> is a collection of <a href="http://reelyactive.github.io/?tab=software" target="_blank">reelyActive open source software</a> which allows your Pi to: </p>
+            <p> The <b>pi-suite</b> is a collection of <a href="open-source-software.html" target="_blank">reelyActive open source software</a> which allows your Pi to: </p>
             <ul>
               <li> listen for BLE devices by itself (Raspberry Pi 3+)
               <li> listen for BLE devices via a reelyActive starter kit
@@ -324,7 +406,7 @@ sudo ln -s /usr/local/node/bin/forever forever
               <li> display these webpages via HDMI
               <li> forward the live data stream to a remote server
             </ul>
-            <p> If you're running <i>Jessie Lite</i>, you'll first need to install git by running &nbsp; <tt>sudo apt-get install git-core</tt> &nbsp; from the command line. </p>
+            <p> If you're running the <i>Lite</i> version of Raspian Stretch or Jessie, you'll first need to install git by running &nbsp; <tt>sudo apt-get install git-core</tt> &nbsp; from the command line. </p>
             <p> From the command line on the Pi, execute the following in order: </p>
             <pre> 
 mkdir ~/reelyActive
@@ -415,7 +497,7 @@ sudo apt install iceweasel
 sudo apt-get install matchbox-window-manager xautomation unclutter
               </pre>
               <h4> Install Xorg (special case) </h4>
-              <p> This step applies <u>only</u> if your Pi is running <i>Jessie Lite</i> which doesn't have a GUI pre-installed.  If you're already able to boot into a friendly desktop environment, <i> skip this step </i>.  From the command line, execute the following: </p>
+              <p> This step applies <u>only</u> if your Pi is running the <i>Lite</i> version of Raspbian Stretch or Jessie which doesn't have a GUI pre-installed.  If you're already able to boot into a friendly desktop environment, <i> skip this step </i>.  From the command line, execute the following: </p>
               <pre> 
 sudo apt-get install --no-install-recommends xserver-xorg
 sudo apt-get install --no-install-recommends xinit
@@ -432,7 +514,7 @@ sleep 30; xte "key F11" -x:0
               <h3> Configure console autologin </h3>
               <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i> (which may be under a Desktop/CLI sub-menu). </p>
               <h3> Reboot </h3>
-              <p> Reboot the Pi with the command <code>sudo reboot</code> or with a power cycle.  Confirm that after a minute or so you can browse to the Pi and observe the webpage decoding BLE devices.  Also confirm that the webpage is projected on an HDMI-connected monitor (connect the monitor <i>before</i> the reboot so that the resolution can be detected). </p>
+              <p> Reboot the Pi with the command <code>sudo reboot now</code> or with a power cycle.  Confirm that after a minute or so you can browse to the Pi and observe the webpage decoding BLE devices.  Also confirm that the webpage is projected on an HDMI-connected monitor (connect the monitor <i>before</i> the reboot so that the resolution can be detected). </p>
             </div>
             <!----- Don't configure kiosk ----->
             <div ng-show="kiosk === false">
