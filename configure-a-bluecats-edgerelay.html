@@ -89,7 +89,7 @@
               Configure a BlueCats Edge Relay <br>
               <small> To interface with reelyActive's open source software </small> 
             </h1>
-            <p> The BlueCats Edge Relay is a versatile BLE edge device which may be configured to scan and send all real-time packets to an endpoint running reelyActive open source software.  This tutorial provides the steps to achieve such a configuration. </p>
+            <p> The BlueCats Edge Relay is a versatile BLE edge device which may be configured to scan and send all real-time packets to an endpoint running <a href="open-source-software.html">reelyActive open source software</a>.  This tutorial provides the steps to achieve such a configuration. </p>
             <h2> Connect to the Edge Relay <br>
                  <small> To access the web configuration utility </small> </h2>
             <p> See BlueCats' GitHub page with all the steps for connecting your computer to Edge Relay so that you can access its web configuration utility.  Additionally, follow the instructions to connect the Edge Relay to WiFi.  It is <b><i>not</i></b> required to register with the BlueCats Cloud. </p>
@@ -129,7 +129,20 @@
             <img src="images/bluecats-edge-advanced.png" class="img-responsive">
             <h2> Confirm reception of the data stream <br>
                  <small> Listen on the target machine </small> </h2>
-            <p> Details for listening using barnowl or hlc-server coming soon. </p>
+            <p> Run an instance of <a href="https://www.npmjs.com/package/hlc-server" target="_blank">hlc-server</a> on the target machine to observe the real-time data (requires <a href="https://nodejs.org" target="_blank">Node.js</a>).  Paste the following into a file called <b>server.js:</b> </p>
+            <pre> 
+const server = require('hlc-server');
+
+var app = new server();
+
+// Replace xxx below with the IP address of the server
+app.bind( { protocol: "bluecats-udp", path: "xxx.xxx.xxx.xxx:9942" } );
+            </pre>
+            <p> Then from the command line, in the same folder as <b>server.js</b>, run the following: </p>
+            <p> <code> npm install hlc-server </code> &nbsp; to install the prerequisite software packages, then </p>
+            <p> <code> node server </code> &nbsp; to run the software. </p>
+            <p>  Point your web browser to port 3001 of the server (ex: http://xxx.xxx.xxx.xxx.:3001) and observe the real-time data. </p>
+            <img src="images/hlcLanding.png" class="img-responsive">
             <h2> Simply interested in the real-time data? </h2>
             <img src="images/pareto-by-reelyactive.jpg"
                  class="img-responsive center-block"><br>
