@@ -142,7 +142,29 @@ app.bind( { protocol: "bluecats-udp", path: "xxx.xxx.xxx.xxx:9942" } );
             <p> <code> npm install hlc-server </code> &nbsp; to install the prerequisite software packages, then </p>
             <p> <code> node server </code> &nbsp; to run the software. </p>
             <p>  Point your web browser to port 3001 of the server (ex: http://xxx.xxx.xxx.xxx.:3001) and observe the real-time data. </p>
-            <img src="images/hlcLanding.png" class="img-responsive">
+            <div uib-carousel interval="4000">
+              <div uib-slide index="0">
+                <img ng-src="images/piHub-hlc-960.png"
+                     class="img-responsive">
+                <div class="carousel-caption">
+                  <h1> hlc-server </h1>
+                </div>
+              </div>
+              <div uib-slide index="1">
+                <img ng-src="images/piHub-dashboard.png"
+                     class="img-responsive">
+                <div class="carousel-caption">
+                  <h1> Dashboard </h1>
+                </div>
+              </div>
+              <div uib-slide index="2">
+                <img ng-src="images/piHub-bubblescape.jpg"
+                     class="img-responsive">
+                <div class="carousel-caption">
+                  <h1> The bubblescape </h1>
+                </div>
+              </div>
+            </div><br>
             <h2> Simply interested in the real-time data? </h2>
             <img src="images/pareto-by-reelyactive.jpg"
                  class="img-responsive center-block"><br>
