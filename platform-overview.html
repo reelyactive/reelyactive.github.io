@@ -106,7 +106,7 @@
               Devices <br>
               <small> Radio-identifiable "things" of the real world (BYOD) </small>
             </h2>
-            <img src="images/overview-devices.jpg"
+            <img src="images/overview-devices.png"
                  class="img-responsive center-block"> <br>
             <blockquote> While there are tens of billions of <b><i>connected</i></b> devices, there are orders of magnitude more <b><i>identifiable</i></b> devices.  Our platform supports BYOD (bring-your-own-device) for <b><i>both</i></b>, identifying and locating all such devices in the real-world in real-time. </blockquote>
             <p class="text-center" ng-hide="hideDevices">
@@ -114,15 +114,104 @@
                       ng-click="hideDevices = !hideDevices">Show me more</button>
             </p>
             <div uib-collapse="!hideDevices">
-              Here's more about devices.
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-reelyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Towards collective hyperlocal contextual awareness
+among heterogeneous RFID systems </b> <br>
+                    Combining the strengths BLE and UHF passive RFID.
+                  </p>
+                  <a href="http://www.reelyactive.com/science/" target="_blank"
+                     class="btn btn-xs btn-default"> View scientific publication </a>
+                </div>
+              </div>
+              <h3>
+                Bluetooth Low Energy (BLE) <br>
+                <small> The global standard for active RFID </small>
+              </h3>
+              <p> Billions of Bluetooth devices are shipping annually and these include smartphones which can make people anonymously or uniquely identifiable, wearables, and beacons which may be affixed to objects or to physical places. </p>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> BLE Device Identifier Reference </b> <br>
+                    How are BLE devices identified?
+                  </p>
+                  <a href="ble-identifier-reference.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Integrate your Mobile Application </b> <br>
+                    How to make your app visible to BLE infrastructure.
+                  </p>
+                  <a href="integrate-your-mobile-app.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Integrate your Product </b> <br>
+                    How to make your BLE device visible to infrastructure.
+                  </p>
+                  <a href="integrate-your-product.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <h3>
+                Sub-GHz Active RFID <br>
+                <small> reelyActive's proprietary system </small>
+              </h3>
+              <p> Sub-GHz Active RFID is similar to BLE but operates at a lower radio frequency with better propagation characteristics and offers the benefit of <i>security by obscurity</i>.  BLE being far more cost-effective, proprietary active RFID is typically employed only where these factors are critical. </p>
+              <table class="table table-bordered table-reelyactive">
+                <caption> REELYACTIVE SUB-GHZ ACTIVE RFID TAGS </caption>
+                <tbody>
+                  <tr>
+                    <td> 915MHz Active RFID Tag (Americas) </td>
+                    <td> 
+                      <a href="https://shop.reelyactive.com/products/ra-t411"
+                         class="btn btn-xs btn-default"
+                         target="_blank" > View in online store </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 868MHz Active RFID Tag (Europe) </td>
+                    <td> Special order only </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3>
+                RAIN RFID <br>
+                <small> The global standard for long-range passive RFID </small>
+              </h3>
+              <p> RAIN RFID devices are shipping on at least an order of magnitude more than BLE, and are typically used for item-level tracking.  We have demonstrated the compatibility of UHF passive RFID with our technology platform and are currently integrating the protocol into our software and libraries. </p>
             </div>
+            <p> &nbsp; </p>
 
             <!----- Reels --------------------------------------------------->
             <h2 id="reels">
               Reels <br>
               <small> Our industrial-grade transceiver infrastructure </small>
             </h2>
-            <img src="images/overview-reel.jpg"
+            <img src="images/overview-reel.png"
                  class="img-responsive center-block"> <br>
             <blockquote> At reelyActive, we developed the reel architecture to reliably and cost-effectively extend coverage over wide areas.  This daisy-chain configuration also provides flexible location granularity. </blockquote>
             <p class="text-center" ng-hide="hideReel">
@@ -130,8 +219,75 @@
                       ng-click="hideReel = !hideReel">Show me more</button>
             </p>
             <div uib-collapse="!hideReel">
-              Here's more about the reel.
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Reel Deployment </b> <br>
+                    How do I deploy reels in my physical space?
+                  </p>
+                  <a href="reel-deployment.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Reel Overview </b> <br>
+                    Understand and interface with our reel architecture.
+                  </p>
+                  <a href="reel-overview.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-reelyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Towards a Simple, Versatile, Distributed Low-Power Wireless M2M Infrastructure </b> <br>
+                    The science behind the reel and low-power wireless infrastructure.
+                  </p>
+                  <a href="http://www.reelyactive.com/science/" target="_blank"
+                     class="btn btn-xs btn-default"> View scientific publication </a>
+                </div>
+              </div>
+              <table class="table table-bordered table-reelyactive">
+                <caption> REELYACTIVE REELCEIVERS </caption>
+                <tbody>
+                  <tr>
+                    <td> Bluetooth Low Energy Reelceiver </td>
+                    <td> 
+                      <a href="https://shop.reelyactive.com/products/ra-r436"
+                         class="btn btn-xs btn-default"
+                         target="_blank" > View in online store </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 915MHz Active RFID Reelceiver (Americas) </td>
+                    <td> 
+                      <a href="https://shop.reelyactive.com/products/ra-r432"
+                         class="btn btn-xs btn-default"
+                         target="_blank" > View in online store </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 868MHz Active RFID Reelceiver (Europe) </td>
+                    <td> Special order only </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            <p> &nbsp; </p>
 
             <!----- Gateways and Infrastructure ----------------------------->
             <h2 id="gateways">
@@ -146,8 +302,75 @@
                       ng-click="hideGateways = !hideGateways">Show me more</button>
             </p>
             <div uib-collapse="!hideGateways">
-              Here's more about gateways.
+              <table class="table table-bordered table-reelyactive">
+                <caption> REELYACTIVE GATEWAYS </caption>
+                <tbody>
+                  <tr>
+                    <td> Owl-in-One (BLE) </td>
+                    <td> 
+                      <a href="https://shop.reelyactive.com/products/owl-in-one-ble"
+                         class="btn btn-xs btn-default"
+                         target="_blank" > View in online store </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3>
+                Connectivity for Reels <br>
+                <small> Connect a reel to our software </small>
+              </h3>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Build your own Hub </b> <br>
+                    How build your own USB or IP hub to connect our reels with our software.
+                  </p>
+                  <a href="build-your-own-hub.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <h3>
+                Embedded Computers <br>
+                <small> Common embedded platforms can be configured as gateways </small>
+              </h3>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Make a Raspberry Pi Hub </b> <br>
+                    How to configure the ubiquitous Raspberry Pi as a BLE scanner and gateway.
+                  </p>
+                  <a href="make-a-pi-hub.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <h3>
+                COTS Gateways <br>
+                <small> Commercial-off-the-shelf third-party gateways </small>
+              </h3>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Configure a BlueCats Edge Relay </b> <br>
+                    How to configure the Edge Relay to stream data to a server running our software.
+                  </p>
+                  <a href="configure-a-bluecats-edgerelay.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
             </div>
+            <p> &nbsp; </p>
 
             <!----- Software ------------------------------------------------>
             <h2 id="software">
@@ -166,13 +389,46 @@
                       ng-click="hidePareto = !hidePareto">Show me more</button>
             </p>
             <div uib-collapse="!hidePareto">
-              Here's more about Pareto.
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Event Overview </b> <br>
+                    Detailed explanation of the JSON data output from Pareto.
+                  </p>
+                  <a href="event-overview.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Connect a Websocket Client to Pareto </b> <br>
+                    How to tap into the real-time data stream both server-side and client-side.
+                  </p>
+                  <a href="pareto-socket-client.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <p class="text-center">
+                <a class="btn btn-primary" href="https://getpareto.com"
+                   target="_blank" role="button"> Visit getpareto.com </a>
+                <a class="btn btn-default" href="https://pareto.reelyactive.com"
+                   target="_blank" role="button"> Log in to your account </a>
+              </p>
             </div>
             <h3>
               Open Source Software <br>
               <small> The freedom to do-it-yourself and to contribute too </small>
             </h3>
-            <img src="images/overview-opensource.jpg"
+            <img src="images/overview-opensource.png"
                  class="img-responsive center-block"> <br>
             <blockquote> We maintain open libraries for an open Internet of Things.  And our open source software provides the foundation to develop for specific needs, especially in offline and small-scale applications. </blockquote>
             <p class="text-center" ng-hide="hideOpenSource">
@@ -180,8 +436,112 @@
                       ng-click="hideOpenSource = !hideOpenSource">Show me more</button>
             </p>
             <div uib-collapse="!hideOpenSource">
-              Here's more about open source software.
+              <h4> Open Librairies </h4>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-reelyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> advlib </b> <br>
+                    Decode raw BLE and RFID packets.
+                  </p>
+                  <a href="https://github.com/reelyactive/advlib" target="_blank"
+                     class="btn btn-xs btn-default"> Visit advlib GitHub </a>
+                  <a href="https://reelyactive.github.io/advlib" target="_blank"
+                     class="btn btn-xs btn-default"> Use advlib web app </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-reelyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Sniffypedia </b> <br>
+                    Associate identifiers with products and manufacturers.
+                  </p>
+                  <a href="https://sniffypedia.org" target="_blank"
+                     class="btn btn-xs btn-default"> Visit Sniffypedia </a>
+                </div>
+              </div>
+              <h4> Server-Side </h4>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Install an Offline Demo </b> <br>
+                    Install our open source software suite on your local machine to demo even without Internet connectivity.
+                  </p>
+                  <a href="install-an-offline-demo.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Barnowl Baby Steps </b> <br>
+                    Use our lowest-level software for real-time applications.
+                  </p>
+                  <a href="barnowl-baby-steps.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <h4> Client-Side </h4>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Build Web Apps with beaver.js </b> <br>
+                    How to build some pretty 'dam' useful web apps with beaver.js and a real-time 'stream' of data.
+                  </p>
+                  <a href="build-web-apps-with-beaver.html"
+                     class="btn btn-xs btn-default"> Read tutorial </a>
+                </div>
+              </div>
+              <h4> General </h4>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> List of all reelyActive OSS </b> <br>
+                    Exhaustive list of the open source software we and our partners have developed.
+                  </p>
+                  <a href="open-source-software.html"
+                     class="btn btn-xs btn-default"> See list </a>
+                </div>
+              </div>
+              <div class="well well-sm row">
+                <div class="col-xs-3 col-md-2 col-lg-1">
+                  <img src="images/overview-diyactive-logo.png"
+                       class="img-responsive img-rounded center-block">
+                </div>
+                <div class="col-xs-9 col-md-10 col-lg-11">
+                  <p>
+                    <b> Mascot Stories </b> <br>
+                    Our software packages have mascots.  Those mascots have stories.
+                  </p>
+                  <a href="mascot-stories.html"
+                     class="btn btn-xs btn-default"> Read stories </a>
+                </div>
+              </div>
             </div>
+            <p> &nbsp; </p>
 
             <!----- Platform Integrations and Applications ------------------>
             <h2 id="applications">
@@ -198,7 +558,6 @@
             <div uib-collapse="!hideApplications">
               Here's more about platform integrations and applications.
             </div>
-
 
             <hr>
             <h2> What's next? </h2>
