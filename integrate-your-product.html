@@ -4,10 +4,10 @@
     <title>diyActive: Integrate your Product</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Guide to integrating products with the reelyActive platform. Your product will be radio-identifiable and digitally represented in a standard format on the web.">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="js/cormorant.js"></script>
     <script type="text/javascript" src="js/product.js"></script>
     <script>
@@ -21,7 +21,7 @@
   </head>
   <body>
   <body ng-app="product">
-    <div ng-controller="ProductCtrl">
+    <div ng-controller="ProductCtrl as $ctrl">
       <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle"
@@ -39,42 +39,42 @@
         <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
              ng-click="navCollapsed = true">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html"> diyActive </a></li>
-            <li class="dropdown" dropdown on-toggle="toggled(open)">
-              <a href class="dropdown-toggle" dropdown-toggle role="button"
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
                  data-toggle="dropdown" aria-haspopup="true"
                  aria-expanded="false">
                 Quick links <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu">
-                <li>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
                   <a href="https://github.com/reelyactive/" target="_blank">
                     reelyActive on GitHub
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://www.npmjs.com/~reelyactive" target="_blank">
                     reelyActive on npmjs
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="http://www.reelyactive.com" target="_blank">
                     reelyActive website
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://getpareto.com" target="_blank">
                     Pareto by reelyActive
                   </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                <li role="menuitem">
                   <a href="https://shop.reelyactive.com" target="_blank">
                     Our online store
                   </a>
                 </li>
-                <li>
+                <li role="menuitem">
                   <a href="https://reelyactive.com/blog/" target="_blank">
                     Our blog
                   </a>
@@ -88,16 +88,26 @@
         <div class="row">
           <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
           <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-            <!--<img src="images/productIntegration.png"
-                 class="img-responsive center-block img-thumbnail">-->
             <h1> Integrate your Product </h1>
             <p> The reelyActive platform recognises and represents people, products and places within physical spaces via any radio-identifiable devices they may carry. Here we'll explain how to integrate <b><i>your</i></b> <a href="#identification">identifiable</a> product by ensuring it is appropriately <a href="#representation">represented</a> on the web and <a href="#association">associated</a> within our platform. </p>
+            <img src="images/product-interpretation.gif"
+                 class="img-responsive center-block img-thumbnail">
+            <br>
+            <p class="text-center">
+              <a class="btn btn-primary"
+                 href="#identification"> Identification </a> &nbsp;
+              <a class="btn btn-primary"
+                 href="#representation"> Representation </a> &nbsp;
+              <a class="btn btn-primary"
+                 href="#association"> Association </a> &nbsp;
+            </p>
+            <hr>
             <p><br><br></p>
             <a id="identification"></a>
             <img src="images/product-identification.png"
                  class="img-responsive center-block">
-            <h2> Identification </h2>
-            <p> <i><b>Your product needs to be uniquely identifiable by radio.</b></i> </p>
+            <h2> Identification <br>
+                 <small> Your product needs to be uniquely identifiable by radio. </small> </h2>
             <p> Our platform currently supports the billions of Bluetooth Low Energy (BLE) devices in existence.  Each of these has the potential to broadcast a unique identifier which can be recognised by devices in range, such as our reelceivers.  The following examples illustrate how individual products, or products of a specific brand, are identified. </p>
             <table class="table table-striped table-reelyactive">
               <caption> EXAMPLES OF PRODUCTS IDENTIFIABLE BY BLE </caption>
@@ -138,8 +148,8 @@
             <a id="representation"></a>
             <img src="images/product-representation.png"
                  class="img-responsive center-block">
-            <h2> Representation </h2>
-            <p> <i><b>Your product needs to be represented in a format that computers can understand.</b></i> </p>
+            <h2> Representation <br>
+                 <small> Your product needs to be represented in a format that computers can understand. </small> </h2>
             <p> Our platform understands products <a href="https://developers.google.com/search/docs/guides/intro-structured-data" target="_blank">the same way as the major search engines</a>: using <a href="https://schema.org/" target="_blank">schema.org</a> and <a href="http://json-ld.org/" target="_blank">JSON-LD</a>.  Don't worry if those are unfamiliar terms, you don't actually need to know what they mean nor how they work! </p>
             <h3> Represent your product </h3>
             <p> All you need to do is to digitally represent your product by pasting some code into its webpage.  Simply create that code by filling in the fields below, then click Export to Web. </p>
@@ -187,7 +197,7 @@
               <div class="col-xs-12 col-md-7">
                 <pre>{{json | json}}</pre>
                 <p class="text-center">
-                  <button class="btn btn-primary" ng-click="webify()">
+                  <button class="btn btn-primary" ng-click="$ctrl.webify()">
                     Export to web
                   </button>
                 </p>
@@ -206,25 +216,33 @@
             </form> 
             <br>
             <pre ng-show="fetchedStory"> {{fetchedStory}} </pre>
+            <h3> <i>Alternative:</i> represent your Organization </h3>
+            <p> If your organization has multiple products which share the same identifier (ex: <a href="https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers" target="_blank">Bluetooth Company Identifier</a>), consider instead a <a href="http://schema.org/Organization" target="_blank">schema:Organization</a> representation. </p>
             <hr>
             <p><br><br></p>
             <a id="association"></a>
             <img src="images/product-sniffypedia.png"
                  class="img-responsive center-block">
-            <h2> Association </h2>
-            <p> <i><b>Your product identifier needs to be associated with its representation.</b></i> </p>
+            <h2> Association <br>
+                 <small> Your product identifier needs to be associated with its representation. </small> </h2>
             <p> Our platform references the <a href="http://sniffypedia.org/" target="_blank">Sniffypedia project</a>, which allows anyone to contribute structured data about products and their associated identifiers.  Anyone can contribute a product to Sniffypedia, requiring only: </p>
               <ul>
                 <li> the <a href="#identification">identifier</a> type and value
                 <li> the URL of the product <a href="#representation">representation</a>
               </ul>
             </p>
-            <p> Our open source <a href="https://www.npmjs.com/package/chickadee" target="_blank">chickadee</a> package will immediately recognise the product via a Sniffypedia lookup. </p>
             <p class="text-center">
               <a href="https://sniffypedia.org/contribute/" target="_blank"
                  class="btn btn-default"> Contribute to Sniffypedia </a>
             </p>
-            <p><br><br></p>
+            <p> Our open source <a href="https://www.npmjs.com/package/chickadee" target="_blank">chickadee</a> package will immediately recognise the product via a Sniffypedia lookup.  And our Pareto platform always integrates the latest Sniffypedia index for your convenience. </p>
+            <img src="images/pareto-by-reelyactive.jpg"
+                 class="img-responsive center-block"><br>
+            <p class="text-center">
+              <a class="btn btn-primary" href="https://getpareto.com"
+                 target="_blank" role="button"> Visit getpareto.com </a>
+            </p>
+            <hr>
             <h2> What's next? </h2>
             <p> Alternatively, consider having your product broadcast an <a href="https://github.com/google/eddystone/tree/master/eddystone-url" target="_blank">Eddystone-URL</a> packet.  In this case the association is implicit and no additional integration with our platform is required! </p>
             <p class="text-center">
@@ -261,7 +279,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" type="button"
-                ng-click="dismiss()"> Dismiss </button>
+                ng-click="$ctrl.ok()"> Dismiss </button>
       </div>
     </script>
     <!----- End Modal ----->

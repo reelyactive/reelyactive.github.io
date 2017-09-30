@@ -1,7 +1,9 @@
 angular.module('product', [ 'ui.bootstrap', 'reelyactive.cormorant'])
 
   // Product controller
-  .controller('ProductCtrl', function($scope, $modal, cormorant) {
+  .controller('ProductCtrl', function($scope, $uibModal, $log, $document,
+                                      cormorant) {
+    var $ctrl = this;
 
     // Initiate representation variables
     $scope.graph = { 
@@ -47,19 +49,16 @@ angular.module('product', [ 'ui.bootstrap', 'reelyactive.cormorant'])
       }
     };
 
-    $scope.webify = function() {
+    $ctrl.webify = function() {
       var items = { target: "web", json: $scope.json };
-      openModal(items);
+      $uibModal.open( { animation: true,
+                        templateUrl: 'export.html',
+                        controller: 'ExportModalCtrl',
+                        controllerAs: '$ctrl',
+                        size: 'md',
+                        resolve: { items: function() { return items; } }
+                      } );
     };
-
-    function openModal(items) {
-      $modal.open( { animation: true,
-                     templateUrl: 'export.html',
-                     controller: 'ExportModalCtrl',
-                     size: 'md',
-                     resolve: { items: function() { return items; } }
-                   } );
-    }
 
     // Fetch story using cormorant
     $scope.fetchStory = function(url) {
@@ -76,13 +75,14 @@ angular.module('product', [ 'ui.bootstrap', 'reelyactive.cormorant'])
   })
 
   // Export modal controller
-  .controller('ExportModalCtrl', function($scope, $modalInstance, items) {
+  .controller('ExportModalCtrl', function($scope, $uibModalInstance, items) {
+    var $ctrl = this;
 
     $scope.markup = '<script type=\"application/ld+json\">\n' +
                     JSON.stringify(items.json, null, "  ") + '\n</script>';
 
-    $scope.dismiss = function () {
-      $modalInstance.dismiss('cancel');
+    $ctrl.ok = function() {
+      $uibModalInstance.close();
     };
 
   });
