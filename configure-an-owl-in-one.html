@@ -90,6 +90,8 @@
               <small> The reelyActive plug-and-play sensor </small> 
             </h1>
             <p> Our Owl-in-One is designed for ease of use: connect to power and network (via Ethernet) and the real-time data is automatically streamed to our Pareto service (<a href="https://getpareto.com/connect/" target="_blank">instructions</a>).  This tutorial covers <i>alternative</i> use cases, the most common being connection to a WiFi network. </p>
+            <img src="images/owl-in-one-components.jpg"
+                 class="img-responsive center-block"><br>
             <h2> Prerequisites <br>
                  <small> Node.js and the Tessel 2 CLI </small> </h2>
             <p> The Owl-in-One is built on the Tessel 2 open hardware platform which, like our platform, runs Node.js software.  To configure the Tessel 2 and/or update its software, you'll need both Node.js and the t2-cli package. </p>
@@ -156,6 +158,8 @@
             <h2> Connect to a WiFi network <br>
                  <small> Configure the Owl-in-One as a WiFi client </small> </h2>
             <p> Connect the Owl-in-One to your computer via USB and wait half a minute for it to boot up. </p>
+            <img src="images/owl-in-one-usb-connect.jpg"
+                 class="img-responsive center-block"><br>
             <p> From the command line, type <code>t2 list</code> and you should see your Owl-in-One in the list with a name such as <tt>tesselActive-###</tt> where the number represents the last three digits of the ID on the back sticker. </p>
             <p> Configure the WiFi with the following command, substituting the <i>SSID</i> and <i>password</i> as required: </p>
             <pre>t2 wifi -n "SSID" -p "password"</pre>
