@@ -92,9 +92,21 @@
             <p> Our Owl-in-One is designed for ease of use: connect to power and network (via Ethernet) and the real-time data is automatically streamed to our Pareto service (<a href="https://getpareto.com/connect/" target="_blank">instructions</a>).  This tutorial covers <i>alternative</i> use cases, the most common being connection to a WiFi network. </p>
             <img src="images/owl-in-one-components.jpg"
                  class="img-responsive center-block"><br>
+            <div class="well">
+              <div class="row">
+                <div class="col-md-8">
+                  <h3> Imagine owl the possibilities </h3>
+                  The Owl-in-One combines the <a href="https://tessel.io/" target="_blank">Tessel 2</a> open hardware/software platform with the reelyActive <a href="reel-overview.html">reel architecture</a> which is compatible with all of <a href="open-source-software.html">our open source software</a>.
+                </div>
+                <div class="col-md-4">
+                  <img src="images/osi-oshw.png"
+                       class="img-responsive center-block">
+                </div>
+              </div>
+            </div>
             <h2> Prerequisites <br>
                  <small> Node.js and the Tessel 2 CLI </small> </h2>
-            <p> The Owl-in-One is built on the Tessel 2 open hardware platform which, like our platform, runs Node.js software.  To configure the Tessel 2 and/or update its software, you'll need both Node.js and the t2-cli package. </p>
+            <p> The Owl-in-One is built on the Tessel 2 platform which, like our own, runs Node.js software.  To configure the Tessel 2 and/or update its software, you'll need both Node.js and the t2-cli package. </p>
 
             <h3> Install Node.js </h3>
             <p> Do you have <b>Node.js</b> installed? </p>
@@ -157,13 +169,13 @@
 
             <h2> Connect to a WiFi network <br>
                  <small> Configure the Owl-in-One as a WiFi client </small> </h2>
-            <p> Connect the Owl-in-One to your computer via USB and wait half a minute for it to boot up. </p>
+            <p> <i>First,</i> connect the Owl-in-One to your computer via USB and wait half a minute for it to boot up. </p>
             <img src="images/owl-in-one-usb-connect.jpg"
                  class="img-responsive center-block"><br>
-            <p> From the command line, type <code>t2 list</code> and you should see your Owl-in-One in the list with a name such as <tt>tesselActive-###</tt> where the number represents the last three digits of the ID on the back sticker. </p>
+            <p> <i>Then,</i> from the command line, type <code>t2 list</code> and you should see your Owl-in-One in the list with a name such as <tt>tesselActive-###</tt> where the number represents the last three digits of the ID on the back sticker. </p>
             <p> Configure the WiFi with the following command, substituting the <i>SSID</i> and <i>password</i> as required: </p>
             <pre>t2 wifi -n "SSID" -p "password"</pre>
-            <p> If the WiFi network is in range, and you correctly entered the <i>SSID</i> and <i>password</i>, expect to see <b>INFO Wifi Connected</b> on the command line.  You can type <code>t2 wifi</code> for more details about the connection. </p>
+            <p> If the WiFi network is in range, and you correctly entered the <i>SSID</i> and <i>password</i>, expect to see <b>INFO Wifi Connected</b> on the command line.  You can type <code>t2 wifi</code> for more details about the connection. </p><br>
 
             <h2> Owl-in-One and Pareto: Seamless Integration </h2>
             <img src="images/pareto-by-reelyactive.jpg"
