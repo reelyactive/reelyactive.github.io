@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Program a Puck.js with puckyActive | diyActive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How to program reelyActive's puckyActive firmware onto the Puck.js to enjoy our open source demos and applications.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://www.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://www.reelyactive.com" target="_blank">
+                    reelyActive website
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://getpareto.com" target="_blank">
+                    Pareto by reelyActive
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://reelyactive.com/blog/" target="_blank">
+                    Our blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <h1>
+              Program a Puck.js with puckyActive <br>
+              <small> To enjoy reelyActive's open source demos and applications </small> 
+            </h1>
+            <p> The Puck.js is a versatile Bluetooth Low Energy beacon that can be programmed to transmit real-time readings from its many sensors for the reelyActive platform to detect and interpret.  This tutorial provides the steps to program a Puck.js with our puckyActive firmware. </p>
+            <h2> WTP? <br>
+                 <small> What's the Puck?  Want the Puck? </small> </h2>
+            <p> Puck.js is an open hardware platform which runs Espruino.  That means you can program it in JavaScript <i>(yes JavaScript!)</i>, the most popular programming language in the world.  And, thanks to the magic of Web Bluetooth, you can program the Puck.js from your web browser <i>(really!)</i>. </p>
+            <blockquote> We have yet to come across a more open and friendly sensor beacon platform for education, art and experimentation by technical and non-technical people alike! </blockquote>
+            <img src="images/puckyactive-hello.jpg"
+                 class="img-responsive center-block">
+            <p> Puck.js can sense light, temperature, touch (cap sense), magnetic fields (in 3-axes) and its own battery level.  It's also a big button. </p>
+            <p class="text-center">
+              <a class="btn btn-default" href="http://www.puck-js.com/"
+                 target="_blank" role="button"> puck-js.com </a> &nbsp;
+              <a class="btn btn-primary"
+                 href="http://www.espruino.com/Order#puckjs"
+                 target="_blank" role="button"> Where to buy? </a>
+            </p>
+            <h2> What's puckyActive? <br>
+                 <small> Open source software we developed for Puck.js </small> </h2>
+            <p> We developed easy-to-configure software for the Puck.js which makes it periodically read its sensors and transmit the data in an "advertising" packet.  This means that any listening devices in range can receive this packet and interpret the sensor readings.  We named this open source software <b>puckyActive</b>. </p>
+            <img src="images/puckyactive-sensors.jpg"
+                 class="img-responsive center-block">
+            <h2> Prerequisites: Puck.js and Web Bluetooth <br>
+                 <small> Everything you need to get started </small> </h2>
+            <p> In order to program puckyActive, you'll obviously need a Puck.js, but you'll also need to set up Web Bluetooth if it isn't already.  Simply follow the Espruino quick start guide for Puck.js: </p>
+            <p class="text-center">
+              <a class="btn btn-default"
+                 href="http://www.espruino.com/Puck.js+Quick+Start"
+                 target="_blank" role="button"> Quick Start Guide </a>
+            </p>
+            <p> Once you've completed the quick start to the point where you're paired with the Puck.js, as shown in the image sequence below, you're ready to program puckyActive! </p>
+            <img src="images/puckyactive-espruino-pairing.gif"
+                 class="img-responsive center-block">
+            <br><br>
+            <h2> Program puckyActive via the Web IDE <br>
+                 <small> It's as simple as copy-paste-click </small> </h2>
+            <p> Our puckyActive software is hosted on our GitHub.  If you're familiar with GitHub, you can clone <a href="" target="_blank">the repo</a>.  If not, simply follow the link below to our <b>sensing.js</b> code, and copy it all to the clipboard. </p>
+            <p class="text-center">
+              <a class="btn btn-primary" href="https://raw.githubusercontent.com/reelyactive/puckyactive-firmware/master/sensing.js"
+                 target="_blank" role="button"> sensing.js </a> &nbsp;
+              <a class="btn btn-default"
+                 href="https://www.espruino.com/ide/"
+                 target="_blank" role="button"> Espruino Web IDE </a>
+            </p>
+            <p> Next, paste the code into the right side of the Espruino Web IDE. &nbsp; <i>Be sure to overwrite any code that was already there!</i> &nbsp; Your Web IDE should look something like this: </p>
+            <img src="images/puckyactive-pasted-code.png"
+                 class="img-responsive center-block">
+            <br><br>
+            <p> Now you're ready to program the Puck.js: click the <b>Send to Espruino</b> button and wait. After a few seconds, the status message should be <i>SENT</i> and you should see no errors in the left side of the Web IDE.  The programming sequence should look something like this: </p>
+            <img src="images/puckyactive-send-to-espruino.gif"
+                 class="img-responsive center-block">
+            <br><br>
+            <p> The Puck.js is now programmed, but it won't transmit its sensor data while it is connected to the Web IDE.  To disconnect, click the green button at the top-left of the IDE.  The disconnect sequence should look something like this: </p>
+            <img src="images/puckyactive-disconnect.gif"
+                 class="img-responsive center-block">
+            <br><br>
+            <h2> Observe the puckyActive data <br>
+                 <small> Our sensorscape interprets and displays puckyActive data </small> </h2>
+            <p> The <b>sensorscape</b> is bundled with our open source software which can easily be installed as an offline demo: </p>
+            <p class="text-center">
+              <a class="btn btn-default" href="install-an-offline-demo.html"
+                 target="_blank" role="button"> Install an Offline Demo </a>
+            </p>
+            <p> When the Puck.js is running puckyActive, the sensorscape should automatically display the data it is transmitting. </p>
+            <img src="images/puckyactive-sensorscape.png"
+                 class="img-responsive center-block">
+            <br>
+            <p> Other puckyActive tools will be available soon! </p>
+            <h2> puckyActive in the cloud? </h2>
+            <img src="images/pareto-by-reelyactive.jpg"
+                 class="img-responsive center-block"><br>
+            <p> Our Pareto platform combines the convenience of SaaS with plug-and-play hardware. </p>
+            <p class="text-center">
+              <a class="btn btn-primary" href="https://getpareto.com"
+                 target="_blank" role="button"> Visit getpareto.com </a>
+            </p>
+            <hr>
+            <h2> What's next? </h2>
+            <p> Install our <i>listening</i> software as an offline demo, capture individual packets with our barnowl software, or return to the diyActive home page. </p>
+            <p class="text-center">
+              <a class="btn btn-default" href="install-an-offline-demo.html"
+                 role="button"> Install an Offline Demo </a>
+              <a class="btn btn-default" href="barnowl-baby-steps.html"
+                 role="button"> Barnowl Baby Steps </a>
+              <a class="btn btn-success" href="/"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
+        <a href="https://www.reelyactive.com"
+           uib-tooltip="We believe in an open Internet of Things"
+           tooltip-placement="right">
+          &copy; reelyActive 2017
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
