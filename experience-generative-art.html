@@ -179,8 +179,12 @@ sudo usermod -a -G audio pi
 @audio - rtprio 80
 @audio - memlock unlimited
             </pre>
-            <p> To provide the CPU-hungry ZynAddSubFX optimal resources, configure all four CPUs to operate in "performance" mode.  From the command line run <code>sudo nano /etc/rc.local</code> to edit the <i>rc.local</i> file which runs on startup, then paste in the following contents and save: </p>
+            <p> Next, set the headphone volume to something decent at startup, and provide the CPU-hungry ZynAddSubFX optimal resources by configuring all four CPUs to operate in "performance" mode.  From the command line run <code>sudo nano /etc/rc.local</code> to edit the <i>rc.local</i> file, then paste in the following contents and save: </p>
             <pre> 
+# Set the headphone volume to a decent level
+amixer set PCM -- 0
+
+# Set each CPU to optimise performance
 echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 echo "performance" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
 echo "performance" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
