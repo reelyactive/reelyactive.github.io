@@ -3,7 +3,7 @@
   <head>
     <title>diyActive: Experience Generative Art</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Step-by-step guide to build a generative art platfrom from a Raspberry Pi, Philips Hue lights and MIDI instruments.">
+    <meta name="description" content="Step-by-step guide to build a generative art platfrom from a Raspberry Pi, Philips Hue lights, ZynAddSubFX and other MIDI instruments.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
@@ -86,7 +86,7 @@
         <div class="row">
           <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
           <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
-            <h1> Experience Generative Art <br> <small> An open platform based on Raspberry Pi, Philips Hue and MIDI instruments </small> </h1>
+            <h1> Experience Generative Art <br> <small> An open platform based on Raspberry Pi, Philips Hue, ZynAddSubFX and MIDI instruments </small> </h1>
             <p> In this tutorial we'll take you step-by-step through building a standalone generative art platform from a virgin Pi 3.  This project was initiated to celebrate <a href="http://www.iotday.org/">IoT Day</a> on April 9th, 2017, at which time it looked like <a href="https://www.instagram.com/p/BSrznK3AYZv/?taken-by=reelyactive" target="_blank">this</a>. </p>
             <img src="images/generable-pi-live.jpg" class="img-responsive">
             <h2> The GeneraBLE playlist <br>
@@ -96,7 +96,8 @@
             </div>
             <h2> Hardware Prerequisites </h2>
             <p> You'll need a Raspberry Pi 3, a Philips Hue kit with bridge and lightbulbs, and a <a href="http://shop.reelyactive.com/products/starterkit-min" target="_blank">reelyActive minimal starter kit</a>.  The following (placeholder) drawing illustrates how the pieces connect together. </p>
-            <img src="images/generable-architecture.jpg" class="img-responsive">
+            <img src="images/generable-architecture.jpg"
+                 class="img-responsive center-block">
             <h2> Preparing the Pi </h2>
             <p> Follow our <a href="make-a-pi-hub.html" target="_blank"> Make a Pi Hub tutorial </a> up to and including the <i>Install Node.js and forever</i> step. </p>
             <h3> DHCP server on eth0 </h3>
@@ -136,9 +137,66 @@ var server = new generable( { httpPort: 3000 } );
             <h3> Configure the Philips Hue bridge </h3>
             <p> From the GeneraBLE webpage, follow the link to Hue (/hue) which will scan for a Philips Hue bridge connected to the Pi's Ethernet interface.  When a bridge appears in the list, <i>first</i> press the button on the Hue bridge, <i>then</i> click the Connect button in the webpage.  GeneraBLE will store the bridge credentials and automatically reconnect each time it is run.  Only if the bridge's IP address changes will you need to repeat this step. </p>
             <h3> Configure the MIDI interface </h3>
-            <p> From the GeneraBLE webpage, follow the link to MIDI (/midi) which will scan for connected MIDI interfaces.  From the list, select the desired MIDI interface.  GeneraBLE will store this interface and automatically reconnect each time it is run.  Only if the connected MIDI interfaces change will you need to repeat this step. </p>
+            <p> From the GeneraBLE webpage, follow the link to MIDI (/midi) which will scan for connected MIDI interfaces.  From the list, select the desired MIDI interface: you should find ZynAddSubFX here if it is running (see below).  GeneraBLE will store this interface and automatically reconnect each time it is run.  Only if the connected MIDI interfaces change will you need to repeat this step. </p>
             <h3> Enjoy! </h3>
             <p> If a reelyActive starter kit is connected and receiving BLE packets, you should observe generative behaviour on the lights and MIDI interface.  If not, try restarting <i>generable.js</i>.  Have fun! </p>
+            <h2> Optional: ZynAddSubFX <br>
+                 <small> For an on-board MIDI-controlled synthesizer </small> </h2>
+            <p> In this <i>optional</i> step, we'll install <a href="http://zynaddsubfx.sourceforge.net/" target="_blank">ZynAddSubFX</a> which is "a fully featured open source software synthesizer capable of making a countless number of instruments".  By directing the GeneraBLE MIDI output to ZynAddSubFX, the Raspberry Pi becomes a powerful sound machine over its (somewhat crappy) 3.5mm audio jack.  Many, many thanks to Joshua Curry (<a href="https://lucidbeaming.com" target="_blank">lucidbeaming</a>) for <a href="https://lucidbeaming.com/blog/setting-up-a-raspberry-pi-3-to-run-zynaddsubfx-in-a-headless-configuration/" target="_blank">his detailed tutorial</a> which gave us the courage to even attempt this step! </p>
+            <h3> Installing ZynAddSubFX </h3>
+            <p> First, install all the required packages using the handy script provided by lucidbeaming.  From the command line, run the following: </p>
+            <pre> 
+cd ~/reelyActive/generable
+git clone https://raw.githubusercontent.com/lucidbeaming/pi-synths/master/ZynAddSubFX/required-packages.sh
+sudo chmod 755 required-packages.sh
+./required-packages.sh
+            </pre>
+            <p> Next, download and configure ZynAddSubFX by running the following from the command line: </p>
+            <pre> 
+cd ~/reelyActive
+git clone https://github.com/zynaddsubfx/zynaddsubfx.git
+cd zynaddsubfx
+mkdir build
+cd build
+cmake ..
+ccmake .
+            </pre>
+            <p> In the CMake options, delete BuildOptions_SSE and change NoNeonPlease to ON, as illustrated below. </p>
+            <img src="images/generable-zynaddsubfx-config.png"
+                 class="img-responsive center-block"> <br>
+            <p> And finally install ZynAddSubFX.  From the command line, run the following: </p>
+            <pre> 
+sudo make install
+            </pre>
+            <p> The installation may take tens of minutes.  During this time you can open another terminal and complete the other configuration steps below <i>&mdash; just check back that the installation is complete before any reboot!</i> </p>
+            <h3> Tweaking the Pi for real-time audio synthesis </h3>
+            <p> Add the default user (pi) to the <i>audio</i> group by running the following from the command line: </p>
+            <pre> 
+sudo usermod -a -G audio pi
+            </pre>
+            <p> Next assign augmented resources (real-time priority and memory) to the <i>audio</i> group.  From the command line run <code>sudo nano /etc/security/limits.d/audio.conf</code> to create/edit a file called <i>audio.conf</i>, then paste in the following contents and save: </p>
+            <pre> 
+@audio - rtprio 80
+@audio - memlock unlimited
+            </pre>
+            <p> To provide the CPU-hungry ZynAddSubFX optimal resources, configure all four CPUs to operate in "performance" mode.  From the command line run <code>sudo nano /etc/rc.local</code> to edit the <i>rc.local</i> file which runs on startup, then paste in the following contents and save: </p>
+            <pre> 
+echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "performance" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+echo "performance" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+echo "performance" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+            </pre>
+            <p> Finally, downgrade the virtual memory to limit swap activity.  From the command line, run the following: </p>
+            <pre> 
+sudo /sbin/sysctl -w vm.swappiness=10
+            </pre>
+            <h3> Running ZynAddSubFX </h3>
+            <p> Once ZynAddSubFX is successfully installed <i>(check first!)</i> it can be started from the command line by running the following: </p>
+            <pre> 
+zynaddsubfx -U -A=0 -o 512 -r 96000 -b 512 -I alsa -O alsa -P 7777 -L "/usr/local/share/zynaddsubfx/banks/Noises/0065-Short noise.xiz" &
+            </pre>
+            <p> The oscillator size (-o), sample rate (-r) and buffer size (-b) options are all per lucidream's recommendations.  The instrument (-L), <i>Short noise</i>, is selected to work well out-of-the-box with GeneraBLE. </p>
+            <p> To run ZynAddSubFX on boot, from the command line run <code>sudo nano /etc/rc.local</code> to again edit the <i>rc.local</i> file, this time pasting the above command. </p>
             <hr>
             <h2> What's next? </h2>
             <p> We'll be improving this tutorial to make getting set up even easier.  We'll also improve and document the <a href="https://github.com/reelyactive/generable/blob/master/lib/generator.js" target="_blank">generator.js</a> file which defines the behaviour of the platform (and was hastily prepared on IoTDay!). </p>
