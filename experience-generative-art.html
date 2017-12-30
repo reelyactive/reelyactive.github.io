@@ -147,10 +147,11 @@ var server = new generable( { httpPort: 3000 } );
             <p> First, install all the required packages using the handy script provided by lucidbeaming.  From the command line, run the following: </p>
             <pre> 
 cd ~/reelyActive/generable
-git clone https://raw.githubusercontent.com/lucidbeaming/pi-synths/master/ZynAddSubFX/required-packages.sh
+wget https://raw.githubusercontent.com/lucidbeaming/pi-synths/master/ZynAddSubFX/required-packages.sh
 sudo chmod 755 required-packages.sh
 ./required-packages.sh
             </pre>
+            <p> If <i>jack</i> prompts for real-time permissions, select <i>Yes</i>.  The installation may take a few minutes. </p>
             <p> Next, download and configure ZynAddSubFX by running the following from the command line: </p>
             <pre> 
 cd ~/reelyActive
