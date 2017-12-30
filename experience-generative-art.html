@@ -202,6 +202,10 @@ zynaddsubfx -U -A=0 -o 512 -r 96000 -b 512 -I alsa -O alsa -P 7777 -L "/usr/loca
             </pre>
             <p> The oscillator size (-o), sample rate (-r) and buffer size (-b) options are all per lucidream's recommendations.  The instrument (-L), <i>Short noise</i>, is selected to work well out-of-the-box with GeneraBLE. </p>
             <p> To run ZynAddSubFX on boot, from the command line run <code>sudo nano /etc/rc.local</code> to again edit the <i>rc.local</i> file, this time pasting the above command. </p>
+            <p> <i>IMPORTANT:</i> if you're starting GeneraBLE in the rc.local file, make sure it is <i>after</i> ZynAddSubFX, and prefix the command with a few seconds of sleep to give ZynAddSubFX time to start up first: </p>
+            <pre> 
+sleep 8; sudo forever start /home/pi/reelyActive/generable/app.js
+            </pre>
             <hr>
             <h2> What's next? </h2>
             <p> We'll be improving this tutorial to make getting set up even easier.  We'll also improve and document the <a href="https://github.com/reelyactive/generable/blob/master/lib/generator.js" target="_blank">generator.js</a> file which defines the behaviour of the platform (and was hastily prepared on IoTDay!). </p>
