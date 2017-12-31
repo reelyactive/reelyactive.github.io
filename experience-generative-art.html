@@ -88,18 +88,17 @@
           <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
             <h1> Experience Generative Art <br> <small> An open platform based on Raspberry Pi, Philips Hue, ZynAddSubFX and MIDI instruments </small> </h1>
             <p> In this tutorial we'll take you step-by-step through building a standalone generative art platform from a virgin Pi 3.  This project was initiated to celebrate <a href="http://www.iotday.org/">IoT Day</a> on April 9th, 2017, at which time it looked like <a href="https://www.instagram.com/p/BSrznK3AYZv/?taken-by=reelyactive" target="_blank">this</a>. </p>
-            <img src="images/generable-pi-live.jpg" class="img-responsive">
             <h2> The GeneraBLE playlist <br>
               <small> An ever-evolving project </small> </h2>
             <div class="embed-responsive embed-responsive-16by9">
               <iframe width="640" height="360" src="https://www.youtube.com/embed/videoseries?list=PL11WqaPQMVvMMTtCIRK1LqKuxw51aVDtj" frameborder="0" allowfullscreen></iframe>
             </div>
             <h2> Hardware Prerequisites </h2>
-            <p> You'll need a Raspberry Pi 3, a Philips Hue kit with bridge and lightbulbs, and a <a href="http://shop.reelyactive.com/products/starterkit-min" target="_blank">reelyActive minimal starter kit</a>.  The following (placeholder) drawing illustrates how the pieces connect together. </p>
-            <img src="images/generable-architecture.jpg"
+            <p> You'll need a Raspberry Pi 3, a Philips Hue kit with bridge and lightbulbs, and a <a href="http://shop.reelyactive.com/products/starterkit-min" target="_blank">reelyActive minimal starter kit</a> (or <a href="https://upverter.com/reelyActive/006d92d0aafec138/pi-reel-module/" target="_blank">pi-reel-module</a>).  The following architecture diagram illustrates how the pieces connect together.  <i>Original napkin sketch <a href="images/generable-architecture.jpg" target="_blank">here</a>.</i> </p>
+            <img src="images/generable-architecture.png"
                  class="img-responsive center-block">
             <h2> Preparing the Pi </h2>
-            <p> Follow our <a href="make-a-pi-hub.html" target="_blank"> Make a Pi Hub tutorial </a> up to and including the <i>Install Node.js and forever</i> step. </p>
+            <p> Follow our <a href="make-a-pi-hub.html" target="_blank"> Make a Pi Hub tutorial </a> up to and including the <i>Install Node.js and forever</i> step.  Note that if you install from our SD card image, many of these steps will already have been completed for you. </p>
             <h3> DHCP server on eth0 </h3>
             <p> In order to directly connect the Philips Hue bridge to the Pi and provide it an IP address, the Pi must be configured as a DHCP server on eth0.  From the command line, run the following: </p>
             <pre> 
@@ -206,6 +205,7 @@ zynaddsubfx -U -A=0 -o 512 -r 96000 -b 512 -I alsa -O alsa -P 7777 -L "/usr/loca
             <pre> 
 sleep 8; sudo forever start /home/pi/reelyActive/generable/app.js
             </pre>
+            <img src="images/generable-pi-live.jpg" class="img-responsive">
             <hr>
             <h2> What's next? </h2>
             <p> We'll be improving this tutorial to make getting set up even easier.  We'll also improve and document the <a href="https://github.com/reelyactive/generable/blob/master/lib/generator.js" target="_blank">generator.js</a> file which defines the behaviour of the platform (and was hastily prepared on IoTDay!). </p>
