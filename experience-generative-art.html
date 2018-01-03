@@ -181,7 +181,8 @@ sudo usermod -a -G audio pi
             </pre>
             <p> Next, set the headphone volume to something decent at startup, and provide the CPU-hungry ZynAddSubFX optimal resources by configuring all four CPUs to operate in "performance" mode.  From the command line run <code>sudo nano /etc/rc.local</code> to edit the <i>rc.local</i> file, then paste in the following contents and save: </p>
             <pre> 
-# Set the headphone volume to a decent level
+# Set the built-in headphone volume to a decent level
+# (IMPORTANT: comment out or change PCM if not using built-in audio!) 
 amixer set PCM -- 0
 
 # Set each CPU to optimise performance
@@ -205,6 +206,18 @@ zynaddsubfx -U -A=0 -o 512 -r 96000 -b 512 -I alsa -O alsa -P 7777 -L "/usr/loca
             <pre> 
 sleep 8; sudo forever start /home/pi/reelyActive/generable/app.js
             </pre>
+            <h3> Alternative Audio Setups </h3>
+            <p> <b> USB Audio: </b> If you're using a USB audio device in place of the (crappy) 3.5mm audio jack of the Pi, you'll need to specify this as the default ALSA audio output.  The easiest method we've found is to create/modify the <i>alsa-base.conf</i> file.  From the command line, run <code>sudo nano /etc/modprobe.d/alsa-base.conf</code> to create/edit the file, and paste in the following lines: </p>
+            <pre> 
+# Set the index value of the cards so that USB audio is first in the list
+options snd_usb_audio index=0
+options snd_bcm2835 index=1
+
+# Reorder the cards based on the index above
+options snd slots=snd_usb_audio,snd_bcm2835
+            </pre>
+            <p> You can check the order and name of your sound cards by running <code> cat /proc/asound/modules </code> from the command line.  The <tt>snd_bcm2835</tt> card is the built-in audio of the Pi.  <i>Reboot the Pi for changes to the conf to take effect.</i> </p>
+            <br>
             <img src="images/generable-pi-live.jpg" class="img-responsive">
             <hr>
             <h2> What's next? </h2>
