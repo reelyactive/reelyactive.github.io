@@ -87,7 +87,7 @@
           <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
           <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
             <h1> Make a Raspberry Pi hub </h1>
-            <p> The Raspberry Pi 3 is the first in its family to natively support Bluetooth.  Since at <a href="http://www.reelyactive.com" target="_blank">reelyActive</a> we're passionate about <a href="http://www.reelyactive.com/advertise/" target="_blank">the endless possibilities of detecting "advertising" Bluetooth Low Energy (BLE) devices</a>, we were excited to make the Pi 3 into a sniffer using <a href="https://github.com/reelyactive/pi-suite" target="_blank">our open source code</a>.  In this tutorial we'll take you step-by-step through building a reliable, standalone BLE sniffer from a virgin Pi 3. </p>
+            <p> The Raspberry Pi 3 is the first in its family to natively support Bluetooth.  Since at <a href="http://www.reelyactive.com" target="_blank">reelyActive</a> we're passionate about <a href="http://www.reelyactive.com/advertise/" target="_blank">the endless possibilities of detecting "advertising" Bluetooth Low Energy (BLE) devices</a>, we were excited to make the Pi 3 into a sniffer using <a href="https://github.com/reelyactive/pi-suite" target="_blank">our open source code</a>.  In this tutorial we'll take you step-by-step through building a reliable, standalone BLE sniffer from a virgin Pi 3 <i>(or a Pi Zero W)</i>. </p>
             <div class="well">
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
@@ -139,18 +139,18 @@
             </div><br>
             <p> You'll also have access to REST APIs and a real-time data stream over websockets. </p>
             <h2> Hardware Prerequisites </h2>
-            <p> You'll need a <b>Raspberry Pi 3</b> (or equivalent) with native Bluetooth capability in order to make a <i>standalone</i> sniffer. </p>
+            <p> You'll need a <b>Raspberry Pi 3</b> or <b>Raspberry Pi Zero W</b> (or equivalent) with native Bluetooth capability in order to make a <i>standalone</i> sniffer. </p>
             <p> If you have a non-Bluetooth Pi, do not despair!  You can connect a purpose-built reelyActive starter kit to your Pi via USB for even-better sniffage! </p>
             <img src="images/piHub-connected.jpg"
                  class="img-responsive center-block">
-            <p> Both items can be purchased by following the links below.  If you prefer to get your hands dirty with the reelyActive kit, you can also <a href="build-your-own-hub.html#usb-hub" target="_blank">Build your own USB Hub</a> and purchase <a href="http://shop.reelyactive.com/products/ra-r436" target="_blank">the reelceiver</a>.
+            <p> Both items can be purchased by following the links below.  If you prefer to get your hands dirty with the reelyActive kit, you can also <a href="build-your-own-hub.html#usb-hub" target="_blank">Build your own USB Hub</a> and purchase <a href="https://shop.reelyactive.com/products/ra-r436" target="_blank">the reelceiver</a>.
             </p>
             <p class="text-center">
               <a class="btn btn-primary" role="button"
                  href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b/">
                 Buy a Pi 3 </a> &nbsp;
               <a class="btn btn-primary" role="button"
-                 href="http://shop.reelyactive.com/products/starterkit-min">
+                 href="https://shop.reelyactive.com/products/starterkit-min">
                 Buy a Starter Kit </a>
             </p>
             <h2> Preparing the Pi </h2>
@@ -399,7 +399,7 @@ sudo ln -s /usr/local/node/bin/forever forever
             <h2> Install pi-suite </h2>
             <p> The <b>pi-suite</b> is a collection of <a href="open-source-software.html" target="_blank">reelyActive open source software</a> which allows your Pi to: </p>
             <ul>
-              <li> listen for BLE devices by itself (Raspberry Pi 3+)
+              <li> listen for BLE devices by itself (Raspberry Pi 3 or Zero W)
               <li> listen for BLE devices via a reelyActive starter kit
               <li> interpret the packets of these BLE devices
               <li> host webpages displaying the interpreted data
