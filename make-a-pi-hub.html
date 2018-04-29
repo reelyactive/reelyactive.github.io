@@ -360,8 +360,8 @@ sudo apt-get upgrade
               <table class="table">
                 <tr>
                   <th> Raspberry Pi 3 </th>
-                  <td> node-v6.11.2-linux-armv7l </td>
-                  <td> <a href="https://nodejs.org/dist/v6.11.2/node-v6.11.2-linux-armv7l.tar.xz"> URL </a> </td>
+                  <td> node-v8.11.1-linux-armv7l </td>
+                  <td> <a href="https://nodejs.org/dist/v8.11.1/node-v8.11.1-linux-armv7l.tar.xz"> URL </a> </td>
                 </tr>
                 <tr>
                   <th> Raspberry Pi Zero (W) </th>
@@ -372,14 +372,14 @@ sudo apt-get upgrade
               <p> From the command line on the Pi, execute the following in order, substituting the URL and Node version as per the table above: </p>
               <pre> 
 cd ~/Downloads
-wget https://nodejs.org/dist/v6.11.2/node-v6.11.2-linux-armv7l.tar.xz
-tar -xf node-v6.11.2-linux-armv7l.tar.xz
-sudo mv node-v6.11.2-linux-armv7l /usr/local/node
+wget https://nodejs.org/dist/v8.11.1/node-v8.11.1-linux-armv7l.tar.xz
+tar -xf node-v8.11.1-linux-armv7l.tar.xz
+sudo mv node-v8.11.1-linux-armv7l /usr/local/node
 cd /usr/local/bin
 sudo ln -s /usr/local/node/bin/node node
 sudo ln -s /usr/local/node/bin/npm npm
               </pre>
-              <p> Confirm that v6.11.2 (or the version you installed) appears when you run <code>node --version</code>.  Node.js is now installed. </p>
+              <p> Confirm that v8.11.1 (or the version you installed) appears when you run <code>node --version</code>.  Node.js is now installed. </p>
               <h3> Install forever </h3>
               <pre> 
 cd /usr/local/bin
