@@ -500,13 +500,15 @@ sudo apt-get install --no-install-recommends xinit
 sudo apt-get install --no-install-recommends x11-xserver-utils
               </pre>
               <h3> Configure run-on-boot </h3>
-              <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following three lines <u>above</u> the <i>exit 0</i> line: </p>
+              <p> Here we'll specify what programs to run on boot via the <a href="https://www.raspberrypi.org/documentation/linux/usage/rc-local.md" target="_blank">rc.local</a> file.  From the command line, open the file for editing with the command <code>sudo nano /etc/rc.local</code> and paste the following line <u>above</u> the <i>exit 0</i> line: </p>
               <pre> 
 sudo forever start /home/pi/reelyActive/pi-suite/pi-suite.js
-sleep 30; sudo xinit /home/pi/reelyActive/pi-suite/display-chromium &
-sleep 30; xte "key F11" -x:0
               </pre>
               <p> Press Ctrl-X to save and exit the editor.  Note that if you're using the Pi as a hub for a <a href="https://shop.reelyactive.com/products/starterkit-min" target="_blank">reelyActive starter kit</a> that should forward the real-time data to <a href="https://getpareto.com" target="_blank">Pareto</a>, you'll need to change the first line to instead run <b>pi-suite-pareto.js</b>. </p>
+              <p> Unfortunately, it's tricky to get Chromium to run (as normal user) from the rc.local file, but a workaround is to boot it from the pi user's <a href="https://www.raspberrypi.org/documentation/linux/usage/bashrc.md" target="_blank">.bashrc</a> file.  From the command line, open the file for editing with the command <code>sudo nano ~/.bashrc</code> and paste the following line at the end: </p>
+              <pre> 
+xinit /home/pi/reelyActive/pi-suite/display-chromium -- vt$(fgconsole)
+              </pre>
               <h3> Configure console autologin </h3>
               <p> Now that the Pi is configured to run-on-boot with a kiosk display, there's no reason for it to load the desktop and waste valuable computing and memory resources.  Instead we'll configure the Pi to boot to the console and log in automatically.  From the command line, run <code>sudo raspi-config</code> and from the <i>Boot Options</i> menu, select <i>Console Autologin</i> (which may be under a Desktop/CLI sub-menu). </p>
               <h3> Reboot </h3>
