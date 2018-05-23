@@ -3,6 +3,7 @@ https://reelyactive.github.io/barnowl-baby-steps.html
 https://reelyactive.github.io/build-web-apps-with-beaver.html
 https://reelyactive.github.io/configure-a-bluecats-edgerelay.html
 https://reelyactive.github.io/configure-an-owl-in-one.html
+https://reelyactive.github.io/create-associate-stories.html
 https://reelyactive.github.io/event-overview.html
 https://reelyactive.github.io/experience-generative-art.html
 https://reelyactive.github.io/forward-sensor-data-to-initial-state.html

@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Create and associate stories | diyActive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Instructions to create and associate stories using the reelyActive open source platform.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/diyactive.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-49659454-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body ng-app="diyActive">
+    <div ng-controller="InteractionCtrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://www.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/"> diyActive </a></li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                Quick links <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="https://github.com/reelyactive/" target="_blank">
+                    reelyActive on GitHub
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
+                    reelyActive on npmjs
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://www.reelyactive.com" target="_blank">
+                    reelyActive website
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://getpareto.com" target="_blank">
+                    Pareto by reelyActive
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="menuitem">
+                  <a href="https://shop.reelyactive.com" target="_blank">
+                    Our online store
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a href="https://reelyactive.com/blog/" target="_blank">
+                    Our blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+          <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+            <h1>
+              Create and associate stories <br>
+              <small> Use the json-silo and hlc-server packages to represent and detect people, products and places </small> 
+            </h1>
+            <p> This tutorial complements the <a href="../install-an-offline-demo.html"> Install an offline demo </a> tutorial which includes both the <a href="https://www.npmjs.com/package/hlc-server" target="_blank">hlc-server</a> and <a href="https://www.npmjs.com/package/json-silo" target="_blank">json-silo</a> open source packages.  While the default settings of that tutorial are observed, the methods here nonetheless apply to any installation of the two software packages. </p>
+
+            <h2> Create a person and associate with a transmitter device </h2>
+            <p> Browse to <a href="http://localhost:3002" target="_blank">localhost:3002</a> or to the specific address at which the json-silo is hosted.  The landing page should appear similar to the following: </p>
+            <img src="images/create-associate-stories-landing.png"
+                 class="img-responsive center-block"><br>
+            <p> Click on <b>Go!</b> to create a story. </p>
+            <img src="images/create-associate-stories-duration.png"
+                 class="img-responsive center-block"><br>
+            <p> Select how long the story should exist before it self-destructs and click on <b>Continue</b>. </p>
+            <img src="images/create-associate-stories-person.png"
+                 class="img-responsive center-block"><br>
+            <p> Enter the pertinent fields &mdash; at a minimum, the following are used by most web applications: </p>
+            <ul>
+              <li> Given name </li>
+              <li> Last name </li>
+              <li> Image URL </li>
+            </ul>
+            <p> Click <b>Store this JSON in the silo</b> to create the story. </p>
+            <img src="images/create-associate-stories-stored.png"
+                 class="img-responsive center-block"><br>
+            <p> A pop-up will confirm that the story has been stored, and indicate the address at which it can be retrieved.  Click <b>Associate a wireless device</b> to proceed. </p>
+            <img src="images/create-associate-stories-associate-48.png"
+                 class="img-responsive center-block"><br>
+            <p> Enter the device identifier (ex: static 48-bit Bluetooth Low Energy MAC or advertiser address).  Click <b>Make association</b> to complete the association. </p>
+            <img src="images/create-associate-stories-success-48.png"
+                 class="img-responsive center-block"><br>
+            <p> An alert will confirm that the association was successful.  The person's story is now associated with the transmitter device. </p>
+
+            <h2> Create a place and associate with a receiver device </h2>
+            <p> Browse to <a href="http://localhost:3002" target="_blank">localhost:3002</a> or to the specific address at which the json-silo is hosted.  The landing page should appear similar to the following: </p>
+            <img src="images/create-associate-stories-landing.png"
+                 class="img-responsive center-block"><br>
+            <p> Click on <b>Go!</b> to create a story. </p>
+            <img src="images/create-associate-stories-duration.png"
+                 class="img-responsive center-block"><br>
+            <p> Select how long the story should exist before it self-destructs and click on <b>Continue</b>. </p>
+            <img src="images/create-associate-stories-place.png"
+                 class="img-responsive center-block"><br>
+            <p> Enter the pertinent fields &mdash; at a minimum, the following are used by most web applications: </p>
+            <ul>
+              <li> Name </li>
+              <li> Image URL </li>
+            </ul>
+            <p> Click <b>Store this JSON in the silo</b> to create the story. </p>
+            <img src="images/create-associate-stories-stored.png"
+                 class="img-responsive center-block"><br>
+            <p> A pop-up will confirm that the story has been stored, and indicate the address at which it can be retrieved.  Click <b>Associate a wireless device</b> to proceed. </p>
+            <img src="images/create-associate-stories-associate-64.png"
+                 class="img-responsive center-block"><br>
+            <p> Enter the device identifier (ex: 64-bit identifier of reelceiver or Owl-in-One).  Click <b>Make association</b> to complete the association. </p>
+            <img src="images/create-associate-stories-success-64.png"
+                 class="img-responsive center-block"><br>
+            <p> An alert will confirm that the association was successful.  The place's story is now associated with the receiver device. </p>
+            <p> It is also good practice to associate a directory with each receiver.  Browse to <a href="http://localhost:3001/admin" target="_blank">localhost:3001/admin</a> or to the specific address at which the hlc-server admin page is hosted and log in (the default password is <i>admin</i>). </p>
+            <p> Enter the ID of the receiver device from the previous step and click the adjacent <b>Retrieve</b> button.  You should see the URL of the story correctly associated, as below. </p>
+            <img src="images/create-associate-stories-retrieve-url.png"
+                 class="img-responsive center-block"><br>
+            <p> Enter the directory to be associated with the receiver device  and click the adjacent <b>Replace</b> button.  You should see an alert indicating that the directory was successfully replaced, as below. </p>
+            <img src="images/create-associate-stories-replace-directory.png"
+                 class="img-responsive center-block"><br>
+            <p> The receiver device is now associated with both the place's story and a hierarchical directory structure, both of which are required for most web applications. </p>
+
+            <p> &nbsp; </p>
+            <h2> Prefer Software-as-a-Service? </h2>
+            <img src="images/pareto-by-reelyactive.jpg"
+                 class="img-responsive center-block"><br>
+            <p> Our Pareto platform combines even more features and functionality with the convenience of SaaS. </p>
+            <p class="text-center">
+              <a class="btn btn-primary" href="https://getpareto.com"
+                 target="_blank" role="button"> Visit getpareto.com </a>
+            </p>
+            <hr>
+            <h2> What's next? </h2>
+            <p> You can easily build your own custom demo by following our <a href="build-web-apps-with-beaver.html">Build web apps with beaver.js</a> tutorial. </p>
+            <p class="text-center">
+              <a class="btn btn-default" href="build-web-apps-with-beaver.html"
+                 role="button"> Build web apps with beaver.js </a>
+              <a class="btn btn-success" href="/"
+                 role="button"> Return to diyActive </a>
+            </p>
+          </div>
+          <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+      </div>
+      <footer class="footer">
+        <a href="/"
+           uib-tooltip="Do-it-yourself with reelyActive"
+           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
+        <a href="https://www.reelyactive.com"
+           uib-tooltip="We believe in an open Internet of Things"
+           tooltip-placement="right">
+          &copy; reelyActive 2018
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
