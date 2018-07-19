@@ -183,7 +183,7 @@ ccmake .
             <p> In the CMake options, delete BuildOptions_SSE and change NoNeonPlease to ON, as illustrated below. </p>
             <img src="images/generable-zynaddsubfx-config.png"
                  class="img-responsive center-block"> <br>
-            <p> And finally install ZynAddSubFX.  From the command line, run the following: </p>
+            <p> Press 'g' to generate and exit.  Now, finally install ZynAddSubFX.  From the command line, run the following: </p>
             <pre> 
 sudo make install
             </pre>
@@ -223,7 +223,7 @@ zynaddsubfx -U -A=0 -o 512 -r 96000 -b 512 -I alsa -O alsa -P 7777 -L "/usr/loca
             <p> To run ZynAddSubFX on boot, from the command line run <code>sudo nano /etc/rc.local</code> to again edit the <i>rc.local</i> file, this time pasting the above command. </p>
             <p> <i>IMPORTANT:</i> if you're starting GeneraBLE in the rc.local file, make sure it is <i>after</i> ZynAddSubFX, and prefix the command with a few seconds of sleep to give ZynAddSubFX time to start up first: </p>
             <pre> 
-sleep 8; sudo forever start /home/pi/reelyActive/generable/app.js
+sleep 8; sudo forever start /home/pi/reelyActive/generable/generable.js
             </pre>
             <h3> Alternative Audio Setups </h3>
             <p> <b> USB Audio: </b> If you're using a USB audio device in place of the (crappy) 3.5mm audio jack of the Pi, you'll need to specify this as the default ALSA audio output.  The easiest method we've found is to create/modify the <i>alsa-base.conf</i> file.  From the command line, run <code>sudo nano /etc/modprobe.d/alsa-base.conf</code> to create/edit the file, and paste in the following lines: </p>
