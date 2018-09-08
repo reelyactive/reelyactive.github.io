@@ -18,6 +18,7 @@ https://reelyactive.github.io/integrate-your-service.html
 https://reelyactive.github.io/make-a-pi-hub.html
 https://reelyactive.github.io/make-a-tessel-hub.html
 https://reelyactive.github.io/mascot-stories.html
+https://reelyactive.github.io/oio-deployment.html
 https://reelyactive.github.io/open-source-software.html
 https://reelyactive.github.io/pareto-socket-client.html
 https://reelyactive.github.io/program-a-puckjs-with-puckyactive.html
