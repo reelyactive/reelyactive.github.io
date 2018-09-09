@@ -89,7 +89,7 @@
               Bluetooth Low Energy (BLE) Identifier Reference <br>
               <small> Overview of BLE device identification </small> 
             </h1>
-            <p> At reelyActive, we often get asked questions like <i>"how much can one know about a person's smartphone from its Bluetooth packets?"</i> or <i>"can I recognise subsequent visits of the same device?"</i> &nbsp; This is intended to be a just-technical-enough reference for anyone to not only find answers to such questions but, more importantly, to understand why. </p>
+            <p> At <a href="https://www.reelyactive.com" target="_blank">reelyActive</a>, we often get asked questions like <i>"how much can one know about a person's smartphone from its Bluetooth packets?"</i> or <i>"can I recognise subsequent visits of the same device?"</i> &nbsp; This is intended to be a just-technical-enough reference for anyone to not only find answers to such questions but, more importantly, to understand why. </p>
             <p> The following is a primer on radio-frequency identification using BLE.  Specifics on the identifiers can be found below. </p>.
             <div class="embed-responsive embed-responsive-16by9">
               <iframe src="//www.slideshare.net/slideshow/embed_code/key/8vIKvMlPpRIveE" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
@@ -167,16 +167,53 @@
             <p> Beyond the mandatory identifier, the standard BLE advertising packet supports up to 31 bytes more payload which may contain additional identifiers. </p>
             <h3> 16-bit UUID </h3>
             <p> A <b>16-bit UUID</b> represents a defined service.  It has the form <tt>0x1234</tt>. </p>
-            <p> The Bluetooth SIG has reserved a block of 512 such UUIDs for member companies, <a href="https://www.bluetooth.com/specifications/assigned-numbers/16-bit-uuids-for-members" target="_blank">listed here</a>.  It is therefore possible to look up the member company from the UUID.  reelyActive maintains this lookup feature in <a href="https://sniffypedia.org" target="_blank">Sniffypedia</a>. </p>
+            <p> The Bluetooth SIG has reserved a block of 512 such UUIDs for member companies, <a href="https://www.bluetooth.com/specifications/assigned-numbers/16-bit-uuids-for-members" target="_blank">listed here</a>.  It is therefore possible to look up the member company from the UUID.  reelyActive maintains this lookup feature in <a href="https://sniffypedia.org" target="_blank">Sniffypedia</a>.  Notable examples include: </p>
             <h4> Eddystone </h4>
-            <p> Google's <b>Eddystone</b> service uses the UUID <b><tt>0xfeaa</tt></b>.  More details to come. </p>
+            <p> Google's <b>Eddystone</b> service uses the UUID <b><tt>0xfeaa</tt></b>.  An open specification, Eddystone includes several flavours that are free for use.  These include: </p>
+            <ul>
+              <li> <a href="https://github.com/google/eddystone/tree/master/eddystone-uid#eddystone-uid" target="_blank">Eddystone-UID</a> which encodes a 16-bit Beacon ID consisting of a 10-bit namespace and 6-bit instance </li>
+              <li> <a href="https://github.com/google/eddystone/tree/master/eddystone-eid#eddystone-eid" target="_blank">Eddystone-EID</a> which encodes an encrypted ephemeral 8-bit identifier that can only be resolved by the remote service with which it was registered </li>
+              <li> <a href="https://github.com/google/eddystone/tree/master/eddystone-url#eddystone-url" target="_blank">Eddystone-URL</a> which encodes a compressed URL (limited in length by the BLE payload capacity) </li>
+            </ul>
+            <h4> Tile </h4>
+            <p> Tile devices advertise the UUID <b><tt>0xfeed</tt></b>. </p>
+            <h3> 128-bit UUID </h3>
+            <p> A <b>128-bit UUID</b> represents a service and/or acts as a device identifier.  It has the form <tt>12345678-1234-1234-1234-123456789abc</tt>.  Unlike the 16-bit UUID and the 16-bit company identifier used in Manufacturer Specific Data, the Bluetooth SIG does not assign 128-bit UUIDs, leaving vendors and programmers free to choose.  Notable examples include: </p>
+            <h4> Fitbit </h4>
+            <p> Fitbit devices advertise the UUID <b><tt>adabXXXX-6e7d-4601-bda2-bffaa68956ba</tt></b> where the XXXX represents a specific product type such as the Charge HR. </p>
             <h3> Manufacturer Specific Data </h3>
-            <p> Manufacturer Specific Data is accompanied by a 16-bit company identifier.  It has the form <tt>0x1234</tt>. </p>
-            <p> The Bluetooth SIG assigns the company identifiers which are <a href="https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers" target="_blank">listed here</a>.  It is therefore possible to look up the member company from the company identifier.  reelyActive maintains this lookup feature in <a href="https://sniffypedia.org" target="_blank">Sniffypedia</a>. </p>
+            <p> Manufacturer Specific Data is accompanied by a <b>16-bit company identifier</b>.  It has the form <tt>0x1234</tt>. </p>
+            <p> The Bluetooth SIG assigns the company identifiers which are <a href="https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers" target="_blank">listed here</a>.  It is therefore possible to look up the member company from the company identifier.  reelyActive maintains this lookup feature in <a href="https://sniffypedia.org" target="_blank">Sniffypedia</a>.  Notable examples include: </p>
             <h4> iBeacon </h4>
-            <p> <b>Apple</b> is assigned the company code <b><tt>0x004c</tt></b>.  More details to come. </p>
-            <!--<h3> Local Name </h3>
-            <p> Bob's iPhone. </p>-->
+            <p> <b>Apple</b> is assigned the company code <b><tt>0x004c</tt></b> and their devices make extensive use of Manufacturer Specific Data for a variety of functions.  While Apple does not openly document most of these functions, <a href="https://developer.apple.com/ibeacon/" target="_blank">the iBeacon specification</a> is a notable exception. </p>
+            <p> An iBeacon encodes a 128-bit UUID, a 16-bit Major and a 16-bit Minor identifier.  Typically, the Major represents a superclass (ex: a physical venue) and the Minor represents a subclass (ex: points of interest within the venue), while the UUID is unique to a beacon vendor or operator, for example: </p>
+            <table class="table table-striped table-reelyactive">
+              <caption> COMMON IBEACON UUIDS AND THEIR ASSOCIATED VENDORS </caption>
+              <thead>
+                <tr>
+                  <th> iBeacon UUID </th>
+                  <th> Vendor </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> <tt> f7826da6-4fa2-4e98-8024-bc5b71e0893e </tt> </td>
+                  <td> Kontakt.io </td>
+                </tr>
+                <tr>
+                  <td> <tt> 2f234454-cf6d-4a0f-adf2-f4911ba9ffa6 </tt> </td>
+                  <td> Radius Networks </td>
+                </tr>
+                <tr>
+                  <td> <tt> b9407f30-f5f8-466e-aff9-25556b57fe6d </tt> </td>
+                  <td> Estimote </td>
+                </tr>
+              </tbody>
+            </table>
+            <p> The above highlights that although all iBeacons must, by definition, transmit Apple's company code (<tt>0x004c</tt>), they are not necessarily Apple devices!  In general: </p>
+            <blockquote> it is wise to <i>not</i> assume that a device advertising a specific company code is necessarily a product of that company. </blockquote>
+            <h3> Local Name </h3>
+            <p> A Local Name is an <b>ASCII string</b>.  The Local Name is often human-readable (ex: "Charge HR") as the formats described above afford more efficient encoding of machine-readable identifiers.  The length of this name is limited by the capacity of the BLE payload. </p>
             <hr>
             <h2> What's next? </h2>
             <p> Explore Sniffypedia, check out advlib, or return to the diyActive home page. </p>
