@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="How to prepare a Pi with friendly network settings, Node.js and everything you need to run reelyActive's open source software.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> reelyActive Raspberry Pi Preparation Guide </title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png" width="165"
+             height="30" alt="reelyActive">
+      </a>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <p> &nbsp; </p>
+          <h1> Prepare a Raspberry Pi from scratch </h1>
+          <p class="lead"> Our step-by-step guide to prepare a lean yet versatile SD card image for the Pi. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Prepare a reelyActive SD card image for Raspberry Pi">
+          <p> &nbsp; </p>
+          <!----- The TL;DR ----->
+          <div class="card">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive prepare a SD card image for a Raspberry Pi. </p>
+              <p> <a href="https://reelyactive.github.io/make-a-pi-hub.html" target="_blank">Our original Pi tutorial</a> is/was one of our most popular pages.  This tutorial is a <i>friendlier</i> reference on each step of the prep. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A clean installation of the latest Raspbian Lite build with everything to support reelyActive's open source software suite.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Yes, you can simply flash a ready-made disk image to a SD card.</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">Perhaps you're curious about the process.  Perhaps you'll find one or more steps useful for a completely different project.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> &nbsp; </p>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h2 id="step01">
+                Flashing Raspbian Lite to a SD Card &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 5</a>
+              </h2>
+              <p class="lead"> Download the latest version of Raspbian Lite and flash it to an SD card with Etcher. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Raspbian?</dt>
+                <dd class="col-sm-9">As the default operating system for the Pi, it is accessible to the broadest audience.</dd>
+                <dt class="col-sm-3">Why Lite?</dt>
+                <dd class="col-sm-9">It's good enough and keeps the disk image small.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/raspbian-via-etcher-to-sd-card.png" class="img-fluid"
+               alt="Flashing Raspbian to SD card using Etcher">
+          <p> &nbsp; </p>
+          <h3> Prerequisites </h3>
+          <p> We'll flash the SD card with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
+          <h3>
+            Download and unzip the latest Raspbian Lite
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the computer with which you intend to flash the SD card: </p>
+          <ol>
+            <li> Browse to <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank"> www.raspberrypi.org/downloads/raspbian/ </a> </li>
+            <li> Scroll down to find the <b>Lite</b> version </li>
+            <li> Download the <a href="https://downloads.raspberrypi.org/raspbian_lite_latest" target="_blank">ZIP</a> or <a href="https://downloads.raspberrypi.org/raspbian_lite_latest.torrent" target="_blank">Torrent</a>, as you prefer </li>
+            <li> Unzip the downloaded file </li>
+          </ol>
+          <p> You should now have a file entitled <b>20xx-xx-xx-raspbian-stretch-lite.img</b> on your computer.  Let's flash! </p>
+          <h3>
+            Flash the Raspbian Lite image to the SD card
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> We recommend using micro SD cards from reputable vendors of at least 4GB size.  From the computer with which you intend to flash the SD card: </p>
+          <ol>
+            <li> Insert the SD card (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
+            <li> Run Etcher (see Prerequisites above) by double-clicking its executable AppImage or desktop icon </li>
+            <li> In the Etcher interface, select the image file </li>
+            <li> In the Etcher interface, confirm that the SD card is automatically selected, or select manually </li>
+            <li> In the Etcher interface, click <i>Flash!</i> </li>
+          </ol>
+          <p> Within a few minutes the SD card should be flashed and verified.  Unmount (if necessary) and eject the card. </p>
+          <p> &nbsp; </p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h2 id="step02">
+                Pre-configuring Raspbian Lite for the Pi &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 5</a>
+              </h2>
+              <p class="lead"> Configure Raspbian <i>before</i> the first boot on the Pi, ensuring a painless initial connection. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why more pre-config?</dt>
+                <dd class="col-sm-9">Unless you have a monitor and keyboard for the Pi, good luck with the first connection otherwise!</dd>
+                <dt class="col-sm-3">Why so difficult to connect?</dt>
+                <dd class="col-sm-9">By default SSH is disabled (for security) so even if you can reach the Pi over a network, it will refuse to connect!</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/predictable-network-names-and-eth0-fallback.jpg"
+               class="img-fluid"
+               alt="Predictable network names and eth0 fallback">
+          <p> &nbsp; </p>
+          <p> Re-insert the SD card into the computer.  The computer should now mount two partitions: <code>boot</code> and <code>rootfs</code>.  We'll make minor changes to both partitions as follows. </p>
+          <h3>
+            Enable SSH and predictable network interface names
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Open a terminal and browse to the root of the <code>boot</code> partition, then: </p>
+          <ol>
+            <li> Enable SSH with the command <code>sudo touch ./ssh</code> </li>
+            <li> Open the file <b>cmdline.txt</b> and append the following to the first line: <code>net.ifnames=0</code> </li>
+          </ol>
+          <p> This will allow us to SSH into the Pi on the first boot, and will use predictable network interface names (ex: eth0, wlan0) which we'll need for Part 2. </p>
+          <h3>
+            Fallback to static Ethernet IP address
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Open a terminal and browse to the root of the <code>rootfs</code> partition.  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
+          <pre><code># Define static profile
+profile static_eth0
+static ip_address=10.0.50.100/24
+static routers=10.0.50.1
+static domain_name_servers=10.0.50.1
+
+# Fallback to static profile on eth0
+interface eth0
+fallback static_eth0
+          </code></pre>
+          <p> This will ensure that the Pi boots with the static Ethernet address of <b>10.0.50.100</b> in the absence of DHCP, as will be the case, and will prove helpful on any occasion where it is necessary to <i>directly</i> connect to the Pi over Ethernet, as in the following step. </p>
+          <p> Unmount both partitions and eject the SD card which is now ready to find its way into the Pi. </p>
+          <p> &nbsp; </p>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h2 id="step03">
+                First boot and raspi-config &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 5</a>
+              </h2>
+              <p class="lead"> Boot the Pi for the first time and SSH in via Ethernet to run raspi-config. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why connect over Ethernet?</dt>
+                <dd class="col-sm-9">Because we know the Pi's static IP address, making this the easiest way to connect at first.</dd>
+                <dt class="col-sm-3">Why use SSH?</dt>
+                <dd class="col-sm-9">Unless you have a display and keyboard connected to the Pi, the only way to remotely execute commands is over SSH!</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/raspi-config.jpg" class="img-fluid"
+               alt="raspi-config">
+          <p> &nbsp; </p>
+          <p> The micro SD card should now be inserted into the Raspberry Pi. </p>
+          <h3>
+            Boot the Pi and connect via SSH over Ethernet
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> With the micro SD card inserted into the Pi, complete the following: </p>
+          <ol>
+            <li> Apply power to the Raspberry Pi </li>
+            <li> Connect the computer with the Pi using a network (Ethernet) cable </li>
+            <li> Set the computer to use the static Ethernet IP address <b>10.0.50.101</b> </li>
+            <li> Open a terminal and SSH into the Pi with the command <code>ssh pi@10.0.50.100</code> and, when prompted, enter the default password <b>raspberry</b> </li>
+          </ol>
+          <p> Now that you're logged in to the Pi, it is possible to execute commands such as raspi-config.</p>
+          <h3>
+            Complete the basic configuration with the raspi-config tool
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the command prompt on the Pi, enter the command <code>sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
+          <table class="table table-striped">
+            <thead class="thead-reelyactive">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Option</th>
+                <th scope="col">Action(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Change User Password</td>
+                <td>Set to <b>berryinsecure</b></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Network Options</td>
+                <td>
+                  N2 Wi-fi <i>(adjust the defaults as per your local WiFi network)</i>
+                  <ul>
+                    <li>Set country [<b>CA</b>]</li>
+                    <li>Please enter SSID [<b>reelyActive</b>]</li>
+                    <li>Please enter passphrase [<b>owl-in-one</b>]</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Localisation Options</td>
+                <td>I2 Change Timezone [<b>America | Montreal</b>]</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Interfacing Options</td>
+                <td>
+                  P1 Serial
+                  <ul>
+                    <li>Would you like a login shell to be accessible over serial? [<b>No</b>]</li>
+                    <li>Would you like the serial port hardware to be enabled? [<b>Yes</b>]</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>Advanced Options</td>
+                <td>A1 Expand Filesystem [<b>Select</b>]</td>
+              </tr>
+            </tbody>
+          </table>
+          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If you entered valid WiFi settings, the Pi should connect to this network automatically, which will be required for the next step. </p>
+          <p> &nbsp; </p>
+          <!----- Step 4 ----->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h2 id="step04">
+                Second boot and DHCP server config &nbsp;
+                <a href="#step04" class="badge badge-secondary">Step 4 of 5</a>
+              </h2>
+              <p class="lead"> SSH into the Pi over WiFi and configure its Ethernet DHCP server to facilitate future direct connections. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why reconnect over WiFi?</dt>
+                <dd class="col-sm-9">The Pi will require an Internet connection in subsequent steps.  A local area network (LAN) connection, such as over WiFi, affords both a local SSH login and Internet access for the Pi.</dd>
+                <dt class="col-sm-3">Why a DHCP server?</dt>
+                <dd class="col-sm-9">Configuring a static IP address on a computer can be a pain (remember Step 3?).  A DHCP server enables the Pi to <i>automatically</i> assign an IP address to any computer with which it is directly connected.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/dhcp-either-way.jpg" class="img-fluid"
+               alt="Raspberry Pi DHCP either way">
+          <p> &nbsp; </p>
+          <p> The Pi should have rebooted from the previous step and connected to both the local WiFi network and again to the computer connected directly via Ethernet. </p>
+          <h3>
+            SSH to the Pi over WiFi after determining its IP address
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> With the Pi still connected to the computer via Ethernet, and from the same terminal window as before: </p>
+          <ol>
+            <li> SSH back into the Pi with the command <code>ssh pi@10.0.50.100</code>, using the <i>new</i> password <b>berryinsecure</b> </li>
+            <li> Determine the Pi's WiFi IP address with the command <code>ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b>. </li>
+            <li> Exit the current SSH session with the command <code>exit</code> </li>
+            <li> SSH into the Pi over WiFi with the command <code>ssh pi@xxx.xxx.xxx.xxx</code>, replacing the x values with the Pi's WiFi IP address. </li>
+            <li> Disconnect the network cable between the Pi and the computer. </li>
+          </ol>
+          <p> The computer is now connected to the Pi over WiFi.  Be sure to <i>disconnect the network cable between the two</i>, else they may ignore their Internet connection over WiFi, instead selecting Ethernet as their default gateway. </p>
+          <h3>
+            Install and configure the DHCP server using dnsmasq 
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the same terminal connected to the Pi via SSH over WiFi: </p>
+          <ol>
+            <li> Install dnsmasq with the command <code>sudo apt-get install dnsmasq</code> </li>
+            <li> Save a copy of the default configuration with the command <code>sudo mv /etc/dnsmasq.conf /etc/dnsmasq.default</code> </li>
+            <li> Create the file <b>/etc/dnsmasq.conf</b>, paste in the following two lines and save: 
+              <pre><code>interface=eth0
+dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</code></pre>
+            </li>
+            <li> Restart the service with the command <code>sudo service dnsmasq restart</code> </li>
+          </ol>
+          <p> The Pi will now behave as follows on Ethernet connection: </p>
+          <table class="table table-striped">
+            <thead class="thead-reelyactive">
+              <tr>
+                <th scope="col">External DHCP?</th>
+                <th scope="col">Behaviour of the Raspberry Pi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Yes</th>
+                <td>The Pi will accept the DHCP-assigned IP address</td>
+              </tr>
+              <tr>
+                <th scope="row">No</th>
+                <td>The Pi will fallback to static IP address <b>10.0.50.100</b> <i>and</i> it will assign IP addresses in the range 10.0.50.2-99 to any connected devices</td>
+              </tr>
+            </tbody>
+          </table>
+          <p> The core configuration of the Raspberry Pi is now complete.  On to the software! </p>
+          <p> &nbsp; </p>
+          <!----- Step 5 ----->
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h2 id="step05">
+                Install Node.js, npm and git &nbsp;
+                <a href="#step05" class="badge badge-secondary">Step 5 of 5</a>
+              </h2>
+              <p class="lead"> Install all the prerequisites for the reelyActive open source software. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why install Node.js?</dt>
+                <dd class="col-sm-9">The reelyActive open source software runs on Node.js.</dd>
+                <dt class="col-sm-3">Why install git?</dt>
+                <dd class="col-sm-9">Because nothing says "I &hearts; Open Source Software" quite like git.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/node-npm-git.png" class="img-fluid"
+               alt="Node.js, npm and git">
+          <h3> Prerequisites </h3>
+          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> and note the latest <b>LTS</b> version number available (ex: <b>10.15.3</b>).  Substitute this version number in all of the commands below. </p>
+          <h3>
+            Download and install Node.js and npm 
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the same terminal connected to the Pi via SSH over WiFi: </p>
+          <ol>
+            <li> Change to the home folder with the command <code>cd</code> </li>
+            <li> Download the Node.js tarball with the command <code>wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-armv7l.tar.xz</code> </li>
+            <li> Unpack with the command <code>tar -xf node-v10.15.3-linux-armv7l.tar.xz</code> </li>
+            <li> Move the unpacked folder to <b>/usr/local/node</b> with the command <code>sudo mv node-v10.15.3-linux-armv7l /usr/local/node</code> </li>
+            <li> Remove the original download with the command <code>rm node-v10.15.3-linux-armv7l.tar.xz</code> </li>
+            <li> Change to the <b>/usr/local/bin</b> folder with the command <code>cd /usr/local/bin</code> </li>
+            <li> Create here a symbolic link to <b>node</b> with the command <code>sudo ln -s /usr/local/node/bin/node node</code> </li>
+            <li> Create here a symbolic link to <b>npm</b> with the command <code>sudo ln -s /usr/local/node/bin/npm npm</code> </li>
+          </ol>
+          <p> Confirm that node and npm are successfully installed with the commands <code>node --version</code> and <code>npm --version</code> respectively. </p>
+          <h3>
+            Update/upgrade all packages and install git 
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Since the latest release of Raspbian, there are inevitably newer versions of some of the packages available. From the same terminal connected to the Pi via SSH over WiFi: </p>
+          <ol>
+            <li> Update the list of available packages and their versions with the command <code>sudo apt-get update</code> </li>
+            <li> Upgrade existing packages to the latest version with the command <code>sudo apt-get upgrade</code> </li>
+            <li> Install git with the command <code>sudo apt-get install git</code> </li>
+          </ol>
+          <p> All software packages are now installed and at the latest version. </p>
+          <p> &nbsp; </p>
+          <!----- Document template ----->
+          <div class="card">
+            <h4 class="card-header"> Do you like this document template? </h4>
+            <div class="card-body">
+              <p class="card-text"> It's based purely on <b>Bootstrap 4</b> (<a href="https://getbootstrap.com/docs/4.1/about/license/" target="_blank">open source, MIT License</a>) and defined in our own (<a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank">open source, MIT License</a>) <b>Web Style Guide</b>.  Sharing and feedback are encouraged! </p>
+              <a href="https://github.com/reelyactive/web-style-guide" target="_blank" class="btn btn-secondary btn-sm">reelyActive's Web Style Guide</a>
+              <a href="https://getbootstrap.com" target="_blank" class="btn btn-info btn-sm">Bootstrap 4</a>
+            </div>
+          </div>
+          <p> &nbsp; </p>
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../make-a-pi-hub.html">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../make-a-pi-hub.html">
+                  <h5 class="mt-0 mb-1">Make a Pi Hub</h5>
+                </a>
+                Our original Pi tutorial.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!--<script src="../common/js/bootstrap.min.js"></script>-->
+  </body>
+</html>
