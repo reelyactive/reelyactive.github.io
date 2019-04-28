@@ -160,27 +160,27 @@
             Download and unzip the latest Raspbian Lite
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> From the computer with which you intend to flash the SD card: </p>
+          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
           <ol>
             <li> Browse to <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank"> www.raspberrypi.org/downloads/raspbian/ </a> </li>
             <li> Scroll down to find the <b>Lite</b> version </li>
             <li> Download the <a href="https://downloads.raspberrypi.org/raspbian_lite_latest" target="_blank">ZIP</a> or <a href="https://downloads.raspberrypi.org/raspbian_lite_latest.torrent" target="_blank">Torrent</a>, as you prefer </li>
             <li> Unzip the downloaded file </li>
           </ol>
-          <p> You should now have a file entitled <b>20xx-xx-xx-raspbian-stretch-lite.img</b> on your computer.  Let's flash! </p>
+          <p> You should now have a file entitled <b>20xx-xx-xx-raspbian-stretch-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
           <h3>
             Flash the Raspbian Lite image to the SD card
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> We recommend using micro SD cards from reputable vendors of at least 4GB size.  From the computer with which you intend to flash the SD card: </p>
+          <p> We recommend using micro SD cards from reputable vendors of at least 4GB size.  From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
           <ol>
-            <li> Insert the SD card (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
+            <li> Insert the SD card <i class="fas fa-sd-card"></i> (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
             <li> Run Etcher (see Prerequisites above) by double-clicking its executable AppImage or desktop icon </li>
             <li> In the Etcher interface, select the image file </li>
             <li> In the Etcher interface, confirm that the SD card is automatically selected, or select manually </li>
             <li> In the Etcher interface, click <i>Flash!</i> </li>
           </ol>
-          <p> Within a few minutes the SD card should be flashed and verified.  Unmount (if necessary) and eject the card. </p>
+          <p> Within a few minutes the SD card should be flashed and verified.  Unmount (if necessary) and eject the card <i class="fas fa-eject"></i>. </p>
           <!----- Step 2 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -201,12 +201,12 @@
           <img src="images/predictable-network-names-and-eth0-fallback.jpg"
                class="img-fluid"
                alt="Predictable network names and eth0 fallback">
-          <p class="mt-4"> Re-insert the SD card into the computer.  The computer should now mount two partitions: <code>boot</code> and <code>rootfs</code>.  We'll make minor changes to both partitions as follows. </p>
+          <p class="mt-4"> Re-insert the SD card <i class="fas fa-sd-card"></i> into the computer <i class="fas fa-laptop"></i>.  The computer should now mount two partitions: <code>boot</code> and <code>rootfs</code>.  We'll make minor changes to both partitions as follows. </p>
           <h3>
             Enable SSH and predictable network interface names
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Open a terminal and browse to the root of the <code>boot</code> partition, then: </p>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <code>boot</code> partition, then: </p>
           <ol>
             <li> Enable SSH with the command <code>sudo touch ./ssh</code> </li>
             <li> Open the file <b>cmdline.txt</b> and append the following to the first line: <code>net.ifnames=0</code> </li>
@@ -216,7 +216,7 @@
             Fallback to static Ethernet IP address
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Open a terminal and browse to the root of the <code>rootfs</code> partition.  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <code>rootfs</code> partition.  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
           <pre><code># Define static profile
 profile static_eth0
 static ip_address=10.0.50.100/24
@@ -227,8 +227,8 @@ static domain_name_servers=10.0.50.1
 interface eth0
 fallback static_eth0
           </code></pre>
-          <p> This will ensure that the Pi boots with the static Ethernet address of <b>10.0.50.100</b> in the absence of DHCP, as will be the case, and will prove helpful on any occasion where it is necessary to <i>directly</i> connect to the Pi over Ethernet, as in the following step. </p>
-          <p> Unmount both partitions and eject the SD card which is now ready to find its way into the Pi. </p>
+          <p> This will ensure that the Pi boots with the static Ethernet <i class="fas fa-ethernet"></i> address of <b>10.0.50.100</b> in the absence of DHCP, as will be the case, and will prove helpful on any occasion where it is necessary to <i>directly</i> connect to the Pi over Ethernet, as in the following step. </p>
+          <p> Unmount both partitions and eject <i class="fas fa-eject"></i> the SD card which is now ready to find its way into the Pi. </p>
           <!----- Step 3 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -248,24 +248,24 @@ fallback static_eth0
           </div>
           <img src="images/raspi-config.jpg" class="img-fluid"
                alt="raspi-config">
-          <p class="mt-4"> The micro SD card should now be inserted into the Raspberry Pi. </p>
+          <p class="mt-4"> The micro SD card <i class="fas fa-sd-card"></i> should now be inserted into the Raspberry Pi <i class="fab fa-raspberry-pi"></i>. </p>
           <h3>
             Boot the Pi and connect via SSH over Ethernet
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> With the micro SD card inserted into the Pi, complete the following: </p>
+          <p> With the micro SD card <i class="fas fa-sd-card"></i> inserted into the Pi <i class="fab fa-raspberry-pi"></i>, complete the following: </p>
           <ol>
-            <li> Apply power to the Raspberry Pi </li>
-            <li> Connect the computer with the Pi using a network (Ethernet) cable </li>
-            <li> Set the computer to use the static Ethernet IP address <b>10.0.50.101</b> </li>
-            <li> Open a terminal and SSH into the Pi with the command <code>ssh pi@10.0.50.100</code> and, when prompted, enter the default password <b>raspberry</b> </li>
+            <li> Apply power <i class="fas fa-plug"></i> to the Raspberry Pi </li>
+            <li> Connect the computer <i class="fas fa-laptop"></i> with the Pi <i class="fab fa-raspberry-pi"></i> using a network (Ethernet) cable <i class="fas fa-network-wired"></i> </li>
+            <li> Set the computer <i class="fas fa-laptop"></i> to use the static Ethernet <i class="fas fa-ethernet"></i> IP address <b>10.0.50.101</b> </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> and SSH into the Pi with the command <code>ssh pi@10.0.50.100</code> and, when prompted, enter the default password <b>raspberry</b> </li>
           </ol>
           <p> Now that you're logged in to the Pi, it is possible to execute commands such as raspi-config.</p>
           <h3>
             Complete the basic configuration with the raspi-config tool
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> From the command prompt on the Pi, enter the command <code>sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code>sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
           <table class="table table-striped">
             <thead class="thead-reelyactive">
               <tr>
@@ -315,7 +315,7 @@ fallback static_eth0
               </tr>
             </tbody>
           </table>
-          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If you entered valid WiFi settings, the Pi should connect to this network automatically, which will be required for the next step. </p>
+          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If you entered valid WiFi <i class="fas fa-wifi"></i> settings, the Pi <i class="fab fa-raspberry-pi"></i> should connect to this network automatically, which will be required for the next step. </p>
           <!----- Step 4 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -335,35 +335,36 @@ fallback static_eth0
           </div>
           <img src="images/dhcp-either-way.jpg" class="img-fluid"
                alt="Raspberry Pi DHCP either way">
-          <p class="mt-4"> The Pi should have rebooted from the previous step and connected to both the local WiFi network and again to the computer connected directly via Ethernet. </p>
+          <p class="mt-4"> The Pi <i class="fab fa-raspberry-pi"></i> should have rebooted from the previous step and connected to both the local WiFi <i class="fas fa-wifi"></i> network and again to the computer <i class="fas fa-laptop"></i> connected directly via Ethernet <i class="fas fa-network-wired"></i>. </p>
           <h3>
             SSH to the Pi over WiFi after determining its IP address
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> With the Pi still connected to the computer via Ethernet, and from the same terminal window as before: </p>
+          <p> With the Pi <i class="fab fa-raspberry-pi"></i> still connected to the computer <i class="fas fa-laptop"></i> via Ethernet <i class="fas fa-network-wired"></i>, and from the same terminal window <i class="fas fa-terminal"></i> as before: </p>
           <ol>
             <li> SSH back into the Pi with the command <code>ssh pi@10.0.50.100</code>, using the <i>new</i> password <b>berryinsecure</b> </li>
-            <li> Determine the Pi's WiFi IP address with the command <code>ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b>. </li>
+            <li> Determine the Pi's WiFi <i class="fas fa-wifi"></i> IP address with the command <code>ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b>. </li>
             <li> Exit the current SSH session with the command <code>exit</code> </li>
-            <li> SSH into the Pi over WiFi with the command <code>ssh pi@xxx.xxx.xxx.xxx</code>, replacing the x values with the Pi's WiFi IP address. </li>
+            <li> SSH into the Pi over WiFi <i class="fas fa-wifi"></i> with the command <code>ssh pi@xxx.xxx.xxx.xxx</code>, replacing the x values with the Pi's WiFi IP address. </li>
             <li> Disconnect the network cable between the Pi and the computer. </li>
           </ol>
-          <p> The computer is now connected to the Pi over WiFi.  Be sure to <i>disconnect the network cable between the two</i>, else they may ignore their Internet connection over WiFi, instead selecting Ethernet as their default gateway. </p>
+          <p> The computer <i class="fas fa-laptop"></i> is now connected to the Pi <i class="fab fa-raspberry-pi"></i> over WiFi <i class="fas fa-wifi"></i>. </p>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> Be sure to <i>disconnect the network cable between the two</i>, else they may ignore their Internet connection over WiFi, instead selecting Ethernet as their default gateway. </p>
           <h3>
             Install and configure the DHCP server using dnsmasq 
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> From the same terminal connected to the Pi via SSH over WiFi: </p>
+          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the Pi <i class="fab fa-raspberry-pi"></i> via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
             <li> Install dnsmasq with the command <code>sudo apt-get install dnsmasq</code> </li>
-            <li> Save a copy of the default configuration with the command <code>sudo mv /etc/dnsmasq.conf /etc/dnsmasq.default</code> </li>
+            <li> Save a copy <i class="fas fa-copy"></i> of the default configuration with the command <code>sudo mv /etc/dnsmasq.conf /etc/dnsmasq.default</code> </li>
             <li> Create the file <b>/etc/dnsmasq.conf</b>, paste in the following two lines and save: 
               <pre><code>interface=eth0
 dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</code></pre>
             </li>
-            <li> Restart the service with the command <code>sudo service dnsmasq restart</code> </li>
+            <li> Restart <i class="fas fa-redo"></i> the service with the command <code>sudo service dnsmasq restart</code> </li>
           </ol>
-          <p> The Pi will now behave as follows on Ethernet connection: </p>
+          <p> The Pi will now behave as follows on Ethernet <i class="fas fa-ethernet"></i> connection: </p>
           <table class="table table-striped">
             <thead class="thead-reelyactive">
               <tr>
@@ -403,32 +404,32 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</code></pre>
           <img src="images/node-npm-git.png" class="img-fluid"
                alt="Node.js, npm and git">
           <h3 class="mt-4"> Prerequisites </h3>
-          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> and note the latest <b>LTS</b> version number available (ex: <b>10.15.3</b>).  Substitute this version number in all of the commands below. </p>
+          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>10.15.3</b>).  Substitute this version number in all of the commands below. </p>
           <h3>
             Download and install Node.js and npm 
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> From the same terminal connected to the Pi via SSH over WiFi: </p>
+          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the Pi <i class="fab fa-raspberry-pi"></i> via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
-            <li> Change to the home folder with the command <code>cd</code> </li>
-            <li> Download the Node.js tarball with the command <code>wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-armv7l.tar.xz</code> </li>
+            <li> Change to the home <i class="fas fa-home"></i> folder with the command <code>cd</code> </li>
+            <li> Download the Node.js <i class="fab fa-node-js"></i> tarball with the command <code>wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-armv7l.tar.xz</code> </li>
             <li> Unpack with the command <code>tar -xf node-v10.15.3-linux-armv7l.tar.xz</code> </li>
-            <li> Move the unpacked folder to <b>/usr/local/node</b> with the command <code>sudo mv node-v10.15.3-linux-armv7l /usr/local/node</code> </li>
-            <li> Remove the original download with the command <code>rm node-v10.15.3-linux-armv7l.tar.xz</code> </li>
+            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code>sudo mv node-v10.15.3-linux-armv7l /usr/local/node</code> </li>
+            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code>rm node-v10.15.3-linux-armv7l.tar.xz</code> </li>
             <li> Change to the <b>/usr/local/bin</b> folder with the command <code>cd /usr/local/bin</code> </li>
-            <li> Create here a symbolic link to <b>node</b> with the command <code>sudo ln -s /usr/local/node/bin/node node</code> </li>
-            <li> Create here a symbolic link to <b>npm</b> with the command <code>sudo ln -s /usr/local/node/bin/npm npm</code> </li>
+            <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>node</b> with the command <code>sudo ln -s /usr/local/node/bin/node node</code> </li>
+            <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>npm</b> with the command <code>sudo ln -s /usr/local/node/bin/npm npm</code> </li>
           </ol>
-          <p> Confirm that node and npm are successfully installed with the commands <code>node --version</code> and <code>npm --version</code> respectively. </p>
+          <p> Confirm that node <i class="fab fa-node-js"></i> and npm <i class="fab fa-npm"></i> are successfully installed with the commands <code>node --version</code> and <code>npm --version</code> respectively. </p>
           <h3>
             Update/upgrade all packages and install git 
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Since the latest release of Raspbian, there are inevitably newer versions of some of the packages available. From the same terminal connected to the Pi via SSH over WiFi: </p>
+          <p> Since the latest release of Raspbian, there are inevitably newer versions of some of the packages available. From the same terminal <i class="fas fa-terminal"></i> connected to the Pi <i class="fab fa-raspberry-pi"></i> via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
             <li> Update the list of available packages and their versions with the command <code>sudo apt-get update</code> </li>
             <li> Upgrade existing packages to the latest version with the command <code>sudo apt-get upgrade</code> </li>
-            <li> Install git with the command <code>sudo apt-get install git</code> </li>
+            <li> Install git <i class="fab fa-git-square"></i> with the command <code>sudo apt-get install git</code> </li>
           </ol>
           <p> All software packages are now installed and at the latest version. </p>
           <!----- Document template ----->
