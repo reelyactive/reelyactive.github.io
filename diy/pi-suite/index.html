@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Install reelyActive's open source suite on a Pi </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Install reelyActive's open source suite on a Pi",
+      "description": "Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pi-suite/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/faq/">
+                <!--<i class="fas fa-mouse-pointer"></i>
+                Behaviour tracking free &nbsp;
+                <span class="badge badge-success">
+                  <i class="fas fa-user-shield"></i>
+                </span>-->
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Install our open source software suite on a Pi </h1>
+          <p class="lead"> Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Install reelyActive's Hyperlocal Context Server on a Raspberry Pi">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive deploy our software suite on a Raspberry Pi. </p>
+              <p> <a href="https://reelyactive.github.io/make-a-pi-hub.html" target="_blank">Our original Pi tutorial</a> is/was one of our most popular pages.  This tutorial is a <i>friendlier</i> reference for the software installation. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">The <i class="fab fa-raspberry-pi"></i> Pi will accept data from IoT/RFID hardware, providing a comprehensive suite of interactive web applications and APIs.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Yes, you can simply flash a ready-made disk image to a SD card.</dd>
+                <dt class="col-sm-3">Does this apply only to the Pi?</dt>
+                <dd class="col-sm-9">Most of the process applies equally well to other platforms, especially those running Linux.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A Raspberry Pi (or equivalent) with Node.js, npm and git installed. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../pi-prep/">
+                  <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+                </a>
+                Our step-by-step tutorial on how we install Node.js, npm and git on a virgin <i class="fab fa-raspberry-pi"></i> Pi.
+              </div>
+            </li>
+          </ul>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Installing pi-suite &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Clone our pi-suite repository on GitHub and install all dependencies using npm. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Do I need to SSH into the Pi?</dt>
+                <dd class="col-sm-9">Yes.  If you forgot how, recall <a href="../pi-prep/#step04" target="_blank">Step 4 from the Pi Prep tutorial</a>.</dd>
+                <dt class="col-sm-3">What's pi-suite?</dt>
+                <dd class="col-sm-9">It's a convenience wrapper around our <a href="https://www.npmjs.com/package/hlc-server" target="_blank">hlc-server</a> package, facilitating deployment on the Pi.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/clone-pi-suite.jpg" class="img-fluid"
+               alt="Clone the pi-suite repository from GitHub">
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p> Both the <i class="fab fa-raspberry-pi"></i> Pi and the computer <i class="fas fa-laptop"></i> used for its configuration must be on the <em>same</em> network, with which they can access the Internet. </p>
+          <h3>
+            Boot the Pi and connect via SSH
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> With <a href="../pi-prep/" target="_blank">the prepared micro SD card <i class="fas fa-sd-card"></i></a> inserted into the <i class="fab fa-raspberry-pi"></i>  Pi, complete the following: </p>
+          <ol>
+            <li> Apply power <i class="fas fa-plug"></i> to the Raspberry Pi </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> on the computer <i class="fas fa-laptop"></i> and SSH into the Pi with the command <code>ssh pi@xxx.xxx.xxx.xxx</code> replacing the x values with the Pi's IP address </li>
+            <li> When prompted enter the password (<b>berryinsecure</b> is the default) </li>
+          </ol>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code>sudo raspi-config</code> </p>
+          <h3>
+            Install pi-suite and its dependencies
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> First create a reelyActive folder under the home folder. </p>
+          <ol>
+            <li> Change to the home folder with the command <code>cd</code> </li>
+            <li> Create (if it does not already exist) a <b>reelyActive</b> <i class="fas fa-folder-plus"></i> folder with the command <code>mkdir reelyActive</code> </li>
+            <li> Change to the reelyActive folder with the command <code>cd reelyActive</code> </li>
+          </ol>
+          <p> Next, install the pi-suite software under this folder. </p>
+          <ol>
+            <li> Clone the pi-suite repository from our <i class="fab fa-github"></i> GitHub with the command <code>git clone https://github.com/reelyactive/pi-suite.git</code> </li>
+            <li> Change to the <b>pi-suite</b> <i class="fas fa-folder"></i> folder with the command <code>cd pi-suite</code> </li>
+            <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code>npm install</code> &nbsp; <span class="badge badge-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+          </ol>
+          <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> It is possible that some dependencies produce warnings or errors.  Do not despair: in most cases these have no impact on functionality. </p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Run and validate the pi-suite installation &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Confirm that everything works. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Do I need a data source?</dt>
+                <dd class="col-sm-9">No.  The software runs even in the absence of source data.</dd>
+                <dt class="col-sm-3">Can I test my data source?</dt>
+                <dd class="col-sm-9">Yes.  In the second part of this step you'll find how to quickly validate the integration with common hardware/modules.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/hlc-server-on-pi.jpg" class="img-fluid"
+               alt="Browsing to hlc-server running on the Pi">
+          <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, and from the <b>pi-suite</b> <i class="fas fa-folder"></i> folder: </p>
+          <h3>
+            Run and validate the vanilla pi-suite
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Start the software and browse to the Pi to confirm that it is running as follows: </p>
+          <ol>
+            <li> Run the software with the command <code>npm start</code> </li>
+            <li> From the computer <i class="fas fa-laptop"></i>, point a web browser at the Pi on port 3001, <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address, as before </li>
+          </ol>
+          <p> Observe the hlc-server landing page.  It is normal not to observe any real-time data as a source has yet to be connected. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-info-circle"></i></span> The software can be stopped by entering <kbd>Ctrl+C</kbd> from the command line. </p>
+          <h3>
+            Run and validate a specific configuration
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Should a source of data be available (see the tabs below), it is possible to validate its integration with the software suite. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="oiotab" data-toggle="tab"
+                 href="#oiotest" role="tab" aria-controls="oiotest"
+                 aria-selected="true"> Owl-in-One </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="remotereeltab" data-toggle="tab"
+                 href="#remotereeltest" role="tab" aria-controls="remotereeltest"
+                 aria-selected="false"> Remote Reel </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="reelmoduletab" data-toggle="tab"
+                 href="#reelmoduletest" role="tab" aria-controls="reelmoduletest"
+                 aria-selected="false"> Reel Module </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="oiotest"
+                 role="tabpanel" aria-labelledby="oiotab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/oio-to-pi.jpg" class="img-fluid"
+                       alt="Owl-in-One providing data to Pi">
+                </div>
+                <div class="col-md-6">
+                  <p> <span class="badge badge-success"><i class="fas fa-check"></i></span> No additional steps are required! </p>
+                  <p> The software listens for raddecs on UDP port 50001.  Data should appear in the web interface. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="remotereeltest" role="tabpanel"
+                 aria-labelledby="remotereeltab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/reel-to-pi.jpg" class="img-fluid"
+                       alt="Reel providing data to Pi">
+                </div>
+                <div class="col-md-6">
+                  <p> <span class="badge badge-success"><i class="fas fa-check"></i></span> No additional steps are required! </p>
+                  <p> The software listens for reel packets on UDP port 50000.  Data should appear in the web interface. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="reelmoduletest" role="tabpanel"
+                 aria-labelledby="reelmoduletab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/reel-module-to-pi.jpg" class="img-fluid"
+                       alt="Reel module on Pi">
+                </div>
+                <div class="col-md-6">
+                  <p> <span class="badge badge-warning"><i class="fas fa-exclamation-circle"></i></span> Instead run the command: <code>npm run start-reel</code> </p>
+                  <p> The software will additionally listen for serial data on <b>/dev/serial0</b> (GPIO header pins).  Data should appear in the web interface. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Running as a systemd service &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
+              </h2>
+              <p class="lead"> Configure the software to run as a service each time the Pi boots. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why systemd?</dt>
+                <dd class="col-sm-9">It is becoming the de facto standard for system and service management among Linux distributions.</dd>
+                <dt class="col-sm-3">Is this specific to the Pi?</dt>
+                <dd class="col-sm-9">Many Linux distributions have <a href="https://en.wikipedia.org/wiki/Systemd#Adoption" target="_blank">adopted systemd</a>, to which these instructions should apply equally well.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/pi-suite-on-boot-with-systemd.jpg" class="img-fluid"
+               alt="Run pi-suite on boot with systemd">
+          <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, and from the <b>pi-suite</b> <i class="fas fa-folder"></i> folder: </p>
+          <h3>
+            Enable the pi-suite service
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Configure systemd to run the pi-suite service by completing the following: </p>
+          <ol>
+            <li> Copy the unit file to the systemd system folder with the command <code>sudo cp units/pi-suite.service /lib/systemd/system</code> </li>
+            <li> Enable the pi-suite service with the command <code>sudo systemctl enable pi-suite.service</code> </li>
+            <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
+          </ol>
+          <p> Observe the hlc-server landing page. </p>
+          <h3>
+            Confirm that pi-suite runs on boot
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Reboot and again observe the hlc-server landing page as follows: </p>
+          <ol>
+            <li> Reboot the <i class="fab fa-raspberry-pi"></i> Pi with the command <code>sudo reboot now</code> &nbsp; <span class="badge badge-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+            <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
+          </ol>
+          <p> Once again observe the hlc-server landing page.  The software suite will indeed run each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> If necessary, it is possible to disable the service with the command <code>sudo systemctl disable pi-suite.service</code>. </p>
+          <!----- Document template ----->
+          <div class="card my-4">
+            <h4 class="card-header"> Do you like this document template? </h4>
+            <div class="card-body">
+              <p class="card-text"> It's based on <a href="https://getbootstrap.com" target="_blank"><i class="fab fa-bootstrap"></i> Bootstrap 4</a> <a href="https://getbootstrap.com/docs/4.3/about/license/" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> and <a href="https://fontawesome.com" target="_blank"><i class="fab fa-font-awesome"></i> Font Awesome 5 (Free)</a> <a href="https://fontawesome.com/license/free" target="_blank" class="badge badge-light"><i class="fab fa-creative-commons"></i> <i class="fab fa-osi"></i> &nbsp; MIT</a>.  Our <b>Web Style Guide</b> <a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> has all the details.  Sharing and feedback are encouraged! </p>
+              <a href="https://github.com/reelyactive/web-style-guide"
+                 target="_blank" class="btn btn-secondary btn-sm">
+                <i class="fas fa-external-link-alt"></i> &nbsp;
+                reelyActive's Web Style Guide
+              </a>
+            </div>
+          </div>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../make-a-pi-hub.html">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../make-a-pi-hub.html">
+                  <h5 class="mt-0 mb-1">Make a Pi Hub</h5>
+                </a>
+                Our original Pi tutorial.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
