@@ -147,13 +147,19 @@
           <!--Prerequisities-->
           <h2 class="mt-4"> Prerequisites </h2>
           <p class="lead"> A Minew E8 beacon and the BeaconSET+ mobile app. </p>
-          <p> Download the BeaconSET+ app for your platform: <a href="https://itunes.apple.com/us/app/beaconset/id1264548636" target="_blank"> <span class="badge badge-secondary"> <i class="fab fa-apple"></i> iOS </span> </a> or <a href="https://play.google.com/store/apps/details?id=com.minew.beaconplus" target="_blank"> <span class="badge badge-secondary"> <i class="fab fa-android"></i> Android </span> </a> </p>
-          <p> Minew E8 beacons are included with our <a href="https://shop.reelyactive.com/products/showcase-kit" target="_blank"> Showcase Kit </a> and can be purchased from <a href="https://www.minew.com/" target="_blank"> Minew </a>. </p>
+          <p> The <b>BeaconSET+</b> app is available for both <a href="https://itunes.apple.com/us/app/beaconset/id1264548636" target="_blank"> <span class="badge badge-secondary"> <i class="fab fa-apple"></i> iOS </span> </a> and <a href="https://play.google.com/store/apps/details?id=com.minew.beaconplus" target="_blank"> <span class="badge badge-secondary"> <i class="fab fa-android"></i> Android </span> </a> </p>
           <p>
             <span class="badge badge-warning">
               <i class="fas fa-exclamation-triangle"></i>
             </span>
-            Activate the beacon's battery by pulling out the plastic tongue.
+            Activate <i class="fab fa-bluetooth"></i> Bluetooth on the mobile device.
+          </p>
+          <p> <b>Minew E8</b> beacons are included with our <a href="https://shop.reelyactive.com/products/showcase-kit" target="_blank"> Showcase Kit </a> and can be purchased from <a href="https://www.minew.com/" target="_blank"> Minew </a>. </p>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            Activate the beacon's battery <i class="fas fa-battery-full"></i> by pulling out the plastic tongue.
           </p>
           
           <!-- Step 1 -->
@@ -173,22 +179,28 @@
               </dl>
             </div>
           </div>
+          <p> Note the MAC address of the beacon (16 characters).  This is typically indicated on a sticker or engraved directly on the beacon itself. </p>
           <div class="row">
             <div class="col-sm-3">
               <img src="images/find-and-connect.jpg" class="img-fluid"
                    alt="Configure a Minew E8 Beacon">
             </div>
             <div class="col-sm-9">
-            <p>From the mobile <i class="fas fa-mobile-alt"></i> with which you download BeaconSET+ app:</p>
-              <ol>
-                <li>Turn on “ Bluetooth ” in your mobile device</li>
-                <li>Make sure the device has been turned on</li>
-                <li>Start "BeaconSET+" configuration app</li>
-                <li>Identify the device by unique ID</li>
-                <li>Click on its information to access the configuration</li>             
-                <li>Put the password <b>minew123</b></li>
-              </ol> 
-            <p>You should now have access to all your Minew E8's information  (UID, URL, iBeacon, TLM and ACC / HT). To filter the data it is necessary to configure the SLOT one by one.</p>
+              <p>From the mobile device <i class="fas fa-mobile-alt"></i>:</p>
+                <ol>
+                  <li>Open the BeaconSET+ app</li>
+                  <li>Place the beacon in close proximity to the mobile device</li>
+                  <li>Identify the beacon in the app by its MAC address</li>
+                  <li>Click on the beacon in the app to initiate a connection</li>             
+                  <li>When prompted, input the password which by default is <b>minew123</b></li>
+                </ol> 
+              <p>Observe the main configuration screen from which the beacon settings may now be adjusted.</p>
+              <p>
+                <span class="badge badge-success">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                If many beacons are activated, it may be helpful to select <em>Edit Filters</em> in the app and select an RSSI threshold of -45dBm to display only beacons in close proximity.
+              </p>
             </div>
           </div>
           <!-- Step 2 -->
@@ -208,7 +220,7 @@
               </dl>
             </div>
           </div>
-          <!--Nav Tabs-->
+          <p> From the BeaconSET+ app, while connected to the beacon, disable SLOTs 1 through 4 as indicated below: </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="firsttab" data-toggle="tab"
@@ -234,15 +246,16 @@
           <div class="tab-content tab-content-reelyactive">
             <div class="tab-pane fade show active" id="firstcontent"
                  role="tabpanel" aria-labelledby="firsttab">
-              <div class="row">
-                <div class="col-sm-3"><br>
+              <div class="row my-4">
+                <div class="col-sm-3">
                   <img src="images/disable-slot1.jpg" class="img-fluid"
                        alt="Configure a Minew E8 Beacon">
                 </div>
-                <div class="col-sm-9"><br>
+                <div class="col-sm-9">
+                  <h4> iBeacon </h4>
                   <ol>
-                    <li>Click the SLOT1 (iBeacon) tab</li>
-                    <li>Select the Frame Type <b>No Data / Empty</b></li>
+                    <li>Select the SLOT1 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
                     <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
                   </ol>
                 </div> 
@@ -250,15 +263,16 @@
             </div>
             <div class="tab-pane fade" id="secondcontent" role="tabpanel"
                  aria-labelledby="secondtab">
-              <div class="row">
-                <div class="col-sm-3"><br>
+              <div class="row my-4">
+                <div class="col-sm-3">
                   <img src="images/disable-slot2.jpg" class="img-fluid"
                        alt="Configure a Minew E8 Beacon">
                 </div>
-                <div class="col-sm-9"><br>
+                <div class="col-sm-9">
+                  <h4> UID </h4>
                   <ol>
-                    <li>Click the SLOT2 (UID) tab</li>
-                    <li>Select the Frame Type <b>No Data / Empty</b></li>
+                    <li>Select the SLOT2 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
                     <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
                   </ol>
                 </div> 
@@ -266,15 +280,16 @@
             </div>
             <div class="tab-pane fade" id="thirdcontent" role="tabpanel"
                  aria-labelledby="thirdtab">
-              <div class="row">
-                <div class="col-sm-3"><br>
+              <div class="row my-4">
+                <div class="col-sm-3">
                   <img src="images/disable-slot3.jpg" class="img-fluid"
                        alt="Configure a Minew E8 Beacon">
                 </div>
-                <div class="col-sm-9"><br>
+                <div class="col-sm-9">
+                  <h4> URL </h4>
                   <ol>
-                    <li>Click the SLOT3 (URL) tab</li>
-                    <li>Select the Frame Type <b>No Data / Empty</b></li>
+                    <li>Select the SLOT3 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
                     <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
                   </ol>
                 </div> 
@@ -282,15 +297,16 @@
             </div>
             <div class="tab-pane fade" id="fourthcontent" role="tabpanel"
                  aria-labelledby="fourthtab">
-              <div class="row">
-                <div class="col-sm-3"><br>
+              <div class="row my-4">
+                <div class="col-sm-3">
                   <img src="images/disable-slot4.jpg" class="img-fluid"
                        alt="Configure a Minew E8 Beacon">
                 </div>
-                <div class="col-sm-9"><br>
+                <div class="col-sm-9">
+                  <h4> TLM </h4>
                   <ol>
-                    <li>Click the SLOT4 (TLM) tab</li>
-                    <li>Select the Frame Type <b>No Data / Empty</b></li>
+                    <li>Select the SLOT4 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
                     <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
                   </ol>
                 </div> 
@@ -315,22 +331,25 @@
               <dl class="row">
                 <dt class="col-sm-3">Why an accelerometer?</dt>
                 <dd class="col-sm-9">The accelerometer data enables movement and orientation detection, and can even trigger beacon behaviour from motion, double-taps or triple-taps.</dd>
+                <dt class="col-sm-3">Why this frame type?</dt>
+                <dd class="col-sm-9">The Acc Sensor frame type includes the all E8's sensor data including battery level, as well as the MAC address by which it is uniquely identifiable.</dd>
               </dl>
             </div>
           </div>
+          <p> From the BeaconSET+ app, while connected to the beacon, configure SLOT6 as indicated below: </p>
           <div class="row">
             <div class="col-sm-3">
               <img src="images/configure-sensor-slot.jpg" class="img-fluid"
                    alt="Configure a Minew E8 Beacon">
             </div>
             <div class="col-sm-9">
+              <h4> Acc Sensor </h4>
               <ol>
-                <li>Click on the SLOT6 (Acc Sensor) tab</li>
+                <li>Select the SLOT6 tab</li>
                 <li>Select the Frame Type <b>Acc Sensor</b></li>
-                <li>Adjust the Base params as required</li>
+                <li>Adjust the Base params to the defaults in the table below</li>
                 <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
               </ol> 
-              <p>Your device is now configured. If you return to the main page you should find your device configured with its information about the accelerometer (X-axis, Y-axis, Z-axis) and information on its identity (ID, battery and N/A).</p>
               <table class="table table-striped">
                 <thead class="thead-reelyactive">
                   <tr>
@@ -357,6 +376,7 @@
                   </tr>
                 </tbody>
               </table>  
+              <p>Configuration is complete. Return to the beacon discovery screen of the BeaconSET+ app and observe that the beacon displays information about the accelerometer (X-axis, Y-axis, Z-axis) and on its identity (ID, battery and N/A).</p>
             </div>
           </div>
           <!----- Where to next? ----->
