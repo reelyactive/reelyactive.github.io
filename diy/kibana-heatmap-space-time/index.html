@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to create a heatmap visualization in Kibana.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Create a space time heatmap in Kibana </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Create a space time heatmap in Kibana",
+      "description": "Our step-by-step guide to create a heatmap visualization in Kibana.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/kibana-heatmap-space-time/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png" width="165" height="30"
+             alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"
+               href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Create a Heatmap on Kibana </h1>
+          <p class="lead"> Our step-by-step guide to create a heatmap visualization in Kibana. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Create Heatmap Kibana Guide">
+           <!-- The TL;DR -->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive create these visualizations to help you to visualize and analyze your space occupancy. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">The heatmap is a graphical representation of data that visualizes all busy points within the space. It will give at-a-glance an understanding of how people use space, which helps identify trends and optimize space. </dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Yes, go to each space and count people yourself.</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">To learn both how <em>and why</em> to create the heatmap visualization.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--Prerequisities-->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A stream of raddec and Kibana. </p>
+          <p>A stream of <b>raddec</b>  is a stream of data sensed from wireless devices. At reelyActive we develop the receivers which identify, locate and collect the raddec. Then, the raddec can be store in Elasticsearch.</p>
+          <p><b>Kibana</b> lets you visualize your Elasticsearch data. You can install Elasticsearch and Kibana from <a href="https://www.elastic.co/" target="_blank"> ELK Stack</a>. </p>
+          <p>Make sure you visualize datas on Kibana. To do this, you can adjust the Time Range. </p>
+          <!-- Step 1 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Create a heatmap visualization &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Create and visualize a heatmap on Kibana. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Kibana</dt>
+                <dd class="col-sm-9">Kibana is an analytics and visualization platform which provides great charts and helps you to understand your data.</dd>
+              </dl>
+            </div>
+          </div>
+          <p class="mt-2"> In Kibana, select the <b>Visualize</b> tab from the left menu bar and click the <b>Create a Visualization</b> <i class="fa fa-plus-square"></i> button.</p>
+          <p>Select the <b>Heat map</b> chart.</p>
+          <img src="images/new-visualization-arrow.png"
+               class="img-fluid" alt="Create Heatmap Kibana Guide">
+          <p class="mt-2">Then, from a <b>Select Index</b> click on the <b>raddec</b> index.</p>
+          <img src="images/select-index.png"
+               class="img-fluid" alt="Create Heatmap Kibana Guide">
+          <p class="mt-4"> The initial heatmap will get generated as below. </p>
+          <img src="images/initial-heatmap-generated.png" class="img-fluid"
+               alt="Create Heatmap Kibana Guide">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> By default, the generated heatmap contains one value, the count of raddec. However, this doesn't give us a sense of the space occupancy. To do that, we're going to create some buckets to visualize the raddec on the temporal and the spacial axis.</p>
+          <!-- Step 2 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Create buckets &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Create buckets to visualize data properly. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's buckets?</dt>
+                <dd class="col-sm-9">Buckets is referring to the computer science term of grouping data based on criteria. We can group data into buckets based on their field values.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> To get an accurate heatmap, we are going to create buckets for the x and y positions for our raddec so we can measure them in both time and space axis. </p>
+          <p> The <b>X-Axis (spacial axis)</b> is divided by zone. Each zone corresponds to a receiver. For example, we can imagined that we installed a receiver in an office, a cafeteria, a reception zone and a waiting room.</p>
+          <p> The <b>Y-Axis (temporal axis)</b> will allow us to visualize the occupancy rate for each space over a defined period of time.</p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="firsttab" data-toggle="tab"
+                 href="#firstcontent" role="tab" aria-controls="firstcontent"
+                 aria-selected="true"> X-Axis </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="secondtab" data-toggle="tab"
+                 href="#secondcontent" role="tab" aria-controls="secondcontent"
+                 aria-selected="false"> Y-Axis </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="firstcontent"
+                 role="tabpanel" aria-labelledby="firsttab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/x-axis-buckets.png" class="img-fluid"
+                       alt="Create Heatmap Kibana Guide">
+                </div>
+                <div class="col-sm-9">
+                  <h4> X-Axis (Axis of Time) </h4>
+                  <ol>
+                    <li>Click the <i class="fas fa-caret-square-down"></i> <b>X-Axis</b> bucket</li>
+                    <li>Select the Aggregation <b>Date Histogram</b></li>
+                    <li>Choose the Field <b>timestamp</b></li>
+                    <li>Adjust the interval to create each X-axis bucket to be the interval selected wide.</li>
+                    <li>Custom the X-axis by choosing a title</li>
+                    <li>Click the <b>Add sub-buckets</b> button to add an Y-Axis </li>
+                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update your changes</li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="secondcontent" role="tabpanel"
+                 aria-labelledby="secondtab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/y-axis-buckets.png" class="img-fluid"
+                       alt="Create Heatmap Kibana Guide">
+                </div>
+                <div class="col-sm-9">
+                  <h4> Y-Axis (Axis of Space)</h4>
+                  <ol>
+                    <li>Click the <i class="fas fa-caret-square-down"></i> <b>Y-Axis</b> bucket</li>
+                    <li>Select the Aggregation <b>Significant Terms</b></li>
+                    <li>Choose the Field <b>receiverid.keyword</b></li>
+                    <li>Adjust the size that corresponds to the number of sensors you want to display on the heatmap.</li>
+                    <li>Custom the Y-axis by choosing a title</li>
+                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update your changes</li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+          </div> 
+          <p  class="mt-4">Now, you should visualize a heatmap as below.</p>
+          <img src="images/buckets-result.png" class="img-fluid"
+               alt="Create Heatmap Kibana Guide">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> So far we have created a heatmap map that displays the number of raddecs counted per zone and per time interval. In the next step we are going to see what are the settings we can modify to customize the graph.</p>
+           <!--Step 3 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Configure Heatmap Settings &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
+              </h2>
+              <p class="lead"> Select settings and customize your chart. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why customize a graph?</dt>
+                <dd class="col-sm-9">To change the aspects of the chart.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> Now we're going to see what parameters can be modified to improve our graph.</p>
+          <p> Go to the <b>Options</b> tab. Here is the list of settings that you can modify from this tab:</p>
+          <table class="table table-striped">
+            <thead class="thead-reelyactive">
+              <tr>
+                <th scope="col">Settings</th>
+                <th scope="col">What's for?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Color Schema</th>
+                <td>You can select an existing color schema or go for custom and define your own colors in the legend.</td>
+              </tr>
+              <tr>
+                <th scope="row">Reverse Color Schema</th>
+                <td>Checking this checkbox will reverse the color schema. </td>
+              </tr>
+              <tr>
+                <th scope="row">Color Scale</th>
+                <td>You can switch between linear, log and sqrt scales for color scale. </td>
+              </tr>
+              <tr>
+                <th scope="row">Scale to Data Bounds</th>
+                <td>The default Y axis bounds are zero and the maximum value returned in the data. Check this box to change both upper and lower bounds to match the values returned in the data. 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>For each changes you made, don't forget to save them by clicking the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar.</p>  
+          <p>Here, we just changed the <b>Color Schema</b> from Greens to Blues.</p>
+          <img src="images/header.png" class="img-fluid"
+              alt="Create Heatmap Kibana Guide">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> Now, you should see your heatmap with the customization you applied. Then, you can add it to your dashboard and complete your collection of visualizations as below.</p>
+          <img src="images/add-to-dashboard.png" class="img-fluid"
+               alt="Create Heatmap Kibana Guide">
+          <!-- Document template -->
+          <div class="card my-4">
+            <h4 class="card-header"> For nerds, stuff that matters </h4>
+            <div class="card-body">
+              <p class="card-text">Here's the JSON request for building the heatmap visualization. You can apply it on Kibana in the <b>DevTools</b> Tab from the left menu bar.</p>
+              <pre><code>
+GET raddec/_search
+{
+  "size": 0,
+  "aggs": {
+    "date": {
+      "date_histogram": {
+        "field": "timestamp",
+        "interval": "1h"
+        },
+        "aggs": {
+          "receivers": {
+            "significant_terms": {
+              "field": "receiverId.keyword",
+              "size": 10
+            }
+          }
+        }
+      }     
+    },
+    "query": {
+      "match_all": {}
+    }
+  }
+              </code></pre>
+            </div>
+          </div>
+          <!-- Where to next? -->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Create other visualizations, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a>
+                <img src="../../"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Create another visualization</h5>
+                </a>
+                (COMING SOON)  Count of raddec over a day.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a>
+                <img src="../../"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Create another visualization</h5>
+                </a>
+                (COMING SOON) Top receivers.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
