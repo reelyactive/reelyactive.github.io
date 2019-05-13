@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to configure a C6 beacon with the BeaconSET+ app.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> reelyActive Minew C6 Beacon Configuration Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Minew C6 Beacon Configuration Guide",
+      "description": "Our step-by-step guide to configure a C6 beacon with the BeaconSET+ app.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/minew-c6-config/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png" width="165" height="30"
+             alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"
+               href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Configure a Minew C6 Beacon </h1>
+          <p class="lead"> Our step-by-step guide to configure a C6 beacon with the BeaconSET+ app. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Configure a Minew E8 Beacon">
+           <!-- The TL;DR -->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive configure these beacons to balance functionality and battery life. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A default configuration for efficient real-time location and acceleration sensing.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Yes, Minew can configure beacons with these or other settings before they ship.</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">To learn both how <em>and why</em> to update the beacon's default settings.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--Prerequisities-->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A Minew C6 beacon and the BeaconSET+ mobile app. </p>
+          <p> The <b>BeaconSET+</b> app is available for both <a href="https://itunes.apple.com/us/app/beaconset/id1264548636" target="_blank"> <span class="badge badge-secondary"> <i class="fab fa-apple"></i> iOS </span> </a> and <a href="https://play.google.com/store/apps/details?id=com.minew.beaconplus" target="_blank"> <span class="badge badge-secondary"> <i class="fab fa-android"></i> Android </span> </a> </p>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            Activate <i class="fab fa-bluetooth"></i> Bluetooth on the mobile device.
+          </p>
+          <p> <b>Minew C6</b> beacons are included with our <a href="https://shop.reelyactive.com/products/showcase-kit" target="_blank"> Showcase Kit </a> and can be purchased from <a href="https://www.minew.com/" target="_blank"> Minew </a>. </p>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            Activate the beacon's battery <i class="fas fa-battery-full"></i> by pulling out the plastic tongue.
+          </p>
+          
+          <!-- Step 1 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Detect and Connect &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Identify and connect via BLE to the beacon in the BeaconSET+ app. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why BeaconSET+?</dt>
+                <dd class="col-sm-9">BeaconSET+ is the vendor-recommended app for BeaconPlus devices, such as the Minew C6.</dd>
+                <dt class="col-sm-3">What's BLE?</dt>
+                <dd class="col-sm-9">Bluetooth Low Energy (BLE) is a wireless personal area network technology like Bluetooth Classic, but with novel features and significantly reduced power consumption.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="../common/images/minew-beacon-identification-beaconset.png"
+               class="img-fluid" alt="Beacon identification in BeaconSET+">
+          <p class="mt-2"> Note the MAC address of the beacon (16 characters).  This is typically indicated on a sticker or engraved directly on the beacon itself. </p>
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="images/find-and-connect.jpg" class="img-fluid"
+                   alt="Configure a Minew E8 Beacon">
+            </div>
+            <div class="col-sm-9">
+              <p>Place the beacon near the mobile device <i class="fas fa-mobile-alt"></i> then:</p>
+                <ol>
+                  <li>Open the BeaconSET+ app</li>
+                  <li>Identify the beacon in the app by its MAC address</li>
+                  <li>Click on that beacon to initiate a connection</li>             
+                  <li>When prompted, input the password which by default is <b>minew123</b></li>
+                </ol> 
+              <p>Observe the main configuration screen from which the beacon settings may now be adjusted.</p>
+              <p>
+                <span class="badge badge-success">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                If many beacons are activated, it may be helpful to select <em>Edit Filter</em> in the app and select an RSSI threshold of -45dBm to display only beacons in close proximity.
+              </p>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Disable irrelevant SLOTS &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Disable unnecessary packet transmissions for simplicity and extended battery life. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What are SLOTs?</dt>
+                <dd class="col-sm-9">A SLOT is a transmission window.  The beacon supports 6 SLOTs for different packet transmissions.</dd>
+                <dt class="col-sm-3">Why disable SLOTs?</dt>
+                <dd class="col-sm-9">Unnecessary transmissions unnecessarily consume the battery.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> From the BeaconSET+ app, while connected to the beacon, disable SLOTs 1 through 4 and SLOT 6 as indicated below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="firsttab" data-toggle="tab"
+                href="#firstcontent" role="tab" aria-controls="firstcontent"
+                aria-selected="true"> SLOT1 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="secondtab" data-toggle="tab"
+                href="#secondcontent" role="tab" aria-controls="secondcontent"
+                aria-selected="false"> SLOT2 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="thirdtab" data-toggle="tab"
+                href="#thirdcontent" role="tab" aria-controls="thirdcontent"
+                aria-selected="false"> SLOT3 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="fourthtab" data-toggle="tab"
+                  href="#fourthcontent" role="tab" aria-controls="fourthcontent"
+                  aria-selected="false"> SLOT4 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="fifthtab" data-toggle="tab"
+                href="#fifthcontent" role="tab" aria-controls="fifthcontent"
+                aria-selected="false"> SLOT6 </a>
+          </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="firstcontent"
+                 role="tabpanel" aria-labelledby="firsttab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/disable-slot1.jpg" class="img-fluid"
+                       alt="Configure a Minew E8 Beacon">
+                </div>
+                <div class="col-sm-9">
+                  <h4> iBeacon </h4>
+                  <ol>
+                    <li>Select the SLOT1 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
+                    <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="secondcontent" role="tabpanel"
+                 aria-labelledby="secondtab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/disable-slot2.jpg" class="img-fluid"
+                       alt="Configure a Minew E8 Beacon">
+                </div>
+                <div class="col-sm-9">
+                  <h4> UID </h4>
+                  <ol>
+                    <li>Select the SLOT2 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
+                    <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="thirdcontent" role="tabpanel"
+                 aria-labelledby="thirdtab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/disable-slot3.jpg" class="img-fluid"
+                       alt="Configure a Minew E8 Beacon">
+                </div>
+                <div class="col-sm-9">
+                  <h4> URL </h4>
+                  <ol>
+                    <li>Select the SLOT3 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
+                    <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="fourthcontent" role="tabpanel"
+                 aria-labelledby="fourthtab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/disable-slot4.jpg" class="img-fluid"
+                       alt="Configure a Minew E8 Beacon">
+                </div>
+                <div class="col-sm-9">
+                  <h4> TLM </h4>
+                  <ol>
+                    <li>Select the SLOT4 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
+                    <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="fifthcontent" role="tabpanel"
+                 aria-labelledby="fifthtab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/disable-slot6.png" class="img-fluid"
+                       alt="Configure a Minew E8 Beacon">
+                </div>
+                <div class="col-sm-9">
+                  <h4> SLOT 6 </h4>
+                  <ol>
+                    <li>Select the SLOT6 tab</li>
+                    <li>Disable by selecting the Frame Type <b>No Data</b> or <b>Empty</b></li>
+                     <li>Click on <b>Save</b> <i class="fas fa-save"></i></li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+          </div><br>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span> 
+            Take care <em>not</em> to disable SLOT5 (<b>INFO</b>), else it may be difficult to reconfigure the beacon. 
+          </p>
+          <table class="table table-striped">
+            <thead class="thead-reelyactive">
+              <tr>
+                <th scope="col">Base params</th>
+                <th scope="col">Default</th>
+                <th scope="col">Tradeoff</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Adv Interval</th>
+                <td>1000 ms</td>
+                <td>Responsiveness vs. Battery Life</td>
+              </tr>
+              <tr>
+                <th scope="row">RSSI</th>
+                <td>-24 dBm</td>
+                <td>Range vs. Battery Life</td>
+              </tr>
+              <tr>
+                <th scope="row">Radio Txpower</th>
+                <td>0 dBm</td>
+                <td>Range vs. Battery Life</td>
+              </tr>
+            </tbody>
+          </table>  
+         
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Configure other beacons, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a>
+                <img src="../minew-e8-config/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Configure a Minew E8 Beacon</h5>
+                </a>
+              </div>
+            </li>
+            <li class="media my-2">
+              <a>
+                <img src="../minew-s1-config/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Configure a Minew S1 Beacon</h5>
+                </a>
+                (COMING SOON) The temperature and humidity beacon.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
