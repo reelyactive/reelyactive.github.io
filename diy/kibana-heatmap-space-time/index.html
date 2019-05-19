@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Our step-by-step guide to create a heatmap visualization in Kibana.">
+          content="Our step-by-step guide to create a heatmap visualization in Kibana of the occupancy of a physical space over time.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,14 +15,14 @@
     </script>
     <link rel="stylesheet" href="../common/style/bootstrap.min.css">
     <link rel="stylesheet" href="../common/style/reelyactive.css">
-    <title> Create a space time heatmap in Kibana </title>
+    <title> Create a space/time heatmap in Kibana </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org", 
       "@type": "TechArticle",
-      "headline": "Create a space time heatmap in Kibana",
-      "description": "Our step-by-step guide to create a heatmap visualization in Kibana.",
+      "headline": "Create a space/time occupancy heatmap in Kibana",
+      "description": "Our step-by-step guide to create a heatmap visualization in Kibana of the occupancy of a physical space over time.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/kibana-heatmap-space-time/images/header.png",
@@ -121,8 +121,8 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <h1 class="mt-4"> Create a Heatmap on Kibana </h1>
-          <p class="lead"> Our step-by-step guide to create a heatmap visualization in Kibana. </p>
+          <h1 class="mt-4"> Create a space/time occupancy heatmap in Kibana </h1>
+          <p class="lead"> Our step-by-step guide to create a heatmap visualisation in Kibana of space/time occupancy. </p>
           <img src="images/header.png" class="img-fluid"
                alt="Create Heatmap Kibana Guide">
            <!-- The TL;DR -->
@@ -132,184 +132,203 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive create these visualizations to help you to visualize and analyze your space occupancy. </p>
+              <p class="lead"> Learn how we at reelyActive use Kibana heatmaps to observe the occupancy of a physical space over time. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">The heatmap is a graphical representation of data that visualizes all busy points within the space. It will give at-a-glance an understanding of how people use space, which helps identify trends and optimize space. </dd>
+                <dd class="col-sm-9">A visualisation of occupancy by zone over time, as determined by wireless device traffic.</dd>
                 <dt class="col-sm-3">Is there an easier way?</dt>
-                <dd class="col-sm-9">Yes, go to each space and count people yourself.</dd>
+                <dd class="col-sm-9">Manual counts of people using pen and paper?</dd>
                 <dt class="col-sm-3">So why would I read this?</dt>
-                <dd class="col-sm-9">To learn both how <em>and why</em> to create the heatmap visualization.</dd>
+                <dd class="col-sm-9">To learn both how <em>and why</em> to automate relative occupancy measurement with a heatmap visualisation.</dd>
               </dl>
             </div>
           </div>
           <!--Prerequisities-->
           <h2 class="mt-4"> Prerequisites </h2>
-          <p class="lead"> A stream of raddec and Kibana. </p>
-          <p>A stream of <b>raddec</b>  is a stream of data sensed from wireless devices. At reelyActive we develop the receivers which identify, locate and collect the raddec. Then, the raddec can be store in Elasticsearch.</p>
-          <p><b>Kibana</b> lets you visualize your Elasticsearch data. You can install Elasticsearch and Kibana from <a href="https://www.elastic.co/" target="_blank"> ELK Stack</a>. </p>
-          <p>Make sure you visualize datas on Kibana. To do this, you can adjust the Time Range. </p>
+          <p class="lead"> reelyActive open source software with Elasticsearch and Kibana. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a>
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1"> Prepare a computer from scratch </h5>
+                </a>
+                (COMING SOON) Our step-by-step tutorial on how we install Xubuntu, our open source software and supporting software to a computer.
+              </div>
+            </li>
+          </ul>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            In order for there to be data to visualise, the reelyActive software must also have collected and written raddec data to Elasticsearch. 
+          </p>
           <!-- Step 1 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step01">
-                Create a heatmap visualization &nbsp;
+                Creating a new heatmap visualisation &nbsp;
                 <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
               </h2>
-              <p class="lead"> Create and visualize a heatmap on Kibana. </p>
+              <p class="lead"> Create a heatmap in Kibana with the default settings. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why Kibana</dt>
-                <dd class="col-sm-9">Kibana is an analytics and visualization platform which provides great charts and helps you to understand your data.</dd>
+                <dt class="col-sm-3">What's a heatmap?</dt>
+                <dd class="col-sm-9">A heatmap displays the relative counts of a variable across two other variables (the X and Y axes).</dd>
+                <dt class="col-sm-3">Why Kibana?</dt>
+                <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
               </dl>
             </div>
           </div>
-          <p class="mt-2"> In Kibana, select the <b>Visualize</b> tab from the left menu bar and click the <b>Create a Visualization</b> <i class="fa fa-plus-square"></i> button.</p>
-          <p>Select the <b>Heat map</b> chart.</p>
+          <p class="mt-2"> Open Kibana and then:</p>
+          <ol>
+            <li> Select the <b>Visualize</b> tab from the left menu bar </li>
+            <li> Click the <b>Create a Visualization</b> <i class="fa fa-plus-square"></i> button </li>
+            <li> Select the <b>Heat Map</b> chart </li>
+          </ol>
           <img src="images/new-visualization-arrow.png"
-               class="img-fluid" alt="Create Heatmap Kibana Guide">
+               class="img-fluid" alt="Create a new Heat Map in Kibana">
           <p class="mt-2">Then, from a <b>Select Index</b> click on the <b>raddec</b> index.</p>
           <img src="images/select-index.png"
-               class="img-fluid" alt="Create Heatmap Kibana Guide">
-          <p class="mt-4"> The initial heatmap will get generated as below. </p>
+               class="img-fluid" alt="Select the raddec index in Kibana">
+          <p class="mt-2"> The default settings will result in a a heatmap with just one bucket being generated, similar to that below.  The next step will be to define a meaningful set of buckets. </p>
           <img src="images/initial-heatmap-generated.png" class="img-fluid"
-               alt="Create Heatmap Kibana Guide">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> By default, the generated heatmap contains one value, the count of raddec. However, this doesn't give us a sense of the space occupancy. To do that, we're going to create some buckets to visualize the raddec on the temporal and the spacial axis.</p>
+               alt="Default Heat Map in Kibana">
           <!-- Step 2 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step02">
-                Create buckets &nbsp;
+                Defining heatmap buckets &nbsp;
                 <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
               </h2>
-              <p class="lead"> Create buckets to visualize data properly. </p>
+              <p class="lead"> Define a meaningful set of buckets to visualise space/time occupancy </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">What's buckets?</dt>
-                <dd class="col-sm-9">Buckets is referring to the computer science term of grouping data based on criteria. We can group data into buckets based on their field values.</dd>
+                <dt class="col-sm-3">What's a bucket?</dt>
+                <dd class="col-sm-9">A <em>bucket</em> is a computer science term for grouping data based on a <em>criteria</em>.</dd>
+                <dt class="col-sm-3">What are these criteria?</dt>
+                <dd class="col-sm-9">The X-axis will represent time intervals and the Y-axis will represent individual radio receivers which detect occupancy in specific physical spaces.</dd>
               </dl>
             </div>
           </div>
-          <p> To get an accurate heatmap, we are going to create buckets for the x and y positions for our raddec so we can measure them in both time and space axis. </p>
-          <p> The <b>X-Axis (spacial axis)</b> is divided by zone. Each zone corresponds to a receiver. For example, we can imagined that we installed a receiver in an office, a cafeteria, a reception zone and a waiting room.</p>
-          <p> The <b>Y-Axis (temporal axis)</b> will allow us to visualize the occupancy rate for each space over a defined period of time.</p>
+          <p> In the heatmap editor, configure the <b>Buckets</b> of the X-Axis and Y-Axis as indicated below: </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="firsttab" data-toggle="tab"
-                 href="#firstcontent" role="tab" aria-controls="firstcontent"
+              <a class="nav-link active" id="xaxistab" data-toggle="tab"
+                 href="#xaxisbuckets" role="tab" aria-controls="xaxisbuckets"
                  aria-selected="true"> X-Axis </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="secondtab" data-toggle="tab"
-                 href="#secondcontent" role="tab" aria-controls="secondcontent"
+              <a class="nav-link" id="yaxistab" data-toggle="tab"
+                 href="#yaxisbuckets" role="tab" aria-controls="yaxisbuckets"
                  aria-selected="false"> Y-Axis </a>
             </li>
           </ul>
           <div class="tab-content tab-content-reelyactive">
-            <div class="tab-pane fade show active" id="firstcontent"
-                 role="tabpanel" aria-labelledby="firsttab">
+            <div class="tab-pane fade show active" id="xaxisbuckets"
+                 role="tabpanel" aria-labelledby="xaxistab">
               <div class="row my-4">
                 <div class="col-sm-3">
                   <img src="images/x-axis-buckets.png" class="img-fluid"
                        alt="Create Heatmap Kibana Guide">
                 </div>
                 <div class="col-sm-9">
-                  <h4> X-Axis (Axis of Time) </h4>
+                  <h4> X-Axis (Time) </h4>
                   <ol>
-                    <li>Click the <i class="fas fa-caret-square-down"></i> <b>X-Axis</b> bucket</li>
-                    <li>Select the Aggregation <b>Date Histogram</b></li>
-                    <li>Choose the Field <b>timestamp</b></li>
-                    <li>Adjust the interval to create each X-axis bucket to be the interval selected wide.</li>
-                    <li>Custom the X-axis by choosing a title</li>
-                    <li>Click the <b>Add sub-buckets</b> button to add an Y-Axis </li>
-                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update your changes</li>
+                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>X-Axis</b> bucket</li>
+                    <li>Select <b>Date Histogram</b> from the Aggregation pull-down</li>
+                    <li>Select <b>timestamp</b> from the Field pull-down</li>
+                    <li>Optionally select a specific a time interval from the Interval pull-down</li>
+                    <li>Enter <b>Time</b> in the Custom Label field</li>
+                    <li>Click the <b>Add sub-buckets</b> button to add an Y-Axis</li>
+                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
                   </ol>
                 </div> 
               </div>
             </div>
-            <div class="tab-pane fade" id="secondcontent" role="tabpanel"
-                 aria-labelledby="secondtab">
+            <div class="tab-pane fade" id="yaxisbuckets" role="tabpanel"
+                 aria-labelledby="yaxistab">
               <div class="row my-4">
                 <div class="col-sm-3">
                   <img src="images/y-axis-buckets.png" class="img-fluid"
                        alt="Create Heatmap Kibana Guide">
                 </div>
                 <div class="col-sm-9">
-                  <h4> Y-Axis (Axis of Space)</h4>
+                  <h4> Y-Axis (Space)</h4>
                   <ol>
-                    <li>Click the <i class="fas fa-caret-square-down"></i> <b>Y-Axis</b> bucket</li>
-                    <li>Select the Aggregation <b>Significant Terms</b></li>
-                    <li>Choose the Field <b>receiverid.keyword</b></li>
-                    <li>Adjust the size that corresponds to the number of sensors you want to display on the heatmap.</li>
-                    <li>Custom the Y-axis by choosing a title</li>
-                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update your changes</li>
+                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Y-Axis</b> bucket</li>
+                    <li>Select <b>Significant Terms</b> from the Aggregation pull-down</li>
+                    <li>Select <b>receiverid.keyword</b> from the Field pull-down</li>
+                    <li>Optionally select a specific limit of receivers to display from the Size pull-down</li>
+                    <li>Enter <b>Receivers</b> in the Custom Label field</li>
+                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
                   </ol>
                 </div> 
               </div>
             </div>
           </div> 
-          <p  class="mt-4">Now, you should visualize a heatmap as below.</p>
+          <p class="mt-2">The heatmap should now feature a grid of buckets providing a visualisation of relative occupancy by receiver over time, similar to that below.</p>
           <img src="images/buckets-result.png" class="img-fluid"
-               alt="Create Heatmap Kibana Guide">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> So far we have created a heatmap map that displays the number of raddecs counted per zone and per time interval. In the next step we are going to see what are the settings we can modify to customize the graph.</p>
+               alt="Kibana space/time occupancy heatmap visualisation">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> The basic heatmap visualisation of space/time occupancy is complete.  The remainder of the tutorial covers customisation and the possibilities for going further.</p>
            <!--Step 3 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step03">
-                Configure Heatmap Settings &nbsp;
+                Customising the heatmap settings &nbsp;
                 <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
               </h2>
-              <p class="lead"> Select settings and customize your chart. </p>
+              <p class="lead"> Select pretty colours and more! </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why customize a graph?</dt>
-                <dd class="col-sm-9">To change the aspects of the chart.</dd>
+                <dt class="col-sm-3">Why would I do this?</dt>
+                <dd class="col-sm-9"><em>Good</em> data may be the foundation for good decision making, but <em>pretty</em> data is what makes decision-makers notice and act!</dd>
               </dl>
             </div>
           </div>
-          <p> Now we're going to see what parameters can be modified to improve our graph.</p>
-          <p> Go to the <b>Options</b> tab. Here is the list of settings that you can modify from this tab:</p>
+          <p> In the heatmap editor, select the <b>Options</b> tab at the top and consider customising the following options: </p>
           <table class="table table-striped">
             <thead class="thead-reelyactive">
               <tr>
-                <th scope="col">Settings</th>
-                <th scope="col">What's for?</th>
+                <th scope="col">Option</th>
+                <th scope="col">Description</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Color Schema</th>
-                <td>You can select an existing color schema or go for custom and define your own colors in the legend.</td>
+                <td>Select an existing color schema or define custom colors.</td>
               </tr>
               <tr>
                 <th scope="row">Reverse Color Schema</th>
-                <td>Checking this checkbox will reverse the color schema. </td>
+                <td>Reverse the color schema by selecting this checkbox.</td>
               </tr>
               <tr>
                 <th scope="row">Color Scale</th>
-                <td>You can switch between linear, log and sqrt scales for color scale. </td>
+                <td>Select linear, log and sqrt scales to adjust the relative intensity of the bucket colours.</td>
               </tr>
               <tr>
                 <th scope="row">Scale to Data Bounds</th>
-                <td>The default Y axis bounds are zero and the maximum value returned in the data. Check this box to change both upper and lower bounds to match the values returned in the data. 
-                </td>
+                <td>Check this box to adjust the lower and upper bounds to match the source data.  By default the Y axis starts at zero.</td>
               </tr>
             </tbody>
           </table>
-          <p>For each changes you made, don't forget to save them by clicking the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar.</p>  
-          <p>Here, we just changed the <b>Color Schema</b> from Greens to Blues.</p>
+          <p>Each change should be saved by clicking the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar.</p>  
+          <p>For example, changing the <b>Color Schema</b> from Greens to Blues would result in a heatmap updated to resemble the following.</p>
           <img src="images/header.png" class="img-fluid"
-              alt="Create Heatmap Kibana Guide">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> Now, you should see your heatmap with the customization you applied. Then, you can add it to your dashboard and complete your collection of visualizations as below.</p>
+              alt="Kibana space/time occupancy heatmap visualisation">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualisation can be combined with other visualisations as part of a dashboard, such as that below.</p>
           <img src="images/add-to-dashboard.png" class="img-fluid"
-               alt="Create Heatmap Kibana Guide">
+               alt="Kibana dashboard example">
           <!-- Document template -->
           <div class="card my-4">
-            <h4 class="card-header"> For nerds, stuff that matters </h4>
+            <h4 class="card-header"> The underlying Elasticsearch query </h4>
             <div class="card-body">
-              <p class="card-text">Here's the JSON request for building the heatmap visualization. You can apply it on Kibana in the <b>DevTools</b> Tab from the left menu bar.</p>
-              <pre><code>
+              <pre class="card-text"><code>
 GET raddec/_search
 {
   "size": 0,
@@ -318,21 +337,21 @@ GET raddec/_search
       "date_histogram": {
         "field": "timestamp",
         "interval": "1h"
-        },
-        "aggs": {
-          "receivers": {
-            "significant_terms": {
-              "field": "receiverId.keyword",
-              "size": 10
-            }
+      },
+      "aggs": {
+        "receivers": {
+          "significant_terms": {
+            "field": "receiverId.keyword",
+            "size": 10
           }
         }
-      }     
-    },
-    "query": {
-      "match_all": {}
-    }
+      }
+    }     
+  },
+  "query": {
+    "match_all": {}
   }
+}
               </code></pre>
             </div>
           </div>
@@ -343,19 +362,19 @@ GET raddec/_search
           <ul class="list-unstyled">
             <li class="media my-2">
               <a>
-                <img src="../../"
+                <img src="../common/images/icon.png"
                      class="align-self-start mr-3">
               </a>
               <div class="media-body">
                 <a>
                   <h5 class="mt-0 mb-1">Create another visualization</h5>
                 </a>
-                (COMING SOON)  Count of raddec over a day.
+                (COMING SOON) Count of raddec over a day.
               </div>
             </li>
             <li class="media my-2">
               <a>
-                <img src="../../"
+                <img src="../common/images/icon.png"
                      class="align-self-start mr-3">
               </a>
               <div class="media-body">
