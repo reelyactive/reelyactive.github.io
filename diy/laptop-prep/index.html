@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="How to prepare a laptop with Xubuntu, Node.js, Elasticsearch, Kibana and everything you need to run reelyActive's open source software.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> reelyActive Laptop Preparation Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Laptop Preparation Guide",
+      "description": "How to prepare a laptop with Xubuntu, Node.js, Elasticsearch, Kibana and everything you need to run reelyActive's open source software.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/laptop-prep/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Prepare a reelyActive laptop from scratch </h1>
+          <p class="lead"> Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software. </p>
+          <!--<img src="images/header.jpg" class="img-fluid"
+               alt="Prepare a laptop from scratch">-->
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive prepare a laptop, starting with a Xubuntu installation, to efficiently run our open source software. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A Xubuntu-based laptop with everything to support reelyActive's open source software suite.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Ask us for a quote to prepare one for you as part of a PoC.</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">It's actually a rather straightforward process, and could even be useful for other projects.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Installing Xubuntu 18.04 LTS &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 4</a>
+              </h2>
+              <p class="lead"> Download Xubuntu 18.04 LTS and install it as the primary operating system of the laptop. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Xubuntu?</dt>
+                <dd class="col-sm-9">The Ubuntu family of Linux <i class="fab fa-linux"></i> distributions are popular and well supported.  Xubuntu uses the lighter Xfce desktop environment, well suited to the system requirements.</dd>
+                <dt class="col-sm-3">Why 18.04 LTS?</dt>
+                <dd class="col-sm-9">It's the latest Long-Term-Support version at the time of writing.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/xubuntu.png" class="img-fluid"
+               alt="Xubuntu">-->
+          <h3>
+            Download Xubuntu 18.04 LTS
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From any Internet-connected computer <i class="fas fa-laptop"></i>: </p>
+          <ol>
+            <li> Browse to <a href="https://xubuntu.org/download/" target="_blank"> xubuntu.org/download/ </a> </li>
+            <li> Scroll to find the <b>LTS</b> version (18.04) </li>
+            <li> Download the 64-bit version via Torrent or a local mirror, as you prefer </li>
+            <li> Burn the ISO file to a bootable USB drive <i class="fab fa-usb"></i> or a DVD <i class="fas fa-compact-disc"></i>, as you prefer (search online for instructions specific to your case and operating system) </li>
+          </ol>
+          <p> You should now have Xubuntu 18.04 LTS on a bootable media that the target laptop <i class="fas fa-laptop"></i> can accept.  Let's install! </p>
+          <h3>
+            Install Xubuntu 18.04 LTS
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Boot the target laptop <i class="fas fa-laptop"></i> with the Xubuntu 18.04 LTS installation media and, when prompted, select the option to <b>Install Xubuntu</b> (rather than simply Try Xubuntu).  Then, </p>
+          <ol>
+            <li> Select <b>English</b> as the language </li>
+            <li> Select the <b>English (US)</b> keyboard <i class="fas fa-keyboard"></i>, unless the laptop has another </li>
+            <li> Select the option to connect to a WiFi <i class="fas fa-wifi"></i> network, if available, and enter the credentials </li>
+            <li> Select <b>Download updates while installing Xubuntu</b> but do not select the option to install third-party software </li>
+            <li> Select the installation type: on a laptop with virgin hard drive, simply <b>Erase disk and install Xubuntu</b> <i>(if another operating system is present, take great care to select an appropriate configuration!)</i> </li>
+          </ol>
+          <p> Xubuntu will now be written to the hard disk.  In parallel, there will be prompts to configure personalisation settings. </p>
+          <h3>
+            Enter personal settings
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> While Xubuntu is being written to the hard disk, complete the following when prompted: </p>
+          <ol>
+            <li> Select the time zone in which the system will be used </li>
+            <li> Enter <b>reelyActive</b> as your name </li>
+            <li> Enter <b>reelyActive-XXX</b> as your computer's name, replacing XXX with the model of the laptop <i class="fas fa-laptop"></i>, for example X250 </li>
+            <li> Enter <b>reelyactive</b> as the username </li>
+            <li> Enter <b>owl-in-one</b> as the password, or a stronger and more appropriate password </li>
+            <li> Select the option to <b>Require my password to log in</b> </li>
+          </ol>
+          <p> Wait for the installation to complete, and when prompted, remove the installation media and restart.  Xubuntu 18.04 LTS is now installed and configured! </p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Installing Elasticsearch 7.x &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
+              </h2>
+              <p class="lead"> Install Elasticsearch 7.x with Java as a prerequisite, and configure to run on boot. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Elasticsearch?</dt>
+                <dd class="col-sm-9">Elasticsearch is a versatile, open source database well suited to the needs of the reelyActive open source software stack.</dd>
+                <dt class="col-sm-3">Why run on boot?</dt>
+                <dd class="col-sm-9">For convenience of course!</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/elasticsearch.jpg"
+               class="img-fluid"
+               alt="Elasticsearch">-->
+          <p class="mt-4"> Once the laptop <i class="fas fa-laptop"></i> has booted up, ensure it is connected to the Internet. </p>
+          <h3>
+            Install Java
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Update the list of available packages and their versions with the command <code>sudo apt update</code> </li>
+            <li> Install Java <i class="fab fa-java"></i> with the command <code>sudo apt install default-jdk</code> </li>
+          </ol>
+          <h3>
+            Configure the Elastic APT repository
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Import the Elasticsearch PGP key with the command <code>wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -</code> </li>
+            <li> Install the prerequisite transport package with the command <code>sudo apt-get install apt-transport-https</code> </li>
+            <li> Add the location of the Elastic APT repository with the command <code>echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list</code> </li>
+          </ol>
+          <p> Xubuntu now knows where to find and how to download the Elasticsearch and Kibana APT packages. </p>
+          <h3>
+            Install Elasticsearch 7.x
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> then install Elasticsearch 7.x with the command <code>sudo apt-get update && sudo apt-get install elasticsearch</code>
+          <p> Elasticsearch is now installed. </p>
+          <h3>
+            Enable the Elasticsearch service
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Reload the systemctl daemon with the command <code>sudo /bin/systemctl daemon-reload</code> </li>
+            <li> Enable the Elasticsearch service with the command <code>sudo /bin/systemctl enable elasticsearch.service</code> </li>
+          </ol>
+          <p> Elasticsearch will automatically start the next time the laptop <i class="fas fa-laptop"></i> is restarted. </p>
+          <h3>
+            Configure Elasticsearch 7.x
+            <small class="text-muted"> Part 5 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> then open the <b>elasticsearch.yml</b> file for editing with the command <code>sudo nano /etc/elasticsearch/elasticsearch.yml</code> and paste in the following lines: </p>
+          <pre><code>http.cors.enabled: true
+http.cors.allow-origin: /https?:\/\/localhost(:[0-9]+)?/
+http.cors.allow-methods: GET, POST
+path.repo: ["/var/backups/elasticsearch"]</code></pre>
+          <p> This will allow API access to Elasticsearch by software, such as the reelyActive open source software, running on the same machine (localhost).  This will also specify the path for backups, a folder that must be created as follows: </p>
+          <ol>
+            <li> Change to the var/backups folder with the command <code>cd /var/backups</code> </li>
+            <li> Create the elasticsearch backups folder with the command <code>sudo mkdir elasticsearch</code> </li>
+            <li> Change the owner of the folder to the elasticsearch user with the command <code>sudo chown -R elasticsearch:elasticsearch elasticsearch</code> </li>
+          </ol>
+          <!----- TODO: set heap size on resource-constrained machines ----->
+          <p> Elasticsearch is now installed and configured. </p>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Installing Kibana 7.x &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
+              </h2>
+              <p class="lead"> Install Kibana 7.x, and configure to run on boot. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Kibana?</dt>
+                <dd class="col-sm-9">Kibana provides a powerful window into the data stored in Elasticsearch, including visualisations, dashboards and facilitating database queries and management.</dd>
+                <dt class="col-sm-3">Why run on boot?</dt>
+                <dd class="col-sm-9">For convenience of course!</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/kibana.jpg" class="img-fluid"
+               alt="Kibana">-->
+          <p class="mt-4"> This step assumes that the previous step, Installing Elasticsearch 7.x, is already completed. </p>
+          <h3>
+            Install Kibana
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> then install Kibana with the command <code>sudo apt-get update && sudo apt-get install kibana</code>. </p>
+          <p> Kibana is now installed. </p>
+          <h3>
+            Enable the Kibana service
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Reload the systemctl daemon with the command <code>sudo /bin/systemctl daemon-reload</code> </li>
+            <li> Enable the Kibana service with the command <code>sudo /bin/systemctl enable kibana.service</code> </li>
+          </ol>
+          <p> Kibana will automatically start the next time the laptop <i class="fas fa-laptop"></i> is restarted. </p>
+          <!----- Step 4 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step04">
+                Configuring Xubuntu &nbsp;
+                <a href="#step04" class="badge badge-secondary">Step 4 of 4</a>
+              </h2>
+              <p class="lead"> Power settings and other features. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Is this step essential?</dt>
+                <dd class="col-sm-9">No.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/configuration.jpg" class="img-fluid"
+               alt="Configuring Xubuntu">-->
+          <p class="mt-4"> Procedure to come... </p>
+          <!----- Document template ----->
+          <div class="card my-4">
+            <h4 class="card-header"> Do you like this document template? </h4>
+            <div class="card-body">
+              <p class="card-text"> It's based on <a href="https://getbootstrap.com" target="_blank"><i class="fab fa-bootstrap"></i> Bootstrap 4</a> <a href="https://getbootstrap.com/docs/4.3/about/license/" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> and <a href="https://fontawesome.com" target="_blank"><i class="fab fa-font-awesome"></i> Font Awesome 5 (Free)</a> <a href="https://fontawesome.com/license/free" target="_blank" class="badge badge-light"><i class="fab fa-creative-commons"></i> <i class="fab fa-osi"></i> &nbsp; MIT</a>.  Our <b>Web Style Guide</b> <a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> has all the details.  Sharing and feedback are encouraged! </p>
+              <a href="https://github.com/reelyactive/web-style-guide"
+                 target="_blank" class="btn btn-secondary btn-sm">
+                <i class="fas fa-external-link-alt"></i> &nbsp;
+                reelyActive's Web Style Guide
+              </a>
+            </div>
+          </div>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
