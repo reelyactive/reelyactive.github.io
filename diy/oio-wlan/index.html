@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="How to create a wireless local area network (WLAN) by configuring an Owl-in-One as an access point, with others, as well as a laptop, as clients.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> reelyActive Owl-in-One Wireless LAN Setup Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Owl-in-One Wireless LAN Setup Guide",
+      "description": "How to create a wireless local area network (WLAN) by configuring an Owl-in-One as an access point, with others, as well as a laptop, as clients.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/oio-wlan/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Create a WLAN of Owl-in-Ones and a laptop </h1>
+          <p class="lead"> Our step-by-step guide to create a local wireless network by configuring an Owl-in-One as an access point. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Prepare a reelyActive laptop from scratch">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive prepare a standalone, wireless data collection and demo kit from Owl-in-Ones and a laptop. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A standalone wireless network of Owl-in-Ones forwarding data to a laptop running our open source software.</dd>
+                <dt class="col-sm-3">Why would I need this?</dt>
+                <dd class="col-sm-9">For quick demos and short-term data collection, there's nothing more convenient than simply powering on all the devices.  The rest happens automagically.</dd>
+                <dt class="col-sm-3">So no WiFi or Internet required?</dt>
+                <dd class="col-sm-9">Exactly.  An Owl-in-One acts as a WiFi access point for all other devices to connect together in a local area network.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Configuring an Owl-in-One as an AP &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 4</a>
+              </h2>
+              <p class="lead"> Physically connect to the Owl-in-One and issue commands to configure it as a WiFi access point. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why an access point?</dt>
+                <dd class="col-sm-9">An access point acts as a hub through which all other nodes in the wireless network connect with one another.</dd>
+                <dt class="col-sm-3">Why use an Owl-in-One?</dt>
+                <dd class="col-sm-9">It is possible to use a standalone AP, but since the Owl-in-One is well suited to this role, this saves complexity and cost.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/oio-ap.jpg" class="img-fluid"
+               alt="Owl-in-One Access Point">
+          <h3 class="mt-4">
+            Connect to the Owl-in-One via USB
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From any computer <i class="fas fa-laptop"></i> with the prerequisite t2-cli installed: </p>
+          <ol>
+            <li> Connect the USB <i class="fab fa-usb"></i> cable of the Owl-in-One to the computer <i class="fas fa-laptop"></i> </li>
+            <li> Wait approximately 30 seconds for the device to boot &nbsp; <span class="badge badge-info"> <i class="fas fa-clock"></i> &nbsp; 30 sec </span> </li>
+          </ol>
+          <p> The Owl-in-One is now ready to accept commands. </p>
+          <h3>
+            Configure the Owl-in-One as an AP
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the USB-connected computer <i class="fas fa-laptop"></i> open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Disable WiFi client mode with the command <code>t2 wifi --off</code> </li>
+            <li> Configure the WiFi AP with SSID <b>reelyActive</b> and password <b>owl-in-one</b> with the command: <code>t2 ap -n "reelyActive" -p "owl-in-one"</code> </li>
+            <li> Enable WiFi AP mode1 with the command <code>t2 ap --on</code> </li>
+          </ol>
+          <img src="images/ap-configured.png" class="img-fluid"
+               alt="Owl-in-One configured as Access Point">
+          <p class="mt-2"> Observe the response <em>Access Point succesfully enabled</em> and the SSID and Password as configured.  The Owl-in-One is now hosting a WiFi network for its peers! </p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Connecting the laptop to the WLAN &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
+              </h2>
+              <p class="lead"> Select the reelyActive WiFi network and configure a static IP address. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why a static IP address?</dt>
+                <dd class="col-sm-9">In the next step all Owl-in-Ones will be configured to forward data to the laptop via its IP address.</dd>
+                <dt class="col-sm-3">Should the AP be powered on?</dt>
+                <dd class="col-sm-9">Yes.  The AP Owl-in-One must be powered on for the laptop to be able to connect.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/laptop-connect.jpg" class="img-fluid"
+               alt="Laptop connected to the reelyActive WiFi network">
+          <h3 class="mt-4">
+            Connect to the reelyActive WiFi network
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the laptop <i class="fas fa-laptop"></i>: </p>
+          <ol>
+            <li> Select from the list of available WiFi networks the one called <b>reelyActive</b> </li>
+            <li> When prompted, enter the password <b>owl-in-one</b> </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> and confirm the connection with the command <code>ifconfig</code> </li>
+          </ol>
+          <img src="images/laptop-dhcp-ip.png" class="img-fluid"
+               alt="ifconfig with DHCP-assigned IP address">
+          <p class="mt-2"> The laptop is connected to reelyActive WiFi network and is assigned an IP address by the AP via DHCP.  This IP address is likely to change on subsequent connections.  Let's make it static. </p>
+          <h3>
+            Configure a static IP address
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the laptop <i class="fas fa-laptop"></i>: </p>
+          <ol>
+            <li> Open the Network Manager and select <b>Edit Connections...</b> </li>
+            <li> From the list of WiFi connections select <b>reelyActive</b> and click Edit </li>
+            <li> Select the <b>IPv4 Settings</b> tab </li>
+            <li> From the Method pulldown, select <b>Manual</b> </li>
+            <li> Click Add to add the static IP address: </li>
+            <ul>
+              <li> Enter <b>192.168.1.10</b> as the address </li>
+              <li> Enter <b>255.255.255.0</b> as the netmask </li>
+              <li> Enter <b>192.168.1.101</b> as the gateway </li>
+            </ul>
+            <li> Click Save to complete the configuration </li>
+          </ol>
+          <img src="images/laptop-ip-config.png" class="img-fluid"
+               alt="Configure the laptop for the reelyActive WiFi network">
+          <p class="mt-4">
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            Disconnect from and reconnect to the <b>reelyActive</b> WiFi network to ensure that the IP settings update.
+          </p>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and confirm the static IP address <b>192.168.1.10</b> with the command <code>ifconfig</code> </p>
+          <img src="images/laptop-static-ip.png" class="img-fluid"
+               alt="ifconfig with static IP address">
+          <p class="mt-2"> The laptop is now connected to the reelyActive WiFi network with a static IP address. </p>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Configuring the Owl-in-One Software &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
+              </h2>
+              <p class="lead"> Clone the software repository and update the configuration. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What software?</dt>
+                <dd class="col-sm-9">The Owl-in-One runs lightweight Node.js software which will be updated with a new configuration.</dd>
+                <dt class="col-sm-3">Any prerequisites?</dt>
+                <dd class="col-sm-9">Yes.  This step requires <i class="fab fa-git-square"></i> git and <i class="fab fa-npm"></i> npm.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/oio-config.png" class="img-fluid"
+               alt="Configuring an Owl-in-One with tessel-edge">
+          <p class="mt-4">
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            This step requires an Internet connection.  If using the same laptop <i class="fas fa-laptop"></i> as previously, disconnect from the reelyActive WiFi network and connect instead to a network with Internet connectivity.
+          </p>
+          <h3>
+            Clone the tessel-edge repository
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the computer <i class="fas fa-laptop"></i> satisfying the prerequisites, open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Browse to a folder where the software will be cloned </li>
+            <li> Clone the <b>tessel-edge</b> repository with the command <code>git clone https://github.com/reelyactive/tessel-edge.git</code> </li>
+          </ol>
+          <p> The tessel-edge software is now cloned to the laptop. </p>
+          <h3>
+            Install package dependencies
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the same computer <i class="fas fa-laptop"></i>, open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Browse to the root of the <b>tessel-edge</b> repository </li>
+            <li> Install dependencies with the command <code>npm install</code> </li>
+          </ol>
+          <p> The tessel-edge software now has all package dependencies installed. </p>
+          <h3>
+            Update software configuration
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the same computer <i class="fas fa-laptop"></i>, open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Browse to the root of the <b>tessel-edge</b> repository </li>
+            <li> Open the file <b>config.js</b> for editing </li>
+            <li> Update the <b>RADDEC_TARGETS</b> as below </li>
+          </ol>
+          <pre><code>const RADDEC_TARGETS = [
+    { host: "192.168.1.10", port: "50001", protocol: "udp" }
+];</code></pre>
+          <p> The tessel-edge software is now configured to forward data to the laptop's static IP address.  Let's program the Owl-in-Ones! </p>
+          <!----- Step 4 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step04">
+                Programming the Owl-in-Ones &nbsp;
+                <a href="#step04" class="badge badge-secondary">Step 4 of 4</a>
+              </h2>
+              <p class="lead"> Program the software of each Owl-in-One and connect to the WiFi network. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What are we programming?</dt>
+                <dd class="col-sm-9">The Owl-in-One is based on the Tessel 2 platform and is programmed as such.</dd>
+                <dt class="col-sm-3">Any prerequisites?</dt>
+                <dd class="col-sm-9">Yes.  This step requires the t2-cli package to be installed on the laptop.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/oio-usb.jpg" class="img-fluid"
+               alt="Progrmming an Owl-in-One">
+          <p class="mt-4"> Repeat Parts 1 through 3 for each Owl-in-One. </p>
+          <h3>
+            Connect to the Owl-in-One via USB
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the same computer <i class="fas fa-laptop"></i>: </p>
+          <ol>
+            <li> Connect the USB <i class="fab fa-usb"></i> cable of the Owl-in-One to the computer <i class="fas fa-laptop"></i> </li>
+            <li> Wait approximately 30 seconds for the device to boot &nbsp; <span class="badge badge-info"> <i class="fas fa-clock"></i> &nbsp; 30 sec </span> </li>
+          </ol>
+          <p> The Owl-in-One is now ready to accept commands. </p>
+          <h3>
+            Push the software to the Owl-in-One
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the same computer <i class="fas fa-laptop"></i>, open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Browse to the local <b>tessel-edge</b> repository </li>
+            <li> Push the software to the Owl-in-One with the command <code>t2 push index.js</code> </li>
+          </ol>
+          <img src="images/oio-software-push.png" class="img-fluid"
+               alt="Owl-in-One t2 push">
+          <p class="mt-2"> The software will begin to run, and will start automatically whenever the Owl-in-One is powered on. </p>
+          <h3>
+            Connect to the reelyActive WiFi network
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            This part does not apply to the Owl-in-One configured as an access point.
+          </p>
+          <p> From the same computer <i class="fas fa-laptop"></i>, open a terminal <i class="fas fa-terminal"></i> and then: </p>
+          <ol>
+            <li> Configure the WiFi client with SSID <b>reelyActive</b> and password <b>owl-in-one</b> with the command <code>t2 wifi -n "reelyActive" -p "owl-in-one"</code> </li>
+            <li> Confirm the connection (assuming the AP is powered on) with the command <code>t2 wifi</code> </li>
+          </ol>
+          <img src="images/oio-wifi.png" class="img-fluid"
+               alt="Owl-in-One t2 wifi">
+          <p class="mt-2"> The Owl-in-One is now connected to the WiFi network and forwarding real-time data to the laptop's IP address. </p>
+          <!----- Document template ----->
+          <div class="card my-4">
+            <h4 class="card-header"> Do you like this document template? </h4>
+            <div class="card-body">
+              <p class="card-text"> It's based on <a href="https://getbootstrap.com" target="_blank"><i class="fab fa-bootstrap"></i> Bootstrap 4</a> <a href="https://getbootstrap.com/docs/4.3/about/license/" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> and <a href="https://fontawesome.com" target="_blank"><i class="fab fa-font-awesome"></i> Font Awesome 5 (Free)</a> <a href="https://fontawesome.com/license/free" target="_blank" class="badge badge-light"><i class="fab fa-creative-commons"></i> <i class="fab fa-osi"></i> &nbsp; MIT</a>.  Our <b>Web Style Guide</b> <a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> has all the details.  Sharing and feedback are encouraged! </p>
+              <a href="https://github.com/reelyactive/web-style-guide"
+                 target="_blank" class="btn btn-secondary btn-sm">
+                <i class="fas fa-external-link-alt"></i> &nbsp;
+                reelyActive's Web Style Guide
+              </a>
+            </div>
+          </div>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
