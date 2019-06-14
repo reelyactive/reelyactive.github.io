@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to create a bar chart visualization in Kibana.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Create a bar chart in Kibana </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Create a bar chart in Kibana",
+      "description": "Our step-by-step guide to create a bar chart visualization in Kibana.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/kibana-bar-chart-time-analysis/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png" width="165" height="30"
+             alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"
+               href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Create a bar chart in Kibana to observe data over time </h1>
+          <p class="lead">Our step-by-step guide to create a bar chart visualization in Kibana and help answering the question : <em>Are the detected devices keepalive or moving ?</em></p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Create Bar Chart Kibana Guide">
+           <!-- The TL;DR -->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive use Kibana bar charts to observe the behavior of the devices.</p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A visualisation of how wireless devices behave over the time.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Manual counts and analysis of people/device using pen and paper?</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">To learn both how <em>and why</em> to automate relative behavior measurement with a bar chart visualisation.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--Prerequisities-->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> reelyActive open source software with Elasticsearch and Kibana. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a>
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1"> Prepare a computer from scratch </h5>
+                </a>
+                (COMING SOON) Our step-by-step tutorial on how we install Xubuntu, our open source software and supporting software to a computer.
+              </div>
+            </li>
+          </ul>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            In order for there to be data to visualise, the reelyActive software must also have collected and written raddec data to Elasticsearch. 
+          </p>
+          <!-- Step 1 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Creating a new bar chart visualisation &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 4</a>
+              </h2>
+              <p class="lead"> Create a bar chart in Kibana with the default settings. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a bar chart?</dt>
+                <dd class="col-sm-9">A bar chart displays the relative counts of a variable through rectangular bars with heights proportional to the values that they represent.</dd>
+                <dt class="col-sm-3">Why Kibana?</dt>
+                <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
+              </dl>
+            </div>
+          </div>
+          <p class="mt-2"> Open Kibana and then:</p>
+          <ol>
+            <li> Select the <b>Visualize</b> tab from the left menu bar </li>
+            <li> Click the <b>Create a Visualization</b> <i class="fa fa-plus-square"></i> button </li>
+            <li> Select the <b>Vertical Bar</b> chart </li>
+          </ol>
+          <img src="images/new-visualization-arrow.png"
+               class="img-fluid" alt="Create a new Bar Chart in Kibana">
+          <p class="mt-2">Then, from a <b>Select Index</b> click on the <b>raddec</b> index.</p>
+          <img src="images/select-index.png"
+               class="img-fluid" alt="Select the raddec index in Kibana">
+          <p class="mt-2"> The default settings will result in a bar chart with just one bucket being generated, similar to that below. The next step will be to define a meaningful set of buckets.</p>
+          <img src="images/initial-bar-chart-generated.png" class="img-fluid"
+               alt="Default Bar Chart in Kibana">
+          <!-- Step 2 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Defining bar chart buckets &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
+              </h2>
+              <p class="lead"> Define a meaningful set of buckets to visualise space/time occupancy </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a bucket?</dt>
+                <dd class="col-sm-9">A <em>bucket</em> is a computer science term for grouping data based on a <em>criteria</em>.</dd>
+                <dt class="col-sm-3">What are these criteria?</dt>
+                <dd class="col-sm-9">The X-axis will represent time intervals and the Y-axis will represent the count of radio transmitters.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> In the bar chart editor, configure the <b>Buckets</b> of the X-Axis and Y-Axis as indicated below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="xaxistab" data-toggle="tab"
+                 href="#xaxisbuckets" role="tab" aria-controls="xaxisbuckets"
+                 aria-selected="true"> X-Axis </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="yaxistab" data-toggle="tab"
+                 href="#yaxisbuckets" role="tab" aria-controls="yaxisbuckets"
+                 aria-selected="false"> Y-Axis </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="xaxisbuckets"
+                 role="tabpanel" aria-labelledby="xaxistab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/x-axis-buckets.png" class="img-fluid"
+                       alt="Create Bar Chart Kibana Guide">
+                </div>
+                <div class="col-sm-9">
+                  <h4> X-Axis (Time) </h4>
+                  <ol>
+                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>X-Axis</b> bucket</li>
+                    <li>Select <b>Date Histogram</b> from the Aggregation pull-down</li>
+                    <li>Select <b>timestamp</b> from the Field pull-down</li>
+                    <li>Optionally select a specific a time interval from the Interval pull-down</li>
+                    <li>Enter a label in the Custom Label field</li>
+                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="yaxisbuckets" role="tabpanel"
+                 aria-labelledby="yaxistab">
+              <div class="row my-4">
+                <div class="col-sm-3">
+                  <img src="images/y-axis-buckets.png" class="img-fluid"
+                       alt="Create Bar Chart Kibana Guide">
+                </div>
+                <div class="col-sm-9">
+                  <h4> Y-Axis (Count of transmitters)</h4>
+                  <ol>
+                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Y-Axis</b> bucket</li>
+                    <li>Select <b>Count</b> from the Aggregation pull-down</li>
+                    <li>Enter a label in the Custom Label field</li>
+                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
+                  </ol>
+                </div> 
+              </div>
+            </div>
+          </div> 
+          <p class="mt-2">The bar chart should now feature bars providing a visualisation of the relative number of transmitters count over time, similar to that below.</p>
+          <img src="images/buckets-result.png" class="img-fluid"
+               alt="Kibana bar chart buckets visualisation">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> The basic bar chart visualisation is complete. The question <em>Are the detected devices keepalive or moving ?</em> is not solved yet. To do it, the bar chart must be split into events.</p>
+          <!--Step 3 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Spliting Series &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
+              </h2>
+              <p class="lead"> Visualize events </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's an event?</dt>
+                <dd class="col-sm-9">A raddec may include an event property.</dd>
+              </dl>
+            </div>
+          </div> 
+          <p>The event type indexes are as follows:</p>
+          <table class="table table-striped">
+            <thead class="thead-reelyactive">
+              <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Raddec events</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">0</th>
+                <td>APPEARANCE</td>
+                <td>First decoding of the transmitter in recent memory</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>DISPLACEMENT</td>
+                <td>Change of strongest receiver by transmitter</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>PACKETS</td>
+                <td>New packet payload received from transmitter</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>KEEPALIVE</td>
+                <td>Periodic update of transmitter's recent decoding(s)</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>DISAPPEARANCE</td>
+                <td>Transmitter no longer decoded by any receiver</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>This tutorial focuses on the event types <b>1</b> (DISPLACEMENT) and <b>3</b> (KEEPALIVE) to help understand how devices interact in the space.</p>
+          <div class="row my-4">
+            <div class="col-sm-3">
+              <img src="images/split-series.png" class="img-fluid"
+                alt="Create Bar Chart Kibana Guide">
+            </div>
+            <div class="col-sm-9">
+              <h4> Split Series (Events) </h4>
+              <ol>
+                <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Split Series</b> bucket</li>
+                <li>Select <b>Terms</b> from the Aggregation pull-down</li>
+                <li>Select <b>events</b> from the Field pull-down</li>
+                <li>Choose <b>metric: Count</b> from the Order By pull-down</li>
+                <li>Choose the Size <b>2</b> in the <b>Descending</b> Order</li>
+                <li>Enter a label in the Custom Label field</li>
+                <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
+              </ol>
+            </div> 
+          </div>
+          <p class="mt-2">The bar chart should now feature bars providing a visualisation of the relative number of transmitters count over time, similar to that below.</p>
+          <img src="images/result-split-serie-bucket.png" class="img-fluid"
+               alt="Kibana bar chart buckets visualisation">
+          <!--Step 4 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Customising the bar chart settings &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 4 of 4</a>
+              </h2>
+              <p class="lead"> Select pretty colours and more! </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why would I do this?</dt>
+                <dd class="col-sm-9"><em>Good</em> data may be the foundation for good decision making, but <em>pretty</em> data is what makes decision-makers notice and act!</dd>
+              </dl>
+            </div>
+          </div>
+          <p>Kibana gives the opportunity to display charts in many ways.</p>
+          <p class="mt-2"> Open <b>Metrics & Axes</b> tab:</p>
+          <ol>
+            <li> Select the <b>Chart Type</b> you want: <em>line</em>, <em>area</em> or <em>bar</em></li>
+            <li> Choose the <b>Mode</b> between <em>normal</em> or <em>stacked</em></li>
+            <li> Select the <b>Line Mode</b> you want: <em>straight</em>, <em>smoothed</em> or <em>stepped</em>  </li>
+            <li> Make all the changes you </li>
+          </ol>
+          <p class="mt-2">Here are some examples of chart types you can create.</p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="barchart" data-toggle="tab"
+                 href="#barcharttype" role="tab" aria-controls="barcharttype"
+                 aria-selected="true"> Bar </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="linechart" data-toggle="tab"
+                 href="#barlinetype" role="tab" aria-controls="barlinetype"
+                 aria-selected="false"> Line </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="areachart" data-toggle="tab"
+                 href="#areacharttype" role="tab" aria-controls="areacharttype"
+                 aria-selected="false"> Area </a>
+            </li>
+            </ul>
+            <div class="tab-content tab-content-reelyactive">
+              <div class="tab-pane fade show active" id="barcharttype"
+                   role="tabpanel" aria-labelledby="barchart">
+                <img src="images/bar-chart-type.png" class="img-fluid"
+                   alt="Kibana bar chart buckets visualisation">
+              </div>
+              <div class="tab-pane fade" id="barlinetype" role="tabpanel"
+                   aria-labelledby="linechart">
+                <img src="images/line-chart-type.png" class="img-fluid"
+                   alt="Kibana bar chart buckets visualisation">
+              </div>
+              <div class="tab-pane fade" id="areacharttype" role="tabpanel"
+                   aria-labelledby="areachart">
+                <img src="images/bar-chart-area.png" class="img-fluid"
+                   alt="Kibana bar chart buckets visualisation">
+            </div>
+          </div>
+          <!-- Document template -->
+          <div class="card my-4">
+            <h4 class="card-header"> The underlying Elasticsearch query </h4>
+            <div class="card-body">
+              <pre class="card-text"><code>
+GET raddec/_search
+{
+  "size":0,
+  "aggs": {
+    "date": {
+      "date_histogram": {
+        "field": "timestamp",
+        "interval": "5m"
+      },
+      "aggs": {
+        "events": {
+          "terms": {
+            "field": "events",
+            "size": 2,
+            "order": {
+              "_count": "desc"
+            }
+          }
+        }
+      }
+    }
+  },
+  "query": {
+    "bool": {
+      "must" : {
+        "match_all": {}
+      },
+      "should": [
+        {"match_phrase": {"events": "1"}},
+        {"match_phrase": {"events": "3"}}
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}
+              </code></pre>
+            </div>
+          </div>
+          <!-- Where to next? -->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Create other visualizations, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a>
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Create another visualization</h5>
+                </a>
+                (COMING SOON) Count of raddec over a day.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a>
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Create another visualization</h5>
+                </a>
+                (COMING SOON) Top receivers.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
