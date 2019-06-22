@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="How to setup the Elasticsearch Service, managed and hosted in the cloud by Elastic, for use with the reelyActive open source platform.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> reelyActive Elasticsearch Service Setup Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Elasticsearch Service Setup Guide",
+      "description": "How to setup the Elasticsearch Service, managed and hosted in the cloud by Elastic, for use with the reelyActive open source platform.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/elasticsearch-service-setup/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Set up a hosted Elasticsearch Service </h1>
+          <p class="lead"> Our step-by-step guide to setup Elastic's hosted cloud service for use with our open source software. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Set up a hosted Elasticsearch Service">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to deploy a hosted Elasticsearch Service to store and visualise data from the reelyActive platform. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A free trial of the Elasticsearch Service, hosted in the cloud.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">No.  The Elasticsearch Service is more convenient than hosting one's own instance on-prem or in the cloud.</dd>
+                <dt class="col-sm-3">Can I do it the hard way?</dt>
+                <dd class="col-sm-9">Yes.  We also have <a href="../laptop-prep/">a tutorial on how to install and run Elasticsearch on a laptop</a>.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Starting a free trial &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 4</a>
+              </h2>
+              <p class="lead"> Simply provide an e-mail address to start a free trial of the hosted Elasticsearch Service. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why a trial?</dt>
+                <dd class="col-sm-9">Because Elastic are kind enough to offer one for free!  Easily transition to an invoiced service after the trial expires.</dd>
+                <dt class="col-sm-3">Do I need a credit card?</dt>
+                <dd class="col-sm-9">No.  At the time of writing, no credit card is required for a 14-day trial.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/start-free-trial.png" class="img-fluid"
+               alt="Start free trial of Elasticsearch Service">
+          <h3 class="mt-4">
+            Sign up for free
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From any Internet-connected computer <i class="fas fa-laptop"></i>: </p>
+          <ol>
+            <li> Browse to <a href="https://www.elastic.co/cloud/elasticsearch-service/" target="_blank"> www.elastic.co/cloud/elasticsearch-service/ </a> </li>
+            <li> Enter the e-mail address to associate with the trial </li>
+            <li> Click the <b>Start Free Trial</b> button </li>
+          </ol>
+          <p> Elastic will now walk you through the next steps. </p>
+          <h3>
+            Follow the on-screen instructions
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Check the e-mail account associated with the trial and follow the instructions until invited to <b>Create Deployment</b>, as this is covered in the next step below! </p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Creating a Deployment &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
+              </h2>
+              <p class="lead"> Create a hosted deployment in five steps. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a deployment?</dt>
+                <dd class="col-sm-9">Each deployment is an instance of the Elastic stack on a cloud server, including Elasticsearch, Kibana and more.</dd>
+                <dt class="col-sm-3">Can I simply select the defaults?</dt>
+                <dd class="col-sm-9">Yes, for a trial, the default options are likely to work out just fine.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/create-deployment.png" class="img-fluid"
+               alt="Create Elasticsearch Service deployment">
+          <h3 class="mt-4">
+            Name your deployment
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Select a name for the deployment, for instance the name of the associated physical space or building <i class="fas fa-building"></i>. </p>
+          <h3>
+            Select a cloud platform
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> At the time of writing, the choices are AWS <i class="fab fa-aws"></i> and GCP <i class="fab fa-google"></i>.  This choice affects the potential geographic regions in which to host the data, and may also impact post-trial costs. </p>
+          <h3>
+            Select a region
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Select a region based on geographic proximity <i class="fas fa-globe-americas"></i> or legal requirements <i class="fas fa-gavel"></i>. </p>
+          <h3>
+            Set up your deployment
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> Select the latest <b>Version 7</b> release available and then: </p>
+          <ul>
+            <li> Leave <em>unchecked</em> the option to restore from a snapshot </li>
+            <li> Leave <em>unchecked</em> the option for monitoring </li>
+          </ul>
+          <h3>
+            Optimize your deployment
+            <small class="text-muted"> Part 5 </small>
+          </h3>
+          <p> Select the recommended <b>I/O Optimized</b> configuration. </p>
+          <img src="images/io-optimized.png" class="img-fluid"
+               alt="I/O Optimized Elasticsearch Service">
+          <p class="mt-4"> Finally, click <b>Create Deployment</b> to create the deployment. </p>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Retrieving the node and credentials &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
+              </h2>
+              <p class="lead"> Retrieve the user credentials and the URL of the hosted Elasticsearch node. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a node?</dt>
+                <dd class="col-sm-9">A node is simply an instance of Elasticsearch.</dd>
+                <dt class="col-sm-3">Why user credentials?</dt>
+                <dd class="col-sm-9">A username and password ensure that only authorised users can read/write data to the Elasticsearch node.</dd>
+              </dl>
+            </div>
+          </div>
+          <p class="mt-4"> This step assumes that the previous step, <em>Creating a Deployment</em>, is successfully completed. </p>
+          <h3>
+            Retrieve the password of the elastic user
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> After the Create Deployment button is clicked in the previous step, the web view should change to display the credentials of the <b>Generated user</b>, as in the image below. </p>
+          <ol>
+            <li> Note that the <b>Username</b> is <em>elastic</em>. </li>
+            <li> Record the generated <b>Password</b> as it will only be displayed once. </li>
+          </ol>
+          <img src="images/generated-user.png" class="img-fluid"
+               alt="Generated User">
+          <p class="mt-4"> The Username and Password will be required for the reelyActive open source software to forward data to the Elasticsearch instance. </p>
+          <h3>
+            Retrieve the Elasticsearch URL
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the menu at left, select <b>Elasticsearch</b> under the given deployment, and then <b>Copy Endpoint URL</b>, as in the image below. </p>
+          <img src="images/elasticsearch-url.png" class="img-fluid"
+               alt="Elasticsearch URL">
+          <p class="mt-4"> This URL will be required for the reelyActive open source software to forward data to the Elasticsearch instance, and will have a form similar to <code>https://uuid.us-east-1.aws.found.io:9243</code> which combines a <b>host</b> and <b>port</b> as follows: </p>
+          <dl class="row">
+            <dt class="col-sm-2">Host:</dt>
+            <dd class="col-sm-10"><code>uuid.us-east-1.aws.found.io</code></dd>
+            <dt class="col-sm-2">Port:</dt>
+            <dd class="col-sm-10"><code>9243</code></dd>
+          </dl>
+          <h3>
+            Compile the Elasticsearch Node URL
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Elasticsearch clients, such as <a href="https://www.npmjs.com/package/@elastic/elasticsearch" target="_blank">the Node.js client</a> used by the reelyActive open source software, take as input a node URL which, when remote, combines the <em>username</em>, <em>password</em>, <em>host</em> and <em>port</em> of the instance.  The node URL has the following form: </p>
+          <p> <code>https://username:password@host:port</code> </p>
+          <p> If the password were simply <em>password</em>, then the compiled node URL would be similar to: </p>
+          <p> <code>https://elastic:password@uuid.us-east-1.aws.found.io:9243</code> </p>
+          <p> Record the compiled node URL.  It will be required for use with the reelyActive open source software. </p>
+          <!----- Step 4 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step04">
+                Launching Kibana &nbsp;
+                <a href="#step04" class="badge badge-secondary">Step 4 of 4</a>
+              </h2>
+              <p class="lead"> Kibana serves to create visualisations and dashboards described in other tutorials. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Kibana?</dt>
+                <dd class="col-sm-9">Kibana provides a powerful window into the data stored in Elasticsearch, including visualisations, dashboards and facilitating database queries and management.</dd>
+              </dl>
+            </div>
+          </div>
+          <h3>
+            Launch Kibana
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the menu at left, select <b>Kibana</b> under the given deployment name, and then click <b>Launch</b>, as in the image below. </p>
+          <img src="images/kibana-launch.png" class="img-fluid"
+               alt="Launching Kibana">
+          <p class="mt-4"> The configuration and use of Kibana is outside the scope of this tutorial.  Complementary tutorials to come... </p>
+          <!----- Document template ----->
+          <div class="card my-4">
+            <h4 class="card-header"> Do you like this document template? </h4>
+            <div class="card-body">
+              <p class="card-text"> It's based on <a href="https://getbootstrap.com" target="_blank"><i class="fab fa-bootstrap"></i> Bootstrap 4</a> <a href="https://getbootstrap.com/docs/4.3/about/license/" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> and <a href="https://fontawesome.com" target="_blank"><i class="fab fa-font-awesome"></i> Font Awesome 5 (Free)</a> <a href="https://fontawesome.com/license/free" target="_blank" class="badge badge-light"><i class="fab fa-creative-commons"></i> <i class="fab fa-osi"></i> &nbsp; MIT</a>.  Our <b>Web Style Guide</b> <a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> has all the details.  Sharing and feedback are encouraged! </p>
+              <a href="https://github.com/reelyactive/web-style-guide"
+                 target="_blank" class="btn btn-secondary btn-sm">
+                <i class="fas fa-external-link-alt"></i> &nbsp;
+                reelyActive's Web Style Guide
+              </a>
+            </div>
+          </div>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
