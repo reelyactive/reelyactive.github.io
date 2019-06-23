@@ -1,526 +1,396 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>reelyActive Developers | diyActive</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples.">
     <meta name="msvalidate.01" content="290718595E7C106146EE4DF28E941869" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="js/landing.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-49659454-2', 'auto');
-      ga('send', 'pageview');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
     </script>
-
-    <!-- Metadata, the non-Schema/JSON-LD way. Inefficiencies. Yuck! -->
-    <meta name="description" content="Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples.">
-    <meta itemprop="name" content="reelyActive Developers | diyActive">
-    <meta itemprop="description" content="Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples.">
-    <meta itemprop="image" content="images/diyActive.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@reelyActive">
-    <meta name="twitter:title" content="reelyActive Developers | diyActive">
-    <meta name="twitter:description" content="Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples.">
-    <meta name="twitter:creator" content="@reelyActive">
-    <meta name="twitter:image:src" content="images/diyActive.png">
-    <meta property="og:title" content="reelyActive Developers | diyActive" />
-    <meta property="og:url" content="https://reelyactive.github.io" />
-    <meta property="og:image" content="images/diyActive.png" />
-    <meta property="og:description" content="Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples." />
-    <meta property="og:site_name" content="reelyActive Developers | diyActive" />
-
-    <!-- Metadata, the Schema/JSON-LD way. Yay! -->
+    <link rel="stylesheet" href="diy/common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="diy/common/style/reelyactive.css">
+    <title> reelyActive Developers | diyActive </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
     {
-      "@context": {
-        "schema": "http://schema.org/"
-      },
-      "@graph": [
-        {
-          "@id": "diyactive",
-          "@type": "schema:WebPage",
-          "schema:name": "reelyActive Developers",
-          "schema:url": "https://reelyactive.github.io/",
-          "schema:creator": "https://www.reelyactive.com",
-          "schema:description": "Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples.",
-          "schema:image": "https://reelyactive.github.io/images/diyActive.png"
-        }
-      ]
+      "@context": "https://schema.org", 
+      "@type": "WebPage",
+      "name": "reelyActive Developers",
+      "description": "Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples.",
+      "image": "https://reelyactive.github.io/images/diyActive.png",
+      "url": "https://reelyactive.github.io/",
+      "creator": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
     }
     </script>
   </head>
-  <body ng-app="landing">
-    <div ng-controller="InteractionCtrl">
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle"
-                  ng-init="navCollapsed = true"
-                  ng-click="navCollapsed = !navCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="https://www.reelyactive.com">
-            <strong>reely</strong>Active
-          </a>
-        </div>
-        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
-             ng-click="navCollapsed = true">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href> diyActive </a></li>
-            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
-              <a href class="dropdown-toggle" uib-dropdown-toggle role="button"
-                 data-toggle="dropdown" aria-haspopup="true"
-                 aria-expanded="false">
-                Quick links <span class="caret"></span>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="diy/common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="./">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
               </a>
-              <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                <li role="menuitem">
-                  <a href="https://github.com/reelyactive/" target="_blank">
-                    reelyActive on GitHub
-                  </a>
-                </li>
-                <li role="menuitem">
-                  <a href="https://www.npmjs.com/~reelyactive" target="_blank">
-                    reelyActive on npmjs
-                  </a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li role="menuitem">
-                  <a href="https://www.reelyactive.com" target="_blank">
-                    reelyActive website
-                  </a>
-                </li>
-                <li role="menuitem">
-                  <a href="https://getpareto.com" target="_blank">
-                    Pareto by reelyActive
-                  </a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li role="menuitem">
-                  <a href="https://shop.reelyactive.com" target="_blank">
-                    Our online store
-                  </a>
-                </li>
-                <li role="menuitem">
-                  <a href="https://reelyactive.com/blog/" target="_blank">
-                    Our blog
-                  </a>
-                </li>
-              </ul>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <!-- Header -->
+          <div class="text-center my-4">
+            <img src="images/diyActive.png" class="img-fluid"
+                 alt="diyActive: Do-it-Yourself with reelyActive">
+            <h1 class="mt-2"> For reelyActive Users & Developers </h1>
+            <p class="lead"> Our open architecture affords the freedom to do-it-yourself </p>
+            <hr>
+          </div>
+          <!-- Platform overview -->
+          <h2 id="platform-overview"> Platform Overview </h2>
+          <p class="lead"> Understand physical spaces and the real-time dynamics of the people and assets within. </p>
+          <p class="text-justify"> The reelyActive technology platform makes it possible to observe who/what is where/how, in real-time, in any physical space.  This is achieved by detecting and locating all the <em>radio-identifiable devices</em> that are present, and then representing this information in the <em>standard language of the web</em>. </p>
+          <img src="images/reelyactive-platform-overview.jpg" class="img-fluid"
+               alt="reelyActive Platform Overview">
+          <p class="text-justify mt-2"> The result is effectively a table of who/what is present, updating in real-time, and including details on the location and status of each occupant.  While simple in concept, this table enables complex and wide-reaching applications, especially when stored in a database for analysis over time. </p>
+          <!-- Open architecture -->
+          <h2 id="platform-overview"> Open Architecture </h2>
+          <p class="lead"> Enjoy the freedom and flexibility of interchangeable software and hardware components. </p>
+          <p class="text-justify"> Tens of billions of radio-identifiable <em>devices</em> are shipping annually.  Countless vendors, including reelyActive, offer radio-identification and location <em>infrastructure</em>.  Our open source <em>middleware</em> translates their output into a real-time, web-standard data stream to feed any <em>database</em> and/or drive any web <em>application</em>. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="devicestab" data-toggle="tab"
+                 href="#devices" role="tab" aria-controls="devices"
+                 aria-selected="false">
+                <i class="fas fa-wifi"></i> Devices
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="infratab" data-toggle="tab"
+                 href="#infrastructure" role="tab" aria-controls="infrastructure"
+                 aria-selected="false">
+                <i class="fas fa-network-wired"></i> Infrastructure
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" id="middletab" data-toggle="tab"
+                 href="#middleware" role="tab" aria-controls="middleware"
+                 aria-selected="true">
+                <i class="fas fa-table"></i> Middleware
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="databasestab" data-toggle="tab"
+                 href="#databases" role="tab" aria-controls="databases"
+                 aria-selected="false">
+                <i class="fas fa-database"></i> Databases
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="applicationstab" data-toggle="tab"
+                 href="#applications" role="tab" aria-controls="applications"
+                 aria-selected="false">
+                <i class="fas fa-layer-group"></i> Applications
+              </a>
             </li>
           </ul>
-        </div>
-      </nav>
-      <div class="container-fluid">
+          <div class="tab-content tab-content-reelyactive">
+            <!-- Radio-identifiable devices -->
+            <div class="tab-pane fade" id="devices"
+                 role="tabpanel" aria-labelledby="devicestab">
+              <h4 class="mt-2"> Radio-identifiable devices </h4>
+              <p class="lead"> Representing people, products and places at a human scale </p>
+              <ul class="list-unstyled">
+                <li class="media my-2">
+                  <a href="diy/minew-e8-config/">
+                    <img src="diy/minew-e8-config/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/minew-e8-config/">
+                      <h5 class="mt-0 mb-1"> Configure a Minew E8 beacon </h5>
+                    </a>
+                    Our step-by-step guide to configure an E8 beacon with the BeaconSET+ app.
+                  </div>
+                </li>
+                <li class="media my-2">
+                  <a href="diy/minew-c6-config/">
+                    <img src="diy/minew-c6-config/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/minew-c6-config/">
+                      <h5 class="mt-0 mb-1"> Configure a Minew C6 beacon </h5>
+                    </a>
+                    Our step-by-step guide to configure a C6 beacon with the BeaconSET+ app.
+                  </div>
+                </li>
+                <li class="media my-2">
+                  <a href="diy/minew-s1-config/">
+                    <img src="diy/minew-s1-config/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/minew-s1-config/">
+                      <h5 class="mt-0 mb-1"> Configure a Minew S1 beacon </h5>
+                    </a>
+                    Our step-by-step guide to configure a S1 beacon with the BeaconSET+ app.
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Radio-identification infrastructure -->
+            <div class="tab-pane fade" id="infrastructure" role="tabpanel"
+                 aria-labelledby="infratab">
+              <h4 class="mt-2"> Radio-identification infrastructure </h4>
+              <p class="lead"> Detecting &amp; locating people, products and places at a human scale </p>
+              <ul class="list-unstyled">
+                <li class="media my-2">
+                  <a href="diy/pi-prep/">
+                    <img src="diy/pi-prep/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/pi-prep/">
+                      <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+                    </a>
+                    Our step-by-step guide to prepare a lean yet versatile SD card image for the Pi.
+                  </div>
+                </li>
+                <li class="media my-2">
+                  <a href="diy/oio-wlan/">
+                    <img src="diy/oio-wlan/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/oio-wlan/">
+                      <h5 class="mt-0 mb-1"> Create a WLAN of Owl-in-Ones and a laptop </h5>
+                    </a>
+                    Our step-by-step guide to create a local wireless network by configuring an Owl-in-One as an access point.
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Middleware -->
+            <div class="tab-pane fade show active" id="middleware" role="tabpanel"
+                 aria-labelledby="middletab">
+              <h4 class="mt-2"> Middleware: the "glue" between physical and digital </h4>
+              <p class="lead"> Connecting countless hardware and software combinations </p>
+              <ul class="list-unstyled">
+                <li class="media my-2">
+                  <a href="diy/pi-suite/">
+                    <img src="diy/pi-suite/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/pi-suite/">
+                      <h5 class="mt-0 mb-1"> Install our open source software suite on a Pi </h5>
+                    </a>
+                    Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Databases and analytics suites -->
+            <div class="tab-pane fade" id="databases" role="tabpanel"
+                 aria-labelledby="databasestab">
+              <h4 class="mt-2"> Databases and analytics suites </h4>
+              <p class="lead"> Storing the real-time data stream and facilitating analysis over time </p>
+              <ul class="list-unstyled">
+                <li class="media my-2">
+                  <a href="diy/elasticsearch-service-setup/">
+                    <img src="diy/elasticsearch-service-setup/images/icon.png"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/elasticsearch-service-setup/">
+                      <h5 class="mt-0 mb-1"> Set up a hosted Elasticsearch Service </h5>
+                    </a>
+                    Our step-by-step guide to setup Elastic's hosted cloud service for use with our open source software.
+                  </div>
+                </li>
+                <li class="media my-2">
+                  <a href="diy/laptop-prep/">
+                    <img src="diy/laptop-prep/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="diy/laptop-prep/">
+                      <h5 class="mt-0 mb-1"> Prepare a reelyActive laptop from scratch </h5>
+                    </a>
+                    Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software.
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Software applications -->
+            <div class="tab-pane fade" id="applications" role="tabpanel"
+                 aria-labelledby="applicationstab">
+              <h4 class="mt-2"> Software applications </h4>
+              <p class="lead"> Delivering efficiencies and experiences </p>
+            </div>
+          </div>
 
-        <!----- Title ------------------------------------------------------->
-        <div class="row">
-          <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4"></div>
-          <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4">
-            <img src="images/diyActive.png"
-                 class="img-responsive center-block"
-                 uib-tooltip="Do-it-yourself with reelyActive"
-                 tooltip-placement="bottom">
-            <h2 class="text-center"> reelyActive for Developers </h2>
-            <hr>
-            <p> Develop with the reelyActive open source and enterprise technology stacks.  Access documentation, sample code and interactive examples grouped by topic below. </p>
-            <hr>
+          <div class="row my-4">
+            <div class="col-sm-12 col-md-6">
+              <h3 id="popular-content"> Popular Content </h3>
+              <p class="lead"> Frequently accessed tutorials and references. </p>
+              <dl class="row">
+                <dt class="col-sm-1"> <i class="fab fa-bluetooth"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="ble-identifier-reference.html">
+                    BLE Identifier Reference
+                  </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fab fa-raspberry-pi"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="diy/pi-suite/"> Install our software on a Pi </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fas fa-laptop"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="diy/laptop-prep/"> Install our platform on a laptop </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fas fa-history"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="index-2018.html"> Previous version of this page </a>
+                </dd>
+              </dl>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <h3 id="popular-content"> reelyActive on the Web </h3>
+              <p class="lead"> Related content of interest. </p>
+              <dl class="row">
+                <dt class="col-sm-1"> <i class="fas fa-home"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="https://www.reelyactive.com"
+                     target="_blank"> www.reelyactive.com </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fas fa-shopping-cart"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="https://shop.reelyactive.com"
+                     target="_blank"> shop.reelyactive.com </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fas fa-blog"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="https://reelyactive.com/blog/"
+                     target="_blank"> reelyactive.com/blog/ </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fab fa-github"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="https://github.com/reelyactive/"
+                     target="_blank"> github.com/reelyactive/ </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fab fa-npm"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="https://www.npmjs.com/~reelyactive"
+                     target="_blank"> npmjs.com/~reelyactive </a>
+                </dd>
+                <dt class="col-sm-1"> <i class="fas fa-hashtag"></i> </dt>
+                <dd class="col-sm-11">
+                  <a href="https://www.reelyactive.com/contact/"
+                     target="_blank"> @reelyActive </a>
+                </dd>
+              </dl>
+            </div>
           </div>
-          <div class="col-xs-1 col-sm-2 col-md-3 col-lg-4"></div>
-        </div>
 
-        <!----- System overview --------------------------------------------->
-        <div class="tight-gutter row">
-          <!----- Devices ----->
-          <div class="col-sm-0 col-md-1"></div>
-          <div class="col-sm-12 col-md-2 collapse"
-               uib-collapse="isElementCollapsed[0]">
-            <h3 class="element-bg-header"
-                style="background: #043851"> Devices </h3>
-            <img src="images/system-devices.gif"
-                 class="img-responsive center-block">
-            <div class="text-center vertical-pad">
-              <button ng-click="selectElement(0)" class="btn"
-                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
-                {{ isElementFocus ? 'Back to overview' : 'More details' }}
-              </button>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-8 collapse"
-               uib-collapse="!isElementFocus || isElementCollapsed[0]">
-            <h3 class="element-header"> Low-power wireless transmitters </h3>
-            <div class="well well-sm">
-              <h4> Tutorials </h4>
-              <ul>
-                <li> <a href="integrate-your-product.html"> Integrate your Product </a>
-                <li> <a href="integrate-your-mobile-app.html"> Integrate your Mobile Application </a>
-                <li> <a href="program-a-puckjs-with-puckyactive.html"> Program a Puck.js with puckyActive </a>
-              </ul>
-              <h4> Mobile Applications </h4>
-              <ul>
-                <li> <a href="https://www.reelyactive.com/reelyapp/" target="_blank"> reelyApp: </a> quickly and easily validate the concept of "advertising" oneself
-                <li> <a href="https://github.com/reelyactive/ble-android-sdk" target="_blank"> SDK for Android </a>
-                <li> <a href="https://github.com/reelyactive/ble-ios-sdk" target="_blank"> SDK for iOS </a>
-              </ul>
-              <h4> Shop </h4>
-              <ul>
-                <li> <a href="https://shop.reelyactive.com/products/ra-t411" target="_blank"> reelyActive 915MHz active RFID tags </a>
-              </ul>
-              <h4> Collaborations </h4>
-              <ul>
-                <li> <a href="http://diract.net" target="_blank"> DirAct&trade; proximity interaction relay beacon </a>
-              </ul>
-              <h4> Blog </h4>
-              <ul>
-                <li> <a href="https://reelyactive.com/blog/archives/1411" target="_blank"> $500 rectangle meet $5 rectangle </a>
-                <li> <a href="https://reelyactive.com/blog/archives/158" target="_blank"> Radio location demystified </a>
-            </div>
-          </div>
-          <!----- Reel ----->
-          <div class="col-sm-12 col-md-2 collapse"
-               uib-collapse="isElementCollapsed[1]">
-            <h3 class="element-bg-header"
-                style="background: #065a82"> Reel </h3>
-            <img src="images/system-reel.gif"
-                 class="img-responsive center-block">
-            <div class="text-center vertical-pad">
-              <button ng-click="selectElement(1)" class="btn"
-                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
-                {{ isElementFocus ? 'Back to overview' : 'More details' }}
-              </button>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-8 collapse"
-               uib-collapse="!isElementFocus || isElementCollapsed[1]">
-            <h3 class="element-header"> Daisy-chainable reelceivers </h3>
-            <div class="well well-sm">
-              <h4> Tutorials </h4>
-              <ul>
-                <li> <a href="reel-deployment.html"> Reel deployment overview </a>
-                <li> <a href="install-a-starter-kit.html"> Install a starter kit </a>
-                <li> <a href="reel-overview.html"> The reel architecture and protocol </a>
-              </ul>
-              <h4> Scientific publications </h4>
-              <ul>
-                <li> <a href="http://ieeexplore.ieee.org/document/6758528/" target="_blank"> Towards a simple, versatile, distributed low-power wireless M2M infrastructure </a>
-              </ul>
-              <h4> Shop </h4>
-              <ul>
-                <li> <a href="https://shop.reelyactive.com/products/ra-r436" target="_blank"> reelyActive BLE reelceivers </a>
-                <li> <a href="https://shop.reelyactive.com/products/ra-r432" target="_blank"> reelyActive 915MHz reelceivers </a>
-              </ul>
-            </div>
-          </div>
-          <!----- Gateway/Hub ----->
-          <div class="col-sm-12 col-md-2 collapse"
-               uib-collapse="isElementCollapsed[2]">
-            <h3 class="element-bg-header"
-                style="background: #0770a2"> Gateway/Hub </h3>
-            <img src="images/system-hubs.gif"
-                 class="img-responsive center-block">
-            <div class="text-center vertical-pad">
-              <button ng-click="selectElement(2)" class="btn"
-                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
-                {{ isElementFocus ? 'Back to overview' : 'More details' }}
-              </button>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-8 collapse"
-               uib-collapse="!isElementFocus || isElementCollapsed[2]">
-            <h3 class="element-header"> Bridges between the physical and digital worlds </h3>
-            <div class="well well-sm">
-              <h4> Tutorials </h4>
-              <ul>
-                <li> <a href="oio-deployment.html"> Owl-in-One deployment overview </a>
-                <li> <a href="install-a-starter-kit.html"> Install a starter kit </a>
-                <li> <a href="configure-an-owl-in-one.html"> Configure an Owl-in-One </a>
-                <li> <a href="build-your-own-hub.html"> Build your own hub </a>
-                <li> <a href="make-a-tessel-hub.html"> Make a Tessel hub </a>
-                <li> <a href="make-a-pi-hub.html"> Make a Raspberry Pi hub </a>
-                <li> <a href="make-a-chip-hub.html"> Make a C.H.I.P. hub </a>
-                <li> <a href="configure-a-bluecats-edgerelay.html"> Configure a BlueCats Edge Relay </a>
-              </ul>
-              <h4> Shop </h4>
-              <ul>
-                <li> <a href="https://shop.reelyactive.com/products/usb-hub" target="_blank"> reelyActive USB hub </a>
-                <li> <a href="https://shop.reelyactive.com/products/ethernet-hub" target="_blank"> Ethernet hub </a>
-              </ul>
-              <h4> Blog </h4>
-              <ul>
-                <li> <a href="https://reelyactive.com/blog/archives/1376" target="_blank"> Light hears ahead of its time </a>
-            </div>
-          </div>
-          <!----- Software ----->
-          <div class="col-sm-12 col-md-2 collapse"
-               uib-collapse="isElementCollapsed[3]">
-            <h3 class="element-bg-header"
-                style="background: #388cb4"> Software </h3>
-            <img src="images/system-software.gif"
-                 class="img-responsive center-block">
-            <div class="text-center vertical-pad">
-              <button ng-click="selectElement(3)" class="btn"
-                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
-                {{ isElementFocus ? 'Back to overview' : 'More details' }}
-              </button>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-8 collapse"
-               uib-collapse="!isElementFocus || isElementCollapsed[3]">
-            <h3 class="element-header"> Real-time identification, location and data propagation </h3>
-            <div class="well well-sm">
-              <h4> Tutorials </h4>
-              <ul>
-                <li> <a href="install-an-offline-demo.html"> Install an offline demo </a>
-                <li> <a href="event-overview.html"> Detailed description of the event data structure, core to the APIs </a>
-                <li> <a href="pareto-socket-client.html"> Connect a websocket client to Pareto </a>
-                <li> <a href="create-and-associate-stories.html"> Create and associate stories using json-silo and hlc-server </a>
-                <li> <a href="integrate-your-service.html"> Integrate your service </a>
-                <li> <a href="barnowl-baby-steps.html"> Barnowl baby steps </a>
-              </ul>
-              <h4> Online tools </h4>
-              <ul>
-                <li> <a href="https://reelyactive.github.io/advlib/" target="_blank"> advlib: </a> decode and interpret raw BLE and Active RFID packets
-                <li> <a href="https://sniffypedia.org"> Sniffypedia.org: </a> open, collaborative repository of "sniffable" things, represented as structured data.
-              </ul>
-              <h4> SaaS </h4>
-              <ul>
-                <li> <a href="https://getpareto.com" target="_blank"> Get Pareto by reelyActive </a>
-              </ul>
-              <h4> Scientific publications </h4>
-              <ul>
-                <li> <a href="https://www.reelyactive.com/science/reelyActive-IoT2015.pdf" target="_blank"> Low-Power Wireless Advertising Software Library for Distributed M2M and Contextual IoT </a>
-              </ul>
-              <h4> Directories and Style Guides </h4>
-              <ul>
-                <li> <a href="mascot-stories.html"> The reelyActive Software Mascots and their Stories </a>
-                <li> <a href="open-source-software.html"> Exhaustive list of reelyActive open source software </a>
-                <li> <a href="https://github.com/reelyactive/node-style-guide" target="_blank"> reelyActive's Node.js style guide </a>
-                <li> <a href="https://github.com/reelyactive/angular-style-guide" target="_blank"> reelyActive's AngularJS style guide </a>
-              </ul>
-            </div>
-          </div>
-          <!----- Applications ----->
-          <div class="col-sm-12 col-md-2 collapse"
-               uib-collapse="isElementCollapsed[4]">
-            <h3 class="element-bg-header"
-                style="background: #83b7d1"> Applications </h3>
-            <img src="images/system-applications.gif"
-                 class="img-responsive center-block">
-            <div class="text-center vertical-pad">
-              <button ng-click="selectElement(4)" class="btn"
-                      ng-class="isElementFocus ? 'btn-warning' : 'btn-info'">
-                {{ isElementFocus ? 'Back to overview' : 'More details' }}
-              </button>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-8 collapse"
-               uib-collapse="!isElementFocus || isElementCollapsed[4]">
-            <h3 class="element-header"> The power of real-time hyperlocal context </h3>
-            <div class="well well-sm">
-              <h4> Tutorials </h4>
-              <ul>
-                <li> <a href="build-web-apps-with-beaver.html"> Build web applications with beaver.js </a>
-                <li> <a href="forward-sensor-data-to-initial-state.html"> Forward BLE sensor data to Initial State </a>
-                <li> <a href="experience-generative-art.html"> Experience generative art </a> with a Raspberry Pi, Hue lights and MIDI instruments
-                <li> <a href="reelyhacktive.html"> reelyHacktive: </a> applications for hackathons
-              </ul>
-              <h4> Examples </h4>
-              <ul>
-                <li> <a href="https://reelyactive.github.io/pareto-apps/" target="_blank"> Pareto Apps: </a> web applications built on the Pareto API using beaver.js
-                <li> <a href="https://reelyactive.github.io/beaver/" target="_blank"> beaver.js: </a> build client-side web experiences from a real-time location event stream
-                <li> <a href="https://reelyactive.github.io/canned-bubbles/" target="_blank"> "Canned Bubbles": </a> visualise who/what is present at various venues
-              </ul>
-              <h4> Art </h4>
-              <ul>
-                <li> <a href="https://jeffyactive.github.io/presences-peripheriques/" target="_blank"> Pr&eacute;sences P&eacute;riph&eacute;riques </a> art installation created using <a href="https://www.npmjs.com/package/generable" target="_blank"> GeneraBLE </a>
-                <li> Generative music from BLE packet traffic ( <a href="https://soundcloud.com/reelyactive" target="_blank"> Soundcloud </a> | <a href="https://www.youtube.com/watch?v=CUhbfyi2ab4&feature=youtu.be&list=PL11WqaPQMVvNMT66MVxi-XqIQld6zY3tx" target="_blank"> YouTube </a> ) created using <a href="https://www.npmjs.com/package/midiot" target="_blank"> midiot </a>
-                <li> Interactive museum experiences: <a href="https://youtu.be/2JIL8y61tu0" target="_blank"> MuseoMix 2014 </a> & <a href="https://youtu.be/81PBWpIHuzs" target="_blank"> MuseoMix 2015 </a>
-              </ul>
-              <h4> Blog </h4>
-              <ul>
-                <li> <a href="https://reelyactive.com/blog/archives/1066" target="_blank"> "Advertise" yourself with The Physical Web, and beyond... </a>
-                <li> <a href="https://reelyactive.com/blog/archives/1013" target="_blank"> Hearable Nearables </a>
-                <li> <a href="https://reelyactive.com/blog/archives/870" target="_blank"> Three years Beyond the Beacon: the Physical Web just got Personal </a>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-sm-12 col-md-10 col-md-offset-1"> <hr> </div>
-        </div>
 
-        <!----- Goal and Technology ----->
-        <div class="row">
-          <div class="col-sm-0 col-md-1"></div>
-          <div class="col-sm-12 col-md-5">
-            <div class="well well-sm well-blue">
-              <b> <i>Our goal</i> is to make it easy for technology to understand the real-world in real-time on a human scale. </b>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-5">
-            <div class="well well-sm well-orange">
-              <b> <i>Our technology</i> combines open source, modular BLE RTLS with the foundational principles of the web. </b>
-            </div>
-          </div>
-          <div class="col-sm-0 col-md-1"></div>
         </div>
-
-        <!----- Direct links ------------------------------------------------>
-        <div class="row">
-          <!----- Popular content ----->
-          <div class="col-sm-12 col-md-6 col-md-offset-1">
-            <h2> Popular content </h2>
-            <div class="well">
-              <table class="table table-striped table-hover">
-                <tbody>
-                  <tr>
-                    <th> Platform Overview </th>
-                    <td> 
-                      <a href="platform-overview.html"
-                         class="btn btn-success btn-xs"> Read guide </a>
-                    </td>
-                    <td> <i> New to our technology platform?  Start here! </i> </td>
-                  </tr>
-                  <tr>
-                    <th> Pareto Docs </th>
-                    <td> 
-                      <a href="https://reelyactive.github.io/pareto-docs/"
-                         target="_blank"
-                         class="btn btn-success btn-xs"> Read docs </a>
-                    </td>
-                    <td> <i> Using our Pareto platform?  Start here! </i> </td>
-                  </tr>
-                  <tr>
-                    <th> Install a starter kit </th>
-                    <td> 
-                      <a href="install-a-starter-kit.html"
-                         class="btn btn-primary btn-xs"> Read tutorial </a>
-                    </td>
-                    <td> <i> Connect a kit with our open source code </i> </td>
-                  </tr>
-                  <tr>
-                    <th> Make a Pi Hub </th>
-                    <td> 
-                      <a href="make-a-pi-hub.html"
-                         class="btn btn-primary btn-xs"> Read tutorial </a>
-                    </td>
-                    <td> <i> Create a BLE sniffer with our open source code </i> </td>
-                  </tr>
-                  <tr>
-                    <th> Integrations </th>
-                    <td> 
-                      <a href="integration.html"
-                         class="btn btn-primary btn-xs"> See tutorials </a>
-                    </td>
-                    <td> <i> Integrate your product, service or mobile application </i> </td>
-                  </tr>
-                  <tr>
-                    <th> Live dashboard </th>
-                    <td> 
-                      <a href="https://reelyactive.github.io/dashboard-template-angular/"
-                         class="btn btn-default btn-xs"
-                         target="_blank"> Visit page </a>
-                    </td>
-                    <td> <i> See our standard dashboard with real, live data </i> </td>
-                  </tr>
-                  <tr>
-                    <th> advlib </th>
-                    <td> 
-                      <a href="https://reelyactive.github.io/advlib/"
-                         class="btn btn-default btn-xs"
-                         target="_blank"> Visit page </a>
-                    </td>
-                    <td> <i> Online tool to decode raw BLE and active RFID packets </i> </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <!----- reelyActive ----->
-          <div class="col-sm-12 col-md-4">
-            <h2> reelyActive on the web </h2>
-            <div class="well">
-              <table class="table table-striped table-hover">
-                <tbody>
-                  <tr>
-                    <th> Home </th>
-                    <td> 
-                      <a href="https://www.reelyactive.com"
-                         target="_blank"> www.reelyactive.com </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th> Platform (Start) </th>
-                    <td> 
-                      <a href="https://getpareto.com"
-                         target="_blank"> getpareto.com </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th> Platform (Login) </th>
-                    <td> 
-                      <a href="https://pareto.reelyactive.com"
-                         target="_blank"> pareto.reelyactive.com </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th> Shop </th>
-                    <td> 
-                      <a href="https://shop.reelyactive.com"
-                         target="_blank"> shop.reelyactive.com </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th> Blog </th>
-                    <td> 
-                      <a href="https://reelyactive.com/blog"
-                         target="_blank"> reelyactive.com/blog </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th> GitHub </th>
-                    <td> 
-                      <a href="https://github.com/reelyactive"
-                         target="_blank"> github.com/reelyactive </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th> npmjs </th>
-                    <td> 
-                      <a href="https://www.npmjs.com/~reelyactive"
-                         target="_blank"> www.npmjs.com/~reelyactive </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <p class="text-right"> Social media:
-                <a href="https://www.reelyactive.com/contact/"
-                   target="_blank"> @reelyActive </a>
-              </p>
-            </div>
-          </div>
-        </div>
-
       </div>
-      <footer class="footer">
-        <a href="/"
-           uib-tooltip="Do-it-yourself with reelyActive"
-           tooltip-placement="left"> diyActive </a> &nbsp; | &nbsp;
-        <a href="https://www.reelyactive.com"
-           uib-tooltip="We believe in an open Internet of Things"
-           tooltip-placement="right">
-          &copy; reelyActive 2014-2018
-        </a>
-      </footer>
     </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2019 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="diy/common/js/solid.min.js"></script>
+    <script defer src="diy/common/js/brands.min.js"></script>
+    <script defer src="diy/common/js/fontawesome.min.js"></script>
+    <script src="diy/common/js/jquery-3.4.0.min.js"></script>
+    <script src="diy/common/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
