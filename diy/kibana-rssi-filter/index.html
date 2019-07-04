@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to create a rssi filter in Kibana.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Create a RSSI filter in Kibana to gain more control over the data sensed </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Create a RSSI filter in Kibana to gain more control over the data sensed",
+      "description": "Our step-by-step guide to create a RSSI filter for optimal data performance",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/kibana-rssi-filter/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png" width="165" height="30"
+             alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"
+               href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Create a RSSI filter in Kibana for optimal data performance</h1>
+          <p class="lead"> Our step-by-step guide to create a RSSI filter to gain more control over the data sensed. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Create RSSI filter in Kibana">
+           <!-- The TL;DR -->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive use RSSI filter to filter the captured data according to their distance and avoid unnecessary reading.</p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A RSSI filter allowing to only see device that are within the set distance range,  depending on the needs of that particular operation. </dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Manual estimates of the distance of people using pen and paper?</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">To learn both how and why to use RSSI measurement with visualisations.</dd>
+              </dl>
+            </div>
+          </div>
+          <!-- Step 1 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Creating a RSSI filter from the dashboard tab &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Creating a RSSI Filter from the dashboard tab will adjust all the visualizations recorded in the dashboard. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's RSSI ?</dt>
+                <dd class="col-sm-9"> RSSI stands for “Received Signal Strength Indicator” and it tells us the strength of the signal sent from a tag to a reader. The RSSI value gives us a clue to the distance. The higher the RSSI level, the closer the tag is to the reader. </dd>
+                <dt class="col-sm-3">Why Kibana?</dt>
+                <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
+              </dl>
+            </div>
+          </div>
+          <p class="mt-2"> Open Kibana and then:</p>
+          <ol>
+            <li> Select the <b>Dashboard</b> tab from the left menu bar </li>
+            <li> Click the <b>Add Filter</b> <i class="fa fa-plus-square"></i> button, below the search bar </li>
+            <li> Select the <b>RSSI</b> filter</li>
+            <li> Select <b>is between</b> from Operators pull-down</li>
+            <li> Set the distance range, according to the needs, for example <b>From -70</b> <b>To -30</b></li>
+            <li> Enter the label <b>RSSI Filter</b> and click the <b>Save</b> button</li>
+          </ol>
+          <p>The RSSI filter should appear below the search bar as follow :</p>
+          <img src="images/filter-rssi.png"
+               class="img-fluid" alt="Create a RSSI filter in Kibana">
+          <p class="mt-4">This filter will have an impact on all the visualizations of the dashboard.</p>
+          <!-- Step 2 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Creating a RSSI filter for a specific vizualisation &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Creating a RSSI filter for a specific vizualisation without impacting the rest of the vizualisations. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's for?</dt>
+                <dd class="col-sm-9">Depending on the needs, it might be interesting to set a distance range for a specific visualization like a specific area.</dd>
+              </dl>
+            </div>
+          </div>
+          <p class="mt-2"> From the Dashboard tab </p>
+          <ol>
+            <li> Click the <b>Edit</b> button from the top right bar </li>
+            <li> Find the visualization you want to adjust and click the <b>cog</b> icon <i class="fas fa-cog"></i> button</li>
+          </ol>
+          <p class="mt-2"> From the Visualization selected </p>
+          <ol>
+            <li>Repeat the steps of the <b>Part 1</b></li>
+            <li><b>Save</b> the visualization by clicking the Save button on the top right tool bar</li>
+          </ol>
+          <p>The filter should appear on the top of the visualization as below.</p>
+          <img src="images/rssi-filter-visualization.png" class="img-fluid"
+          alt="Create RSSI filter in Kibana">
+          <!-- Where to next? -->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Create other visualizations, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../kibana/">
+                <img src="../kibana/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana/">
+                  <h5 class="mt-0 mb-1">Kibana integration overview</h5>
+                </a>
+                Our guide to integrating and using Kibana with our open source software.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
