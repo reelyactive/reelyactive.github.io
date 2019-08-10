@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to run reelyActive's open source software suite on a laptop or personal computer.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Install reelyActive's open source suite on a laptop </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Install reelyActive's open source suite on a laptop",
+      "description": "Our step-by-step guide to run reelyActive's open source software suite on a laptop or personal computer.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/laptop-suite/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Install our open source software suite on a laptop </h1>
+          <p class="lead"> Our step-by-step guide to run reelyActive's open source software suite on a laptop or personal computer. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Install reelyActive's open source suite on a laptop">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive deploy our software suite on a laptop or personal computer. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">The laptop will accept data from IoT/RFID hardware, providing a comprehensive suite of interactive web applications and APIs.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Ask us for a quote to prepare a laptop for you as part of a PoC.</dd>
+                <dt class="col-sm-3">Does this apply only to a laptop?</dt>
+                <dd class="col-sm-9">The instructions are equally applicable to any computer/server, although we do have <a href="../pi-suite/">a tutorial specific to the Raspberry Pi</a>.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A laptop or computer.  Consider the following tutorial if preparing a dedicated computer from scratch. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../laptop-prep/">
+                <img src="../laptop-prep/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../laptop-prep/">
+                  <h5 class="mt-0 mb-1"> [Optional] Prepare a reelyActive laptop from scratch </h5>
+                </a>
+                Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software.
+              </div>
+            </li>
+          </ul>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Installing Node.js, npm and git &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Install all the prerequisites for the reelyActive open source software. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why install Node.js?</dt>
+                <dd class="col-sm-9">The reelyActive open source software runs on Node.js.</dd>
+                <dt class="col-sm-3">Why install git?</dt>
+                <dd class="col-sm-9">Because nothing says "I &hearts; Open Source Software" quite like git.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/node-npm-git.png" class="img-fluid"
+               alt="Node.js, npm and git">
+          <h3 class="mt-4">
+            Download and install Node.js and npm
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> Check <em>first</em> if node <i class="fab fa-node-js"></i> and npm <i class="fab fa-npm"></i> are already installed by running <code>node --version</code> and <code>npm --version</code> from the command line <i class="fas fa-terminal"></i>. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="linuxnodetab" data-toggle="tab"
+                 href="#linuxnode" role="tab" aria-controls="linuxnode"
+                 aria-selected="true"> <i class="fab fa-linux"></i> Linux </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="macnodetab" data-toggle="tab"
+                 href="#macnode" role="tab" aria-controls="macnode"
+                 aria-selected="false"> <i class="fab fa-apple"></i> Mac </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="windowsnodetab" data-toggle="tab"
+                 href="#windowsnode" role="tab" aria-controls="windowsnode"
+                 aria-selected="false"> <i class="fab fa-windows"></i> Windows </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="linuxnode"
+                 role="tabpanel" aria-labelledby="linuxnodetab">
+              <p> From the laptop <i class="fas fa-laptop"></i>, browse to <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>10.15.3</b>).  Substitute this version number in all of the commands below. </p>
+              <ol>
+                <li> Change to the home <i class="fas fa-home"></i> folder with the command <code>cd</code> </li>
+                <li> Download the Node.js <i class="fab fa-node-js"></i> tarball with the command <code>wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz</code> </li>
+                <li> Unpack with the command <code>tar -xf node-v10.15.3-linux-x64.tar.xz</code> </li>
+                <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code>sudo mv node-v10.15.3-linux-x64 /usr/local/node</code> </li>
+                <li> Remove <i class="fas fa-trash"></i> the original download with the command <code>rm node-v10.15.3-linux-x64.tar.xz</code> </li>
+                <li> Change to the <b>/usr/local/bin</b> folder with the command <code>cd /usr/local/bin</code> </li>
+                <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>node</b> with the command <code>sudo ln -s /usr/local/node/bin/node node</code> </li>
+                <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>npm</b> with the command <code>sudo ln -s /usr/local/node/bin/npm npm</code> </li>
+              </ol>
+              <p> Confirm that node <i class="fab fa-node-js"></i> and npm <i class="fab fa-npm"></i> are successfully installed with the commands <code>node --version</code> and <code>npm --version</code> respectively. </p>    
+            </div>
+            <div class="tab-pane fade" id="macnode" role="tabpanel"
+                 aria-labelledby="macnodetab">
+              <p> From the laptop <i class="fas fa-laptop"></i>, browse to <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and follow the friendly instructions to download and install the latest <b>LTS</b> version for <i class="fab fa-apple"></i> Mac. </p>
+            </div>
+            <div class="tab-pane fade" id="windowsnode" role="tabpanel"
+                 aria-labelledby="windowsnodetab">
+              <p> From the laptop <i class="fas fa-laptop"></i>, browse to <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and follow the friendly instructions to download and install the latest <b>LTS</b> version for <i class="fab fa-windows"></i> Windows. </p>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install git
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> Check <em>first</em> if git <i class="fab fa-git-square"></i> is already installed by running <code>git --version</code> from the command line <i class="fas fa-terminal"></i>. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="linuxgittab" data-toggle="tab"
+                 href="#linuxgit" role="tab" aria-controls="linuxgit"
+                 aria-selected="true"> <i class="fab fa-linux"></i> Linux </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="macgittab" data-toggle="tab"
+                 href="#macgit" role="tab" aria-controls="macgit"
+                 aria-selected="false"> <i class="fab fa-apple"></i> Mac </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="windowsgittab" data-toggle="tab"
+                 href="#windowsgit" role="tab" aria-controls="windowsgit"
+                 aria-selected="false"> <i class="fab fa-windows"></i> Windows </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="linuxgit"
+                 role="tabpanel" aria-labelledby="linuxgittab">
+              <p> From the laptop <i class="fas fa-laptop"></i>, open a terminal <i class="fas fa-terminal"></i> and install git <i class="fab fa-git-square"></i> with the command <code>sudo apt-get install git-all</code> </p>
+              <p> Consult <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">the official git Getting Started Guide</a> for more details, including instructions for <em>non-Debian</em> based Linux distributions. </p>
+            </div>
+            <div class="tab-pane fade" id="macgit" role="tabpanel"
+                 aria-labelledby="macgittab">
+              <p> The easiest way to install git <i class="fab fa-git-square"></i> is to install the Xcode Command Line Tools with which it is bundled.  Open a terminal <i class="fas fa-terminal"></i> on the laptop <i class="fas fa-laptop"></i> and run <code>git</code> to start the installation. </p>
+              <p> Consult <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">the official git Getting Started Guide</a> for more details. </p>
+            </div>
+            <div class="tab-pane fade" id="windowsgit" role="tabpanel"
+                 aria-labelledby="windowsgittab">
+              <p> From the laptop <i class="fas fa-laptop"></i>, browse to <a href="https://git-scm.com/download/win" target="_blank">git-scm.com/download/win</a> to download and then execute the git <i class="fab fa-git-square"></i> installer. </p>
+              <p> Consult <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">the official git Getting Started Guide</a> for more details. </p>
+            </div>
+          </div>
+          <p class="mt-4"> Node <i class="fab fa-node-js"></i>, npm <i class="fab fa-npm"></i> and git <i class="fab fa-git-square"></i> are now installed! </p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Installing hlc-server &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Clone our hlc-server repository on GitHub and install all dependencies using npm. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's hlc-server?</dt>
+                <dd class="col-sm-9">It's a software package that combines all the core components of the reelyActive open source stack.</dd>
+                <dt class="col-sm-3">What does hlc stand for?</dt>
+                <dd class="col-sm-9"><em>H</em>yper<em>L</em>ocal <em>C</em>ontext.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/clone-hlc-server.jpg" class="img-fluid"
+               alt="Clone hlc-server">
+          <h3 class="mt-4">
+            Create a reelyActive folder
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the laptop <i class="fas fa-laptop"></i>, open a terminal <i class="fas fa-terminal"></i> and create a reelyActive folder under the home folder as follows (<i class="fab fa-windows"></i> Windows users can instead complete this step using Windows Explorer). </p>
+          <ol>
+            <li> Change to the home folder with the command <code>cd</code> </li>
+            <li> Create (if it does not already exist) a <b>reelyActive</b> <i class="fas fa-folder-plus"></i> folder with the command <code>mkdir reelyActive</code> </li>
+            <li> Change to the reelyActive folder with the command <code>cd reelyActive</code> </li>
+          </ol>
+          <h3>
+            Install the software and dependencies
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the terminal <i class="fas fa-terminal"></i>, in the <b>reelyActive</b> <i class="fas fa-folder"></i> folder, install the hlc-server software as follows. </p>
+          <ol>
+            <li> Clone the hlc-server repository from our <i class="fab fa-github"></i> GitHub with the command <code>git clone https://github.com/reelyactive/hlc-server.git</code> </li>
+            <li> Change to the <b>hlc-server</b> <i class="fas fa-folder"></i> folder with the command <code>cd hlc-server</code> </li>
+            <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code>npm install</code> &nbsp; <span class="badge badge-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+          </ol>
+          <h3>
+            Run hlc-server
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the terminal <i class="fas fa-terminal"></i>, in the <b>hlc-server</b> <i class="fas fa-folder"></i> folder, run the software as follows. </p>
+          <ol>
+            <li> Run the hlc-server with the command <code>npm start</code> </li>
+            <li> Point a web browser to <a href="http://localhost:3001" target="_blank">localhost:3001</a> to observe the hlc-server web interface. </li>
+          </ol>
+          <p> The reelyActive open source software suite is now installed. </p>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Running as a systemd service &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
+              </h2>
+              <p class="lead"> Configure the software to run as a service each time the laptop boots. <b>(<i class="fab fa-linux"></i> Linux only)</b> </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why systemd?</dt>
+                <dd class="col-sm-9">It is becoming the de facto standard for system and service management among Linux distributions.</dd>
+                <dt class="col-sm-3">Why run on boot?</dt>
+                <dd class="col-sm-9">For convenience of course!</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/hlc-server-on-boot-with-systemd.jpg" class="img-fluid"
+               alt="Run hlc-server on boot with systemd">
+          <p class="mt-4"> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only to Linux systems. </p>
+          <h3>
+            Enable the hlc-server service
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the same terminal <i class="fas fa-terminal"></i>, and from the <b>hlc-server</b> <i class="fas fa-folder"></i> folder, configure systemd to run the hlc-server service by completing the following: </p>
+          <ol>
+            <li> Copy the unit file to the systemd system folder with the command <code>sudo cp units/hlc-server.service /lib/systemd/system</code> </li>
+            <li> Edit the copied file, updating, in both places, the <b>username</b> to that of the corresponding laptop <i class="fas fa-laptop"></i> user </li>
+            <li> Enable the hlc-server service with the command <code>sudo systemctl enable hlc-server.service</code> </li>
+            <li> Browse again to <a href="http://localhost:3001" target="_blank">localhost:3001</a> </li>
+          </ol>
+          <p> Observe the hlc-server landing page. </p>
+          <h3>
+            Confirm that hlc-server runs on boot
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Reboot the laptop <i class="fas fa-laptop"></i> and confirm that the hlc-server landing page is indeed once again served at <a href="http://localhost:3001" target="_blank">localhost:3001</a>. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> If necessary, it is possible to disable the service with the command <code>sudo systemctl disable hlc-server.service</code>. </p>
+          <!----- Document template ----->
+          <div class="card my-4">
+            <h4 class="card-header"> Do you like this document template? </h4>
+            <div class="card-body">
+              <p class="card-text"> It's based on <a href="https://getbootstrap.com" target="_blank"><i class="fab fa-bootstrap"></i> Bootstrap 4</a> <a href="https://getbootstrap.com/docs/4.3/about/license/" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> and <a href="https://fontawesome.com" target="_blank"><i class="fab fa-font-awesome"></i> Font Awesome 5 (Free)</a> <a href="https://fontawesome.com/license/free" target="_blank" class="badge badge-light"><i class="fab fa-creative-commons"></i> <i class="fab fa-osi"></i> &nbsp; MIT</a>.  Our <b>Web Style Guide</b> <a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> has all the details.  Sharing and feedback are encouraged! </p>
+              <a href="https://github.com/reelyactive/web-style-guide"
+                 target="_blank" class="btn btn-secondary btn-sm">
+                <i class="fas fa-external-link-alt"></i> &nbsp;
+                reelyActive's Web Style Guide
+              </a>
+            </div>
+          </div>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../oio-wlan/">
+                <img src="../oio-wlan/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../oio-wlan/">
+                  <h5 class="mt-0 mb-1"> Create a WLAN of Owl-in-Ones and a laptop </h5>
+                </a>
+                Our step-by-step guide to create a local wireless network by configuring an Owl-in-One as an access point.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
