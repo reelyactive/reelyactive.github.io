@@ -134,7 +134,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">A standalone wireless network of Owl-in-Ones forwarding data to a laptop running our open source software.</dd>
+                <dd class="col-sm-9">A standalone wireless network of Owl-in-Ones forwarding data to <em>all</em> devices on the WLAN, such as a laptop running our open source software.</dd>
                 <dt class="col-sm-3">Why would I need this?</dt>
                 <dd class="col-sm-9">For quick demos and short-term data collection, there's nothing more convenient than simply powering on all the devices.  The rest happens automagically.</dd>
                 <dt class="col-sm-3">So no WiFi or Internet required?</dt>
@@ -217,70 +217,8 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step02">
-                Connecting the laptop to the WLAN &nbsp;
-                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
-              </h2>
-              <p class="lead"> Select the reelyActive WiFi network and configure a static IP address. </p>
-              <hr>
-              <dl class="row">
-                <dt class="col-sm-3">Why a static IP address?</dt>
-                <dd class="col-sm-9">In the next step all Owl-in-Ones will be configured to forward data to the laptop via its IP address.</dd>
-                <dt class="col-sm-3">Should the AP be powered on?</dt>
-                <dd class="col-sm-9">Yes.  The AP Owl-in-One must be powered on for the laptop to be able to connect.</dd>
-              </dl>
-            </div>
-          </div>
-          <img src="images/laptop-connect.jpg" class="img-fluid"
-               alt="Laptop connected to the reelyActive WiFi network">
-          <h3 class="mt-4">
-            Connect to the reelyActive WiFi network
-            <small class="text-muted"> Part 1 </small>
-          </h3>
-          <p> From the laptop <i class="fas fa-laptop"></i>: </p>
-          <ol>
-            <li> Select from the list of available WiFi networks the one called <b>reelyActive</b> </li>
-            <li> When prompted, enter the password <b>owl-in-one</b> </li>
-            <li> Open a terminal <i class="fas fa-terminal"></i> and confirm the connection with the command <code>ifconfig</code> </li>
-          </ol>
-          <img src="images/laptop-dhcp-ip.png" class="img-fluid"
-               alt="ifconfig with DHCP-assigned IP address">
-          <p class="mt-2"> The laptop is connected to reelyActive WiFi network and is assigned an IP address by the AP via DHCP.  This IP address is likely to change on subsequent connections.  Let's make it static. </p>
-          <h3>
-            Configure a static IP address
-            <small class="text-muted"> Part 2 </small>
-          </h3>
-          <p> From the laptop <i class="fas fa-laptop"></i>: </p>
-          <ol>
-            <li> Open the Network Manager and select <b>Edit Connections...</b> </li>
-            <li> From the list of WiFi connections select <b>reelyActive</b> and click Edit </li>
-            <li> Select the <b>IPv4 Settings</b> tab </li>
-            <li> From the Method pulldown, select <b>Manual</b> </li>
-            <li> Click Add to add the static IP address: </li>
-            <ul>
-              <li> Enter <b>192.168.1.10</b> as the address </li>
-              <li> Enter <b>255.255.255.0</b> as the netmask </li>
-              <li> Enter <b>192.168.1.101</b> as the gateway </li>
-            </ul>
-            <li> Click Save to complete the configuration </li>
-          </ol>
-          <img src="images/laptop-ip-config.png" class="img-fluid"
-               alt="Configure the laptop for the reelyActive WiFi network">
-          <p class="mt-4">
-            <span class="badge badge-warning">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
-            Disconnect from and reconnect to the <b>reelyActive</b> WiFi network to ensure that the IP settings update.
-          </p>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and confirm the static IP address <b>192.168.1.10</b> with the command <code>ifconfig</code> </p>
-          <img src="images/laptop-static-ip.png" class="img-fluid"
-               alt="ifconfig with static IP address">
-          <p class="mt-2"> The laptop is now connected to the reelyActive WiFi network with a static IP address. </p>
-          <!----- Step 3 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step03">
                 Configuring the Owl-in-One Software &nbsp;
-                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
+                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
               </h2>
               <p class="lead"> Clone the software repository and update the configuration. </p>
               <hr>
@@ -328,18 +266,19 @@
           <ol>
             <li> Browse to the root of the <b>tessel-edge</b> repository </li>
             <li> Open the file <b>config.js</b> for editing </li>
-            <li> Update the <b>RADDEC_TARGETS</b> as below </li>
+            <li> Update the <b>RADDEC_TARGETS</b> and <b>IS_UDP_BROADCAST</b> as below </li>
           </ol>
           <pre><code>const RADDEC_TARGETS = [
-    { host: "192.168.1.10", port: "50001", protocol: "udp" }
-];</code></pre>
-          <p> The tessel-edge software is now configured to forward data to the laptop's static IP address.  Let's program the Owl-in-Ones! </p>
-          <!----- Step 4 ----->
+    { host: "192.168.1.<b>255</b>", port: "50001", protocol: "udp" }
+];
+const IS_UDP_BROADCAST = <b>true</b>;</code></pre>
+          <p> The tessel-edge software is now configured to forward data to <em>all</em> devices on the WLAN.  Let's program the Owl-in-Ones! </p>
+          <!----- Step 3 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
-              <h2 id="step04">
+              <h2 id="step03">
                 Programming the Owl-in-Ones &nbsp;
-                <a href="#step04" class="badge badge-secondary">Step 4 of 4</a>
+                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
               </h2>
               <p class="lead"> Program the software of each Owl-in-One and connect to the WiFi network. </p>
               <hr>
@@ -393,7 +332,45 @@
           </ol>
           <img src="images/oio-wifi.png" class="img-fluid"
                alt="Owl-in-One t2 wifi">
-          <p class="mt-2"> The Owl-in-One is now connected to the WiFi network and forwarding real-time data to the laptop's IP address. </p>
+          <p class="mt-2"> The Owl-in-One is now connected to the WiFi network and forwarding real-time data to all devices connected to the WLAN. </p>
+          <!----- Step 4 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step04">
+                Connecting the laptop to the WLAN &nbsp;
+                <a href="#step04" class="badge badge-secondary">Step 4 of 4</a>
+              </h2>
+              <p class="lead"> Select the reelyActive WiFi network and observe data from the Owl-in-Ones. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Should the AP be powered on?</dt>
+                <dd class="col-sm-9">Yes.  The AP Owl-in-One must be powered on for the laptop to be able to connect.</dd>
+                <dt class="col-sm-3">Any prerequisites?</dt>
+                <dd class="col-sm-9">Yes.  The laptop should be configured with reelyActive software to observe the incoming UDP packets from the Owl-in-Ones.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/laptop-connect.jpg" class="img-fluid"
+               alt="Laptop connected to the reelyActive WiFi network">
+          <h3 class="mt-4">
+            Connect to the reelyActive WiFi network
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the laptop <i class="fas fa-laptop"></i>: </p>
+          <ol>
+            <li> Select from the list of available WiFi networks the one called <b>reelyActive</b> </li>
+            <li> When prompted, enter the password <b>owl-in-one</b> </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> and confirm the connection with the command <code>ifconfig</code> </li>
+          </ol>
+          <img src="images/laptop-dhcp-ip.png" class="img-fluid"
+               alt="ifconfig with DHCP-assigned IP address">
+          <p class="mt-2"> The laptop is connected to reelyActive WiFi network and is assigned an IP address by the AP via DHCP.  Because the Owl-in-Ones are broadcasting on the subnet, their UDP packets will automatically be sent to this IP address, and hence received by the laptop. </p>
+          <h3>
+            Observe the data with hlc-server
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the laptop <i class="fas fa-laptop"></i>, run the hlc-server software (<i class="fas fa-laptop"></i> <a href="../laptop-suite/">tutorial</a> &nbsp;|&nbsp; <i class="fab fa-raspberry-pi"></i> <a href="../pi-suite/">tutorial</a>) and browse to the web interface to observe the real-time data stream from the Owl-in-Ones. </p>
+          <p class="mt-2"> The laptop is now connected to the reelyActive WiFi network and observing data from the Owl-in-Ones. </p>
           <!----- Document template ----->
           <div class="card my-4">
             <h4 class="card-header"> Do you like this document template? </h4>
