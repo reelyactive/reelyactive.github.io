@@ -136,11 +136,11 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">A RSSI filter allowing to only see device that are within the set distance range,  depending on the needs of that particular operation. </dd>
+                <dd class="col-sm-9">Apply a RSSI filter will display only tags within a certain distance. The RSSI threshold can be defined according to the size of the zones or rooms targeted.</dd>
                 <dt class="col-sm-3">Is there an easier way?</dt>
                 <dd class="col-sm-9">Manual estimates of the distance of people using pen and paper?</dd>
                 <dt class="col-sm-3">So why would I read this?</dt>
-                <dd class="col-sm-9">To learn both how and why to use RSSI measurement with visualisations.</dd>
+                <dd class="col-sm-9">To learn both how and why to use RSSI measurement with visualizations.</dd>
               </dl>
             </div>
           </div>
@@ -149,25 +149,26 @@
             <div class="container">
               <h2 id="step01">
                 Creating a RSSI filter from the dashboard tab &nbsp;
-                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+                <a href="#step01" class="badge badge-secondary">Step 1 of 2</a>
               </h2>
               <p class="lead"> Creating a RSSI Filter from the dashboard tab will adjust all the visualizations recorded in the dashboard. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What's RSSI ?</dt>
-                <dd class="col-sm-9"> RSSI stands for “Received Signal Strength Indicator” and it tells us the strength of the signal sent from a tag to a reader. The RSSI value gives us a clue to the distance. The higher the RSSI level, the closer the tag is to the reader. </dd>
-                <dt class="col-sm-3">Why Kibana?</dt>
-                <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
+                <dd class="col-sm-9"> RSSI stands for “Received Signal Strength Indicator” and gives us a clue to the distance.</p>
+                <dt class="col-sm-3">Why's Kibana ?</dt>
+                <dd class="col-sm-9">Kibana makes it easy to visualize data from an Elasticsearch database, where the source data is stored.</dd>
               </dl>
             </div>
           </div>
+          <p class="mt-2">RSSI is used to approximate distance between the device and the sensor. At maximum Broadcasting Power the RSSI ranges from -35 (a few inches) to -100 (40-50 m distance). By applying RSSI filter you can display only tags within a certain distance. The RSSI threshold can be defined according to the size of the rooms.</p>
           <p class="mt-2"> Open Kibana and then:</p>
           <ol>
             <li> Select the <b>Dashboard</b> tab from the left menu bar </li>
             <li> Click the <b>Add Filter</b> <i class="fa fa-plus-square"></i> button, below the search bar </li>
             <li> Select the <b>RSSI</b> filter</li>
             <li> Select <b>is between</b> from Operators pull-down</li>
-            <li> Set the distance range, according to the needs, for example <b>From -70</b> <b>To -30</b></li>
+            <li> Set the distance range, according to the needs, for example <b>From -75</b> <b>To -30</b></li>
             <li> Enter the label <b>RSSI Filter</b> and click the <b>Save</b> button</li>
           </ol>
           <p>The RSSI filter should appear below the search bar as follow :</p>
@@ -179,7 +180,7 @@
             <div class="container">
               <h2 id="step02">
                 Creating a RSSI filter for a specific vizualisation &nbsp;
-                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+                <a href="#step02" class="badge badge-secondary">Step 2 of 2</a>
               </h2>
               <p class="lead"> Creating a RSSI filter for a specific vizualisation without impacting the rest of the vizualisations. </p>
               <hr>
@@ -189,17 +190,14 @@
               </dl>
             </div>
           </div>
-          <p class="mt-2"> From the Dashboard tab </p>
+          <p class="mt-2"> In the Visualization window</p>
           <ol>
-            <li> Click the <b>Edit</b> button from the top right bar </li>
-            <li> Find the visualization you want to adjust and click the <b>cog</b> icon <i class="fas fa-cog"></i> button</li>
+            <li> From the Buckets or the Group by pull down select <b>Filters</b></li>
+            <li> Enter <b>receiverId.keyword:</b> and type the ID of the sensor</li>
+            <li> From the <b>Label</b> input type the name of the location where the sensor is set up</li>
+            <li> Complete the filter input and separate the expressions by entering <b>and</b></li>
+            <li> Enter <b>rssi</b> and type the rssi threshold as the example below:</li>
           </ol>
-          <p class="mt-2"> From the Visualization selected </p>
-          <ol>
-            <li>Repeat the steps of the <b>Part 1</b></li>
-            <li><b>Save</b> the visualization by clicking the Save button on the top right tool bar</li>
-          </ol>
-          <p>The filter should appear on the top of the visualization as below.</p>
           <img src="images/rssi-filter-visualization.png" class="img-fluid"
           alt="Create RSSI filter in Kibana">
           <!-- Where to next? -->

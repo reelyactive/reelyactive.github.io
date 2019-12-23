@@ -121,10 +121,63 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <h1 class="mt-4"> Create a bar chart in Kibana to observe data over time </h1>
-          <p class="lead">Our step-by-step guide to create a bar chart visualization in Kibana and help answering the question : <em>Are the detected devices keepalive or moving ?</em></p>
-          <img src="images/header.png" class="img-fluid"
-               alt="Create Bar Chart Kibana Guide">
+          <h1 class="mt-4"> Create a TSVB bar v in Kibana to observe room utilization </h1>
+          <p class="lead">Our step-by-step guide to create a TSVB visualization in Kibana and help answering the question : <em>How room are used?</em></p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="timerserie" data-toggle="tab"
+                 href="#header1" role="tab" aria-controls="header1"
+                 aria-selected="true"> Room Utilization </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="metric" data-toggle="tab"
+                 href="#header2" role="tab" aria-controls="header2"
+                 aria-selected="false"> Room 1 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="topN" data-toggle="tab"
+                 href="#header3" role="tab" aria-controls="header3"
+                 aria-selected="false"> Room 2 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="gauge" data-toggle="tab"
+                 href="#header4" role="tab" aria-controls="header4"
+                 aria-selected="false"> Room 3 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="Table" data-toggle="tab"
+                 href="#header5" role="tab" aria-controls="header5"
+                 aria-selected="false"> Room 4 </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="header1"
+                 role="tabpanel" aria-labelledby="timerserie">
+              <img src="images/header.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header2" role="tabpanel"
+                 aria-labelledby="metric">
+              <img src="images/header1.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header3" role="tabpanel"
+                 aria-labelledby="topN">
+              <img src="images/header2.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header4" role="tabpanel"
+                 aria-labelledby="Gauge">
+              <img src="images/header3.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header5" role="tabpanel"
+                 aria-labelledby="Table">
+              <img src="images/header4.png" class="img-fluid"
+                alt="Kibana Visual Builder buckets visualization">
+            </div>
+          </div>
+
            <!-- The TL;DR -->
           <div class="card my-4">
             <div class="card-body">
@@ -132,11 +185,11 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive use Kibana bar charts to observe the behavior of the devices.</p>
+              <p class="lead"> Learn how we at reelyActive use Kibana TSVB bar visualization to observe the behavior of the devices.</p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">A visualisation of how wireless devices behave over the time.</dd>
+                <dd class="col-sm-9">A visualisation of how rooms are used over the time.</dd>
                 <dt class="col-sm-3">Is there an easier way?</dt>
                 <dd class="col-sm-9">Manual counts and analysis of people/device using pen and paper?</dd>
                 <dt class="col-sm-3">So why would I read this?</dt>
@@ -171,16 +224,16 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step01">
-                Creating a new bar chart visualisation &nbsp;
+                Creating a TSVB visualization &nbsp;
                 <a href="#step01" class="badge badge-secondary">Step 1 of 4</a>
               </h2>
-              <p class="lead"> Create a bar chart in Kibana with the default settings. </p>
+              <p class="lead"> Create a TSVB bar visualization in Kibana with the default settings. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">What's a bar chart?</dt>
-                <dd class="col-sm-9">A bar chart displays the relative counts of a variable through rectangular bars with heights proportional to the values that they represent.</dd>
+                <dt class="col-sm-3">What's a TSVB?</dt>
+                <dd class="col-sm-9">A Time Series Data Visualizer which provides a UI to achieve the features of Timelion and gives many ways of showing data.</dd>
                 <dt class="col-sm-3">Why Kibana?</dt>
-                <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
+                <dd class="col-sm-9">Kibana makes it easy to visualize data from an Elasticsearch database, where the source data is stored.</dd>
               </dl>
             </div>
           </div>
@@ -192,9 +245,6 @@
           </ol>
           <img src="images/new-visualization-arrow.png"
                class="img-fluid" alt="Create a new Bar Chart in Kibana">
-          <p class="mt-2">Then, from a <b>Select Index</b> click on the <b>raddec</b> index.</p>
-          <img src="images/select-index.png"
-               class="img-fluid" alt="Select the raddec index in Kibana">
           <p class="mt-2"> The default settings will result in a bar chart with just one bucket being generated, similar to that below. The next step will be to define a meaningful set of buckets.</p>
           <img src="images/initial-bar-chart-generated.png" class="img-fluid"
                alt="Default Bar Chart in Kibana">
@@ -202,208 +252,105 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step02">
-                Defining bar chart buckets &nbsp;
-                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
+                Defining TSVB Metrics &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
               </h2>
-              <p class="lead"> Define a meaningful set of buckets to visualise space/time occupancy </p>
+              <p class="lead"> Define a meaningful set of metrics and filters to visualize rooms utilization </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">What's a bucket?</dt>
-                <dd class="col-sm-9">A <em>bucket</em> is a computer science term for grouping data based on a <em>criteria</em>.</dd>
-                <dt class="col-sm-3">What are these criteria?</dt>
-                <dd class="col-sm-9">The X-axis will represent time intervals and the Y-axis will represent the count of radio transmitters.</dd>
+                <dt class="col-sm-3">What's a Metric?</dt>
+                <dd class="col-sm-9">A <em>metric</em> visualization displays a single number for each <em>aggregation</em> you select.</dd>
+                <dt class="col-sm-3">What's filtering data?</dt>
+                <dd class="col-sm-9">This means the data sets are refined by removing data that can be repetitive or irrelevant.</dd>
               </dl>
             </div>
           </div>
-          <p> In the bar chart editor, configure the <b>Buckets</b> of the X-Axis and Y-Axis as indicated below: </p>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="xaxistab" data-toggle="tab"
-                 href="#xaxisbuckets" role="tab" aria-controls="xaxisbuckets"
-                 aria-selected="true"> X-Axis </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="yaxistab" data-toggle="tab"
-                 href="#yaxisbuckets" role="tab" aria-controls="yaxisbuckets"
-                 aria-selected="false"> Y-Axis </a>
-            </li>
-          </ul>
-          <div class="tab-content tab-content-reelyactive">
-            <div class="tab-pane fade show active" id="xaxisbuckets"
-                 role="tabpanel" aria-labelledby="xaxistab">
-              <div class="row my-4">
-                <div class="col-sm-3">
-                  <img src="images/x-axis-buckets.png" class="img-fluid"
-                       alt="Create Bar Chart Kibana Guide">
-                </div>
-                <div class="col-sm-9">
-                  <h4> X-Axis (Time) </h4>
-                  <ol>
-                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>X-Axis</b> bucket</li>
-                    <li>Select <b>Date Histogram</b> from the Aggregation pull-down</li>
-                    <li>Select <b>timestamp</b> from the Field pull-down</li>
-                    <li>Optionally select a specific a time interval from the Interval pull-down</li>
-                    <li>Enter a label in the Custom Label field</li>
-                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
-                  </ol>
-                </div> 
-              </div>
-            </div>
-            <div class="tab-pane fade" id="yaxisbuckets" role="tabpanel"
-                 aria-labelledby="yaxistab">
-              <div class="row my-4">
-                <div class="col-sm-3">
-                  <img src="images/y-axis-buckets.png" class="img-fluid"
-                       alt="Create Bar Chart Kibana Guide">
-                </div>
-                <div class="col-sm-9">
-                  <h4> Y-Axis (Count of transmitters)</h4>
-                  <ol>
-                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Y-Axis</b> bucket</li>
-                    <li>Select <b>Count</b> from the Aggregation pull-down</li>
-                    <li>Enter a label in the Custom Label field</li>
-                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
-                  </ol>
-                </div> 
-              </div>
-            </div>
-          </div> 
-          <p class="mt-2">The bar chart should now feature bars providing a visualisation of the relative number of transmitters count over time, similar to that below.</p>
-          <img src="images/buckets-result.png" class="img-fluid"
-               alt="Kibana bar chart buckets visualisation">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> The basic bar chart visualisation is complete. The question <em>Are the detected devices keepalive or moving ?</em> is not solved yet. To do it, the bar chart must be split into events.</p>
-          <!--Step 3 -->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step03">
-                Spliting Series &nbsp;
-                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
-              </h2>
-              <p class="lead"> Visualize events </p>
-              <hr>
-              <dl class="row">
-                <dt class="col-sm-3">What's an event?</dt>
-                <dd class="col-sm-9">A raddec may include an event property.</dd>
-              </dl>
-            </div>
-          </div> 
-          <p>The event type indexes are as follows:</p>
-          <table class="table table-striped">
-            <thead class="thead-reelyactive">
-              <tr>
-                <th scope="col">Index</th>
-                <th scope="col">Raddec events</th>
-                <th scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">0</th>
-                <td>APPEARANCE</td>
-                <td>First decoding of the transmitter in recent memory</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>DISPLACEMENT</td>
-                <td>Change of strongest receiver by transmitter</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>PACKETS</td>
-                <td>New packet payload received from transmitter</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>KEEPALIVE</td>
-                <td>Periodic update of transmitter's recent decoding(s)</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>DISAPPEARANCE</td>
-                <td>Transmitter no longer decoded by any receiver</td>
-              </tr>
-            </tbody>
-          </table>
-          <p>This tutorial focuses on the event types <b>1</b> (DISPLACEMENT) and <b>3</b> (KEEPALIVE) to help understand how devices interact in the space.</p>
-          <div class="row my-4">
-            <div class="col-sm-3">
-              <img src="images/split-series.png" class="img-fluid"
-                alt="Create Bar Chart Kibana Guide">
-            </div>
-            <div class="col-sm-9">
-              <h4> Split Series (Events) </h4>
-              <ol>
-                <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Split Series</b> bucket</li>
-                <li>Select <b>Terms</b> from the Aggregation pull-down</li>
-                <li>Select <b>events</b> from the Field pull-down</li>
-                <li>Choose <b>metric: Count</b> from the Order By pull-down</li>
-                <li>Choose the Size <b>2</b> in the <b>Descending</b> Order</li>
-                <li>Enter a label in the Custom Label field</li>
-                <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
-              </ol>
-            </div> 
-          </div>
-          <p class="mt-2">The bar chart should now feature bars providing a visualisation of the relative number of transmitters count over time, similar to that below.</p>
-          <img src="images/result-split-serie-bucket.png" class="img-fluid"
-               alt="Kibana bar chart buckets visualisation">
-          <!--Step 4 -->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step03">
-                Customising the bar chart settings &nbsp;
-                <a href="#step03" class="badge badge-secondary">Step 4 of 4</a>
-              </h2>
-              <p class="lead"> Select pretty colours and more! </p>
-              <hr>
-              <dl class="row">
-                <dt class="col-sm-3">Why would I do this?</dt>
-                <dd class="col-sm-9"><em>Good</em> data may be the foundation for good decision making, but <em>pretty</em> data is what makes decision-makers notice and act!</dd>
-              </dl>
-            </div>
-          </div>
-          <p>Kibana gives the opportunity to display charts in many ways.</p>
-          <p class="mt-2"> Open <b>Metrics & Axes</b> tab:</p>
+          <h3 class="mt-4">
+            Cardinality Aggregation
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p class="mt-2">To protect mobile devices from being tracked as they move there is a technique known as MAC address randomization. This replaces the number that uniquely identifies a device's wireless hardware with randomly generated values. Devices like smartphones change their MAC address about every 15 minutes. On average on one hour of meeting a single smartphone will be collected 4 times.</p>
           <ol>
-            <li> Select the <b>Chart Type</b> you want: <em>line</em>, <em>area</em> or <em>bar</em></li>
-            <li> Choose the <b>Mode</b> between <em>normal</em> or <em>stacked</em></li>
-            <li> Select the <b>Line Mode</b> you want: <em>straight</em>, <em>smoothed</em> or <em>stepped</em>  </li>
-            <li> Make all the changes you </li>
+            <li> Select <b>Filter Ratio</b> from the Aggregation pull-down in the <b>Metrics</b> tab</li>
+            <li> Enter the Numerator <b>1</b> and the Denominator <b>4</b></li>
+            <li> Select <b>Cardinality</b> from the Metric Aggregation pull-down</li>
+            <li> Choose the field <b>transmitterId.keyword</b></li>			
           </ol>
-          <p class="mt-2">Here are some examples of chart types you can create.</p>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="barchart" data-toggle="tab"
-                 href="#barcharttype" role="tab" aria-controls="barcharttype"
-                 aria-selected="true"> Bar </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="linechart" data-toggle="tab"
-                 href="#barlinetype" role="tab" aria-controls="barlinetype"
-                 aria-selected="false"> Line </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="areachart" data-toggle="tab"
-                 href="#areacharttype" role="tab" aria-controls="areacharttype"
-                 aria-selected="false"> Area </a>
-            </li>
-            </ul>
-            <div class="tab-content tab-content-reelyactive">
-              <div class="tab-pane fade show active" id="barcharttype"
-                   role="tabpanel" aria-labelledby="barchart">
-                <img src="images/bar-chart-type.png" class="img-fluid"
-                   alt="Kibana bar chart buckets visualisation">
-              </div>
-              <div class="tab-pane fade" id="barlinetype" role="tabpanel"
-                   aria-labelledby="linechart">
-                <img src="images/line-chart-type.png" class="img-fluid"
-                   alt="Kibana bar chart buckets visualisation">
-              </div>
-              <div class="tab-pane fade" id="areacharttype" role="tabpanel"
-                   aria-labelledby="areachart">
-                <img src="images/bar-chart-area.png" class="img-fluid"
-                   alt="Kibana bar chart buckets visualisation">
+          <img src="images/aggregation-cardinality.png"
+               class="img-fluid" alt="Create a new Visual Builder in Kibana">
+          <h3 class="mt-4">
+            Location Filter
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p class="mt-2">Each sensors has a fixe position and refers to a location, ex: room, zone, floor etc. Define which zone you want to compare by entering each location in a specific filter as below:</p>
+          <ol>
+            <li>Select <b>Filters</b> from the Group by pull-down</li>
+            <li>Enter <b>receiverId.keyword:</b> and type the ID of the sensor</li>
+            <li>From the <b>Label</b> input type the name of the location where the sensor is set up</li>		
+          </ol>
+          <img src="images/location-filter.png" class="img-fluid"
+              alt="Create Visual Builder Kibana Guide">
+          <h3 class="mt-4">
+            Distance Filter
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p class="mt-2">RSSI is used to approximate distance between the device and the sensor. At maximum Broadcasting Power the RSSI ranges from -35 (a few inches) to -100 (40-50 m distance). By applying RSSI filters you can display only tags within a certain distance.</p>
+          <ol>
+            <li>Complete the filter input and separate the expressions by entering <b>and</b></li>
+            <li>Enter <b>rssi:</b> and type the rssi threshold</li>		
+          </ol>
+          <img src="images/rssi-filter.png"
+               class="img-fluid" alt="Create a new Visual Builder in Kibana">
+          <h3 class="mt-4">
+            Transmitter Type Filter
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p class="mt-2">To measure anonymously the occupation of spaces, our sensors detect Bluetooth devices that people already carry on them (smartphones). Bluetooth devices such as smartphone use a 48-bit random device address which is classified as 3. This filter removes most devices that are not associated with people like smart TV.</p>
+          <ol>
+            <li>Complete the filter input and separate the expressions by entering <b>and</b></li>
+            <li>Enter <b>transmitterIdType:</b> and enter the value 3 which refers to Random 48-bit advertiser address (BLE)</li>		
+          </ol>
+          <img src="images/transmitter-type-filter.png"
+               class="img-fluid" alt="Create a new Visual Builder in Kibana">
+          <h3 class="mt-4">
+            Number Of Decoding Filter
+            <small class="text-muted"> Part 5 </small>
+          </h3>
+          <p class="mt-2">In most cases, devices are decoded multiple times. A decode filter is used to suppress all noise signals decoded only a few times.</p>
+          <ol>
+            <li>Complete the filter input and separate the expressions by entering <b>and</b></li>
+            <li>Enter <b>numberOfDecodings:</b> and enter the threshold</li>		
+          </ol>
+          <img src="images/decoding-filter.png"
+               class="img-fluid" alt="Create a new Visual Builder in Kibana">
+          <!--Step 3 -->
+         <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Analysing data &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
+              </h2>
+              <p class="lead"> Analyse data and identife trends and patterns</p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a trend?</dt>
+                <dd class="col-sm-9">A general tendency of a set of data to change.</dd>
+                <dt class="col-sm-3">What's a pattern?</dt>
+                <dd class="col-sm-9">Data doesn't have to follow a trend, always going up or down over time. A pattern is a when data repeats in a predictable way. </dd>
+              </dl>
             </div>
-          </div>
+          </div> 
+          <p class="mt-2">Visualize the data in a bar chart, where a bar stands for one hour.</p>
+          <ol>
+            <li>From the <b>Option</b> tab, go to <b>Chart type</b></li>
+            <li>Select <b>bar</b> style</li>
+            <li>Select <b>None</b> in the Stacked options</li>	
+          </ol>
+          <img src="images/chart-type.png" class="img-fluid"
+              alt="Create Visual Builder Kibana Guide">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualization can be combined with other visualisations as part of a space occupancy dashboard, such as that below.</p>
+          <img src="images/dashboard.png" class="img-fluid"
+               alt="Kibana dashboard example">         
           <!-- Document template -->
           <div class="card my-4">
             <h4 class="card-header"> The underlying Elasticsearch query </h4>

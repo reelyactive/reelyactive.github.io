@@ -122,7 +122,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Create a space/time occupancy heatmap in Kibana </h1>
-          <p class="lead"> Our step-by-step guide to create a heatmap visualisation in Kibana of space/time occupancy. </p>
+          <p class="lead"> Our step-by-step guide to create a heatmap visualization in Kibana of space/time occupancy. </p>
           <img src="images/header.png" class="img-fluid"
                alt="Create Heatmap Kibana Guide">
            <!-- The TL;DR -->
@@ -136,7 +136,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">A visualisation of occupancy by zone over time, as determined by wireless device traffic.</dd>
+                <dd class="col-sm-9">A visualization of occupancy by zone over time, as determined by wireless device traffic.</dd>
                 <dt class="col-sm-3">Is there an easier way?</dt>
                 <dd class="col-sm-9">Manual counts of people using pen and paper?</dd>
                 <dt class="col-sm-3">So why would I read this?</dt>
@@ -165,13 +165,13 @@
             <span class="badge badge-warning">
               <i class="fas fa-exclamation-triangle"></i>
             </span>
-            In order for there to be data to visualise, the reelyActive software must also have collected and written raddec data to Elasticsearch. 
+            In order for there to be data to visualize, the reelyActive software must also have collected and written raddec data to Elasticsearch. 
           </p>
           <!-- Step 1 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step01">
-                Creating a new heatmap visualisation &nbsp;
+                Creating a new heatmap visualization &nbsp;
                 <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
               </h2>
               <p class="lead"> Create a heatmap in Kibana with the default settings. </p>
@@ -192,20 +192,17 @@
           </ol>
           <img src="images/new-visualization-arrow.png"
                class="img-fluid" alt="Create a new Heat Map in Kibana">
-          <p class="mt-2">Then, from a <b>Select Index</b> click on the <b>raddec</b> index.</p>
-          <img src="images/select-index.png"
-               class="img-fluid" alt="Select the raddec index in Kibana">
-          <p class="mt-2"> The default settings will result in a a heatmap with just one bucket being generated, similar to that below.  The next step will be to define a meaningful set of buckets. </p>
+          <p class="mt-2"> The default settings will result in a heatmap with just one bucket being generated, similar to that below. The next step will be to define a meaningful set of buckets. </p>
           <img src="images/initial-heatmap-generated.png" class="img-fluid"
                alt="Default Heat Map in Kibana">
           <!-- Step 2 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step02">
-                Defining heatmap buckets &nbsp;
+                Defining heatmap Metrics &nbsp;
                 <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
               </h2>
-              <p class="lead"> Define a meaningful set of buckets to visualise space/time occupancy </p>
+              <p class="lead"> Define a meaningful set of metrics and buckets to visualize space/time occupancy </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What's a bucket?</dt>
@@ -215,17 +212,32 @@
               </dl>
             </div>
           </div>
-          <p> In the heatmap editor, configure the <b>Buckets</b> of the X-Axis and Y-Axis as indicated below: </p>
+          <p> In the heatmap editor, configure the <b>Metrics</b> as indicated below: </p>
+          <dl class="row mt-3">
+            <dt class="col-sm-3">
+              <img src="images/define-metrics.png"
+                   class="img-fluid" alt="Create a CSV file in Kibana">
+            </dt>
+            <dd class="col-sm-9">
+              <ol>
+                <li>Select <b>Unique Count</b> from the Aggregation pull-down</li>
+                <li>Select <b>transmitterId.keyword</b> from the Field pull-down</li>
+                <li>Enter a label in the Custom Label field</li>
+                <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
+              </ol>
+            </dd>
+          </dl>
+          <p> Then configure the <b>Buckets</b> of the X-Axis and Y-Axis as indicated below: </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="xaxistab" data-toggle="tab"
                  href="#xaxisbuckets" role="tab" aria-controls="xaxisbuckets"
-                 aria-selected="true"> X-Axis </a>
+                 aria-selected="true"> X-Axis (Time) </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="yaxistab" data-toggle="tab"
                  href="#yaxisbuckets" role="tab" aria-controls="yaxisbuckets"
-                 aria-selected="false"> Y-Axis </a>
+                 aria-selected="false"> Y-Axis (Space) </a>
             </li>
           </ul>
           <div class="tab-content tab-content-reelyactive">
@@ -237,14 +249,12 @@
                        alt="Create Heatmap Kibana Guide">
                 </div>
                 <div class="col-sm-9">
-                  <h4> X-Axis (Time) </h4>
                   <ol>
                     <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>X-Axis</b> bucket</li>
                     <li>Select <b>Date Histogram</b> from the Aggregation pull-down</li>
                     <li>Select <b>timestamp</b> from the Field pull-down</li>
-                    <li>Optionally select a specific a time interval from the Interval pull-down</li>
+                    <li>Select a time interval from the <b>Minimal Interval</b> pull-down</li>
                     <li>Enter <b>Time</b> in the Custom Label field</li>
-                    <li>Click the <b>Add sub-buckets</b> button to add an Y-Axis</li>
                     <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
                   </ol>
                 </div> 
@@ -258,13 +268,11 @@
                        alt="Create Heatmap Kibana Guide">
                 </div>
                 <div class="col-sm-9">
-                  <h4> Y-Axis (Space)</h4>
                   <ol>
-                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Y-Axis</b> bucket</li>
-                    <li>Select <b>Significant Terms</b> from the Aggregation pull-down</li>
-                    <li>Select <b>receiverid.keyword</b> from the Field pull-down</li>
-                    <li>Optionally select a specific limit of receivers to display from the Size pull-down</li>
-                    <li>Enter <b>Receivers</b> in the Custom Label field</li>
+                    <li>Click the <b>Add sub-buckets</b> button to add an Y-Axis</li>
+                    <li>Select <b>Filters</b> aggregation from the pull-down</li>
+                    <li>Each filter will collect all documents that match its associated zone. Customize the filter by adding <b>receiverId.keyword(s)</b>, <b>RSSI</b> threshold, <b>Type</b> filter etc.</li>
+                    <li>Define a <b>Label</b> to specify the zone by clicking the <i class="fas fa-tag"></i> icon</li>
                     <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
                   </ol>
                 </div> 
@@ -274,12 +282,12 @@
           <p class="mt-2">The heatmap should now feature a grid of buckets providing a visualisation of relative occupancy by receiver over time, similar to that below.</p>
           <img src="images/buckets-result.png" class="img-fluid"
                alt="Kibana space/time occupancy heatmap visualisation">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> The basic heatmap visualisation of space/time occupancy is complete.  The remainder of the tutorial covers customisation and the possibilities for going further.</p>
+          <p class="mt-4"><i class="fas fa-info-circle"></i> The basic heatmap visualisation of space/time occupancy is complete.  The remainder of the tutorial covers customization and the possibilities for going further.</p>
            <!--Step 3 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step03">
-                Customising the heatmap settings &nbsp;
+                Customizing the heatmap settings &nbsp;
                 <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
               </h2>
               <p class="lead"> Select pretty colours and more! </p>
@@ -290,7 +298,7 @@
               </dl>
             </div>
           </div>
-          <p> In the heatmap editor, select the <b>Options</b> tab at the top and consider customising the following options: </p>
+          <p> In the heatmap editor, select the <b>Options</b> tab at the top and consider customizing the following options: </p>
           <table class="table table-striped">
             <thead class="thead-reelyactive">
               <tr>
@@ -315,14 +323,17 @@
                 <th scope="row">Scale to Data Bounds</th>
                 <td>Check this box to adjust the lower and upper bounds to match the source data.  By default the Y axis starts at zero.</td>
               </tr>
+              <tr>
+                <th scope="row">Percentage Mode</th>
+                <td>Check this box to change number into percentage.</td>
+              </tr>
             </tbody>
           </table>
           <p>Each change should be saved by clicking the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar.</p>  
-          <p>For example, changing the <b>Color Schema</b> from Greens to Blues would result in a heatmap updated to resemble the following.</p>
           <img src="images/header.png" class="img-fluid"
               alt="Kibana space/time occupancy heatmap visualisation">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualisation can be combined with other visualisations as part of a dashboard, such as that below.</p>
-          <img src="images/add-to-dashboard.png" class="img-fluid"
+          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualisation can be combined with other visualisations as part of a space occupancy dashboard, such as that below.</p>
+          <img src="images/dashboard.png" class="img-fluid"
                alt="Kibana dashboard example">
           <!-- Document template -->
           <div class="card my-4">

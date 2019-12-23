@@ -243,8 +243,8 @@
           </table>
           <p class="mt-4">By assembling all these settings and parameters you should get the following expression: <pre><code>.es(index=raddec,timefield=timestamp,metric=cardinality:transmitterId.keyword)</code></pre></p>
           <p class="mt-4">The Timelion should now feature a curve providing a visualisation of relative number of unique device, similar to that below. In the next step we are going to split the Timelion expression to visualise the number of unique device <b>per receiver</b>.</p>
-          <img src="images/timelion-settings.png" 
-               class="img-fluid" alt="Create Timelion Kibana Guide">
+          <img src="images/timelion-expression-settings.png" class="img-fluid"
+              alt="Create Timelion Kibana Guide">
            <!--Step 3 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -297,7 +297,7 @@
             </div>
           </div>
           <p class="mt-4">Several parameter can be modified or added. In this visualization, a relevant improvement would be to change the labels of each serie.</p>
-          <img src="images/timelion-label-change.png" class="img-fluid"
+          <img src="images/label-change.png" class="img-fluid"
                alt="Create Timelion Kibana Guide"><br><br>
           <table class="table table-striped">
             <thead class="thead-reelyactive">
@@ -322,6 +322,9 @@
           <p class="mt-4">The <b>$1</b> will be replaced by the first argument in the regex, receiverId.keyword:(.+) so you should end up your key labels as:<br> Receiver Id: <I>identification1</I><br> Receiver Id: <I>identification2</I><br> Receiver Id: <I>identification3</I> </p>
           <img src="images/header.png" class="img-fluid"
                alt="Create Timelion Kibana Guide">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualization can be combined with other visualizations as part of a space occupancy dashboard, such as that below.</p>
+          <img src="images/dashboard.png" class="img-fluid"
+            alt="Create Timelion Kibana Guide">
           <!-- Where to next? -->
           <hr>
           <h2> Where to next? </h2>

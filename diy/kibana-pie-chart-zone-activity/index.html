@@ -121,7 +121,7 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <h1 class="mt-4"> Create a pie chart in Kibana and compare zone activity </h1>
+          <h1 class="mt-4"> Create a pie chart in Kibana and compare zone performance </h1>
           <p class="lead">Our step-by-step guide to create a pie chart visualization in Kibana.</p>
           <img src="images/header.png" class="img-fluid"
                alt="Create Pie Chart Kibana Guide">
@@ -136,11 +136,11 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">A visualisation that shows a percentage of the total data sensed per zone set at a specific time.</dd>
+                <dd class="col-sm-9">A visualization that shows a percentage of the total data sensed per zone set at a specific time.</dd>
                 <dt class="col-sm-3">Is there an easier way?</dt>
                 <dd class="col-sm-9">Manual counts and analysis of people/device using pen and paper?</dd>
                 <dt class="col-sm-3">So why would I read this?</dt>
-                <dd class="col-sm-9">To learn both how <em>and why</em> to automate relative rooms activities with a pie chart visualisation.</dd>
+                <dd class="col-sm-9">To learn both how <em>and why</em> to automate relative rooms activities with a pie chart visualization.</dd>
               </dl>
             </div>
           </div>
@@ -165,13 +165,13 @@
             <span class="badge badge-warning">
               <i class="fas fa-exclamation-triangle"></i>
             </span>
-            In order for there to be data to visualise, the reelyActive software must also have collected and written raddec data to Elasticsearch. 
+            In order for there to be data to visualize, the reelyActive software must also have collected and written raddec data to Elasticsearch. 
           </p>
           <!-- Step 1 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step01">
-                Creating a new pie chart visualisation &nbsp;
+                Creating a new pie chart visualization &nbsp;
                 <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
               </h2>
               <p class="lead"> Create a pie chart in Kibana with the default settings. </p>
@@ -180,7 +180,7 @@
                 <dt class="col-sm-3">What's a pie chart?</dt>
                 <dd class="col-sm-9">A pie chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion.</dd>
                 <dt class="col-sm-3">Why Kibana?</dt>
-                <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
+                <dd class="col-sm-9">Kibana makes it easy to visualize data from an Elasticsearch database, where the source data is stored.</dd>
               </dl>
             </div>
           </div>
@@ -190,11 +190,8 @@
             <li> Click the <b>Create a Visualization</b> <i class="fa fa-plus-square"></i> button </li>
             <li> Select the <b>Pie</b> chart </li>
           </ol>
-          <img src="images/new-visualization-arrow.png"
+          <img src="images/select-pie-chart.png"
                class="img-fluid" alt="Create a new Pie Chart in Kibana">
-          <p class="mt-2">Then, from a <b>Select Index</b> click on the <b>raddec</b> index.</p>
-          <img src="images/select-index.png"
-               class="img-fluid" alt="Select the raddec index in Kibana">
           <p class="mt-2"> The default settings will result in a pie chart with just one bucket being generated, similar to that below. The next step will be to define a meaningful set of metrics and buckets.</p>
           <img src="images/initial-pie-chart-generated.png" class="img-fluid"
                alt="Default Pie Chart in Kibana">
@@ -202,10 +199,10 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step02">
-                Defining pie chart buckets &nbsp;
+                Defining Pie Chart Metrics &nbsp;
                 <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
               </h2>
-              <p class="lead"> Define a meaningful set of buckets to visualise the activity of rooms </p>
+              <p class="lead"> Define a meaningful set of metrics and buckets to compare zone performance </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What's a bucket?</dt>
@@ -215,64 +212,42 @@
               </dl>
             </div>
           </div>
-          <p> In the pie chart editor, configure the <b>Metrics</b> and <b>Bickets</b> as indicated below: </p>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="slicesize" data-toggle="tab"
-                 href="#slicesizemetrics" role="tab" aria-controls="slicesizemetrics"
-                 aria-selected="true"> Metrics </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="splitslice" data-toggle="tab"
-                 href="#splitslicesbuckets" role="tab" aria-controls="splitslicesbuckets"
-                 aria-selected="false"> Buckets </a>
-            </li>
-          </ul>
-          <div class="tab-content tab-content-reelyactive">
-            <div class="tab-pane fade show active" id="slicesizemetrics"
-                 role="tabpanel" aria-labelledby="slicesize">
-              <div class="row my-4">
-                <div class="col-sm-3">
-                  <img src="images/slice-size.png" class="img-fluid"
-                       alt="Create Pie Chart Kibana Guide">
-                </div>
-                <div class="col-sm-9">
-                  <h4> Metrics </h4>
-                  <ol>
-                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Slice Size</b></li>
-                    <li>Select <b>Unique Count</b> from the Aggregation pull-down</li>
-                    <li>Select <b>transmitterId.keyword</b> from the Field pull-down</li>
-                    <li>Enter a label in the Custom Label field</li>
-                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
-                  </ol>
-                </div> 
-              </div>
-            </div>
-            <div class="tab-pane fade" id="splitslicesbuckets" role="tabpanel"
-                 aria-labelledby="splitslice">
-              <div class="row my-4">
-                <div class="col-sm-3">
-                  <img src="images/split-slices.png" class="img-fluid"
-                       alt="Create Pie Chart Kibana Guide">
-                </div>
-                <div class="col-sm-9">
-                  <h4> Buckets </h4>
-                  <ol>
-                    <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Split Slices</b> buckets</li>
-                    <li>Select <b>Terms</b> from the Aggregation pull-down</li>
-                    <li>Select <b>receiverId.keyword</b> from the Field pull-down</li>
-                    <li>Choose the number of zones you want to compare by completing the <b>Size</b> field</li>
-                    <li>Enter a label in the Custom Label field</li>
-                    <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
-                  </ol>
-                </div> 
-              </div>
-            </div>
-          </div> 
+          <p> In the pie chart editor, configure the <b>Metrics</b> as indicated below: </p>
+          <dl class="row mt-3">
+            <dt class="col-sm-3">
+              <img src="images/slice-size.png"
+                   class="img-fluid" alt="Create a CSV file in Kibana">
+            </dt>
+            <dd class="col-sm-9">
+              <ol>
+                <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Slice Size</b></li>
+                <li>Select <b>Unique Count</b> from the Aggregation pull-down</li>
+                <li>Select <b>transmitterId.keyword</b> from the Field pull-down</li>
+                <li>Enter a label in the Custom Label field</li>
+                <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
+              </ol>
+            </dd>
+          </dl>
+          <p> Then configure the <b>Buckets</b> as indicated below: </p>
+          <dl class="row mt-3">
+            <dt class="col-sm-3">
+              <img src="images/split-slices.png"
+                   class="img-fluid" alt="Create a CSV file in Kibana">
+            </dt>
+            <dd class="col-sm-9">
+              <ol>
+                <li>Click to expand the <i class="fas fa-caret-square-down"></i> <b>Split Slices</b> buckets</li>
+                <li>Select <b>Filters</b> aggregation from the pull-down</li>
+		<li>Each filter will collect all documents that match its associated zone. Customize the filter by adding <b>receiverId.keyword(s)</b>, a <b>RSSI</b> threshold, a <b>Type</b> filter etc</li>
+                <li>Define a <b>Label</b> to specify the zone by clicking the <i class="fas fa-tag"></i> icon.</li>
+                <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
+              </ol>
+            </dd>
+          </dl>
           <p class="mt-2">The pie chart should now include slices that provide a visualization of the occupancy percentage of each room.</p>
           <img src="images/buckets-result.png" class="img-fluid"
-               alt="Kibana pie chart buckets visualisation">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> The basic pie chart visualisation is complete. It looks friendly and smart, but without information it communicates anything meaningful. The next step explains how to customize the chart to get information and values.</p>
+               alt="Kibana pie chart buckets visualization">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> The basic pie chart visualization is complete. It looks friendly and smart, but without information it communicates anything meaningful. The next step explains how to customize the chart to get information and values.</p>
           <!--Step 3 -->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -295,7 +270,10 @@
             <li>Click the <b>right arrow</b> <i class="fas fa-caret-square-right"></i> on the top of the tool bar to update the changes</li>
           </ol>
           <img src="images/options-settings.png" class="img-fluid"
-               alt="Kibana pie chart buckets visualisation">
+               alt="Kibana pie chart buckets visualization">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualization can be combined with other visualizations as part of a space occupancy dashboard, such as that below.</p>
+          <img src="images/dashboard.png" class="img-fluid"
+               alt="Kibana dashboard example">
           <!-- Document template -->
           <div class="card my-4">
             <h4 class="card-header"> The underlying Elasticsearch query </h4>
