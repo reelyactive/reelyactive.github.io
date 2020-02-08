@@ -257,6 +257,12 @@
                  aria-selected="false"> Remote Reel </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" id="onboardradiotab" data-toggle="tab"
+                 href="#onboardradiotest" role="tab"
+                 aria-controls="onboardradiotest"
+                 aria-selected="false"> Onboard Radio </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" id="reelmoduletab" data-toggle="tab"
                  href="#reelmoduletest" role="tab" aria-controls="reelmoduletest"
                  aria-selected="false"> Reel Module </a>
@@ -286,6 +292,20 @@
                 <div class="col-md-6">
                   <p> <span class="badge badge-success"><i class="fas fa-check"></i></span> No additional steps are required! </p>
                   <p> The software listens for reel packets on UDP port 50000.  Data should appear in the web interface. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="onboardradiotest" role="tabpanel"
+                 aria-labelledby="onboardradiotab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/bluetooth-hci-to-pi.jpg" class="img-fluid"
+                       alt="Pi onboard Bluetooth radio">
+                </div>
+                <div class="col-md-6">
+                  <p> <span class="badge badge-warning"><i class="fas fa-exclamation-circle"></i></span> Instead run the command: <code>sudo npm run start-hci</code> </p>
+                  <p> The software will additionally listen for data from the <b>onboard Bluetooth radio</b>*<em>&mdash;first introduced on the Pi 3.</em>  Data should appear in the web interface. </p>
+                  <p class="small text-muted"> * Kindly let us know should you be aware of an elegant way to run as pi user rather than as root! </p>
                 </div>
               </div>
             </div>
@@ -334,6 +354,7 @@
             <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
           </ol>
           <p> Observe the hlc-server landing page. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> Alternatively use the <code>pi-suite-reel.service</code> or the <code>pi-suite-hci.service</code>. </p>
           <h3>
             Confirm that pi-suite runs on boot
             <small class="text-muted"> Part 2 </small>
