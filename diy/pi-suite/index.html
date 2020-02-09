@@ -356,8 +356,24 @@
           <p> Observe the hlc-server landing page. </p>
           <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> Alternatively use the <code>pi-suite-reel.service</code> or the <code>pi-suite-hci.service</code>. </p>
           <h3>
-            Confirm that pi-suite runs on boot
+            Set the environment variables, if any
             <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only if custom environment variable configuration is required. </p>
+          <p> Should your configuration require any environment variables to be set differently than the defaults, <em>for example to run on port 80 and to connect to a remote Elasticsearch database,</em> these variables can be added to .conf files associated with the pi-suite.service as follows: </p>
+          <ol>
+            <li> Create a pi-suite.service configuration file with the command <code>sudo systemctl edit pi-suite.service</code> </li>
+            <li> In the file editor, add a <b>[Service]</b> line followed by the environment variables, one on each line, as in the example below:
+            <pre class="my-1"><code>[Service]
+Environment="PORT=80"
+Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
+</code></pre> </li>
+            <li> Save the file as <b>/etc/systemd/system/pi-suite.service.d/environment.conf</b> (or similar) </li>
+          </ol>
+          <p> The environment variables from this .conf file will be observed each time the service runs. </p>
+          <h3>
+            Confirm that pi-suite runs on boot
+            <small class="text-muted"> Part 3 </small>
           </h3>
           <p> Reboot and again observe the hlc-server landing page as follows: </p>
           <ol>
