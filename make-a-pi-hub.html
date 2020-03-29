@@ -370,7 +370,7 @@ sudo apt-get update
 sudo apt-get upgrade
             </pre>
             <h2> Install Node.js and forever </h2>
-            <p> Do you have <b>Node.js</b> and <b>forever</b> installed? </p>
+            <p> Do you have <b>Node.js</b> (version 8) and <b>forever</b> installed? </p>
             <a ng-class="node === true ? 'btn btn-warning' : 'btn btn-default'"
                ng-click="node = true"> Yes </a>
             <a ng-class="node === false ? 'btn btn-warning' : 'btn btn-default'"
@@ -385,7 +385,12 @@ sudo apt-get upgrade
             <!----- Install Node.js ----->
             <div ng-show="node === false">
               <h3> Install Node.js </h3>
-              <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing the latest LTS (long term support version) which will be required.  The following table suggests <i>known working versions</i> for different variants of the Pi </p>
+              <p> Raspbian will likely include an old version of Node.js.  Here we'll provide the instructions for installing a <i>known working version</i> of <b>Node.js 8</b> for different variants of the Pi. </p>
+              <div class="well">
+                <h4> Why Node.js version 8? </h4>
+                <p> The <a href="https://www.npmjs.com/package/bluetooth-hci-socket" target="_blank">hci-bluetooth-socket package</a>, which is key to accessing the Bluetooth radio in the Pi, is no longer maintained by its original author and does not support more recent versions of Node.js. </p>
+                <p> If you wish to proceed with the <i>latest</i> version of Node.js, consider instead following <a href="https://reelyactive.github.io/diy/pi-suite/" target="_blank">the current version of this tutorial</a> which overcomes this by using the <a href="https://www.npmjs.com/package/@abandonware/bluetooth-hci-socket" target="_blank">@abandonware/hci-bluetooth-socket</a> package. Otherwise expect things to break on the <code>npm install</code> below...</p>
+              </div>
               <table class="table">
                 <tr>
                   <th> Raspberry Pi 3 </th>
@@ -442,7 +447,7 @@ mkdir ~/reelyActive
 cd ~/reelyActive
 git clone https://github.com/reelyactive/pi-suite.git
 cd pi-suite
-git checkout release-0.2
+<b>git checkout release-0.2</b>
 npm install
             </pre>
             <h2 id="startsniffing"> Start Sniffing! </h2>
