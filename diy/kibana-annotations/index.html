@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Our step-by-step guide to highlight key information in Kibana.">
+          content="Our step-by-step guide to highlight key information in a Kibana time series visualisation using annotations.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,7 +22,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "Create annotations in Kibana",
-      "description": "Our step-by-step guide to highlight key information in a Time Series visualization.",
+      "description": "Our step-by-step guide to highlight key information in a Kibana time series visualisation using annotations.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/kibana-annotations/images/header.png",
@@ -121,7 +121,7 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <h1 class="mt-4"> Highlight key information in a Time Series visualization.</h1>
+          <h1 class="mt-4"> Create Annotations in Kibana </h1>
           <p class="lead">Our step-by-step guide to highlight key information or anomalies in a Time Series visualization.</p>
           <img src="images/header.png" class="img-fluid"
                alt="Create Annotations Kibana Guide">
@@ -132,15 +132,15 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive use Kibana annotations in TSVB visualization to observe specific behavior of assets/persons.</p>
+              <p class="lead"> Learn how we at reelyActive use Kibana annotations in TSVB visualisations to highlight specific occupancy and behaviour events.</p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">An annotated visualization which highlights specific information like the door opening.</dd>
+                <dd class="col-sm-9">An annotated visualisation which highlights specific information such as the opening of a door.</dd>
                 <dt class="col-sm-3">Is there an easier way?</dt>
-                <dd class="col-sm-9">Manual counts and analysis of asset/person behavior using pen and paper?</dd>
+                <dd class="col-sm-9">Manual observation and analysis using pen and paper?</dd>
                 <dt class="col-sm-3">So why would I read this?</dt>
-                <dd class="col-sm-9">To learn both how <em>and why</em> to annotate specific behavior in a TSVB visualization.</dd>
+                <dd class="col-sm-9">To learn both how <em>and why</em> to annotate specific events in a TSVB visualisation.</dd>
               </dl>
             </div>
           </div>
@@ -149,15 +149,27 @@
           <p class="lead"> reelyActive open source software with Elasticsearch and Kibana. </p>
           <ul class="list-unstyled">
             <li class="media my-2">
-              <a>
-                <img src="../common/images/icon.png"
+              <a href="../elasticsearch-service-setup/">
+                <img src="../elasticsearch-service-setup/images/icon.png"
                      class="align-self-start mr-3">
               </a>
               <div class="media-body">
-                <a>
-                  <h5 class="mt-0 mb-1"> Prepare a computer from scratch </h5>
+                <a href="../elasticsearch-service-setup/">
+                  <h5 class="mt-0 mb-1"> [Optional] Set up a hosted Elasticsearch Service </h5>
                 </a>
-                (COMING SOON) Our step-by-step tutorial on how we install Xubuntu, our open source software and supporting software to a computer.
+                Includes our step-by-step guide to setup Elastic's convenient hosted cloud service.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../kibana-bar-chart-time-analysis/">
+                <img src="../kibana-bar-chart-time-analysis/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana-bar-chart-time-analysis/">
+                  <h5 class="mt-0 mb-1"> [Optional] Create a TSVB visualisation in Kibana </h5>
+                </a>
+                For instance this tutorial is a step-by-step guide to observe room occupancy over time using the Time Series Visual Builder.
               </div>
             </li>
           </ul>
@@ -171,14 +183,14 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step01">
-                Choosing TSVB visualization &nbsp;
+                Selecting a TSVB visualisation &nbsp;
                 <a href="#step01" class="badge badge-secondary">Step 1 of 2</a>
               </h2>
-              <p class="lead"> Choose a TSVB visualization and add annotations to make reading information more efficient. </p>
+              <p class="lead"> Select an existing TSVB visualisation to which annotations should be added. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why a TSVB visualization?</dt>
-                <dd class="col-sm-9">The annotations feature is only available in Time Series Visual Builder (TSBV) visualization in Kibana.</dd>
+                <dt class="col-sm-3">Why TSVB?</dt>
+                <dd class="col-sm-9">The annotations feature is only available in Time Series Visual Builder (TSBV) in Kibana.</dd>
                 <dt class="col-sm-3">Why Kibana?</dt>
                 <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
               </dl>
@@ -186,7 +198,7 @@
           </div>
           <p class="mt-2"> Open Kibana and then:</p>
           <ol>
-            <li> Select a <b>TSVB visualization</b> from Visualize tab or Dashboard tab </li>
+            <li> Select a <b>TSVB visualization</b> from the Visualize tab or Dashboard tab </li>
             <li> Click the <b>gear</b> <i class="fas fa-cog"></i> icon </li>
             <li> Select <b>Edit visualization</b></li>
           </ol>
@@ -202,13 +214,13 @@
                 Adding annotations &nbsp;
                 <a href="#step02" class="badge badge-secondary">Step 2 of 2</a>
               </h2>
-              <p class="lead"> Define a meaningful annotation by filtering data and add it to the visualization </p>
+              <p class="lead"> Define a meaningful annotation by filtering data and adding it to the visualisation </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">Why annotate?</dt>
-                <dd class="col-sm-9">To help readers track information and deepen their understanding of visualization.</dd>
-                <dt class="col-sm-3">What's filtering data?</dt>
-                <dd class="col-sm-9">This means the data sets are refined by removing data that can be repetitive or irrelevant.</dd>
+                <dd class="col-sm-9">To help users track information and deepen their understanding of visualisation.</dd>
+                <dt class="col-sm-3">Why filter the data?</dt>
+                <dd class="col-sm-9">Filtering removes data that is repetitive or irrelevant.</dd>
               </dl>
             </div>
           </div>
@@ -223,45 +235,32 @@
           <ol>
             <li> Select your <b>Index pattern</b></li>
             <li> Choose <b>timestamp</b> in the Time field </li>
-            <li> Enter your <b>query string</b> in the Search area, by clicking in the Search area kibana suggests filters</li>
+            <li> Enter your <b>query string</b> in the Search area, by clicking in the Search area Kibana suggests filters</li>
             <li> Select an <b>icon</b> that will be display each time the event will appear</li>
             <li> Enter the <b>Field</b> that corresponds to your query</li>
             <li> Enter a <b>text</b> which will be displayed each time the mouse is over an event.</li>
           </ol>
-          <p class="mt-2"> You should be able to visualize the annotations as below: </p>
+          <p class="mt-2"> You should be able to visualise the annotations as below: </p>
           <img src="images/fill-annotations-tab.png"
                class="img-fluid" alt="Add annotations">
-          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualization can be combined with other visualisations as part of a space occupancy dashboard, such as that below.</p>
+          <p class="mt-4"><i class="fas fa-info-circle"></i> Annotations can be added to the TSVB visualisations of a space occupancy dashboard, such as that below.</p>
           <img src="images/dashboard.png" class="img-fluid"
                alt="Kibana dashboard example">         
-
           <!-- Where to next? -->
           <hr>
           <h2> Where to next? </h2>
           <p class="lead"> Create other visualizations, or continue exploring our open architecture and all its applications. </p>
           <ul class="list-unstyled">
             <li class="media my-2">
-              <a>
-                <img src="../common/images/icon.png"
+              <a href="../kibana/">
+                <img src="../kibana/images/icon.jpg"
                      class="align-self-start mr-3">
               </a>
               <div class="media-body">
-                <a>
-                  <h5 class="mt-0 mb-1">Create another visualization</h5>
+                <a href="../kibana/">
+                  <h5 class="mt-0 mb-1"> reelyActive Kibana integration overview </h5>
                 </a>
-                (COMING SOON) Count of raddec over a day.
-              </div>
-            </li>
-            <li class="media my-2">
-              <a>
-                <img src="../common/images/icon.png"
-                     class="align-self-start mr-3">
-              </a>
-              <div class="media-body">
-                <a>
-                  <h5 class="mt-0 mb-1">Create another visualization</h5>
-                </a>
-                (COMING SOON) Top receivers.
+                Find links to all our Kibana tutorials.
               </div>
             </li>
             <li class="media my-2">
@@ -284,7 +283,7 @@
     <footer class="footer">
       <a href="https://reelyactive.github.io"> diyActive </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020 </a>
     </footer>
     <script defer src="../common/js/solid.min.js"></script>
     <script defer src="../common/js/brands.min.js"></script>
