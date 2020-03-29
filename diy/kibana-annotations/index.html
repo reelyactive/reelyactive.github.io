@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to highlight key information in Kibana.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Create annotations in Kibana </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Create annotations in Kibana",
+      "description": "Our step-by-step guide to highlight key information in a Time Series visualization.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/kibana-annotations/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png" width="165" height="30"
+             alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"
+               href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Highlight key information in a Time Series visualization.</h1>
+          <p class="lead">Our step-by-step guide to highlight key information or anomalies in a Time Series visualization.</p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Create Annotations Kibana Guide">
+           <!-- The TL;DR -->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive use Kibana annotations in TSVB visualization to observe specific behavior of assets/persons.</p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">An annotated visualization which highlights specific information like the door opening.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Manual counts and analysis of asset/person behavior using pen and paper?</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">To learn both how <em>and why</em> to annotate specific behavior in a TSVB visualization.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--Prerequisities-->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> reelyActive open source software with Elasticsearch and Kibana. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a>
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1"> Prepare a computer from scratch </h5>
+                </a>
+                (COMING SOON) Our step-by-step tutorial on how we install Xubuntu, our open source software and supporting software to a computer.
+              </div>
+            </li>
+          </ul>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            In order for there to be data to visualise, the reelyActive software must also have collected and written raddec data to Elasticsearch. 
+          </p>
+          <!-- Step 1 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Choosing TSVB visualization &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 2</a>
+              </h2>
+              <p class="lead"> Choose a TSVB visualization and add annotations to make reading information more efficient. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why a TSVB visualization?</dt>
+                <dd class="col-sm-9">The annotations feature is only available in Time Series Visual Builder (TSBV) visualization in Kibana.</dd>
+                <dt class="col-sm-3">Why Kibana?</dt>
+                <dd class="col-sm-9">Kibana makes it easy to visualise data from an Elasticsearch database, where the source data is stored.</dd>
+              </dl>
+            </div>
+          </div>
+          <p class="mt-2"> Open Kibana and then:</p>
+          <ol>
+            <li> Select a <b>TSVB visualization</b> from Visualize tab or Dashboard tab </li>
+            <li> Click the <b>gear</b> <i class="fas fa-cog"></i> icon </li>
+            <li> Select <b>Edit visualization</b></li>
+          </ol>
+          <img src="images/select-edit.png"
+               class="img-fluid" alt="Add annotations">
+          <p class="mt-2"> The TSVB visualization will open on the Metrics tab. The next step will be to define a meaningful annotation.</p>
+          <img src="images/default-visualization.png" class="img-fluid"
+               alt="Add annotations">
+          <!-- Step 2 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Adding annotations &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 2</a>
+              </h2>
+              <p class="lead"> Define a meaningful annotation by filtering data and add it to the visualization </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why annotate?</dt>
+                <dd class="col-sm-9">To help readers track information and deepen their understanding of visualization.</dd>
+                <dt class="col-sm-3">What's filtering data?</dt>
+                <dd class="col-sm-9">This means the data sets are refined by removing data that can be repetitive or irrelevant.</dd>
+              </dl>
+            </div>
+          </div>
+          <p class="mt-2"> From the TSVB visualization:</p>
+          <ol>
+            <li> Click the third tab: <b>Annotations</b> from the main page </li>
+            <li> Click the <b>Add data source</b> button </li>
+          </ol>
+          <img src="images/empty-annotations-tab.png"
+               class="img-fluid" alt="Add annotations">
+          <p class="mt-2"> From the Annotations tab:</p>
+          <ol>
+            <li> Select your <b>Index pattern</b></li>
+            <li> Choose <b>timestamp</b> in the Time field </li>
+            <li> Enter your <b>query string</b> in the Search area, by clicking in the Search area kibana suggests filters</li>
+            <li> Select an <b>icon</b> that will be display each time the event will appear</li>
+            <li> Enter the <b>Field</b> that corresponds to your query</li>
+            <li> Enter a <b>text</b> which will be displayed each time the mouse is over an event.</li>
+          </ol>
+          <p class="mt-2"> You should be able to visualize the annotations as below: </p>
+          <img src="images/fill-annotations-tab.png"
+               class="img-fluid" alt="Add annotations">
+          <p class="mt-4"><i class="fas fa-info-circle"></i> This visualization can be combined with other visualisations as part of a space occupancy dashboard, such as that below.</p>
+          <img src="images/dashboard.png" class="img-fluid"
+               alt="Kibana dashboard example">         
+
+          <!-- Where to next? -->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Create other visualizations, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a>
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Create another visualization</h5>
+                </a>
+                (COMING SOON) Count of raddec over a day.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a>
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a>
+                  <h5 class="mt-0 mb-1">Create another visualization</h5>
+                </a>
+                (COMING SOON) Top receivers.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019 </a>
+    </footer>
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
