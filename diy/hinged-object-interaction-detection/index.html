@@ -198,6 +198,74 @@
               </div>
             </div>
           </div>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Configure the sensor beacon &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 4</a>
+              </h2>
+              <p class="lead"> Configure a beacon to advertise when motion is detected by its accelerometer. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Can any beacon be used?</dt>
+                <dd class="col-sm-9">No.  Only beacons with an accelerometer will be able to detect when they are in motion.</dd>
+                <dt class="col-sm-3">What beacons have accelerometers?</dt>
+                <dd class="col-sm-9">Such beacons include the Minew E8 and the second-generation Puck.js among others.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Install the sensor beacon &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 4</a>
+              </h2>
+              <p class="lead"> Affix the beacon to the hinged object so as to maximise its motion during an interaction. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Is placement important?</dt>
+                <dd class="col-sm-9">Yes.  If there's insufficient motion to trigger the beacon, the interaction will not be detected.</dd>
+                <dt class="col-sm-3">What placement is optimal?</dt>
+                <dd class="col-sm-9">In general, placement farthest from the hinge will produce the most motion.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Calibrate the interaction detection &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 4</a>
+              </h2>
+              <p class="lead"> Determine the threshold of unique sensor readings that correspond with an interaction. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why unique sensor readings?</dt>
+                <dd class="col-sm-9">When motion is detected, the beacon will periodically transmit real-time accelerometer data, with each data reading likely to be unique during an interaction.</dd>
+                <dt class="col-sm-3">Why not a standard threshold?</dt>
+                <dd class="col-sm-9">A default threshold may indeed produce reliable results in some scenarios, but this is best validated and adjusted on a case-by-case basis.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 4 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step04">
+                Create the visualisation in Kibana &nbsp;
+                <a href="#step04" class="badge badge-secondary">Step 4 of 4</a>
+              </h2>
+              <p class="lead"> Create a time series visualisation annotated with each detected interaction. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why a time series?</dt>
+                <dd class="col-sm-9">A time series visualisation highlights interaction patterns over the course of a day, week, month or any pertinent timeframe.</dd>
+                <dt class="col-sm-3">Are there alternatives?</dt>
+                <dd class="col-sm-9">Of course!  Kibana provides plenty of visualisation options, and Elasticsearch affords a rich set of queries.  What we present here is a starting point.</dd>
+              </dl>
+            </div>
+          </div>
           <!----- Where to next? ----->
           <hr>
           <h2> Where to next? </h2>
