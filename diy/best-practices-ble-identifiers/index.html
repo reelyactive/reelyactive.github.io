@@ -163,8 +163,32 @@
               </dl>
             </div>
           </div>
-          <img src="images/ble-advertising-packet.png" class="img-fluid"
+          <h3 class="mt-4"> The advertising packet structure </h3>
+          <p> The diagram below illustrates the structure of a BLE advertising packet with the <b>Packet Data Unit (PDU)</b> expanded and identifier content highlighted.  The preamble, access address and CRC are typically generated/processed automatically, and are irrelevant to this discussion. </p>
+          <img src="images/ble-advertising-packet.png" class="img-fluid my-2"
                alt="BLE Advertising Packet Structure">
+          <h3 class="mt-4"> The <em>mandatory</em> Advertiser Address </h3>
+          <p> Every BLE advertising packet includes a <b>48-bit Advertiser Address</b> and a <b>single-bit txAdd flag</b>.  The latter indicates whether this address is: </p>
+          <dl class="row">
+            <dt class="col-sm-3 col-lg-2 offset-sm-2 offset-lg-3"> 0 | Public </dt>
+            <dd class="col-sm-7"> <em>Unique</em> identifier from a block of addresses assigned by the IEEE to the device manufacturer </dd>
+            <dt class="col-sm-3 col-lg-2 offset-sm-2 offset-lg-3"> 1 | Random </dt>
+            <dd class="col-sm-7"> <em>Random identifier</em> selected automatically in software, or specifically by the user </dd>
+          </dl>        
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            &nbsp; A random identifier <em>may not be static</em>.  A device may cycle a random identifier at any time.
+          </p>
+          <p>
+            <span class="badge badge-warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+            &nbsp; A random identifier <em>may not be unique</em>.  Collisions are nonetheless unlikely unless assignment is non-random.
+          </p>
+          <h3 class="mt-4"> Other <em>optional</em> identifiers </h3>
+          <p> A BLE advertising packet may include an optional payload of up to 31 bytes in which additional identifiers and/or data may reside. </p>
           <!----- Part 2 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
