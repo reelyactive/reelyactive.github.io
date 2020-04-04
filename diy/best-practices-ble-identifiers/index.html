@@ -206,6 +206,13 @@
               </dl>
             </div>
           </div>
+          <h3 class="mt-4"> The BLE processing pipeline </h3>
+          <p> The diagram below illustrates the processing pipeline between a raw packet over-the-air and the interface with application software under a developer's control.  Although the advertising packet structure is <em>standard</em>, as presented in the previous section, <b>the processed data available for a software application is <em>not standard</em>:</b> it depends on the platform and OS. </p>
+          <p> Similarly, application software is constrained by the platform and OS with regard to any advertising packets it wishes to transmit. </p>
+          <img src="images/ble-constraints-processing-structure.png"
+               class="img-fluid my-2" alt="BLE Platform and OS Constraints">
+          <h3 class="mt-4"> Key constraints by platform/OS </h3>
+          <p> The table below highlights the key constraints with respect to receiving and transmitting identifier data in BLE advertising packets. </p>
           <table class="table table-hover text-center">
             <thead class="thead-dark">
               <tr>
@@ -416,6 +423,25 @@
             </span>
             &nbsp; reelyActive infrastructure operates raw, without a Bluetooth stack
           </p>
+          <h3 class="mt-4"> Identifier interoperability summary </h3>
+          <p> The objective of BLE identifier best practices being to <em>maximise interoperability</em>, the platform and OS constraints presented above lead to the following observations: </p>
+          <dl class="row">
+            <dt class="col-sm-4 offset-sm-1"> 
+              <span class="badge badge-pill badge-danger">
+                <i class="fas fa-times"></i>
+              </span>
+              &nbsp; Advertiser Address
+            </dt>
+            <dd class="col-sm-7"> Although <em>mandatory</em>, access is not universal and mobile devices cycle the identifier periodically in the interest of user privacy (<i class="fas fa-thumbs-up"></i>). </dd>
+            <dt class="col-sm-4 offset-sm-1">
+              <span class="badge badge-pill badge-success">
+                <i class="fas fa-check"></i>
+              </span>
+              &nbsp; Identifier in payload
+            </dt>
+            <dd class="col-sm-7"> All platforms allow <em>access</em> in some form to packet payload elements, and allow some form of user-defined payload <em>transmission</em>. </dd>
+          </dl> 
+          <p> The following section presents existing protocols and standards which include identifiers in the BLE advertising packet payload. </p>
           <!----- Part 3 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
