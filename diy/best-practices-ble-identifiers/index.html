@@ -188,7 +188,67 @@
             &nbsp; A random identifier <em>may not be unique</em>.  Collisions are nonetheless unlikely unless assignment is non-random.
           </p>
           <h3 class="mt-4"> Other <em>optional</em> identifiers </h3>
-          <p> A BLE advertising packet may include an optional payload of up to 31 bytes in which additional identifiers and/or data may reside. </p>
+          <p> A BLE advertising packet may include an <b>optional payload of up to 31 bytes</b> in which additional identifiers and/or data may reside.  The Bluetooth Generic Access Protocol (GAP), documented <a href="https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile/" target="_blank">here</a>, affords many payload options.  Below are the most common for identifiers. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="uuidtab" data-toggle="tab"
+                 href="#uuid" role="tab" aria-controls="uuid"
+                 aria-selected="true"> UUID </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="servicedatatab" data-toggle="tab"
+                 href="#servicedata" role="tab" aria-controls="servicedata"
+                 aria-selected="false"> Service Data </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="manufacturerdatatab" data-toggle="tab"
+                 href="#manufacturerdata" role="tab"
+                 aria-controls="manufacturerdata" aria-selected="false">
+                Manufacturer Data
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="uuid"
+                 role="tabpanel" aria-labelledby="uuidtab">
+              <h4 class="mt-2"> <i class="fas fa-barcode"></i> Identifier as a UUID </h4>
+              <p> Bluetooth GAP and the advertising packet payload capacity allow for one or more 16-bit or 32-bit service class UUIDs or a single 128-bit service class UUID.  Only a 128-bit UUID can be user-generated, as the shorter UUIDs are assigned by the Bluetooth SIG. </p>
+              <p> A <em>service</em> class UUID is intended to represent a <em> common service</em> among a class of devices.  For instance, a given model of FitBit will advertise a common <em>service</em> UUID. </p>
+              <p>
+                <span class="badge badge-danger">
+                  <i class="fas fa-times"></i>
+                </span>
+                &nbsp; A service class UUID is therefore <em>not</em> suited for the <em>unique</em> identification of a device.
+              </p>
+            </div>
+            <div class="tab-pane fade" id="servicedata"
+                 role="tabpanel" aria-labelledby="servicedatatab">
+              <h4 class="mt-2"> <i class="fas fa-barcode"></i> Identifier as Service Data </h4>
+              <p> Bluetooth GAP and the advertising packet payload capacity allow for the inclusion of up to 20 bytes of data for a specific 16-bit service class UUID. </p>
+              <h5> Member Service Data </h5>
+              <p> An entity may purchase a 16-bit member service from the Bluetooth SIG and define the service data structure as the wish, either as an open or closed standard.  An example is Google Eddystone which has the reserved UUID <code>0xFEAA</code> and supports several different frame types <a href="https://github.com/google/eddystone/blob/master/protocol-specification.md" target="_blank">defined as open standards</a> (<i class="fas fa-thumbs-up"></i>).  Eddystone-UID is presented in detail in <a href="#part04">Part 4</a>.  Another example is Tile which has the reserved UUID <code>0xFEED</code> but whose specification is proprietary and not published. </p>
+              <h5> GATT Service/Characteristic Data </h5>
+              <p> The Bluetooth SIG maintains assigned numbers for <a href="https://www.bluetooth.com/specifications/gatt/services/" target="_blank">GATT Services</a> and <a href="https://www.bluetooth.com/specifications/gatt/characteristics/" target="_blank">Characteristics</a>.  It is possible to include service/characteristic data provided it does not exceed the payload capacity.  An example is reelyActive transceiver infrastructure, where each device advertises its unique EUI-64 identifier as a <a href="https://www.bluetooth.com/xml-viewer/?src=https://www.bluetooth.com/wp-content/uploads/Sitecore-Media-Library/Gatt/Xml/Characteristics/org.bluetooth.characteristic.system_id.xml" target="_blank">System ID characteristic</a> (<code>0x2A23</code>). </p>
+              <p>
+                <span class="badge badge-success">
+                  <i class="fas fa-check"></i>
+                </span>
+                &nbsp; Service data offers several alternatives for the <em>unique</em> identification of a device.
+              </p>
+            </div>
+            <div class="tab-pane fade" id="manufacturerdata"
+                 role="tabpanel" aria-labelledby="manufacturerdatatab">
+              <h4 class="mt-2"> <i class="fas fa-barcode"></i> Identifier as Manufacturer Data </h4>
+              <p> Bluetooth GAP and the advertising packet payload capacity allow for the inclusion of up to 22 bytes of use-as-you-please data for manufacturers who register (at no cost) with the Bluetooth SIG and receive a 16-bit company identifier. </p>
+              <p> For instance, iBeacon is <a href="https://developer.apple.com/ibeacon/" target="_blank">defined as an open standard</a> (<i class="fas fa-thumbs-up"></i>) by Apple, uses their company identifier (<code>0x004C</code>), and includes a 128-bit UUID and a major and minor identifier of 16-bits apiece.  This is presented in detail in <a href="#part04">Part 4</a>. </p>
+              <p>
+                <span class="badge badge-success">
+                  <i class="fas fa-check"></i>
+                </span>
+                &nbsp; Manufacturer data affords full freedom for the <em>unique</em> identification of a device, constrained only by the payload capacity.
+              </p>
+            </div>
+          </div>
           <!----- Part 2 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
