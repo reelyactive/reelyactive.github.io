@@ -582,6 +582,40 @@
               </dl>
             </div>
           </div>
+          <h3 class="mt-4"> Proposed interoperable BLE identifier </h3>
+          <p> As a best practice, we propose the following four elements for a BLE identifier which can be transmitted, received and interpreted across platforms and operating systems: </p>
+          <dl class="row">
+            <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
+              <span class="badge badge-pill badge-secondary">
+                <i class="fas fa-barcode"></i>
+              </span>
+              &nbsp; Entity UUID
+            </dt>
+            <dd class="col-sm-7"> Identifies the entity or organisation responsible for the device. </dd>
+            <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+              <span class="badge badge-pill badge-secondary">
+                <i class="fas fa-barcode"></i>
+              </span>
+              &nbsp; Instance ID
+            </dt>
+            <dd class="col-sm-7"> Uniquely identifies the individual device (which itself may identify a person, product or place). </dd>
+            <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+              <span class="badge badge-pill badge-secondary">
+                <i class="fas fa-sitemap"></i>
+              </span>
+              &nbsp; Class
+            </dt>
+            <dd class="col-sm-7"> <em>Optional</em>.  Implicitly indicates what is associated with the device, and/or its hierarchy. </dd>
+            <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+              <span class="badge badge-pill badge-secondary">
+                <i class="fas fa-signal"></i>
+              </span>
+              &nbsp; Tx Power
+            </dt>
+            <dd class="col-sm-7"> Facilitates the estimation of proximity and/or range. </dd>
+          </dl>
+          <h3 class="mt-4"> Implementation </h3>
+          <p> The BLE identifier elements described above are implemented as Eddystone-UID and iBeacon as detailed below: </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="eddystonetab" data-toggle="tab"
