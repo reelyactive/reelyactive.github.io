@@ -632,17 +632,85 @@
               </a>
             </li>
           </ul>
+          <!----- Eddystone-UID tab ----->
           <div class="tab-content tab-content-reelyactive">
             <div class="tab-pane fade show active" id="eddystone"
                  role="tabpanel" aria-labelledby="eddystonetab">
               <img src="images/eddystone-uid-identifier-reelyactive-best-practices.png"
                    class="img-fluid"
                    alt="Eddystone-UID identifier best practices">
+              <dl class="row mt-4">
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
+                  <span class="badge badge-pill badge-dark">
+                    <i class="fas fa-barcode"></i>
+                  </span>
+                  &nbsp; Entity UUID
+                </dt>
+                <dd class="col-sm-7"> Implement as 80-bit <em>elided</em> UUID in the <b>Namespace</b>. </dd>
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+                  <span class="badge badge-pill badge-secondary">
+                    <i class="fas fa-barcode"></i>
+                  </span>
+                  &nbsp; Instance ID
+                </dt>
+                <dd class="col-sm-7"> Implement in 28 least-significant bits of <b>Instance</b>. </dd>
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+                  <span class="badge badge-pill badge-secondary">
+                    <i class="fas fa-sitemap"></i>
+                  </span>
+                  &nbsp; Class
+                </dt>
+                <dd class="col-sm-7"> Implement in bits 28-31 of <b>Instance</b>. </dd>
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+                  <span class="badge badge-pill badge-dark">
+                    <i class="fas fa-signal"></i>
+                  </span>
+                  &nbsp; Tx Power
+                </dt>
+                <dd class="col-sm-7"> Implement in <b>Ranging</b> byte. </dd>
+              </dl>
+              <p>
+                <span class="badge badge-secondary">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                &nbsp; The 32 most significant bits of the <b>Instance</b> are not required and should be set to zero, unless required for a specific purpose.
+              </p>
             </div>
+            <!----- iBeacon implementation tab ----->
             <div class="tab-pane fade" id="ibeacon"
                  role="tabpanel" aria-labelledby="ibeacontab">
               <img src="images/ibeacon-identifier-reelyactive-best-practices.png"
                    class="img-fluid" alt="iBeacon identifier best practices">
+              <dl class="row mt-4">
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
+                  <span class="badge badge-pill badge-dark">
+                    <i class="fas fa-barcode"></i>
+                  </span>
+                  &nbsp; Entity UUID
+                </dt>
+                <dd class="col-sm-7"> Implement as 128-bit UUID in the <b>Proximity UUID</b>. </dd>
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+                  <span class="badge badge-pill badge-secondary">
+                    <i class="fas fa-barcode"></i>
+                  </span>
+                  &nbsp; Instance ID
+                </dt>
+                <dd class="col-sm-7"> Implement in 28 least-significant bits of the combined <b>Major & Minor</b>. </dd>
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+                  <span class="badge badge-pill badge-secondary">
+                    <i class="fas fa-sitemap"></i>
+                  </span>
+                  &nbsp; Class
+                </dt>
+                <dd class="col-sm-7"> Implement in the 4 most-significant bits of the <b>Major</b>. </dd>
+                <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
+                  <span class="badge badge-pill badge-dark">
+                    <i class="fas fa-signal"></i>
+                  </span>
+                  &nbsp; Tx Power
+                </dt>
+                <dd class="col-sm-7"> Implement in <b>Signal Power</b> byte. </dd>
+              </dl>
             </div>
           </div>
           <!----- Where to next? ----->
