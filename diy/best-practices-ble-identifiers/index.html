@@ -525,6 +525,46 @@
           <p> In 2015 Google released Eddystone, similarly intended for battery-powered beacons to transmit information to the mobile device, with Android supporting this use case.  Eddystone extends the proximity beacon concept, adding the potential to transmit a (short) URL, telemetry data and encrypted identifiers. </p>
           <p> Although both iOS and Android allow developers limited possibility to <em>transmit</em> BLE advertising packets, history has shown that Apple and Google are committed to the mobile-device-as-<em>receiver</em> model.  During the brief period of Android support for Google's Physical Web project we were able to demonstrate the limits of mobile peer-to-peer discoverability in <a href="https://youtu.be/eamCXiNkUuE" target="_blank">this video</a> and accompanying <a href="https://reelyactive.com/blog/archives/1066" target="_blank">blog post</a>.  In short, <b>mobile peer-to-peer discovery with BLE is <em>not</em> practically supported by iOS and Android</b>. </p>
           <p> Although the hype around beacons <em>for mobile</em> has long since waned, as of 2020, hundreds of millions of beacons have nonetheless been deployed worldwide, with iBeacon and Eddystone clearly established as the prevailing standards.  As a result, regardless of vendor, <b>a battery-powered beacon purchased today is almost assured to support both iBeacon and Eddystone</b>, often simultaneously, even if these beacons are increasingly destined for <em>non-mobile</em> applications such as personnel/asset tracking and environmental sensing. </p>
+          <h3 class="mt-4"> iBeacon and Eddystone-UID </h3>
+          <p> The following table compares the properties of iBeacon and Eddystone-UID which together emerged as the standards for proximity identification not just of BLE, but of <em>all</em> active RFID technologies. </p>
+          <table class="table table-hover text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col"> &nbsp; </th>
+                <th scope="col">
+                  <i class="fab fa-apple"></i> &nbsp; iBeacon
+                </th>
+                <th scope="col">
+                  <i class="fab fa-google"></i> &nbsp; Eddystone-UID
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="text-left"> Entity identifier </th>
+                <td> 128-bit UUID </td>
+                <td> 80-bit Namespace ID </td>
+              </tr>
+              <tr>
+                <th class="text-left"> Instance identifier </th>
+                <td> 16-bit Major & 16-bit Minor </td>
+                <td> 48-bit Instance ID </td>
+              </tr>
+              <tr>
+                <th class="text-left"> Tx Power Indication? </th>
+                <td> Yes, measured @ 1m </td>
+                <td> Yes, measured @ 0m </td>
+              </tr>
+              <tr>
+                <th class="text-left"> Additional data </th>
+                <td> &mdash; </td>
+                <td> 16-bits RFU* </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-right text-muted small"> * Reserved for Future Use </p>
+          <p class="mt-2"> In summary, both iBeacon and Eddystone-UID share the same structural elements, although the number of bits allocated to each varies.  Both have <b>at least 80-bits (2<sup>80</sup> values) of entity identifier</b> to indicate to which <em>entity</em> or <em>organisation</em> the device belongs, and <b>at least 32-bits (2<sup>32</sup> values) of instance identifier</b> to uniquely identify the <em>device</em> itself.  Moreover, both provide an indication of transmission power to facilitate ranging and proximity estimations. </p>
+          <p> The following section presents a best practice for identification which can be implemented to equal effect in <em>either</em> iBeacon or Eddystone-UID. </p>
           <!----- Part 4 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
