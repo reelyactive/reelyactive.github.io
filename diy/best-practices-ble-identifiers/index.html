@@ -569,10 +569,10 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="part04">
-                A UUID and ID for all to see &nbsp;
+                The InteroperaBLE Identifier &nbsp;
                 <a href="#part04" class="badge badge-secondary">Part 4 of 4</a>
               </h2>
-              <p class="lead"> Our best practice proposal for maximum interoperability. </p>
+              <p class="lead"> Our best practice proposal for maximum interoperability of BLE identifiers. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What's the purpose?</dt>
@@ -582,8 +582,8 @@
               </dl>
             </div>
           </div>
-          <h3 class="mt-4"> Proposed interoperable BLE identifier </h3>
-          <p> As a best practice, we propose the following four elements for a BLE identifier which can be transmitted, received and interpreted across platforms and operating systems: </p>
+          <h3 class="mt-4"> The InteroperaBLE Identifier structure </h3>
+          <p> As a best practice, we propose the following four elements for a BLE identifier which we shall refer to as the <b>InteroperaBLE Identifier</b>*.  Together, these elements can be transmitted, received and interpreted across platforms and operating systems: </p>
           <dl class="row">
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
               <span class="badge badge-pill badge-secondary">
@@ -614,8 +614,9 @@
             </dt>
             <dd class="col-sm-7"> Facilitates the estimation of proximity and/or range. </dd>
           </dl>
+          <p class="text-right text-muted small"> * If you're at all familiar with reelyActive, this name should come as no surprise. </p>
           <h3 class="mt-4"> Implementation </h3>
-          <p> The BLE identifier elements described above are implemented as Eddystone-UID and iBeacon as detailed below: </p>
+          <p> The InteroperaBLE Identifier is implemented as Eddystone-UID and iBeacon as detailed below: </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="eddystonetab" data-toggle="tab"
@@ -673,7 +674,7 @@
                 <span class="badge badge-secondary">
                   <i class="fas fa-info-circle"></i>
                 </span>
-                &nbsp; The 32 most significant bits of the <b>Instance</b> are not required and should be set to zero, unless required for a specific purpose.
+                &nbsp; The 32 most significant bits of the <b>Instance</b> are not required by the InteroperaBLE Identifier and should be set to zero, unless required for another purpose.
               </p>
             </div>
             <!----- iBeacon implementation tab ----->
