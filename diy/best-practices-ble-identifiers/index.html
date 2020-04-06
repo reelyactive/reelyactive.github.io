@@ -652,6 +652,19 @@
             <dd class="col-sm-7"> Facilitates the estimation of proximity and/or range. </dd>
           </dl>
           <p class="text-right text-muted small"> * If you're at all familiar with reelyActive, this name should come as no surprise. </p>
+          <h3 class="mt-4"> Generating an entity UUID </h3>
+          <p> If one does not already exist for the entity or organisation, a 128-bit Version 4 (Random) UUID should be created, observing the following form: </p> 
+          <pre class="lead text-center">XXXXXXXX-XXXX-MXXX-NXXX-XXXXXXXXXXXX</pre>
+          <p> Each character is hexadecimal (0-9, a-f) with the following constraints: </p>
+          <dl class="row">
+            <dt class="col-sm-1 offset-sm-1"> X </dt>
+            <dd class="col-sm-10"> Any value* </dd>
+            <dt class="col-sm-1 offset-sm-1"> M </dt>
+            <dd class="col-sm-10"> Must be <b>4</b> to represent Version 4 </dd>
+            <dt class="col-sm-1 offset-sm-1"> N </dt>
+            <dd class="col-sm-10"> Upper bits must be 10<sub>b</sub> to represent Variant 1 <br> <span class="text-muted"> Valid values for N are therefore <b>8, 9, a or b</b> </span> </dd>
+          </dl>
+          <p class="text-right text-muted small"> * So long as the entire UUID is unique from that of other entities and organisations. </p>
           <h3 class="mt-4"> Implementation </h3>
           <p> The InteroperaBLE Identifier is implemented as Eddystone-UID and iBeacon as detailed below: </p>
           <ul class="nav nav-tabs" role="tablist">
@@ -707,6 +720,12 @@
                 </dt>
                 <dd class="col-sm-7"> Implement in <b>Ranging</b> byte. </dd>
               </dl>
+              <p>
+                <span class="badge badge-warning">
+                  <i class="fas fa-exclamation-circle"></i>
+                </span>
+                &nbsp; The <em>elided</em> UUID has the form XXXXXXXX<del>-XXXX-MXXX-NXXX-</del>XXXXXXXXXXXX where 48-bits are removed as indicated by the strikeout, <a href="https://github.com/google/eddystone/tree/master/eddystone-uid#elided-version-4-uuid" target="_blank">as specified in the Eddystone documentation</a>
+              </p>
               <p>
                 <span class="badge badge-secondary">
                   <i class="fas fa-info-circle"></i>
