@@ -363,49 +363,6 @@
           <p class="mt-4"><i class="fas fa-info-circle"></i> This visualization can be combined with other visualisations as part of a space occupancy dashboard, such as that below.</p>
           <img src="images/dashboard.png" class="img-fluid"
                alt="Kibana dashboard example">         
-          <!-- Document template -->
-          <div class="card my-4">
-            <h4 class="card-header"> The underlying Elasticsearch query </h4>
-            <div class="card-body">
-              <pre class="card-text"><code>
-GET raddec/_search
-{
-  "size":0,
-  "aggs": {
-    "date": {
-      "date_histogram": {
-        "field": "timestamp",
-        "interval": "5m"
-      },
-      "aggs": {
-        "events": {
-          "terms": {
-            "field": "events",
-            "size": 2,
-            "order": {
-              "_count": "desc"
-            }
-          }
-        }
-      }
-    }
-  },
-  "query": {
-    "bool": {
-      "must" : {
-        "match_all": {}
-      },
-      "should": [
-        {"match_phrase": {"events": "1"}},
-        {"match_phrase": {"events": "3"}}
-      ],
-      "minimum_should_match": 1
-    }
-  }
-}
-              </code></pre>
-            </div>
-          </div>
           <!-- Where to next? -->
           <hr>
           <h2> Where to next? </h2>
