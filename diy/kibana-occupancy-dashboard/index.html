@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guides to build a space utilization dashboard and observe assets behavior within.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Create a space utilization dashboard in Kibana </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Create a space utilization dashboard in Kibana",
+      "description": "Our step-by-step guides to build a space utilization dashboard and observe assets behavior within.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/kibana-occupancy-dashboard/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Create a space utilization dashboard in Kibana </h1>
+          <p class="lead"> Our step-by-step guides to build a space utilization dashboard and observe assets behavior within. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Create a space utilization dashboard in Kibana">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> The key to maximizing a space performance is by establishing better insight into two key metrics: <b>space utilization</b> and <b>behavior of assets</b> within. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">An overview of your space utilization through a dashboard in Kibana that reflects <b>who</b> or <b>what</b> is <b>where</b> and <b>how</b>.</dd>
+                <dt class="col-sm-3">What is Kibana?</dt>
+                <dd class="col-sm-9">Kibana provides a powerful window into the data stored in Elasticsearch, including visualizations, dashboards and facilitating database queries and management.</dd>
+                <dt class="col-sm-3">Can I use something else?</dt>
+                <dd class="col-sm-9">Yes. Our software integrates well with other databases and analytics tools.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Creating a new dashboard &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Create a space utilization dashboard in Kibana and increase workplace effectiveness.</p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's space utilization?</dt>
+                <dd class="col-sm-9">It refers to how often a space is used and highlights occupancy patterns over a period of time.</dd>
+                <dt class="col-sm-3">What's for?</dt>
+                <dd class="col-sm-9">To obtain valuable evidence for optimisation of building space use, energy efficiency and productivity.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> Open Kibana and then: </p>
+          <ol>
+            <li> Enter the <b>credentials</b> (username and password) </li>
+            <li> Click the dashboard <b>icon</b> from the left toolbar </li>
+            <li> Click the <b>create a new dashboard</b> button </li>
+          </ol>
+          <p>You should be able to visualize the default dashboard as below:</p>
+          <img src="images/empty-dashboard.png" class="img-fluid"
+            alt="Create a new dashboard in Kibana">
+          <p class="mt-4">The next step is to include visualizations that highlight the space utilization.</p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Adding the visualizations &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Learn how to add visualizations to the new dashboard and get relevant information about the space utilization. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a visualization?</dt>
+                <dd class="col-sm-9">A chart that shows trends, spikes, and dips you need to know about your data.</dd>
+                <dt class="col-sm-3">What's for?</dt>
+                <dd class="col-sm-9">To obtain a main dashboard.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> From the dashboard tab, click the <b>Add</b> button and select or create the visualizations. </p>
+          <h3>
+            Add a Time series visualization
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> A visual builder visualization that highlights occupancy patterns in order to correctly assess areas needs. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="timerserie" data-toggle="tab"
+                 href="#header1" role="tab" aria-controls="header1"
+                 aria-selected="true"> Space Utilization </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="metric" data-toggle="tab"
+                 href="#header2" role="tab" aria-controls="header2"
+                 aria-selected="false"> Main Entrance </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="topN" data-toggle="tab"
+                 href="#header3" role="tab" aria-controls="header3"
+                 aria-selected="false"> Storage room </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="gauge" data-toggle="tab"
+                 href="#header4" role="tab" aria-controls="header4"
+                 aria-selected="false"> Ailse A </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="Table" data-toggle="tab"
+                 href="#header5" role="tab" aria-controls="header5"
+                 aria-selected="false"> Ailse B </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="header1"
+                 role="tabpanel" aria-labelledby="timerserie">
+              <img src="images/main-TSVB.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header2" role="tabpanel"
+                 aria-labelledby="metric">
+              <img src="images/main-entrance-TSVB.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header3" role="tabpanel"
+                 aria-labelledby="topN">
+              <img src="images/storage-room-TSVB.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header4" role="tabpanel"
+                 aria-labelledby="Gauge">
+              <img src="images/ailse-a-TSVB.png" class="img-fluid"
+                 alt="Kibana Visual Builder buckets visualization">
+            </div>
+            <div class="tab-pane fade" id="header5" role="tabpanel"
+                 aria-labelledby="Table">
+              <img src="images/ailse-b-TSVB.png" class="img-fluid"
+                alt="Kibana Visual Builder buckets visualization">
+            </div>
+          </div>
+          <p class="mt-4"> Follow the tutorial below to create a TSVB visualization:</p>
+          <ol>
+            <li class="media my-2">
+              <a href="../kibana-visual-builder-occupancy-timeseries/">
+                <img src="../kibana-visual-builder-occupancy-timeseries/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana-visual-builder-occupancy-timeseries/">
+                  <h5 class="mt-0 mb-1"> Create a TSVB in Kibana to understand space utilization </h5>
+                </a>
+                Our step-by-step guide to create a TSVB visualization in Kibana to observe how spaces are used over a week.
+              </div>
+            </li>
+          </ol>
+          <h3>
+            Add a Heatmap of zones visualization
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> A heatmap of zones that visualizes all busy areas within the space. </p>
+          <img src="images/heatmap.png" class="img-fluid"
+            alt="Create a space/time occupancy heatmap in Kibana">
+          <p> Follow the tutorial below to create a heatmap of zones:</p>
+          <ol>
+            <li class="media my-2">
+              <a href="../kibana-heatmap-space-time/">
+                <img src="../kibana-heatmap-space-time/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana-heatmap-space-time/">
+                  <h5 class="mt-0 mb-1"> Create a TSVB in Kibana to understand space utilization </h5>
+                </a>
+                Our step-by-step guide to create a heatmap to visualise the occupancy of a physical space over time.
+              </div>
+            </li>
+          </ol>
+          <h3>
+            Add a Pie Chart
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> A pie chart visualization that compares zone performance. </p>
+          <img src="images/pie-chart.png" class="img-fluid"
+            alt="Add a pie chart">
+          <p> Follow the tutorial below to create a pie chart:</p>
+          <ol>
+            <li class="media my-2">
+              <a href="../kibana-pie-chart-zone-activity/">
+                <img src="../kibana-pie-chart-zone-activity/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana-pie-chart-zone-activity/">
+                  <h5 class="mt-0 mb-1"> Create a pie chart in Kibana to compare zone activity </h5>
+                </a>
+                Our step-by-step guide to create a pie chart visualization in Kibana.
+              </div>
+            </li>
+          </ol>
+          <h3>
+            Add a Time series bar visualization
+            <small class="text-muted"> Part 5 </small>
+          </h3>
+          <p> A visual builder visualization that measures rooms occupancy. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="timerserie1" data-toggle="tab"
+                 href="#tab1" role="tab" aria-controls="tab1"
+                 aria-selected="true"> Rooms occupation </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="metric1" data-toggle="tab"
+                 href="#tab2" role="tab" aria-controls="tab2"
+                 aria-selected="false"> Room 1 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="topN1" data-toggle="tab"
+                 href="#tab3" role="tab" aria-controls="tab3"
+                 aria-selected="false"> Room 2 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="gauge1" data-toggle="tab"
+                 href="#tab4" role="tab" aria-controls="tab4"
+                 aria-selected="false"> Room 3 </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="tab1"
+                 role="tabpanel" aria-labelledby="timerserie1">
+              <img src="images/changing-rooms.png" class="img-fluid"
+                 alt="Kibana Visual Builder bar visualization">
+            </div>
+            <div class="tab-pane fade" id="tab2" role="tabpanel"
+                 aria-labelledby="metric1">
+              <img src="images/room-1.png" class="img-fluid"
+                 alt="Kibana Visual Builder bar visualization">
+            </div>
+            <div class="tab-pane fade" id="tab3" role="tabpanel"
+                 aria-labelledby="topN1">
+              <img src="images/room-2.png" class="img-fluid"
+                 alt="Kibana Visual Builder bar visualization">
+            </div>
+            <div class="tab-pane fade" id="tab4" role="tabpanel"
+                 aria-labelledby="Gauge1">
+              <img src="images/room-3.png" class="img-fluid"
+                 alt="Kibana Visual Builder bar visualization">
+            </div>
+          </div>
+          <p class="mt-4"> Follow the tutorial below to create a TSVB bar visualization:</p>
+          <ol>
+            <li class="media my-2">
+              <a href="../kibana-bar-chart-time-analysis/">
+                <img src="../kibana-bar-chart-time-analysis/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana-bar-chart-time-analysis/">
+                  <h5 class="mt-0 mb-1"> Create a TSVB in Kibana to observe room occupancy over time </h5>
+                </a>
+              Our step-by-step guide to create a TSVB visualization in Kibana to answer the question: When are rooms occupied?
+              </div>
+            </li>
+          </ol>
+          <p class="mt-4"> Save the dashboard. You should be able to view the dashboard composed of the added visualizations as below: </p>       
+          <img src="images/header.png" class="img-fluid"
+                 alt="Kibana dashboard">
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Customisation &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
+              </h2>
+              <p class="lead"> Customize the dashboard by adding filters to get granularity in the visualizations. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's filter?</dt>
+                <dd class="col-sm-9">In Kibana, you can filter transactions either by entering a search query or by clicking on elements within a visualization.</dd>
+                <dt class="col-sm-3">What's for?</dt>
+                <dd class="col-sm-9">To query a specific subset of transactions from the selected time frame.</dd>
+              </dl>
+            </div>
+          </div>
+          <p>From the dashboard tab, click the <b>+ Add filter</b> from the top toolbar and then:</p>
+          <h3>
+            Custom time filter
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p>In Kibana it is possible to define a period of time specific to each visualization.</p>
+          <img src="images/time-filter.png" class="img-fluid"
+            alt="Create a new dashboard in Kibana">
+          <ol class="mt-4">
+            <li> From the visualization selected, click the <b>gear</b> icon </li>
+            <li> Click <b>Customize time range</b> button</li>
+            <li> Edit the <b>time</b> to adjust the visualization </li>
+          </ol>
+          <p class="mt-4">You should be able to choose a specific time range for each visualization that makes up the dashboard.</p>
+          <img src="images/time-adjust.png" class="img-fluid"
+            alt="Create a new dashboard in Kibana">
+          <h3 class="mt-4">
+            Custom RSSI filter
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p>RSSI is used to approximate distance between the device and the sensor. By applying a RSSI filter you can adjust the dashboard and display only tags within a certain distance.</p>
+          <ol class="mt-4">
+            <li> Click the <b>+ Add filter</b> button </li>
+            <li> Select <b>rssi</b> Field</li>
+            <li> Choose the operator <b>is between</b> </li>
+            <li> Define the time range and <b>Save</b> the filter </li>
+          </ol>
+          <img src="images/rssi-filter-filled.png" class="img-fluid"
+            alt="Create a new dashboard in Kibana">
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Create other visualizations, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../kibana/">
+                <img src="../kibana/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana/">
+                  <h5 class="mt-0 mb-1"> reelyActive Kibana integration overview </h5>
+                </a>
+                Find links to all our Kibana tutorials.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2020 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
