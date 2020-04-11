@@ -227,6 +227,63 @@
               </dl>
             </div>
           </div>
+          <h3 class="mt-4"> What to program? </h3>
+          <p> The Bangle.js can be programmed with an existing file, or from code written in the IDE as either JavaScript or blocks. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="filestab" data-toggle="tab"
+                 href="#files" role="tab" aria-controls="files"
+                 aria-selected="true">
+                <i class="fas fa-folder"></i> Files
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="javascripttab" data-toggle="tab"
+                 href="#javascript" role="tab" aria-controls="javascript"
+                 aria-selected="false">
+                <i class="fas fa-code"></i> JavaScript
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="blockstab" data-toggle="tab"
+                 href="#blocks" role="tab" aria-controls="blocks"
+                 aria-selected="false">
+                <i class="fas fa-puzzle-piece"></i> Blocks
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="files"
+                 role="tabpanel" aria-labelledby="filestab">
+              <p class="lead"> The following files are maintained by reelyActive: </p>
+              <ul class="list-unstyled mb-4">
+                <li class="media my-2">
+                  <a href="https://github.com/reelyactive/diract/"
+                     target="_blank">
+                    <i class="fab fa-github display-4 align-self-start mr-3"></i>
+                  </a>
+                  <div class="media-body">
+                    <a href="https://github.com/reelyactive/diract/"
+                       target="_blank">
+                      <h5 class="mt-0 mb-1"> DirAct </h5>
+                    </a>
+                    Proximity identification with Bluetooth Low Energy.
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="javascript"
+                 role="tabpanel" aria-labelledby="javascripttab">
+              <p class="lead"> Hello Bangle in JavaScript: </p>
+              <code> E.showMessage('Hello Bangle', 'JavaScript'); </code>
+            </div>
+            <div class="tab-pane fade" id="blocks"
+                 role="tabpanel" aria-labelledby="blockstab">
+              <p class="lead"> Hello Bangle in Blocks: </p>
+              <img src="images/espruino-ide-blocks-hello-bangle.png"
+                   class="img-fluid" alt="Hello Bangle as blocks">
+            </div>
+          </div>
           <h3 class="mt-4">
             Open a file to program
             <small class="text-muted"> Part 1 </small>
