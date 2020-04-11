@@ -167,19 +167,95 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step01">
-                Coming soon &nbsp;
-                <a href="#step01" class="badge badge-secondary">Step 1 of X</a>
+                Connecting to the Bangle.js &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 2</a>
               </h2>
-              <p class="lead"> We'll receive our Bangle.js over the 2019 holidays and then complete this guide! </p>
+              <p class="lead"> Browse to the Espruino IDE and connect using Web Bluetooth. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why?</dt>
-                <dd class="col-sm-9">Because.</dd>
-                <dt class="col-sm-3">Why?</dt>
-                <dd class="col-sm-9">Because.</dd>
+                <dt class="col-sm-3">What's Espruino?</dt>
+                <dd class="col-sm-9">Explain.</dd>
+                <dt class="col-sm-3">What's Web Bluetooth?</dt>
+                <dd class="col-sm-9">Explain.</dd>
               </dl>
             </div>
           </div>
+          <h3 class="mt-4">
+            Browse to the Espruino IDE
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Point a web browser to <a href="https://espruino.com/ide/" target="_blank">https://espruino.com/ide/</a> </p>
+          <img src="images/espruino-ide.png" class="img-fluid"
+               alt="Espruino IDE">
+          <h3 class="mt-4">
+            Connect with Web Bluetooth
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Click on the Connect/Disconnect icon at top left, and then select Web Bluetooth from the popup. </p>
+          <img src="images/espruino-ide-connect.png" class="img-fluid"
+               alt="Connecting to a device in the Espruino IDE">
+          <h3 class="mt-4">
+            Pair with the Bangle.js
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Identify and select the Bangle.js from the list of scanned devices, then click Pair. </p>
+          <p> <span class="badge badge-secondary"><i class="fas fa-info-circle"></i></span> If the desired Bangle.js does not appear, check the following: </p>
+          <ul>
+            <li> is it powered on? </li>
+            <li> is it in range of the computer? </li>
+            <li> is it connectable in the Settings menu? </li>
+          </ul>
+          <img src="images/espruino-ide-web-bluetooth-pairing.png"
+               class="img-fluid"
+               alt="Web Bluetooth pairing in the Espruino IDE">
+          <p class="mt-4"> If pairing is successful, the Connect/Disconnect icon at top left will turn green.  The Bangle.js can now be programmed wirelessly from the browser using Web Bluetooth. </p>
+
+          <!-- Step 2 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Programming the Bangle.js &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 2</a>
+              </h2>
+              <p class="lead"> Load a JavaScript file and send it to the Bangle.js. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why JavaScript?</dt>
+                <dd class="col-sm-9">Explain.</dd>
+                <dt class="col-sm-3">Any alternatives?</dt>
+                <dd class="col-sm-9">Explain.</dd>
+              </dl>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Open a file to program
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Click on the Folder icon in the centre toolbar to select a JavaScript file to program the Bangle.js. </p>
+          <img src="images/espruino-ide-open-file.png" class="img-fluid"
+               alt="Opening a file in the Espruino IDE">
+          <h3 class="mt-4">
+            Send to Espruino
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Click on the Send to Espruino button in the centre toolbar with the default option to write the file to RAM. </p>
+          <img src="images/espruino-ide-send.png" class="img-fluid"
+               alt="Sending a file to Espruino">
+          <h3 class="mt-4">
+            Confirm the program runs successfully
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> A few seconds after the file send begins, status messages will indicate if the file was successfully sent.  At this point, the program will begin execution. </p>
+          <p> If there are errors in the program, these will appear in the console on the left side of the screen.  Otherwise, the program will run in memory until the Bangle.js is reset or the menu is invoked. </p>
+          <img src="images/espruino-ide-sent.png" class="img-fluid"
+               alt="File sent to Espruino">
+          <h3 class="mt-4">
+            Disconnect from the Bangle.js
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> Once the program runs successfully, disconnect from the Bangle.js by clicking the Connect/Disconnect icon at top left. </p>
+          <img src="images/espruino-ide-disconnect.png" class="img-fluid"
+               alt="Disconnecting from Bangle.js in the Espruino IDE">
 
           <!----- Where to next? ----->
           <hr>
