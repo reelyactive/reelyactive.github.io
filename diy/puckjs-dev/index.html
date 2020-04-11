@@ -274,14 +274,20 @@
             </div>
             <div class="tab-pane fade" id="javascript"
                  role="tabpanel" aria-labelledby="javascripttab">
-              <p class="lead"> Hello Puck in JavaScript: </p>
-              <code> /* Coming soon */ </code>
+              <p class="lead"> Hello Puck* in JavaScript: </p>
+              <pre>var on = false;
+setInterval(function() {
+  on = !on;
+  LED1.write(on);
+}, 500);</pre>
+            <p class="text-muted small text-right"> * This is the default code loaded in the Espruino IDE.  It will blink the red LED. </p>
             </div>
             <div class="tab-pane fade" id="blocks"
                  role="tabpanel" aria-labelledby="blockstab">
-              <p class="lead"> Hello Puck in Blocks: </p>
+              <p class="lead"> Hello Puck* in Blocks: </p>
               <img src="images/espruino-ide-blocks-hello-puck.png"
                    class="img-fluid" alt="Hello Puck as blocks">
+            <p class="text-muted small text-right"> * This is the equivalent of the Hello Puck JavaScript.  It will blink the red LED. </p>
             </div>
           </div>
           <h3 class="mt-4">
