@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="A getting started guide to Pareto Anywhere oriented towards developers familiar with the open source software model.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Hello Pareto Anywhere! </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Hello Pareto Anywhere!",
+      "description": "A getting started guide to Pareto Anywhere oriented towards developers familiar with the open source software model.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/hello-pareto-anywhere/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Hello Pareto Anywhere! </h1>
+          <p class="lead"> A getting started guide oriented towards developers familiar with the open source software model </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Hello Pareto Anywhere!">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Discover Pareto Anywhere with a hands on, instant gratification, open source approach. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's Pareto Anywhere?</dt>
+                <dd class="col-sm-9"><a href="https://getpareto.com" target="_blank">Pareto Anywhere</a> is open source software that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time.</dd>
+                <dt class="col-sm-3">Why 'Anywhere'?</dt>
+                <dd class="col-sm-9">Pareto Anywhere is written in JavaScript and is highly modular, facilitatating edge, local and/or cloud deployments, and running both server-side and client-side.</dd>
+                <dt class="col-sm-3">Why should I read this?</dt>
+                <dd class="col-sm-9">Because it's the fastest path to familiarisation for developers that we know: read less, do more.</em></dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Index ----->
+          <h2 class="mt-4"> Hello impatient developer! </h2>
+          <p> This tutorial is organised by <em>fastest-path-to-instant-gratification</em> in four parts as follows: </p>
+          <dl class="row">
+            <dt class="col-sm-2 offset-sm-1">
+              <span class="lead">
+                <a href="#part01" class="badge badge-secondary">Part 1 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> Pareto Anywhere Web App </span> <br>
+              <span class="text-muted"> Runs on mobile, if you have a compatible mobile. </span>
+            </dd>
+            <dt class="col-sm-2 offset-sm-1">
+              <span class="lead">
+                <a href="#part02" class="badge badge-secondary">Part 2 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi </span> <br>
+              <span class="text-muted"> Dust off that Raspberry Pi 3... </span>
+            </dd>
+            <dt class="col-sm-2 offset-sm-1">
+              <span class="lead">
+                <a href="#part03" class="badge badge-secondary">Part 3 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> Pareto Anywhere & Elastic Stack </span> <br>
+              <span class="text-muted"> Open source and there's a free trial too! </span>
+            </dd>
+            <dt class="col-sm-2 offset-sm-1">
+              <span class="lead">
+                <a href="#part04" class="badge badge-secondary">Part 4 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> Pareto Anywhere for Anything </span> <br>
+              <span class="text-muted"> Justification to kit up for whatever matters to you. </span>
+            </dd>
+          </dl>
+          <!----- Part 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="part01">
+                Pareto Anywhere Web App &nbsp;
+                <a href="#part01" class="badge badge-secondary">Part 1 of 4</a>
+              </h2>
+              <p class="lead"> Run Pareto Anywhere as a web application on mobile devices that support Web Bluetooth Scanning. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Web Bluetooth Scanning?</dt>
+                <dd class="col-sm-9">Yes, this is an <em>experimental</em> feature introduced in <i class="fab fa-chrome"></i> Chrome (v79) in late 2019 which allows scanning for nearby <i class="fab fa-bluetooth"></i> BLE devices in client-side <i class="fab fa-js"></i> JavaScript.</dd>
+                <dt class="col-sm-3">What's supported?</dt>
+                <dd class="col-sm-9">At the time of writing, only <i class="fab fa-chrome"></i> Chrome browser on <i class="fab fa-android"></i> Android, which also requires setting an experimental <i class="fas fa-flag"></i> flag.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Part 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="part02">
+                Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi &nbsp;
+                <a href="#part02" class="badge badge-secondary">Part 2 of 4</a>
+              </h2>
+              <p class="lead"> Run Pareto Anywhere on a Pi 3 (or 4) and access way more web apps and features. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why a <i class="fab fa-raspberry-pi"></i> Pi?</dt>
+                <dd class="col-sm-9">The venerable Raspberry Pi 3 includes an on-board <i class="fab fa-bluetooth"></i> BLE radio, which makes it perhaps the most accessible platform to run Pareto Anywhere standalone.</dd>
+                <dt class="col-sm-3">If I don't have a Pi?</dt>
+                <dd class="col-sm-9">Dust off an old <i class="fas fa-laptop"></i> laptop which supports <i class="fab fa-bluetooth"></i> Bluetooth 4.x and install <i class="fab fa-linux"></i> Linux: <em>that'll do</em>.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Part 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="part03">
+                Pareto Anywhere & Elastic Stack &nbsp;
+                <a href="#part03" class="badge badge-secondary">Part 3 of 4</a>
+              </h2>
+              <p class="lead"> Take the <i class="fab fa-raspberry-pi"></i> Pi or <i class="fas fa-laptop"></i> laptop deployment to the next level with a powerful analytics suite. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Elastic?</dt>
+                <dd class="col-sm-9">Many reasons: the stack is open source, feature-rich, and there's an incredibly convenient hosted Elasticsearch service.  Oh and they also <a href="https://www.elastic.co/blog/introducing-the-2020-elastic-search-awards-honorees-for-the-americas-region" target="_blank">honoured us with an <i class="fas fa-trophy"></i> award</a>.</dd>
+                <dt class="col-sm-3">Runs on the <i class="fab fa-raspberry-pi"></i> Pi?</dt>
+                <dd class="col-sm-9">No.  But Elasticsearch and Kibana will run on a recent <i class="fas fa-laptop"></i> laptop, and the Elasticsearch service has a free trial period. <i class="fas fa-smile-wink"></i></dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Part 4 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="part04">
+                Pareto Anywhere for Anything &nbsp;
+                <a href="#part04" class="badge badge-secondary">Part 4 of 4</a>
+              </h2>
+              <p class="lead"> Kit up and apply Pareto Anywhere to whatever matters for you (or your team/employer/client). </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Do I have to buy stuff?</dt>
+                <dd class="col-sm-9">Most likely.  Hopefully you made it to this step investing just your time.  Good chance you'll need at least some hardware to scale up beyond a prototype or demo.</dd>
+                <dt class="col-sm-3">How does reelyActive make money?</dt>
+                <dd class="col-sm-9">Thank you for asking!  We use an <a href="https://getpareto.com/pricing/" target="_blank">open source subscription model</a> supplemented with sales of hardware and services.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../rfid-unity/">
+                <img src="../rfid-unity/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../rfid-unity/">
+                  <h5 class="mt-0 mb-1"> Enabling computers to understand who/what is where/how </h5>
+                </a>
+                Overview of the key insight behind reelyActive's technology and open source software.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
