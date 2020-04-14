@@ -292,6 +292,147 @@
               </dl>
             </div>
           </div>
+          <h3 class="mt-4"> Deploy it! </h3>
+          <p class="lead"> Step-by-step guides to run on a <i class="fab fa-raspberry-pi"></i> Pi and/or <i class="fas fa-laptop"></i> laptop </p>
+          <p> If you already have <i class="fab fa-node-js"></i> Node.js installed on either, perhaps this will be easier than you might expect. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pitab" data-toggle="tab"
+                 href="#pi" role="tab" aria-controls="pi"
+                 aria-selected="true">
+                <i class="fab fa-raspberry-pi"></i> Pi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="laptoptab" data-toggle="tab"
+                 href="#laptop" role="tab" aria-controls="laptop"
+                 aria-selected="false">
+                <i class="fas fa-laptop"></i> Laptop
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="pi"
+                 role="tabpanel" aria-labelledby="pitab">
+              <ul class="list-unstyled mb-4">
+                <li class="media my-2">
+                  <a href="../pi-prep/" target="_blank">
+                    <img src="../pi-prep/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="../pi-prep/" target="_blank">
+                      <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+                    </a>
+                    Our step-by-step guide to prepare a lean yet versatile SD card image for the Pi.
+                  </div>
+                </li>
+                <li class="media my-2">
+                  <a href="../pi-suite/" target="_blank">
+                    <img src="../pi-suite/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="../pi-suite/" target="_blank">
+                      <h5 class="mt-0 mb-1"> Install our open source software suite on a Pi </h5>
+                    </a>
+                    Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="laptop"
+                 role="tabpanel" aria-labelledby="laptoptab">
+              <ul class="list-unstyled mb-4">
+                <li class="media my-2">
+                  <a href="../laptop-prep/" target="_blank">
+                    <img src="../laptop-prep/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="../laptop-prep/" target="_blank">
+                      <h5 class="mt-0 mb-1"> Prepare a reelyActive laptop from scratch </h5>
+                    </a>
+                    Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software.
+                  </div>
+                </li>
+                <li class="media my-2">
+                  <a href="../laptop-suite/" target="_blank">
+                    <img src="../laptop-suite/images/icon.jpg"
+                         class="align-self-start mr-3">
+                  </a>
+                  <div class="media-body">
+                    <a href="../laptop-suite/" target="_blank">
+                      <h5 class="mt-0 mb-1"> Install our open source software suite on a laptop </h5>
+                    </a>
+                    Our step-by-step guide to run reelyActive's open source software suite on a laptop or personal computer.
+                  </div>
+                </li>
+              </ul>
+              <p> <span class="badge badge-secondary"><i class="fas fa-info-circle"></i></span> &nbsp; Pareto Anywhere will run on <em>any</em> computer, however access to the BLE radio is subject to OS constraints <em>(sound familiar?)</em>.  Check the <a href="https://www.npmjs.com/package/@abandonware/bluetooth-hci-socket" target="_blank">bluetooth-hci-socket package documentation</a> if you plan to run standalone on anything other than <i class="fab fa-linux"></i> Linux. </p>
+            </div>
+          </div>
+          <p class="mt-2"> All going well you've now deployed Pareto Anywhere on a computer with access to the real-time stream of ambient Bluetooth Low Energy (BLE) advertising packets in your space.  Take a moment to explore all the web apps: we'll be adding more documentation on these soon. </p>
+          <h3> Under the hood </h3>
+          <p class="lead"> Meet the rest of the stack </p>
+          <p> The beacorcut stack presented above is used in the web apps included in the version of Pareto Anywhere running on your Pi and/or laptop.  Now add to that the following server-side modules: </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="https://github.com/reelyactive/barnowl/" target="_blank">
+                <img src="https://reelyactive.github.io/barnowl/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">
+                  <a href="https://github.com/reelyactive/barnowl/"
+                     target="_blank"> barnowl </a>
+                </h5>
+                Technology-agnostic middleware for RFID, RTLS and M2M.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="https://github.com/reelyactive/barnacles/"
+                 target="_blank">
+                <img src="https://reelyactive.github.io/barnacles/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">
+                  <a href="https://github.com/reelyactive/barnacles/"
+                     target="_blank"> barnacles </a>
+                </h5>
+                Efficient data aggregator/distributor for RFID, RTLS and M2M.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="https://github.com/reelyactive/chickadee/"
+                 target="_blank">
+                <img src="https://reelyactive.github.io/chickadee/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">
+                  <a href="https://github.com/reelyactive/chickadee/"
+                     target="_blank"> chickadee </a>
+                </h5>
+                Contextual associations store and API for the IoT.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="https://github.com/reelyactive/json-silo/"
+                 target="_blank">
+                <img src="https://reelyactive.github.io/json-silo/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">
+                  <a href="https://github.com/reelyactive/json-silo/"
+                     target="_blank"> json-silo </a>
+                </h5>
+                Contextual data silo for digital twins.
+              </div>
+            </li>
+          </ul>
           <!----- Part 3 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
