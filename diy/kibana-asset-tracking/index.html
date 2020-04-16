@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guides to create a dashboard and observe asset journeys and behaviors within.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Observe an asset journey in Kibana </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Observe an asset journey in Kibana",
+      "description": "Our step-by-step guides to create a dashboard and observe asset journeys and behaviors within.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/kibana-asset-tracking/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4">Observe an asset journey in Kibana </h1>
+          <p class="lead"> Our step-by-step guides to create a dashboard and observe asset journeys and behaviors within. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Observe an asset journey in Kibana">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to filter visualisations to effectively tell the story of an asset within the physical spaces. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's the source data?</dt>
+                <dd class="col-sm-9">Ambient wireless packet traffic (typically Bluetooth Low Energy) from the physical spaces is all that is required.</dd>
+                <dt class="col-sm-3">What is Kibana?</dt>
+                <dd class="col-sm-9">Kibana is the visualisation interface to the Elastic Stack, with which our Pareto Anywhere open source software is tightly integrated.</dd>
+                <dt class="col-sm-3">Can I use something else?</dt>
+                <dd class="col-sm-9">Yes. Our software integrates well with other databases and analytics tools.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A source of data and an instance of the Elastic Stack. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../elasticsearch-service-setup/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../elasticsearch-service-setup/">
+                  <h5 class="mt-0 mb-1"> Set up a hosted Elasticsearch Service </h5>
+                </a>
+                Our step-by-step guide to setup Elastic's hosted cloud service for use with our open source software.
+              </div>
+            </li>
+          </ul>
+          <p> <span class="badge badge-secondary"><i class="fas fa-info-circle"></i></span> &nbsp; reelyActive infrastructure or standard devices such as a Raspberry Pi can provide a source of data.  Our Pareto Anywhere open source software can collect and forward the data to Elasticsearch. </p>
+          <p> <span class="badge badge-secondary"><i class="fas fa-info-circle"></i></span> &nbsp; <a href="https://getpareto.com/equip/" target="_blank"><i class="fas fa-external-link-alt"></i> Get Owl-Equipped</a> to have these prerequisites and this dashboard prepared for you. </p>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Creating a new dashboard &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Create a dashboard in Kibana in a few simple clicks. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a dashboard?</dt>
+                <dd class="col-sm-9">A Kibana dashboard combines individual visualisations to communicate information to users who don't need to understand the underlying technologies.</dd>
+                <dt class="col-sm-3">Can there be multiple?</dt>
+                <dd class="col-sm-9">Yes.  It is possible, and often useful, to create multiple dashboards, for instance so that each has a specific purpose and fits within a typical screen.</dd>
+              </dl>
+            </div>
+          </div>
+          <p> Open Kibana and then: </p>
+          <ol>
+            <li> Enter the <b>credentials</b> (username and password) </li>
+            <li> Click the dashboard <b>icon</b> from the left toolbar </li>
+            <li> Click the <b>create a new dashboard</b> button </li>
+          </ol>
+          <p>The next step is to include visualisations that highlight the utilization of the space as described in this tutorial: </p>
+          <li class="media my-2">
+            <a href="../kibana-occupancy-dashboard/">
+              <img src="../kibana-occupancy-dashboard/images/icon.png"
+                   class="align-self-start mr-3">
+            </a>
+            <div class="media-body">
+              <a href="../kibana-occupancy-dashboard/">
+                <h5 class="mt-0 mb-1"> Create an occupancy dashboard in Kibana </h5>
+              </a>
+              Our step-by-step guide to create an occupancy dashboard for physical spaces using Kibana.
+            </div>
+          </li>
+          <p>You should be able to get a dashboard filled by meaningful visualisations as below:</p>
+          <img src="images/dashboard.png" class="img-fluid"
+            alt="Observe asset journey">
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Filtering &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Learn how to search for a specific asset and get a customer/asset/people centric journey through the dashboard built. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's a journey?</dt>
+                <dd class="col-sm-9">An overview of the route an asset has traveled.</dd>
+                <dt class="col-sm-3">How to identify an asset?</dt>
+                <dd class="col-sm-9">By labeling a range of physical assets. These asset tags include serial numbers that serve as unique identification numbers</dd>
+              </dl>
+            </div>
+          </div>
+          <p> From the dashboard tab: </p>
+          <ol>
+            <li> Click the <b>+ Add filter</b> button below the top toolbar</li>
+            <li> Select <b>transmitterId</b> from the Field input </li>
+            <li> Choose the operator <b>Is</b> </li>
+            <li> Enter the <b>value</b> of the unique ID associated with the tag placed on the asset</li>
+            <li> Name and Save filter </li>
+          </ol>       
+          <img src="images/edit-filter.png" class="img-fluid"
+            alt="Observe asset journey">
+          <p class="mt-4"> Once the filter is saved, all dashboard visualisations will be adjusted so that only the data linked to the transmitter Id will appear. </p>
+          <img src="images/filtered-dashboard.png" class="img-fluid"
+            alt="Observe asset journey">
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Analysing &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
+              </h2>
+              <p class="lead">Observe the filtered dashboard and easily answer the following questions:</p>
+              <p><i> What day does the asset visit?</i>
+              <br><i> What time of day does the asset visit and for how long?</i>
+              <br><i> Where does the asset spend the most time?</i>
+              <br><i> Which places receive the most foot traffic?</i></p>
+            </div>
+          </div>
+          <h3>
+            What day does the asset visit?
+          </h3>
+          <p> This visualisation over two months only reveals the days when the asset was detected. Each bar up to 100% of occupancy represents one of these days. </p>
+          <img src="images/day-of-week.png" class="img-fluid"
+            alt="Observe asset journey">
+          <h3>
+            What time of day does the asset visit and for how long?
+          </h3>
+          <p> By adjusting a visual builder visualisation over a day it is possible to observe the occupancy patterns by hour and to determine how long the asset spent in each area. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="timerserie" data-toggle="tab"
+                 href="#header1" role="tab" aria-controls="header1"
+                 aria-selected="true"> Space Utilization </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="metric" data-toggle="tab"
+                 href="#header2" role="tab" aria-controls="header2"
+                 aria-selected="false"> Room 1 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="topN" data-toggle="tab"
+                 href="#header3" role="tab" aria-controls="header3"
+                 aria-selected="false"> Room 2 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="gauge" data-toggle="tab"
+                 href="#header4" role="tab" aria-controls="header4"
+                 aria-selected="false"> Entrance </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="Table" data-toggle="tab"
+                 href="#header5" role="tab" aria-controls="header5"
+                 aria-selected="false"> Lounge </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="header1"
+                 role="tabpanel" aria-labelledby="timerserie">
+              <img src="images/occupation-day.png" class="img-fluid"
+                 alt="Observe asset journey">
+            </div>
+            <div class="tab-pane fade" id="header2" role="tabpanel"
+                 aria-labelledby="metric">
+              <img src="images/room1.png" class="img-fluid"
+                 alt="Observe asset journey">
+            </div>
+            <div class="tab-pane fade" id="header3" role="tabpanel"
+                 aria-labelledby="topN">
+              <img src="images/room2.png" class="img-fluid"
+                 alt="Observe asset journey">
+            </div>
+            <div class="tab-pane fade" id="header4" role="tabpanel"
+                 aria-labelledby="Gauge">
+              <img src="images/room3.png" class="img-fluid"
+                 alt="Observe asset journey">
+            </div>
+            <div class="tab-pane fade" id="header5" role="tabpanel"
+                 aria-labelledby="Table">
+              <img src="images/room4.png" class="img-fluid"
+                alt="Observe asset journey">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Where does the asset spend the most time?
+          </h3>
+          <p> This table mesures the number of transmission of the asset detected in each zone. </p>
+          <img src="images/table.png" class="img-fluid"
+            alt="Observe asset journey">
+          <h3 class="mt-4">
+            Which places receive the most foot traffic?
+          </h3>
+          <p> This heatmap traces the route of the asset over a day. The colors on the heatmap correspond to foot traffic during a particular time period. Red areas are ones asset walked in and spent time, while white/yellow spots had lower traffic. </p>
+          <img src="images/heatmap.png" class="img-fluid"
+            alt="Observe asset journey">
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Learn more about Kibana integration, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../kibana/">
+                <img src="../kibana/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../kibana/">
+                  <h5 class="mt-0 mb-1"> reelyActive Kibana integration overview </h5>
+                </a>
+                Find links to all our Kibana tutorials.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="https://getpareto.com/use-cases/occupancy-analytics/">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="https://getpareto.com/use-cases/occupancy-analytics/">
+                  <h5 class="mt-0 mb-1"> <i class="fas fa-external-link-alt"></i> Occupancy Analytics Use Case </h5>
+                </a>
+                Learn more about this use case of Pareto Anywhere by reelyActive.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
