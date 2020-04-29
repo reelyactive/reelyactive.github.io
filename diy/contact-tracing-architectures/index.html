@@ -203,7 +203,21 @@
           <img src="images/mobile-peer-to-peer.png" class="img-fluid"
                alt="Mobile Peer-to-Peer Contact Tracing Architecture">
           <h3 class="mt-4"> How it works </h3>
-          <p class="lead"> Description to come... </p>
+          <p class="lead"> Mobile devices use Bluetooth LE for discovery, and their own Internet connectivity for traceability. </p>
+          <h4> Peer-to-peer discovery </h4>
+          <ul>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device periodically advertises <i class="fas fa-wifi"></i> (transmits) an identifier* </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device periodically observes (receives) the identifiers of peers in range </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device software estimates if an interaction occurred based on </li>
+            <ul>
+              <li> <i class="fas fa-signal"></i> signal strength </li>
+              <li> <i class="fas fa-list-ol"></i> quantity and timing of decodings </li>
+            </ul>
+          </ul>
+          <p class="text-right text-muted small"> * there is no single standard across implementations </p>
+          <h4> Traceability </h4>
+          <p> <i class="fas fa-mobile-alt"></i> Mobile devices leverage their own Internet connectivity to periodically communicate with remote <i class="fas fa-cloud"></i> servers to exchange information about the devices they discovered to determine if there was contact with an infected individual.* </p>
+          <p class="text-right text-muted small"> * again, there is no single standard across implementations </p>
           <!----- Part 2 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -224,7 +238,27 @@
           <img src="images/beacon-peer-to-peer.png" class="img-fluid"
                alt="Beacon Peer-to-Peer Contact Tracing Architecture">
           <h3 class="mt-4"> How it works </h3>
-          <p class="lead"> Description to come... </p>
+          <p class="lead"> Beacons use Bluetooth LE for discovery.  Connectivity for traceability varies. </p>
+          <h4> Peer-to-peer discovery </h4>
+          <ul>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically advertises <i class="fas fa-wifi"></i> (transmits) an identifier* </li>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically observes (receives) the identifiers of peers in range </li>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon software estimates if an interaction occurred based on </li>
+            <ul>
+              <li> <i class="fas fa-signal"></i> signal strength </li>
+              <li> <i class="fas fa-list-ol"></i> quantity and timing of decodings </li>
+            </ul>
+          </ul>
+          <p class="text-right text-muted small"> * there is no single standard across implementations </p>
+          <h4> Traceability </h4>
+          <p> A typical <i class="fab fa-bluetooth-b"></i> beacon does not have its own means of Internet connectivity and must therefore rely on an intermediary such as: </p>
+          <ul>
+            <li> a paired <i class="fas fa-mobile-alt"></i> mobile application </li>
+            <li> an implementation-specific <i class="fas fa-broadcast-tower"></i> hub or gateway </li>
+          </ul>
+          <hr class="my-4">
+          <h3 class="mt-4"> Mobile-beacon hybrid architecture </h3>
+          <p class="lead"> Mobile devices and beacons can discover one another too </p>
           <img src="images/mobile-and-beacon-peer-to-peer.png" class="img-fluid"
                alt="Mobile & Beacon Peer-to-Peer Contact Tracing Architecture">
           <!----- Part 3 ----->
