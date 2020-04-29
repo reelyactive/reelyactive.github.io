@@ -218,6 +218,34 @@
           <h4> Traceability </h4>
           <p> <i class="fas fa-mobile-alt"></i> Mobile devices leverage their own Internet connectivity to periodically communicate with remote <i class="fas fa-cloud"></i> servers to exchange information about the devices they discovered to determine if there was contact with an infected individual.* </p>
           <p class="text-right text-muted small"> * again, there is no single standard across implementations </p>
+          <div class="card-deck my-4">
+            <div class="card">
+              <div class="card-header bg-reelyactive text-white">
+                <i class="fas fa-thumbs-up"></i> &nbsp; A global platform
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> Ubiquity of mobile devices </li>
+                    <li> Speed and ease of mobile app penetration </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header bg-dark text-white">
+                <i class="fas fa-thumbs-down"></i> &nbsp; Hampered by constraints
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> Reliable peer-to-peer discovery favours device worn on chest </li>
+                    <li> Mobile OS constraints severely limit functionality </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <!----- Part 2 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -256,6 +284,34 @@
             <li> a paired <i class="fas fa-mobile-alt"></i> mobile application </li>
             <li> an implementation-specific <i class="fas fa-broadcast-tower"></i> hub or gateway </li>
           </ul>
+          <div class="card-deck my-4">
+            <div class="card">
+              <div class="card-header bg-reelyactive text-white">
+                <i class="fas fa-thumbs-up"></i> &nbsp; Simple and effective
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> Many off-the-shelf chest-mounted badges and lanyard beacons which offer optimal peer-to-peer discovery </li>
+                    <li> Can provide visual and/or haptic feedback to the user </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header bg-dark text-white">
+                <i class="fas fa-thumbs-down"></i> &nbsp; Lack of seamless connectivity
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> External dependence on connectivity is a point of failure </li>
+                    <li> Requires regular battery maintenance (charging/replacement) </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <hr class="my-4">
           <h3 class="mt-4"> Mobile-beacon hybrid architecture </h3>
           <p class="lead"> Mobile devices and beacons can discover one another too </p>
@@ -301,6 +357,33 @@
             </ul>
             <li> <i class="fab fa-bluetooth-b"></i> beacon advertises <i class="fas fa-wifi"></i> (transmits) its <i class="fas fa-barcode"></i> identifier <em>and</em> the <i class="fas fa-barcode"></i> identifiers of any peers in close proximity </li>
           </ul>
+          <div class="card-deck my-4">
+            <div class="card">
+              <div class="card-header bg-reelyactive text-white">
+                <i class="fas fa-thumbs-up"></i> &nbsp; Better beacons and beyond
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> Beacon data is available in real-time </li>
+                    <li> Infrastructure enables many other complementary use cases beyond contact tracing </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header bg-dark text-white">
+                <i class="fas fa-thumbs-down"></i> &nbsp; Infrastructure deployment
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> Additional cost & complexity of solution </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <hr class="my-4">
           <h3 class="mt-4"> Mobile and infrastructure </h3>
           <p class="lead"> Adds real-time location and indoor positioning in the physical space itself. </p>
@@ -322,6 +405,34 @@
             <li> <i class="fas fa-mobile-alt"></i> mobile device relays its <i class="fas fa-map-pin"></i> position to the remote server </li>
           </ul>
           <p class="text-right text-muted small"> * insufficient granularity to reliably estimate &lt;2m interactions alone, nonetheless sufficient for journey mapping </p>
+          <div class="card-deck my-4">
+            <div class="card">
+              <div class="card-header bg-reelyactive text-white">
+                <i class="fas fa-thumbs-up"></i> &nbsp; Increases viability of mobile
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> RTLS and IPS data can mitigate the peer-to-peer detection limitiations of mobile </li>
+                    <li> Infrastructure enables many other complementary use cases beyond contact tracing </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header bg-dark text-white">
+                <i class="fas fa-thumbs-down"></i> &nbsp; Infrastructure deployment
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> Additional cost & complexity of solution </li>
+                    <li> Potential privacy concerns over the association of an interaction with a specific location </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <hr class="my-4">
           <h3 class="mt-4"> Mobile, beacon and infrastructure </h3>
           <p class="lead"> Robust interaction detection and location facilitated by the interoperability of <i class="fab fa-bluetooth"></i> Bluetooth LE. </p>
@@ -347,6 +458,32 @@
           </div>
           <img src="images/human-judgement.png" class="img-fluid"
                alt="Human judgement in contact tracing">
+          <div class="card-deck my-4">
+            <div class="card">
+              <div class="card-header bg-reelyactive text-white">
+                <i class="fas fa-thumbs-up"></i> &nbsp; Technology is fallible
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> User feedback enables continuous improvement of the underlying technology </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header bg-dark text-white">
+                <i class="fas fa-thumbs-down"></i> &nbsp; Humans are fallible
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                  <ul>
+                    <li> Do you recall <em>everyone</em> with whom you interacted over a given period? </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <!----- Where to next? ----->
           <hr>
           <h2> Where to next? </h2>
