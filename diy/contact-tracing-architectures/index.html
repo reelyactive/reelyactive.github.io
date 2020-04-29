@@ -206,8 +206,8 @@
           <p class="lead"> Mobile devices use Bluetooth LE for discovery, and their own Internet connectivity for traceability. </p>
           <h4> Peer-to-peer discovery </h4>
           <ul>
-            <li> <i class="fas fa-mobile-alt"></i> mobile device periodically advertises <i class="fas fa-wifi"></i> (transmits) an identifier* </li>
-            <li> <i class="fas fa-mobile-alt"></i> mobile device periodically observes (receives) the identifiers of peers in range </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device periodically advertises <i class="fas fa-wifi"></i> (transmits) an <i class="fas fa-barcode"></i> identifier* </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device periodically observes (receives) the <i class="fas fa-barcode"></i> identifiers of peers in range </li>
             <li> <i class="fas fa-mobile-alt"></i> mobile device software estimates if an interaction occurred based on </li>
             <ul>
               <li> <i class="fas fa-signal"></i> signal strength </li>
@@ -241,8 +241,8 @@
           <p class="lead"> Beacons use Bluetooth LE for discovery.  Connectivity for traceability varies. </p>
           <h4> Peer-to-peer discovery </h4>
           <ul>
-            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically advertises <i class="fas fa-wifi"></i> (transmits) an identifier* </li>
-            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically observes (receives) the identifiers of peers in range </li>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically advertises <i class="fas fa-wifi"></i> (transmits) an <i class="fas fa-barcode"></i> identifier* </li>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically observes (receives) the <i class="fas fa-barcode"></i> identifiers of peers in range </li>
             <li> <i class="fab fa-bluetooth-b"></i> beacon software estimates if an interaction occurred based on </li>
             <ul>
               <li> <i class="fas fa-signal"></i> signal strength </li>
@@ -285,20 +285,20 @@
           <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the physical space</small> </h4>
           <p> <b>Real-time location:</b> traceability of where individuals are <em>(and were)</em> within the physical space. </p>
           <ul>
-            <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the identifiers of beacons in range </li>
+            <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the <i class="fas fa-barcode"></i> identifiers of beacons in range </li>
             <li> <i class="fas fa-broadcast-tower"></i> gateways forward the real-time data to the remote <i class="fas fa-cloud"></i> server </li>
-            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time location of each beacon based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
+            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time <i class="fas fa-map-pin"></i> location of each <i class="fab fa-bluetooth-b"></i> beacon based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
           </ul>
           <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the beacon</small> </h4>
           <p> <b>Real-time connectivity:</b> each beacon can forward its real-time interactions via the infrastructure. </p>
           <ul>
-            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically observes (receives) the identifiers of peers in range </li>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically observes (receives) the <i class="fas fa-barcode"></i> identifiers of peers in range </li>
             <li> <i class="fab fa-bluetooth-b"></i> beacon software estimates if an interaction occurred based on </li>
             <ul>
               <li> <i class="fas fa-signal"></i> signal strength </li>
               <li> <i class="fas fa-list-ol"></i> quantity and timing of decodings </li>
             </ul>
-            <li> <i class="fab fa-bluetooth-b"></i> beacon advertises (transmits) its identifier and the identifiers of any peers in close proximity </li>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon advertises <i class="fas fa-wifi"></i> (transmits) its <i class="fas fa-barcode"></i> identifier <em>and</em> the <i class="fas fa-barcode"></i> identifiers of any peers in close proximity </li>
           </ul>
           <hr class="my-4">
           <h3 class="mt-4"> Mobile and infrastructure </h3>
@@ -306,18 +306,18 @@
           <img src="images/mobile-with-infrastructure.png" class="img-fluid"
                alt="Mobile & Infrastructure Contact Tracing Architecture">
           <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the physical space</small> </h4>
-          <p> Infrastructure deployed throughout the space receives and relays the mobile transmissions to the remote server. </p>
+          <p> <b>Real-time location:</b> traceability of where individuals are <em>(and were)</em> within the physical space. </p>
           <ul>
-            <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the identifiers of mobile devices in range </li>
+            <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the <i class="fas fa-barcode"></i> identifiers of mobile devices in range </li>
             <li> <i class="fas fa-broadcast-tower"></i> gateways forward the real-time data to the remote <i class="fas fa-cloud"></i> server </li>
-            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time location of each mobile based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
+            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time <i class="fas fa-map-pin"></i> location of each <i class="fas fa-mobile-alt"></i> mobile based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
           </ul>
           <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the mobile device</small> </h4>
-          <p> Mobile devices interpret the gateway transmissions in order to estimate their own position within the space. </p>
+          <p> <b>Indoor positioning:</b> mobile devices can estimate where they themselves are <em>(and were)</em> within the physical space. </p>
           <ul>
-            <li> <i class="fas fa-mobile-alt"></i> mobile device observes (receive) the identifiers of gateways in range </li>
-            <li> <i class="fas fa-mobile-alt"></i> mobile device uses an indoor positioning service (IPS) to estimate its own position based on the <i class="fas fa-signal"></i> signal strength of each <i class="fas fa-broadcast-tower"></i> gateway </li>
-            <li> <i class="fas fa-mobile-alt"></i> mobile device relays its position to the remote server </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device observes (receive) the <i class="fas fa-barcode"></i> identifiers of gateways in range </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device uses an indoor positioning service (IPS) to estimate its own <i class="fas fa-map-pin"></i> position based on the <i class="fas fa-signal"></i> signal strength and known <i class="fas fa-map-pin"></i> location of each <i class="fas fa-broadcast-tower"></i> gateway </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device relays its <i class="fas fa-map-pin"></i> position to the remote server </li>
           </ul>
           <hr class="my-4">
           <h3 class="mt-4"> Mobile, beacon and infrastructure </h3>
