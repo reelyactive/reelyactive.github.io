@@ -287,8 +287,9 @@
           <ul>
             <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the <i class="fas fa-barcode"></i> identifiers of beacons in range </li>
             <li> <i class="fas fa-broadcast-tower"></i> gateways forward the real-time data to the remote <i class="fas fa-cloud"></i> server </li>
-            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time <i class="fas fa-map-pin"></i> location of each <i class="fab fa-bluetooth-b"></i> beacon based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
+            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time <i class="fas fa-map-pin"></i> location* of each <i class="fab fa-bluetooth-b"></i> beacon based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
           </ul>
+          <p class="text-right text-muted small"> * insufficient granularity to reliably estimate &lt;2m interactions alone, nonetheless sufficient for journey/heatmapping </p>
           <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the beacon</small> </h4>
           <p> <b>Real-time connectivity:</b> each beacon can forward its real-time interactions via the infrastructure. </p>
           <ul>
@@ -310,15 +311,17 @@
           <ul>
             <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the <i class="fas fa-barcode"></i> identifiers of mobile devices in range </li>
             <li> <i class="fas fa-broadcast-tower"></i> gateways forward the real-time data to the remote <i class="fas fa-cloud"></i> server </li>
-            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time <i class="fas fa-map-pin"></i> location of each <i class="fas fa-mobile-alt"></i> mobile based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
+            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time <i class="fas fa-map-pin"></i> location* of each <i class="fas fa-mobile-alt"></i> mobile based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
           </ul>
+          <p class="text-right text-muted small"> * insufficient granularity to reliably estimate &lt;2m interactions alone, nonetheless sufficient for journey/heatmapping </p>
           <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the mobile device</small> </h4>
           <p> <b>Indoor positioning:</b> mobile devices can estimate where they themselves are <em>(and were)</em> within the physical space. </p>
           <ul>
             <li> <i class="fas fa-mobile-alt"></i> mobile device observes (receive) the <i class="fas fa-barcode"></i> identifiers of gateways in range </li>
-            <li> <i class="fas fa-mobile-alt"></i> mobile device uses an indoor positioning service (IPS) to estimate its own <i class="fas fa-map-pin"></i> position based on the <i class="fas fa-signal"></i> signal strength and known <i class="fas fa-map-pin"></i> location of each <i class="fas fa-broadcast-tower"></i> gateway </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device uses an indoor positioning service (IPS) to estimate its own <i class="fas fa-map-pin"></i> position* based on the <i class="fas fa-signal"></i> signal strength and known <i class="fas fa-map-pin"></i> location of each <i class="fas fa-broadcast-tower"></i> gateway </li>
             <li> <i class="fas fa-mobile-alt"></i> mobile device relays its <i class="fas fa-map-pin"></i> position to the remote server </li>
           </ul>
+          <p class="text-right text-muted small"> * insufficient granularity to reliably estimate &lt;2m interactions alone, nonetheless sufficient for journey mapping </p>
           <hr class="my-4">
           <h3 class="mt-4"> Mobile, beacon and infrastructure </h3>
           <p class="lead"> Robust interaction detection and location facilitated by the interoperability of <i class="fab fa-bluetooth"></i> Bluetooth LE. </p>
