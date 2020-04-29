@@ -278,12 +278,49 @@
               </dl>
             </div>
           </div>
+          <h3 class="mt-4"> Beacons and infrastructure </h3>
+          <p class="lead"> Adds real-time connectivity for both interaction detection and location. </p>
           <img src="images/beacon-with-infrastructure.png" class="img-fluid"
                alt="Beacon & Infrastructure Contact Tracing Architecture">
-          <h3 class="mt-4"> How it works </h3>
-          <p class="lead"> Description to come... </p>
+          <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the physical space</small> </h4>
+          <p> <b>Real-time location:</b> traceability of where individuals are <em>(and were)</em> within the physical space. </p>
+          <ul>
+            <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the identifiers of beacons in range </li>
+            <li> <i class="fas fa-broadcast-tower"></i> gateways forward the real-time data to the remote <i class="fas fa-cloud"></i> server </li>
+            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time location of each beacon based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
+          </ul>
+          <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the beacon</small> </h4>
+          <p> <b>Real-time connectivity:</b> each beacon can forward its real-time interactions via the infrastructure. </p>
+          <ul>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon periodically observes (receives) the identifiers of peers in range </li>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon software estimates if an interaction occurred based on </li>
+            <ul>
+              <li> <i class="fas fa-signal"></i> signal strength </li>
+              <li> <i class="fas fa-list-ol"></i> quantity and timing of decodings </li>
+            </ul>
+            <li> <i class="fab fa-bluetooth-b"></i> beacon advertises (transmits) its identifier and the identifiers of any peers in close proximity </li>
+          </ul>
+          <hr class="my-4">
+          <h3 class="mt-4"> Mobile and infrastructure </h3>
+          <p class="lead"> Adds real-time location and indoor positioning in the physical space itself. </p>
           <img src="images/mobile-with-infrastructure.png" class="img-fluid"
                alt="Mobile & Infrastructure Contact Tracing Architecture">
+          <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the physical space</small> </h4>
+          <p> Infrastructure deployed throughout the space receives and relays the mobile transmissions to the remote server. </p>
+          <ul>
+            <li> <i class="fas fa-broadcast-tower"></i> gateways observe (receive) the identifiers of mobile devices in range </li>
+            <li> <i class="fas fa-broadcast-tower"></i> gateways forward the real-time data to the remote <i class="fas fa-cloud"></i> server </li>
+            <li> <i class="fas fa-code"></i> software on the remote server estimates the real-time location of each mobile based on its relative <i class="fas fa-signal"></i> signal strength on each <i class="fas fa-broadcast-tower"></i> gateway </li>
+          </ul>
+          <h4 class="mt-4"> What the infrastucture adds <small class="text-muted">for the mobile device</small> </h4>
+          <p> Mobile devices interpret the gateway transmissions in order to estimate their own position within the space. </p>
+          <ul>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device observes (receive) the identifiers of gateways in range </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device uses an indoor positioning service (IPS) to estimate its own position based on the <i class="fas fa-signal"></i> signal strength of each <i class="fas fa-broadcast-tower"></i> gateway </li>
+            <li> <i class="fas fa-mobile-alt"></i> mobile device relays its position to the remote server </li>
+          <hr class="my-4">
+          <h3 class="mt-4"> Mobile, beacon and infrastructure </h3>
+          <p class="lead"> Robust interaction detection and location facilitated by the interoperability of <i class="fab fa-bluetooth"></i> Bluetooth LE. </p>
           <img src="images/mobile-and-beacon-with-infrastructure.png"
                class="img-fluid"
                alt="Mobile, Beacon & Infrastructure Contact Tracing Architecture">
