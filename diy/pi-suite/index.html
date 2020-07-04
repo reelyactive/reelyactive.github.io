@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.">
+          content="Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform with Pareto Anywhere open source software.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,7 +22,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "Install reelyActive's open source suite on a Pi",
-      "description": "Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.",
+      "description": "Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform with Pareto Anywhere open source software.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/pi-suite/images/header.jpg",
@@ -130,7 +130,7 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive deploy our software suite on a Raspberry Pi. </p>
+              <p class="lead"> Learn how we at reelyActive deploy our Pareto Anywhere open source software suite on a Raspberry Pi. </p>
               <p> <a href="https://reelyactive.github.io/make-a-pi-hub.html" target="_blank">Our original Pi tutorial</a> is/was one of our most popular pages.  This tutorial is a <i>friendlier</i> reference for the software installation. </p>
               <hr>
               <dl class="row">
@@ -206,7 +206,7 @@
           <ol>
             <li> Clone the pi-suite repository from our <i class="fab fa-github"></i> GitHub with the command <code>git clone https://github.com/reelyactive/pi-suite.git</code> </li>
             <li> Change to the <b>pi-suite</b> <i class="fas fa-folder"></i> folder with the command <code>cd pi-suite</code> </li>
-            <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code>npm install</code> &nbsp; <span class="badge badge-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+            <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code>npm install</code> &nbsp; <span class="badge badge-info"> <i class="fas fa-clock"></i> &nbsp; 3 mins </span> </li>
           </ol>
           <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> It is possible that some dependencies produce warnings or errors.  Do not despair: in most cases these have no impact on functionality. </p>
           <!----- Step 2 ----->
@@ -351,6 +351,7 @@
           <ol>
             <li> Copy the unit file to the systemd system folder with the command <code>sudo cp units/pi-suite.service /lib/systemd/system</code> </li>
             <li> Enable the pi-suite service with the command <code>sudo systemctl enable pi-suite.service</code> </li>
+            <li> Start the pi-suite service with the command <code>sudo systemctl start pi-suite.service</code> </li>
             <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
           </ol>
           <p> Observe the hlc-server landing page. </p>

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="How to prepare a Pi with friendly network settings, Node.js and everything you need to run reelyActive's open source software.">
+          content="How to prepare a Raspberry Pi with friendly network settings, Node.js and everything you need to run reelyActive's open source software.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,7 +22,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "reelyActive Raspberry Pi Preparation Guide",
-      "description": "How to prepare a Pi with friendly network settings, Node.js and everything you need to run reelyActive's open source software.",
+      "description": "How to prepare a Raspberry Pi with friendly network settings, Node.js and everything you need to run reelyActive's open source software.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/pi-prep/images/header.jpg",
@@ -135,7 +135,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">A clean installation of the latest Raspbian Lite build with everything to support reelyActive's open source software suite.</dd>
+                <dd class="col-sm-9">A clean installation of the latest Raspberry Pi OS Lite build with everything to support reelyActive's open source software suite.</dd>
                 <dt class="col-sm-3">Is there an easier way?</dt>
                 <dd class="col-sm-9">Yes, you can simply flash a ready-made disk image to a SD card.</dd>
                 <dt class="col-sm-3">So why would I read this?</dt>
@@ -147,14 +147,14 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step01">
-                Flashing Raspbian Lite to a SD Card &nbsp;
+                Flashing Raspberry Pi OS Lite to a SD Card &nbsp;
                 <a href="#step01" class="badge badge-secondary">Step 1 of 5</a>
               </h2>
-              <p class="lead"> Download the latest version of Raspbian Lite and flash it to an SD card with Etcher. </p>
+              <p class="lead"> Download the latest version of Raspberry Pi OS Lite and flash it to an SD card with Etcher. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why Raspbian?</dt>
-                <dd class="col-sm-9">As the default operating system for the Pi, it is accessible to the broadest audience.</dd>
+                <dt class="col-sm-3">Why Raspberry Pi OS?</dt>
+                <dd class="col-sm-9">As the default operating system for the Pi (formerly called Raspbian), it is accessible to the broadest audience.</dd>
                 <dt class="col-sm-3">Why Lite?</dt>
                 <dd class="col-sm-9">It's good enough and keeps the disk image small.</dd>
               </dl>
@@ -165,19 +165,19 @@
           <h3 class="mt-4"> Prerequisites </h3>
           <p> We'll flash the SD card with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
           <h3>
-            Download and unzip the latest Raspbian Lite
+            Download and unzip the latest Raspberry Pi OS Lite
             <small class="text-muted"> Part 1 </small>
           </h3>
           <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
           <ol>
-            <li> Browse to <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank"> www.raspberrypi.org/downloads/raspbian/ </a> </li>
+            <li> Browse to <a href="https://www.raspberrypi.org/downloads/raspberry-pi-os/" target="_blank"> www.raspberrypi.org/downloads/raspberry-pi-os/ </a> </li>
             <li> Scroll down to find the <b>Lite</b> version </li>
-            <li> Download the <a href="https://downloads.raspberrypi.org/raspbian_lite_latest" target="_blank">ZIP</a> or <a href="https://downloads.raspberrypi.org/raspbian_lite_latest.torrent" target="_blank">Torrent</a>, as you prefer </li>
+            <li> Download the <a href="https://downloads.raspberrypi.org/raspios_lite_armhf_latest" target="_blank">ZIP</a> or <a href="https://downloads.raspberrypi.org/raspios_lite_armhf_latest.torrent" target="_blank">Torrent</a>, as you prefer </li>
             <li> Unzip the downloaded file </li>
           </ol>
-          <p> You should now have a file entitled <b>20xx-xx-xx-raspbian-stretch-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
+          <p> You should now have a file entitled <b>20xx-xx-xx-raspios-buster-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
           <h3>
-            Flash the Raspbian Lite image to the SD card
+            Flash the Raspberry Pi OS image to the SD card
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> We recommend using micro SD cards from reputable vendors of at least 4GB size.  From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
@@ -193,10 +193,10 @@
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
               <h2 id="step02">
-                Pre-configuring Raspbian Lite for the Pi &nbsp;
+                Pre-configuring Raspberry Pi OS Lite for the Pi &nbsp;
                 <a href="#step02" class="badge badge-secondary">Step 2 of 5</a>
               </h2>
-              <p class="lead"> Configure Raspbian <i>before</i> the first boot on the Pi, ensuring a painless initial connection. </p>
+              <p class="lead"> Configure Raspberry Pi OS <i>before</i> the first boot on the Pi, ensuring a painless initial connection. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">Why more pre-config?</dt>
@@ -309,7 +309,7 @@ fallback static_eth0
                 <th scope="row">5</th>
                 <td>Interfacing Options</td>
                 <td>
-                  P1 Serial
+                  P6 Serial
                   <ul>
                     <li>Would you like a login shell to be accessible over serial? [<b>No</b>]</li>
                     <li>Would you like the serial port hardware to be enabled? [<b>Yes</b>]</li>
@@ -412,7 +412,7 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</code></pre>
           <img src="images/node-npm-git.png" class="img-fluid"
                alt="Node.js, npm and git">
           <h3 class="mt-4"> Prerequisites </h3>
-          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>10.15.3</b>).  Substitute this version number in all of the commands below. </p>
+          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>12.18.1</b>).  Substitute this version number in all of the commands below. </p>
           <h3>
             Download and install Node.js and npm 
             <small class="text-muted"> Part 1 </small>
@@ -420,10 +420,10 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</code></pre>
           <p> From the same terminal <i class="fas fa-terminal"></i> connected to the Pi <i class="fab fa-raspberry-pi"></i> via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
             <li> Change to the home <i class="fas fa-home"></i> folder with the command <code>cd</code> </li>
-            <li> Download the Node.js <i class="fab fa-node-js"></i> tarball with the command <code>wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-armv7l.tar.xz</code> </li>
-            <li> Unpack with the command <code>tar -xf node-v10.15.3-linux-armv7l.tar.xz</code> </li>
-            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code>sudo mv node-v10.15.3-linux-armv7l /usr/local/node</code> </li>
-            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code>rm node-v10.15.3-linux-armv7l.tar.xz</code> </li>
+            <li> Download the Node.js <i class="fab fa-node-js"></i> tarball with the command <code>wget https://nodejs.org/dist/v12.18.1/node-v12.18.1-linux-armv7l.tar.xz</code> </li>
+            <li> Unpack with the command <code>tar -xf node-v12.18.1-linux-armv7l.tar.xz</code> </li>
+            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code>sudo mv node-v12.18.1-linux-armv7l /usr/local/node</code> </li>
+            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code>rm node-v12.18.1-linux-armv7l.tar.xz</code> </li>
             <li> Change to the <b>/usr/local/bin</b> folder with the command <code>cd /usr/local/bin</code> </li>
             <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>node</b> with the command <code>sudo ln -s /usr/local/node/bin/node node</code> </li>
             <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>npm</b> with the command <code>sudo ln -s /usr/local/node/bin/npm npm</code> </li>
