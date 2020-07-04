@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> Configure a Raspberry Pi as a kiosk display </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Configure a Raspberry Pi as a kiosk display",
+      "description": "Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pi-kiosk/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Configure a Raspberry Pi as a kiosk display </h1>
+          <p class="lead"> Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Configure a Raspberry Pi as a kiosk display">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive configure a Raspberry Pi as a kiosk display. </p>
+              <p> The Raspberry Pi can act as a digital display driver thanks to its HDMI port. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">The <i class="fab fa-raspberry-pi"></i> Pi will automatically display a specific web page in full screen mode on any HDMI-connected screen via the <i class="fab fa-chrome"></i> Chromium browser.</dd>
+                <dt class="col-sm-3">Why use a Pi?</dt>
+                <dd class="col-sm-9">A <i class="fab fa-raspberry-pi"></i> Pi is a cost-effective and easily sourceable device for driving kiosk displays.</dd>
+                <dt class="col-sm-3">Does this apply only to the Pi?</dt>
+                <dd class="col-sm-9">The process should apply equally well to other Debian <i class="fab fa-linux"></i> Linux-based platforms.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A Raspberry Pi (or equivalent) with Raspberry Pi OS Lite installed. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../pi-prep/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../pi-prep/">
+                  <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+                </a>
+                Our step-by-step tutorial on how we install and configure Raspberry Pi OS Lite on a <i class="fab fa-raspberry-pi"></i> Pi.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../pi-suite/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../pi-suite/">
+                  <h5 class="mt-0 mb-1"> [OPTIONAL] Install our open source software suite on a Pi </h5>
+                </a>
+                Our step-by-step guide to make a <i class="fab fa-raspberry-pi"></i> Pi into an open RTLS, RFID and M2M platform.
+              </div>
+            </li>
+          </ul>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Installing X11 and Chromium &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 2</a>
+              </h2>
+              <p class="lead"> Install the X Window System (X11), the Chromium browser and kiosk-mode dependencies. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Do I need to SSH into the Pi?</dt>
+                <dd class="col-sm-9">Yes.  If you forgot how, recall <a href="../pi-prep/#step04" target="_blank">Step 4 from the Pi Prep tutorial</a>.</dd>
+                <dt class="col-sm-3">Why X11?</dt>
+                <dd class="col-sm-9">Raspberry Pi OS <em>Lite</em> does not include a display system by default, so the the X Window System must be installed manually.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/pi-x11-chromium-kiosk.jpg" class="img-fluid"
+               alt="X11 and Chromium for Pi kiosk display">
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p> Both the <i class="fab fa-raspberry-pi"></i> Pi and the computer <i class="fas fa-laptop"></i> used for its configuration must be on the <em>same</em> network, with which they can access the Internet. </p>
+          <h3>
+            Boot the Pi and connect via SSH
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> With <a href="../pi-prep/" target="_blank">the prepared micro SD card <i class="fas fa-sd-card"></i></a> inserted into the <i class="fab fa-raspberry-pi"></i>  Pi, complete the following: </p>
+          <ol>
+            <li> Apply power <i class="fas fa-plug"></i> to the Raspberry Pi </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> on the computer <i class="fas fa-laptop"></i> and SSH into the Pi with the command <code>ssh pi@xxx.xxx.xxx.xxx</code> replacing the x values with the Pi's IP address </li>
+            <li> When prompted enter the password (<b>berryinsecure</b> is the default) </li>
+          </ol>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code>sudo raspi-config</code> </p>
+          <h3>
+            Install the X Window System (X11)
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH: </p>
+          <ol>
+            <li> Install xserver-xorg with the command <code>sudo apt-get install --no-install-recommends xserver-xorg</code> </li>
+            <li> Install xinit with the command <code>sudo apt-get install --no-install-recommends xinit</code> </li>
+            <li> Install x11-xserver-utils with the command <code>sudo apt-get install --no-install-recommends x11-xserver-utils</code> </li>
+          </ol>
+          <h3>
+            Install Chromium and kiosk dependencies
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH: </p>
+          <ol>
+            <li> Install chromium-browser with the command <code>sudo apt-get install chromium-browser</code> </li>
+            <li> Install the kiosk dependencies with the command <code>sudo apt-get install matchbox-window-manager xautomation unclutter</code> </li>
+          </ol>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Configure boot and display options &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 2</a>
+              </h2>
+              <p class="lead"> Auto-login on boot and start kiosk mode from a script. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why auto-login?</dt>
+                <dd class="col-sm-9">The pi user will launch X and <i class="fab fa-chrome"></i> Chromium, and therefore must be logged in.</dd>
+                <dt class="col-sm-3">Why call a script from .bashrc?</dt>
+                <dd class="col-sm-9">It is difficult to get <i class="fab fa-chrome"></i> Chromium to run (as the pi user) from the rc.local file.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/pi-autologin-kiosk.jpg" class="img-fluid"
+               alt="Pi autologin and kiosk script">
+          <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH: </p>
+          <h3>
+            Create the kiosk startup script
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only if the <a href="../pi-suite/">pi-suite tutorial</a> was not completed. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> If kiosk scripts are present in the <b>/home/pi/reelyActive/pi-suite/kiosk/</b> folder, skip ahead to Part 2. </p>
+          <p> Create a new file called <b>kiosk</b> in the pi user's home folder based on the following template, updating the URL on the last line as required <span class="text-muted">(unless you like this tutorial so much that you plan to display it on a big screen!)</span>: </p>
+          <pre>#!/bin/sh
+xset -dpms     # disable DPMS (Energy Star) features.
+xset s off     # disable screen saver
+xset s noblank # don't blank the video device
+matchbox-window-manager -use_titlebar no &
+unclutter &    # hide X mouse cursor unless mouse activated
+chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 http://reelyactive.github.io/diy/pi-kiosk/</pre>
+          <p> Make the kiosk script file executable with the command <code>chmod 755 kiosk</code>
+          <h3>
+            Add the kiosk script to .bashrc
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Initiation of the X Windows System and the kiosk script will be added to the pi user's .bashrc file which runs each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
+          <p> Edit the <b>~/.bashrc</b> file to include the following as the last line, adjusting the script name as required: </p>
+          <pre>xinit /home/pi/reelyActive/pi-suite/kiosk/chromium-hello-showcase -- vt$(fgconsole)</pre>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> If a kiosk script was <em>optionally</em> created in Part 1, instead change the file path above to <tt>/home/pi/kiosk</tt> </p>
+          <h3>
+            Configure boot and display with the raspi-config tool
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code>sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
+          <table class="table table-striped">
+            <thead class="thead-reelyactive">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Option</th>
+                <th scope="col">Action(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">7</th>
+                <td>Advanced Options</td>
+                <td>
+                  A2 Overscan
+                  <ul>
+                    <li>Enable compensation? [<b>No</b>]</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Boot Options</td>
+                <td>
+                  B1 Desktop/CLI
+                  <ul>
+                    <li>[<b>CLI</b>]</li>
+                  </ul>
+                  B2 Console Autologin
+                  <ul>
+                    <li>[<b>Yes</b>]</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If a display is connected via HDMI, following the boot sequence, the <i class="fab fa-chrome"></i> Chromium browser should open in kiosk mode and display the specified webpage. </p>
+          <!----- Document template ----->
+          <div class="card my-4">
+            <h4 class="card-header"> Do you like this document template? </h4>
+            <div class="card-body">
+              <p class="card-text"> It's based on <a href="https://getbootstrap.com" target="_blank"><i class="fab fa-bootstrap"></i> Bootstrap 4</a> <a href="https://getbootstrap.com/docs/4.3/about/license/" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> and <a href="https://fontawesome.com" target="_blank"><i class="fab fa-font-awesome"></i> Font Awesome 5 (Free)</a> <a href="https://fontawesome.com/license/free" target="_blank" class="badge badge-light"><i class="fab fa-creative-commons"></i> <i class="fab fa-osi"></i> &nbsp; MIT</a>.  Our <b>Web Style Guide</b> <a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> has all the details.  Sharing and feedback are encouraged! </p>
+              <a href="https://github.com/reelyactive/web-style-guide"
+                 target="_blank" class="btn btn-secondary btn-sm">
+                <i class="fas fa-external-link-alt"></i> &nbsp;
+                reelyActive's Web Style Guide
+              </a>
+            </div>
+          </div>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../pi-suite/">
+                <img src="../pi-suite/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../pi-suite/">
+                  <h5 class="mt-0 mb-1"> Install our open source software suite on a Pi </h5>
+                </a>
+                Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../make-a-pi-hub.html">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../make-a-pi-hub.html">
+                  <h5 class="mt-0 mb-1">Make a Pi Hub</h5>
+                </a>
+                Our original Pi tutorial.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

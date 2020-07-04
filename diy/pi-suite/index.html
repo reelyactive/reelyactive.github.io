@@ -383,6 +383,10 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
           </ol>
           <p> Once again observe the hlc-server landing page.  The software suite will indeed run each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
           <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> If necessary, it is possible to disable the service with the command <code>sudo systemctl disable pi-suite.service</code>. </p>
+          <p> All software packages are now installed and will run on each boot.  The Pi can now <em>optionally</em> be configured as a kiosk display, which is the subject of the next tutorial: </p>
+          <p class="text-center">
+            <a href="../pi-kiosk/" class="btn btn-primary"> <i class="fas fa-star"></i> Next tutorial</a>
+          </p>
           <!----- Document template ----->
           <div class="card my-4">
             <h4 class="card-header"> Do you like this document template? </h4>
@@ -400,6 +404,18 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
           <h2> Where to next? </h2>
           <p class="lead"> Continue exploring our open architecture and all its applications. </p>
           <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../pi-kiosk/">
+                <img src="../pi-kiosk/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../pi-kiosk/">
+                  <h5 class="mt-0 mb-1"> <i class="fas fa-star"></i> Configure a Raspberry Pi as a kiosk display </h5>
+                </a>
+                Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.
+              </div>
+            </li>
             <li class="media my-2">
               <a href="../../">
                 <img src="../common/images/icon.png"
