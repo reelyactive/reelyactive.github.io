@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="How to prepare a Laird IG60 gateway with friendly network settings, Node.js and everything you need to run reelyActive's open source software.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> reelyActive Laird IG60 Gateway Preparation Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Laird IG60 Gateway Preparation Guide",
+      "description": "How to prepare a Laird IG60 gateway with friendly network settings, Node.js and everything you need to run reelyActive's open source software.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/laird-ig60-prep/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png"
+             width="165" height="30" alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Prepare a Laird IG60 gateway from scratch </h1>
+          <p class="lead"> Our step-by-step guide to prepare a lean yet versatile SD card image for the IG60. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Prepare a reelyActive SD card image for the Laird IG60">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive prepare a SD card image for a Laird IG60 gateway. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">A clean installation of Laird Linux with everything to support reelyActive's open source software suite.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Yes, you can simply flash a ready-made disk image to a SD card.</dd>
+                <dt class="col-sm-3">So why would I read this?</dt>
+                <dd class="col-sm-9">To understand the process and as a guide should you need to tweak the configuration.</dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Building Laird Linux &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 5</a>
+              </h2>
+              <p class="lead"> Download, configure and build Laird Linux. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why Laird Linux?</dt>
+                <dd class="col-sm-9">It is the vendor-maintained OS which supports the IG60.</dd>
+                <dt class="col-sm-3">Do I have to build it?</dt>
+                <dd class="col-sm-9">No.  A pre-built version can instead by used, provided it has all the prerequisites for our <a href="https://github.com/reelyactive/laird-edge/" target="_blank">laird-edge</a> software and/or any other embedded software that will run on the IG60.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/building-laird-linux.png" class="img-fluid"
+               alt="Building Laird Linux">-->
+          <h3>
+            Download the board support package source code
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> This step is not yet fully documented.  If building Laird Linux from source, the official documentation can be found <a href="https://documentation.lairdconnect.com/Builds/IG60-BL654-LINUX/latest/Content/Topics/5%20-%20Using%20the%20Device/Laird%20Linux%20Getting%20Started/Getting%20Started%20with%20Laird%20Linux.htm" target="_blank">here</a>. </p>
+          <h3>
+            Build the SD card image with Buildroot
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> This step is not yet fully documented.  If building Laird Linux from source, the official documentation can be found <a href="https://documentation.lairdconnect.com/Builds/IG60-BL654-LINUX/latest/Content/Topics/5%20-%20Using%20the%20Device/Laird%20Linux%20Getting%20Started/Getting%20Started%20with%20Laird%20Linux.htm" target="_blank">here</a>. </p>
+          <!----- Step 2 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Flashing the SD card &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 5</a>
+              </h2>
+              <p class="lead"> Flash the image to a SD card using Etcher. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">Why a SD card?</dt>
+                <dd class="col-sm-9">The IG60 won't boot without a valid OS on an inserted SD card!</dd>
+                <dt class="col-sm-3">Why Etcher?</dt>
+                <dd class="col-sm-9">It is cross-platform and user-friendly.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/flashing-sd-card.jpg" class="img-fluid"
+               alt="Flashing Laird Linux to a micro SD card">-->
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p> We'll flash the SD card with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
+          <h3>
+            Make the SD card image
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> This step is not yet fully documented, but can be accomplished using the <b>mksdcard.sh</b> script found in the root of the build image folder from the previous step. </p>
+          <h3>
+            Flash the Laird Linux image to the SD card
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> We recommend using micro SD cards from reputable vendors of at least 4GB size.  From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
+          <ol>
+            <li> Insert the SD card <i class="fas fa-sd-card"></i> (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
+            <li> Run Etcher (see Prerequisites above) by double-clicking its executable AppImage or desktop icon </li>
+            <li> In the Etcher interface, select the image file created in <span class="text-muted">Part 1</span> </li>
+            <li> In the Etcher interface, confirm that the SD card is automatically selected, or select manually </li>
+            <li> In the Etcher interface, click <i>Flash!</i> </li>
+          </ol>
+          <p> Within a few minutes the SD card should be flashed and verified.  Unmount (if necessary) and eject the card <i class="fas fa-eject"></i> which is now ready to find its way into the IG60. </p>
+          <!----- Step 3 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                First boot and network configuration &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 5</a>
+              </h2>
+              <p class="lead"> Boot the IG60 for the first time and SSH in to update the network configuration. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">How can the IG60 connect?</dt>
+                <dd class="col-sm-9">The LAN1 port of the IG60 can connect to any network router or switch that provides a DHCP address. </dd>
+                <dt class="col-sm-3">Why use SSH?</dt>
+                <dd class="col-sm-9">The only way to remotely execute commands is over SSH!</dd>
+              </dl>
+            </div>
+          </div>
+          <img src="images/network-config.jpg" class="img-fluid"
+               alt="Laird IG60 network configuration">
+          <p class="mt-4"> The micro SD card <i class="fas fa-sd-card"></i> should now be inserted into the IG60 gateway. </p>
+          <h3>
+            Boot the IG60 and determine its IP address
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> With the micro SD card <i class="fas fa-sd-card"></i> inserted into the IG60 <i class="fab fa-raspberry-pi"></i>, complete the following: </p>
+          <ol>
+            <li> Connect the LAN1 <i class="fas fa-ethernet"></i> port on the IG60 to a network router or switch </li>
+            <li> Apply power <i class="fas fa-plug"></i> to the IG60 </li>
+            <li> Determine the DHCP-assigned IP address of the IG60 (look it up in the router's DHCP client list or use a mobile app such as <a href="https://www.fing.com/products/fing-app" target="_blank">Fing</a>) </li>
+          </ol>
+          <h3>
+            Connect to the IG60 via SSH
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From a computer <i class="fas fa-laptop"></i> on the same network as the IG60, open a terminal <i class="fas fa-terminal"></i> and establish a SSH connection with the command <code>ssh root@xxx.xxx.xxx.xxx</code> replacing the xxx with the IG60's IP address from <span class="text-muted">Part 1</span>. </p>
+          <p> When prompted, enter the root user password of the build. </p>
+          <p> Now that you're logged in to the IG60, it is possible to configure the network to simplify such connections in future. </p>
+          <h3>
+            Configure a static IP profile for LAN2
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> While logged in to the IG60 via SSH, create a static IP profile called <em>reelyStatic</em> with the command <code>nmcli con add con-name reelyStatic ifname eth0 type ethernet ip4 10.0.50.100/24</code> </p>
+          <table class="table table-striped">
+            <thead class="thead-reelyactive">
+              <tr>
+                <th scope="col"><i class="fas fa-ethernet"></i></th>
+                <th scope="col">Behaviour of the IG60</th>
+                <th scope="col">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">LAN1</th>
+                <td>The IG60 will accept a DHCP-assigned IP address</td>
+                <td>Use to provide wired connectivity <i class="fas fa-cloud-upload-alt"></i> for embedded software applications</td>
+              </tr>
+              <tr>
+                <th scope="row">LAN2</th>
+                <td>The IG60 will use the static IP address <b>10.0.50.100</b></td>
+                <td>Use to directly connect a computer <i class="fas fa-laptop"></i> to configure <i class="fas fa-tools"></i> the IG60</td>
+              </tr>
+            </tbody>
+          </table>
+          <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> Future SSH connections to the IG60 can be made by connecting directly via Ethernet to LAN2 <i class="fas fa-ethernet"></i> using a static IP address such as 10.0.50.101 and with the command <code>ssh root@10.0.50.100</code> </p>
+          <h3>
+            Configure WiFi connections
+            <small class="text-muted"> (OPTIONAL) Part 4 </small>
+          </h3>
+          <p> It is possible to create one or more WiFi <i class="fas fa-wifi"></i> connections which the IG60 will automatically establish whenever the corresponding network is in range.  While logged in to the IG60 via SSH, WiFi <i class="fas fa-wifi"></i> connections can be created as follows: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="unsecuredwifitab" data-toggle="tab"
+                 href="#unsecuredwifi" role="tab" aria-controls="unsecuredwifi"
+                 aria-selected="true"> Unsecured </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="wpapskwifitab" data-toggle="tab"
+                 href="#wpapskwifi" role="tab" aria-controls="wpapskwifi"
+                 aria-selected="false"> WPA-PSK </a>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-reelyactive">
+            <div class="tab-pane fade show active" id="unsecuredwifi"
+                 role="tabpanel" aria-labelledby="unsecuredwifitab">
+              <p> Create a connection called <b>WiNotCon</b> to the SSID <b>WiNot</b> with the command: </p>
+              <p>
+                <code>nmcli con add con-name <b>WiNotCon</b> ifname wlan0 type wifi ssid "<b>WiNot</b>"</code>
+              </p>
+              <p> Activate the connection with the command <code>nmcli con up <b>WiNotCon</b></code>
+            </div>
+            <div class="tab-pane fade" id="wpapskwifi" role="tabpanel"
+                 aria-labelledby="wpapskwifitab">
+              <p> Create a connection called <b>reelyCon</b> to the SSID <b>reelyActive</b> having password <b>owl-in-one</b> with the commands: </p>
+              <p>
+                <code>nmcli con add con-name <b>reelyCon</b> ifname wlan0 type wifi ssid "<b>reelyActive</b>"</code> <br>
+                <code>nmcli con modify id <b>reelyCon</b> 802-11-wireless-security.key-mgmt wpa-psk</code> <br>
+                <code>nmcli con modify id <b>reelyCon</b> 802-11-wireless-security.psk "<b>owl-in-one</b>"</code> <br>
+              </p>
+              <p> Activate the connection with the command <code>nmcli con up <b>reelyCon</b></code>
+            </div>
+          </div>
+          <!----- Step 4 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step04">
+                Updating the BL654 radio firmware &nbsp;
+                <a href="#step04" class="badge badge-secondary">Step 4 of 5</a>
+              </h2>
+              <p class="lead"> If required, update the firmware of the Bluetooth Low Energy module within the IG60. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's the BL654?</dt>
+                <dd class="col-sm-9">The BL654 is a Bluetooth Low Energy module by Laird Connectivity which resides inside some models of the IG60 gateway.</dd>
+                <dt class="col-sm-3">Why update?</dt>
+                <dd class="col-sm-9">The laird-edge software requires BL654 firmware that allows it to operate in observer mode and to forward the received packet stream over a serial connection.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/update-bl654-firmware.jpg" class="img-fluid"
+               alt="Updating the BL654 firmware">-->
+          <p class="mt-4"> This step is not yet fully documented. </p>
+          <!----- Step 5 ----->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step05">
+                Install and run embedded software &nbsp;
+                <a href="#step05" class="badge badge-secondary">Step 5 of 5</a>
+              </h2>
+              <p class="lead"> Install the laird-edge software and configure to run on boot. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What's laird-edge?</dt>
+                <dd class="col-sm-9">It is open source software by reelyActive which can process and forward radio decodings to a variety of targets.</dd>
+                <dt class="col-sm-3">How to run on boot?</dt>
+                <dd class="col-sm-9">As a systemd service, which is supported by Laird Linux.</dd>
+              </dl>
+            </div>
+          </div>
+          <!--<img src="images/laird-edge.jpg" class="img-fluid"
+               alt="Running laird-edge on the IG60 gateway">-->
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p> The laird-edge software requires Node.js <i class="fab fa-node-js"></i> which must be pre-built for Laird Linux (see <a href="#step01">Step 1</a>). </p>
+            <p> An Internet connection is also required for this step. </p>
+          <h3>
+            Install laird-edge 
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From a terminal <i class="fas fa-terminal"></i> connected to the IG60 via SSH: </p>
+          <ol>
+            <li> Change to the home <i class="fas fa-home"></i> folder with the command <code>cd /home/summit</code> </li>
+            <li> Clone the laird-edge GitHub <i class="fab fa-github"></i> repository with the command <code>git clone https://github.com/reelyactive/laird-edge.git</code> </li>
+            <li> Change to the root of the laird-edge folder with the command <code>cd laird-edge</code> </li>
+            <li> Install the package dependencies with the command <code>npm install</code> </li>
+          </ol>
+          <p> Instructions to install the serialport package will be provided in future. </p>
+          <h3>
+            Enable the laird-edge service 
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Configure systemd to run the laird-edge service on boot by completing the following: </p>
+          <ol>
+            <li> Copy the unit file to the systemd system folder with the command <code>cp units/laird-edge.service /lib/systemd/system</code> </li>
+            <li> If necessary, edit the <b>/lib/systemd/system/laird-edge.service</b> file to correct the user name and/or file paths </li>
+            <li> Enable the laird-edge service with the command <code>systemctl enable laird-edge.service</code> </li>
+            <li> Start the laird-edge service with the command <code>systemctl start pi-suite.service</code> </li>
+          </ol>
+          <p> The IG60 will now run the laird-edge software each time it boots up. </p>
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../pi-prep/">
+                <img src="../pi-prep/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../pi-prep/">
+                  <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+                </a>
+                Our step-by-step guide to prepare a lean yet versatile SD card image for the Pi.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../laptop-prep/">
+                <img src="../laptop-prep/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../laptop-prep/">
+                  <h5 class="mt-0 mb-1"> Prepare a reelyActive laptop from scratch </h5>
+                </a>
+                Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
