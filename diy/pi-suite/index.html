@@ -247,9 +247,9 @@
           <p> Should a source of data be available (see the tabs below), it is possible to validate its integration with the software suite. </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="oiotab" data-toggle="tab"
+              <a class="nav-link" id="oiotab" data-toggle="tab"
                  href="#oiotest" role="tab" aria-controls="oiotest"
-                 aria-selected="true"> Owl-in-One </a>
+                 aria-selected="false"> Owl-in-One </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="remotereeltab" data-toggle="tab"
@@ -257,10 +257,10 @@
                  aria-selected="false"> Remote Reel </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="onboardradiotab" data-toggle="tab"
+              <a class="nav-link active" id="onboardradiotab" data-toggle="tab"
                  href="#onboardradiotest" role="tab"
                  aria-controls="onboardradiotest"
-                 aria-selected="false"> Onboard Radio </a>
+                 aria-selected="true"> Onboard Radio </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="reelmoduletab" data-toggle="tab"
@@ -269,7 +269,7 @@
             </li>
           </ul>
           <div class="tab-content tab-content-reelyactive">
-            <div class="tab-pane fade show active" id="oiotest"
+            <div class="tab-pane fade" id="oiotest"
                  role="tabpanel" aria-labelledby="oiotab">
               <div class="row">
                 <div class="col-md-6">
@@ -295,8 +295,8 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="onboardradiotest" role="tabpanel"
-                 aria-labelledby="onboardradiotab">
+            <div class="tab-pane fade show active" id="onboardradiotest"
+                 role="tabpanel" aria-labelledby="onboardradiotab">
               <div class="row">
                 <div class="col-md-6">
                   <img src="images/bluetooth-hci-to-pi.jpg" class="img-fluid"
