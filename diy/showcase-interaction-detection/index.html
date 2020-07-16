@@ -152,10 +152,10 @@
               <p class="lead"> Set up the Showcase Kit to collect and visualise ambient wireless data. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
+                <dt class="col-sm-3">Is this plug-and-play?</dt>
+                <dd class="col-sm-9">Yes!  With a Showcase Kit, simply apply power <i class="fas fa-plug"></i> to each device to complete this step.</dd>
+                <dt class="col-sm-3">What's Pareto Anywhere?</dt>
+                <dd class="col-sm-9"><a href="https://getpareto.com" target="_blank">Pareto Anywhere</a> is reelyActive's open source software suite, bundled as <a href="https://github.com/reelyactive/pi-suite" target="_blank">pi-suite</a> for the <i class="fab fa-raspberry-pi"></i> Pi.</dd>
               </dl>
             </div>
           </div>
@@ -165,17 +165,68 @@
             Establish the network of Owl-in-Ones
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Power on the Owl-in-One marked Access Point. </p>
+          <p> The three Owl-in-Ones included with a Showcase Kit ship configured to create a WiFi network among themselves, with one acting as access point (AP).  Simply apply power <i class="fas fa-plug"></i> to the Owl-in-Ones and the WiFi network will be established. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-info-circle"></i></span> It is possible to use a single Owl-in-One for the demonstration.  In this case, use the one labelled as Access Point. </p>
+          <h4> References </h4>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../oio-wlan/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../oio-wlan/">
+                  <h5 class="mt-0 mb-1"> Create a WLAN of Owl-in-Ones and a laptop </h5>
+                </a>
+                <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> <em>If required,</em> follow this tutorial to revert Owl-in-Ones to their standard configuration.</em>
+              </div>
+            </li>
+          </ul>
           <h3>
             Run the Pareto Anywhere software
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Raspberry Pi or personal computer. </p>
+          <p> The <i class="fab fa-raspberry-pi"></i> Pi included with a Showcase Kit ships configured to run Pareto Anywhere software, and to connect to the WiFi network of Owl-in-Ones.  Simply apply power <i class="fas fa-plug"></i> to the <i class="fab fa-raspberry-pi"></i> Pi and it will connect to the WiFi network, run the software and receive data from each of the Owl-in-Ones. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-info-circle"></i></span> It is also possible to run Pareto Anywhere software on a laptop <i class="fas fa-laptop"></i> connected to the WiFi network (see references below). </p>
+          <h4> References </h4>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../pi-suite/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../pi-suite/">
+                  <h5 class="mt-0 mb-1"> Install our open source software suite on a Pi </h5>
+                </a>
+                <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> <em>If required,</em> follow this tutorial to (re)configure a Raspberry Pi.</em>
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../laptop-suite/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../laptop-suite/">
+                  <h5 class="mt-0 mb-1"> Install our open source software suite on a laptop </h5>
+                </a>
+                <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> <em>If desired,</em> follow this tutorial to use a laptop in place of the Raspberry Pi.</em>
+              </div>
+            </li>
+          </ul>
           <h3>
             Browse to Hello-DirAct!
             <small class="text-muted"> Part 3 </small>
           </h3>
-          <p> Web app. </p>
+          <p> The Pareto Anywhere software includes a variety of web applications, including <em>Hello-DirAct!</em> which visualises the real-time interaction data from DirAct beacons.  Browse to the hello-diract web app based on your configuration: </p>
+          <dl class="row">
+            <dt class="col-sm-2 offset-sm-1"><i class="fas fa-laptop"></i> to <i class="fab fa-raspberry-pi"></i></dt>
+            <dd class="col-sm-9"><a href="http://192.168.1.xxx:3001/apps/hello-diract/" target="_blank">192.168.1.<b>xxx</b>:3001/apps/hello-diract/</a> &nbsp; (change <em>xxx</em> to the <i class="fab fa-raspberry-pi"></i>'s IP address)</dd>
+            <dt class="col-sm-2 offset-sm-1"><i class="fab fa-raspberry-pi"></i> / <i class="fas fa-laptop"></i> to self</dt>
+            <dd class="col-sm-9"><a href="http://localhost:3001/apps/hello-diract/" target="_blank">localhost:3001/apps/hello-diract/</a></dd>
+          </dl>
+          <p> In the next step the Puck.js will be configured to run DirAct embedded software so that data appears in the <em>Hello-DirAct!</em> web app. </p>
           <!----- Step 2 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
