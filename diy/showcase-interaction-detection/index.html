@@ -237,25 +237,47 @@
               <p class="lead"> Program the Puck.js beacons with DirAct embedded software. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
+                <dt class="col-sm-3">What's Puck.js?</dt>
+                <dd class="col-sm-9">A Bluetooth <i class="fab fa-bluetooth"></i> beacon equipped with a variety of sensors which runs Espruino, allowing it to be programmed in JavaScript <i class="fab fa-js"></i> from a web browser.</dd>
+                <dt class="col-sm-3">Is DirAct configurable?</dt>
+                <dd class="col-sm-9">Yes.  In fact experimentation with DirAct on Puck.js is strongly encouraged for familiarisation with the technology and optimisation of the settings for the target application.</dd>
               </dl>
             </div>
           </div>
-          <!--<img src="images/showcase-set-up.jpg" class="img-fluid"
-               alt="reelyActive Showcase Kit set up for interaction detection">-->
+          <img src="images/diract-peer-to-peer.jpg" class="img-fluid"
+               alt="DirAct peer-to-peer detection in Hello-DirAct">
           <h3 class="mt-4">
             Program the Puck.js
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Skip this step if the Puck.js is preconfigured. </p>
+          <p> The Puck.js included with a Showcase Kit ship configured with the latest version of <a href="https://github.com/reelyactive/diract/" target="_blank">DirAct</a>.  Simply insert the battery and the Puck.js should run the DirAct code. </p>
+          <p> <span class="badge badge-success"><i class="fas fa-info-circle"></i></span> Toggle between modes by clicking the Puck.js like a button <i class="fas fa-hand-point-down"></i>.  A red blink indicates sleep while a green blink indicates normal operation.  Select sleep mode when not in use to prolong the battery life. </p>
+          <h4> References </h4>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../puckjs-dev/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../puckjs-dev/">
+                  <h5 class="mt-0 mb-1"> Develop Bluetooth LE applications with Puck.js </h5>
+                </a>
+                <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> <em>If required,</em> follow this tutorial to revert a Puck.js to a DirAct configuration.</em>
+              </div>
+            </li>
+          </ul>
           <h3>
             Observe the data in Hello-DirAct!
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Each Puck.js should appear. </p>
+          <p> Observe the <em>Hello-DirAct!</em> web app presented in the previous step, and confirm that each Puck.js appears in the display.  Manipulate the Puck(s) as follows to observe changes in their real-time data: </p>
+          <dl class="row">
+            <dt class="col-sm-2 offset-sm-1"><i class="fas fa-rocket"></i> &nbsp; Acceleration</dt>
+            <dd class="col-sm-9">Flip the Puck.js over to observe how its orientation can be monitored</dd>
+            <dt class="col-sm-2 offset-sm-1"><i class="fas fa-user-friends"></i> &nbsp; Nearest</dt>
+            <dd class="col-sm-9">Place the Puck.js near a peer to observe how they detect one another</dd>
+          </dl>
           <!----- Step 3 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
