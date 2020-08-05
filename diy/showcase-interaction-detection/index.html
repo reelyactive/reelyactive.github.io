@@ -288,25 +288,60 @@
               <p class="lead"> Configure other beacons to be recognised by the DirAct embedded software running on the Puck.js. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
+                <dt class="col-sm-3">What's a proximity beacon?</dt>
+                <dd class="col-sm-9">A transmit-only beacon that can be detected by a DirAct beacon, but not vice-versa, such as the "water cooler beacon" in the header image.</dd>
+                <dt class="col-sm-3">C0DEB10E1DD1E01BED0C?</dt>
+                <dd class="col-sm-9">It is "Code Blue ID" and the mirror thereof, if that helps to remember!  DirAct was co-developed with Code Blue Consulting.</dd>
               </dl>
             </div>
           </div>
-          <!--<img src="images/showcase-set-up.jpg" class="img-fluid"
-               alt="reelyActive Showcase Kit set up for interaction detection">-->
+          <img src="images/configuring-proximity-beacons.jpg" class="img-fluid"
+               alt="Configuring proximity beacons for DirAct">
           <h3 class="mt-4">
             Configure the Minew E8
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Minew E8 tutorial. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Use the BeaconSet+ app* to configure SLOT2 of the Minew E8 beacon as Eddystone-UID with the parameters listed here and in the screenshot. </p>
+             <dl class="row">
+                <dt class="col-md-4"> Namespace ID </dt>
+                <dd class="col-md-8"> C0DEB10E1DD1E01BED0C </dd>
+                <dt class="col-md-4"> Instance ID </dt>
+                <dd class="col-md-8"> 0000XXXXXXXX <br> <span class="text-muted small">Substitute X for a unique, hexadecimal ID</span> </dd>
+                <dt class="col-md-4"> Adv interval </dt>
+                <dd class="col-md-8"> 200ms <br> <span class="text-muted small">Should be less than the DirAct OBSERVE_PERIOD_MILLISECONDS</span> </dd>
+                <dt class="col-md-4"> Radio TX Power </dt>
+                <dd class="col-md-8"> 0dBm <br> <span class="text-muted small">Can be reduced to limit proximity range</span> </dd>
+              </dl> 
+              <p> <span class="badge badge-success"><i class="fas fa-info-circle"></i></span> For ease of association, the Instance ID can be set to the last two digits printed on the Minew E8 beacon, preceded by six zeros. </p>
+              <p class="text-right text-muted small"> *see the References section below </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/e8-proximity-config.png" class="img-fluid"
+                   alt="Minew E8 proximity configuration for DirAct">
+            </div>
+          </div>
+          <h4 class="mt-2"> References </h4>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../minew-e8-config/">
+                <img src="../minew-e8-config/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../minew-e8-config/">
+                  <h5 class="mt-0 mb-1"> Configure a Minew E8 Beacon </h5>
+                </a>
+                <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> <em>If required,</em> follow this tutorial to (re)configure each Minew E8 beacon.</em>
+              </div>
+            </li>
+          </ul>
           <h3>
             Observe the data in Hello-DirAct!
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> The nearest should appear. </p>
+          <p> Observe the <em>Hello-DirAct!</em> web app and confirm that the Instance ID of each Minew E8 appears in the nearest table of any Puck.js with which it is in close proximity. </p>
           <!----- Step 4 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -317,25 +352,60 @@
               <p class="lead"> Configure other beacons to trigger the Puck.js running DirAct to transmit its interaction table. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
-                <dt class="col-sm-3">Question?</dt>
-                <dd class="col-sm-9">Answer.</dd>
+                <dt class="col-sm-3">What's an exciter beacon?</dt>
+                <dd class="col-sm-9">A transmit-only beacon that signals to any DirAct beacon in range to transmit its interaction table.  The exciter tells the DirAct beacon to share the history of its most frequent interactions.</dd>
+                <dt class="col-sm-3">0000E8C17E45?</dt>
+                <dd class="col-sm-9">It is "exciters" if that helps to remember.</dd>
               </dl>
             </div>
           </div>
-          <!--<img src="images/showcase-set-up.jpg" class="img-fluid"
-               alt="reelyActive Showcase Kit set up for interaction detection">-->
+          <img src="images/configuring-exciter-beacons.jpg" class="img-fluid"
+               alt="Configuring exciter beacons for DirAct">
           <h3 class="mt-4">
             Configure the Minew E8
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Minew E8 tutorial. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Use the BeaconSet+ app* to configure SLOT2 of the Minew E8 beacon as Eddystone-UID with the parameters listed here and in the screenshot. </p>
+             <dl class="row">
+                <dt class="col-md-4"> Namespace ID </dt>
+                <dd class="col-md-8"> C0DEB10E1DD1E01BED0C </dd>
+                <dt class="col-md-4"> Instance ID </dt>
+                <dd class="col-md-8"> 0000E8C17E45 <br> <span class="text-muted small">Should match an ID among the DirAct EXCITER_INSTANCE_IDS</span> </dd>
+                <dt class="col-md-4"> Adv interval </dt>
+                <dd class="col-md-8"> 200ms <br> <span class="text-muted small">Should be less than the DirAct OBSERVE_PERIOD_MILLISECONDS</span> </dd>
+                <dt class="col-md-4"> Radio TX Power </dt>
+                <dd class="col-md-8"> -20dBm <br> <span class="text-muted small">Can be adjusted to increase or decrease range</span> </dd>
+              </dl> 
+              <p> <span class="badge badge-success"><i class="fas fa-info-circle"></i></span> It is acceptable for multiple exciter beacons to use the same Instance ID. </p>
+              <p class="text-right text-muted small"> *see the References section below </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/e8-exciter-config.png" class="img-fluid"
+                   alt="Minew E8 proximity configuration for DirAct">
+            </div>
+          </div>
+          <h4 class="mt-2"> References </h4>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../minew-e8-config/">
+                <img src="../minew-e8-config/images/icon.jpg"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../minew-e8-config/">
+                  <h5 class="mt-0 mb-1"> Configure a Minew E8 Beacon </h5>
+                </a>
+                <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> <em>If required,</em> follow this tutorial to (re)configure each Minew E8 beacon.</em>
+              </div>
+            </li>
+          </ul>
           <h3>
             Observe the data in Hello-DirAct!
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> The interaction table should appear. </p>
+          <p> Observe the <em>Hello-DirAct!</em> web app and confirm that the interaction table of each Puck.js is displayed when it comes in close proximity with the exciter beacon.  Note that the DirAct embedded software has an EXCITER_HOLDOFF_SECONDS feature which means it will wait at least as many seconds before each subsequent transmission of its interaction table! </p>
           <!----- Where to next? ----->
           <hr>
           <h2> Where to next? </h2>
