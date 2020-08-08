@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="How to configure a Minew G1 gateway to forward RTLS and M2M data to Pareto Anywhere open source software.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
+    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <title> reelyActive Minew G1 Gateway Configuration Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Minew G1 Configuration Guide",
+      "description": "How to configure a Minew G1 gateway to forward RTLS and M2M data to Pareto Anywhere open source software.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/minew-g1-config/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
+      <a class="navbar-brand" href="https://www.reelyactive.com/">
+        <img src="../common/images/reelyactive-logo-nav.png" width="165" height="30"
+             alt="reelyActive">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarItems" aria-controls="navbarItems"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarItems">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link"
+               href="../../">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"
+               role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <i class="fas fa-question-circle"></i>
+            </a>
+            <!-- Info about tracking and open source software/licenses -->
+            <div class="dropdown-menu dropdown-menu-right"
+                 aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                 href="https://www.reelyactive.com/how-we-observe/#digital">
+                <i class="fas fa-mouse-pointer"></i>
+                Page view tracking (gtag.js) &nbsp;
+                <span class="badge badge-warning">
+                  <i class="fas fa-user-tag"></i>
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://getbootstrap.com" >
+                <i class="fab fa-bootstrap"></i>
+                Bootstrap 4 &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://fontawesome.com" >
+                <i class="fab fa-font-awesome"></i>
+                Font Awesome (Free) &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-creative-commons"></i>
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://jquery.com" >
+                <i class="fab fa-js"></i>
+                JQuery &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <a class="dropdown-item" target="_blank"
+                 href="https://github.com/reelyactive/web-style-guide/" >
+                <i class="fas fa-code"></i>
+                Web Style Guide &nbsp;
+                <span class="badge badge-light">
+                  <i class="fab fa-osi"></i> MIT
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank"
+                 href="https://www.reelyactive.com/made-in-montreal/" >
+                <i class="fab fa-canadian-maple-leaf"></i>
+                Made in Montr&eacute;al &nbsp;
+                <i class="fas fa-city"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Configure a Minew G1 Gateway </h1>
+          <p class="lead"> Our step-by-step guide to configure the gateway to forward data to Pareto Anywhere. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Configure a Minew G1 Gateway with Pareto Anywhere">
+           <!-- The TL;DR -->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive configure the gateway for real-time location and more. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">What will this accomplish?</dt>
+                <dd class="col-sm-9">The G1 will forward the Bluetooth Low Energy packets it observes to a server running Pareto Anywhere.</dd>
+                <dt class="col-sm-3">What's Pareto Anywhere?</dt>
+                <dd class="col-sm-9"><a href="https://getpareto.com" target="_blank">Pareto Anywhere</a> is open source software that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time.</dd>
+                <dt class="col-sm-3">Is that all the G1 can do?</dt>
+                <dd class="col-sm-9">No.  The G1 can also provide WiFi connectivity as an AP or repeater and store offline data, but these are outside the scope of this tutorial.</dd>
+              </dl>
+            </div>
+          </div>
+          
+          <!-- Step 1 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step01">
+                Configure connectivity &nbsp;
+                <a href="#step01" class="badge badge-secondary">Step 1 of 3</a>
+              </h2>
+              <p class="lead"> Connect to the G1 via WiFi and configure its WiFi/Ethernet connectivity. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">How to connect?</dt>
+                <dd class="col-sm-9">The G1 will operate as a WiFi access point, allowing any device to connect and update the configuration via a web browser.</dd>
+                <dt class="col-sm-3">WiFi or Ethernet?</dt>
+                <dd class="col-sm-9">The G1 can forward data over Ethernet <em>or</em> WiFi (operating as a WiFi client).</dd>
+              </dl>
+            </div>
+          </div>
+          <img src=""
+               class="img-fluid" alt="Minew G1 Network Configuration">
+          <p class="mt-2"> Describe </p>
+
+          <!-- Step 2 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step02">
+                Configure data forwarding &nbsp;
+                <a href="#step02" class="badge badge-secondary">Step 2 of 3</a>
+              </h2>
+              <p class="lead"> Configure the G1 to forward data to a remote server running Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">How is data forwarded?</dt>
+                <dd class="col-sm-9">HTTP POST.</dd>
+                <dt class="col-sm-3">What data format?</dt>
+                <dd class="col-sm-9">Binary long.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src=""
+               class="img-fluid" alt="Minew G1 Data Forwarding Configuration">
+          <p class="mt-2"> Describe </p>
+
+           <!-- Step 3 -->
+          <div class="jumbotron jumbotron-fluid my-4">
+            <div class="container">
+              <h2 id="step03">
+                Observe data in Pareto Anywhere &nbsp;
+                <a href="#step03" class="badge badge-secondary">Step 3 of 3</a>
+              </h2>
+              <p class="lead"> Run the Pareto Anywhere open source software to observe the forwarded data. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3">How to run Pareto Anywhere?</dt>
+                <dd class="col-sm-9">We provide friendly tutorials to install on a laptop (or any Linux server) and to install on a Raspberry Pi.</dd>
+                <dt class="col-sm-3">Is there an easier way?</dt>
+                <dd class="col-sm-9">Yes.  Run barnowl-minew.</dd>
+              </dl>
+            </div>
+          </div>
+          <img src=""
+               class="img-fluid" alt="Minew G1 Data in Pareto Anywhere">
+          <p class="mt-2"> Describe </p>
+
+          <!----- Where to next? ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Learn more about Pareto Anywhere, or continue exploring our open architecture and all its applications. </p>
+          <ul class="list-unstyled">
+            <li class="media my-2">
+              <a href="../hello-pareto-anywhere/">
+                <img src="../hello-pareto-anywhere/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../hello-pareto-anywhere/">
+                  <h5 class="mt-0 mb-1">Hello Pareto Anywhere</h5>
+                </a>
+                A getting started guide oriented towards developers familiar with the open source software model.
+              </div>
+            </li>
+            <li class="media my-2">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="align-self-start mr-3">
+              </a>
+              <div class="media-body">
+                <a href="../../">
+                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
+                </a>
+                The home for reelyActive developers.
+              </div>
+            </li>
+          </ul>
+          <p> &nbsp; </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <a href="https://reelyactive.github.io"> diyActive </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020 </a>
+    </footer>
+    <script defer src="../common/js/solid.min.js"></script>
+    <script defer src="../common/js/brands.min.js"></script>
+    <script defer src="../common/js/fontawesome.min.js"></script>
+    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
