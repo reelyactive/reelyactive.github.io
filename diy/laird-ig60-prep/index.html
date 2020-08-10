@@ -149,13 +149,13 @@
                 Building Laird Linux &nbsp;
                 <a href="#step01" class="badge badge-secondary">Step 1 of 5</a>
               </h2>
-              <p class="lead"> Download, configure and build Laird Linux. </p>
+              <p class="lead"> [OPTIONAL] Download, configure and build Laird Linux. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">Why Laird Linux?</dt>
                 <dd class="col-sm-9">It is the vendor-maintained OS which supports the IG60.</dd>
                 <dt class="col-sm-3">Do I have to build it?</dt>
-                <dd class="col-sm-9">No.  A pre-built version can instead by used, provided it has all the prerequisites for our <a href="https://github.com/reelyactive/laird-edge/" target="_blank">laird-edge</a> software and/or any other embedded software that will run on the IG60.</dd>
+                <dd class="col-sm-9"><em>No.</em>  In fact, we recommend skipping this step and starting with a pre-built image, as presented in Step 2.</dd>
               </dl>
             </div>
           </div>
@@ -165,12 +165,13 @@
             Download the board support package source code
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> This step is not yet fully documented.  If building Laird Linux from source, the official documentation can be found <a href="https://documentation.lairdconnect.com/Builds/IG60-BL654-LINUX/latest/Content/Topics/5%20-%20Using%20the%20Device/Laird%20Linux%20Getting%20Started/Getting%20Started%20with%20Laird%20Linux.htm" target="_blank">here</a>. </p>
+          <p> If building Laird Linux from source, the official documentation can be found <a href="https://documentation.lairdconnect.com/Builds/IG60-BL654-LINUX/latest/Content/Topics/5%20-%20Using%20the%20Device/Laird%20Linux%20Getting%20Started/Getting%20Started%20with%20Laird%20Linux.htm" target="_blank">here</a>. </p>
           <h3>
             Build the SD card image with Buildroot
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> This step is not yet fully documented.  If building Laird Linux from source, the official documentation can be found <a href="https://documentation.lairdconnect.com/Builds/IG60-BL654-LINUX/latest/Content/Topics/5%20-%20Using%20the%20Device/Laird%20Linux%20Getting%20Started/Getting%20Started%20with%20Laird%20Linux.htm" target="_blank">here</a>. </p>
+          <p> If building Laird Linux from source, the official documentation can be found <a href="https://documentation.lairdconnect.com/Builds/IG60-BL654-LINUX/latest/Content/Topics/5%20-%20Using%20the%20Device/Laird%20Linux%20Getting%20Started/Getting%20Started%20with%20Laird%20Linux.htm" target="_blank">here</a>. </p>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> Unless there is a specific need to build a custom configuration of Laird Linux, we recommend starting from a pre-built image, as described in Step 2 below. </p>
           <!----- Step 2 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -178,7 +179,7 @@
                 Flashing the SD card &nbsp;
                 <a href="#step02" class="badge badge-secondary">Step 2 of 5</a>
               </h2>
-              <p class="lead"> Flash the image to a SD card using Etcher. </p>
+              <p class="lead"> Download and flash the image to a SD card using Etcher. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3">Why a SD card?</dt>
@@ -193,19 +194,20 @@
           <h3 class="mt-4"> Prerequisites </h3>
           <p> We'll flash the SD card with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
           <h3>
-            Make the SD card image
+            Download the SD card image
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> This step is not yet fully documented, but can be accomplished using the <b>mksdcard.sh</b> script found in the root of the build image folder from the previous step. </p>
+          <p> Download the SD card image from <a href="https://www.reelyactive.com/downloads/2020-08-09-reelyactive-ig60-bl654.img.gz" target="_blank">www.reelyactive.com/downloads/2020-08-09-reelyactive-ig60-bl654.img.gz</a> </p>
+          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> If instead using a custom build from Step 1, a SD card image can be created using the <b>mksdcard.sh</b> script found in the root of the build image folder. </p>
           <h3>
             Flash the Laird Linux image to the SD card
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> We recommend using micro SD cards from reputable vendors of at least 4GB size.  From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
+          <p> We recommend using micro SD cards from reputable vendors of at least 2GB size.  From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
           <ol>
             <li> Insert the SD card <i class="fas fa-sd-card"></i> (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
             <li> Run Etcher (see Prerequisites above) by double-clicking its executable AppImage or desktop icon </li>
-            <li> In the Etcher interface, select the image file created in <span class="text-muted">Part 1</span> </li>
+            <li> In the Etcher interface, select the image file downloaded in <span class="text-muted">Part 1</span> </li>
             <li> In the Etcher interface, confirm that the SD card is automatically selected, or select manually </li>
             <li> In the Etcher interface, click <i>Flash!</i> </li>
           </ol>
@@ -251,6 +253,7 @@
             Configure a static IP profile for LAN2
             <small class="text-muted"> Part 3 </small>
           </h3>
+          <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> This part has already been completed on the pre-built image. </p>
           <p> While logged in to the IG60 via SSH, create a static IP profile called <em>reelyStatic</em> with the command <code>nmcli con add con-name reelyStatic ifname eth0 type ethernet ip4 10.0.50.100/24</code> </p>
           <table class="table table-striped">
             <thead class="thead-reelyactive">
@@ -330,7 +333,7 @@
           </div>
           <!--<img src="images/update-bl654-firmware.jpg" class="img-fluid"
                alt="Updating the BL654 firmware">-->
-          <p class="mt-4"> This step is not yet fully documented. </p>
+          <p class="mt-4"> The pre-built image includes a program provided by Laird to update the BL654 firmware.  From an SSH session, browse to this program's folder with the command <code>cd /home/summit/node_bl_deploy</code> then execute the program with <code>node index</code>.  Once the firmware update is complete, the program will configure the BL654 to scan for advertisements, and print these to the console.  When lines beginning with <em>adv:</em> are observed, exit the program with <kbd>Ctrl+C</kbd>. </p>
           <!----- Step 5 ----->
           <div class="jumbotron jumbotron-fluid my-4">
             <div class="container">
@@ -350,29 +353,23 @@
           </div>
           <!--<img src="images/laird-edge.jpg" class="img-fluid"
                alt="Running laird-edge on the IG60 gateway">-->
-          <h3 class="mt-4"> Prerequisites </h3>
-          <p> The laird-edge software requires Node.js <i class="fab fa-node-js"></i> which must be pre-built for Laird Linux (see <a href="#step01">Step 1</a>). </p>
-            <p> An Internet connection is also required for this step. </p>
           <h3>
-            Install laird-edge 
+            Configure and run laird-edge 
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> From a terminal <i class="fas fa-terminal"></i> connected to the IG60 via SSH: </p>
+          <p> The pre-built image includes laird-edge and its package dependencies.  From a terminal <i class="fas fa-terminal"></i> connected to the IG60 via SSH: </p>
           <ol>
-            <li> Change to the home <i class="fas fa-home"></i> folder with the command <code>cd /home/summit</code> </li>
-            <li> Clone the laird-edge GitHub <i class="fab fa-github"></i> repository with the command <code>git clone https://github.com/reelyactive/laird-edge.git</code> </li>
-            <li> Change to the root of the laird-edge folder with the command <code>cd laird-edge</code> </li>
-            <li> Install the package dependencies with the command <code>npm install</code> </li>
+            <li> Change to the laird-edge folder with the command <code>cd /home/summit/laird-edge</code> </li>
+            <li> If required, edit the configuration file with the command <code>vi config/config.js</code> </li>
+            <li> Run laird-edge with the command <code>npm start</code> </li>
+            <li> After successful operation is confirmed, exit the program with <kbd>Ctrl+C</kbd> </li>
           </ol>
-          <p> Instructions to install the serialport package will be provided in future. </p>
           <h3>
             Enable the laird-edge service 
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> Configure systemd to run the laird-edge service on boot by completing the following: </p>
           <ol>
-            <li> Copy the unit file to the systemd system folder with the command <code>cp units/laird-edge.service /lib/systemd/system</code> </li>
-            <li> If necessary, edit the <b>/lib/systemd/system/laird-edge.service</b> file to correct the user name and/or file paths </li>
             <li> Enable the laird-edge service with the command <code>systemctl enable laird-edge.service</code> </li>
             <li> Start the laird-edge service with the command <code>systemctl start pi-suite.service</code> </li>
           </ol>
