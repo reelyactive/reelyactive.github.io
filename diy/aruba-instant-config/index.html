@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="How to configure an Aruba Instant AP to forward ambient Bluetooth Low Energy data to Pareto Anywhere open source software.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> reelyActive Aruba AP Configuration Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Tutorials Web Style Guide",
+      "description": "How to configure an Aruba Instant AP to forward ambient Bluetooth Low Energy data to Pareto Anywhere open source software.",
+      "proficiencyLevel": "Beginner",
+      "genre": "style guide",
+      "image": "https://reelyactive.github.io/diy/aruba-instant-config/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Aruba AP Configuration"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Page view tracking (gtag.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Configure an Aruba Instant AP </h1>
+          <p class="lead"> Our step-by-step guide to configure the access point(s) to forward data for processing by Pareto Anywhere. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Aruba Instant AP Config with Pareto Anywhere">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive configure the APs for open source real-time location and more </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The AP(s) will forward Bluetooth Low Energy packet traffic to a server running Pareto Anywhere. </dd>
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"> Pareto Anywhere </a> is open source software that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
+                <dt class="col-sm-3"> Can the AP do more? </dt>
+                <dd class="col-sm-9"> Yes.  Aruba access points provide WiFi connectivity as well as capabilities for a host of complementary services. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Connect to the AP &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Connect and log in to the access point over a local network. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Will admin access be required? </dt>
+                <dd class="col-sm-9"> Yes. </dd>
+                <dt class="col-sm-3"> Is there a command line option? </dt>
+                <dd class="col-sm-9"> Yes. </dd>
+              </dl>
+              <img src="images/admin-login.png"
+                   class="card-img-bottom" alt="Aruba Instant admin login">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Connect the AP to the local network
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Ensure that the access point is powered <i class="fas fa-plug"></i> and connected to the local network <i class="fas fa-network-wired"></i> from which it will be configured. </p>
+          <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Consult the Aruba documentation specific to your AP model, if required. </p>
+          <h3>
+            Log in as admin
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From a computer <i class="fas fa-laptop"></i> on the local network, browse to the access point via its IP address (ex: http://192.168.0.1). </p>
+          <p> Log in with the username <b>admin</b> and the corresponding password, then proceed to the next step. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configure the IoT Transport Stream &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Create and enable a Telemetry Websocket to forward data to Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's a transport stream? </dt>
+                <dd class="col-sm-9"> A transport stream defines what data is forwarded where and how, in this case what ambient BLE data is sent to Pareto Anywhere via Websocket. </dd>
+                <dt class="col-sm-3"> Why IoT and not RTLS? </dt>
+                <dd class="col-sm-9"> The IoT service affords both real-time location and sensing of a wide range of devices while the RTLS service is specific to more precise location of only certain devices. </dd>
+              </dl>
+              <img src="images/transport-stream-table.png"
+                   class="card-img-bottom" alt="IoT Transport Streams">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create a new transport stream
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <p> From the admin page: </p>
+              <ol>
+                <li> Browse to <b>Configuration / Services</b> from the left menu </li>
+                <li> Select the <b>IoT</b> accordion from the main window </li>
+                <li> In the IoT <b>Transport Streams</b> table, click on the + icon to create a new transport stream </li>
+              </ol>
+            </div>
+            <div class="col-md-6">
+              <img src="images/create-transport-stream.png"
+                   class="img-fluid" alt="Create an IoT Transport Stream">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Configure the transport stream
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <div class="row mt-3">
+            <div class="col-xxl-6">
+              <p> Complete the new transport stream popup as follows: </p>
+            </div>
+            <div class="col-xxl-6">
+              <div id="carouselTransport" class="carousel carousel-dark slide"
+                   data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-bs-target="#carouselTransport"
+                      data-bs-slide-to="0" class="active"></li>
+                  <li data-bs-target="#carouselTransport"
+                      data-bs-slide-to="1"></li>
+                  <li data-bs-target="#carouselTransport"
+                      data-bs-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="4800">
+                    <img src="images/transport-stream-config-1.png"
+                         class="d-block w-100 pb-5 mb-4"
+                         alt="Transport Stream configuration">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="4800">
+                    <img src="images/transport-stream-config-2.png"
+                         class="d-block w-100 pb-5 mb-4"
+                         alt="Transport Stream configuration">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="4800">
+                    <img src="images/transport-stream-config-3.png"
+                         class="d-block w-100 pb-5 mb-4"
+                         alt="Transport Stream configuration">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mt-3"> Click OK to complete the configuration. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Configure the IoT Radio Profile &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> Create and enable the Bluetooth Low Energy radio profile on the AP. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's a radio profile? </dt>
+                <dd class="col-sm-9"> A radio profile defines which low-power wireless radios will be enabled on the AP as well as their configuration. </dd>
+                <dt class="col-sm-3"> Why BLE? </dt>
+                <dd class="col-sm-9"> Bluetooth Low Energy devices may spontaneously transmit advertising packets for discovery and interaction, an abundant source of ambient data which can be received by the AP's BLE radio. </dd>
+              </dl>
+              <img src="images/radio-profile-table.png"
+                   class="card-img-bottom" alt="IoT Radio Profiles">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create a new radio profile
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <p> From the admin page: </p>
+              <ol>
+                <li> Browse to <b>Configuration / Services</b> from the left menu </li>
+                <li> Select the <b>IoT</b> accordion from the main window </li>
+                <li> In the IoT <b>Radio Profiles</b> table, click on the + icon to create a new radio profile </li>
+              </ol>
+            </div>
+            <div class="col-md-6">
+              <img src="images/create-radio-profile.png"
+                   class="img-fluid" alt="Create an IoT Radio Profile">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Configure the radio profile
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <p> Complete the new radio profile popup as follows: </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/radio-profile-config.png"
+                   class="img-fluid" alt="Configure the IoT Radio Profile">
+            </div>
+          </div>
+          <p class="mt-3"> Click OK to complete the configuration. </p>
+          <h3 class="mt-4">
+            Save the changes
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <p> Click the <b>Save</b> button at the bottom right of the window to complete and enable the configuration. </p>
+            </div>
+            <div class="col-md-8">
+              <div id="carouselSave" class="carousel slide carousel-fade"
+                   data-bs-ride="carousel" data-bs-pause="false">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="2400">
+                    <img src="images/save-1.png"
+                         class="d-block w-100" alt="Save">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2400">
+                    <img src="images/save-2.png"
+                         class="d-block w-100" alt="Save">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mt-3"> Observing data in Pareto Anywhere requires no additional action if an instance based on the pareto-anywhere package is running, or, for quick-and-dirty validation, run barnowl-aruba as described below. </p>
+          <!----- Where to next ----->
+          <hr>
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2018-2021 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+  </body>
+</html>
