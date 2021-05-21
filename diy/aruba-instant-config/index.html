@@ -212,7 +212,7 @@
               <ol>
                 <li> Browse to <b>Configuration / Services</b> from the left menu </li>
                 <li> Select the <b>IoT</b> accordion from the main window </li>
-                <li> In the IoT <b>Transport Streams</b> table, click on the + icon to create a new transport stream </li>
+                <li> In the IoT <b>Transport Streams</b> table, click on the <b>+</b> icon to create a new transport stream </li>
               </ol>
             </div>
             <div class="col-md-6">
@@ -227,6 +227,111 @@
           <div class="row mt-3">
             <div class="col-xxl-6">
               <p> Complete the new transport stream popup as follows: </p>
+              <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col"> Parameter </th>
+                      <th scope="col"> Value </th>
+                      <th scope="col"> Notes </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> Name </td>
+                      <th> reelyActive </th>
+                      <td class="text-muted">
+                        <small> User-defined </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> State </td>
+                      <th> Enabled </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> Server type </td>
+                      <th> Telemetry Websocket </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> Server URL </td>
+                      <th> ws://x.x.x.x/aruba </th>
+                      <td class="text-muted">
+                        <small> Substitute x.x.x.x for Pareto Anywhere server IP address<sup>*</sup> </small> </td>
+                    </tr>
+                    <tr>
+                      <td> Device classes </td>
+                      <th> All </th>
+                      <td class="text-muted">
+                        <small> Optionally filter by class </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Reporting interval </td>
+                      <th> 5 seconds </th>
+                      <td class="text-muted">
+                        <small> Balance real-time vs. data bandwidth </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> BLE data forwarding </td>
+                      <th> Enabled </th>
+                      <td class="text-muted">
+                        <small> Forwards payload/sensor data </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Per-frame filtering </td>
+                      <th> Disabled </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> RSSI reporting format </td>
+                      <th> Last </th>
+                      <td class="text-muted">
+                        <small> Best option for real-time location </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Environment type </td>
+                      <th> Office </th>
+                      <td class="text-muted">
+                        <small> Influences RSSI-based distance estimation in device filters </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Proxy </td>
+                      <th> &mdash; </th>
+                      <td class="text-muted">
+                        <small> Complete if required </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Authentication </td>
+                      <th> Use token </th>
+                      <td class="text-muted">
+                        <small> Required </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Access token </td>
+                      <th> token </th>
+                      <td class="text-muted">
+                        <small> Ignored by Pareto Anywhere </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Device filters </td>
+                      <th> &mdash; </th>
+                      <td class="text-muted">
+                        <small> Complete if required </small>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-end text-muted"> <small> <sup>*</sup>A Pareto Anywhere instance running on port 3001 of 192.168.0.123 would require ws://192.168.0.123:3001/aruba </small> </p>
             </div>
             <div class="col-xxl-6">
               <div id="carouselTransport" class="carousel carousel-dark slide"
@@ -289,7 +394,7 @@
               <ol>
                 <li> Browse to <b>Configuration / Services</b> from the left menu </li>
                 <li> Select the <b>IoT</b> accordion from the main window </li>
-                <li> In the IoT <b>Radio Profiles</b> table, click on the + icon to create a new radio profile </li>
+                <li> In the IoT <b>Radio Profiles</b> table, click on the <b>+</b> icon to create a new radio profile </li>
               </ol>
             </div>
             <div class="col-md-6">
@@ -304,6 +409,60 @@
           <div class="row mt-3">
             <div class="col-md-6">
               <p> Complete the new radio profile popup as follows: </p>
+
+
+              <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col"> Parameter </th>
+                      <th scope="col"> Value </th>
+                      <th scope="col"> Notes </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> Name </td>
+                      <th> reelyActive </th>
+                      <td class="text-muted">
+                        <small> User-defined </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> State </td>
+                      <th> Enabled </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> Radio </td>
+                      <th> Internal </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> Radio mode </td>
+                      <th> BLE </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> BLE operational mode </td>
+                      <th> Both </th>
+                      <td class="text-muted">
+                        <small> Beaconing = discoverability, Scanning = discovery </small> 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Console </td>
+                      <th> Off </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> Tx Power </td>
+                      <th> 0 dBm </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div class="col-md-6">
               <img src="images/radio-profile-config.png"
