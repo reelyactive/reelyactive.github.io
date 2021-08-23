@@ -5,8 +5,26 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Develop with the reelyActive open source technology stack.  Access documentation, sample code and interactive examples.">
-    <meta name="msvalidate.01" content="290718595E7C106146EE4DF28E941869" />
+          content="Develop applications for context-aware physical spaces based on ambient wireless data using reelyActive's open source technologies.">
+    <link rel="stylesheet" href="diy/common/style/bootstrappyactive.min.css">
+    <title> reelyActive Developers </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Developers",
+      "description": "Develop applications for context-aware physical spaces based on ambient wireless data using reelyActive's open source technologies.",
+      "proficiencyLevel": "Beginner",
+      "genre": "style guide",
+      "image": "https://reelyactive.github.io/diy/images/reelyactive-developers-title.png",
+      "url": "https://reelyactive.github.io/",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    }]
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -14,809 +32,130 @@
       gtag('js', new Date());
       gtag('config', 'UA-49659454-2');
     </script>
-    <link rel="stylesheet" href="diy/common/style/bootstrap.min.css">
-    <link rel="stylesheet" href="diy/common/style/reelyactive.css">
-    <title> reelyActive Developers | diyActive </title>
-    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org", 
-      "@type": "WebPage",
-      "name": "reelyActive Developers",
-      "description": "Develop with the reelyActive open source technology stack.  Access documentation, sample code and interactive examples.",
-      "image": "https://reelyactive.github.io/images/diyActive.png",
-      "url": "https://reelyactive.github.io/",
-      "creator": {
-        "@type": "Organization",
-        "url": "https://www.reelyactive.com"
-      }
-    }
-    </script>
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
-      <a class="navbar-brand" href="https://www.reelyactive.com/">
-        <img src="diy/common/images/reelyactive-logo-nav.png"
-             width="165" height="30" alt="reelyActive">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-              data-target="#navbarItems" aria-controls="navbarItems"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarItems">
-        <ul class="navbar-nav mr-auto"></ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="./">
-              <i class="fas fa-home"></i>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown"
-               role="button" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-              <i class="fas fa-question-circle"></i>
-            </a>
-            <!-- Info about tracking and open source software/licenses -->
-            <div class="dropdown-menu dropdown-menu-right"
-                 aria-labelledby="navbarDropdown">
-              <a class="dropdown-item"
-                 href="https://www.reelyactive.com/how-we-observe/#digital">
-                <i class="fas fa-mouse-pointer"></i>
-                Page view tracking (gtag.js) &nbsp;
-                <span class="badge badge-warning">
-                  <i class="fas fa-user-tag"></i>
-                </span>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="diy/common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://getbootstrap.com" >
-                <i class="fab fa-bootstrap"></i>
-                Bootstrap 4 &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://fontawesome.com" >
-                <i class="fab fa-font-awesome"></i>
-                Font Awesome (Free) &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-creative-commons"></i>
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://jquery.com" >
-                <i class="fab fa-js"></i>
-                JQuery &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://github.com/reelyactive/web-style-guide/" >
-                <i class="fas fa-code"></i>
-                Web Style Guide &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://www.reelyactive.com/made-in-montreal/" >
-                <i class="fab fa-canadian-maple-leaf"></i>
-                Made in Montr&eacute;al &nbsp;
-                <i class="fas fa-city"></i>
-              </a>
-            </div>
-          </li>
-        </ul>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Page view tracking (gtag.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
+    <!-- Content -->
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <!-- Header -->
-          <div class="text-center my-4">
-            <img src="images/diyActive.png" class="img-fluid"
-                 alt="diyActive: Do-it-Yourself with reelyActive">
-            <h1 class="mt-2"> For reelyActive Users & Developers </h1>
-            <p class="lead"> Our open architecture affords the freedom to do-it-yourself </p>
-            <hr>
-          </div>
-          <!-- Platform overview -->
-          <h2 id="platform-overview"> Platform Overview </h2>
-          <p class="lead"> Understand physical spaces and the real-time dynamics of the people and assets within. </p>
-          <p class="text-justify"> The reelyActive technology platform makes it possible to observe who/what is where/how, in real-time, in any physical space.  This is achieved by detecting and locating all the <em>radio-identifiable devices</em> that are present, and then representing this information in the <em>standard language of the web</em>. </p>
-          <img src="images/reelyactive-platform-overview.jpg" class="img-fluid"
-               alt="reelyActive Platform Overview">
-          <p class="text-justify mt-2"> The result is effectively a table of who/what is present, updating in real-time, and including details on the location and status of each occupant.  While simple in concept, this table enables complex and wide-reaching applications, especially when stored in a database for analysis over time. </p>
-          <!-- Quick start -->
+          <img src="diy/common/images/reelyactive-developers-title.png"
+               class="img-fluid mt-4" alt="reelyActive Developers">
+          <!----- The TL;DR ----->
           <div class="card my-4">
             <div class="card-body">
-              <h3 class="card-title"> Quick Start </h3>
-              <h6 class="card-subtitle mb-3 text-muted"> Choose between a <i class="fas fa-code"></i> hands-on or a <i class="fas fa-chalkboard-teacher"></i> theoretical approach </h6>
-              <ul class="list-unstyled">
-                <li class="media my-2">
-                  <a href="diy/hello-pareto-anywhere/">
-                    <img src="diy/hello-pareto-anywhere/images/icon.png"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <h5 class="mt-0 mb-1">
-                      <i class="text-muted fas fa-code"></i>
-                      <a href="diy/hello-pareto-anywhere/">
-                        Hello Pareto Anywhere!
-                      </a>
-                    </h5>
-                    A getting started guide oriented towards developers familiar with the open source software model.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/rfid-unity/">
-                    <img src="diy/rfid-unity/images/icon.png"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <h5 class="mt-0 mb-1">
-                      <i class="text-muted fas fa-chalkboard-teacher"></i>
-                      <a href="diy/rfid-unity/">
-                        Enabling computers to understand who/what is where/how
-                      </a>
-                    </h5>
-                    Overview of the key insight behind reelyActive's technology and open source software.
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- Open architecture -->
-          <h2 id="platform-overview"> Open Architecture </h2>
-          <p class="lead"> Enjoy the freedom and flexibility of interchangeable software and hardware components. </p>
-          <p class="text-justify"> Tens of billions of radio-identifiable <em>devices</em> are shipping annually.  Countless vendors, including reelyActive, offer radio-identification and location <em>infrastructure</em>.  <b>Pareto Anywhere</b>, our open source <em>middleware</em>, translates their output into a real-time, web-standard data stream to feed any <em>database</em> and/or drive any web <em>application</em>. </p>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link" id="devicestab" data-toggle="tab"
-                 href="#devices" role="tab" aria-controls="devices"
-                 aria-selected="false">
-                <i class="fas fa-wifi"></i> Devices
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="infratab" data-toggle="tab"
-                 href="#infrastructure" role="tab" aria-controls="infrastructure"
-                 aria-selected="false">
-                <i class="fas fa-network-wired"></i> Infrastructure
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" id="middletab" data-toggle="tab"
-                 href="#middleware" role="tab" aria-controls="middleware"
-                 aria-selected="true">
-                <i class="fas fa-table"></i> Middleware
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="databasestab" data-toggle="tab"
-                 href="#databases" role="tab" aria-controls="databases"
-                 aria-selected="false">
-                <i class="fas fa-database"></i> Databases
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="applicationstab" data-toggle="tab"
-                 href="#applications" role="tab" aria-controls="applications"
-                 aria-selected="false">
-                <i class="fas fa-layer-group"></i> Applications
-              </a>
-            </li>
-          </ul>
-          <div class="tab-content tab-content-reelyactive">
-            <!-- Radio-identifiable devices -->
-            <div class="tab-pane fade" id="devices"
-                 role="tabpanel" aria-labelledby="devicestab">
-              <h4 class="mt-2"> Radio-identifiable devices </h4>
-              <p class="lead"> Representing people, products and places at a human scale </p>
-              <ul class="list-unstyled">
-                <li class="media my-2">
-                  <a href="diy/best-practices-ble-identifiers/">
-                    <img src="diy/best-practices-ble-identifiers/images/icon.png"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/best-practices-ble-identifiers/">
-                      <h5 class="mt-0 mb-1"> Best practices for BLE identifiers </h5>
-                    </a>
-                    Assignment of Bluetooth Low Energy identifiers for interoperability and interpretability.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/banglejs-dev/">
-                    <img src="diy/banglejs-dev/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/banglejs-dev/">
-                      <h5 class="mt-0 mb-1"> Develop BLE applications with Bangle.js </h5>
-                    </a>
-                    Our step-by-step guide to program the open smartwatch for wireless sensing and identification applications.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/puckjs-dev/">
-                    <img src="diy/puckjs-dev/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/puckjs-dev/">
-                      <h5 class="mt-0 mb-1"> Develop BLE applications with Puck.js </h5>
-                    </a>
-                    Our step-by-step guide to program the open smart button for wireless sensing and identification applications.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/minew-e8-config/">
-                    <img src="diy/minew-e8-config/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/minew-e8-config/">
-                      <h5 class="mt-0 mb-1"> Configure a Minew E8 beacon </h5>
-                    </a>
-                    Our step-by-step guide to configure an E8 beacon with the BeaconSET+ app.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/minew-c6-config/">
-                    <img src="diy/minew-c6-config/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/minew-c6-config/">
-                      <h5 class="mt-0 mb-1"> Configure a Minew C6 beacon </h5>
-                    </a>
-                    Our step-by-step guide to configure a C6 beacon with the BeaconSET+ app.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/minew-s1-config/">
-                    <img src="diy/minew-s1-config/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/minew-s1-config/">
-                      <h5 class="mt-0 mb-1"> Configure a Minew S1 beacon </h5>
-                    </a>
-                    Our step-by-step guide to configure a S1 beacon with the BeaconSET+ app.
-                  </div>
-                </li>
-              </ul>
-              <h5 class="mt-2"> Additional references </h5>
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Foundational, open source technologies by developers, for developers. </p>
+              <hr>
               <dl class="row">
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-tablet-alt"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://github.com/reelyactive/ble-android-sdk"
-                     target="_blank"> SDK for Android <em>[Legacy]</em> </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-tablet-alt"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://github.com/reelyactive/ble-ios-sdk"
-                     target="_blank"> SDK for iOS <em>[Legacy]</em> </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-shopping-cart"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://shop.reelyactive.com/products/ra-t411"
-                     target="_blank"> reelyActive 915MHz active RFID tags </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-blog"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://reelyactive.com/blog/archives/1411"
-                     target="_blank"> $500 rectangle meet $5 rectangle </a>
-                </dd>
-              </dl>
-            </div>
-            <!-- Radio-identification infrastructure -->
-            <div class="tab-pane fade" id="infrastructure" role="tabpanel"
-                 aria-labelledby="infratab">
-              <h4 class="mt-2"> Radio-identification infrastructure </h4>
-              <p class="lead"> Detecting &amp; locating people, products and places at a human scale </p>
-              <ul class="list-unstyled">
-                <li class="media my-2">
-                  <a href="diy/pi-prep/">
-                    <img src="diy/pi-prep/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/pi-prep/">
-                      <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
-                    </a>
-                    Our step-by-step guide to prepare a lean yet versatile SD card image for the Pi.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/oio-config/">
-                    <img src="diy/oio-config/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/oio-config/">
-                      <h5 class="mt-0 mb-1"> Configure an Owl-in-One </h5>
-                    </a>
-                    Our step-by-step guide to configure the WiFi and/or program the software of an Owl-in-One.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/oio-wlan/">
-                    <img src="diy/oio-wlan/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/oio-wlan/">
-                      <h5 class="mt-0 mb-1"> Create a WLAN of Owl-in-Ones and a laptop </h5>
-                    </a>
-                    Our step-by-step guide to create a local wireless network by configuring an Owl-in-One as an access point.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/minew-g1-config/">
-                    <img src="diy/minew-g1-config/images/icon.png"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/minew-g1-config/">
-                      <h5 class="mt-0 mb-1"> Configure a Minew G1 gateway </h5>
-                    </a>
-                    Our step-by-step guide to configure the gateway to forward data for processing by Pareto Anywhere.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/laird-ig60-prep/">
-                    <img src="diy/laird-ig60-prep/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/laird-ig60-prep/">
-                      <h5 class="mt-0 mb-1"> Prepare a Laird IG60 gateway from scratch </h5>
-                    </a>
-                    Our step-by-step guide to prepare a lean yet versatile SD card image for the IG60.
-                  </div>
-                </li>
-              </ul>
-              <h5 class="mt-2"> Additional references </h5>
-              <dl class="row">
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-info-circle"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="oio-deployment.html">
-                    Owl-in-One deployment overview
-                  </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-info-circle"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="reel-deployment.html">
-                    Reel deployment overview
-                  </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-info-circle"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="reel-overview.html">
-                    The reel architecture and protocol
-                  </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-shopping-cart"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://shop.reelyactive.com/products/owl-in-one-ble"
-                     target="_blank"> Owl-in-One (BLE) </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-shopping-cart"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://shop.reelyactive.com/products/ra-r436"
-                     target="_blank"> Reelceiver (BLE) </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-shopping-cart"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://shop.reelyactive.com/products/ra-r432"
-                     target="_blank"> Reelceiver (915MHz) </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-blog"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://reelyactive.com/blog/archives/1376"
-                     target="_blank"> Light hears ahead of its time </a>
-                </dd>
-              </dl>
-            </div>
-            <!-- Middleware -->
-            <div class="tab-pane fade show active" id="middleware" role="tabpanel"
-                 aria-labelledby="middletab">
-              <h4 class="mt-2"> Middleware: the "glue" between physical and digital </h4>
-              <p class="lead"> Connecting countless hardware and software combinations </p>
-              <ul class="list-unstyled">
-                <li class="media my-2">
-                  <a href="diy/laptop-suite/">
-                    <img src="diy/laptop-suite/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/laptop-suite/">
-                      <h5 class="mt-0 mb-1"> Install our open source software suite on a laptop </h5>
-                    </a>
-                    Our step-by-step guide to run reelyActive's open source software suite on a laptop or personal computer.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/pi-suite/">
-                    <img src="diy/pi-suite/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/pi-suite/">
-                      <h5 class="mt-0 mb-1"> Install our open source software suite on a Pi </h5>
-                    </a>
-                    Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/oss-packages/">
-                    <img src="diy/oss-packages/images/icon.png"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/oss-packages/">
-                      <h5 class="mt-0 mb-1"> Open Source Software packages list </h5>
-                    </a>
-                    A canonical list and descriptions of the core reelyActive OSS packages.
-                  </div>
-                </li>
-              </ul>
-              <h5 class="mt-2"> Additional references </h5>
-              <dl class="row">
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-search"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://reelyactive.github.io/advlib/"
-                     target="_blank"> Decode radio packets with advlib </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-search"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://sniffypedia.org"
-                     target="_blank"> Sniffypedia.org </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-code"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://github.com/reelyactive/web-style-guide"
-                     target="_blank"> reelyActive's Web style guide </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-code"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://github.com/reelyactive/node-style-guide"
-                     target="_blank"> reelyActive's Node.js style guide </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-book-open"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="mascot-stories.html">
-                    The reelyActive software mascots and their stories
-                  </a>
-                </dd>
-              </dl>
-            </div>
-            <!-- Databases and analytics suites -->
-            <div class="tab-pane fade" id="databases" role="tabpanel"
-                 aria-labelledby="databasestab">
-              <h4 class="mt-2"> Databases and analytics suites </h4>
-              <p class="lead"> Storing the real-time data stream and facilitating analysis over time </p>
-              <ul class="list-unstyled">
-                <li class="media my-2">
-                  <a href="diy/kibana/">
-                    <img src="diy/kibana/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/kibana/">
-                      <h5 class="mt-0 mb-1"> Kibana integration overview </h5>
-                    </a>
-                    Our guide to integrating and using Kibana with our open source software.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/elasticsearch-service-setup/">
-                    <img src="diy/elasticsearch-service-setup/images/icon.png"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/elasticsearch-service-setup/">
-                      <h5 class="mt-0 mb-1"> Set up a hosted Elasticsearch Service </h5>
-                    </a>
-                    Our step-by-step guide to setup Elastic's hosted cloud service for use with our open source software.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/laptop-prep/">
-                    <img src="diy/laptop-prep/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/laptop-prep/">
-                      <h5 class="mt-0 mb-1"> Prepare a reelyActive laptop from scratch </h5>
-                    </a>
-                    Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software.
-                  </div>
-                </li>
-              </ul>
-              <h5 class="mt-2"> Additional references </h5>
-              <dl class="row">
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-external-link-alt"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://reelyactive.github.io/pareto-docs/integrations/googleanalytics/"
-                     target="_blank"> Pareto Classic integration with Google Analytics </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-blog"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://reelyactive.com/blog/archives/1190"
-                     target="_blank"> Can you measure real-world behaviour using tools designed for the web? </a>
-                </dd>
-              </dl>
-            </div>
-            <!-- Software applications -->
-            <div class="tab-pane fade" id="applications" role="tabpanel"
-                 aria-labelledby="applicationstab">
-              <h4 class="mt-2"> Software applications </h4>
-              <p class="lead"> Delivering efficiencies and experiences </p>
-              <ul class="list-unstyled">
-                <li class="media my-2">
-                  <a href="diy/showcase-interaction-detection/">
-                    <img src="diy/showcase-interaction-detection/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/showcase-interaction-detection/">
-                      <h5 class="mt-0 mb-1"> Demonstrate proximity interaction detection </h5>
-                    </a>
-                    Using a reelyActive Showcase Kit and DirAct.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="pareto-anywhere/">
-                    <img src="https://reelyactive.github.io/pareto-anywhere/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="pareto-anywhere/">
-                      <h5 class="mt-0 mb-1"> Pareto Anywhere (Web App) </h5>
-                    </a>
-                    Run Pareto Anywhere in a web browser that supports the experimental Web Bluetooth Scanning feature.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/hinged-object-interaction-detection/">
-                    <img src="diy/hinged-object-interaction-detection/images/icon.png"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/hinged-object-interaction-detection/">
-                      <h5 class="mt-0 mb-1"> Detect Interaction with a Hinged Object </h5>
-                    </a>
-                    Detect interaction with a door, lid or handle and visualise the timeseries data in Kibana.
-                  </div>
-                </li>
-                <li class="media my-2">
-                  <a href="diy/notman-showcase/">
-                    <img src="diy/notman-showcase/images/icon.jpg"
-                         class="align-self-start mr-3">
-                  </a>
-                  <div class="media-body">
-                    <a href="diy/notman-showcase/">
-                      <h5 class="mt-0 mb-1"> Notman House showcase </h5>
-                    </a>
-                    Learn about the reelyActive platform through real-world examples.
-                  </div>
-                </li>
-              </ul>
-              <h5 class="mt-2"> Additional references </h5>
-              <dl class="row">
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-external-link-alt"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="https://reelyactive.github.io/pareto-apps/"
-                     target="_blank"> Pareto Classic Apps </a>
-                </dd>
-                <dt class="col-2 col-sm-1 text-right">
-                  <i class="fas fa-music"></i>
-                </dt>
-                <dd class="col-10 col-sm-11">
-                  <a href="experience-generative-art.html">
-                    Generative Art with GeneraBLE
-                  </a>
-                </dd>
+                <dt class="col-sm-3"> <em>What</em> does reelyActive develop? </dt>
+                <dd class="col-sm-9"> reelyActive's open source technologies enable context-aware physical spaces for any application.  Ambient wireless data is transformed into <em>"who/what <small>is</small> where/how".</em> </dd>
+                <dt class="col-sm-3"> <em>Why</em> should developers care? </dt>
+                <dd class="col-sm-9"> We believe <em>your</em> time as a developer is best invested in creating the applications enabled by context-aware physical spaces<em>&mdash;not in developing the underlying technologies.</em> </dd>
+                <dt class="col-sm-3"> <em>How</em> do we work together? </dt>
+                <dd class="col-sm-9"> Our philosophy is to provide <em>free <small>and</small> open</em> access to our software and technologies while offering <em>paid</em> access to our time and expertise, if required. </dd>
               </dl>
             </div>
           </div>
-          <!-- Pareto Anywhere -->
-          <hr class="mt-4">
-          <div class="card my-4 bg-dark text-white">
-            <div class="row no-gutters">
-              <div class="col-md-4 my-auto">
-                <img src="diy/common/images/pareto-anywhere-logo-white.png"
-                     class="card-img p-4">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Embrace the ambient data in <em>your</em> space</h5>
-                  <p class="card-text"><small>Pareto Anywhere is pioneering open source software for real-time location and context.</small></p>
-                  <div class="btn-toolbar">
-                    <a href="https://www.reelyactive.com/pareto/anywhere/"
-                       class="btn btn-secondary m-1"> Learn More </a>
-                    <div class="dropdown">
-                      <a class="btn btn-outline-dark dropdown-toggle m-1"
-                         role="button" id="usecases"
-                         data-toggle="dropdown" aria-haspopup="true"
-                         aria-expanded="false"> Use Cases </a>
-                      <div class="dropdown-menu" aria-labelledby="usecases">
-                        <a href="https://www.reelyactive.com/use-cases/occupancy-analytics/"
-                           class="dropdown-item">
-                          <i class="fas fa-shoe-prints"></i>
-                          Occupancy Analytics
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/asset-tracking/"
-                           class="dropdown-item">
-                          <i class="fas fa-tag"></i> Asset Tracking
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/personnel-tracking/"
-                           class="dropdown-item">
-                          <i class="fas fa-user-tag"></i> Personnel Tracking
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/environmental-sensing/"
-                           class="dropdown-item">
-                          <i class="fas fa-thermometer-half"></i>
-                          Environmental Sensing
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/interaction-detection/"
-                           class="dropdown-item">
-                          <i class="fas fa-people-arrows"></i>
-                          Interaction Detection
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Popular content -->
-          <div class="row my-4">
-            <div class="col-sm-12 col-md-6">
-              <h3 id="popular-content"> Popular Content </h3>
-              <p class="lead"> Frequently accessed tutorials and references. </p>
-              <dl class="row">
-                <dt class="col-2 text-right">
-                  <i class="fab fa-bluetooth"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="ble-identifier-reference.html">
-                    BLE Identifier Reference
-                  </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fab fa-raspberry-pi"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="diy/pi-suite/"> Install our software on a Pi </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fas fa-laptop"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="diy/laptop-prep/"> Install our platform on a laptop </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fas fa-history"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="index-2018.html"> Previous version of this page </a>
-                </dd>
-              </dl>
-            </div>
-            <!-- reelyActive on the Web -->
-            <div class="col-sm-12 col-md-6">
-              <h3 id="popular-content"> reelyActive on the Web </h3>
-              <p class="lead"> Related content of interest. </p>
-              <dl class="row">
-                <dt class="col-2 text-right">
-                  <i class="fas fa-home"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="https://www.reelyactive.com"
-                     target="_blank"> www.reelyactive.com </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fas fa-shopping-cart"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="https://shop.reelyactive.com"
-                     target="_blank"> shop.reelyactive.com </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fas fa-blog"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="https://reelyactive.com/blog/"
-                     target="_blank"> reelyactive.com/blog/ </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fab fa-github"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="https://github.com/reelyactive/"
-                     target="_blank"> github.com/reelyactive/ </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fab fa-npm"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="https://www.npmjs.com/~reelyactive"
-                     target="_blank"> npmjs.com/~reelyactive </a>
-                </dd>
-                <dt class="col-2 text-right">
-                  <i class="fas fa-hashtag"></i>
-                </dt>
-                <dd class="col-10">
-                  <a href="https://www.reelyactive.com/contact/"
-                     target="_blank"> @reelyActive </a>
-                </dd>
-              </dl>
-            </div>
-          </div>
+          <p class="mt-4"> Visit the <a href="index-2020.html">previous version of this page</a> as this page is being updated to our latest web style guide. </p>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <a href="https://reelyactive.github.io"> diyActive </a>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2020 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2021 </a>
     </footer>
 
     <!-- Optional JavaScript -->
-    <script defer src="diy/common/js/solid.min.js"></script>
-    <script defer src="diy/common/js/brands.min.js"></script>
-    <script defer src="diy/common/js/fontawesome.min.js"></script>
-    <script src="diy/common/js/jquery-3.4.0.min.js"></script>
-    <script src="diy/common/js/bootstrap.bundle.min.js"></script>
+    <script defer src="diy/common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="diy/common/js/bootstrappyactive.bundle.min.js"></script>
   </body>
 </html>
