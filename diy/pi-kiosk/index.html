@@ -249,7 +249,7 @@
           </h3>
           <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only if the <a href="../pi-suite/">pi-suite tutorial</a> was not completed. </p>
           <p> <span class="badge badge-success"><i class="fas fa-exclamation-circle"></i></span> If kiosk scripts are present in the <b>/home/pi/reelyActive/pi-suite/kiosk/</b> folder, skip ahead to Part 2. </p>
-          <p> Create a new file called <b>kiosk</b> in the pi user's home folder based on the following template, updating the URL on the last line as required <span class="text-muted">(unless you like this tutorial so much that you plan to display it on a big screen!)</span>: </p>
+          <p> Create a new file called <b>kiosk</b> in the pi user's home folder with the command <code>nano ~/kiosk</code> and paste in the following template, updating the URL on the last line as required <span class="text-muted">(unless you like this tutorial so much that you plan to display it on a big screen!)</span>: </p>
           <pre>#!/bin/sh
 xset -dpms     # disable DPMS (Energy Star) features.
 xset s off     # disable screen saver
@@ -257,13 +257,13 @@ xset s noblank # don't blank the video device
 matchbox-window-manager -use_titlebar no &
 unclutter &    # hide X mouse cursor unless mouse activated
 chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 http://reelyactive.github.io/diy/pi-kiosk/</pre>
-          <p> Make the kiosk script file executable with the command <code>chmod 755 kiosk</code>
+          <p> Make the kiosk script file executable with the command <code>chmod 755 ~/kiosk</code>
           <h3>
             Add the kiosk script to .bashrc
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> Initiation of the X Windows System and the kiosk script will be added to the pi user's .bashrc file which runs each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
-          <p> Edit the <b>~/.bashrc</b> file to include the following as the last line, adjusting the script name as required: </p>
+          <p> Edit the <b>~/.bashrc</b> file with the command <code>nano ~/.bashrc</code> to include the following as the last line, adjusting the script name as required: </p>
           <pre>xinit /home/pi/reelyActive/pi-suite/kiosk/chromium-hello-showcase -- vt$(fgconsole)</pre>
           <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> If a kiosk script was <em>optionally</em> created in Part 1, instead change the file path above to <tt>/home/pi/kiosk</tt> </p>
           <h3>
