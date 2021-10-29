@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> Run Pareto Anywhere on a Raspberry Pi </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Run Pareto Anywhere on a Raspberry Pi",
+      "description": "Step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pareto-anywhere-pi/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Pareto Anywhere on a Pi"
+      }]
+    }]
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Page view tracking (gtag.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Run Pareto Anywhere on a Raspberry Pi </h1>
+          <p class="lead"> Our step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Run Pareto Anywhere on a Raspberry Pi">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive run our Pareto Anywhere open source middleware on a <i class="fab fa-raspberry-pi"></i> Pi. </p>
+              <p> The Raspberry Pi will transform ambient wireless data into real-time context: who/what is where/how. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The <i class="fab fa-raspberry-pi"></i> Pi will serve contextual APIs and web apps and can forward data to a remote Elasticsearch instance for analysis. </dd>
+                <dt class="col-sm-3"> Why use a Pi? </dt>
+                <dd class="col-sm-9"> A <i class="fab fa-raspberry-pi"></i> Pi is ubiquitous and cost-effective, and can even collect ambient data using its onboard Bluetooth Low Energy radio. </dd>
+                <dt class="col-sm-3"> Does this apply only to the Pi? </dt>
+                <dd class="col-sm-9"> Most of the process applies equally well to other platforms, especially those running <i class="fab fa-linux"></i> Linux. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A Raspberry Pi (or equivalent) with Raspberry Pi OS Lite installed. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pi-prep/">
+                <img src="../pi-prep/images/icon.jpg">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pi-prep/">
+                <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+              </a>
+              Our step-by-step tutorial on how we install and configure Raspberry Pi OS Lite on a <i class="fab fa-raspberry-pi"></i> Pi.
+            </li>
+          </ul>
+          <!----- Step 1 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing Pareto Anywhere &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Clone our pareto-anywhere repository on GitHub and install all dependencies using npm. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Do I need to SSH into the Pi? </dt>
+                <dd class="col-sm-9"> Yes, unless you've connected a keyboard and display directly to the Pi.  If you forgot how to SSH in, recall <a href="../pi-prep/#step04" target="_blank">Step 4 from the Pi Prep tutorial</a>. </dd>
+                <dt class="col-sm-3"> Do I need a GitHub account? </dt>
+                <dd class="col-sm-9"> No.  You can clone the public repository <em>without</em> a GitHub account. </dd>
+              </dl>
+              <img src="images/clone-pareto-anywhere.jpg"
+                   class="card-img-bottom"
+                   alt="Clone the pareto-anywhere repository from GitHub">
+            </div>
+          </div>
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p> Both the <i class="fab fa-raspberry-pi"></i> Pi and the computer <i class="fas fa-laptop"></i> used for its configuration must be on the <em>same</em> network, with which they can access the Internet. </p>
+          <h3>
+            Boot the Pi and connect via SSH
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> With <a href="../pi-prep/" target="_blank">the prepared micro SD card <i class="fas fa-sd-card"></i></a> inserted into the <i class="fab fa-raspberry-pi"></i>  Pi, complete the following: </p>
+          <ol>
+            <li> Apply power <i class="fas fa-plug"></i> to the Raspberry Pi </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> on the computer <i class="fas fa-laptop"></i> and SSH into the Pi with the command <code class="user-select-all">ssh pi@xxx.xxx.xxx.xxx</code> replacing the x values with the Pi's IP address </li>
+            <li> When prompted enter the password (<b>berryinsecure</b> is the default) </li>
+          </ol>
+          <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code class="user-select-all">sudo raspi-config</code> </p>
+          <h3>
+            Install pareto-anywhere and its dependencies
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> First create a reelyActive folder under the home folder. </p>
+          <ol>
+            <li> Create (if it does not already exist) a <b>reelyActive</b> <i class="fas fa-folder-plus"></i> folder with the command <code class="user-select-all">mkdir ~/reelyActive</code> </li>
+            <li> Change to the reelyActive folder with the command <code class="user-select-all">cd ~/reelyActive</code> </li>
+          </ol>
+          <p> Next, install Pareto Anywhere under this folder. </p>
+          <ol>
+            <li> Clone the pareto-anywhere repository and submodules from our <i class="fab fa-github"></i> GitHub with the command <code class="user-select-all">git clone --recurse-submodules https://github.com/reelyactive/pareto-anywhere.git</code> </li>
+            <li> Change to the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd pareto-anywhere</code> </li>
+            <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+          </ol>
+          <p> <span class="badge bg-primary"><i class="fas fa-info-circle"></i></span> It is possible that some dependencies produce warnings or errors.  <em>Do not despair:</em> in most cases these have no impact on functionality. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Run Pareto Anywhere &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Confirm that everything works! </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Do I need an ambient data source? </dt>
+                <dd class="col-sm-9"> No.  Pareto Anywhere runs even in the absence of source data. </dd>
+                <dt class="col-sm-3"> Can I test my ambient data source? </dt>
+                <dd class="col-sm-9"> Yes.  In the second part of this step you'll find how to quickly validate the integration with common hardware/modules. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-on-pi.jpg"
+                   class="card-img-bottom" alt="Pareto Anywhere on Pi">
+            </div>
+          </div>
+          <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, and from the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder: </p>
+          <h3>
+            Run Pareto Anywhere
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Start the middleware and browse to the Pi to confirm that it is running as follows: </p>
+          <ol>
+            <li> Run Pareto Anywhere with the command <code class="user-select-all">npm start</code> </li>
+            <li> From the computer <i class="fas fa-laptop"></i>, point a web browser at the Pi on port 3001, <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address, as before </li>
+          </ol>
+          <p> Observe the Pareto Anywhere landing page.  It is normal not to observe any real-time data as a source has yet to be connected. </p>
+          <p> <span class="badge bg-primary"><i class="fas fa-info-circle"></i></span> The software can be stopped by entering <kbd>Ctrl+C</kbd> from the command line. </p>
+          <h3>
+            Run and validate a specific configuration
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Should a source of ambient data be available (see the tabs below), it is possible to validate its integration with the software suite. </p>
+          <p class="text-muted"> Details to come. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Automatically run on boot &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> Configure a systemd service to run Pareto Anywhere each time the Pi boots. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why systemd? </dt>
+                <dd class="col-sm-9"> It is becoming the de facto standard for system and service management among <i class="fab fa-linux"></i> Linux distributions. </dd>
+                <dt class="col-sm-3"> Is this specific to the Pi?</dt>
+                <dd class="col-sm-9">Many <i class="fab fa-linux"></i> Linux distributions have <a href="https://en.wikipedia.org/wiki/Systemd#Adoption" target="_blank">adopted systemd</a>, for which these instructions should apply equally well. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-systemd.jpg"
+                   class="card-img-bottom" alt="Pareto Anywhere with systemd">
+            </div>
+          </div>
+          <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, and from the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder: </p>
+          <h3>
+            Enable the pareto-anywhere service
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Configure systemd to run the pareto-anywhere service by completing the following: </p>
+          <ol>
+            <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere.service /lib/systemd/system</code> </li>
+            <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere.service</code> </li>
+            <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere.service</code> </li>
+            <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
+          </ol>
+          <p> Observe the Pareto Anywhere landing page. </p>
+          <h3>
+            Set any environment variables
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only if custom environment variable configuration is required. </p>
+          <p> Should your configuration require any environment variables to be set differently than the defaults, <em>for example to run on port 80 and to connect to a remote Elasticsearch database,</em> these variables can be added to .conf files associated with the pi-suite.service as follows: </p>
+          <ol>
+            <li> Create a pareto-anywhere.service configuration file with the command <code class="user-select-all">sudo systemctl edit pareto-anywhere.service</code> </li>
+            <li> In the file editor, add a <b>[Service]</b> line followed by the environment variables, one on each line, as in the example below:
+            <pre class="my-1"><code class="user-select-all">[Service]
+Environment="PORT=80"
+Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
+</code></pre> </li>
+            <li> Save the file as <b>/etc/systemd/system/pareto-anywhere.service.d/environment.conf</b> (or similar) </li>
+          </ol>
+          <p> The environment variables from this .conf file will be observed each time the service runs. </p>
+          <h3>
+            Confirm that Pareto Anywhere runs on boot
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Reboot and again observe the Pareto Anywhere landing page as follows: </p>
+          <ol>
+            <li> Reboot the <i class="fab fa-raspberry-pi"></i> Pi with the command <code class="user-select-all">sudo reboot now</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+            <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
+          </ol>
+          <p> Once again observe the Pareto Anywhere landing page.  The middleware will indeed run each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
+          <p> <span class="badge bg-primary"><i class="fas fa-exclamation-circle"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable pareto-anywhere.service</code>. </p>
+          <p> Pareto Anywhere is now installed and will run on each boot.  The Pi can now <em>optionally</em> be configured as a kiosk display, which is the subject of the following tutorial: </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <img src="../pi-kiosk/images/icon.jpg" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <h5 class="mt-0 mb-1"> Configure a Raspberry Pi as a kiosk display </h5>
+              </a>
+              Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.
+            </li>
+          </ul>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2021 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+  </body>
+</html>
