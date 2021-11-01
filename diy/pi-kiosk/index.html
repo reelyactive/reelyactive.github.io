@@ -323,6 +323,41 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
             </tbody>
           </table>
           <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If a display is connected via HDMI, following the boot sequence, the <i class="fab fa-chrome"></i> Chromium browser should open in kiosk mode and display the specified webpage. </p>
+          <h3>
+            <span class="text-muted"> [OPTIONAL] </span> Display Pareto Anywhere Apps
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> If Pareto Anywhere is running on the Pi, any of the Pareto Anywhere Apps can be displayed in kiosk mode, such as the following, simply by updating <span class="text-primary">the URL</span> in the <b>kiosk</b> file (see Part 1): </p>
+          <div id="carouselApps" class="carousel slide carousel-fade"
+               data-bs-ride="carousel" data-bs-interval="3600">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselApps"
+                      data-bs-slide-to="0" class="active" aria-current="true"
+                      aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselApps"
+                      data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="images/pareto-apps-hello-sniffypedia.jpg"
+                     class="d-block w-100" alt="Hello Sniffypedia!">
+                <div class="carousel-caption">
+                  <p class="bg-white bg-opacity-50 text-primary py-1">
+                    <b class="user-select-all"> http://localhost:3001/apps/hello-sniffypedia/ </b>
+                  </p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="images/pareto-apps-hlc-explorer.jpg"
+                     class="d-block w-100" alt="Hyperlocal Context Explorer">
+                <div class="carousel-caption">
+                  <p class="bg-white bg-opacity-50 text-primary py-1">
+                    <b class="user-select-all"> http://localhost:3001/apps/hlc-explorer/?updates=periodic </b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
