@@ -5,24 +5,16 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="How to prepare a Raspberry Pi with friendly network settings, Node.js and everything you need to run reelyActive's open source software.">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-49659454-2');
-    </script>
-    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
-    <link rel="stylesheet" href="../common/style/reelyactive.css">
+          content="Step-by-step guide to install Raspberry Pi OS Lite for lean, headless operation with friendly network settings and the latest version of Node.js.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
     <title> reelyActive Raspberry Pi Preparation Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
-    {
+    [{
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "reelyActive Raspberry Pi Preparation Guide",
-      "description": "How to prepare a Raspberry Pi with friendly network settings, Node.js and everything you need to run reelyActive's open source software.",
+      "description": "Step-by-step guide to install Raspberry Pi OS Lite for lean, headless operation with friendly network settings and the latest version of Node.js.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/pi-prep/images/header.jpg",
@@ -30,97 +22,122 @@
         "@type": "Organization",
         "url": "https://www.reelyactive.com"
       }
-    }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Pi Preparation Guide"
+      }]
+    }]
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
     </script>
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
-      <a class="navbar-brand" href="https://www.reelyactive.com/">
-        <img src="../common/images/reelyactive-logo-nav.png"
-             width="165" height="30" alt="reelyActive">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-              data-target="#navbarItems" aria-controls="navbarItems"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarItems">
-        <ul class="navbar-nav mr-auto"></ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="../../">
-              <i class="fas fa-home"></i>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown"
-               role="button" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-              <i class="fas fa-question-circle"></i>
-            </a>
-            <!-- Info about tracking and open source software/licenses -->
-            <div class="dropdown-menu dropdown-menu-right"
-                 aria-labelledby="navbarDropdown">
-              <a class="dropdown-item"
-                 href="https://www.reelyactive.com/how-we-observe/#digital">
-                <i class="fas fa-mouse-pointer"></i>
-                Page view tracking (gtag.js) &nbsp;
-                <span class="badge badge-warning">
-                  <i class="fas fa-user-tag"></i>
-                </span>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://getbootstrap.com" >
-                <i class="fab fa-bootstrap"></i>
-                Bootstrap 4 &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://fontawesome.com" >
-                <i class="fab fa-font-awesome"></i>
-                Font Awesome (Free) &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-creative-commons"></i>
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://jquery.com" >
-                <i class="fab fa-js"></i>
-                JQuery &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://github.com/reelyactive/web-style-guide/" >
-                <i class="fas fa-code"></i>
-                Web Style Guide &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://www.reelyactive.com/made-in-montreal/" >
-                <i class="fab fa-canadian-maple-leaf"></i>
-                Made in Montr&eacute;al &nbsp;
-                <i class="fas fa-city"></i>
-              </a>
-            </div>
-          </li>
-        </ul>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Page view tracking (gtag.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
+    <!-- Content -->
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Prepare a Raspberry Pi from scratch </h1>
-          <p class="lead"> Our step-by-step guide to prepare a lean yet versatile SD card image for the Pi. </p>
+          <p class="lead"> Our step-by-step guide to prepare a lean yet versatile SD card image based on Raspberry Pi OS Lite. </p>
           <img src="images/header.jpg" class="img-fluid"
                alt="Prepare a reelyActive SD card image for Raspberry Pi">
           <!----- The TL;DR ----->
@@ -130,45 +147,45 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive prepare a SD card image for a Raspberry Pi. </p>
-              <p> <a href="https://reelyactive.github.io/make-a-pi-hub.html" target="_blank">Our original Pi tutorial</a> is/was one of our most popular pages.  This tutorial is a <i>friendlier</i> reference on each step of the prep. </p>
+              <p class="lead"> Learn how we at reelyActive prepare a SD card image for a <i class="fab fa-raspberry-pi"></i> Pi. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">What will this accomplish?</dt>
-                <dd class="col-sm-9">A clean installation of the latest Raspberry Pi OS Lite build with everything to support reelyActive's open source software suite.</dd>
-                <dt class="col-sm-3">Is there an easier way?</dt>
-                <dd class="col-sm-9">Yes, you can simply flash a ready-made disk image to a SD card.</dd>
-                <dt class="col-sm-3">So why would I read this?</dt>
-                <dd class="col-sm-9">Perhaps you're curious about the process.  Perhaps you'll find one or more steps useful for a completely different project.</dd>
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> A clean, lean installation of the latest Raspberry Pi OS Lite build ready to run Node.js programs like our Pareto Anywhere middleware. </dd>
+                <dt class="col-sm-3"> Is there an easier way? </dt>
+                <dd class="col-sm-9"> Yes, you can simply flash a ready-made disk image to a SD card. </dd>
+                <dt class="col-sm-3"> So why would I read this? </dt>
+                <dd class="col-sm-9"> To understand and follow the process to create your own SD card image. </dd>
               </dl>
             </div>
           </div>
-          <!----- Step 1 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step01">
-                Flashing Raspberry Pi OS Lite to a SD Card &nbsp;
-                <a href="#step01" class="badge badge-secondary">Step 1 of 5</a>
+          <!----- Step 1 of 5 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Flashing the OS to a SD Card &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 5 </a>
               </h2>
               <p class="lead"> Download the latest version of Raspberry Pi OS Lite and flash it to an SD card with Etcher. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why Raspberry Pi OS?</dt>
-                <dd class="col-sm-9">As the default operating system for the Pi (formerly called Raspbian), it is accessible to the broadest audience.</dd>
-                <dt class="col-sm-3">Why Lite?</dt>
-                <dd class="col-sm-9">It's good enough and keeps the disk image small.</dd>
+                <dt class="col-sm-3"> Why Raspberry Pi OS? </dt>
+                <dd class="col-sm-9"> As the default operating system for the <i class="fab fa-raspberry-pi"></i> Pi (formerly called Raspbian), it is accessible to the broadest audience. </dd>
+                <dt class="col-sm-3"> Why Lite? </dt>
+                <dd class="col-sm-9"> It includes all the key ingredients for headless operation while keeping the disk image small. </dd>
               </dl>
+              <img src="images/raspbian-via-etcher-to-sd-card.png"
+                   class="card-img-bottom"
+                   alt="Flashing Raspbian to SD card using Etcher">
             </div>
           </div>
-          <img src="images/raspbian-via-etcher-to-sd-card.png" class="img-fluid"
-               alt="Flashing Raspbian to SD card using Etcher">
           <h3 class="mt-4"> Prerequisites </h3>
-          <p> We'll flash the SD card with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
-          <h3>
+          <p> We'll flash the <i class="fas fa-sd-card"></i> SD card with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
+          <h3 class="mt-4">
             Download and unzip the latest Raspberry Pi OS Lite
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
+          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the <i class="fas fa-sd-card"></i> SD card: </p>
           <ol>
             <li> Browse to <a href="https://www.raspberrypi.org/downloads/raspberry-pi-os/" target="_blank"> www.raspberrypi.org/downloads/raspberry-pi-os/ </a> </li>
             <li> Scroll down to find the <b>Lite</b> version </li>
@@ -176,56 +193,57 @@
             <li> Unzip the downloaded file </li>
           </ol>
           <p> You should now have a file entitled <b>20xx-xx-xx-raspios-buster-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
-          <h3>
+          <h3 class="mt-4">
             Flash the Raspberry Pi OS image to the SD card
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> We recommend using micro SD cards from reputable vendors of at least 4GB size.  From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card: </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> We recommend using micro SD cards from reputable vendors of at least 4GB size. </p>
+          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the <i class="fas fa-sd-card"></i> SD card: </p>
           <ol>
-            <li> Insert the SD card <i class="fas fa-sd-card"></i> (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
-            <li> Run Etcher (see Prerequisites above) by double-clicking its executable AppImage or desktop icon </li>
+            <li> Insert the <i class="fas fa-sd-card"></i> SD card (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
+            <li> Run Etcher (see Prerequisites above) by double-clicking <i class="fas fa-mouse-pointer"></i>  its executable AppImage or desktop icon </li>
             <li> In the Etcher interface, select the image file </li>
             <li> In the Etcher interface, confirm that the SD card is automatically selected, or select manually </li>
             <li> In the Etcher interface, click <i>Flash!</i> </li>
           </ol>
-          <p> Within a few minutes the SD card should be flashed and verified.  Unmount (if necessary) and eject the card <i class="fas fa-eject"></i>. </p>
-          <!----- Step 2 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step02">
-                Pre-configuring Raspberry Pi OS Lite for the Pi &nbsp;
-                <a href="#step02" class="badge badge-secondary">Step 2 of 5</a>
+          <p> Within a few minutes the <i class="fas fa-sd-card"></i> SD card should be flashed and verified.  Unmount (if necessary) and eject the card <i class="fas fa-eject"></i>. </p>
+          <!----- Step 2 of 5 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Pre-configuring the OS &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 5 </a>
               </h2>
               <p class="lead"> Configure Raspberry Pi OS <i>before</i> the first boot on the Pi, ensuring a painless initial connection. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why more pre-config?</dt>
-                <dd class="col-sm-9">Unless you have a monitor and keyboard for the Pi, good luck with the first connection otherwise!</dd>
-                <dt class="col-sm-3">Why so difficult to connect?</dt>
-                <dd class="col-sm-9">By default SSH is disabled (for security) so even if you can reach the Pi over a network, it will refuse to connect!</dd>
+                <dt class="col-sm-3"> Why more pre-config? </dt>
+                <dd class="col-sm-9"> Unless you have a monitor and keyboard for the Pi, good luck with the first connection otherwise! </dd>
+                <dt class="col-sm-3"> Why so difficult to connect? </dt>
+                <dd class="col-sm-9"> By default SSH is disabled (for security) so even if you can reach the Pi over a network, it will refuse to connect! </dd>
               </dl>
+              <img src="images/predictable-network-names-and-eth0-fallback.jpg"
+                   class="card-img-bottom"
+                   alt="Predictable network names and eth0 fallback">
             </div>
           </div>
-          <img src="images/predictable-network-names-and-eth0-fallback.jpg"
-               class="img-fluid"
-               alt="Predictable network names and eth0 fallback">
-          <p class="mt-4"> Re-insert the SD card <i class="fas fa-sd-card"></i> into the computer <i class="fas fa-laptop"></i>.  The computer should now mount two partitions: <code>boot</code> and <code>rootfs</code>.  We'll make minor changes to both partitions as follows. </p>
-          <h3>
+          <p class="mt-4"> Re-insert the <i class="fas fa-sd-card"></i> SD card into the computer <i class="fas fa-laptop"></i>.  The computer should now mount two partitions: <code>boot</code> and <code>rootfs</code>.  We'll make minor changes to each partition as follows. </p>
+          <h3 class="mt-4">
             Enable SSH and predictable network interface names
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <code>boot</code> partition, then: </p>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>/boot</b> partition, then: </p>
           <ol>
-            <li> Enable SSH with the command <code>sudo touch ./ssh</code> </li>
-            <li> Open the file <b>cmdline.txt</b> and append the following to the first line: <code>net.ifnames=0</code> </li>
+            <li> Enable SSH with the command <code class="user-select-all">sudo touch ./ssh</code> </li>
+            <li> Open the file <b>cmdline.txt</b> and append the following to the first line: <code class="user-select-all">net.ifnames=0</code> </li>
           </ol>
-          <p> This will allow us to SSH into the Pi on the first boot, and will use predictable network interface names (ex: eth0, wlan0) which we'll need for Part 2. </p>
-          <h3>
+          <p> This will allow us to SSH into the <i class="fab fa-raspberry-pi"></i> Pi on the first boot, and will use predictable network interface names (ex: eth0, wlan0) which we'll need for Part 2. </p>
+          <h3 class="mt-4">
             Fallback to static Ethernet IP address
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <code>rootfs</code> partition.  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
-          <pre><code># Define static profile
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>/rootfs</b> partition.  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
+          <pre class="user-select-all"># Define static profile
 profile static_eth0
 static ip_address=10.0.50.100/24
 static routers=10.0.50.1
@@ -233,49 +251,48 @@ static domain_name_servers=10.0.50.1
 
 # Fallback to static profile on eth0
 interface eth0
-fallback static_eth0
-          </code></pre>
-          <p> This will ensure that the Pi boots with the static Ethernet <i class="fas fa-ethernet"></i> address of <b>10.0.50.100</b> in the absence of DHCP, as will be the case, and will prove helpful on any occasion where it is necessary to <i>directly</i> connect to the Pi over Ethernet, as in the following step. </p>
-          <p> Unmount both partitions and eject <i class="fas fa-eject"></i> the SD card which is now ready to find its way into the Pi. </p>
-          <!----- Step 3 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step03">
+fallback static_eth0</pre>
+          <p> This will ensure that the <i class="fab fa-raspberry-pi"></i> Pi boots with the static Ethernet <i class="fas fa-ethernet"></i> address of <b>10.0.50.100</b> in the absence of DHCP, as will be the case, and will prove helpful on any occasion where it is necessary to <i>directly</i> connect to the <i class="fab fa-raspberry-pi"></i> Pi over Ethernet, as in the following step. </p>
+          <p> Unmount both partitions and eject <i class="fas fa-eject"></i> the <i class="fas fa-sd-card"></i> SD card which is now ready to find its way into the Pi. </p>
+          <!----- Step 3 of 5 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
                 First boot and raspi-config &nbsp;
-                <a href="#step03" class="badge badge-secondary">Step 3 of 5</a>
+                <a href="#step03" class="badge bg-primary"> Step 3 of 5 </a>
               </h2>
               <p class="lead"> Boot the Pi for the first time and SSH in via Ethernet to run raspi-config. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why connect over Ethernet?</dt>
-                <dd class="col-sm-9">Because we know the Pi's static IP address, making this the easiest way to connect at first.</dd>
-                <dt class="col-sm-3">Why use SSH?</dt>
-                <dd class="col-sm-9">Unless you have a display and keyboard connected to the Pi, the only way to remotely execute commands is over SSH!</dd>
+                <dt class="col-sm-3"> Why connect over Ethernet? </dt>
+                <dd class="col-sm-9"> Because we know the Pi's static IP address, making this the easiest way to connect at first. </dd>
+                <dt class="col-sm-3"> Why use SSH? </dt>
+                <dd class="col-sm-9"> Unless you have a display and keyboard connected to the Pi, the only way to remotely execute commands is over SSH! </dd>
               </dl>
+              <img src="images/raspi-config.jpg"
+                   class="card-img-bottom" alt="raspi-config">
             </div>
           </div>
-          <img src="images/raspi-config.jpg" class="img-fluid"
-               alt="raspi-config">
-          <p class="mt-4"> The micro SD card <i class="fas fa-sd-card"></i> should now be inserted into the Raspberry Pi <i class="fab fa-raspberry-pi"></i>. </p>
-          <h3>
+          <p class="mt-4"> The <i class="fas fa-sd-card"></i> SD card should now be inserted into the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+          <h3 class="mt-4">
             Boot the Pi and connect via SSH over Ethernet
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> With the micro SD card <i class="fas fa-sd-card"></i> inserted into the Pi <i class="fab fa-raspberry-pi"></i>, complete the following: </p>
+          <p> With the <i class="fas fa-sd-card"></i> SD card inserted into the <i class="fab fa-raspberry-pi"></i> Pi, complete the following: </p>
           <ol>
-            <li> Apply power <i class="fas fa-plug"></i> to the Raspberry Pi </li>
-            <li> Connect the computer <i class="fas fa-laptop"></i> with the Pi <i class="fab fa-raspberry-pi"></i> using a network (Ethernet) cable <i class="fas fa-network-wired"></i> </li>
+            <li> Apply power <i class="fas fa-plug"></i> to the <i class="fab fa-raspberry-pi"></i> Pi </li>
+            <li> Connect the computer <i class="fas fa-laptop"></i> with the <i class="fab fa-raspberry-pi"></i> Pi using a network (Ethernet) cable <i class="fas fa-network-wired"></i> </li>
             <li> Set the computer <i class="fas fa-laptop"></i> to use the static Ethernet <i class="fas fa-ethernet"></i> IP address <b>10.0.50.101</b> </li>
-            <li> Open a terminal <i class="fas fa-terminal"></i> and SSH into the Pi with the command <code>ssh pi@10.0.50.100</code> and, when prompted, enter the default password <b>raspberry</b> </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> and SSH into the Pi with the command <code class="user-select-all">ssh pi@10.0.50.100</code> and, when prompted, enter the default password <b class="user-select-all">raspberry</b> </li>
           </ol>
-          <p> Now that you're logged in to the Pi, it is possible to execute commands such as raspi-config.</p>
-          <h3>
+          <p> Now that you're logged in to the <i class="fab fa-raspberry-pi"></i> Pi, it is possible to execute commands such as raspi-config.</p>
+          <h3 class="mt-4">
             Complete the basic configuration with the raspi-config tool
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code>sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
-          <table class="table table-striped">
-            <thead class="thead-reelyactive">
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code class="user-select-all">sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
+          <table class="table table-hover">
+            <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Option</th>
@@ -324,218 +341,218 @@ fallback static_eth0
             </tbody>
           </table>
           <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If you entered valid WiFi <i class="fas fa-wifi"></i> settings, the Pi <i class="fab fa-raspberry-pi"></i> should connect to this network automatically, which will be required for the next step. </p>
-          <!----- Step 4 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step04">
+          <!----- Step 4 of 5 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
                 Second boot and DHCP server config &nbsp;
-                <a href="#step04" class="badge badge-secondary">Step 4 of 5</a>
+                <a href="#step04" class="badge bg-primary"> Step 4 of 5 </a>
               </h2>
               <p class="lead"> SSH into the Pi over WiFi and configure its Ethernet DHCP server to facilitate future direct connections. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why reconnect over WiFi?</dt>
-                <dd class="col-sm-9">The Pi will require an Internet connection in subsequent steps.  A local area network (LAN) connection, such as over WiFi, affords both a local SSH login and Internet access for the Pi.</dd>
-                <dt class="col-sm-3">Why a DHCP server?</dt>
-                <dd class="col-sm-9">Configuring a static IP address on a computer can be a pain (remember Step 3?).  A DHCP server enables the Pi to <i>automatically</i> assign an IP address to any computer with which it is directly connected.</dd>
+                <dt class="col-sm-3"> Why reconnect over WiFi? </dt>
+                <dd class="col-sm-9"> The Pi will require an Internet connection in subsequent steps.  A local area network (LAN) connection, such as over WiFi, affords both a local SSH login and Internet access for the Pi. </dd>
+                <dt class="col-sm-3"> Why a DHCP server? </dt>
+                <dd class="col-sm-9"> Configuring a static IP address on a computer can be a pain (remember Step 3?).  A DHCP server enables the Pi to <i>automatically</i> assign an IP address to any computer with which it is directly <i class="fas fa-ethernet"></i> connected. </dd>
               </dl>
+              <img src="images/dhcp-either-way.jpg" class="card-img-bottom"
+                   alt="Raspberry Pi DHCP either way">
             </div>
           </div>
-          <img src="images/dhcp-either-way.jpg" class="img-fluid"
-               alt="Raspberry Pi DHCP either way">
-          <p class="mt-4"> The Pi <i class="fab fa-raspberry-pi"></i> should have rebooted from the previous step and connected to both the local WiFi <i class="fas fa-wifi"></i> network and again to the computer <i class="fas fa-laptop"></i> connected directly via Ethernet <i class="fas fa-network-wired"></i>. </p>
-          <h3>
+          <p class="mt-4"> The <i class="fab fa-raspberry-pi"></i> Pi should have rebooted from the previous step and connected to both the local WiFi <i class="fas fa-wifi"></i> network and again to the computer <i class="fas fa-laptop"></i> connected directly via Ethernet <i class="fas fa-network-wired"></i>. </p>
+          <h3 class="mt-4">
             SSH to the Pi over WiFi after determining its IP address
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> With the Pi <i class="fab fa-raspberry-pi"></i> still connected to the computer <i class="fas fa-laptop"></i> via Ethernet <i class="fas fa-network-wired"></i>, and from the same terminal window <i class="fas fa-terminal"></i> as before: </p>
+          <p> With the <i class="fab fa-raspberry-pi"></i> Pi still connected to the computer <i class="fas fa-laptop"></i> via Ethernet <i class="fas fa-network-wired"></i>, and from the same terminal window <i class="fas fa-terminal"></i> as before: </p>
           <ol>
-            <li> SSH back into the Pi with the command <code>ssh pi@10.0.50.100</code>, using the <i>new</i> password <b>berryinsecure</b> </li>
-            <li> Determine the Pi's WiFi <i class="fas fa-wifi"></i> IP address with the command <code>ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b>. </li>
-            <li> Exit the current SSH session with the command <code>exit</code> </li>
-            <li> SSH into the Pi over WiFi <i class="fas fa-wifi"></i> with the command <code>ssh pi@xxx.xxx.xxx.xxx</code>, replacing the x values with the Pi's WiFi IP address. </li>
-            <li> Disconnect the network cable between the Pi and the computer. </li>
+            <li> SSH back into the <i class="fab fa-raspberry-pi"></i> Pi with the command <code class="user-select-all">ssh pi@10.0.50.100</code>, using the <i>new</i> password <b class="user-select-all">berryinsecure</b> </li>
+            <li> Determine the <i class="fab fa-raspberry-pi"></i> Pi's WiFi <i class="fas fa-wifi"></i> IP address with the command <code class="user-select-all">ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b>. </li>
+            <li> Exit the current SSH session with the command <code class="user-select-all">exit</code> </li>
+            <li> SSH into the <i class="fab fa-raspberry-pi"></i> Pi over WiFi <i class="fas fa-wifi"></i> with the command <code class="user-select-all">ssh pi@xxx.xxx.xxx.xxx</code>, replacing the x values with the <i class="fab fa-raspberry-pi"></i> Pi's WiFi IP address. </li>
+            <li> Disconnect the network cable between the <i class="fab fa-raspberry-pi"></i> Pi and the computer <i class="fas fa-laptop"></i>. </li>
           </ol>
-          <p> The computer <i class="fas fa-laptop"></i> is now connected to the Pi <i class="fab fa-raspberry-pi"></i> over WiFi <i class="fas fa-wifi"></i>. </p>
-          <p> <span class="badge badge-warning"><i class="fas fa-exclamation-triangle"></i></span> Be sure to <i>disconnect the network cable between the two</i>, else they may ignore their Internet connection over WiFi, instead selecting Ethernet as their default gateway. </p>
-          <h3>
+          <p> The computer <i class="fas fa-laptop"></i> is now connected to the <i class="fab fa-raspberry-pi"></i> Pi over WiFi <i class="fas fa-wifi"></i>. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Be sure to <i>disconnect the network cable between the two</i>, else they may ignore their Internet connection over WiFi, instead selecting Ethernet as their default gateway. </p>
+          <h3 class="mt-4">
             Install and configure the DHCP server using dnsmasq 
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the Pi <i class="fab fa-raspberry-pi"></i> via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
+          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
-            <li> Install dnsmasq with the command <code>sudo apt-get install dnsmasq</code> </li>
-            <li> Save a copy <i class="fas fa-copy"></i> of the default configuration with the command <code>sudo mv /etc/dnsmasq.conf /etc/dnsmasq.default</code> </li>
-            <li> Create the file <b>/etc/dnsmasq.conf</b>, paste in the following two lines and save: 
-              <pre><code>interface=eth0
-dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</code></pre>
+            <li> Install dnsmasq with the command <code class="user-select-all">sudo apt-get install dnsmasq</code> </li>
+            <li> Save a copy <i class="fas fa-copy"></i> of the default configuration with the command <code class="user-select-all">sudo mv /etc/dnsmasq.conf /etc/dnsmasq.default</code> </li>
+            <li> Create the file <b>/etc/dnsmasq.conf</b>, paste in the following two lines and save:
+              <pre class="user-select-all">interface=eth0
+dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
             </li>
-            <li> Restart <i class="fas fa-redo"></i> the service with the command <code>sudo service dnsmasq restart</code> </li>
+            <li> Restart <i class="fas fa-redo"></i> the service with the command <code class="user-select-all">sudo service dnsmasq restart</code> </li>
           </ol>
-          <p> The Pi will now behave as follows on Ethernet <i class="fas fa-ethernet"></i> connection: </p>
-          <table class="table table-striped">
-            <thead class="thead-reelyactive">
+          <p> The <i class="fab fa-raspberry-pi"></i> Pi will now behave as follows on Ethernet <i class="fas fa-ethernet"></i> connection: </p>
+          <table class="table table-hover">
+            <thead>
               <tr>
-                <th scope="col">External DHCP?</th>
-                <th scope="col">Behaviour of the Raspberry Pi</th>
+                <th scope="col"> External DHCP? </th>
+                <th scope="col"> Behaviour of the Raspberry Pi </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Yes</th>
-                <td>The Pi will accept the DHCP-assigned IP address</td>
+                <th scope="row"> Yes </th>
+                <td> The Pi will accept the DHCP-assigned IP address </td>
               </tr>
               <tr>
-                <th scope="row">No</th>
-                <td>The Pi will fallback to static IP address <b>10.0.50.100</b> <i>and</i> it will assign IP addresses in the range 10.0.50.2-99 to any connected devices</td>
+                <th scope="row"> No </th>
+                <td> The Pi will fallback to static IP address <b>10.0.50.100</b> <i>and</i> it will assign IP addresses in the range 10.0.50.2-99 to any connected devices </td>
               </tr>
             </tbody>
           </table>
-          <p> The core configuration of the Raspberry Pi is now complete.  On to the software! </p>
-          <!----- Step 5 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="step05">
+          <p> The core configuration of the <i class="fab fa-raspberry-pi"></i> Pi is now complete.  On to the software! </p>
+          <!----- Step 5 of 5 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step05" class="card-title my-2">
                 Install Node.js, npm and git &nbsp;
-                <a href="#step05" class="badge badge-secondary">Step 5 of 5</a>
+                <a href="#step05" class="badge bg-primary"> Step 5 of 5 </a>
               </h2>
-              <p class="lead"> Install all the prerequisites for the reelyActive open source software. </p>
+              <p class="lead"> Install all the prerequisites to run Node.js programs such as our Pareto Anywhere middleware. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why install Node.js?</dt>
-                <dd class="col-sm-9">The reelyActive open source software runs on Node.js.</dd>
-                <dt class="col-sm-3">Why install git?</dt>
-                <dd class="col-sm-9">Because nothing says "I &hearts; Open Source Software" quite like git.</dd>
+                <dt class="col-sm-3"> Why install Node.js? </dt>
+                <dd class="col-sm-9"> Our open source Pareto Anywhere middleware runs on Node.js. </dd>
+                <dt class="col-sm-3"> Why install git? </dt>
+                <dd class="col-sm-9"> To clone the Pareto Anywhere GitHub repo, and, because nothing says "I &hearts; Open Source Software" quite like git. </dd>
               </dl>
+              <img src="images/node-npm-git.png" class="card-img-bottom"
+                   alt="Node.js, npm and git">
             </div>
           </div>
-          <img src="images/node-npm-git.png" class="img-fluid"
-               alt="Node.js, npm and git">
           <h3 class="mt-4"> Prerequisites </h3>
           <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>12.18.1</b>).  Substitute this version number in all of the commands below. </p>
-          <h3>
+          <h3 class="mt-4">
             Download and install Node.js and npm 
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the Pi <i class="fab fa-raspberry-pi"></i> via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
+          <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
-            <li> Change to the home <i class="fas fa-home"></i> folder with the command <code>cd</code> </li>
-            <li> Download the Node.js <i class="fab fa-node-js"></i> tarball with the command <code>wget https://nodejs.org/dist/v12.18.1/node-v12.18.1-linux-armv7l.tar.xz</code> </li>
-            <li> Unpack with the command <code>tar -xf node-v12.18.1-linux-armv7l.tar.xz</code> </li>
-            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code>sudo mv node-v12.18.1-linux-armv7l /usr/local/node</code> </li>
-            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code>rm node-v12.18.1-linux-armv7l.tar.xz</code> </li>
-            <li> Change to the <b>/usr/local/bin</b> folder with the command <code>cd /usr/local/bin</code> </li>
-            <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>node</b> with the command <code>sudo ln -s /usr/local/node/bin/node node</code> </li>
-            <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>npm</b> with the command <code>sudo ln -s /usr/local/node/bin/npm npm</code> </li>
+            <li> Change to the home <i class="fas fa-home"></i> folder with the command <code class="user-select-all">cd</code> </li>
+            <li> Download the Node.js <i class="fab fa-node-js"></i> tarball with the command <code class="user-select-all">wget https://nodejs.org/dist/v12.18.1/node-v12.18.1-linux-armv7l.tar.xz</code> </li>
+            <li> Unpack with the command <code class="user-select-all">tar -xf node-v12.18.1-linux-armv7l.tar.xz</code> </li>
+            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code class="user-select-all">sudo mv node-v12.18.1-linux-armv7l /usr/local/node</code> </li>
+            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code class="user-select-all">rm node-v12.18.1-linux-armv7l.tar.xz</code> </li>
+            <li> Change to the <b>/usr/local/bin</b> folder with the command <code class="user-select-all">cd /usr/local/bin</code> </li>
+            <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>node</b> with the command <code class="user-select-all">sudo ln -s /usr/local/node/bin/node node</code> </li>
+            <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>npm</b> with the command <code class="user-select-all">sudo ln -s /usr/local/node/bin/npm npm</code> </li>
           </ol>
-          <p> Confirm that node <i class="fab fa-node-js"></i> and npm <i class="fab fa-npm"></i> are successfully installed with the commands <code>node --version</code> and <code>npm --version</code> respectively. </p>
-          <h3>
+          <p> Confirm that node <i class="fab fa-node-js"></i> and npm <i class="fab fa-npm"></i> are successfully installed with the commands <code class="user-select-all">node --version</code> and <code class="user-select-all">npm --version</code> respectively. </p>
+          <h3 class="mt-4">
             Update/upgrade all packages and install git 
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Since the latest release of Raspbian, there are inevitably newer versions of some of the packages available. From the same terminal <i class="fas fa-terminal"></i> connected to the Pi <i class="fab fa-raspberry-pi"></i> via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
+          <p> Since the latest release of Raspberry Pi OS Lite, there are inevitably newer versions of some of the packages available. From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
-            <li> Update the list of available packages and their versions with the command <code>sudo apt-get update</code> </li>
-            <li> Upgrade existing packages to the latest version with the command <code>sudo apt-get upgrade</code> </li>
-            <li> Install git <i class="fab fa-git-square"></i> with the command <code>sudo apt-get install git</code> </li>
+            <li> Update the list of available packages and their versions with the command <code class="user-select-all">sudo apt-get update</code> </li>
+            <li> Upgrade existing packages to the latest version with the command <code class="user-select-all">sudo apt-get upgrade</code> </li>
+            <li> Install git <i class="fab fa-git-square"></i> with the command <code class="user-select-all">sudo apt-get install git</code> </li>
           </ol>
-          <p> All software packages are now installed and at the latest version.  The Pi is prepared for installation of the reelyActive open source software suite, which is the subject of the next tutorial: </p>
-          <p class="text-center">
-            <a href="../pi-suite/" class="btn btn-primary"> <i class="fas fa-star"></i> Next tutorial</a>
-          </p>
-          <!----- Document template ----->
-          <div class="card my-4">
-            <h4 class="card-header"> Do you like this document template? </h4>
-            <div class="card-body">
-              <p class="card-text"> It's based on <a href="https://getbootstrap.com" target="_blank"><i class="fab fa-bootstrap"></i> Bootstrap 4</a> <a href="https://getbootstrap.com/docs/4.3/about/license/" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> and <a href="https://fontawesome.com" target="_blank"><i class="fab fa-font-awesome"></i> Font Awesome 5 (Free)</a> <a href="https://fontawesome.com/license/free" target="_blank" class="badge badge-light"><i class="fab fa-creative-commons"></i> <i class="fab fa-osi"></i> &nbsp; MIT</a>.  Our <b>Web Style Guide</b> <a href="https://github.com/reelyactive/web-style-guide/#license" target="_blank" class="badge badge-light"><i class="fab fa-osi"></i> &nbsp; MIT</a> has all the details.  Sharing and feedback are encouraged! </p>
-              <a href="https://github.com/reelyactive/web-style-guide"
-                 target="_blank" class="btn btn-secondary btn-sm">
-                <i class="fas fa-external-link-alt"></i> &nbsp;
-                reelyActive's Web Style Guide
+          <p> All software packages are now installed and at the latest version.  The <i class="fab fa-raspberry-pi"></i> Pi is prepared for the (optional) installation of Pareto Anywhere, which is the subject of the next tutorial: </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="img-fluid">
               </a>
-            </div>
-          </div>
-          <!----- Where to next? ----->
-          <hr>
-          <h2> Where to next? </h2>
-          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
-          <ul class="list-unstyled">
-            <li class="media my-2">
-              <a href="../pi-suite/">
-                <img src="../pi-suite/images/icon.jpg"
-                     class="align-self-start mr-3">
-              </a>
-              <div class="media-body">
-                <a href="../pi-suite/">
-                  <h5 class="mt-0 mb-1"> <i class="fas fa-star"></i> Install our open source software suite on a Pi </h5>
-                </a>
-                Our step-by-step guide to make a Raspberry Pi into an open RTLS, RFID and M2M platform.
-              </div>
             </li>
-            <li class="media my-2">
-              <a href="../pi-kiosk/">
-                <img src="../pi-kiosk/images/icon.jpg"
-                     class="align-self-start mr-3">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
               </a>
-              <div class="media-body">
-                <a href="../pi-kiosk/">
-                  <h5 class="mt-0 mb-1"> Configure a Raspberry Pi as a kiosk display </h5>
-                </a>
-                Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.
-              </div>
-            </li>
-            <li class="media my-2">
-              <a href="../laptop-prep/">
-                <img src="../laptop-prep/images/icon.jpg"
-                     class="align-self-start mr-3">
-              </a>
-              <div class="media-body">
-                <a href="../laptop-prep/">
-                  <h5 class="mt-0 mb-1"> Prepare a reelyActive laptop from scratch </h5>
-                </a>
-                Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software.
-              </div>
-            </li>
-            <li class="media my-2">
-              <a href="../../">
-                <img src="../common/images/icon.png"
-                     class="align-self-start mr-3">
-              </a>
-              <div class="media-body">
-                <a href="../../">
-                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
-                </a>
-                The home for reelyActive developers.
-              </div>
-            </li>
-            <li class="media my-2">
-              <a href="../../make-a-pi-hub.html">
-                <img src="../common/images/icon.png"
-                     class="align-self-start mr-3">
-              </a>
-              <div class="media-body">
-                <a href="../../make-a-pi-hub.html">
-                  <h5 class="mt-0 mb-1">Make a Pi Hub</h5>
-                </a>
-                Our original Pi tutorial.
-              </div>
+              Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
             </li>
           </ul>
-          <p> &nbsp; </p>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <img src="../pi-kiosk/images/icon.jpg" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <h5 class="mt-0 mb-1"> Configure a Raspberry Pi as a kiosk display </h5>
+              </a>
+              Our step-by-step guide to configure a <i class="fab fa-raspberry-pi"></i> Pi as a kiosk display that runs automatically on boot.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  www.reelyActive.com
+                </h5>
+              </a>
+              Make <em>any</em> physical space context-aware for what matters for <em>your</em> business.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <a href="https://reelyactive.github.io"> diyActive </a>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2020 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2021 </a>
     </footer>
 
     <!-- Optional JavaScript -->
-    <script defer src="../common/js/solid.min.js"></script>
-    <script defer src="../common/js/brands.min.js"></script>
-    <script defer src="../common/js/fontawesome.min.js"></script>
-    <script src="../common/js/jquery-3.4.0.min.js"></script>
-    <script src="../common/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
   </body>
 </html>
