@@ -198,7 +198,7 @@
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
           <p> Both the <i class="fab fa-raspberry-pi"></i> Pi and the computer <i class="fas fa-laptop"></i> used for its configuration must be on the <em>same</em> network, with which they can access the Internet. </p>
-          <h3>
+          <h3 class="mt-4">
             Boot the Pi and connect via SSH
             <small class="text-muted"> Part 1 </small>
           </h3>
@@ -209,7 +209,7 @@
             <li> When prompted enter the password (<b>berryinsecure</b> is the default) </li>
           </ol>
           <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code class="user-select-all">sudo raspi-config</code> </p>
-          <h3>
+          <h3 class="mt-4">
             Install pareto-anywhere and its dependencies
             <small class="text-muted"> Part 2 </small>
           </h3>
@@ -245,7 +245,7 @@
             </div>
           </div>
           <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, and from the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder: </p>
-          <h3>
+          <h3 class="mt-4">
             Run Pareto Anywhere
             <small class="text-muted"> Part 1 </small>
           </h3>
@@ -256,7 +256,7 @@
           </ol>
           <p> Observe the Pareto Anywhere landing page.  It is normal not to observe any real-time data as a source has yet to be connected. </p>
           <p> <span class="badge bg-primary"><i class="fas fa-info-circle"></i></span> The software can be stopped by entering <kbd>Ctrl+C</kbd> from the command line. </p>
-          <h3>
+          <h3 class="mt-4">
             Run and validate a specific configuration
             <small class="text-muted"> (OPTIONAL) Part 2 </small>
           </h3>
@@ -366,7 +366,7 @@
             </div>
           </div>
           <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, and from the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder: </p>
-          <h3>
+          <h3 class="mt-4">
             Enable the pareto-anywhere service
             <small class="text-muted"> Part 1 </small>
           </h3>
@@ -378,7 +378,7 @@
             <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
           </ol>
           <p> Observe the Pareto Anywhere landing page. </p>
-          <h3>
+          <h3 class="mt-4">
             Set any environment variables
             <small class="text-muted"> (OPTIONAL) Part 2 </small>
           </h3>
@@ -394,7 +394,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
             <li> Save the file as <b>/etc/systemd/system/pareto-anywhere.service.d/environment.conf</b> (or similar) </li>
           </ol>
           <p> The environment variables from this .conf file will be observed each time the service runs. </p>
-          <h3>
+          <h3 class="mt-4">
             Confirm that Pareto Anywhere runs on boot
             <small class="text-muted"> Part 3 </small>
           </h3>
