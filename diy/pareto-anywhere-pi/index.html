@@ -208,7 +208,7 @@
             <li> Open a terminal <i class="fas fa-terminal"></i> on the computer <i class="fas fa-laptop"></i> and SSH into the Pi with the command <code class="user-select-all">ssh pi@xxx.xxx.xxx.xxx</code> replacing the x values with the Pi's IP address </li>
             <li> When prompted enter the password (<b>berryinsecure</b> is the default) </li>
           </ol>
-          <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code class="user-select-all">sudo raspi-config</code> </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code class="user-select-all">sudo raspi-config</code> </p>
           <h3 class="mt-4">
             Install pareto-anywhere and its dependencies
             <small class="text-muted"> Part 2 </small>
@@ -224,7 +224,7 @@
             <li> Change to the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd pareto-anywhere</code> </li>
             <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
           </ol>
-          <p> <span class="badge bg-primary"><i class="fas fa-info-circle"></i></span> It is possible that some dependencies produce warnings or errors.  <em>Do not despair:</em> in most cases these have no impact on functionality. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> It is possible that some dependencies produce warnings or errors.  <em>Do not despair:</em> in most cases these have no impact on functionality. </p>
           <!----- Step 2 of 3 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
@@ -255,7 +255,7 @@
             <li> From the computer <i class="fas fa-laptop"></i>, point a web browser at the Pi on port 3001, <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address, as before </li>
           </ol>
           <p> Observe the Pareto Anywhere landing page.  It is normal not to observe any real-time data as a source has yet to be connected. </p>
-          <p> <span class="badge bg-primary"><i class="fas fa-info-circle"></i></span> The software can be stopped by entering <kbd>Ctrl+C</kbd> from the command line. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The software can be stopped by entering <kbd>Ctrl+C</kbd> from the command line. </p>
           <h3 class="mt-4">
             Run and validate a specific configuration
             <small class="text-muted"> (OPTIONAL) Part 2 </small>
@@ -372,9 +372,9 @@
           </h3>
           <p> Configure systemd to run the pareto-anywhere service by completing the following: </p>
           <ol>
-            <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere.service /lib/systemd/system</code> </li>
-            <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere.service</code> </li>
-            <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere.service</code> </li>
+            <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere-pi.service /lib/systemd/system</code> </li>
+            <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere-pi.service</code> </li>
+            <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere-pi.service</code> </li>
             <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
           </ol>
           <p> Observe the Pareto Anywhere landing page. </p>
@@ -382,16 +382,16 @@
             Set any environment variables
             <small class="text-muted"> (OPTIONAL) Part 2 </small>
           </h3>
-          <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only if custom environment variable configuration is required. </p>
-          <p> Should your configuration require any environment variables to be set differently than the defaults, <em>for example to run on port 80 and to connect to a remote Elasticsearch database,</em> these variables can be added to .conf files associated with the pi-suite.service as follows: </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only if custom environment variable configuration is required. </p>
+          <p> Should your configuration require any environment variables to be set differently than the defaults, <em>for example to run on port 80 and to connect to a remote Elasticsearch database,</em> these variables can be added to .conf files associated with the pareto-anywhere-pi.service as follows: </p>
           <ol>
-            <li> Create a pareto-anywhere.service configuration file with the command <code class="user-select-all">sudo systemctl edit pareto-anywhere.service</code> </li>
+            <li> Create a pareto-anywhere-pi.service configuration file with the command <code class="user-select-all">sudo systemctl edit pareto-anywhere-pi.service</code> </li>
             <li> In the file editor, add a <b>[Service]</b> line followed by the environment variables, one on each line, as in the example below:
             <pre class="my-1"><code class="user-select-all">[Service]
 Environment="PORT=80"
 Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
 </code></pre> </li>
-            <li> Save the file as <b>/etc/systemd/system/pareto-anywhere.service.d/environment.conf</b> (or similar) </li>
+            <li> Save the file as <b>/etc/systemd/system/pareto-anywhere-pi.service.d/environment.conf</b> (or similar) </li>
           </ol>
           <p> The environment variables from this .conf file will be observed each time the service runs. </p>
           <h3 class="mt-4">
@@ -404,7 +404,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
             <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
           </ol>
           <p> Once again observe the Pareto Anywhere landing page.  The middleware will indeed run each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
-          <p> <span class="badge bg-primary"><i class="fas fa-exclamation-circle"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable pareto-anywhere.service</code>. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable pareto-anywhere.service</code>. </p>
           <p> Pareto Anywhere is now installed and will run on each boot.  The Pi can now <em>optionally</em> be configured as a kiosk display, which is the subject of the following tutorial: </p>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
