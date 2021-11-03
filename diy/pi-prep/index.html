@@ -151,11 +151,11 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
-                <dd class="col-sm-9"> A clean, lean installation of the latest Raspberry Pi OS Lite build ready to run Node.js programs like our Pareto Anywhere middleware. </dd>
+                <dd class="col-sm-9"> A clean, lean installation of the latest Raspberry Pi OS Lite build ready to run <i class="fab fa-node-js"></i> Node.js programs like our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> middleware. </dd>
                 <dt class="col-sm-3"> Is there an easier way? </dt>
-                <dd class="col-sm-9"> Yes, you can simply flash a ready-made disk image to a SD card. </dd>
+                <dd class="col-sm-9"> Yes, you can simply flash a ready-made disk image to a SD card <i class="fas fa-sd-card"></i>. </dd>
                 <dt class="col-sm-3"> So why would I read this? </dt>
-                <dd class="col-sm-9"> To understand and follow the process to create your own SD card image. </dd>
+                <dd class="col-sm-9"> To understand and follow the process to create your own SD card <i class="fas fa-sd-card"></i> image. </dd>
               </dl>
             </div>
           </div>
@@ -180,33 +180,33 @@
             </div>
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
-          <p> We'll flash the <i class="fas fa-sd-card"></i> SD card with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
+          <p> We'll flash the SD card <i class="fas fa-sd-card"></i> with Etcher, a friendly open source tool that you can download <a href="https://www.balena.io/etcher/" target="_blank">here</a>. </p>
           <h3 class="mt-4">
             Download and unzip the latest Raspberry Pi OS Lite
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the <i class="fas fa-sd-card"></i> SD card: </p>
+          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card <i class="fas fa-sd-card"></i>: </p>
           <ol>
-            <li> Browse to <a href="https://www.raspberrypi.org/downloads/raspberry-pi-os/" target="_blank"> www.raspberrypi.org/downloads/raspberry-pi-os/ </a> </li>
+            <li> Browse to <a href="https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit" target="_blank"> www.raspberrypi.com/software/operating-systems/ </a> </li>
             <li> Scroll down to find the <b>Lite</b> version </li>
             <li> Download the <a href="https://downloads.raspberrypi.org/raspios_lite_armhf_latest" target="_blank">ZIP</a> or <a href="https://downloads.raspberrypi.org/raspios_lite_armhf_latest.torrent" target="_blank">Torrent</a>, as you prefer </li>
             <li> Unzip the downloaded file </li>
           </ol>
-          <p> You should now have a file entitled <b>20xx-xx-xx-raspios-buster-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
+          <p> You should now have a file entitled <b>20xx-xx-xx-raspios-buster-armhf-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
           <h3 class="mt-4">
             Flash the Raspberry Pi OS image to the SD card
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> We recommend using micro SD cards from reputable vendors of at least 4GB size. </p>
-          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the <i class="fas fa-sd-card"></i> SD card: </p>
+          <p> From the computer <i class="fas fa-laptop"></i> with which you intend to flash the SD card <i class="fas fa-sd-card"></i>: </p>
           <ol>
-            <li> Insert the <i class="fas fa-sd-card"></i> SD card (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
+            <li> Insert the SD card <i class="fas fa-sd-card"></i> (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
             <li> Run Etcher (see Prerequisites above) by double-clicking <i class="fas fa-mouse-pointer"></i>  its executable AppImage or desktop icon </li>
-            <li> In the Etcher interface, select the image file </li>
-            <li> In the Etcher interface, confirm that the SD card is automatically selected, or select manually </li>
-            <li> In the Etcher interface, click <i>Flash!</i> </li>
+            <li> In the Etcher interface, select the <b>20xx-xx-xx-raspios-buster-armhf-lite.img</b> file </li>
+            <li> In the Etcher interface, confirm that the SD card <i class="fas fa-sd-card"></i> is automatically selected, or select manually </li>
+            <li> In the Etcher interface, click <i>Flash!</i> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 4 mins </span> </li>
           </ol>
-          <p> Within a few minutes the <i class="fas fa-sd-card"></i> SD card should be flashed and verified.  Unmount (if necessary) and eject the card <i class="fas fa-eject"></i>. </p>
+          <p> Proceed to the next step once the SD card <i class="fas fa-sd-card"></i> is flashed and verified. </p>
           <!----- Step 2 of 5 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
@@ -218,21 +218,22 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why more pre-config? </dt>
-                <dd class="col-sm-9"> Unless you have a monitor and keyboard for the Pi, good luck with the first connection otherwise! </dd>
+                <dd class="col-sm-9"> Unless you have a monitor and keyboard for the <i class="fab fa-raspberry-pi"></i> Pi, good luck with the first connection otherwise! </dd>
                 <dt class="col-sm-3"> Why so difficult to connect? </dt>
-                <dd class="col-sm-9"> By default SSH is disabled (for security) so even if you can reach the Pi over a network, it will refuse to connect! </dd>
+                <dd class="col-sm-9"> By default SSH is disabled (for security) so even if you can reach the <i class="fab fa-raspberry-pi"></i> Pi over a network, it will refuse to connect! </dd>
               </dl>
               <img src="images/predictable-network-names-and-eth0-fallback.jpg"
                    class="card-img-bottom"
                    alt="Predictable network names and eth0 fallback">
             </div>
           </div>
-          <p class="mt-4"> Re-insert the <i class="fas fa-sd-card"></i> SD card into the computer <i class="fas fa-laptop"></i>.  The computer should now mount two partitions: <code>boot</code> and <code>rootfs</code>.  We'll make minor changes to each partition as follows. </p>
+          <p class="mt-4"> Following the flashing of the SD card <i class="fas fa-sd-card"></i> in the previous step, the computer <i class="fas fa-laptop"></i> should automatically mount two partitions: <b>boot</b> and <b>rootfs</b>.  We'll make minor changes to each partition as follows. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If the partitions <em>aren't</em> automatically mounted, eject <i class="fas fa-eject"></i> the SD card <i class="fas fa-sd-card"></i> and then re-insert into the computer <i class="fas fa-laptop"></i>. </p>
           <h3 class="mt-4">
             Enable SSH and predictable network interface names
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>/boot</b> partition, then: </p>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>boot</b> partition (ex: <code class="user-select-all">cd /media/user/boot/</code>), then: </p>
           <ol>
             <li> Enable SSH with the command <code class="user-select-all">sudo touch ./ssh</code> </li>
             <li> Open the file <b>cmdline.txt</b> and append the following to the first line: <code class="user-select-all">net.ifnames=0</code> </li>
@@ -242,18 +243,19 @@
             Fallback to static Ethernet IP address
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>/rootfs</b> partition.  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
-          <pre class="user-select-all"># Define static profile
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>rootfs</b> partition (ex: <code class="user-select-all">cd /media/user/rootfs/</code>).  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
+          <pre class="user-select-all"># It is possible to fall back to a static IP if DHCP fails:
+# define static profile
 profile static_eth0
 static ip_address=10.0.50.100/24
 static routers=10.0.50.1
 static domain_name_servers=10.0.50.1
 
-# Fallback to static profile on eth0
+# fallback to static profile on eth0
 interface eth0
 fallback static_eth0</pre>
           <p> This will ensure that the <i class="fab fa-raspberry-pi"></i> Pi boots with the static Ethernet <i class="fas fa-ethernet"></i> address of <b>10.0.50.100</b> in the absence of DHCP, as will be the case, and will prove helpful on any occasion where it is necessary to <i>directly</i> connect to the <i class="fab fa-raspberry-pi"></i> Pi over Ethernet, as in the following step. </p>
-          <p> Unmount both partitions and eject <i class="fas fa-eject"></i> the <i class="fas fa-sd-card"></i> SD card which is now ready to find its way into the Pi. </p>
+          <p> Unmount both partitions and eject <i class="fas fa-eject"></i> the SD card <i class="fas fa-sd-card"></i> which is now ready to find its way into the <i class="fab fa-raspberry-pi"></i> Pi. </p>
           <!----- Step 3 of 5 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
@@ -265,20 +267,20 @@ fallback static_eth0</pre>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why connect over Ethernet? </dt>
-                <dd class="col-sm-9"> Because we know the Pi's static IP address, making this the easiest way to connect at first. </dd>
+                <dd class="col-sm-9"> Because we know the <i class="fab fa-raspberry-pi"></i> Pi's static IP address, making this the easiest way to connect at first. </dd>
                 <dt class="col-sm-3"> Why use SSH? </dt>
-                <dd class="col-sm-9"> Unless you have a display and keyboard connected to the Pi, the only way to remotely execute commands is over SSH! </dd>
+                <dd class="col-sm-9"> Unless you have a display and keyboard connected to the <i class="fab fa-raspberry-pi"></i> Pi, the only way to remotely execute commands is over SSH! </dd>
               </dl>
               <img src="images/raspi-config.jpg"
                    class="card-img-bottom" alt="raspi-config">
             </div>
           </div>
-          <p class="mt-4"> The <i class="fas fa-sd-card"></i> SD card should now be inserted into the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+          <p class="mt-4"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The SD card <i class="fas fa-sd-card"></i> should only be inserted into (or removed from) the <i class="fab fa-raspberry-pi"></i> Pi when it is <em>disconnected</em> from power. </p>
           <h3 class="mt-4">
             Boot the Pi and connect via SSH over Ethernet
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> With the <i class="fas fa-sd-card"></i> SD card inserted into the <i class="fab fa-raspberry-pi"></i> Pi, complete the following: </p>
+          <p> With the SD card <i class="fas fa-sd-card"></i> inserted into the <i class="fab fa-raspberry-pi"></i> Pi, complete the following: </p>
           <ol>
             <li> Apply power <i class="fas fa-plug"></i> to the <i class="fab fa-raspberry-pi"></i> Pi </li>
             <li> Connect the computer <i class="fas fa-laptop"></i> with the <i class="fab fa-raspberry-pi"></i> Pi using a network (Ethernet) cable <i class="fas fa-network-wired"></i> </li>
@@ -290,43 +292,43 @@ fallback static_eth0</pre>
             Complete the basic configuration with the raspi-config tool
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code class="user-select-all">sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code class="user-select-all">sudo raspi-config</code> which will open a text-based menu. </p>
+          <img src="images/raspi-config-menu.png"
+               class="img-fluid mx-auto d-block"
+               alt="raspi-config menu">
+          <p class="mt-4"> Update the configuration as per the following table where the settings are indicated in [ ]. </p>
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Option</th>
-                <th scope="col">Action(s)</th>
+                <th scope="col"> # </th>
+                <th scope="col"> Option </th>
+                <th scope="col"> Action(s) </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">1</th>
-                <td>Change User Password</td>
-                <td>Set to <b>berryinsecure</b></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Network Options</td>
+                <th scope="row"> 1 </th>
+                <td> System Options </td>
                 <td>
-                  N2 Wi-fi <i>(adjust the defaults as per your local WiFi network)</i>
+                  <b>S1</b> Wireless LAN
                   <ul>
-                    <li>Set country [<b>CA</b>]</li>
-                    <li>Please enter SSID [<b>reelyActive</b>]</li>
-                    <li>Please enter passphrase [<b>owl-in-one</b>]</li>
+                    <li>Set country<sup>*</sup> [<b>CA</b>]</li>
+                    <li>Please enter SSID<sup>*</sup> [<b>reelyActive</b>]</li>
+                    <li>Please enter passphrase<sup>*</sup> [<b>owl-in-one</b>]</li>
                   </ul>
+                  <p class="text-muted text-end"> <small><sup>*</sup>adjust as per your region and local WiFi network</small> </p>
                 </td>
               </tr>
               <tr>
-                <th scope="row">4</th>
-                <td>Localisation Options</td>
-                <td>I2 Change Timezone [<b>America | Montreal</b>]</td>
+                <th scope="row"> 1 </th>
+                <td> System Options </td>
+                <td> <b>S3</b> Password &nbsp; [<b>berryinsecure</b>] </td>
               </tr>
               <tr>
-                <th scope="row">5</th>
-                <td>Interfacing Options</td>
+                <th scope="row"> 3 </th>
+                <td> Interface Options </td>
                 <td>
-                  P6 Serial
+                  <b>P6</b> Serial Port
                   <ul>
                     <li>Would you like a login shell to be accessible over serial? [<b>No</b>]</li>
                     <li>Would you like the serial port hardware to be enabled? [<b>Yes</b>]</li>
@@ -334,13 +336,22 @@ fallback static_eth0</pre>
                 </td>
               </tr>
               <tr>
-                <th scope="row">7</th>
-                <td>Advanced Options</td>
-                <td>A1 Expand Filesystem [<b>Select</b>]</td>
+                <th scope="row"> 5 </th>
+                <td> Localisation Options </td>
+                <td>
+                  <b>L2</b> Change Timezone<sup>*</sup> &nbsp; [<b>America | Montreal</b>]
+                  <p class="text-muted text-end mt-2"> <small><sup>*</sup>adjust as per your region (reelyActive is "<a href="https://www.reelyactive.com/made-in-montreal/" target="_blank">Made in Montr&eacute;al</a>")</small> </p>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row"> 6 </th>
+                <td> Advanced Options </td>
+                <td> <b>A1</b> Expand Filesystem [<b>Select</b>] </td>
               </tr>
             </tbody>
           </table>
-          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If you entered valid WiFi <i class="fas fa-wifi"></i> settings, the Pi <i class="fab fa-raspberry-pi"></i> should connect to this network automatically, which will be required for the next step. </p>
+          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If you entered valid WiFi <i class="fas fa-wifi"></i> settings, the <i class="fab fa-raspberry-pi"></i> Pi should connect to this network automatically, which will be required for the next step. </p>
           <!----- Step 4 of 5 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
@@ -348,13 +359,13 @@ fallback static_eth0</pre>
                 Second boot and DHCP server config &nbsp;
                 <a href="#step04" class="badge bg-primary"> Step 4 of 5 </a>
               </h2>
-              <p class="lead"> SSH into the Pi over WiFi and configure its Ethernet DHCP server to facilitate future direct connections. </p>
+              <p class="lead"> SSH into the <i class="fab fa-raspberry-pi"></i> Pi over WiFi and configure its Ethernet DHCP server to facilitate future direct connections. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why reconnect over WiFi? </dt>
-                <dd class="col-sm-9"> The Pi will require an Internet connection in subsequent steps.  A local area network (LAN) connection, such as over WiFi, affords both a local SSH login and Internet access for the Pi. </dd>
+                <dd class="col-sm-9"> The <i class="fab fa-raspberry-pi"></i> Pi will require an Internet connection in subsequent steps.  A local area network (LAN) connection, such as over WiFi, affords both a local SSH login and Internet access for the Pi. </dd>
                 <dt class="col-sm-3"> Why a DHCP server? </dt>
-                <dd class="col-sm-9"> Configuring a static IP address on a computer can be a pain (remember Step 3?).  A DHCP server enables the Pi to <i>automatically</i> assign an IP address to any computer with which it is directly <i class="fas fa-ethernet"></i> connected. </dd>
+                <dd class="col-sm-9"> Configuring a static IP address on a computer can be a pain (remember Step 3?).  A DHCP server enables the <i class="fab fa-raspberry-pi"></i> Pi to <i>automatically</i> assign an IP address to any computer with which it is directly <i class="fas fa-ethernet"></i> connected. </dd>
               </dl>
               <img src="images/dhcp-either-way.jpg" class="card-img-bottom"
                    alt="Raspberry Pi DHCP either way">
@@ -368,7 +379,7 @@ fallback static_eth0</pre>
           <p> With the <i class="fab fa-raspberry-pi"></i> Pi still connected to the computer <i class="fas fa-laptop"></i> via Ethernet <i class="fas fa-network-wired"></i>, and from the same terminal window <i class="fas fa-terminal"></i> as before: </p>
           <ol>
             <li> SSH back into the <i class="fab fa-raspberry-pi"></i> Pi with the command <code class="user-select-all">ssh pi@10.0.50.100</code>, using the <i>new</i> password <b class="user-select-all">berryinsecure</b> </li>
-            <li> Determine the <i class="fab fa-raspberry-pi"></i> Pi's WiFi <i class="fas fa-wifi"></i> IP address with the command <code class="user-select-all">ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b>. </li>
+            <li> Determine the <i class="fab fa-raspberry-pi"></i> Pi's WiFi <i class="fas fa-wifi"></i> IP address with the command <code class="user-select-all">ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b> <small class="text-muted">(ex: 192.168.0.123)</small> </li>
             <li> Exit the current SSH session with the command <code class="user-select-all">exit</code> </li>
             <li> SSH into the <i class="fab fa-raspberry-pi"></i> Pi over WiFi <i class="fas fa-wifi"></i> with the command <code class="user-select-all">ssh pi@xxx.xxx.xxx.xxx</code>, replacing the x values with the <i class="fab fa-raspberry-pi"></i> Pi's WiFi IP address. </li>
             <li> Disconnect the network cable between the <i class="fab fa-raspberry-pi"></i> Pi and the computer <i class="fas fa-laptop"></i>. </li>
@@ -383,7 +394,7 @@ fallback static_eth0</pre>
           <ol>
             <li> Install dnsmasq with the command <code class="user-select-all">sudo apt-get install dnsmasq</code> </li>
             <li> Save a copy <i class="fas fa-copy"></i> of the default configuration with the command <code class="user-select-all">sudo mv /etc/dnsmasq.conf /etc/dnsmasq.default</code> </li>
-            <li> Create the file <b>/etc/dnsmasq.conf</b>, paste in the following two lines and save:
+            <li> Create the file <b>/etc/dnsmasq.conf</b> with the command <code class="user-select-all">sudo nano /etc/dnsmasq.conf</code> then paste in the following two lines and save:
               <pre class="user-select-all">interface=eth0
 dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
             </li>
@@ -400,11 +411,11 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
             <tbody>
               <tr>
                 <th scope="row"> Yes </th>
-                <td> The Pi will accept the DHCP-assigned IP address </td>
+                <td> The <i class="fab fa-raspberry-pi"></i> Pi will accept the DHCP-assigned IP address </td>
               </tr>
               <tr>
                 <th scope="row"> No </th>
-                <td> The Pi will fallback to static IP address <b>10.0.50.100</b> <i>and</i> it will assign IP addresses in the range 10.0.50.2-99 to any connected devices </td>
+                <td> The <i class="fab fa-raspberry-pi"></i> Pi will fallback to static IP address <b>10.0.50.100</b> <i>and</i> it will assign IP addresses in the range 10.0.50.2-99 to any connected devices </td>
               </tr>
             </tbody>
           </table>
@@ -420,16 +431,16 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why install Node.js? </dt>
-                <dd class="col-sm-9"> Our open source Pareto Anywhere middleware runs on Node.js. </dd>
+                <dd class="col-sm-9"> Our open source Pareto Anywhere middleware runs on <i class="fab fa-node-js"></i> Node.js. </dd>
                 <dt class="col-sm-3"> Why install git? </dt>
-                <dd class="col-sm-9"> To clone the Pareto Anywhere GitHub repo, and, because nothing says "I &hearts; Open Source Software" quite like git. </dd>
+                <dd class="col-sm-9"> To be able to clone GitHub repositories like that of Pareto Anywhere and other open source projects. </dd>
               </dl>
               <img src="images/node-npm-git.png" class="card-img-bottom"
                    alt="Node.js, npm and git">
             </div>
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
-          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>12.18.1</b>).  Substitute this version number in all of the commands below. </p>
+          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>16.13.0</b>).  Substitute this version number in all of the commands below. </p>
           <h3 class="mt-4">
             Download and install Node.js and npm 
             <small class="text-muted"> Part 1 </small>
@@ -437,24 +448,24 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
           <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
             <li> Change to the home <i class="fas fa-home"></i> folder with the command <code class="user-select-all">cd</code> </li>
-            <li> Download the Node.js <i class="fab fa-node-js"></i> tarball with the command <code class="user-select-all">wget https://nodejs.org/dist/v12.18.1/node-v12.18.1-linux-armv7l.tar.xz</code> </li>
-            <li> Unpack with the command <code class="user-select-all">tar -xf node-v12.18.1-linux-armv7l.tar.xz</code> </li>
-            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code class="user-select-all">sudo mv node-v12.18.1-linux-armv7l /usr/local/node</code> </li>
-            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code class="user-select-all">rm node-v12.18.1-linux-armv7l.tar.xz</code> </li>
+            <li> Download the <i class="fab fa-node-js"></i> Node.js tarball with the command <code class="user-select-all">wget https://nodejs.org/dist/v16.13.0/node-v16.13.0-linux-armv7l.tar.xz</code> </li>
+            <li> Unpack with the command <code class="user-select-all">tar -xf node-v16.13.0-linux-armv7l.tar.xz</code> </li>
+            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code class="user-select-all">sudo mv node-v16.13.0-linux-armv7l /usr/local/node</code> </li>
+            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code class="user-select-all">rm node-v16.13.0-linux-armv7l.tar.xz</code> </li>
             <li> Change to the <b>/usr/local/bin</b> folder with the command <code class="user-select-all">cd /usr/local/bin</code> </li>
             <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>node</b> with the command <code class="user-select-all">sudo ln -s /usr/local/node/bin/node node</code> </li>
             <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>npm</b> with the command <code class="user-select-all">sudo ln -s /usr/local/node/bin/npm npm</code> </li>
           </ol>
-          <p> Confirm that node <i class="fab fa-node-js"></i> and npm <i class="fab fa-npm"></i> are successfully installed with the commands <code class="user-select-all">node --version</code> and <code class="user-select-all">npm --version</code> respectively. </p>
+          <p> Confirm that <b>node</b> and <b>npm</b> are successfully installed with the commands <code class="user-select-all">node --version</code> and <code class="user-select-all">npm --version</code> respectively. </p>
           <h3 class="mt-4">
             Update/upgrade all packages and install git 
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> Since the latest release of Raspberry Pi OS Lite, there are inevitably newer versions of some of the packages available. From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
-            <li> Update the list of available packages and their versions with the command <code class="user-select-all">sudo apt-get update</code> </li>
-            <li> Upgrade existing packages to the latest version with the command <code class="user-select-all">sudo apt-get upgrade</code> </li>
-            <li> Install git <i class="fab fa-git-square"></i> with the command <code class="user-select-all">sudo apt-get install git</code> </li>
+            <li> Update the list of available packages and their versions with the command <code class="user-select-all">sudo apt-get update</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+            <li> Upgrade existing packages to the latest version with the command <code class="user-select-all">sudo apt-get upgrade</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 5 mins+ </span> </li>
+            <li> Install <i class="fab fa-git-square"></i> git with the command <code class="user-select-all">sudo apt-get install git</code> </li>
           </ol>
           <p> All software packages are now installed and at the latest version.  The <i class="fab fa-raspberry-pi"></i> Pi is prepared for the (optional) installation of Pareto Anywhere, which is the subject of the next tutorial: </p>
           <ul class="list-group list-group-horizontal">
