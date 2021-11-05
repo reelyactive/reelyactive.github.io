@@ -278,7 +278,7 @@
               <button class="nav-link" id="onboardtab" data-bs-toggle="tab"
                       data-bs-target="#onboardcontent" type="button" role="tab"
                       aria-controls="onboardtab"
-                      aria-selected="false"> Onboard Radio </button>
+                      aria-selected="false"> <i class="fas fa-star animate-breathing"></i> Onboard Radio </button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="reeltab" data-bs-toggle="tab"
@@ -338,8 +338,32 @@
             </div>
             <div class="tab-pane fade" id="onboardcontent" role="tabpanel"
                  aria-labelledby="onboardtab">
-              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from its onboard radio provided an instance of <a href="https://github.com/reelyactive/barnowl-hci">barnowl-hci</a> is running. </p>
-              <p class="text-muted"> Details to come </p>
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data from its onboard radio provided an instance of <a href="https://github.com/reelyactive/barnowl-hci">barnowl-hci</a> is running and forwarding the data.  Follow the instructions below to install and run automatically each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
+              <h4> Install barnowl-hci </h4>
+              <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, complete the following: </p>
+              <ol>
+                <li> Return to the <b>reelyActive</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd ~/reelyActive</code> </li>
+                <li> Clone the barnowl-hci repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/barnowl-hci.git</code> </li>
+                <li> Change to the <b>barnowl-hci</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd barnowl-hci</code>
+                <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+              </ol>
+              <h4> Assign radio privileges </h4>
+              <p> Allow <i class="fab fa-node-js"></i> Node.js programs the privilege to initiate <i class="fab fa-bluetooth"></i> scans with the command <code class="user-select-all">sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)</code> </p>
+              <p> Run barnowl-hci once to confirm that it can listen for ambient data: </p>
+              <ul>
+                <li> <code class="user-select-all">npm start</code> will output radio decodings (raddecs) to the console for quick-and-dirty testing </li>
+                <li> <code class="user-select-all">npm run forwarder</code> will forward raddecs to a local Pareto Anywhere instance </li>
+              </ul>
+<p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Enter <kbd>Ctrl+C</kbd> to stop either program. </p>
+              <h4> Enable the barnowl-hci-forwarder service </h4>
+              <p> Configure systemd to run the barnowl-hci-forwarder service by completing the following: </p>
+              <ol>
+                <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/barnowl-hci-forwarder-pi.service /lib/systemd/system</code> </li>
+                <li> Enable the barnowl-hci-forwarder service with the command <code class="user-select-all">sudo systemctl enable barnowl-hci-forwarder-pi.service</code> </li>
+                <li> Start the barnowl-hci-forwarder service with the command <code class="user-select-all">sudo systemctl start barnowl-hci-forwarder-pi.service</code> </li>
+              </ol>
+              <p> The <i class="fab fa-raspberry-pi"></i> Pi will now automatically and continuously scan for ambient <i class="fab fa-bluetooth"></i> devices each time it boots, forwarding the data to Pareto Anywhere. </p>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable barnowl-hci-forwarder-pi.service</code>. </p>
             </div>
             <div class="tab-pane fade" id="reelcontent" role="tabpanel"
                  aria-labelledby="reeltab">
