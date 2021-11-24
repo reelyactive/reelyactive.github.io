@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to install and run Pareto Anywhere on a personal computer to make any physical space context-aware.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> Run Pareto Anywhere on a personal computer </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Run Pareto Anywhere on a personal computer",
+      "description": "Step-by-step guide to install and run Pareto Anywhere on a personal computer to make any physical space context-aware.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pareto-anywhere-pc/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Pareto Anywhere on a PC"
+      }]
+    }]
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-49659454-2');
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Page view tracking (gtag.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Run Pareto Anywhere on a PC </h1>
+          <p class="lead"> Our step-by-step guide to install and run Pareto Anywhere on a personal computer to make any physical space context-aware. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Run Pareto Anywhere on a personal computer">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive run our Pareto Anywhere open source middleware on a <i class="fas fa-laptop"></i> PC. </p>
+              <p> The computer will transform ambient wireless data into real-time context: who/what is where/how. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The <i class="fas fa-laptop"></i> PC will serve contextual APIs and web apps and can forward data to a local/remote Elasticsearch instance for analysis. </dd>
+                <dt class="col-sm-3"> Why use a PC? </dt>
+                <dd class="col-sm-9"> For most users, a <i class="fas fa-laptop"></i> PC is the most readily available tool with which to begin exploring Pareto Anywhere and context-aware physical spaces. </dd>
+                <dt class="col-sm-3"> Can I use this in production? </dt>
+                <dd class="col-sm-9"> Yes!  In many cases, a laptop running Pareto Anywhere is ideally suited for short-term deployments and/or offline data captures. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A recent version of <i class="fab fa-node-js"></i> Node.js installed. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> From a terminal <i class="fas fa-terminal"></i> run <code>node --version</code> to check if <i class="fab fa-node-js"></i> Node.js is <em>already</em> installed. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://nodejs.org/en/download/">
+                <img src="../common/images/icon-nodejs.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://nodejs.org/en/download/">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Download Node.js
+                </h5>
+              </a>
+              Download and install the latest LTS version of <i class="fab fa-node-js"></i> Node.js.
+            </li>
+          </ul>
+          <!----- Step 1 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing Pareto Anywhere &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Install in a minute in either of two ways. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why two different ways? </dt>
+                <dd class="col-sm-9"> We recommend the local installation, but recognise that some users will prefer the convenience of a single-step installation.  <em>Your choice!</em> </dd>
+                <dt class="col-sm-3"> Is there a container option? </dt>
+                <dd class="col-sm-9"> Yes, the details for a Docker implementation are instead documented in the <i class="fab fa-github"></i> <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank">pareto-anywhere repo</a>. </dd>
+              </dl>
+              <img src="images/clone-pareto-anywhere.jpg"
+                   class="card-img-bottom"
+                   alt="Clone the pareto-anywhere repository from GitHub">
+            </div>
+          </div>
+          <p class="mt-4"> Choose the installation option that best suits your situation from the two options below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="globaltab"
+                      data-bs-toggle="tab" data-bs-target="#globalcontent"
+                      type="button" role="tab" aria-controls="globaltab"
+                      aria-selected="true"> Global (Quicker) </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="localtab" data-bs-toggle="tab"
+                      data-bs-target="#localcontent" type="button" role="tab"
+                      aria-controls="localtab"
+                      aria-selected="false"> Local (Recommended) </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="globalcontent"
+                 role="tabpanel" aria-labelledby="globaltab">
+              <p class="mt-3"> <span class="badge rounded-pill bg-success"><i class="fas fa-check"></i></span> Choose this option for the ease of a single-step installation. </p>
+              <p> Open a terminal <i class="fas fa-terminal"></i> and enter the command <code class="user-select-all">npm install -g pareto-anywhere</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span>
+              <p>
+                <small class="text-muted"> Pareto Anywhere can be run with the command <span class="font-monospace">pareto-anywhere</span> as presented in the next step. </small>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="localcontent" role="tabpanel"
+                 aria-labelledby="localtab">
+              <p class="mt-3"> <span class="badge rounded-pill bg-success"><i class="fas fa-check"></i></span> Choose this option for development and production deployments. </p>
+              <p> Open a terminal <i class="fas fa-terminal"></i> and complete the following steps: </p>
+              <ol>
+                <li> Browse to the folder <i class="fas fa-folder"></i> in which you wish to download the pareto-anywhere source code. </li>
+                <li> Clone the pareto-anywhere repository with the command <code class="user-select-all">git clone --recurse-submodules https://github.com/reelyactive/pareto-anywhere.git</code> <small class="text-muted">(or <a href="https://github.com/reelyactive/pareto-anywhere/archive/refs/heads/master.zip">download as ZIP</a> and extract as <i class="fas fa-folder-plus"></i> pareto-anywhere).</small> </li>
+                <li> Browse to the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder  with the command <code class="user-select-all">cd pareto-anywhere</code> </li>
+                <li> Install all dependencies with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+              </ol>
+              <p>
+                <small class="text-muted"> Pareto Anywhere can be run from its folder with the command <span class="font-monospace">npm start</span> as presented in the next step. </small>
+              </p>
+            </div>
+          </div>
+          <!----- Step 2 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Run Pareto Anywhere &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Confirm that everything works! </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Do I need an ambient data source? </dt>
+                <dd class="col-sm-9"> No.  Pareto Anywhere runs even in the absence of source data. </dd>
+                <dt class="col-sm-3"> Can I test my ambient data source? </dt>
+                <dd class="col-sm-9"> Yes.  In the second part of this step you'll find how to quickly validate the integration with common hardware/modules. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-on-pc.jpg"
+                   class="card-img-bottom" alt="Pareto Anywhere on PC">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Run Pareto Anywhere
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Run Pareto Anywhere from the command line based on the installation option you selected in <a href="#step01">Step 1</a>: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="gruntab"
+                      data-bs-toggle="tab" data-bs-target="#gruncontent"
+                      type="button" role="tab" aria-controls="gruntab"
+                      aria-selected="true"> Global </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="lruntab" data-bs-toggle="tab"
+                      data-bs-target="#lruncontent" type="button" role="tab"
+                      aria-controls="lruntab"
+                      aria-selected="false"> Local </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="gruncontent"
+                 role="tabpanel" aria-labelledby="gruntab">
+              <p class="mt-3"> Open a terminal <i class="fas fa-terminal"></i> and enter the command <code class="user-select-all">pareto-anywhere</code> </p>
+            </div>
+            <div class="tab-pane fade" id="lruncontent" role="tabpanel"
+                 aria-labelledby="lruntab">
+              <p class="mt-3"> Open a terminal <i class="fas fa-terminal"></i> and from the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder, enter the command <code class="user-select-all">npm start</code> </p>
+            </div>
+          </div>
+          <p class="mt-3"> Browse to <a href="http://localhost:3001">localhost:3001</a> to observe Pareto Anywhere running on the <i class="fas fa-laptop"></i> PC.  It is normal not to observe any data yet: connecting an ambient data source is covered next. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Enter <kbd>Ctrl+C</kbd> to stop either program. </p>
+          <h3 class="mt-4">
+            Run and validate a specific configuration
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Should a source of ambient data be available (see the tabs below), it is possible to validate its integration with Pareto Anywhere, replacing <span class="text-primary">xxx.xxx.xxx.xxx</span> with the <i class="fas fa-laptop"></i> PC's IP address, where required. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="gatewaystab"
+                      data-bs-toggle="tab" data-bs-target="#gatewayscontent"
+                      type="button" role="tab" aria-controls="gatewaystab"
+                      aria-selected="true"> Gateways </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="apstab" data-bs-toggle="tab"
+                      data-bs-target="#apscontent" type="button" role="tab"
+                      aria-controls="apstab"
+                      aria-selected="false"> APs </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="onboardtab" data-bs-toggle="tab"
+                      data-bs-target="#onboardcontent" type="button" role="tab"
+                      aria-controls="onboardtab"
+                      aria-selected="false"> <i class="fas fa-star animate-breathing"></i> Onboard Radio </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="reeltab" data-bs-toggle="tab"
+                      data-bs-target="#reelcontent" type="button" role="tab"
+                      aria-controls="reeltab"
+                      aria-selected="false"> Reel </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="gatewayscontent"
+                 role="tabpanel" aria-labelledby="gatewaystab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from reelyActive Owl-in-Ones and Minew G1 gateways.  Follow the step-by-step tutorials below to forward data from these gateways. </p>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../oio-config/">
+                    <img src="../oio-config/images/icon.jpg">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../oio-config/">
+                    <h5 class="mt-0 mb-1"> Configure an Owl-in-One </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets to the host <span class="text-primary">xxx.xxx.xxx.xxx</span> on port 50001 
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../minew-g1-config/">
+                    <img src="../minew-g1-config/images/icon.png">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../minew-g1-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Minew G1 Gateway </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="apscontent" role="tabpanel"
+                 aria-labelledby="apstab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from compatible Aruba and Huawei APs.  Follow the step-by-step tutorials below to forward data from these access points. </p>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../aruba-instant-config/">
+                    <img src="../aruba-instant-config/images/icon.jpg">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../aruba-instant-config/">
+                    <h5 class="mt-0 mb-1"> Configure an Aruba Instant AP </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward Telemetry Websocket data to ws://<span class="text-primary">xxx.xxx.xxx.xxx</span>/aruba
+                </li>
+              </ul>
+              <p class="mt-4 mb-2"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets from the Huawei AP to the <i class="fas fa-laptop"></i> PC on port 50010 </p>
+            </div>
+            <div class="tab-pane fade" id="onboardcontent" role="tabpanel"
+                 aria-labelledby="onboardtab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data from the <i class="fas fa-laptop"></i> PC's onboard radio<b>&mdash;if compatible&mdash;</b>provided an instance of <a href="https://github.com/reelyactive/barnowl-hci">barnowl-hci</a> is running and forwarding the data.  Follow the instructions below to install and run this option. </p>
+              <h4> Install barnowl-hci </h4>
+              <p> Open a terminal <i class="fas fa-terminal"></i> and complete the following: </p>
+              <ol>
+                <li> Browse once again to the folder <i class="fas fa-folder"></i> in which you wish to download the source code. </li>
+                <li> Clone the barnowl-hci repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/barnowl-hci.git</code> </li>
+                <li> Change to the <b>barnowl-hci</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd barnowl-hci</code>
+                <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+              </ol>
+              <h4>
+                Assign radio privileges
+                <small class="text-muted"> (Linux <i class="fab fa-linux"></i>  only)</small>
+              </h4>
+              <p> Allow <i class="fab fa-node-js"></i> Node.js programs the privilege to initiate <i class="fab fa-bluetooth"></i> scans with the command <code class="user-select-all">sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)</code> </p>
+              <p> Run barnowl-hci once to confirm that it can listen for ambient data: </p>
+              <ul>
+                <li> <code class="user-select-all">npm start</code> will output radio decodings (raddecs) to the console for quick-and-dirty testing </li>
+                <li> <code class="user-select-all">npm run forwarder</code> will forward raddecs to a local Pareto Anywhere instance </li>
+              </ul>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Enter <kbd>Ctrl+C</kbd> to stop either program. </p>
+            </div>
+            <div class="tab-pane fade" id="reelcontent" role="tabpanel"
+                 aria-labelledby="reeltab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from <a href="https://www.reelyactive.com/products/gateways/#content" target="_blank"><i class="fas fa-external-link-alt"></i> reelyActive reelceivers</a> on UDP port 50000. </p>
+            </div>
+          </div>
+          <!----- Step 3 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Installing Elasticsearch & Kibana &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> <em>Optionally</em> install this duo to explore and analyse contextual data over time. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why a local database? </dt>
+                <dd class="col-sm-9"> A <em>local</em> <i class="fas fa-laptop"></i> Elasticsearch instance stores the real-time data stream from Pareto Anywhere, facilitating standalone/offline data capture and analysis. </dd>
+                <dt class="col-sm-3"> Is there a hosted option? </dt>
+                <dd class="col-sm-9"> Yes.  <em>The hosted</em> <i class="fas fa-cloud"></i> Elasticsearch Service is recommended whenever Internet-connectivity is available, as it includes additional features such as machine learning. </dd>
+              </dl>
+              <img src="images/elasticsearch-kibana.jpg"
+                   class="card-img-bottom" alt="Pareto Anywhere with Elastic">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install Elasticsearch
+            <small class="text-muted"> (OPTIONAL) Part 1 </small>
+          </h3>
+          <p> Elasticsearch can be installed <em>locally</em> on the <i class="fas fa-laptop"></i> PC, free of cost, under the Elastic License.  Follow <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html" target="_blank"><i class="fas fa-external-link-alt"></i> the Elasticsearch installation instructions</a> for your platform/OS. </p>
+          <p> Elasticsearch can also run as a <em>hosted</em> <i class="fas fa-cloud"></i> service, bundled with Kibana, and starting with a free trial.  Learn how in this tutorial: </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../elasticsearch-service-setup/">
+                <img src="../elasticsearch-service-setup/images/icon.png"
+                     class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../elasticsearch-service-setup/">
+                <h5 class="mt-0 mb-1"> Set up a hosted Elasticsearch Service </h5>
+              </a>
+              Our step-by-step guide to setup Elastic's hosted cloud service for use with Pareto Anywhere.
+            </li>
+          </ul>
+          <h3 class="mt-4">
+            Install Kibana
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Kibana can be installed <em>locally</em> on the <i class="fas fa-laptop"></i> PC, free of cost, under the Elastic License.  Follow <a href="https://www.elastic.co/guide/en/kibana/current/install.html" target="_blank"><i class="fas fa-external-link-alt"></i> the Kibana installation instructions</a> for your platform/OS. </p>
+          <p> Kibana can also run as a <em>hosted</em> <i class="fas fa-cloud"></i> service, bundled with Elasticsearch, and starting with a free trial.  Learn how in this tutorial: </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../elasticsearch-service-setup/">
+                <img src="../elasticsearch-service-setup/images/icon.png"
+                     class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../elasticsearch-service-setup/">
+                <h5 class="mt-0 mb-1"> Set up a hosted Elasticsearch Service </h5>
+              </a>
+              Our step-by-step guide to setup Elastic's hosted cloud service for use with Pareto Anywhere.
+            </li>
+          </ul>
+          <h3 class="mt-4">
+            Point Pareto Anywhere to Elasticsearch
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Pareto Anywhere will <em>automatically</em> connect to a <em>local</em> <i class="fas fa-laptop"></i> Elasticsearch instance. </p>
+          <p> If Elasticsearch is installed and running <em>locally</em> on the <i class="fas fa-laptop"></i> PC, no further action is required.  Pareto Anywhere will automatically connect to and write to a <em>local</em> Elasticsearch instance (running at <a href="http://localhost:9200" target="_blank">localhost:9200</a>). </p>
+          <p> If Elasticsearch is running as a <em>hosted</em> <i class="fas fa-cloud"></i> service, update the ELASTICSEARCH_NODE environment variable as in the table below, specifying the <em>user</em>, <em>pass</em> and <em>server</em>, so that Pareto Anywhere can connect to and write data to the remote instance. </p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"> Environment Variable </th>
+                <th scope="col"> Default Value </th>
+                <th scope="col"> Updated Value </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> ELASTICSEARCH_NODE </td>
+                <td> http://localhost:9200 </td>
+                <td> https://user:pass@server.com:9243 </td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 class="mt-4">
+            Explore the data in Kibana
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> Browse to the <em>local</em> (<a href="http://localhost:5601" target="_blank">localhost:5601</a>) or <em>hosted</em> Kibana instance and begin analysing context-aware physical spaces over time starting with the following tutorial: </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../kibana/">
+                <img src="../kibana/images/icon.jpg" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../kibana/">
+                <h5 class="mt-0 mb-1"> Kibana integration overview </h5>
+              </a>
+              Our guide to integrating and using Kibana with Pareto Anywhere.
+            </li>
+          </ul>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  www.reelyActive.com
+                </h5>
+              </a>
+              Make <em>any</em> physical space context-aware for what matters for <em>your</em> business.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2021 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+  </body>
+</html>
