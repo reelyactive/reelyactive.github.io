@@ -192,7 +192,7 @@
             <li> Download the <a href="https://downloads.raspberrypi.org/raspios_lite_armhf_latest" target="_blank">ZIP</a> or <a href="https://downloads.raspberrypi.org/raspios_lite_armhf_latest.torrent" target="_blank">Torrent</a>, as you prefer </li>
             <li> Unzip the downloaded file </li>
           </ol>
-          <p> You should now have a file entitled <b>20xx-xx-xx-raspios-buster-armhf-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
+          <p> You should now have a file entitled <b>20xx-xx-xx-raspios-bullseye-armhf-lite.img</b> on your computer <i class="fas fa-laptop"></i>.  Let's flash! </p>
           <h3 class="mt-4">
             Flash the Raspberry Pi OS image to the SD card
             <small class="text-muted"> Part 2 </small>
@@ -202,7 +202,7 @@
           <ol>
             <li> Insert the SD card <i class="fas fa-sd-card"></i> (via adapter if required) and observe that it is recognised/mounted by the operating system </li>
             <li> Run Etcher (see Prerequisites above) by double-clicking <i class="fas fa-mouse-pointer"></i>  its executable AppImage or desktop icon </li>
-            <li> In the Etcher interface, select the <b>20xx-xx-xx-raspios-buster-armhf-lite.img</b> file </li>
+            <li> In the Etcher interface, select the <b>20xx-xx-xx-raspios-bullseye-armhf-lite.img</b> file </li>
             <li> In the Etcher interface, confirm that the SD card <i class="fas fa-sd-card"></i> is automatically selected, or select manually </li>
             <li> In the Etcher interface, click <i>Flash!</i> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 4 mins </span> </li>
           </ol>
@@ -328,7 +328,7 @@ fallback static_eth0</pre>
                 <th scope="row"> 3 </th>
                 <td> Interface Options </td>
                 <td>
-                  <b>P6</b> Serial Port
+                  <b>I6</b> Serial Port
                   <ul>
                     <li>Would you like a login shell to be accessible over serial? [<b>No</b>]</li>
                     <li>Would you like the serial port hardware to be enabled? [<b>Yes</b>]</li>
@@ -440,7 +440,7 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
             </div>
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
-          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>16.13.0</b>).  Substitute this version number in all of the commands below. </p>
+          <p> Visit <a href="https://nodejs.org" target="_blank">nodejs.org</a> <i class="fab fa-node-js"></i> and note the latest <b>LTS</b> version number available (ex: <b>16.14.0</b>).  Substitute this version number in all of the commands below. </p>
           <h3 class="mt-4">
             Download and install Node.js and npm 
             <small class="text-muted"> Part 1 </small>
@@ -448,10 +448,10 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
           <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
             <li> Change to the home <i class="fas fa-home"></i> folder with the command <code class="user-select-all">cd</code> </li>
-            <li> Download the <i class="fab fa-node-js"></i> Node.js tarball with the command <code class="user-select-all">wget https://nodejs.org/dist/v16.13.0/node-v16.13.0-linux-armv7l.tar.xz</code> </li>
-            <li> Unpack with the command <code class="user-select-all">tar -xf node-v16.13.0-linux-armv7l.tar.xz</code> </li>
-            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code class="user-select-all">sudo mv node-v16.13.0-linux-armv7l /usr/local/node</code> </li>
-            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code class="user-select-all">rm node-v16.13.0-linux-armv7l.tar.xz</code> </li>
+            <li> Download the <i class="fab fa-node-js"></i> Node.js tarball with the command <code class="user-select-all">wget https://nodejs.org/dist/v16.14.0/node-v16.14.0-linux-armv7l.tar.xz</code> </li>
+            <li> Unpack with the command <code class="user-select-all">tar -xf node-v16.14.0-linux-armv7l.tar.xz</code> </li>
+            <li> Move the unpacked folder <i class="fas fa-folder"></i> to <b>/usr/local/node</b> with the command <code class="user-select-all">sudo mv node-v16.14.0-linux-armv7l /usr/local/node</code> </li>
+            <li> Remove <i class="fas fa-trash"></i> the original download with the command <code class="user-select-all">rm node-v16.14.0-linux-armv7l.tar.xz</code> </li>
             <li> Change to the <b>/usr/local/bin</b> folder with the command <code class="user-select-all">cd /usr/local/bin</code> </li>
             <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>node</b> with the command <code class="user-select-all">sudo ln -s /usr/local/node/bin/node node</code> </li>
             <li> Create here a symbolic link <i class="fas fa-link"></i> to <b>npm</b> with the command <code class="user-select-all">sudo ln -s /usr/local/node/bin/npm npm</code> </li>
