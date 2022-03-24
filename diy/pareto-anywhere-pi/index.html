@@ -152,11 +152,11 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
-                <dd class="col-sm-9"> The <i class="fab fa-raspberry-pi"></i> Pi will serve contextual APIs and web apps and can forward data to a remote Elasticsearch instance for analysis. </dd>
+                <dd class="col-sm-9"> The <i class="fab fa-raspberry-pi"></i> Pi will serve contextual APIs and web apps<em>&mdash;accessible on the local network at <a href="http://pareto.local" target="_blank">pareto.local</a>&mdash;</em>and can forward data to a remote Elasticsearch instance for analysis. </dd>
                 <dt class="col-sm-3"> Why use a Pi? </dt>
-                <dd class="col-sm-9"> A <i class="fab fa-raspberry-pi"></i> Pi is ubiquitous and cost-effective, and can even collect ambient data using its onboard Bluetooth Low Energy radio. </dd>
+                <dd class="col-sm-9"> A <i class="fab fa-raspberry-pi"></i> Pi is ubiquitous and cost-effective, and can even collect <a href="https://www.reelyactive.com/ambient-data/" target="_blank"><i class="fas fa-external-link-alt"></i> ambient data</a> using its onboard <i class="fab fa-bluetooth"></i> Bluetooth Low Energy radio. </dd>
                 <dt class="col-sm-3"> Does this apply only to the Pi? </dt>
-                <dd class="col-sm-9"> Most of the process applies equally well to other platforms, especially those running <i class="fab fa-linux"></i> Linux. </dd>
+                <dd class="col-sm-9"> Most of the process applies equally well to other platforms, especially those running <i class="fab fa-linux"></i> Linux.  See also our tutorial to <a href="../pareto-anywhere-pc">Run Pareto Anywhere on a PC</a>. </dd>
               </dl>
             </div>
           </div>
@@ -176,12 +176,12 @@
               Our step-by-step tutorial on how we install and configure Raspberry Pi OS Lite on a <i class="fab fa-raspberry-pi"></i> Pi.
             </li>
           </ul>
-          <!----- Step 1 of 3 ----->
+          <!----- Step 1 of 4 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Installing Pareto Anywhere &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+                <a href="#step01" class="badge bg-primary"> Step 1 of 4 </a>
               </h2>
               <p class="lead"> Clone our pareto-anywhere repository on GitHub and install all dependencies using npm. </p>
               <hr>
@@ -225,12 +225,12 @@
             <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
           </ol>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> It is possible that some dependencies produce warnings or errors.  <em>Do not despair:</em> in most cases these have no impact on functionality. </p>
-          <!----- Step 2 of 3 ----->
+          <!----- Step 2 of 4 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Run Pareto Anywhere &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 4 </a>
               </h2>
               <p class="lead"> Confirm that everything works! </p>
               <hr>
@@ -370,12 +370,12 @@
               <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from <a href="https://www.reelyactive.com/products/gateways/#content" target="_blank"><i class="fas fa-external-link-alt"></i> reelyActive reelceivers</a> on UDP port 50000. </p>
             </div>
           </div>
-          <!----- Step 3 of 3 ----->
+          <!----- Step 3 of 4 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
-              <h2 id="step02" class="card-title my-2">
+              <h2 id="step03" class="card-title my-2">
                 Automatically run on boot &nbsp;
-                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+                <a href="#step03" class="badge bg-primary"> Step 3 of 4 </a>
               </h2>
               <p class="lead"> Configure a systemd service to run Pareto Anywhere each time the Pi boots. </p>
               <hr>
@@ -443,6 +443,66 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
               Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.
             </li>
           </ul>
+          <!----- Step 4 of 4 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Discover pareto.local &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of 4 </a>
+              </h2>
+              <p class="lead"> Configure mDNS and route port 80 for discoverability as <span class="text-primary">http://pareto.local</span> </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's mDNS? </dt>
+                <dd class="col-sm-9"> mDNS is a zero-configuration service that resolves <em>human-friendly</em> hostnames to <em>machine-friendly</em> IP addresses. </dd>
+                <dt class="col-sm-3"> Why port 80? </dt>
+                <dd class="col-sm-9"> Port 80 is assigned to HTTP, and hence the default location for your web browser to retrieve a web page from a server, such as our <i class="fab fa-raspberry-pi"></i> Pi. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-local.jpg"
+                   class="card-img-bottom" alt="Discoverable as pareto.local">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Change hostname from raspberrypi to pareto
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code class="user-select-all">sudo raspi-config</code> which will open a text-based menu. </p>
+          <img src="images/raspi-config-menu.gif"
+               class="img-fluid mx-auto d-block" alt="raspi-config menu">
+          <p class="mt-4"> Update the configuration as per the following table where the settings are indicated in [ ]. </p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"> # </th>
+                <th scope="col"> Option </th>
+                <th scope="col"> Action(s) </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"> 1 </th>
+                <td> System Options </td>
+                <td>
+                  <b>S4</b> Hostname
+                  <ul>
+                    <li>Please enter a hostname [<b>pareto</b>]</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  Once rebooted, try SSHing back into the <i class="fab fa-raspberry-pi"></i> Pi from your <i class="fas fa-laptop"></i> computer with the command <code class="user-select-all">ssh pi@pareto.local</code> in preparation for Part 2 below. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Because mDNS is not supported by all networks and operating systems, SSHing to pi@pareto.local may fail.  In this case, revert to ssh pi@xxx.xxx.xxx.xxx where the x values are the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
+          <h3 class="mt-4">
+            Route Pareto Anywhere to port 80
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p class="mt-4"> By default, Pareto Anywhere runs on port 3001, which makes it accessible to a web browser at <a href="http://pareto.local:3001" target="_blank">pareto.local:3001</a>.  By default, web (HTTP) traffic is served on port 80, which can be accessed by simply browsing to <a href="http://pareto.local" target="_blank">pareto.local</a> <em>(the :80 is implicit).</em> </p>
+          <p> To serve Pareto Anywhere on <a href="http://pareto.local" target="_blank">pareto.local</a>, from a <i class="fas fa-terminal"></i> terminal, update iptables to redirect traffic from port 80 to port 3001 with the command <code class="user-select-all">sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3001</code> </p>
+          <p> From a <i class="fas fa-laptop"></i> computer on the same network as the <i class="fab fa-raspberry-pi"></i> Pi, browse to <a href="http://pareto.local" target="_blank">pareto.local</a> and observe the Pareto Anywhere web page. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Because mDNS is not supported by all networks and operating systems, browsing to pareto.local may fail.  Pareto Anywhere will nonetheless be accessible at http://xxx.xxx.xxx.xxx where the x values are the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Any time you visit a <a href="https://www.reelyactive.com/context-aware-physical-spaces/" target="_blank"><i class="fas fa-external-link-alt"></i> context-aware physical space</a>, try browsing to <a href="http://pareto.local" target="_blank">pareto.local</a> while connected to the local WiFi<em>&mdash;imagine what you can discover!</em> </p>
+
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
@@ -507,7 +567,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2021 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2021-2022 </a>
     </footer>
 
     <!-- Optional JavaScript -->
