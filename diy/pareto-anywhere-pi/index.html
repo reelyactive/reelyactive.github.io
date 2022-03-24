@@ -499,7 +499,15 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
           </h3>
           <p class="mt-4"> By default, Pareto Anywhere runs on port 3001, which makes it accessible to a web browser at <a href="http://pareto.local:3001" target="_blank">pareto.local:3001</a>.  By default, web (HTTP) traffic is served on port 80, which can be accessed by simply browsing to <a href="http://pareto.local" target="_blank">pareto.local</a> <em>(the :80 is implicit).</em> </p>
           <p> To serve Pareto Anywhere on <a href="http://pareto.local" target="_blank">pareto.local</a>, from a <i class="fas fa-terminal"></i> terminal, update iptables to redirect traffic from port 80 to port 3001 with the command <code class="user-select-all">sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3001</code> </p>
-          <p> From a <i class="fas fa-laptop"></i> computer on the same network as the <i class="fab fa-raspberry-pi"></i> Pi, browse to <a href="http://pareto.local" target="_blank">pareto.local</a> and observe the Pareto Anywhere web page. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> From a <i class="fas fa-laptop"></i> computer on the same network as the <i class="fab fa-raspberry-pi"></i> Pi, browse to <a href="http://pareto.local" target="_blank">pareto.local</a> and observe the Pareto Anywhere web page. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/browse-pareto-local.png"
+                   class="img-fluid mb-3" alt="Browse to pareto.local">
+            </div>
+          </div>
           <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Because mDNS is not supported by all networks and operating systems, browsing to pareto.local may fail.  Pareto Anywhere will nonetheless be accessible at http://xxx.xxx.xxx.xxx where the x values are the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Any time you visit a <a href="https://www.reelyactive.com/context-aware-physical-spaces/" target="_blank"><i class="fas fa-external-link-alt"></i> context-aware physical space</a>, try browsing to <a href="http://pareto.local" target="_blank">pareto.local</a> while connected to the local WiFi<em>&mdash;imagine what you can discover!</em> </p>
 
