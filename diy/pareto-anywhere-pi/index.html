@@ -508,6 +508,8 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com:9243"
                    class="img-fluid mb-3" alt="Browse to pareto.local">
             </div>
           </div>
+          <p> To make this redirection persistent (i.e. every time the <i class="fab fa-raspberry-pi"></i> Pi boots), install the iptables-persistent package with the command <code class="user-select-all">sudo apt-get install iptables-persistent</code> and when prompted, select <b>&lt;Yes&gt;</b> to save the current IPV4 rules. </p>
+          <p> Validate the redirect rule at any time with the command <code class="user-select-all">sudo iptables -t nat -L</code> and observe the REDIRECT in the PREROUTING chain. </p>
           <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Because mDNS is not supported by all networks and operating systems, browsing to pareto.local may fail.  Pareto Anywhere will nonetheless be accessible at http://xxx.xxx.xxx.xxx where the x values are the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Any time you visit a <a href="https://www.reelyactive.com/context-aware-physical-spaces/" target="_blank"><i class="fas fa-external-link-alt"></i> context-aware physical space</a>, try browsing to <a href="http://pareto.local" target="_blank">pareto.local</a> while connected to the local WiFi<em>&mdash;imagine what you can discover!</em> </p>
 
