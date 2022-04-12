@@ -262,43 +262,104 @@
           </div>
           <h3 class="mt-4">
             Configure data forwarding
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-muted"> Part 1-4 </small>
           </h3>
-          <p> Select the Service page (from the top blue bar) and then configure data forwarding as follows: </p>
-          <dl class="row">
-            <dt class="col-md-3 offset-md-1"> Service Access </dt>
-            <dd class="col-md-8"> HTTP </dd>
-            <dt class="col-md-3 offset-md-1"> Upload Interval </dt>
-            <dd class="col-md-8"> 1 second <em>(or shorter)</em> </dd>
-            <dt class="col-md-3 offset-md-1"> Url </dt>
-            <dd class="col-md-8"> Pareto Anywhere server and route <br> <span class="text-muted small">For testing, use <b>http://xxx.xxx.xxx.xxx:3001/minew</b> replacing the x with the IP address of your computer on the host network.</span> </dd>
-            <dt class="col-md-3 offset-md-1"> Authentication Type </dt>
-            <dd class="col-md-8"> None </dd>
-            <dt class="col-md-3 offset-md-1"> BLE Data Format </dt>
-            <dd class="col-md-8"> Binary | Long </dd>
-          </dl>
-          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Apply</b> to save the configuration. </p>
-          <img src="images/service-configuration.png" class="img-fluid"
-               alt="Minew G1 Data Forwarding Configuration">
-          <h3 class="mt-4">
-            Configure Bluetooth Low Energy observation
-            <small class="text-muted"> Part 2 </small>
-          </h3>
-          <p> Select the Other page (from the top blue bar) and then configure the Bluetooth Low Energy observation parameters as follows: </p>
-          <dl class="row">
-            <dt class="col-md-3 offset-md-1"> Enable Active Scanning </dt>
-            <dd class="col-md-8"> No </dd>
-            <dt class="col-md-3 offset-md-1"> Scan Interval </dt>
-            <dd class="col-md-8"> 100 (ms) </dd>
-            <dt class="col-md-3 offset-md-1"> Scan Window </dt>
-            <dd class="col-md-8"> 100 (ms) </dd>
-            <dt class="col-md-3 offset-md-1"> Timeout Restart </dt>
-            <dd class="col-md-8"> 3 (s) </dd>
-          </dl>
-          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The Scan Window must be equal to the the Scan Interval for the gateway to observe Bluetooth Low Energy advertising packets 100% of the time. </p>
-          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Apply</b> to save the configuration. </p>
-          <img src="images/ble-configuration.png" class="img-fluid"
-               alt="Minew G1 Bluetooth Low Energy Configuration">
+          <p> Select the Service page (from the top blue bar) and then configure <em>each</em> of the four tabs as follows: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="generictab"
+                      data-bs-toggle="tab" data-bs-target="#genericcontent"
+                      type="button" role="tab" aria-controls="generictab"
+                      aria-selected="true">
+                Generic
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="httptab" data-bs-toggle="tab"
+                      data-bs-target="#httpcontent" type="button" role="tab"
+                      aria-controls="httptab"
+                      aria-selected="false">
+                HTTP
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="filtertab" data-bs-toggle="tab"
+                      data-bs-target="#filtercontent" type="button" role="tab"
+                      aria-controls="filtertab"
+                      aria-selected="false">
+                Filter
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="scantab" data-bs-toggle="tab"
+                      data-bs-target="#scancontent" type="button" role="tab"
+                      aria-controls="scantab"
+                      aria-selected="false">
+                Scan
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="genericcontent"
+                 role="tabpanel" aria-labelledby="generictab">
+              <img src="images/service-generic.png"
+                   class="img-fluid mx-auto d-block border rounded mt-2"
+                   alt="Minew G1 Gateway Service Generic Config">
+              <dl class="row mt-3">
+                <dt class="col-md-3 offset-md-1"> Protocol </dt>
+                <dd class="col-md-8"> HTTP </dd>
+                <dt class="col-md-3 offset-md-1"> Upload Interval </dt>
+                <dd class="col-md-8"> 1 second <em>(or shorter)</em> </dd>
+                <dt class="col-md-3 offset-md-1"> Data Format </dt>
+                <dd class="col-md-8"> BINARY-LONG </dd>
+              </dl>
+              <p> Click <i class="fas fa-mouse-pointer"></i> <b>Apply</b> to save the configuration, then proceed to the HTTP tab. </p>
+            </div>
+            <div class="tab-pane fade" id="httpcontent" role="tabpanel"
+                 aria-labelledby="httptab">
+              <img src="images/service-http.png"
+                   class="img-fluid mx-auto d-block border rounded mt-2"
+                   alt="Minew G1 Gateway Service HTTP Config">
+              <dl class="row mt-3">
+                <dt class="col-md-3 offset-md-1"> Url </dt>
+                <dd class="col-md-8"> Pareto Anywhere server and route <br> <span class="text-muted small">For testing, use <b>http://xxx.xxx.xxx.xxx:3001/minew</b> replacing the x with the IP address of your computer on the host network.</span> </dd>
+                <dt class="col-md-3 offset-md-1"> Authentication Type </dt>
+                <dd class="col-md-8"> none </dd>
+              </dl>
+              <p> Click <i class="fas fa-mouse-pointer"></i> <b>Apply</b> to save the configuration, then proceed to the Filter tab. </p>
+            </div>
+            <div class="tab-pane fade" id="filtercontent" role="tabpanel"
+                 aria-labelledby="filtertab">
+              <img src="images/service-filter.png"
+                   class="img-fluid mx-auto d-block border rounded mt-2"
+                   alt="Minew G1 Gateway Service Filter Config">
+              <dl class="row mt-3">
+                <dt class="col-md-3 offset-md-1"> Upload without BLE data </dt>
+                <dd class="col-md-8"> NO </dd>
+                <dt class="col-md-3 offset-md-1"> Upload specific MAC addresses only </dt>
+                <dd class="col-md-8"> NO </dd>
+              </dl>
+              <p> Click <i class="fas fa-mouse-pointer"></i> <b>Apply</b> to save the configuration, then proceed to the Scan tab. </p>
+            </div>
+            <div class="tab-pane fade" id="scancontent" role="tabpanel"
+                 aria-labelledby="scantab">
+              <img src="images/service-scan.png"
+                   class="img-fluid mx-auto d-block mt-2"
+                   alt="Minew G1 Gateway Service Scan Config">
+              <dl class="row">
+                <dt class="col-md-3 offset-md-1"> Active Scan </dt>
+                <dd class="col-md-8"> [ No ] </dd>
+                <dt class="col-md-3 offset-md-1"> Scan Interval </dt>
+                <dd class="col-md-8"> 100 (ms) </dd>
+                <dt class="col-md-3 offset-md-1"> Scan Window </dt>
+                <dd class="col-md-8"> 100 (ms) </dd>
+                <dt class="col-md-3 offset-md-1"> Timeout Restart </dt>
+                <dd class="col-md-8"> 3 (s) </dd>
+              </dl>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The Scan Window must be equal to the the Scan Interval for the gateway to observe Bluetooth Low Energy advertising packets 100% of the time. </p>
+              <p> Click <i class="fas fa-mouse-pointer"></i> <b>Apply</b> to save the configuration, then proceed to Step 3 to observe the forwarded data. </p>
+            </div>
+          </div>
           <!----- Step 3 of 3 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
