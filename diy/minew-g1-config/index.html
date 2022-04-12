@@ -153,6 +153,10 @@
               </dl>
             </div>
           </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A Minew G1 gateway running firmware v4.x.x or later. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Firmware v3.x.x and earlier is <em>not</em> recommended, because data is forwarded with an incorrect <span class="font-monospace">content-type</span>, and is discarded in Pareto Anywhere v1.7+ and barnowl-minew v1.0+. </p>
           <!----- Step 1 of 3 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
@@ -434,7 +438,7 @@
               <pre>git clone https://github.com/reelyactive/barnowl-minew.git
 npm install
 npm start</pre>
-              <p> If the gateway is correctly configured, and at least one Bluetooth Low Energy device is advertising in range, <a href="https://github.com/reelyactive/raddec" target="_blank">raddec</a> data should appear in the console. </p>
+              <p> If the gateway is correctly configured, running firmware v4.x.x or greater, and at least one Bluetooth Low Energy device is advertising in range, <a href="https://github.com/reelyactive/raddec" target="_blank">raddec</a> data should appear in the console. </p>
             </div>
           </div>
           <!----- Attribution ----->
