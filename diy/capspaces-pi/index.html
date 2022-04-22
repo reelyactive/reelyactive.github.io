@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to create a context-aware physical space with a Raspberry Pi using open source technologies.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> Create context-aware physical spaces with a Raspberry Pi </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Create context-aware physical spaces with a Raspberry Pi",
+      "description": "Step-by-step guide to create a context-aware physical space with a Raspberry Pi using open source technologies.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/capspaces-pi/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "CAPSpaces with a Pi"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Create context-aware physical spaces with a Raspberry Pi </h1>
+          <p class="lead"> Our step-by-step guide to create #CAPSpaces with a <i class="fab fa-raspberry-pi"></i> Pi using open source technologies. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Create context-aware physical spaces with a Raspberry Pi">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive create CAPSpaces with the ubiquitous <i class="fab fa-raspberry-pi"></i> Pi. </p>
+              <p> The Raspberry Pi will facilitate the free exchange of information about <em>who/what</em> is <em>where/how</em> in the space. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What are CAPSpaces? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/context-aware-physical-spaces/" target="_blank"><i class="fas fa-external-link-alt"></i> Context-aware physical spaces</a> are the natural interface of human-centric technologies: making sense of <em>our</em> reality and what matters to <em>us</em>. </dd>
+                <dt class="col-sm-3"> Why use a Pi? </dt>
+                <dd class="col-sm-9"> A <i class="fab fa-raspberry-pi"></i> Pi is ubiquitous and cost-effective, and can collect <a href="https://www.reelyactive.com/ambient-data/" target="_blank"><i class="fas fa-external-link-alt"></i> ambient data</a> & provide audiovisual feedback via its <i class="fab fa-bluetooth"></i> Bluetooth & HDMI interfaces, respectively. </dd>
+                <dt class="col-sm-3"> Does this apply only to the Pi? </dt>
+                <dd class="col-sm-9"> Most of the process applies equally well to similar platforms, especially those running Debian/Ubuntu <i class="fab fa-linux"></i> Linux. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 4 ----->
+          <div class="card mt-5 bg-light hover-shadow border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Preparing the hardware &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 4 </a>
+              </h2>
+              <p class="lead"> Flash the SD card with Raspberry Pi OS Lite and connect the display. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Do I need a display? </dt>
+                <dd class="col-sm-9"> No, but it is an effective interface for occupants to discover and interact with your space, and allows you to configure the <i class="fab fa-raspberry-pi"></i> Pi <em>without</em> SSH. </dd>
+                <dt class="col-sm-3"> Can I use my current Raspberry Pi OS? </dt>
+                <dd class="col-sm-9"> We strongly recommend flashing a <em>new</em> SD card from scratch, following the tutorials below, to ensure that the many prerequisites are met. </dd>
+              </dl>
+              <img src="images/preparing-the-hardware.jpg"
+                   class="card-img-bottom" alt="Preparing the hardware">
+            </div>
+          </div>
+          <p class="mt-4"> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Do not connect power to the <i class="fab fa-raspberry-pi"></i> Pi until instructed to do so! </p>
+          <h3 class="mt-4">
+            Connect the display
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Assuming you have a display available for your context-aware physical space, go ahead and connect that to the <i class="fab fa-raspberry-pi"></i> Pi, via HDMI cable, as a gratifying first step. </p>
+          <h3 class="mt-4">
+            Connect a keyboard
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> In Part 3 below, you'll be asked to SSH into the Pi to execute commands remotely from your <i class="fas fa-laptop"></i> computer.  If you're unfamiliar with SSH<em>&mdash;don't worry, we have a <b>S</b>uper <b>S</b>pecial <b>H</b>ack for you&mdash;</em>simply connect a USB keyboard to the <i class="fab fa-raspberry-pi"></i> Pi, so that you can execute commands directly via the keyboard & display instead! </p>
+          <h3 class="mt-4">
+            Prepare the SD Card
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Follow our step-by-step tutorial to prepare the <i class="fas fa-sd-card"></i> SD card for the <i class="fab fa-raspberry-pi"></i> Pi, including network settings and prerequisite software packages. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pi-prep/">
+                <img src="../pi-prep/images/icon.jpg">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pi-prep/">
+                <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+              </a>
+              Our step-by-step tutorial on how we install and configure Raspberry Pi OS Lite on a <i class="fab fa-raspberry-pi"></i> Pi.
+            </li>
+          </ul>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If you connected a display & keyboard, you can execute commands directly on the <i class="fab fa-raspberry-pi"></i> Pi without having to SSH in. </p>
+          <!----- Step 2 of 4 ----->
+          <div class="card mt-5 bg-light hover-shadow border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Preparing the software &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 4 </a>
+              </h2>
+              <p class="lead"> Install Pareto Anywhere and enable kiosk mode to drive the display. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is the open source middleware that enables context-aware physical spaces. </dd>
+                <dt class="col-sm-3"> What's kiosk mode? </dt>
+                <dd class="col-sm-9"> Ambient displays operate in kiosk mode, where the content is fullscreen and the <i class="fas fa-mouse-pointer"></i> pointer is hidden. </dd>
+              </dl>
+              <img src="images/preparing-the-software.jpg"
+                   class="card-img-bottom" alt="Preparing the software">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install Pareto Anywhere
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Follow our step-by-step tutorial to install Pareto Anywhere on the Pi, configuring the <b>onboard radio</b> as the source of ambient data as specified in Step 2, Part 2. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <img src="../pareto-anywhere-pi/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
+              </a>
+              Our step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware.
+            </li>
+          </ul>
+          <p> Upon completion of this tutorial, <em>anyone</em> using <em>any</em> device on the same local network as the <i class="fab fa-raspberry-pi"></i> Pi should be able to access the Pareto Anywhere landing page, web apps and APIs at <a href="http://pareto.local/" target="_blank">http://pareto.local</a>, or via the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-user-check"></i></span> Freedom of access ensures that CAPSpaces remain <b>inclusive</b> as per our <a href="https://www.reelyactive.com/uni/" target="_blank"><i class="fas fa-external-link-alt"></i> UNI philosophy</a>. </p>
+          <h3 class="mt-4">
+            Enable kiosk mode
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Follow our step-by-step tutorial to drive the display with a web application from the Pareto Anywhere Apps. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <img src="../pi-kiosk/images/icon.jpg">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <h5 class="mt-0 mb-1"> Configure a Raspberry Pi as a kiosk display </h5>
+              </a>
+              Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.
+            </li>
+          </ul>
+          <p> Upon completion of this tutorial, the <i class="fab fa-raspberry-pi"></i> Pi should, every time it boots, automatically display a web app (we recommend Hyperlocal Context Explorer), for occupants of the space to discover and observe. </p>
+          <!----- Step 3 of 4 ----->
+          <div class="card mt-5 bg-light hover-shadow border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Configuring the space &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 4 </a>
+              </h2>
+              <p class="lead"> Associate metadata with the space and its resident ambient devices, including the Pi itself. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why associate metadata? </dt>
+                <dd class="col-sm-9"> Human-entered metadata adds context: <em>not everything in/about a physical space is machine-readable!</em> </dd>
+                <dt class="col-sm-3"> What kind of metadata? </dt>
+                <dd class="col-sm-9"> Metadata includes <i class="fas fa-user-friends text-muted"></i> digital twins (via URL), <i class="fas fa-tag text-muted"></i> tags, <i class="fas fa-sitemap text-muted"></i> directories and <i class="fas fa-map-marked-alt text-muted"></i> positions, all of which contribute to <a href="https://www.reelyactive.com/context/" target="_blank"><i class="fas fa-external-link-alt"></i> hyperlocal context</a>. </dd>
+              </dl>
+              <img src="images/configuring-the-space.png"
+                   class="card-img-bottom" alt="Metadata in CAPSpaces">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Twin the Pi
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Complete the following four steps to create and associate a digital twin with the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="discovertab"
+                      data-bs-toggle="tab" data-bs-target="#discovercontent"
+                      type="button" role="tab" aria-controls="discovertab"
+                      aria-selected="true"> Discover </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="selecttab" data-bs-toggle="tab"
+                      data-bs-target="#selectcontent" type="button" role="tab"
+                      aria-controls="selecttab"
+                      aria-selected="false"> Select </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="twintab" data-bs-toggle="tab"
+                      data-bs-target="#twincontent" type="button" role="tab"
+                      aria-controls="twintab"
+                      aria-selected="false"> Twin </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="observetab" data-bs-toggle="tab"
+                      data-bs-target="#observecontent" type="button" role="tab"
+                      aria-controls="observetab"
+                      aria-selected="false"> Observe </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="discovercontent"
+                 role="tabpanel" aria-labelledby="discovertab">
+              <div class="row mt-2">
+                <div class="col-md-8">
+                  <p> Browse to the Hyperlocal Context Explorer web app (ex: <a href="http://pareto.local/apps/hlc-explorer/" target="_blank">pareto.local/apps/hlc-explorer/</a>) and observe a <i class="fas fa-share-alt"></i> graph with a single hub node. </p>
+                  <p> The hub node represents the <i class="fab fa-raspberry-pi"></i> Pi.  The other nodes represent the ambient devices it has discovered. </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="images/hlc-discover.jpg" class="img-fluid"
+                       alt="Discover the Pi">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="selectcontent" role="tabpanel"
+                 aria-labelledby="selecttab">
+              <div class="row mt-2">
+                <div class="col-md-8">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> on the hub node which represents the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+                  <p> An offcanvas window should appear, including a <b>Story</b> tab, in which you can create a digital twin. </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="images/hlc-select.jpg" class="img-fluid"
+                       alt="Select the Pi">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="twincontent" role="tabpanel"
+                 aria-labelledby="twintab">
+              <div class="row mt-2">
+                <div class="col-md-6">
+                  <p> In the <b>Story</b> tab, choose whether to represent the <i class="fab fa-raspberry-pi"></i> Pi as a <em>Product</em> (i.e. itself) or the <em>Place</em> where it is installed. </p>
+                  <p> Enter a short, meaningful <em>Name</em>. </p>
+                  <p> Choose a representative <em>Image</em>. </p>
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <em>Store & Associate</em> to create and host the digital twin on the <i class="fab fa-raspberry-pi"></i> Pi itself. </p>
+                </div>
+                <div class="col-md-6">
+                  <img src="images/hlc-twin.png"
+                       class="img-fluid mx-auto d-block" alt="Twin the Pi">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="observecontent" role="tabpanel"
+                 aria-labelledby="observetab">
+              <div class="row mt-2">
+                <div class="col-md-8">
+                  <p> Close <i class="fas fa-times"></i> the offcanvas and refresh <i class="fas fa-redo"></i> the explorer view. </p>
+                  <p> Observe the <i class="fab fa-raspberry-pi"></i> Pi again as the hub node, this time with the name and image of the digital twin. </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="images/hlc-observe.jpg" class="img-fluid"
+                       alt="Observe the Pi">
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Associate additional metadata with the Pi
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <p> After completing Part 1 above, again click <i class="fas fa-mouse-pointer"></i> on the Pi's node, and this time select the <b>Associations</b> tab from the offcanvas. </p>
+              <p> Notice that the <em>url</em> field already points to the digital twin of the Pi, created in Part 1. </p>
+              <p> Optionally enter a hierarchical (colon-separated) <em>directory</em> and click <i class="fas fa-save"></i> Save. </p>
+              <p> Optionally enter a <em>position</em> using (comma-separated) latitude, longitude, [elevation] and click <i class="fas fa-save"></i> Save. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/hlc-associate.png"
+                   class="img-fluid mx-auto d-block" alt="Twin the Pi">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Twin and associate resident ambient devices
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> If appropriate, repeat Part 1 and/or 2 above for the nodes representing ambient devices discovered by the Pi in the context-aware physical space.  Resident ambient devices may include: </p>
+          <ul>
+            <li> fixed environmental sensors (ex: temperature, humidity) </li>
+            <li> asset tags (ex: furniture, equipment) </li>
+            <li> personnel badges </li>
+            <li> products and appliances </li>
+          </ul>
+          <!----- Step 4 of 4 ----->
+          <div class="card mt-5 bg-light hover-shadow border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Extending functionality &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of 4 </a>
+              </h2>
+              <p class="lead"> Connect infrastructure and an analytics suite. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why add infrastructure? </dt>
+                <dd class="col-sm-9"> To extend across additional spaces and/or to improve location granularity within the current space. </dd>
+                <dt class="col-sm-3"> Why add analytics? </dt>
+                <dd class="col-sm-9"> Pareto Anywhere makes sense of <em>who/what</em> is <em>where/how</em>.  An analytics suite adds the ability to make sense of <em>when</em>. </dd>
+              </dl>
+              <img src="images/extending-functionality.jpg"
+                   class="card-img-bottom" alt="Extending functionality">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Add ambient infrastructure
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Pareto Anywhere will readily accept data from a variety of sources in addition to the <i class="fab fa-raspberry-pi"></i> Pi's onboard radio.  Consider forwarding data to the Pi should any additional sources be available, as follows: </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../aruba-instant-config/">
+                <img src="../aruba-instant-config/images/icon.jpg">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../aruba-instant-config/">
+                <h5 class="mt-0 mb-1"> Configure an Aruba Instant AP </h5>
+              </a>
+              <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward Telemetry Websocket data to the <i class="fab fa-raspberry-pi"></i> Pi on ws://<span class="text-primary">xxx.xxx.xxx.xxx</span>/aruba
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-2">
+            <li class="list-group-item border-0">
+              <a href="../minew-g1-config/">
+                <img src="../minew-g1-config/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../minew-g1-config/">
+                <h5 class="mt-0 mb-1"> Configure a Minew G1 Gateway </h5>
+              </a>
+              <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../oio-config/">
+                <img src="../oio-config/images/icon.jpg">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../oio-config/">
+                <h5 class="mt-0 mb-1"> Configure an Owl-in-One </h5>
+              </a>
+              <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets to the host <span class="text-primary">xxx.xxx.xxx.xxx</span> on port 50001 
+            </li>
+          </ul>
+          <p class="mt-3"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Repeat <a href="#step03">Step 3</a> to configure the space(s) after adding infrastructure. </p>
+          <h3 class="mt-4">
+            Add an analytics suite
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Pareto Anywhere will automatically forward data to an Elasticsearch instance if/as specified by the ELASTICSEARCH_NODE environment variable.  Consider adding a hosted Elasticsearch instance as follows: </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../elasticsearch-service-setup/">
+                <img src="../elasticsearch-service-setup/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../elasticsearch-service-setup/">
+                <h5 class="mt-0 mb-1"> Set up a hosted Elasticsearch Service </h5>
+              </a>
+              Our step-by-step guide to setup Elastic's hosted cloud service for use with Pareto Anywhere. 
+            </li>
+          </ul>
+          <p class="mt-3"> Upon completion of the tutorial, set the ELASTICSEARCH_NODE environment variable as outlined in <a href="../pareto-anywhere-pi/#step03">Step 3 of our Run Pareto Anywhere on a Pi tutorial</a>.  Data should then become available for analysis and presentation in Kibana as described in the following tutorial. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../kibana/">
+                <img src="../kibana/images/icon.jpg">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../kibana/">
+                <h5 class="mt-0 mb-1"> Kibana integration overview </h5>
+              </a>
+              Our guide to integrating and using Kibana with with Pareto Anywhere. 
+            </li>
+          </ul>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  www.reelyActive.com
+                </h5>
+              </a>
+              Make <em>any</em> physical space context-aware for what matters for <em>your</em> business.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
