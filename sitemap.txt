@@ -3,6 +3,7 @@ https://reelyactive.github.io/diy/
 https://reelyactive.github.io/diy/aruba-instant-config/
 https://reelyactive.github.io/diy/banglejs-dev/
 https://reelyactive.github.io/diy/best-practices-ble-identifiers/
+https://reelyactive.github.io/diy/capspaces-pi/
 https://reelyactive.github.io/diy/contact-tracing-architectures/
 https://reelyactive.github.io/diy/elasticsearch-email-integration/
 https://reelyactive.github.io/diy/elasticsearch-service-setup/
@@ -45,6 +46,7 @@ https://reelyactive.github.io/beaver/
 https://reelyactive.github.io/cormorant/
 https://reelyactive.github.io/cuttlefish/
 https://reelyactive.github.io/diract/
+https://reelyactive.github.io/interoperable-identifier/
 https://reelyactive.github.io/pareto-anywhere/
 https://reelyactive.github.io/web-ble-demo/
 https://reelyactive.github.io/web-style-guide/
