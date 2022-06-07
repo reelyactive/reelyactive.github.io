@@ -232,10 +232,22 @@
             <li> Enable SSH with the command <code class="user-select-all">sudo touch ./ssh</code> </li>
             <li> Open the file <b>cmdline.txt</b> and append the following to the first line: <code class="user-select-all">net.ifnames=0</code> </li>
           </ol>
-          <p> This will allow us to SSH into the <i class="fab fa-raspberry-pi"></i> Pi on the first boot, and will use predictable network interface names (ex: eth0, wlan0) which we'll need for Part 2. </p>
+          <p> This will allow us to SSH into the <i class="fab fa-raspberry-pi"></i> Pi on the first boot, and will use predictable network interface names (ex: eth0, wlan0) which we'll need for Part 3. </p>
+          <h3 class="mt-4">
+            Explicitly set a username and password
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> <a href="https://www.raspberrypi.com/news/raspberry-pi-bullseye-update-april-2022/" target="_blank">As of April 2022</a>, Raspberry Pi OS no longer ships with a default username & password! </p>
+          <p> From the same terminal <i class="fas fa-terminal"></i> in the root of the <b>boot</b> partition (ex: <code class="user-select-all">/media/user/boot/</code>): </p>
+          <ol>
+            <li> Create and open for editing a file called <b>userconf</b> (for example with the command <code class="user-select-all">sudo nano userconf</code>) </li>
+            <li> Paste the following line into the userconf file and save </li>
+          </ol>
+          <pre class="user-select-all">pi:$6$XW.DLlBAlSF1wtdM$qpqLFBieq0toz9JviJm4.RvBjGN4yaxtrpcXMn8XdDa48.w7Ji6GeP.BWyhfae0NY074GmVMItEy9kNPdPaSz.</pre>
+          <p> This will set the default username to <b>pi</b> with password <b>berryinsecure</b> (encrypted above), which will be required when SSHing into the <i class="fab fa-raspberry-pi"></i> Pi in Step 3<em>&mdash;and you can change it to a less-insecure password in that step too!</em> </p>
           <h3 class="mt-4">
             Fallback to static Ethernet IP address
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-muted"> Part 3 </small>
           </h3>
           <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>rootfs</b> partition (ex: <code class="user-select-all">cd /media/user/rootfs/</code>).  Edit the <b>/etc/dhcpcd.conf</b> file to include the following (simply append or uncomment and edit): </p>
           <pre class="user-select-all"># It is possible to fall back to a static IP if DHCP fails:
@@ -279,7 +291,7 @@ fallback static_eth0</pre>
             <li> Apply power <i class="fas fa-plug"></i> to the <i class="fab fa-raspberry-pi"></i> Pi </li>
             <li> Connect the computer <i class="fas fa-laptop"></i> with the <i class="fab fa-raspberry-pi"></i> Pi using a network (Ethernet) cable <i class="fas fa-network-wired"></i> </li>
             <li> Set the computer <i class="fas fa-laptop"></i> to use the static Ethernet <i class="fas fa-ethernet"></i> IP address <b>10.0.50.101</b> </li>
-            <li> Open a terminal <i class="fas fa-terminal"></i> and SSH into the Pi with the command <code class="user-select-all">ssh pi@10.0.50.100</code> and, when prompted, enter the default password <b class="user-select-all">raspberry</b> </li>
+            <li> Open a terminal <i class="fas fa-terminal"></i> and SSH into the Pi with the command <code class="user-select-all">ssh pi@10.0.50.100</code> and, when prompted, enter the password <b class="user-select-all">berryinsecure</b> <span class="text-muted"> (before April 2022, the default password was <b class="user-select-all">raspberry</b>) </span> </li>
           </ol>
           <p> Now that you're logged in to the <i class="fab fa-raspberry-pi"></i> Pi, it is possible to execute commands such as raspi-config.</p>
           <h3 class="mt-4">
@@ -310,13 +322,16 @@ fallback static_eth0</pre>
                     <li>Please enter SSID<sup>*</sup> [<b>reelyActive</b>]</li>
                     <li>Please enter passphrase<sup>*</sup> [<b>owl-in-one</b>]</li>
                   </ul>
-                  <p class="text-muted text-end"> <small><sup>*</sup>adjust as per your region and local WiFi network</small> </p>
+                  <p class="text-muted text-end mb-0"> <small><sup>*</sup>adjust as per your region and local WiFi network</small> </p>
                 </td>
               </tr>
               <tr>
                 <th scope="row"> 1 </th>
                 <td> System Options </td>
-                <td> <b>S3</b> Password &nbsp; [<b>berryinsecure</b>] </td>
+                <td>
+                  <p> <b>S3</b> Password<sup>*</sup> &nbsp; [<b>berryinsecure</b>] </p>
+                  <p class="text-muted text-end mb-0"> <small><sup>*</sup>this is a good time to choose something <em>less</em> insecure</small> </p>
+                </td>
               </tr>
               <tr>
                 <th scope="row"> 3 </th>
@@ -333,8 +348,8 @@ fallback static_eth0</pre>
                 <th scope="row"> 5 </th>
                 <td> Localisation Options </td>
                 <td>
-                  <b>L2</b> Change Timezone<sup>*</sup> &nbsp; [<b>America | Montreal</b>]
-                  <p class="text-muted text-end mt-2"> <small><sup>*</sup>adjust as per your region (reelyActive is "<a href="https://www.reelyactive.com/made-in-montreal/" target="_blank">Made in Montr&eacute;al</a>")</small> </p>
+                  <p> <b>L2</b> Change Timezone<sup>*</sup> &nbsp; [<b>America | Montreal</b>] </p>
+                  <p class="text-muted text-end mb-0"> <small><sup>*</sup>adjust as per your region (reelyActive is "<a href="https://www.reelyactive.com/made-in-montreal/" target="_blank">Made in Montr&eacute;al</a>")</small> </p>
                 </td>
               </tr>
 
@@ -372,7 +387,7 @@ fallback static_eth0</pre>
           </h3>
           <p> With the <i class="fab fa-raspberry-pi"></i> Pi still connected to the computer <i class="fas fa-laptop"></i> via Ethernet <i class="fas fa-network-wired"></i>, and from the same terminal window <i class="fas fa-terminal"></i> as before: </p>
           <ol>
-            <li> SSH back into the <i class="fab fa-raspberry-pi"></i> Pi with the command <code class="user-select-all">ssh pi@10.0.50.100</code>, using the <i>new</i> password <b class="user-select-all">berryinsecure</b> </li>
+            <li> SSH back into the <i class="fab fa-raspberry-pi"></i> Pi with the command <code class="user-select-all">ssh pi@10.0.50.100</code>, using the <i>new</i> password <small class="text-muted"> (or <b class="user-select-all">berryinsecure</b> if you didn't change it) </small> </li>
             <li> Determine the <i class="fab fa-raspberry-pi"></i> Pi's WiFi <i class="fas fa-wifi"></i> IP address with the command <code class="user-select-all">ifconfig</code>.  It will be the <b>inet</b> value under <b>wlan0</b> <small class="text-muted">(ex: 192.168.0.123)</small> </li>
             <li> Exit the current SSH session with the command <code class="user-select-all">exit</code> </li>
             <li> SSH into the <i class="fab fa-raspberry-pi"></i> Pi over WiFi <i class="fas fa-wifi"></i> with the command <code class="user-select-all">ssh pi@xxx.xxx.xxx.xxx</code>, replacing the x values with the <i class="fab fa-raspberry-pi"></i> Pi's WiFi IP address. </li>
