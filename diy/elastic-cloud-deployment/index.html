@@ -132,10 +132,10 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Elastic Cloud Deployment Guide </h1>
           <p class="lead"> Search and analyse context-aware physical spaces with the suite of Elastic products. </p>
-          <img src="images/header.jpg" class="img-fluid"
+          <img src="images/header.png" class="img-fluid"
                alt="Elastic Cloud Deployment Guide">
           <!----- The TL;DR ----->
-          <div class="card my-4">
+          <div class="card hover-shadow my-4">
             <div class="card-body">
               <h2>
                 The TL;DR
@@ -154,7 +154,7 @@
             </div>
           </div>
           <!----- Step 1 of 3 ----->
-          <div class="card mt-5 bg-light border-0">
+          <div class="card mt-5 bg-light hover-shadow border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Create a Deployment &nbsp;
@@ -184,7 +184,7 @@
             Create a Deployment
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> From the Elastic Cloud dashboard, click on <i class="fas fa-mouse-pointer"></i> Create deployment at the top right of the Elasticsearch Service box. </p>
+          <p> From the Elastic Cloud dashboard, click on <i class="fas fa-mouse-pointer"></i> <b>Create deployment</b> at the top right of the Elasticsearch Service box. </p>
           <img src="images/create-deployment.png" class="img-fluid"
                alt="Create Elasticsearch Service deployment">
           <p> The <b>Create a deployment</b> box should appear with the default settings and pricing. </p>
@@ -206,11 +206,11 @@
             <tbody>
               <tr>
                 <td> Name </td>
-                <td> The name of the context-aware physical space this deployment represents </td>
+                <td> <em>The name of the context-aware physical space this deployment represents</em> </td>
               </tr>
               <tr>
                 <td> Cloud provider & Region </td>
-                <td> Select based on geographic proximity and/or loyalty </td>
+                <td> <em>Select based on geographic proximity and/or loyalty</em> </td>
               </tr>
               <tr>
                 <td> Hardware profile </td>
@@ -222,36 +222,45 @@
               </tr>
               <tr>
                 <td> Autoscale </td>
-                <td> Enable for production deployments </td>
+                <td> <em>Enable for production deployments</em> </td>
               </tr>
               <tr>
                 <td> Elasticsearch </td>
-                <td> Choose the minimum size per zone, 1 zone </td>
+                <td> <em>Choose the minimum size per zone,</em> 1 zone </td>
               </tr>
               <tr>
                 <td> Machine Learning instances </td>
-                <td> Enable, then choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+                <td> Enable, <em>then choose the minimum size per zone,</em> 1 zone<sup>*</sup> </td>
               </tr>
               <tr>
                 <td> Kibana </td>
-                <td> Choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+                <td> <em>Choose the minimum size per zone,</em> 1 zone<sup>*</sup> </td>
               </tr>
               <tr>
                 <td> Integrations Server </td>
-                <td> Choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+                <td> <em>Choose the minimum size per zone,</em> 1 zone<sup>*</sup> </td>
               </tr>
               <tr>
                 <td> Enterprise Search </td>
-                <td> Choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+                <td> <em>Choose the minimum size per zone,</em> 1 zone<sup>*</sup> </td>
               </tr>
             </tbody>
           </table>
           <p class="text-muted small text-end mb-4"> <sup>*</sup> these instances should be included FREE in the Summary pane </p>
           <img src="images/deployment-configuration.png"
                class="img-fluid" alt="Default Elastic Cloud Deployment">
-          <p class="mt-4"> Note the hourly/monthly rate of the deployment and click the <i class="fas fa-mouse-pointer"></i> Create deployment button at the bottom of the box to initiate the deployment. </p>
+          <p class="mt-4"> Note the hourly/monthly rate of the deployment and click the <i class="fas fa-mouse-pointer"></i> <b>Create deployment</b> button at the bottom of the box to initiate the deployment. </p>
+          <h3 class="mt-4">
+            Copy the Root Credentials
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> While the deployment is being created&hellip; </p>
+          <p class="text-end"> &hellip;<i class="fas fa-copy"></i> copy the password associated with the elastic user, and store it in a safe place. </p>
+          <img src="images/elastic-password.png" class="img-fluid"
+               alt="Elastic Cloud credentials">
+          <p> Click on the <i class="fas fa-mouse-pointer"></i> <b>Continue</b> button when the instance becomes available.  <b> Your deployment is ready! </b> </p>
           <!----- Step 2 of 3 ----->
-          <div class="card mt-5 bg-light border-0">
+          <div class="card mt-5 bg-light hover-shadow border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Create a Role and User &nbsp;
@@ -265,35 +274,73 @@
                 <dt class="col-sm-3"> Question? </dt>
                 <dd class="col-sm-9"> Answer. </dd>
               </dl>
-              <img src="images/role-user.png" class="card-img-bottom"
+              <img src="images/create-role-user.png" class="card-img-bottom"
                    alt="Elastic Cloud role and user configuration">
             </div>
           </div>
-          <p class="mt-4"> While the deployment is being created&hellip; </p>
           <h3 class="mt-4">
-            Copy the Master Credentials
+            Initial Login
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Copy the master password associated with the elastic user, and store it in a safe place. </p>
-          <img src="images/elastic-password.png" class="img-fluid"
-               alt="Elastic Cloud credentials">
-          <p> Click on the <i class="fas fa-mouse-pointer"></i> Continue button once the deployment is ready. </p>
-          <h3 class="mt-4">
-            Explore on Your Own
-            <small class="text-muted"> Part 2 </small>
-          </h3>
-          <p> A welcome screen will offer the option to Add integrations or to Explore on your own.  Click the <i class="fas fa-mouse-pointer"></i> Explore on my own option. </p>
+          <p> A welcome screen will offer the option to Add integrations or to Explore on your own.  Click the <i class="fas fa-mouse-pointer"></i> <b>Explore on my own</b> option to proceed to the Home screen of the deployment. </p>
           <img src="images/welcome-to-elastic.png" class="img-fluid"
                alt="Welcome to Elastic">
           <h3 class="mt-4">
             Create Role
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Explain </p>
+          <p> Navigate to the Roles page using the left menu bar, selecting <em>Management | Stack Management &rarr; Security | Roles</em>.  From the Roles page, click on the <i class="fas fa-mouse-pointer"></i> <b>Create role</b> button. </p>
           <img src="images/create-role-navigation.png" class="img-fluid"
                alt="Create role navigation">
+          <p class="mt-4"> On the Create role page, enter <b>pareto</b> as the Role name, and then complete the fields in the Elasticsearch box as follows: </p>
+          <dl class="row">
+            <dt class="col-sm-3 offset-sm-1"> Cluster privileges </dt>
+            <dd class="col-sm-8"> monitor </dd>
+            <dt class="col-sm-3 offset-sm-1"> Indices </dt>
+            <dd class="col-sm-8"> raddec, dynamb </dd>
+            <dt class="col-sm-3 offset-sm-1"> Privileges </dt>
+            <dd class="col-sm-8"> create_index, create_doc, read </dd>
+          </dl>
+          <img src="images/create-role.png" class="img-fluid"
+               alt="Create pareto role in Elastic Cloud">
+          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create role</b> button at the bottom of the page to create the pareto role. </p>
+          <h3 class="mt-4">
+            Create User
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Navigate to the Users page using the left menu bar, selecting <em>Management | Stack Management &rarr; Security | Users</em>.  From the Users page, click on the <i class="fas fa-mouse-pointer"></i> <b>Create user</b> button. </p>
+          <img src="images/create-user-navigation.png" class="img-fluid"
+               alt="Create user navigation">
+          <p class="mt-4"> On the Create user page, complete the fields as follows: </p>
+          <dl class="row">
+            <dt class="col-sm-3 offset-sm-1"> Username </dt>
+            <dd class="col-sm-8"> pareto-anywhere </dd>
+            <dt class="col-sm-3 offset-sm-1"> Full name </dt>
+            <dd class="col-sm-8"> Pareto Anywhere </dd>
+            <dt class="col-sm-3 offset-sm-1"> Password </dt>
+            <dd class="col-sm-8"> <em>Choose a strong password which will be required in Part 4</em> </dd>
+            <dt class="col-sm-3 offset-sm-1"> Roles </dt>
+            <dd class="col-sm-8"> pareto </dd>
+          </dl>
+          <img src="images/create-user.png" class="img-fluid"
+               alt="Create pareto-anywhere user in Elastic Cloud">
+          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create user</b> button at the bottom of the page to create the pareto-anywhere user. </p>
+          <h3 class="mt-4">
+            Compile the Node URL
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> The deployment is now ready to receive data from a Pareto Anywhere instance which requires only the node URL of the deployment, including the user credentials.  The node URL has the following form: </p>
+          <p class="lead text-center"> https://pareto-anywhere:password@host </p>
+          <p> As the <em>username</em> (pareto-anywhere) and <em>password</em> (from Part 3) are already known, the only remaining step is to retrieve the endpoint URL of the Elasticsearch instance, which includes the <em>host</em> name. </p>
+          <p> Retrieve the endpoint URL of the Elasticsearch instance from the Elastic Cloud dashboard as follows: </p>
+          <img src="images/copy-elasticsearch-endpoint.png" class="img-fluid"
+               alt="Copy Elasticsearch endpoint">
+          <p class="mt-4"> The Elasticsearch endpoint will likely have the form https://<span class="text-muted">deployment-name</span>.es.<span class="text-muted">region.provider</span>.elastic-cloud.com with the <em>host</em> being everything following the https:// </p>
+          <p> Combine the <em>username</em>, <em>password</em> and <em>host</em> to determine the <b>Node URL</b> of the deployment, which should have the following form: </p>
+          <p class="lead text-center"> https://pareto-anywhere:<span class="text-muted">password</span>@<span class="text-muted">deployment-name</span>.es.<span class="text-muted">region.provider</span>.elastic-cloud.com </p>
+          <p> Use this Node URL to configure the Pareto Anywhere instance to forward raddec and dynamb data to the Elasticsearch instance, and then proceed to Step 3 below. </p>
           <!----- Step 3 of 3 ----->
-          <div class="card mt-5 bg-light border-0">
+          <div class="card mt-5 bg-light hover-shadow border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Create Data Views &nbsp;
@@ -307,10 +354,51 @@
                 <dt class="col-sm-3"> Question? </dt>
                 <dd class="col-sm-9"> Answer. </dd>
               </dl>
-              <img src="images/data-views.png"
-                   class="card-img-bottom" alt="Data views">
+              <img src="images/create-data-views.png"
+                   class="card-img-bottom" alt="Create Data Views">
             </div>
           </div>
+          <h3 class="mt-4">
+            Confirm Data
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Navigate to the Index Management page using the left menu bar, selecting <em>Management | Stack Management &rarr; Data | Index Management</em>. </p>
+          <img src="images/index-management-navigation.png" class="img-fluid"
+               alt="Elasticsearch Index Management navigation">
+          <p class="mt-4"> Confirm that the <em>raddec</em> and <em>dynamb</em> indices are present.  This validates that Pareto Anywhere is forwarding data to the Elasticsearch instance. </p>
+          <img src="images/index-management.png" class="img-fluid"
+               alt="Elasticsearch Index Management">
+          <h3 class="mt-4">
+            Create raddec Data View
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Navigate to the Data Views page using the left menu bar, selecting <em>Management | Stack Management &rarr; Kibana | Data Views</em>.  From the Data Views page, click on the <i class="fas fa-mouse-pointer"></i> <b>Create data view</b> button. </p>
+          <img src="images/create-data-view-navigation.png" class="img-fluid"
+               alt="Create Data View navigation">
+          <p class="mt-4"> Create a data view of the <em>raddec</em> index by typing <b>raddec</b> in the Name field, and observe the notice that the index pattern matches 1 source.  Select <b>@timestamp</b> in the Timestamp field. </p>
+          <img src="images/create-raddec-data-view.png" class="img-fluid"
+               alt="Create raddec Data View">
+          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create data view</b> button at the bottom of the page to create the <em>raddec</em> data view.  The <em>raddec</em> index is now accessible in Kibana. </p>
+          <h3 class="mt-4">
+            Create dynamb Data View
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Navigate to the Data Views page using the left menu bar, selecting <em>Management | Stack Management &rarr; Kibana | Data Views</em>.  From the Data Views page, click on the <i class="fas fa-mouse-pointer"></i> <b>Create data view</b> button. </p>
+          <img src="images/create-data-view-navigation.png" class="img-fluid"
+               alt="Create Data View navigation">
+          <p class="mt-4"> Create a data view of the <em>dynamb</em> index by typing <b>dynamb</b> in the Name field, and observe the notice that the index pattern matches 1 source.  Select <b>@timestamp</b> in the Timestamp field. </p>
+          <img src="images/create-dynamb-data-view.png" class="img-fluid"
+               alt="Create dynamb Data View">
+          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create data view</b> button at the bottom of the page to create the <em>dynamb</em> data view.  The <em>dynamb</em> index is now accessible in Kibana. </p>
+          <h3 class="mt-4">
+            Discover the data
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> Navigate to the Discover page using the left menu bar, selecting <em>Analytics | Discover</em>. </p>
+          <p> From the Discover page, select the <i class="fas fa-mouse-pointer"></i> <b>raddec</b> index from the data view pull-down and observe the <em>raddec</em> Documents which correspond to the selected time range.  Select the <i class="fas fa-mouse-pointer"></i> <b>dynamb</b> index from the data view pull-down and observe the <em>dynamb</em> Documents which correspond to the selected time range. </p>
+          <img src="images/discover-navigation.png" class="img-fluid"
+               alt="Discover navigation">
+          <p class="mt-4"> The Elastic Cloud deployment is ready for the exploration and analysis of data from context-aware physical spaces! </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
@@ -331,7 +419,7 @@
               <div class="col-10 offset-sm-1 align-self-center">
                 <div class="card-body">
                   <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
-                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. &nbsp; We invite you to <i class="fas fa-hand-holding-heart"></i> Gordon's work on Espruino with <a href="https://www.espruino.com/Donate" target="_blank">a donation</a> too! </small>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. </small>
                 </div>
               </div>
             </div>
