@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Create an Elastic Cloud deployment to search and analyse context-aware physical spaces enabled by Pareto Anywhere.">
+          content="Create an Elastic Cloud deployment to store and analyse data from context-aware physical spaces enabled by Pareto Anywhere.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
     <title> Elastic Cloud Deployment Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
@@ -14,7 +14,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "Elastic Cloud Deployment Guide",
-      "description": "Create an Elastic Cloud deployment to search and analyse context-aware physical spaces enabled by Pareto Anywhere.",
+      "description": "Create an Elastic Cloud deployment to store and analyse data from context-aware physical spaces enabled by Pareto Anywhere.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/elastic-cloud-deployment/images/header.jpg",
@@ -131,7 +131,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Elastic Cloud Deployment Guide </h1>
-          <p class="lead"> Search and analyse context-aware physical spaces with the suite of Elastic products. </p>
+          <p class="lead"> Store and analyse data from context-aware physical spaces in the cloud. </p>
           <img src="images/header.png" class="img-fluid"
                alt="Elastic Cloud Deployment Guide">
           <!----- The TL;DR ----->
@@ -145,7 +145,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What's Elastic Cloud? </dt>
-                <dd class="col-sm-9"> <a href="https://www.elastic.co/cloud/" target="_blank"><i class="fas fa-external-link-alt"></i> Elastic Cloud</a> is the easiest way to consume all of the Elastic products relevant to context-aware physical spaces on the cloud of your choice. </dd>
+                <dd class="col-sm-9"> <a href="https://www.elastic.co/cloud/" target="_blank"><i class="fas fa-external-link-alt"></i> Elastic Cloud</a> is the easiest way to deploy, use and scale Elastic products on AWS, Azure or GCP. </dd>
                 <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
                 <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is reelyActive's open source middleware that enables <a href="https://www.reelyactive.com/context-aware-physical-spaces/" target="_blank"><i class="fas fa-external-link-alt"></i> context-aware physical spaces</a>. </dd>
                 <dt class="col-sm-3"> Can I deploy locally? </dt>
@@ -164,7 +164,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Is this free of cost? </dt>
-                <dd class="col-sm-9"> You can start with a free trial.  Thereafter Elastic will bill monthly based on the resources used. </dd>
+                <dd class="col-sm-9"> Elastic offers a free trial to start.  After the trial, monthly billing will be applied against the cloud resources consumed. </dd>
                 <dt class="col-sm-3"> How long does it take? </dt>
                 <dd class="col-sm-9"> Creating a new deployment only takes a few minutes. </dd>
               </dl>
@@ -249,7 +249,7 @@
           <p class="text-muted small text-end mb-4"> <sup>*</sup> these instances should be included FREE in the Summary pane </p>
           <img src="images/deployment-configuration.png"
                class="img-fluid" alt="Default Elastic Cloud Deployment">
-          <p class="mt-4"> Note the hourly/monthly rate of the deployment and click the <i class="fas fa-mouse-pointer"></i> <b>Create deployment</b> button at the bottom of the box to initiate the deployment. </p>
+          <p class="mt-4"> Note the hourly/monthly rate of the deployment based on the configuration.  Click the <i class="fas fa-mouse-pointer"></i> <b>Create deployment</b> button at the bottom of the box to initiate the deployment, which should complete within a few minutes. </p>
           <h3 class="mt-4">
             Copy the Root Credentials
             <small class="text-muted"> Part 4 </small>
@@ -303,7 +303,7 @@
           </dl>
           <img src="images/create-role.png" class="img-fluid"
                alt="Create pareto role in Elastic Cloud">
-          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create role</b> button at the bottom of the page to create the pareto role. </p>
+          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create role</b> button at the bottom of the page to create the <em>pareto</em> role. </p>
           <h3 class="mt-4">
             Create User
             <small class="text-muted"> Part 3 </small>
@@ -324,14 +324,14 @@
           </dl>
           <img src="images/create-user.png" class="img-fluid"
                alt="Create pareto-anywhere user in Elastic Cloud">
-          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create user</b> button at the bottom of the page to create the pareto-anywhere user. </p>
+          <p class="mt-4"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Create user</b> button at the bottom of the page to create the <em>pareto-anywhere</em> user. </p>
           <h3 class="mt-4">
             Compile the Node URL
             <small class="text-muted"> Part 4 </small>
           </h3>
-          <p> The deployment is now ready to receive data from a Pareto Anywhere instance which requires only the node URL of the deployment, including the user credentials.  The node URL has the following form: </p>
+          <p> The deployment is now ready to receive data from a Pareto Anywhere instance, which will connect to Elasticsearch using the deployment's Node URL.  The Node URL has the following form: </p>
           <p class="lead text-center"> https://pareto-anywhere:password@host </p>
-          <p> As the <em>username</em> (pareto-anywhere) and <em>password</em> (from Part 3) are already known, the only remaining step is to retrieve the endpoint URL of the Elasticsearch instance, which includes the <em>host</em> name. </p>
+          <p> As the <em>username</em> (pareto-anywhere) and <em>password</em> (from Part 3) are already known, the only remaining step is to retrieve the endpoint URL of the Elasticsearch instance, which includes the <em>host</em>. </p>
           <p> Retrieve the endpoint URL of the Elasticsearch instance from the Elastic Cloud dashboard as follows: </p>
           <img src="images/copy-elasticsearch-endpoint.png" class="img-fluid"
                alt="Copy Elasticsearch endpoint">
