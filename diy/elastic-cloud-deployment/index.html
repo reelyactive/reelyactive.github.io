@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Create an Elastic Cloud deployment to search and analyse context-aware physical spaces enabled by Pareto Anywhere.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> Elastic Cloud Deployment Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Elastic Cloud Deployment Guide",
+      "description": "Create an Elastic Cloud deployment to search and analyse context-aware physical spaces enabled by Pareto Anywhere.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/elastic-cloud-deployment/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Elastic Cloud Deployment Guide"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Elastic Cloud Deployment Guide </h1>
+          <p class="lead"> Search and analyse context-aware physical spaces with the suite of Elastic products. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Elastic Cloud Deployment Guide">
+          <!----- The TL;DR ----->
+          <div class="card my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to create an Elastic Cloud deployment that ingests data from Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Elastic Cloud? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Can I deploy locally? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Create a Deployment &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> From the Elastic Cloud dashboard, choose and create a new deployment. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/create-deployment-header.png"
+                   class="card-img-bottom"
+                   alt="Create an Elastic Cloud Deployment">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Sign Up or Log In
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Browse to <a href="https://cloud.elastic.co" target="_blank"><i class="fas fa-external-link-alt"></i> cloud.elastic.co</a> and sign up or log in depending on your situation. </p>
+          <img src="images/signup-login.png" class="img-fluid"
+               alt="Sign up or Log in to Elastic Cloud">
+          <h3 class="mt-4">
+            Create a Deployment
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the Elastic Cloud dashboard, click on <i class="fas fa-mouse-pointer"></i> Create deployment at the top right of the Elasticsearch Service box. </p>
+          <img src="images/create-deployment.png" class="img-fluid"
+               alt="Create Elasticsearch Service deployment">
+          <p> The <b>Create a deployment</b> box should appear with the default settings and pricing. </p>
+          <img src="images/deployment-default.png"
+               class="img-fluid" alt="Default Elastic Cloud Deployment">
+          <h3 class="mt-4">
+            Customise the Deployment
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> The default deployment settings can be scaled back to provide an efficient initial deployment which can easily be scaled back up, if/when required. </p>
+          <p> Adjust the suggested configuration below to your situation. </p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"> Property </th>
+                <th scope="col"> Recommended setting </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Name </td>
+                <td> The name of the context-aware physical space this deployment represents </td>
+              </tr>
+              <tr>
+                <td> Cloud provider & Region </td>
+                <td> Select based on geographic proximity and/or loyalty </td>
+              </tr>
+              <tr>
+                <td> Hardware profile </td>
+                <td> General purpose </td>
+              </tr>
+              <tr>
+                <td> Version </td>
+                <td> 8.x.x (latest) </td>
+              </tr>
+              <tr>
+                <td> Autoscale </td>
+                <td> Enable for production deployments </td>
+              </tr>
+              <tr>
+                <td> Elasticsearch </td>
+                <td> Choose the minimum size per zone, 1 zone </td>
+              </tr>
+              <tr>
+                <td> Machine Learning instances </td>
+                <td> Enable, then choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+              </tr>
+              <tr>
+                <td> Kibana </td>
+                <td> Choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+              </tr>
+              <tr>
+                <td> Integrations Server </td>
+                <td> Choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+              </tr>
+              <tr>
+                <td> Enterprise Search </td>
+                <td> Choose the minimum size per zone, 1 zone<sup>*</sup> </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-muted small text-end mb-4"> <sup>*</sup> these instances should be included FREE in the Summary pane </p>
+          <img src="images/deployment-configuration.png"
+               class="img-fluid" alt="Default Elastic Cloud Deployment">
+          <p class="mt-4"> Note the hourly/monthly rate of the deployment and click the <i class="fas fa-mouse-pointer"></i> Create deployment button at the bottom of the box to initiate the deployment. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Create a Role and User &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Create a role/user combination for Pareto Anywhere to push data to the deployment. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/role-user.png" class="card-img-bottom"
+                   alt="Elastic Cloud role and user configuration">
+            </div>
+          </div>
+          <p class="mt-4"> While the deployment is being created&hellip; </p>
+          <h3 class="mt-4">
+            Copy the Master Credentials
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Copy the master password associated with the elastic user, and store it in a safe place. </p>
+          <img src="images/elastic-password.png" class="img-fluid"
+               alt="Elastic Cloud credentials">
+          <p> Click on the <i class="fas fa-mouse-pointer"></i> Continue button once the deployment is ready. </p>
+          <h3 class="mt-4">
+            Explore on Your Own
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> A welcome screen will offer the option to Add integrations or to Explore on your own.  Click the <i class="fas fa-mouse-pointer"></i> Explore on my own option. </p>
+          <img src="images/welcome-to-elastic.png" class="img-fluid"
+               alt="Welcome to Elastic">
+          <h3 class="mt-4">
+            Create Role
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Explain </p>
+          <img src="images/create-role-navigation.png" class="img-fluid"
+               alt="Create role navigation">
+          <!----- Step 3 of 3 ----->
+          <div class="card mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Create Data Views &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> Create a data view for both raddec and dynamb data. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/data-views.png"
+                   class="card-img-bottom" alt="Data views">
+            </div>
+          </div>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. &nbsp; We invite you to <i class="fas fa-hand-holding-heart"></i> Gordon's work on Espruino with <a href="https://www.espruino.com/Donate" target="_blank">a donation</a> too! </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  www.reelyActive.com
+                </h5>
+              </a>
+              Make <em>any</em> physical space context-aware for what matters for <em>your</em> business.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2022 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
