@@ -145,11 +145,11 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What's Elastic Cloud? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dd class="col-sm-9"> <a href="https://www.elastic.co/cloud/" target="_blank"><i class="fas fa-external-link-alt"></i> Elastic Cloud</a> is the easiest way to consume all of the Elastic products relevant to context-aware physical spaces on the cloud of your choice. </dd>
                 <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is reelyActive's open source middleware that enables <a href="https://www.reelyactive.com/context-aware-physical-spaces/" target="_blank"><i class="fas fa-external-link-alt"></i> context-aware physical spaces</a>. </dd>
                 <dt class="col-sm-3"> Can I deploy locally? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dd class="col-sm-9"> Yes, it is possible to <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank"><i class="fas fa-external-link-alt"></i> download Elasticsearch</a> and <a href="https://www.elastic.co/downloads/kibana" target="_blank"><i class="fas fa-external-link-alt"></i> download Kibana</a> to deploy as you please, however this is outside the scope of this tutorial. </dd>
               </dl>
             </div>
           </div>
@@ -163,10 +163,10 @@
               <p class="lead"> From the Elastic Cloud dashboard, choose and create a new deployment. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Is this free of cost? </dt>
+                <dd class="col-sm-9"> You can start with a free trial.  Thereafter Elastic will bill monthly based on the resources used. </dd>
+                <dt class="col-sm-3"> How long does it take? </dt>
+                <dd class="col-sm-9"> Creating a new deployment only takes a few minutes. </dd>
               </dl>
               <img src="images/create-deployment-header.png"
                    class="card-img-bottom"
@@ -269,10 +269,10 @@
               <p class="lead"> Create a role/user combination for Pareto Anywhere to push data to the deployment. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What are roles? </dt>
+                <dd class="col-sm-9"> A role specifies what a given user can access and manipulate in Elasticsearch and Kibana. </dd>
+                <dt class="col-sm-3"> What access is required? </dt>
+                <dd class="col-sm-9"> Pareto Anywhere will need to write data to specific indices, which it will do by connecting to Elasticsearch with the user credentials created in this step. </dd>
               </dl>
               <img src="images/create-role-user.png" class="card-img-bottom"
                    alt="Elastic Cloud role and user configuration">
@@ -349,10 +349,12 @@
               <p class="lead"> Create a data view for both raddec and dynamb data. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's a data view? </dt>
+                <dd class="col-sm-9"> A data view provides Kibana access to specific Elasticsearch data to explore. </dd>
+                <dt class="col-sm-3"> What's a raddec? </dt>
+                <dd class="col-sm-9"> A <em>raddec</em> is a data structure that represents a <b>rad</b>io <b>dec</b>oding. </dd>
+                <dt class="col-sm-3"> What's a dynamb? </dt>
+                <dd class="col-sm-9"> A <em>dynamb</em> is a data structure that represents <b>dyn</b>amic <b>amb</b>ient data. </dd>
               </dl>
               <img src="images/create-data-views.png"
                    class="card-img-bottom" alt="Create Data Views">
