@@ -391,6 +391,19 @@
               <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from <a href="https://www.reelyactive.com/products/gateways/#content" target="_blank"><i class="fas fa-external-link-alt"></i> reelyActive reelceivers</a> on UDP port 50000. </p>
             </div>
           </div>
+          <h3 class="mt-4">
+            Automatically run on boot
+            <small class="text-muted"> (OPTIONAL) Part 3 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies <em>only</em> to <i class="fab fa-linux"></i> Linux distributions that have <a href="https://en.wikipedia.org/wiki/Systemd#Adoption" target="_blank">adopted systemd</a>. </p>
+          <p> Configure systemd to run the pareto-anywhere service by completing the following: </p>
+          <ol>
+            <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere.service /lib/systemd/system</code> </li>
+            <li> If necessary, edit the <b class="user-select-all">/lib/systemd/system/pareto-anywhere.service</b> file you copied so that the <span class="font-monospace">WorkingDirectory</span>, <span class="font-monospace">ExecStart</span> and <span class="font-monospace">User</span> lines match your configuration </li>
+            <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere.service</code> </li>
+            <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere.service</code> </li>
+            <li> Browse again to <a href="http://localhost:3001">localhost:3001</a> and observe the Pareto Anywhere landing page </li>
+          </ol>
           <!----- Step 3 of 3 ----->
           <div class="card mt-5 bg-light border-0">
             <div class="card-body pt-4">
