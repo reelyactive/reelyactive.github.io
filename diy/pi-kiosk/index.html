@@ -319,8 +319,22 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
           </table>
           <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If a display is connected via HDMI, following the boot sequence, the <i class="fab fa-chrome"></i> Chromium browser should open in kiosk mode and display the specified webpage. </p>
           <h3 class="mt-4">
-            Display Pareto Anywhere Apps
+            Configure custom settings
             <small class="text-muted"> (OPTIONAL) Part 4 </small>
+          </h3>
+          <p> Depending on your display and <i class="fab fa-raspberry-pi"></i> Pi configuration, it may be necessary to configure additional settings to achieve the desired functionality.  Many of these settings can be found in <a href="" target="_blank"><i class="fas fa-external-link-alt"></i> The config.txt file</a>, which is well documented&mdash;<i>and the place to look first!</i> </p>
+          <p> The following example illustrates the settings for a HDMI portrait mode display configuration: </p>
+          <pre class="ms-4"><b># /boot/config.txt modifications for HDMI portrait mode</b>
+
+# Rotate into portrait mode
+display_hdmi_rotate=1
+
+# Enable DRM VC4 V3D driver (comment both lines out for portrait mode)
+#dtoverlay=vc4-kms-v3d
+#max_framebuffers=2</pre>
+          <h3 class="mt-4">
+            Display Pareto Anywhere Apps
+            <small class="text-muted"> (OPTIONAL) Part 5 </small>
           </h3>
           <p> If <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is running on the <i class="fab fa-raspberry-pi"></i> Pi, any of the <a href="https://www.reelyactive.com/pareto/anywhere/apps/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere Apps</a> can be displayed in kiosk mode, such as the following, simply by updating <span class="text-primary">the URL</span> in the <b>kiosk</b> file (see Part 1): </p>
           <div id="carouselApps" class="carousel slide carousel-fade"
