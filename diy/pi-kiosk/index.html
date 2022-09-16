@@ -322,16 +322,44 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
             Configure custom settings
             <small class="text-muted"> (OPTIONAL) Part 4 </small>
           </h3>
-          <p> Depending on your display and <i class="fab fa-raspberry-pi"></i> Pi configuration, it may be necessary to configure additional settings to achieve the desired functionality.  Many of these settings can be found in <a href="" target="_blank"><i class="fas fa-external-link-alt"></i> The config.txt file</a>, which is well documented&mdash;<i>and the place to look first!</i> </p>
-          <p> The following example illustrates the settings for a HDMI portrait mode display configuration: </p>
-          <pre class="ms-4"><b># /boot/config.txt modifications for HDMI portrait mode</b>
+          <p> Depending on your display and <i class="fab fa-raspberry-pi"></i> Pi configuration, it may be necessary to configure additional settings to achieve the desired functionality.  Many of these settings can be found in <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html" target="_blank"><i class="fas fa-external-link-alt"></i> The config.txt file</a>, which is well documented&mdash;<i>and the place to look first!</i> </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="rotatetab"
+                      data-bs-toggle="tab" data-bs-target="#rotatecontent"
+                      type="button" role="tab" aria-controls="rotatetab"
+                      aria-selected="true">
+                <i class="fas fa-redo"></i> Rotate display
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="moretab" data-bs-toggle="tab"
+                      data-bs-target="#morecontent" type="button" role="tab"
+                      aria-controls="moretab"
+                      aria-selected="false"> more&hellip; </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="rotatecontent"
+                 role="tabpanel" aria-labelledby="rotatetab">
+              <p class="mt-2"> Edit the <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html#display_hdmi_rotate" target="_blank"><i class="fas fa-external-link-alt"></i> display_rotate_hdmi</a> property and disable the DRM VC4 V3D driver for portrait displays: </p>
+              <pre class="ms-5"><b># /boot/config.txt</b>
 
-# Rotate into portrait mode
+# 0 = 0&deg;, 1 = 90&deg;, 2 = 180&deg;, 3 = 270&deg;
 display_hdmi_rotate=1
 
-# Enable DRM VC4 V3D driver (comment both lines out for portrait mode)
+# Comment out DRM VC4 V3D driver for portrait mode
 #dtoverlay=vc4-kms-v3d
 #max_framebuffers=2</pre>
+              <p class="text-end mb-0">
+                <small class="text-muted"> Thanks to Mike for validating this configuration on a Pi 3B! </small>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="morecontent" role="tabpanel"
+                 aria-labelledby="moretab">
+              <p class="mt-2 mb-1"> Again, check <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html" target="_blank"><i class="fas fa-external-link-alt"></i> The config.txt file</a> first!  And if you complete a non-obvious kiosk configuration that you think would benefit the community, <a href="https://www.reelyactive.com/contact/" target="_blank"><i class="fas fa-external-link-alt"></i> contact us</a> and we'll be happy to document it here. </p>
+            </div>
+          </div>
           <h3 class="mt-4">
             Display Pareto Anywhere Apps
             <small class="text-muted"> (OPTIONAL) Part 5 </small>
