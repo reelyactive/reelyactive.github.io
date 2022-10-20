@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Configure a Minew MSP01 passive infrared sensor to transmit occupancy, illuminance, temperature and humidity data for real-time sensing and location in context-aware physical spaces.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> reelyActive Minew MSP01 PIR Sensor Configuration Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Minew MSP01 PIR Sensor Configuration Guide",
+      "description": "Configure a Minew MSP01 passive infrared sensor to transmit occupancy, illuminance, temperature and humidity data for real-time sensing and location in context-aware physical spaces.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/minew-b10-config/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Minew MSP01 Configuration"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Configure a Minew MSP01 PIR Sensor </h1>
+          <p class="lead"> Our step-by-step guide to configure the passive infrared sensor with the BeaconSET+ app. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Configure a Minew MSP01 passive infrared sensor">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive configure the sensor for real-time sensing and location </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The MSP01 will <i class="fas fa-wifi"></i> transmit occupancy data when <i class="fas fa-walking"></i> motion is detected and <i class="fas fa-sun"></i> illuminance, <i class="fas fa-thermometer-half"></i> temperature and <i class="fas fa-water"></i> humidity data periodically. </dd>
+                <dt class="col-sm-3"> How to capture the data? </dt>
+                <dd class="col-sm-9"> The BeaconSET+ mobile app, which is used for configuration, can display the data.  Our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank">Pareto Anywhere</a> open source middleware processes the data for any application. </dd>
+                <dt class="col-sm-3"> How long does this take? </dt>
+                <dd class="col-sm-9"> A MSP01 can be configured in <span class="badge bg-info"><i class="fas fa-clock"></i> a few minutes</span> when all prerequisites are in place. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A Minew MSP01 sensor beacon and the BeaconSET+ mobile app. </p>
+          <div class="card border-0 mb-3">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-2">
+                <img src="images/minew-msp01.jpg"
+                     class="img-fluid rounded-start" alt="Minew MSP01">
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h5 class="card-title"> Minew MSP01 </h5>
+                  <p class="card-text text-muted"> Purchase the sensor beacon from the manufacturer: </p>
+                  <p class="card-text">
+                    <a href="https://www.minewstore.com/product/msp01-passive-infrared-sensor/"
+                       target="_blank" class="btn btn-sm btn-outline-primary">
+                      <i class="fas fa-shopping-cart"></i>&nbsp; Minew Store
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>        
+          <div class="card border-0 mb-3">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-2">
+                <img src="../common/images/icon-beaconset-plus.png"
+                     class="img-fluid rounded-start" alt="BeaconSET+ icon">
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h5 class="card-title"> BeaconSET+ </h5>
+                  <p class="card-text text-muted"> Install on Android or iOS <i class="fas fa-mobile-alt"></i> mobile devices: </p>
+                  <p class="card-text">
+                    <a href="https://play.google.com/store/apps/details?id=com.minew.beaconplus"
+                       target="_blank" class="btn btn-sm btn-outline-primary">
+                      <i class="fab fa-android"></i>&nbsp; Play Store
+                    </a>
+                    <a href="https://itunes.apple.com/us/app/beaconset/id1264548636"
+                       target="_blank" class="btn btn-sm btn-outline-primary">
+                      <i class="fab fa-apple"></i>&nbsp; App Store
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Detect and connect &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Identify and connect to the MSP01 in the BeaconSET+ mobile app. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why BeaconSET+? </dt>
+                <dd class="col-sm-9"> BeaconSET+ is the vendor-maintained app that facilitates the configuration of all MSP01 features. </dd>
+                <dt class="col-sm-3"> What's the range? </dt>
+                <dd class="col-sm-9"> Configuration is most reliable when the MSP01 and <i class="fas fa-mobile-alt"></i> mobile device are next to one another, but a range of 10m+ is possible. </dd>
+              </dl>
+              <img src="images/detect-and-connect.jpg" class="card-img-bottom"
+                   alt="Minew MSP01 connection in BeaconSET+">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Physically prepare and identify the MSP01
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The MSP01 must be powered on in order to be detected by the BeaconSET+ mobile app. </p>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <img src="images/power-on.jpg" class="img-fluid mb-2">
+            </div>
+            <div class="col-md-8 align-self-center">
+              <p> Check that the MSP01 is powered on by observing activity on the LED above the sensor, for example when motion is detected.  If no LED activity is observed, power on the MSP01 by <i class="fas fa-hand-pointer"></i> holding down the black button until LED activity is observed. </p>
+              <p> If the MSP01 <em>cannot</em> be powered on, first change the <i class="fas fa-battery-half"></i> batteries. </p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-8 align-self-center">
+              <p> <i class="fas fa-search"></i> Note the 48-bit (16 character) <i class="fas fa-barcode"></i> identifier on the enclosure (ex: <b class="font-monospace">AC233FAB7F00</b>). </p>
+              <p> This uniquely identifies the MSP01 in the BeaconSET+ mobile app <small class="text-muted">(and in Pareto Anywhere too).</small> </p>
+            </div>
+            <div class="col-md-4">
+              <img src="images/identifier.jpg" class="img-fluid mb-2"
+                   alt="MSP01 identifier">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Identify and connect in BeaconSET+
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The BeaconSET+ mobile app requires <i class="fab fa-bluetooth"></i> Bluetooth and Location to be enabled on the <i class="fas fa-mobile-alt"></i> mobile device. </p>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <img src="images/identify-connect.png" class="img-fluid mb-2">
+            </div>
+            <div class="col-md-8 align-self-center">
+              <ol>
+                <li> open the BeaconSET+ app on the <i class="fas fa-mobile-alt"></i> mobile device </li>
+                <li> <i class="fas fa-hand-pointer"></i> press the black button on the MSP01 once to facilitate discoverability and connectivity in the app </li>
+                <li> <i class="fas fa-eye"></i> identify the MSP01 in the app by its <i class="fas fa-barcode"></i> unique identifier </li>
+                <li> <i class="fas fa-mouse-pointer"></i> select the identified device in the app to initiate a connection </li>
+                <li> when prompted, enter the password (default: <b>minew123</b>) </li>
+              </ol>
+            </div>
+          </div>
+          <p> <span class="badge rounded-pill bg-success"><i class="fas fa-info"></i></span> Too many devices detected?  Select <em>Edit Filter</em> in the app and reduce the RSSI threshold to display only devices in close proximity. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configure the transmission SLOTs &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Configure the MSP01 to transmit motion detection and environmental sensor readings. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What are SLOTs? </dt>
+                <dd class="col-sm-9"> A SLOT is a transmission window. The beacon supports 6 SLOTs for different packet transmissions and triggers. </dd>
+                <dt class="col-sm-3"> Why change the presets? </dt>
+                <dd class="col-sm-9"> The factory preset SLOTs are mostly irrelevant and unnecessary for common applications. </dd>
+              </dl>
+              <img src="images/slot-configuration.png" class="card-img-bottom"
+                   alt="Minew MSP01 SLOT configuration">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Determine what to transmit
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> The Minew MSP01 can transmit any of the following <i class="fas fa-wifi"></i> packets periodically, or spontaneously given any of the following <i class="fas fa-exclamation-circle"></i> triggers: </p>
+          <div class="row text-center mb-3">
+            <div class="col-6">
+              <h5> <i class="fas fa-wifi"></i> Packets </h5>
+              <ul class="list-group">
+                <li class="list-group-item"> Eddystone-UID </li>
+                <li class="list-group-item"> Eddystone-URL </li>
+                <li class="list-group-item"> Telemetry </li>
+                <li class="list-group-item"> iBeacon </li>
+                <li class="list-group-item"> Acceleration </li>
+                <li class="list-group-item"> Humidity & Temperature </li>
+                <li class="list-group-item"> Passive Infrared </li>
+                <li class="list-group-item"> Photosensitive Sensor </li>
+                <li class="list-group-item"> Device Info </li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <h5> <i class="fas fa-exclamation-circle"></i> Triggers </h5>
+              <ul class="list-group">
+                <li class="list-group-item"> Motion </li>
+                <li class="list-group-item"> Temperature above </li>
+                <li class="list-group-item"> Temperature below </li>
+                <li class="list-group-item"> Humidity above </li>
+                <li class="list-group-item"> Humidity below </li>
+                <li class="list-group-item"> Button single tap </li>
+                <li class="list-group-item"> Button double tap </li>
+                <li class="list-group-item"> Button triple tap </li>
+                <li class="list-group-item"> Passive infrared </li>
+              </ul>
+            </div>
+          </div>
+          <p> Countless combinations are possible.  In Part 2 next, we'll provide the configuration details for one specific combination<em>&mdash;a zone occupancy application&mdash;</em>with the following behaviour: </p>
+          <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th> <i class="fas fa-exclamation-circle"></i> Trigger </th>
+                <th> <i class="fas fa-wifi"></i> Packet </th>
+                <th> Details </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> <i class="fas fa-walking"></i> PIR &mdash; </td>
+                <td> Passive Infrared </td>
+                <td> Motion detection status </td>
+              </tr>
+              <tr>
+                <td> <i class="fas fa-walking"></i> PIR </td>
+                <td> Eddystone-UID </td>
+                <td> &#x1f6b6; emoji using <a href="https://reelyactive.github.io/interoperable-identifier/#part02">InteroperaBLE Identifier <small>(Unicode Code Point)</small></a> </td>
+              </tr>
+              <tr>
+                <td> <i class="fas fa-route"></i> Motion </td>
+                <td> Acceleration </td>
+                <td> [ x, y, z ] <i class="fas fa-rocket"></i> acceleration data for motion & orientation </td>
+              </tr>
+              <tr>
+                <td> &mdash; </td>
+                <td> Humidity & Temperature </td>
+                <td> Periodic <i class="fas fa-thermometer-half"></i> temperature and <i class="fas fa-water"></i> humidity readings </td>
+              </tr>
+              <tr>
+                <td> &mdash; </td>
+                <td> Photosensitive Sensor </td>
+                <td> Periodic <i class="fas fa-sun"></i> illuminance readings </td>
+              </tr>
+              <tr>
+                <td> &mdash; </td>
+                <td> Device Info </td>
+                <td> Periodic <i class="fas fa-barcode"></i> identification, <i class="fas fa-battery-half"></i> battery & reconfigurability </td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 class="mt-4">
+            Configure each SLOT
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the BeaconSET+ app, individually configure <em>each</em> of the six SLOTs as follows: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="slot1tab" data-bs-toggle="tab"
+                      data-bs-target="#slot1content" type="button" role="tab"
+                      aria-controls="slot1tab" aria-selected="false">
+                SLOT1
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="slot2tab" data-bs-toggle="tab"
+                      data-bs-target="#slot2content" type="button" role="tab"
+                      aria-controls="slot2tab" aria-selected="false">
+                SLOT2
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="slot3tab" data-bs-toggle="tab"
+                      data-bs-target="#slot3content" type="button" role="tab"
+                      aria-controls="slot3tab" aria-selected="false">
+                SLOT3
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="slot4tab" data-bs-toggle="tab"
+                      data-bs-target="#slot4content" type="button" role="tab"
+                      aria-controls="slot4tab" aria-selected="false">
+                SLOT4
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="slot5tab" data-bs-toggle="tab"
+                      data-bs-target="#slot5content" type="button" role="tab"
+                      aria-controls="slot5tab" aria-selected="true">
+                SLOT5
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="slot6tab" data-bs-toggle="tab"
+                      data-bs-target="#slot6content" type="button" role="tab"
+                      aria-controls="slot6tab" aria-selected="false">
+                SLOT6
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border text-center p-0">
+            <div class="tab-pane fade show active" id="slot1content"
+                 role="tabpanel" aria-labelledby="slot1tab">
+              <h5 class="bg-ambient bg-gradient text-white py-1"> INFO </h5>
+              <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> <b> Do not modify this SLOT: </b> the BeaconSet+ app requires the INFO packet to connect! </p>
+            </div>
+            <div class="tab-pane fade" id="slot2content" role="tabpanel"
+                 aria-labelledby="slot2tab">
+              <h5 class="bg-ambient bg-gradient text-white py-1 mb-0"> PIR </h5>
+              <table class="table table-sm table-hover text-start mx-auto">
+                <caption> SLOT2: "On <i class="fas fa-walking"></i> motion detection, briefly transmit status faster." </caption>
+                <thead class="table-light">
+                  <tr> <th> Frame Type </th> <td> PIR </td> </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Base params </th>
+                    <td> &nbsp; </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td> 4000ms </td> </tr>
+                  <tr> <td> RSSI @ 0m </td> <td> -24dBm </td> </tr>
+                  <tr> <td> Tx Power </td> <td> 0dBm </td> </tr>
+                </tbody>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Trigger </th> <td> &nbsp; </td>
+                  </tr>
+                  <tr>
+                    <td> Enable </td>
+                    <td> Yes <i class="fas fa-check-circle text-primary"></i> </td>
+                  </tr>
+                  <tr> <td> Type </td> <th> PIR </th> </tr>
+                  <tr> <td> Duration </td> <td> 3 seconds </td> </tr>
+                  <tr>
+                    <td> Always advertise </td>
+                    <td> Yes <i class="fas fa-check-circle text-primary"></i> </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td> 500ms </td> </tr>
+                  <tr> <td> Tx Power </td> <td> 0dBm </td> </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="slot3content" role="tabpanel"
+                 aria-labelledby="slot3tab">
+              <h5 class="bg-ambient bg-gradient text-white py-1 mb-0"> ACC </h5>
+              <table class="table table-sm table-hover text-start mx-auto">
+                <caption> SLOT3: "On device motion, transmit <i class="fas fa-rocket"></i> accelerometer data." </caption>
+                <thead class="table-light">
+                  <tr> <th> Frame Type </th> <td> ACC </td> </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Base params </th>
+                    <td> Ignored <small class="text-muted">(see Trigger)</small> </td>
+                  </tr>
+                </tbody>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Trigger </th> <td> &nbsp; </td>
+                  </tr>
+                  <tr>
+                    <td> Enable </td>
+                    <td> Yes <i class="fas fa-check-circle text-primary"></i> </td>
+                  </tr>
+                  <tr> <td> Type </th> <th> Motion </th> </tr>
+                  <tr> <td> Duration </td> <td> 5 seconds </td> </tr>
+                  <tr>
+                    <td> Always advertise </td>
+                    <td> <i class="fas fa-times-circle text-info"></i> No </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td> 500ms </td> </tr>
+                  <tr> <td> Tx Power </td> <td> 0dBm </td> </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="slot4content" role="tabpanel"
+                 aria-labelledby="slot4tab">
+              <h5 class="bg-ambient bg-gradient text-white py-1"> HT </h5>
+              <table class="table table-sm table-hover text-start mx-auto">
+                <caption> SLOT4: "Periodically transmit <i class="fas fa-thermometer-half"></i> temperature and <i class="fas fa-water"></i> humidity data." </caption>
+                <thead class="table-light">
+                  <tr> <th> Frame Type </th> <td> HT </td> </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Base params </th>
+                    <td> &nbsp; </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td> 4000ms </td> </tr>
+                  <tr> <td> RSSI @ 0m </td> <td> -24dBm </td> </tr>
+                  <tr> <td> Tx Power </td> <td> 0dBm </td> </tr>
+                </tbody>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Trigger </th>
+                    <td> Disabled <small class="text-muted">(Base params apply)</small> </td>
+                  </tr>
+                  <tr>
+                    <td> Enable </td>
+                    <td> <i class="fas fa-times-circle text-info"></i> No </td>
+                  </tr>
+                  <tr> <td> Type </td> <td class="text-muted"> None </td> </tr>
+                  <tr>
+                    <td> Always advertise </td>
+                    <td> <i class="fas fa-times-circle text-info"></i> No </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td class="text-muted"> 4000ms </td> </tr>
+                  <tr> <td> Tx Power </td> <td class="text-muted"> 0dBm </td> </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="slot5content"
+                 role="tabpanel" aria-labelledby="slot5tab">
+              <h5 class="bg-ambient bg-gradient text-white py-1"> PS Sensor </h5>
+              <table class="table table-sm table-hover text-start mx-auto">
+                <caption> SLOT5: "Periodically transmit <i class="fas fa-sun"></i> illuminance data." </caption>
+                <thead class="table-light">
+                  <tr> <th> Frame Type </th> <td> PS Sensor </td> </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Base params </th>
+                    <td> &nbsp; </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td> 4000ms </td> </tr>
+                  <tr> <td> RSSI @ 0m </td> <td> -24dBm </td> </tr>
+                  <tr> <td> Tx Power </td> <td> 0dBm </td> </tr>
+                </tbody>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Trigger </th>
+                    <td> Disabled <small class="text-muted">(Base params apply)</small> </td>
+                  </tr>
+                  <tr>
+                    <td> Enable </td>
+                    <td> <i class="fas fa-times-circle text-info"></i> No </td>
+                  </tr>
+                  <tr> <td> Type </td> <td class="text-muted"> None </td> </tr>
+                  <tr>
+                    <td> Always advertise </td>
+                    <td> <i class="fas fa-times-circle text-info"></i> No </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td class="text-muted"> 4000ms </td> </tr>
+                  <tr> <td> Tx Power </td> <td class="text-muted"> 0dBm </td> </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="slot6content" role="tabpanel"
+                 aria-labelledby="slot6tab">
+              <h5 class="bg-ambient bg-gradient text-white py-1 mb-0"> UID </h5>
+              <table class="table table-sm table-hover text-start mx-auto">
+                <caption> SLOT6: "On <i class="fas fa-walking"></i> motion detection, transmit &#x1f6b6; emoji" </caption>
+                <thead class="table-light">
+                  <tr> <th> Frame Type </th> <td> UID </td> </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Adv Content </th> <td> &nbsp; </td>
+                  </tr>
+                  <tr>
+                    <td> Namespace ID </td>
+                    <td class="font-monospace"> 496f49445554462d3332 </td>
+                  </tr>
+                  <tr>
+                    <td> Instance ID </td>
+                    <td>
+                      <span class="font-monospace"> 00000001f6b6 </span>
+                      &nbsp; (&#x1f6b6;)
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Base params </th>
+                    <td> Ignored <small class="text-muted">(see Trigger)</small> </td>
+                  </tr>
+                </tbody>
+                <tbody class="table-group-divider">
+                  <tr class="table-light">
+                    <th> Trigger </th> <td> &nbsp; </td>
+                  </tr>
+                  <tr>
+                    <td> Enable </td>
+                    <td> Yes <i class="fas fa-check-circle text-primary"></i> </td>
+                  </tr>
+                  <tr> <td> Type </th> <th> PIR </th> </tr>
+                  <tr> <td> Duration </td> <td> 5 seconds </td> </tr>
+                  <tr>
+                    <td> Always advertise </td>
+                    <td> <i class="fas fa-times-circle text-info"></i> No </td>
+                  </tr>
+                  <tr> <td> Adv interval </td> <td> 500ms </td> </tr>
+                  <tr> <td> Tx Power </td> <td> 0dBm </td> </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Observe data in Pareto Anywhere &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> <em>Optionally</em> observe the transmitted data in your web browser. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank">Pareto Anywhere</a> is open source middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
+                <dt class="col-sm-3"> Can other software be used? </dt>
+                <dd class="col-sm-9"> Yes.  Any software that can receive and interpret <i class="fab fa-bluetooth"></i> Bluetooth Low Energy packets can be used. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-overview.jpg"
+                   class="card-img-bottom"
+                   alt="Minew MSP01 Data in Pareto Anywhere">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install Pareto Anywhere
+            <small class="text-muted"> (OPTIONAL) Part 1 </small>
+          </h3>
+          <p> Follow one of our tutorials to install Pareto Anywhere on your platform of choice: </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pc/">
+                <img src="../pareto-anywhere-pc/images/icon.png"
+                     class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pc/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
+              </a>
+              Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make any physical space context-aware.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-2">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
+              </a>
+              Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
+            </li>
+          </ul>
+          <h3 class="mt-4">
+            Observe the /context API
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Browse to the /context API of the Pareto Anywhere instance, specifying the MSP01's identifier in the route as follows: </p>
+          <p class="font-monospace text-center"> http://pareto.local/context/device/ac233fab7f00/2 </p>
+          <p class="mb-1"> Change <span class="font-monospace">pareto.local</span> to the IP address and port (ex: <span class="font-monospace">127.0.0.1:3001</span>) as required, and the identifier of the device (ex: <span class="font-monospace">ac233fa000000</span>) to that of your B10.<sup>*</sup> &nbsp; The <span class="font-monospace">/2</span> at the end specifies that the identifier is an EUI-48. </p>
+          <p class="text-muted small text-end"><sup>*</sup>alternatively, browse to &hellip;/context and select your MSP01 from the list of detected devices. </p>
+          <img src="images/pareto-anywhere-context.png"
+               class="img-fluid mx-auto d-block mt-3"
+               alt="Minew MSP01 in Pareto Anywhere /context API">
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Let's put things in context, one space at a time.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
