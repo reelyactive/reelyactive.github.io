@@ -257,10 +257,10 @@
           <p> Should a source of ambient data be available (see the tabs below), it is possible to validate its integration with Pareto Anywhere, replacing <span class="text-primary">xxx.xxx.xxx.xxx</span> with the <i class="fab fa-raspberry-pi"></i> Pi's IP address, where required. </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="gatewaystab"
+              <button class="nav-link" id="gatewaystab"
                       data-bs-toggle="tab" data-bs-target="#gatewayscontent"
                       type="button" role="tab" aria-controls="gatewaystab"
-                      aria-selected="true"> Gateways </button>
+                      aria-selected="false"> Gateways </button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="apstab" data-bs-toggle="tab"
@@ -269,10 +269,10 @@
                       aria-selected="false"> APs </button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="onboardtab" data-bs-toggle="tab"
-                      data-bs-target="#onboardcontent" type="button" role="tab"
-                      aria-controls="onboardtab"
-                      aria-selected="false"> <i class="fas fa-star animate-breathing"></i> Onboard Radio </button>
+              <button class="nav-link active" id="onboardtab"
+                      data-bs-toggle="tab" data-bs-target="#onboardcontent"
+                      type="button" role="tab" aria-controls="onboardtab"
+                      aria-selected="true"> <i class="fas fa-star animate-breathing"></i> Onboard Radio </button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="reeltab" data-bs-toggle="tab"
@@ -282,7 +282,7 @@
             </li>
           </ul>
           <div class="tab-content tab-content-border">
-            <div class="tab-pane fade show active" id="gatewayscontent"
+            <div class="tab-pane fade" id="gatewayscontent"
                  role="tabpanel" aria-labelledby="gatewaystab">
               <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from reelyActive Owl-in-Ones and Minew G1 gateways.  Follow the step-by-step tutorials below to forward data from these gateways. </p>
               <ul class="list-group list-group-horizontal">
@@ -330,7 +330,7 @@
               </ul>
               <p class="mt-4 mb-2"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets from the Huawei AP to the <i class="fab fa-raspberry-pi"></i> Pi on port 50010 </p>
             </div>
-            <div class="tab-pane fade" id="onboardcontent" role="tabpanel"
+            <div class="tab-pane fade show active" id="onboardcontent" role="tabpanel"
                  aria-labelledby="onboardtab">
               <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data from its onboard radio provided an instance of <a href="https://github.com/reelyactive/barnowl-hci">barnowl-hci</a> is running and forwarding the data.  Follow the instructions below to install and run automatically each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
               <h4> Install barnowl-hci </h4>
