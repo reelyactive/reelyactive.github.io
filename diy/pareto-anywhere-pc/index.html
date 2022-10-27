@@ -313,6 +313,18 @@
                       aria-controls="reeltab"
                       aria-selected="false"> Reel </button>
             </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="readerstab" data-bs-toggle="tab"
+                      data-bs-target="#readerscontent" type="button" role="tab"
+                      aria-controls="readerstab"
+                      aria-selected="false"> Readers </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="enoceantab" data-bs-toggle="tab"
+                      data-bs-target="#enoceancontent" type="button" role="tab"
+                      aria-controls="enoceantab"
+                      aria-selected="false"> EnOcean </button>
+            </li>
           </ul>
           <div class="tab-content tab-content-border">
             <div class="tab-pane fade show active" id="gatewayscontent"
@@ -389,6 +401,33 @@
             <div class="tab-pane fade" id="reelcontent" role="tabpanel"
                  aria-labelledby="reeltab">
               <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from <a href="https://www.reelyactive.com/products/gateways/#content" target="_blank"><i class="fas fa-external-link-alt"></i> reelyActive reelceivers</a> on UDP port 50000. </p>
+            </div>
+            <div class="tab-pane fade" id="readerscontent" role="tabpanel"
+                 aria-labelledby="readerstab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient RAIN RFID data forwarded from compatible Impinj and RF Controls readers.  See the <a href="https://github.com/reelyactive/barnowl-impinj" target="_blank"><i class="fas fa-external-link-alt"></i> barnowl-impinj</a> and <a href="https://github.com/reelyactive/barnowl-rfcontrols" target="_blank"><i class="fas fa-external-link-alt"></i>barnowl-rfcontrols</a> modules, respectively, for additional details. </p>
+            </div>
+            <div class="tab-pane fade" id="enoceancontent" role="tabpanel"
+                 aria-labelledby="enoceantab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient EnOcean Wireless Standard data from a USB dongle connected to the <i class="fas fa-laptop"></i> PC provided an instance of <a href="https://github.com/reelyactive/barnowl-enocean">barnowl-enocean</a> is running and forwarding the data.  Follow the instructions below to install and run automatically each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
+              <h4> Install barnowl-enocean </h4>
+              <p> Open a terminal <i class="fas fa-terminal"></i> and complete the following: </p>
+              <ol>
+                <li> Browse once again to the folder <i class="fas fa-folder"></i> in which you wish to download the source code. </li>
+                <li> Clone the barnowl-enocean repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/barnowl-enocean.git</code> </li>
+                <li> Change to the <b>barnowl-enocean</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd barnowl-enocean</code>
+                <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+              </ol>
+              <h4>
+                Assign serial privileges
+                <small class="text-muted"> (Linux <i class="fab fa-linux"></i>  only)</small>
+              </h4>
+              <p> Include the user in the dialout group to facilitate serial access to the USB dongle with the command <code class="user-select-all">sudo usermod -a -G dialout $USER</code> </p>
+              <p> Run barnowl-enocean once to confirm that it can listen for ambient data: </p>
+              <ul>
+                <li> <code class="user-select-all">npm start</code> will output radio decodings (raddecs) to the console for quick-and-dirty testing </li>
+                <li> <code class="user-select-all">npm run forwarder</code> will forward raddecs to a local Pareto Anywhere instance </li>
+              </ul>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Enter <kbd>Ctrl+C</kbd> to stop either program. </p>
             </div>
           </div>
           <h3 class="mt-4">
