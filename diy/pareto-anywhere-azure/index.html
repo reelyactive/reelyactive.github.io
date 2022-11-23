@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Microsoft Azure.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> Run Pareto Anywhere for Azure </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Run Pareto Anywhere for Azure",
+      "description": "Step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Microsoft Azure.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pareto-anywhere-azure/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Pareto Anywhere for Azure"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Run Pareto Anywhere for Azure </h1>
+          <p class="lead"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Microsoft Azure. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Run Pareto Anywhere for Azure">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to run reelyActive's Pareto Anywhere open source middleware efficiently as an Azure Function. </p>
+              <p> This will transform ambient wireless data from Azure IoT Hub into real-time context: who/what is where/how. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/integrations/azure/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere for Azure</a> will run on-demand to process data from Azure IoT Hub into web-standard JSON to feed downstream Microsoft Azure services and APIs. </dd>
+                <dt class="col-sm-3"> Why an Azure Function? </dt>
+                <dd class="col-sm-9"> Running as a serverless function is highly efficient and scalable, and facilitates integration with complementary Microsoft Azure services. </dd>
+                <dt class="col-sm-3"> What ambient data? </dt>
+                <dd class="col-sm-9"> Currently supported sources include <i class="fab fa-bluetooth"></i> Bluetooth Low Energy and EnOcean Wireless Standard packets relayed via the Aruba Azure IoT Interface. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> <i class="fab fa-node-js"></i> Node.js as well as a Microsoft Azure account. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> From a terminal <i class="fas fa-terminal"></i> run <code>node --version</code> to check if <i class="fab fa-node-js"></i> Node.js is <em>already</em> installed on your <i class="fas fa-laptop"></i> computer. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://nodejs.org/en/download/">
+                <img src="../common/images/icon-nodejs.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://nodejs.org/en/download/">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Download Node.js
+                </h5>
+              </a>
+              Download and install the latest LTS version of <i class="fab fa-node-js"></i> Node.js.
+            </li>
+          </ul>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> <em>If necessary,</em> <a href="https://azure.microsoft.com/free/" target="_blank"><i class="fas fa-external-link-alt"></i> create a (free) Azure account</a>.  Confirm that you can successfully log into an active Azure account. </p>
+          <!----- Step 1 of X ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing locally &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of X </a>
+              </h2>
+              <p class="lead"> Install Pareto Anywhere for Azure and its dependencies on your <i class="fas fa-laptop"></i> computer. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why a local install? </dt>
+                <dd class="col-sm-9"> The <i class="fas fa-laptop"></i> local install facilitates configuring and testing Pareto Anywhere for Azure before pushing the code to the <i class="fas fa-cloud"></i> cloud. </dd>
+                <dt class="col-sm-3"> Where's the source code? </dt>
+                <dd class="col-sm-9"> The code is maintained <a href="https://github.com/reelyactive/pareto-anywhere-azure" target="_blank"><i class="fas fa-external-link-alt"></i> on <i class="fab fa-github"></i> GitHub</a> by reelyActive. </dd>
+              </dl>
+              <img src="images/clone-pareto-anywhere-azure.jpg"
+                   class="card-img-bottom"
+                   alt="Clone the pareto-anywhere-azure repository from GitHub">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install pareto-anywhere-azure
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and complete the following steps: </p>
+          <ol>
+            <li> Browse to the folder <i class="fas fa-folder"></i> in which you wish to download the pareto-anywhere-azure source code. </li>
+            <li> Clone the pareto-anywhere-azure repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/pareto-anywhere-azure.git</code> <small class="text-muted">(or <a href="https://github.com/reelyactive/pareto-anywhere-azure/archive/refs/heads/master.zip">download as ZIP</a> and extract as <i class="fas fa-folder-plus"></i> pareto-anywhere-azure).</small> </li>
+            <li> Browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd pareto-anywhere-azure</code> </li>
+            <li> Install all dependencies with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+          </ol>
+          <h3 class="mt-4">
+            Install the Azure dependencies
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Install the Azure Functions Core Tools and the Azure CLI on your <i class="fas fa-laptop"></i> computer by following the official Microsoft tutorials: </p>
+          <ol>
+            <li> <a href="https://learn.microsoft.com/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools" target="_blank"><i class="fas fa-external-link-alt"></i> Install the Azure Functions Core Tools</a> <small class="text-muted">(v4.x or higher)</small> and confirm the installation by running the command <code class="user-select-all">func --version</code> and observing the installed version </li>
+            <li> <a href="https://learn.microsoft.com/cli/azure/install-azure-cli" target="_blank"><i class="fas fa-external-link-alt"></i> How to install the Azure CLI</a>.  Confirm the installation by running the command <code class="user-select-all">az --version</code> and observing the installed version </li>
+          </ol>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>financially</em> with an <a href="https://www.reelyactive.com/pricing/#subscription" target="_blank">annual subscription</a>, and <em>collectively</em> by sharing across your network. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Let's put things in context, one space at a time.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
