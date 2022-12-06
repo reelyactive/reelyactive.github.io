@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="reelyActive Developers cheatsheet of data structures and concepts.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> Cheatsheet </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Cheatsheet",
+      "description": "reelyActive Developers cheatsheet of data structures and concepts.",
+      "proficiencyLevel": "Beginner",
+      "genre": "style guide",
+      "image": "https://reelyactive.github.io/diy/images/reelyactive-developers-title.png",
+      "url": "https://reelyactive.github.io/",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Cheatsheet"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <img src="images/reelyactive-developers-cheatsheet.png"
+               class="img-fluid mt-4" alt="reelyActive Developers Cheatsheet">
+          <!----- raddec ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="raddec" class="card-title my-2">
+                raddec &nbsp;
+                <a href="#raddec" class="badge bg-primary"> #raddec </a>
+              </h2>
+              <p class="lead"> A raddec represents a generic <u>rad</u>io <u>dec</u>oding. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why? </dt>
+                <dd class="col-sm-9"> Because. </dd>
+                <dt class="col-sm-3"> Why? </dt>
+                <dd class="col-sm-9"> Because. </dd>
+              </dl>
+              <!--<img src="images/raddec.png" class="card-img-bottom"
+                   alt="Radio Decoding">-->
+            </div>
+          </div>
+          <!----- dynamb ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="dynamb" class="card-title my-2">
+                dynamb &nbsp;
+                <a href="#dynamb" class="badge bg-primary"> #dynamb </a>
+              </h2>
+              <p class="lead"> A dynamb represents <u>dyn</u>amic <u>amb</u>ient data from a specific device. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why? </dt>
+                <dd class="col-sm-9"> Because. </dd>
+                <dt class="col-sm-3"> Why? </dt>
+                <dd class="col-sm-9"> Because. </dd>
+              </dl>
+              <!--<img src="images/dynamb.png" class="card-img-bottom"
+                   alt="Dynamic ambient data">-->
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-lg-6 mb-3">
+              <h3 class="mb-3"> JSON </h3>
+              <pre class="text-dark">
+{
+    "deviceId": "...",
+    "deviceIdType": 0,
+    "timestamp": 1645568542222,
+    "property<sub>0</sub>": value<sub>0</sub>,
+        &#x22ee;     :   &#x22ee;
+    "property<sub>n</sub>": value<sub>n</sub>,
+}</pre>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="mb-3"> Mandatory properties </h3>
+              <div class="accordion accordion-flush mb-5" id="accordionDynamb">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderDeviceId">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyDeviceId"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyDeviceId">
+                      <span class="font-monospace">
+                        <i class="fas fa-barcode text-ambient"></i> deviceId
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyDeviceId"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderDeviceId"
+                       data-bs-parent="#accordionDynamb">
+                    <div class="accordion-body">
+                      See raddec
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderDeviceIdType">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyDeviceIdType"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyDeviceIdType">
+                      <span class="font-monospace">
+                        <i class="fas fa-info-circle text-ambient"></i> deviceIdType
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyDeviceIdType"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderDeviceIdType"
+                       data-bs-parent="#accordionDynamb">
+                    <div class="accordion-body">
+                      See raddec
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderTimestamp">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyTimestamp"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyTimestamp">
+                      <span class="font-monospace">
+                        <i class="fas fa-clock text-primary"></i> timestamp
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyTimestamp"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderTimestamp"
+                       data-bs-parent="#accordionDynamb">
+                    <div class="accordion-body">
+                      See raddec
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mb-3"> Optional properties </h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"> <i class="fab fa-font-awesome"></i> </th>
+                <th scope="col"> Property name </th>
+                <th scope="col"> Value example </th>
+                <th scope="col"> Type </th>
+                <th scope="col"> Units </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-rocket"</i> </td>
+                <td class="font-monospace"> acceleration </td>
+                <td class="font-monospace"> [ -0.2, 0.9, 0.3 ] </td>
+                <td> Array of Number </td>
+                <td> g </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-redo"</i> </td>
+                <td class="font-monospace"> angleOfRotation </td>
+                <td class="font-monospace"> 180 </td>
+                <td> Number </td>
+                <td> degrees </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-battery-half"</i> </td>
+                <td class="font-monospace"> batteryPercentage </td>
+                <td class="font-monospace"> 50 </td>
+                <td> Number </td>
+                <td> % </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-battery-half"</i> </td>
+                <td class="font-monospace"> batteryVoltage </td>
+                <td class="font-monospace"> 3.3 </td>
+                <td> Number </td>
+                <td> V </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-layer-group"</i> </td>
+                <td class="font-monospace"> elevation </td>
+                <td class="font-monospace"> 152 </td>
+                <td> Number </td>
+                <td> m </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-compass"</i> </td>
+                <td class="font-monospace"> heading </td>
+                <td class="font-monospace"> 270 </td>
+                <td> Number </td>
+                <td> degrees </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-heartbeat"</i> </td>
+                <td class="font-monospace"> heartRate </td>
+                <td class="font-monospace"> 60 </td>
+                <td> Number </td>
+                <td> bpm </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-sun"</i> </td>
+                <td class="font-monospace"> illuminance </td>
+                <td class="font-monospace"> 333 </td>
+                <td> Number </td>
+                <td> lux </td>
+              </tr>
+            </tbody>
+          </table>
+          <!----- spatem ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="dynamb" class="card-title my-2">
+                spatem &nbsp;
+                <a href="#dynamb" class="badge bg-primary"> #spatem </a>
+              </h2>
+              <p class="lead"> A spatem represents <u>spa</u>tial <u>tem</u>poral data in relation to a specific device. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why? </dt>
+                <dd class="col-sm-9"> Because. </dd>
+                <dt class="col-sm-3"> Why? </dt>
+                <dd class="col-sm-9"> Because. </dd>
+              </dl>
+              <!--<img src="images/spatem.png" class="card-img-bottom"
+                   alt="Spatial temporal data">-->
+            </div>
+          </div>
+
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="/">
+                <img src="../common/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="/">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <img src="../common/images/icon-pareto-anywhere.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Pareto Anywhere
+                </h5>
+              </a>
+              Open source middleware for context-aware physical spaces.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  reelyActive
+                </h5>
+              </a>
+              Let's put things in context, one space at a time.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2022 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
