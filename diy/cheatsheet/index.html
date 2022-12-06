@@ -162,10 +162,10 @@
               <p class="lead"> A dynamb represents <u>dyn</u>amic <u>amb</u>ient data from a specific device. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Why? </dt>
-                <dd class="col-sm-9"> Because. </dd>
-                <dt class="col-sm-3"> Why? </dt>
-                <dd class="col-sm-9"> Because. </dd>
+                <dt class="col-sm-3"> What's it used for? </dt>
+                <dd class="col-sm-9"> Timeseries data. </dd>
+                <dt class="col-sm-3"> What to index on? </dt>
+                <dd class="col-sm-9"> If storing to a <i class="fas fa-database"></i> database, create a device signature string of the form <span class="font-monospace">deviceId/deviceIdType</span> and use that as the index to uniquely represent each device. </dd>
               </dl>
               <!--<img src="images/dynamb.png" class="card-img-bottom"
                    alt="Dynamic ambient data">-->
@@ -253,7 +253,7 @@
               </div>
             </div>
           </div>
-          <h3 class="mb-3"> Optional properties </h3>
+          <h3 class="mb-3"> Optional dynamb properties </h3>
           <table class="table">
             <thead>
               <tr>
@@ -269,7 +269,7 @@
                 <td class="text-ambient"> <i class="fas fa-rocket"</i> </td>
                 <td class="font-monospace"> acceleration </td>
                 <td class="font-monospace"> [ -0.2, 0.9, 0.3 ] </td>
-                <td> Array of Number </td>
+                <td> Array of Number <sup>1</sup> </td>
                 <td> g </td>
               </tr>
               <tr>
@@ -321,8 +321,105 @@
                 <td> Number </td>
                 <td> lux </td>
               </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-hand-pointer"</i> </td>
+                <td class="font-monospace"> isButtonPressed </td>
+                <td class="font-monospace"> [ false ] </td>
+                <td> Array of Boolean <sup>2</sup> </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-compress-alt"</i> </td>
+                <td class="font-monospace"> isContactDetected </td>
+                <td class="font-monospace"> [ true ] </td>
+                <td> Array of Boolean <sup>2</sup> </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-walking"</i> </td>
+                <td class="font-monospace"> isMotionDetected </td>
+                <td class="font-monospace"> [ false ] </td>
+                <td> Array of Boolean <sup>2</sup> </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-magnet"</i> </td>
+                <td class="font-monospace"> magneticField </td>
+                <td class="font-monospace"> [ -0.7, 0.3, 0.1 ] </td>
+                <td> Array of Number <sup>1</sup> </td>
+                <td> G </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-people-arrows"</i> </td>
+                <td class="font-monospace"> nearest </td>
+                <td class="font-monospace"> [ { "deviceId": "...",<br>
+                                            &nbsp; &nbsp; "rssi": -42 } ] </td>
+                <td> Array of Object </td>
+                <td> dBm </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-map-pin"</i> </td>
+                <td class="font-monospace"> position </td>
+                <td class="font-monospace"> [ -73.5, 45.5, 88 ] </td>
+                <td> Array of Number <sup>3</sup> </td>
+                <td> [ lon, lat, ele ] </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-cloud"</i> </td>
+                <td class="font-monospace"> pressure </td>
+                <td class="font-monospace"> 101325 </td>
+                <td> Number </td>
+                <td> Pa </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-water"</i> </td>
+                <td class="font-monospace"> relativeHumidity </td>
+                <td class="font-monospace"> 69 </td>
+                <td> Number </td>
+                <td> % </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-tachometer-alt"</i> </td>
+                <td class="font-monospace"> speed </td>
+                <td class="font-monospace"> 1.1 </td>
+                <td> Number </td>
+                <td> m/s </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-thermometer-half"</i> </td>
+                <td class="font-monospace"> temperature </td>
+                <td class="font-monospace"> 21.0 </td>
+                <td> Number </td>
+                <td> &deg;C </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-satellite-dish"</i> </td>
+                <td class="font-monospace"> txCount </td>
+                <td class="font-monospace"> 123456789 </td>
+                <td> Number </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-language"</i> </td>
+                <td class="font-monospace"> unicodeCodePoints </td>
+                <td class="font-monospace"> [ 0x1f989 ] </td>
+                <td> Array of Number </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-stopwatch"</i> </td>
+                <td class="font-monospace"> uptime </td>
+                <td class="font-monospace"> 60000 </td>
+                <td> Number </td>
+                <td> ms </td>
+              </tr>
             </tbody>
           </table>
+          <ul class="list-unstyled small text-end">
+            <li> <sup>1</sup> Expected interpretations by length are <span class="font-monospace">[ x, y, z ], [ x, y ], [ absolute ]</span> </li>
+            <li> <sup>2</sup> Array representation accommodates devices with multiple identical sensors (ex: 2-rocker switch) </li>
+            <li> <sup>3</sup> Recommended encoding is WGS 84 for interoperability </li>
+          </ul>
           <!----- spatem ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
