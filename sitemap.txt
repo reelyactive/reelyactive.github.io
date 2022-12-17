@@ -4,11 +4,12 @@ https://reelyactive.github.io/diy/aruba-instant-config/
 https://reelyactive.github.io/diy/banglejs-dev/
 https://reelyactive.github.io/diy/best-practices-ble-identifiers/
 https://reelyactive.github.io/diy/capspaces-pi/
+https://reelyactive.github.io/diy/cheatsheet/
 https://reelyactive.github.io/diy/contact-tracing-architectures/
+https://reelyactive.github.io/diy/devices/
 https://reelyactive.github.io/diy/elasticsearch-email-integration/
 https://reelyactive.github.io/diy/elasticsearch-service-setup/
 https://reelyactive.github.io/diy/elasticsearch-slack-integration/
-https://reelyactive.github.io/diy/hello-pareto-anywhere/
 https://reelyactive.github.io/diy/hinged-object-interaction-detection/
 https://reelyactive.github.io/diy/kibana/
 https://reelyactive.github.io/diy/kibana-alerts/
@@ -25,13 +26,16 @@ https://reelyactive.github.io/diy/kibana-timelion-receivers/
 https://reelyactive.github.io/diy/kibana-visual-builder-occupancy-timeseries/
 https://reelyactive.github.io/diy/laird-ig60-prep/
 https://reelyactive.github.io/diy/laptop-prep/
+https://reelyactive.github.io/diy/minew-b10-config/
 https://reelyactive.github.io/diy/minew-c6-config/
 https://reelyactive.github.io/diy/minew-e8-config/
 https://reelyactive.github.io/diy/minew-g1-config/
+https://reelyactive.github.io/diy/minew-msp01-config/
 https://reelyactive.github.io/diy/minew-s1-config/
 https://reelyactive.github.io/diy/oio-config/
 https://reelyactive.github.io/diy/oio-wlan/
 https://reelyactive.github.io/diy/oss-packages/
+https://reelyactive.github.io/diy/pareto-anywhere-azure/
 https://reelyactive.github.io/diy/pareto-anywhere-pc/
 https://reelyactive.github.io/diy/pareto-anywhere-pi/
 https://reelyactive.github.io/diy/pi-kiosk/
@@ -48,5 +52,6 @@ https://reelyactive.github.io/cuttlefish/
 https://reelyactive.github.io/diract/
 https://reelyactive.github.io/interoperable-identifier/
 https://reelyactive.github.io/pareto-anywhere/
+https://reelyactive.github.io/pareto-anywhere-apps/
 https://reelyactive.github.io/web-ble-demo/
 https://reelyactive.github.io/web-style-guide/
