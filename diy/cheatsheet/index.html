@@ -144,12 +144,122 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What's it used for? </dt>
-                <dd class="col-sm-9"> Real-time location and telemetry data, represented in a compact and standard way, regardless of the underyling devices, vendors & technologies. </dd>
+                <dd class="col-sm-9"> Real-time location and telemetry payloads, represented in a compact and standard way, regardless of the underyling devices, vendors & technologies. </dd>
                 <dt class="col-sm-3"> What to index on? </dt>
                 <dd class="col-sm-9"> If storing to a <i class="fas fa-database"></i> database, create a transmitter signature string of the form <span class="font-monospace">transmitterId/transmitterIdType</span> and use that as the index to uniquely represent each device. </dd>
               </dl>
               <!--<img src="images/raddec.png" class="card-img-bottom"
                    alt="Radio Decoding">-->
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-lg-6 mb-3">
+              <h3 class="mb-3"> JSON </h3>
+              <pre class="text-dark">
+{
+    "transmitterId": "...",
+    "transmitterIdType": 0,
+    "rssiSignature": [{
+        "receiverId": "...",
+        "receiverIdType: 0,
+        "rssi": -99,
+        "numberOfDecodings": 1
+    }],
+    "property<sub>0</sub>": value<sub>0</sub>,
+        &#x22ee;     :   &#x22ee;
+    "property<sub>n</sub>": value<sub>n</sub>,
+}</pre>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="mb-3"> Mandatory properties </h3>
+              <div class="accordion accordion-flush mb-5" id="accordionRaddec">
+                <div class="accordion-item">
+                  <h2 class="accordion-header"
+                      id="accordionHeaderTransmitterId">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyTransmitterId"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyTransmitterId">
+                      <span class="font-monospace">
+                        <i class="fas fa-barcode text-ambient"></i>
+                        transmitterId
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyTransmitterId"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderTransmitterId"
+                       data-bs-parent="#accordionRaddec">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          String <small class="text-muted"> (hexadecimal, lowercase) </small>
+                        </dd>
+                      </dl>
+                      <p> Radio-identifier of the <em>transmitting</em> device. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header"
+                      id="accordionHeaderTransmitterIdType">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyTransmitterIdType"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyTransmitterIdType">
+                      <span class="font-monospace">
+                        <i class="fas fa-info-circle text-ambient"></i> transmitterIdType
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyTransmitterIdType"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderTransmitterIdType"
+                       data-bs-parent="#accordionRaddec">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Number <small class="text-muted"> (whole number) </small>
+                        </dd>
+                      </dl>
+                      <p> Type of radio-identifier of the <em>transmitting</em> device. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header"
+                      id="accordionHeaderRSSISignature">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyRSSISignature"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyRSSISignature">
+                      <span class="font-monospace">
+                        <i class="fas fa-broadcast-tower text-success"></i>
+                        rssiSignature
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyRSSISignature"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderRSSISignature"
+                       data-bs-parent="#accordionRaddec">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Array <small class="text-muted"> (minimum length 1) </small>
+                        </dd>
+                      </dl>
+                      <p> Radio <em>receivers</em> ordered by decreasing RSSI (signal strength). </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!----- dynamb ----->
