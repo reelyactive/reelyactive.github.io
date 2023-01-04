@@ -133,6 +133,17 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <img src="images/reelyactive-developers-cheatsheet.png"
                class="img-fluid mt-4" alt="reelyActive Developers Cheatsheet">
+          <p class="lead text-center mt-5"> Scroll directly down to: </p>
+          <p class="text-center">
+            <a href="#raddec" class="btn btn-sm btn-outline-primary"
+               role="button"> #raddec </a>
+            <a href="#dynamb" class="btn btn-sm btn-outline-primary"
+               role="button"> #dynamb </a>
+            <a href="#spatem" class="btn btn-sm btn-outline-primary"
+               role="button"> #spatem </a>
+            <a href="#idtype" class="btn btn-sm btn-outline-primary"
+               role="button"> #idtype </a>
+          </p>
           <!----- raddec ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
@@ -701,9 +712,9 @@
           <!----- spatem ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
-              <h2 id="dynamb" class="card-title my-2">
+              <h2 id="spatem" class="card-title my-2">
                 spatem &nbsp;
-                <a href="#dynamb" class="badge bg-primary"> #spatem </a>
+                <a href="#spatem" class="badge bg-primary"> #spatem </a>
               </h2>
               <p class="lead"> A spatem represents <u>spa</u>tial <u>tem</u>poral data in relation to a specific device. </p>
               <hr>
@@ -877,6 +888,25 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <!----- idtype ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="idtype" class="card-title my-2">
+                Identifier Type &nbsp;
+                <a href="#idtype" class="badge bg-primary"> #idtype </a>
+              </h2>
+              <p class="lead"> A common index for device/transmitter/receiver identifier types. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's it used for? </dt>
+                <dd class="col-sm-9"> To efficiently distinguish identifiers that have the same number of bits but are of different types. </dd>
+                <dt class="col-sm-3"> How to use it? </dt>
+                <dd class="col-sm-9"> Combine the identifier and the identifier type as a signature string of the form <span class="font-monospace">id/idType</span> to uniquely and efficiently represent any identifiable thing. </dd>
+              </dl>
+              <!--<img src="images/idtype.png" class="card-img-bottom"
+                   alt="Identifier types">-->
             </div>
           </div>
           <!----- Where to next ----->
