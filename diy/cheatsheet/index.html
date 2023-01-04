@@ -543,7 +543,7 @@
             </div>
           </div>
           <h3 class="mb-3"> <em>Optional</em> dynamb properties </h3>
-          <table class="table">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col"> <i class="fab fa-font-awesome"></i> </th>
@@ -909,6 +909,77 @@
                    alt="Identifier types">-->
             </div>
           </div>
+          <table class="table table-hover mt-4">
+            <caption>
+              Source of truth:
+              <a href="https://github.com/reelyactive/raddec#identifier-types"
+                 target="_blank"> github.com/reelyactive/raddec </a>
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" class="text-center"> index </th>
+                <th scope="col"> Identifier </th>
+                <th scope="col"> Length </th>
+                <th scope="col"> Used by </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-monospace text-center"> 0 </td>
+                <td> Unknown type </td>
+                <td class="font-monospace"> variable </td>
+                <td class="small align-middle"> n/a </td>
+              </tr>
+              <tr>
+                <td class="font-monospace text-center"> 1 </td>
+                <td> EUI-64 </td>
+                <td class="font-monospace"> 64 bits </td>
+                <td class="small align-middle"> reelyActive (see <a href="https://www.reelyactive.com/technology/reel/" target="_blank"><i class="fas fa-external-link-alt"></i> reel</a>) </td>
+              </tr>
+              <tr>
+                <td class="font-monospace text-center"> 2 </td>
+                <td> EUI-48 </td>
+                <td class="font-monospace"> 48 bits </td>
+                <td class="small align-middle"> Bluetooth Low Energy, WiFi </td>
+              </tr>
+              <tr>
+                <td class="font-monospace text-center"> 3 </td>
+                <td> RND-48 </td>
+                <td class="font-monospace"> 48 bits </td>
+                <td class="small align-middle"> Bluetooth Low Energy (random address) </td>
+              </tr>
+              <tr>
+                <td class="font-monospace text-center"> 4 </td>
+                <td> TID-96 </td>
+                <td class="font-monospace"> 96 bits </td>
+                <td class="small align-middle"> RAIN RFID (EPC Tag Data Standard) </td>
+              </tr>
+              <tr>
+                <td class="font-monospace text-center"> 5 </td>
+                <td> EPC-96 </td>
+                <td class="font-monospace"> 96 bits </td>
+                <td class="small align-middle"> RAIN RFID (Electronic Product Code) </td>
+              </tr>
+              <tr>
+                <td class="font-monospace text-center"> 6 </td>
+                <td> UUID-128 </td>
+                <td class="font-monospace"> 128 bits </td>
+                <td class="small align-middle"> RF Controls </td>
+              </tr>
+              <tr>
+                <td class="font-monospace text-center"> 7 </td>
+                <td> EURID-32 </td>
+                <td class="font-monospace"> 32 bits </td>
+                <td class="small align-middle"> EnOcean Alliance </td>
+              </tr>
+              <tr class="text-muted">
+                <td class="font-monospace text-center"> 8+ </td>
+                <td> Reserved </td>
+                <td class="font-monospace"> variable </td>
+                <td class="small align-middle"> Future use </td>
+              </tr>
+            </tbody>
+          </table>
           <!----- Where to next ----->
           <hr class="my-4">
           <h2> Where to next? </h2>
