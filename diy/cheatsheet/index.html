@@ -154,7 +154,7 @@
           </div>
           <div class="row mt-4">
             <div class="col-lg-6 mb-3">
-              <h3 class="mb-3"> JSON </h3>
+              <h3 class="mb-3"> JSON <small>raddec</small> </h3>
               <pre class="text-dark">
 {
     "transmitterId": "...",
@@ -163,11 +163,13 @@
         "receiverId": "...",
         "receiverIdType: 0,
         "rssi": -99,
-        "numberOfDecodings": 1
+        "numberOfDecodings": 1,
+        <em class="text-info">"aoa": [ 0, 0 ]</em>
     }],
-    "property<sub>0</sub>": value<sub>0</sub>,
-        &#x22ee;     :   &#x22ee;
-    "property<sub>n</sub>": value<sub>n</sub>,
+    <em class="text-info">"timestamp": 1645568542222,</em>
+    <em class="text-info">"packets": [ '...' ],</em>
+    <em class="text-info">"events": [ 0, 2 ],</em>
+    <em class="text-info">"position": [ 0, 0, 0 ]</em>
 }</pre>
             </div>
             <div class="col-lg-6">
@@ -255,7 +257,155 @@
                           Array <small class="text-muted"> (minimum length 1) </small>
                         </dd>
                       </dl>
-                      <p> Radio <em>receivers</em> ordered by decreasing RSSI (signal strength). </p>
+                      <p> Radio <em>receivers</em> ordered by decreasing RSSI (signal strength).  Each object in the array has the following properties: </p>
+                      <table class="table table-sm font-monospace ms-3">
+                        <tbody>
+                          <tr>
+                            <td> receiverId </td>
+                            <td class="small text-muted"> (hexadecimal, lowercase) </td>
+                          </tr>
+                          <tr>
+                            <td> receiverIdType </td>
+                            <td class="small text-muted"> (whole number) </td>
+                          </tr>
+                          <tr>
+                            <td> rssi </td>
+                            <td class="small text-muted"> in dBm (integer) </td>
+                          </tr>
+                          <tr>
+                            <td> numberOfDecodings </td>
+                            <td class="small text-muted"> (minimum 1) </td>
+                          </tr>
+                          <tr>
+                            <td> <em class="text-muted">aoa<sup>*</sup></em> </td>
+                            <td class="small text-muted"> <em>[ azimuth, elevation ]</em> </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p class="small text-muted text-end"><sup>*</sup> optional property</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 class="mb-3"> <em>Optional</em> properties </h3>
+              <div class="accordion accordion-flush mb-5"
+                   id="accordionOptional">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderTimestamp">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyTimestamp"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyTimestamp">
+                      <span class="font-monospace">
+                        <i class="fas fa-clock text-primary"></i>
+                        timestamp
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyTimestamp"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderTimestamp"
+                       data-bs-parent="#accordionOptional">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Number <small class="text-muted"> (whole number) </small>
+                        </dd>
+                      </dl>
+                      <p> UNIX epoch (in milliseconds) representing the time at which the radio-transmission was received. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderPackets">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyPackets"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyPackets">
+                      <span class="font-monospace">
+                        <i class="fas fa-info text-ambient"></i> packets
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyPackets"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderPackets"
+                       data-bs-parent="#accordionOptional">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Array <small class="text-muted"> (minimum length 0) </small>
+                        </dd>
+                      </dl>
+                      <p> Hexadecimal strings (lowercase) representing individual raw transmission payloads, without duplicates. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderEvents">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyEvents"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyEvents">
+                      <span class="font-monospace">
+                        <i class="fas fa-exchange-alt text-dark"></i>
+                        events
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyEvents"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderEvents"
+                       data-bs-parent="#accordionOptional">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Array <small class="text-muted"> (minimum length 1) </small>
+                        </dd>
+                      </dl>
+                      <p> Index list of events associated with this radio decoding: </p>
+                      <ol start="0" class="font-monospace text-muted ms-3">
+                        <li> APPEARANCE </li>
+                        <li> DISPLACEMENT </li>
+                        <li> PACKETS </li>
+                        <li> KEEPALIVE </li>
+                        <li> DISAPPEARANCE </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderPosition">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyPosition"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyPosition">
+                      <span class="font-monospace">
+                        <i class="fas fa-map-pin text-primary"></i>
+                        position
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyPosition"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderPosition"
+                       data-bs-parent="#accordionOptional">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Array <small class="text-muted"> (minimum length 2) </small>
+                        </dd>
+                      </dl>
+                      <p> The calculated position of the transmitting device based on its radio decodings. </p>
+                      <p class="small"> Recommended encoding is WGS 84 for interoperability: [ lat, lon, ele ]. </p>
                     </div>
                   </div>
                 </div>
@@ -283,15 +433,15 @@
           </div>
           <div class="row mt-4">
             <div class="col-lg-6 mb-3">
-              <h3 class="mb-3"> JSON </h3>
+              <h3 class="mb-3"> JSON <small>dynamb</small> </h3>
               <pre class="text-dark">
 {
     "deviceId": "...",
     "deviceIdType": 0,
     "timestamp": 1645568542222,
-    "property<sub>0</sub>": value<sub>0</sub>,
-        &#x22ee;     :   &#x22ee;
-    "property<sub>n</sub>": value<sub>n</sub>,
+    <em class="text-muted">"property<sub>0</sub>": value<sub>0</sub>,</em>
+    <em class="text-muted">    &#x22ee;     :   &#x22ee;</em>
+    <em class="text-muted">"property<sub>n</sub>": value<sub>n</sub></em>
 }</pre>
             </div>
             <div class="col-lg-6">
@@ -314,7 +464,13 @@
                        aria-labelledby="accordionHeaderDeviceId"
                        data-bs-parent="#accordionDynamb">
                     <div class="accordion-body">
-                      See raddec
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          String <small class="text-muted"> (hexadecimal, lowercase) </small>
+                        </dd>
+                      </dl>
+                      <p> Identifier of the device from which the data originates. </p>
                     </div>
                   </div>
                 </div>
@@ -335,7 +491,13 @@
                        aria-labelledby="accordionHeaderDeviceIdType"
                        data-bs-parent="#accordionDynamb">
                     <div class="accordion-body">
-                      See raddec
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Number <small class="text-muted"> (whole number) </small>
+                        </dd>
+                      </dl>
+                      <p> Type of identifier of the device from which the data originates. </p>
                     </div>
                   </div>
                 </div>
@@ -356,14 +518,20 @@
                        aria-labelledby="accordionHeaderTimestamp"
                        data-bs-parent="#accordionDynamb">
                     <div class="accordion-body">
-                      See raddec
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Number <small class="text-muted"> (whole number) </small>
+                        </dd>
+                      </dl>
+                      <p> UNIX epoch (in milliseconds) representing the time at which the data was collected. </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <h3 class="mb-3"> Optional dynamb properties </h3>
+          <h3 class="mb-3"> <em>Optional</em> dynamb properties </h3>
           <table class="table">
             <thead>
               <tr>
