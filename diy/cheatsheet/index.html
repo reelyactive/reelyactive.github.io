@@ -717,7 +717,168 @@
                    alt="Spatial temporal data">-->
             </div>
           </div>
-
+          <div class="row mt-4">
+            <div class="col-lg-6 mb-3">
+              <h3 class="mb-3"> JSON <small>spatem</small> </h3>
+              <pre class="text-dark">
+{
+    "deviceId": "...",
+    "deviceIdType": 0,
+    "type": "...",
+    "data": {
+       "type": "FeatureCollection",
+       "features": [{
+         "type": "Feature",
+         "geometry": {
+           "type": "...",
+           "coordinates": []
+         }
+       }]
+    },
+    "timestamp": 1645568542222
+}</pre>
+            </div>
+            <div class="col-lg-6">
+              <h3 class="mb-3"> Mandatory properties </h3>
+              <div class="accordion accordion-flush mb-5" id="accordionSpatem">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderDeviceId">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyDeviceId"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyDeviceId">
+                      <span class="font-monospace">
+                        <i class="fas fa-barcode text-ambient"></i> deviceId
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyDeviceId"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderDeviceId"
+                       data-bs-parent="#accordionDynamb">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          String <small class="text-muted"> (hexadecimal, lowercase) </small>
+                        </dd>
+                      </dl>
+                      <p> Identifier of the device from which the data originates. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderDeviceIdType">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyDeviceIdType"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyDeviceIdType">
+                      <span class="font-monospace">
+                        <i class="fas fa-info-circle text-ambient"></i> deviceIdType
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyDeviceIdType"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderDeviceIdType"
+                       data-bs-parent="#accordionDynamb">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Number <small class="text-muted"> (whole number) </small>
+                        </dd>
+                      </dl>
+                      <p> Type of identifier of the device from which the data originates. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderType">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyType"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyType">
+                      <span class="font-monospace">
+                        <i class="fas fa-info-circle text-primary"></i> type
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyType"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderType"
+                       data-bs-parent="#accordionSpatem">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          String
+                        </dd>
+                      </dl>
+                      <p> Either <span class="font-monospace">"position"</span> or <span class="font-monospace">"location"</span>. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderData">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyData"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyData">
+                      <span class="font-monospace">
+                        <i class="fas fa-code text-dark"></i> data
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyData"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderData"
+                       data-bs-parent="#accordionSpatem">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Object <small class="text-muted"> (GeoJSON FeatureCollection) </small>
+                        </dd>
+                      </dl>
+                      <p> A GeoJSON FeatureCollection, the contents of which correspond with the spatem <span class="font-monospace">type</span>.  See <a href="https://www.rfc-editor.org/rfc/rfc7946" target="_blank"><i class="fas fa-external-link-alt"></i> RFC 7946</a>. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="accordionHeaderTimestamp">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#accordionBodyTimestamp"
+                            aria-expanded="false"
+                            aria-controls="accordionBodyTimestamp">
+                      <span class="font-monospace">
+                        <i class="fas fa-clock text-primary"></i> timestamp
+                      </span>
+                    </button>
+                  </h2>
+                  <div id="accordionBodyTimestamp"
+                       class="accordion-collapse collapse"
+                       aria-labelledby="accordionHeaderTimestamp"
+                       data-bs-parent="#accordionDynamb">
+                    <div class="accordion-body">
+                      <dl class="row font-monospace">
+                        <dt class="col-3"> Type </dt>
+                        <dd class="col-9">
+                          Number <small class="text-muted"> (whole number) </small>
+                        </dd>
+                      </dl>
+                      <p> UNIX epoch (in milliseconds) representing the time at which the spatial-temporal data was compiled. </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <!----- Where to next ----->
           <hr class="my-4">
           <h2> Where to next? </h2>
