@@ -30,6 +30,8 @@ https://reelyactive.github.io/diy/minew-b10-config/
 https://reelyactive.github.io/diy/minew-c6-config/
 https://reelyactive.github.io/diy/minew-e8-config/
 https://reelyactive.github.io/diy/minew-g1-config/
+https://reelyactive.github.io/diy/minew-mg3-config/
+https://reelyactive.github.io/diy/minew-mg4-config/
 https://reelyactive.github.io/diy/minew-msp01-config/
 https://reelyactive.github.io/diy/minew-s1-config/
 https://reelyactive.github.io/diy/oio-config/
