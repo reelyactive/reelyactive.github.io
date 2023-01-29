@@ -207,14 +207,260 @@
             <li> Install all dependencies with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
           </ol>
           <h3 class="mt-4">
-            Install the Azure dependencies
+            Create the local settings file
             <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Create a new file named <b>local.settings.json</b> in the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder with the following contents: </p>
+          <pre class="user-select-all ms-3">{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "",
+    "EventHubConnectionString": "",
+    "EventHubSendAppSetting": "",
+    "WebPubSubConnectionString": "",
+    "iot_hub_name": "",
+    "event_hub_name": "",
+    "web_pub_sub_hub_name": ""
+  }
+}</pre>
+          <p> This file specifies the names and endpoints of the resource instances with which Pareto Anywhere for Azure will interface.  The <span class="font-monospace">"Values"</span> will be populated in the following steps of this tutorial. </p>
+          <h3 class="mt-4">
+            Install the Azure dependencies
+            <small class="text-muted"> Part 3 </small>
           </h3>
           <p> Install the Azure Functions Core Tools and the Azure CLI on your <i class="fas fa-laptop"></i> computer by following the official Microsoft tutorials: </p>
           <ol>
             <li> <a href="https://learn.microsoft.com/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools" target="_blank"><i class="fas fa-external-link-alt"></i> Install the Azure Functions Core Tools</a> <small class="text-muted">(v4.x or higher)</small> and confirm the installation by running the command <code class="user-select-all">func --version</code> and observing the installed version </li>
             <li> <a href="https://learn.microsoft.com/cli/azure/install-azure-cli" target="_blank"><i class="fas fa-external-link-alt"></i> How to install the Azure CLI</a>.  Confirm the installation by running the command <code class="user-select-all">az --version</code> and observing the installed version </li>
           </ol>
+          <!----- Step 2 of X ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Creating an Azure IoT Hub &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of X </a>
+              </h2>
+              <p class="lead"> <em>If required,</em> create a Resource Group and an IoT Hub on <i class="fas fa-cloud"></i> Azure. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's a resource group? </dt>
+                <dd class="col-sm-9"> A resource group is a container that holds related resources, typically with a shared lifecycle, for an Azure solution. </dd>
+                <dt class="col-sm-3"> What's IoT Hub? </dt>
+                <dd class="col-sm-9"> <a href="https://azure.microsoft.com/products/iot-hub/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure IoT Hub</a> is a cloud-hosted solution back end that facilitates the connection of virtually any device. </dd>
+              </dl>
+              <img src="images/create-resourcegroup-iothub.png"
+                   class="card-img-bottom"
+                   alt="Create Resource Group and IoT Hub">
+            </div>
+          </div>
+          <p class="mt-4"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If connecting to an <em>existing</em> Azure IoT Hub, skip ahead to Part 3. </p>
+          <p class="mt-2"> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Aruba Networks users should instead follow the <b>Aruba IoT Transport for Microsoft Azure Tech Note</b> instructions to create an IoT Hub. </p>
+          <h3 class="mt-4">
+            Create a Resource Group
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the home page of the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Resource Group</b> in your geographical region by following the 5 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="rg1tab"
+                      data-bs-toggle="tab" data-bs-target="#rg1content"
+                      type="button" role="tab" aria-controls="rg1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="rg2tab" data-bs-toggle="tab"
+                      data-bs-target="#rg2content" type="button" role="tab"
+                      aria-controls="rg2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="rg3tab" data-bs-toggle="tab"
+                      data-bs-target="#rg3content" type="button" role="tab"
+                      aria-controls="rg3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="rg4tab" data-bs-toggle="tab"
+                      data-bs-target="#rg4content" type="button" role="tab"
+                      aria-controls="rg4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="rg5tab" data-bs-toggle="tab"
+                      data-bs-target="#rg5content" type="button" role="tab"
+                      aria-controls="rg5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="rg1content"
+                 role="tabpanel" aria-labelledby="rg1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-select.png" class="img-fluid"
+                       alt="Select resource groups">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>Resource groups</b> from the Azure services menu bar at the top of the portal. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="rg2content" role="tabpanel"
+                 aria-labelledby="rg2tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-list.png" class="img-fluid"
+                       alt="Create new resource group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Create</b> to create a new Resource group, unless an <em>existing</em> Resource group in the list already meets your geographical/logical requirements, in which case skip ahead to Part 2. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="rg3content" role="tabpanel"
+                 aria-labelledby="rg3tab">
+              <p> Enter a meaningful name for your resource group and select the geographical region best suited for your deployment.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <img src="images/resourcegroups-details.png"
+                   class="img-fluid mx-auto d-block"
+                   alt="Resource group details">
+            </div>
+            <div class="tab-pane fade" id="rg4content" role="tabpanel"
+                 aria-labelledby="rg4tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-validation.png"
+                       class="img-fluid" alt="Validate resource group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="rg5content" role="tabpanel"
+                 aria-labelledby="rg5tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-created.png"
+                       class="img-fluid" alt="Created resource group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> The resource group has been created. </p>
+                  <p> From the resource group page it is possible to create resources by selecting <i class="fas fa-mouse-pointer"></i> <b>+ Create</b>, which is the subject of Part 2 and additional steps below. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create an IoT Hub
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the Resource group page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>IoT Hub</b> by following the 5 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="ih1tab"
+                      data-bs-toggle="tab" data-bs-target="#ih1content"
+                      type="button" role="tab" aria-controls="ih1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ih2tab" data-bs-toggle="tab"
+                      data-bs-target="#ih2content" type="button" role="tab"
+                      aria-controls="ih2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ih3tab" data-bs-toggle="tab"
+                      data-bs-target="#ih3content" type="button" role="tab"
+                      aria-controls="ih3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ih4tab" data-bs-toggle="tab"
+                      data-bs-target="#ih4content" type="button" role="tab"
+                      aria-controls="ih4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ih5tab" data-bs-toggle="tab"
+                      data-bs-target="#ih5content" type="button" role="tab"
+                      aria-controls="ih5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="ih1content"
+                 role="tabpanel" aria-labelledby="ih1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-created.png" class="img-fluid"
+                       alt="Create resource in group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Create</b> from the menu bar on the Resource Group page. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ih2content" role="tabpanel"
+                 aria-labelledby="ih2tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/iothub-marketplace.png" class="img-fluid"
+                       alt="IoT Hub in marketplace">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Marketplace, search for and select <b>IoT Hub</b>. </p>
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create an instance of this resource. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ih3content" role="tabpanel"
+                 aria-labelledby="ih3tab">
+              <p> Enter a meaningful name for your IoT Hub and select the geographical region best suited for your deployment.  Choose a tier and message limit adapted to the scale of your deployment.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <img src="images/iothub-details.png"
+                   class="img-fluid mx-auto d-block" alt="IoT Hub details">
+            </div>
+            <div class="tab-pane fade" id="ih4content" role="tabpanel"
+                 aria-labelledby="ih4tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/iothub-validation.png" class="img-fluid"
+                       alt="Validate resource group">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ih5content" role="tabpanel"
+                 aria-labelledby="ih5tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/iothub-created.png" class="img-fluid"
+                       alt="Created IoT Hub">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> The IoT Hub has been created. </p>
+                  <p> Continue to Part 3 below to retrieve the IoT Hub's endpoint from which Pareto Anywhere for Azure will receive messages. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Copy the IoT Hub endpoint
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the IoT Hub page of the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, select <i class="fas fa-mouse-pointer"></i> <b>Built-in endpoints</b> from the menu on the left, and <i class="fas fa-copy"></i> copy the contents of the <b>Event Hub-compatible endpoint</b> field. </p>
+          <img src="images/iothub-endpoint.png"
+                   class="img-fluid mx-auto d-block" alt="IoT Hub endpoint">
+          <p class="mt-3"> Paste the endpoint contents into the <b>local.settings.json</b> file as the <span class="font-monospace">"EventHubConnectionString"</span> value, as indicated below, and then <i class="fas fa-save"></i> save the file. </p>
+          <pre class="ms-3">{
+  "Values": {
+    &vellip;
+    "EventHubConnectionString": "<b class="animate-breathing">Endpoint=&hellip;</b>",
+    &vellip;
+  }
+}</pre>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
