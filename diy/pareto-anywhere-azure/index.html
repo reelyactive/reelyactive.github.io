@@ -1026,6 +1026,156 @@ For detailed output, run func with --verbose flag.
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> Point a web browser to <a href="http://localhost:7071/api/events" target="_blank">http://localhost:7071/api/events</a> to observe the web application running locally. </p>
+          <!----- Step 5 of 5 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step05" class="card-title my-2">
+                Run on Azure &nbsp;
+                <a href="#step05" class="badge bg-primary"> Step 5 of 5 </a>
+              </h2>
+              <p class="lead"> Complete the deployment by running Pareto Anywhere for Azure<em>&mdash;on <i class="fas fa-cloud"></i> Azure.</em> </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will happen? </dt>
+                <dd class="col-sm-9"> The Azure Functions Core Tools will publish the code and configuration to Azure, so that runs as a stateless Azure Function. </dd>
+                <dt class="col-sm-3"> What's an Azure Function? </dt>
+                <dd class="col-sm-9"> <a href="https://azure.microsoft.com/products/web-pubsub/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Functions</a> are event-driven serverless code functions. </dd>
+              </dl>
+              <img src="images/run-on-azure.png" class="card-img-bottom"
+                   alt="Run Pareto Anywhere for Azure on Azure">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create an Azure Function
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the Resource group page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Function App</b> by following the 7 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="fa1tab"
+                      data-bs-toggle="tab" data-bs-target="#fa1content"
+                      type="button" role="tab" aria-controls="fa1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="fa2tab" data-bs-toggle="tab"
+                      data-bs-target="#fa2content" type="button" role="tab"
+                      aria-controls="fa2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="fa3tab" data-bs-toggle="tab"
+                      data-bs-target="#fa3content" type="button" role="tab"
+                      aria-controls="fa3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="fa4tab" data-bs-toggle="tab"
+                      data-bs-target="#fa4content" type="button" role="tab"
+                      aria-controls="fa4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="fa5tab" data-bs-toggle="tab"
+                      data-bs-target="#fa5content" type="button" role="tab"
+                      aria-controls="fa5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="fa6tab" data-bs-toggle="tab"
+                      data-bs-target="#fa6content" type="button" role="tab"
+                      aria-controls="fa6tab"
+                      aria-selected="false"> 6 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="fa7tab" data-bs-toggle="tab"
+                      data-bs-target="#fa7content" type="button" role="tab"
+                      aria-controls="fa7tab"
+                      aria-selected="false"> 7 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="fa1content"
+                 role="tabpanel" aria-labelledby="fa1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-created.png" class="img-fluid"
+                       alt="Create resource in group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Create</b> from the menu bar on the Resource Group page. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="fa2content" role="tabpanel"
+                 aria-labelledby="fa2tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/function-marketplace.png" class="img-fluid"
+                       alt="Function App in marketplace">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Marketplace, search for and select <b>Function App</b>. </p>
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create an instance of this resource. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="fa3content" role="tabpanel"
+                 aria-labelledby="fa3tab">
+              <p> Enter a meaningful name for your Function and complete the settings as follows: </p>
+              <ul>
+                <li> Publish as Code </li>
+              </ul>
+              <img src="images/function-basics.png"
+                   class="img-fluid mx-auto d-block" alt="Function App basics">
+              <p class="mt-2"> Click <i class="fas fa-mouse-pointer"></i> <b>Next: Hosting ></b> at the bottom of the page to continue the configuration. </p>
+            </div>
+            <div class="tab-pane fade" id="fa4content" role="tabpanel"
+                 aria-labelledby="fa4tab">
+              <p> Select the Storage Account created in Step 3 Part 5. </p>
+              <img src="images/function-hosting.png"
+                   class="img-fluid mx-auto d-block" alt="Function App hosting">
+              <p class="mt-2"> Click <i class="fas fa-mouse-pointer"></i> <b>Next: Networking ></b> at the bottom of the page to continue the configuration. </p>
+            </div>
+            <div class="tab-pane fade" id="fa5content" role="tabpanel"
+                 aria-labelledby="fa5tab">
+              <p> Enable or disable public Internet access of the function (specifically the web app and Web PubSub). </p>
+              <img src="images/function-networking.png"
+                   class="img-fluid mx-auto d-block"
+                   alt="Function App networking">
+              <p class="mt-2"> Click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page to validate the configuration. </p>
+            </div>
+            <div class="tab-pane fade" id="fa6content" role="tabpanel"
+                 aria-labelledby="fa6tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/function-validation.png" class="img-fluid"
+                       alt="Validate Function App">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="fa7content" role="tabpanel"
+                 aria-labelledby="fa7tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/function-created.png" class="img-fluid"
+                       alt="Created Function App">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> The Function has been created. </p>
+                  <p> Proceed to Part 2 to deploy the code to Azure. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Run as an Azure Function
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder, then publish to Azure with the command <code class="user-select-all">func azure functionapp publish app-name</code>, substituting <code>app-name</code> for the Function name you selected in Part 1 above (ex: pareto-anywhere). </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
