@@ -979,6 +979,53 @@
               </div>
             </div>
           </div>
+          <!----- Step 4 of X ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Run locally &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of X </a>
+              </h2>
+              <p class="lead"> Validate the configuration by running Pareto Anywhere for Azure on your <i class="fas fa-laptop"></i> computer. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will happen? </dt>
+                <dd class="col-sm-9"> The Azure Functions Core Tools will run the program locally, connecting with the resources created on <i class="fas fa-cloud"></i> Azure in the previous steps. </dd>
+                <dt class="col-sm-3"> Will data be processed? </dt>
+                <dd class="col-sm-9"> Yes, if there are messages at the IoT Hub, they will be processed<em>&mdash;on your computer&mdash;</em>by Pareto Anywhere for Azure. </dd>
+              </dl>
+              <img src="images/run-locally.png" class="card-img-bottom"
+                   alt="Run Pareto Anywhere for Azure locally">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Run the stateless function locally
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder, then run with the command <code class="user-select-all">func start</code>. </p>
+          <p> If the Azure resources and the local.settings.json file are correctly configured, the console output should appear as follows: </p>
+          <pre class="text-muted ms-3">Azure Functions Core Tools
+Core Tools Version:       4.x.xxxx Commit hash: N/A  (64-bit)
+Function Runtime Version: 4.x.x.xxxxx
+
+
+Functions:
+
+	negotiateConnection:  http://localhost:7071/api/wsconnection
+
+	serveWebApp: [GET] <a href="http://localhost:7071/api/events" target="_blank">http://localhost:7071/api/events</a>
+
+	processIoTHubMessages: eventHubTrigger
+
+For detailed output, run func with --verbose flag.
+[2023-01-23T12:34:56.789Z] Worker process started and initialized.</pre>
+          <p class="mt-3"> If messages are received/queued at the IoT Hub, the console output will include notifications of Pareto Anywhere for Azure executing locally as follows: </p>
+          <pre class="text-muted ms-3">[2023-01-23T12:34:56.789Z] Executing 'Functions.processIoTHubMessages'</pre>
+          <h3 class="mt-4">
+            Browse to the web app locally
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Point a web browser to <a href="http://localhost:7071/api/events" target="_blank">http://localhost:7071/api/events</a> to observe the web application running locally. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
