@@ -1208,7 +1208,24 @@ For detailed output, run func with --verbose flag.
             Run as an Azure Function
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder, then publish to Azure with the command <code class="user-select-all">func azure functionapp publish app-name</code>, substituting <code>app-name</code> for the Function name you selected in Part 1 above (ex: pareto-anywhere). </p>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and log in to Azure with the command <code class="user-select-all">az login</code>. </p>
+          <p> Browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder, then publish to Azure with the following command: </p>
+          <p class="ms-3"> <code class="user-select-all">func azure functionapp publish <b>app-name</b> --publish-local-settings -i</code> </p>
+          <p> substituting <code><b>app-name</b></code> for the Function name you selected in Part 1 above (ex: pareto-anywhere). </p>
+          <p> If the Azure resources and the local.settings.json file are correctly configured, the package will be uploaded and the console output should complete as follows: </p>
+          <pre class="text-muted ms-3">Functions in pareto-anywhere:
+    negotiateConnection - [httpTrigger]
+        Invoke url: https://pareto-anywhere.azurewebsites.net/api/wsconnection
+
+    processIoTHubMessages - [eventHubTrigger]
+
+    serveWebApp - [httpTrigger]
+        Invoke url: <a href="https://pareto-anywhere.azurewebsites.net/api/events" target="_blank">https://pareto-anywhere.azurewebsites.net/api/events</a></pre>
+          <h3 class="mt-4">
+            Browse to the web app on Azure
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Point a web browser to <a href="https://app-name.azurewebsites.net/api/events" target="_blank">https://<b>app-name</b>.azurewebsites.net/api/events</a>, again substituting <b class="text-primary">app-name</b> for the Function name you selected in Part 1 above, to observe the web application running on Azure. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
