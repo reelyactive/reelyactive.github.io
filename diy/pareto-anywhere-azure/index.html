@@ -425,7 +425,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <img src="images/iothub-validation.png" class="img-fluid"
-                       alt="Validate resource group">
+                       alt="Validate IoT Hub">
                 </div>
                 <div class="col-md-6 align-self-center">
                   <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
@@ -461,6 +461,524 @@
     &vellip;
   }
 }</pre>
+          <!----- Step 3 of X ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Creating supporting resources &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of X </a>
+              </h2>
+              <p class="lead"> Create an Event Hub, Web PubSub and storage account on <i class="fas fa-cloud"></i> Azure. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's an Event Hub? </dt>
+                <dd class="col-sm-9"> <a href="https://azure.microsoft.com/products/event-hubs/" target="_blank"><i class="fas fa-external-link-alt"></i> Event Hubs</a> is a fully managed, real-time data ingestion service that facilitates the streaming of events to downstream consumers. </dd>
+                <dt class="col-sm-3"> What's Web PubSub? </dt>
+                <dd class="col-sm-9"> <a href="https://azure.microsoft.com/products/web-pubsub/" target="_blank"><i class="fas fa-external-link-alt"></i> Web PubSub</a> provides real-time messaging for web applications using WebSockets. </dd>
+              </dl>
+              <img src="images/create-eventhub-wps-storage.png"
+                   class="card-img-bottom"
+                   alt="Create Event Hub, Web PubSub and Storage Account">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create an Event Hubs Namespace
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the Resource group page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Event Hubs Namespace</b> by following the 5 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="ns1tab"
+                      data-bs-toggle="tab" data-bs-target="#ns1content"
+                      type="button" role="tab" aria-controls="ns1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ns2tab" data-bs-toggle="tab"
+                      data-bs-target="#ns2content" type="button" role="tab"
+                      aria-controls="ns2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ns3tab" data-bs-toggle="tab"
+                      data-bs-target="#ns3content" type="button" role="tab"
+                      aria-controls="ns3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ns4tab" data-bs-toggle="tab"
+                      data-bs-target="#ns4content" type="button" role="tab"
+                      aria-controls="ns4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ns5tab" data-bs-toggle="tab"
+                      data-bs-target="#ns5content" type="button" role="tab"
+                      aria-controls="ns5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="ns1content"
+                 role="tabpanel" aria-labelledby="ns1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-created.png" class="img-fluid"
+                       alt="Create resource in group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Create</b> from the menu bar on the Resource Group page. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ns2content" role="tabpanel"
+                 aria-labelledby="ns2tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/eventhubs-marketplace.png" class="img-fluid"
+                       alt="Event Hubs in marketplace">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Marketplace, search for and select <b>Event Hubs</b>. </p>
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create an instance of this resource. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ns3content" role="tabpanel"
+                 aria-labelledby="ns3tab">
+              <p> Enter a meaningful name for your Event Hubs and select the geographical region best suited for your deployment.  Choose a tier and throughput adapted to the scale of your deployment.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <img src="images/eventhubs-details.png"
+                   class="img-fluid mx-auto d-block" alt="Event Hubs details">
+            </div>
+            <div class="tab-pane fade" id="ns4content" role="tabpanel"
+                 aria-labelledby="ns4tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/eventhubs-validation.png" class="img-fluid"
+                       alt="Validate Event Hubs">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ns5content" role="tabpanel"
+                 aria-labelledby="ns5tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/eventhubs-created.png" class="img-fluid"
+                       alt="Created Event Hubs">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> The Event Hubs Namespace has been created. </p>
+                  <p> Proceed to Part 2 to create an Event Hub within this namespace. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create an Event Hub
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the Event Hubs Namespace page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Event Hub</b> by following the 3 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="eh1tab"
+                      data-bs-toggle="tab" data-bs-target="#eh1content"
+                      type="button" role="tab" aria-controls="eh1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="eh2tab" data-bs-toggle="tab"
+                      data-bs-target="#eh2content" type="button" role="tab"
+                      aria-controls="eh2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="eh3tab" data-bs-toggle="tab"
+                      data-bs-target="#eh3content" type="button" role="tab"
+                      aria-controls="eh3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="eh1content"
+                 role="tabpanel" aria-labelledby="eh1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/eventhubs-created.png" class="img-fluid"
+                       alt="Create Event Hub in Namespace">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Event Hub</b> from the menu bar on the Event Hubs Namespace page. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="eh2content" role="tabpanel"
+                 aria-labelledby="eh2tab">
+              <p> Enter a meaningful name for your Event Hub and select a retention policy best suited for your deployment.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <img src="images/eventhub-details.png"
+                   class="img-fluid mx-auto d-block" alt="Event Hub details">
+            </div>
+            <div class="tab-pane fade" id="eh3content" role="tabpanel"
+                 aria-labelledby="eh3tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/eventhub-validation.png" class="img-fluid"
+                       alt="Validate Event Hub">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
+                  <p> The Event Hub will be created and your browser will be directed back to the Event Hubs Namespace page. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create a shared access policy
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the Event Hubs Namespace page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Shared access policy</b> for the Event Hub by following the 5 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="sa1tab"
+                      data-bs-toggle="tab" data-bs-target="#sa1content"
+                      type="button" role="tab" aria-controls="sa1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sa2tab" data-bs-toggle="tab"
+                      data-bs-target="#sa2content" type="button" role="tab"
+                      aria-controls="sa2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sa3tab" data-bs-toggle="tab"
+                      data-bs-target="#sa3content" type="button" role="tab"
+                      aria-controls="sa3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sa4tab" data-bs-toggle="tab"
+                      data-bs-target="#sa4content" type="button" role="tab"
+                      aria-controls="sa4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sa5tab" data-bs-toggle="tab"
+                      data-bs-target="#sa5content" type="button" role="tab"
+                      aria-controls="sa5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="sa1content"
+                 role="tabpanel" aria-labelledby="sa1tab">
+              <p> From the Event Hubs Namespace page, select <i class="fas fa-mouse-pointer"></i> <b>Event Hubs</b> in the Entities section of the menu at left. </p>
+              <img src="images/sharedaccess-eventhub.png"
+                   class="img-fluid mx-auto d-block" alt="Select Event Hub">
+              <p class="mt-2"> Then, from the list, select <i class="fas fa-mouse-pointer"></i> the event hub that you created in Part 2. </p>
+            </div>
+            <div class="tab-pane fade" id="sa2content" role="tabpanel"
+                 aria-labelledby="sa2tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/sharedaccess-add.png" class="img-fluid"
+                       alt="Add Event Hub shared access policy">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Event Hub overview, select <i class="fas fa-mouse-pointer"></i> <b>Shared access policies</b> in the Settings section of the menu at left. </p>
+                  <p> Then click <i class="fas fa-mouse-pointer"></i> <b>+ Add</b> to create a shared access policy. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="sa3content" role="tabpanel"
+                 aria-labelledby="sa3tab">
+              <div class="row">
+                <div class="col-md-6 align-self-center">
+                  <p> In the offcanvas menu at right, name the policy <b>send</b> and check the <i class="fas fa-check"></i> <b>Send</b> box. </p>
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the offcanvas menu to add the SAS policy. </p>
+                </div>
+                <div class="col-md-6">
+                  <img src="images/sharedaccess-create.png" class="img-fluid"
+                       alt="Create shared access policy">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="sa4content" role="tabpanel"
+                 aria-labelledby="sa4tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/sharedaccess-send.png" class="img-fluid"
+                       alt="Send shared access policy">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> The <b>send</b> policy is created. </p>
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>send</b> from the list of shared access policies. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="sa5content" role="tabpanel"
+                 aria-labelledby="sa5tab">
+              <div class="row">
+                <div class="col-md-6 align-self-center">
+                  <p> <i class="fas fa-copy"></i> Copy and paste the contents of the <b>Connection string-primary key</b> field into the <b>local.settings.json</b> file as the <span class="font-monospace">"EventHubSendAppSetting"</span> value, as indicated below, and then <i class="fas fa-save"></i> save the file. </p>
+                  <pre class="ms-3">{
+  "Values": {
+    &vellip;
+    "EventHubSendAppSetting": "<b class="animate-breathing">Endpoint=&hellip;</b>",
+    &vellip;
+  }
+}</pre>
+                </div>
+                <div class="col-md-6">
+                  <img src="images/sharedaccess-endpoint.png" class="img-fluid"
+                       alt="Event Hub shared access endpoint">
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create a Web PubSub
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> From the Resource group page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Web PubSub</b> by following the 5 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="ps1tab"
+                      data-bs-toggle="tab" data-bs-target="#ps1content"
+                      type="button" role="tab" aria-controls="ps1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ps2tab" data-bs-toggle="tab"
+                      data-bs-target="#ps2content" type="button" role="tab"
+                      aria-controls="ps2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ps3tab" data-bs-toggle="tab"
+                      data-bs-target="#ps3content" type="button" role="tab"
+                      aria-controls="ps3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ps4tab" data-bs-toggle="tab"
+                      data-bs-target="#ps4content" type="button" role="tab"
+                      aria-controls="ps4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ps5tab" data-bs-toggle="tab"
+                      data-bs-target="#ps5content" type="button" role="tab"
+                      aria-controls="ps5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ps6tab" data-bs-toggle="tab"
+                      data-bs-target="#ps6content" type="button" role="tab"
+                      aria-controls="ps6tab"
+                      aria-selected="false"> 6 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="ps1content"
+                 role="tabpanel" aria-labelledby="ps1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-created.png" class="img-fluid"
+                       alt="Create resource in group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Create</b> from the menu bar on the Resource Group page. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ps2content" role="tabpanel"
+                 aria-labelledby="ps2tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/webpubsub-marketplace.png" class="img-fluid"
+                       alt="Web PubSub in marketplace">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Marketplace, search for and select <b>Web PubSub</b>. </p>
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create an instance of this resource. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ps3content" role="tabpanel"
+                 aria-labelledby="ps3tab">
+              <p> Enter a meaningful name for your Web PubSub Service and select the geographical region best suited for your deployment.  Choose the <b>Free</b> tier as this will largely suffice in almost all situations.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <img src="images/webpubsub-details.png"
+                   class="img-fluid mx-auto d-block" alt="Web PubSub details">
+            </div>
+            <div class="tab-pane fade" id="ps4content" role="tabpanel"
+                 aria-labelledby="ps4tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/webpubsub-validation.png" class="img-fluid"
+                       alt="Validate Web PubSub">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ps5content" role="tabpanel"
+                 aria-labelledby="ps5tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/webpubsub-created.png" class="img-fluid"
+                       alt="Web PubSub endpoint">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> The Web PubSub Service has been created. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ps6content" role="tabpanel"
+                 aria-labelledby="ps6tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/webpubsub-endpoint.png" class="img-fluid"
+                       alt="Web PubSub endpoint">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Web PubSub instance page, select <i class="fas fa-mouse-pointer"></i> <b>Keys</b> in the Settings section of the menu on the left, and <i class="fas fa-copy"></i> copy and paste the contents of the <b>Primary Connection string</b> field into the <b>local.settings.json</b> file as the <span class="font-monospace">"WebPubSubConnectionString"</span> value, as indicated below, and then <i class="fas fa-save"></i> save the file. </p>
+                  <pre class="ms-3">{
+  "Values": {
+    &vellip;
+    "WebPubSubConnectionString": "<b class="animate-breathing">Endpoint=&hellip;</b>",
+    &vellip;
+  }
+}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create a Storage Account
+            <small class="text-muted"> Part 5 </small>
+          </h3>
+          <p> From the Resource group page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Storage Account</b> by following the 6 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="st1tab"
+                      data-bs-toggle="tab" data-bs-target="#st1content"
+                      type="button" role="tab" aria-controls="st1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="st2tab" data-bs-toggle="tab"
+                      data-bs-target="#st2content" type="button" role="tab"
+                      aria-controls="st2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="st3tab" data-bs-toggle="tab"
+                      data-bs-target="#st3content" type="button" role="tab"
+                      aria-controls="st3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="st4tab" data-bs-toggle="tab"
+                      data-bs-target="#st4content" type="button" role="tab"
+                      aria-controls="st4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="st5tab" data-bs-toggle="tab"
+                      data-bs-target="#st5content" type="button" role="tab"
+                      aria-controls="st5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="st6tab" data-bs-toggle="tab"
+                      data-bs-target="#st6content" type="button" role="tab"
+                      aria-controls="st6tab"
+                      aria-selected="false"> 6 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="st1content"
+                 role="tabpanel" aria-labelledby="st1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/resourcegroups-created.png" class="img-fluid"
+                       alt="Create resource in group">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Create</b> from the menu bar on the Resource Group page. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="st2content" role="tabpanel"
+                 aria-labelledby="st2tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/storageaccount-marketplace.png"
+                       class="img-fluid" alt="Storage Account in marketplace">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Marketplace, search for and select <b>Storage Account</b>. </p>
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create an instance of this resource. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="st3content" role="tabpanel"
+                 aria-labelledby="st3tab">
+              <p> Enter a meaningful name for your Storage Account and select the geographical region best suited for your deployment.  Choose performance and redundancy settings adapted to the needs of your deployment.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <img src="images/storageaccount-details.png"
+                   class="img-fluid mx-auto d-block"
+                   alt="Storage account details">
+            </div>
+            <div class="tab-pane fade" id="st4content" role="tabpanel"
+                 aria-labelledby="st4tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/storageaccount-validation.png"
+                       class="img-fluid"
+                       alt="Validate Storage Account">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the resource details. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="st5content" role="tabpanel"
+                 aria-labelledby="st5tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/storageaccount-created.png" class="img-fluid"
+                       alt="Created Storage Account">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> The Storage Account has been created. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="st6content" role="tabpanel"
+                 aria-labelledby="st6tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/storageaccount-endpoint.png"
+                       class="img-fluid"
+                       alt="Storage Account endpoint">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> From the Storage Account instance page, select <i class="fas fa-mouse-pointer"></i> <b>Access keys</b> in the Security + networking section of the menu on the left, and <i class="fas fa-copy"></i> copy and paste the contents of the <b>key1 Connection string</b> field into the <b>local.settings.json</b> file as the <span class="font-monospace">"AzureWebJobsStorage"</span> value, as indicated below, and then <i class="fas fa-save"></i> save the file. </p>
+                  <pre class="ms-3">{
+  "Values": {
+    &vellip;
+    "AzureWebJobsStorage": "<b class="animate-breathing">DefaultEndpointsProtocol=&hellip;</b>",
+    &vellip;
+  }
+}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
