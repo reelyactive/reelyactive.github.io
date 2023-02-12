@@ -149,189 +149,225 @@
           <!-- Architecture overview -->
           <img src="images/overview.png" class="img-fluid mt-4"
                alt="reelyActive open source platform overview">
-          <!-- CAPSpaces with a Pi -->
-          <div class="row mt-5">
-            <div class="col-md-6">
-              <h2> Have a <i class="fab fa-raspberry-pi"></i> Pi? </h2>
-              <p class="lead"> Start by giving this a try... </p>
-              <p> Since our Raspberry Pi hack was <a href="https://hackaday.com/2016/08/01/sniffing-bluetooth-devices-with-a-raspberry-pi/" target="_blank"><i class="fas fa-external-link-alt"></i> featured in Hackaday in 2016</a>, the ubiquitous embedded computer has consistently been developers' first choice for experimenting with our open source middleware and web apps. </p>
-              <p> This tutorial<em>&mdash;by developers, for developers&mdash;</em>combines "owl" we've learned and developed since then.  Enjoy and let us know how we can continue making it better! </p>
-            </div>
-            <div class="col-md-6">
-              <div class="card hover-shadow">
-                <img src="diy/capspaces-pi/images/header.jpg"
-                     class="card-img-top" alt="CAPSpaces Pi">
-                <div class="card-body">
-                  <h5 class="card-title"> Create context-aware physical spaces with a Raspberry Pi </h5>
+          <ul class="nav nav-tabs nav-fill" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link bg-ambient text-white" id="adtab"
+                      data-bs-toggle="tab" data-bs-target="#adcontent"
+                      type="button" role="tab" aria-controls="adtab"
+                      aria-selected="false">
+                <i class="fas fa-wifi"></i> Ambient Data
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active bg-dark text-light"
+                      id="patab" data-bs-toggle="tab"
+                      data-bs-target="#pacontent" type="button" role="tab"
+                      aria-controls="patab"
+                      aria-selected="false">
+                <i class="fas fa-cog"></i> Pareto Anywhere
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link bg-secondary text-white" id="hlctab"
+                      data-bs-toggle="tab" data-bs-target="#hlccontent"
+                      type="button" role="tab" aria-controls="hlctab"
+                      aria-selected="false">
+                <i class="fas fa-share-alt"></i> Hyperlocal Context
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <!-- Ambient Data tab -->
+            <div class="tab-pane fade" id="adcontent" role="tabpanel"
+                 aria-labelledby="adtab">
+              <p class="lead text-muted text-start"> <span class="text-ambient">Ambient Data</span> is machine-readable information at a human scale. </p>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <h5> Learn More </h5>
+                  <dl class="row">
+                    <dt class="col-3"> Concept: </dt>
+                    <dd class="col-9"> <a href="https://www.reelyactive.com/ambient-data/" target="_blank" class="text-decoration-none"> <i class="fas fa-external-link-alt"></i> Ambient Data </a> </dd>
+                    <dt class="col-3"> Code: </dt>
+                    <dd class="col-9"> <a href="https://github.com/reelyactive/advlib/" target="_blank"><i class="fab fa-github"></i>/reelyactive/advlib</a> </dd>
+                  </dl>
                 </div>
-                <div class="card-footer text-center bg-dark bg-gradient">
-                  <a href="diy/capspaces-pi/"
-                     class="btn btn-primary"> Tutorial </a>
+                <div class="col-md-6">
+                  <h5> Step-by-Step Tutorials </h5>
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0">
+                      <a href="diy/devices/#devices">
+                        <img src="diy/devices/images/icon-devices.gif">
+                      </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                      <a href="diy/devices/#devices">
+                        <h5 class="mt-0 mb-1"> Ambient Devices </h5>
+                      </a>
+                      Configure beacons, tags & sensors.
+                    </li>
+                  </ul>
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0">
+                      <a href="diy/devices/#infrastructure">
+                        <img src="diy/devices/images/icon-infrastructure.gif">
+                      </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                      <a href="diy/devices/#infrastructure">
+                        <h5 class="mt-0 mb-1"> Ambient Infrastructure </h5>
+                      </a>
+                      Configure gateways, APs & readers.
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-          </div>
-          <!----- Quick start: Pareto Anywhere ----->
-          <h2 class="mt-5"> Quick start: Pareto Anywhere </h2>
-          <p class="lead"> Receive ambient wireless data and explore hyperlocal context </p>
-          <div class="row">
-            <div class="col-md-3 col-xxl-4 mb-3">
-              <a href="https://www.reelyactive.com/pareto/anywhere/"
-                 target="_blank">
-                <img src="diy/common/images/pareto-anywhere-logo.png"
-                     class="img-fluid p-1" alt="Pareto Anywhere">
-              </a>
+            <!-- Pareto Anywhere tab -->
+            <div class="tab-pane fade show active" id="pacontent"
+                 role="tabpanel" aria-labelledby="patab">
+              <p class="lead text-muted text-center"> <span class="text-dark">Pareto Anywhere</span> is our open source middleware. </p>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <h5> Quick Start </h5>
+                  <dl class="row">
+                    <dt class="col-3"> Install: </dt>
+                    <dd class="col-9 font-monospace user-select-all"> npm install -g pareto-anywhere </dd>
+                    <dt class="col-3"> Run: </dt>
+                    <dd class="col-9 font-monospace user-select-all"> pareto-anywhere </dd>
+                    <dt class="col-3"> Browse: </dt>
+                    <dd class="col-9"> <a href="http://localhost:3001" target="_blank" class="text-decoration-none"> http://localhost:3001 </a> </dd>
+                  </dl>
+                  <h5> Learn More </h5>
+                  <dl class="row">
+                    <dt class="col-3"> Product: </dt>
+                    <dd class="col-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank" class="text-decoration-none"> <i class="fas fa-external-link-alt"></i> Pareto Anywhere by reelyActive </a> </dd>
+                    <dt class="col-3"> Code: </dt>
+                    <dd class="col-9"> <a href="https://github.com/reelyactive/pareto-anywhere/" target="_blank"><i class="fab fa-github"></i>/reelyactive/pareto-anywhere</a> </dd>
+                  </dl>
+                </div>
+                <div class="col-md-6">
+                  <h5> Step-by-Step Tutorials </h5>
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0">
+                      <a href="diy/pareto-anywhere-pc/">
+                        <img src="diy/pareto-anywhere-pc/images/icon.png">
+                      </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                      <a href="diy/pareto-anywhere-pc/">
+                        <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
+                      </a>
+                      Evaluate, develop, demonstrate.
+                    </li>
+                  </ul>
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0">
+                      <a href="diy/pareto-anywhere-pi/">
+                        <img src="diy/pareto-anywhere-pi/images/icon.png">
+                      </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                      <a href="diy/pareto-anywhere-pi/">
+                        <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> </h5>
+                      </a>
+                      Serve pareto.local with a <i class="fab fa-raspberry-pi"></i> Pi.
+                    </li>
+                  </ul>
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0">
+                      <a href="diy/pareto-anywhere-azure/">
+                        <img src="diy/pareto-anywhere-azure/images/icon.png">
+                      </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                      <a href="diy/pareto-anywhere-azure/">
+                        <h5 class="mt-0 mb-1"> Run Pareto Anywhere for Azure </h5>
+                      </a>
+                      Process Azure IoT Hub data streams.
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="col-md-9 col-xxl-8">
-              <dl class="row">
-                <dt class="col-3"> Install: </dt>
-                <dd class="col-9 font-monospace user-select-all"> npm install -g pareto-anywhere </dd>
-                <dt class="col-3"> Run: </dt>
-                <dd class="col-9 font-monospace user-select-all"> pareto-anywhere </dd>
-                <dt class="col-3"> Browse: </dt>
-                <dd class="col-9"> <a href="http://localhost:3001" target="_blank" class="text-decoration-none"> http://localhost:3001 </a> </dd>
-              </dl>
-            </div>
-          </div>
-          <div class="mt-2">
-            <span class="align-middle">
-              Then receive ambient wireless data from &nbsp;
-            </span>
-            <div class="d-inline dropdown text-center">
-              <button class="btn btn-sm btn-outline-primary dropdown-toggle"
-                      type="button" id="dropdownAmbientData"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-broadcast-tower"></i> &nbsp;
-              </button>
-              <ul class="dropdown-menu"
-                  aria-labelledby="dropdownAmbientData">
-                <li>
-                  <a class="dropdown-item" target="_blank"
-                     href="diy/oio-config/"> reelyActive Owl-in-One </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" target="_blank"
-                     href="diy/minew-g1-config/"> Minew G1 </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" target="_blank"
-                     href="diy/aruba-instant-config/"> Aruba AP </a>
-                </li>
-              </ul>
-            </div>
-            <span class="align-middle">
-              &nbsp; and further analyse with &nbsp;
-            </span>
-            <div class="d-inline dropdown text-center">
-              <button class="btn btn-sm btn-outline-primary dropdown-toggle"
-                      type="button" id="dropdownAnalytics"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-database"></i> &nbsp;
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownAnalytics">
-                <li>
-                  <a class="dropdown-item" target="_blank"
-                     href="diy/kibana/"> Kibana </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <h3 class="mt-4"> Step-by-step tutorials </h3>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="diy/pareto-anywhere-pc/">
-                <img src="diy/pareto-anywhere-pc/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="diy/pareto-anywhere-pc/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
-              </a>
-              Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make any physical space context-aware.
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="diy/pareto-anywhere-pi/">
-                <img src="diy/pareto-anywhere-pi/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="diy/pareto-anywhere-pi/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
-              </a>
-              Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="diy/pareto-anywhere-azure/">
-                <img src="diy/pareto-anywhere-azure/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="diy/pareto-anywhere-azure/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere for Azure </h5>
-              </a>
-              Deploy and run Pareto Anywhere as a serverless Azure Function.
-            </li>
-          </ul>
-          <!-- Quick sample? -->
-          <div class="row mt-5">
-            <div class="col-md-6">
-              <h2> Quick sample? </h2>
-              <p class="lead"> Try Pareto Anywhere Apps </p>
-              <p> Discover, explore, adapt and reskin these lightweight web applications bundled with Pareto Anywhere.  All based on our standard <a href="web-style-guide/">Web Style Guide</a> with minimal dependencies and using Vanilla JS. </p>
-            </div>
-            <div class="col-md-6">
-              <div class="card hover-shadow">
-                <img src="diy/common/images/pareto-anywhere-apps-screenshot.jpg"
-                     class="card-img-top" alt="Pareto Anywhere Apps">
-                <div class="card-footer text-center bg-dark bg-gradient">
-                  <div class="dropdown text-center">
-                    <button class="btn btn-primary dropdown-toggle"
-                            type="button" id="dropdownApps"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                      Select a demo&hellip;
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownApps">
-                      <li>
-                        <a class="dropdown-item" target="_blank"
-                           href="pareto-anywhere-apps/hlc-explorer/?demo=default&updates=periodic">
-                          Hyperlocal Context Explorer
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" target="_blank"
-                           href="pareto-anywhere-apps/live-directory/?demo=default">
-                          Live Directory
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" target="_blank"
-                           href="pareto-anywhere-apps/occupancy-observer/?demo=default">
-                          Occupancy Observer
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" target="_blank"
-                           href="pareto-anywhere-apps/hello-sniffypedia/?demo=default">
-                          Hello Sniffypedia!
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" target="_blank"
-                           href="pareto-anywhere-apps/hello-dynamb/?demo=default">
-                          Hello dynamb!
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" target="_blank"
-                           href="pareto-anywhere-apps/hello-beaver/?demo=default">
-                          Hello beaver!
-                        </a>
-                      </li>
-                    </ul>
+            <!-- Hyperlocal Context tab -->
+            <div class="tab-pane fade" id="hlccontent" role="tabpanel"
+                 aria-labelledby="hlctab">
+              <p class="lead text-muted text-end"> <span class="text-secondary">Hyperlocal Context</span> is a digital representation of a physical space and its occupants. </p>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <h5> Learn More </h5>
+                  <dl class="row">
+                    <dt class="col-3"> Concept: </dt>
+                    <dd class="col-9"> <a href="https://www.reelyactive.com/context/" target="_blank" class="text-decoration-none"> <i class="fas fa-external-link-alt"></i> Hyperlocal Context </a> </dd>
+                    <dt class="col-3"> Web apps: </dt>
+                    <dd class="col-9"> <a href="https://github.com/reelyactive/pareto-anywhere-apps/" target="_blank"><i class="fab fa-github"></i>/reelyactive/pareto-anywhere-apps</a> </dd>
+                  </dl>
+                  <h5> Tutorials </h5>
+                  <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0">
+                      <a href="diy/cheatsheet/">
+                        <img src="diy/cheatsheet/images/icon.png">
+                      </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                      <a href="diy/cheatsheet/">
+                        <h5 class="mt-0 mb-1"> Developer Cheatsheet </h5>
+                      </a>
+                      Understand the data structures.
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <div class="card hover-shadow">
+                    <img src="diy/common/images/pareto-anywhere-apps-screenshot.jpg"
+                         class="card-img-top" alt="Pareto Anywhere Apps">
+                    <div class="card-footer text-center bg-dark bg-gradient">
+                      <div class="dropdown text-center">
+                        <button class="btn btn-primary dropdown-toggle"
+                                type="button" id="dropdownApps"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                          Select a demo&hellip;
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownApps">
+                          <li>
+                            <a class="dropdown-item" target="_blank"
+                               href="pareto-anywhere-apps/hlc-explorer/?demo=default&updates=periodic">
+                              Hyperlocal Context Explorer
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" target="_blank"
+                               href="pareto-anywhere-apps/live-directory/?demo=default">
+                              Live Directory
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" target="_blank"
+                               href="pareto-anywhere-apps/occupancy-observer/?demo=default">
+                              Occupancy Observer
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" target="_blank"
+                               href="pareto-anywhere-apps/hello-sniffypedia/?demo=default">
+                              Hello Sniffypedia!
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" target="_blank"
+                               href="pareto-anywhere-apps/hello-dynamb/?demo=default">
+                              Hello dynamb!
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" target="_blank"
+                               href="pareto-anywhere-apps/hello-beaver/?demo=default">
+                              Hello beaver!
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -352,19 +388,6 @@
                 <h5 class="mt-0 mb-1"> Directory </h5>
               </a>
               All developer tutorials and documentation by category.
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="diy/devices/">
-                <img src="diy/devices/images/icon.gif" class="img-fluid">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="diy/devices/">
-                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
-              </a>
-              Browse all device configuration tutorials and development guides.
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
