@@ -416,9 +416,15 @@
             </div>
             <div class="tab-pane fade" id="ih3content" role="tabpanel"
                  aria-labelledby="ih3tab">
-              <p> Enter a meaningful name for your IoT Hub and select the geographical region best suited for your deployment.  Choose a tier and message limit adapted to the scale of your deployment.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <p> Enter a meaningful name for your IoT Hub and select the geographical region best suited for your deployment.  Choose a tier<sup>*</sup> and message limit<sup>**</sup> adapted to the scale of your deployment.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
               <img src="images/iothub-details.png"
                    class="img-fluid mx-auto d-block" alt="IoT Hub details">
+              <div class="alert alert-primary mt-3" role="alert">
+                <sup>*</sup> <b>Standard</b> tier is strongly recommended, as many gateways require the functionality of this tier<em>&mdash;without providing explicit notification of Basic tier incompatibility!</em>
+              </div>
+              <div class="alert alert-primary mt-3" role="alert">
+                <sup>**</sup> IoT Hub will stop relaying messages<em>&mdash;without explicit notification&mdash;</em>once its daily limit is reached.  Choose a generous message limit, then validate and adjust as often as required.
+              </div>
             </div>
             <div class="tab-pane fade" id="ih4content" role="tabpanel"
                  aria-labelledby="ih4tab">
@@ -841,9 +847,12 @@
             </div>
             <div class="tab-pane fade" id="ps3content" role="tabpanel"
                  aria-labelledby="ps3tab">
-              <p> Enter a meaningful name for your Web PubSub Service and select the geographical region best suited for your deployment.  Choose the <b>Free</b> tier as this will largely suffice in almost all situations.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
+              <p> Enter a meaningful name for your Web PubSub Service and select the geographical region best suited for your deployment.  Choose the <b>Free</b> tier<sup>*</sup> if the web app is likely to receive moderate use.  Then click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page. </p>
               <img src="images/webpubsub-details.png"
                    class="img-fluid mx-auto d-block" alt="Web PubSub details">
+              <div class="alert alert-primary mt-3" role="alert">
+                <sup>*</sup> The <b>Free</b> tier of Web PubSub will stop relaying events<em>&mdash;without explicit notification&mdash;</em>once its daily limit is reached.  The <b>Standard</b> tier is not constrained by a fixed limit.
+              </div>
             </div>
             <div class="tab-pane fade" id="ps4content" role="tabpanel"
                  aria-labelledby="ps4tab">
