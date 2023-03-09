@@ -1215,17 +1215,17 @@ For detailed output, run func with --verbose flag.
           <p> If the Azure resources and the local.settings.json file are correctly configured, the package will be uploaded and the console output should complete as follows: </p>
           <pre class="text-muted ms-3">Functions in pareto-anywhere:
     negotiateConnection - [httpTrigger]
-        Invoke url: https://pareto-anywhere.azurewebsites.net/api/wsconnection
+        Invoke url: https://pareto-anywhere.azurewebsites.net/app/wsconnection
 
     processIoTHubMessages - [eventHubTrigger]
 
     serveWebApp - [httpTrigger]
-        Invoke url: <a href="https://pareto-anywhere.azurewebsites.net/api/events" target="_blank">https://pareto-anywhere.azurewebsites.net/api/events</a></pre>
+        Invoke url: https://pareto-anywhere.azurewebsites.net/app/{folder?}/{filename?}</pre>
           <h3 class="mt-4">
             Browse to the web app on Azure
             <small class="text-muted"> Part 3 </small>
           </h3>
-          <p> Point a web browser to <a href="https://app-name.azurewebsites.net/api/events" target="_blank">https://<b>app-name</b>.azurewebsites.net/api/events</a>, again substituting <b class="text-primary">app-name</b> for the Function name you selected in Part 1 above, to observe the web application running on Azure. </p>
+          <p> Point a web browser to <a href="https://app-name.azurewebsites.net/app/" target="_blank">https://<b>app-name</b>.azurewebsites.net/app/</a>, again substituting <b class="text-primary">app-name</b> for the Function name you selected in Part 1 above, to observe the web application running on Azure. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
