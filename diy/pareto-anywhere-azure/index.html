@@ -1069,6 +1069,15 @@ For detailed output, run func with --verbose flag.
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> Point a web browser to <a href="http://localhost:7071/app/" target="_blank">http://localhost:7071/app/</a> to observe the web application running locally. </p>
+          <img src="images/web-app.png" class="img-fluid mx-auto d-block"
+               style="max-width:960px">
+          <h3 class="mt-4">
+            Customise the web app
+            <small class="text-muted"> (OPTIONAL) Part 3 </small>
+          </h3>
+          <p> For convenience, the web app and all its dependencies are served by the Azure Function itself from the <span class="font-monospace">/serveWebApp</span> folder (and its <span class="font-monospace">/images /js /style</span> subfolders).  Simply edit the <span class="font-monospace">index.html</span> file and the dependencies as required, and the changes will appear as soon as the function restarts. </p>
+          <p> The web app observes the <a href="https://reelyactive.github.io/web-style-guide/" target="_blank"><i class="fas fa-external-link-alt"></i> reelyActive Web Style Guide</a> with the additional dependencies of <a href="https://github.com/reelyactive/beaver/" target="_blank"><i class="fas fa-external-link-alt"></i> beaver.js</a> and <a href="https://github.com/reelyactive/cuttlefish/" target="_blank"><i class="fas fa-external-link-alt"></i> cuttlefish.js</a> to collect and render the real-time dynamic ambient data, respectively. </p>
+          <p> The web app includes <a href="https://dtpr.io" target="_blank"><i class="fas fa-external-link-alt"></i> Digital Trust for Places & Routines (DTPR)</a> iconography to inform about the purpose, technology, accountability and data retention of the digital systems present in the physical space.  The icons, descriptions and links can easily be updated (in the <span class="font-monospace">index.html</span> file) to reflect the reality of the deployment. </p>
           <!----- Step 5 of 5 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
@@ -1236,6 +1245,13 @@ For detailed output, run func with --verbose flag.
             <small class="text-muted"> Part 3 </small>
           </h3>
           <p> Point a web browser to <a href="https://app-name.azurewebsites.net/app/" target="_blank">https://<b>app-name</b>.azurewebsites.net/app/</a>, again substituting <b class="text-primary">app-name</b> for the Function name you selected in Part 1 above, to observe the web application running on Azure. </p>
+          <img src="images/web-app.png" class="img-fluid mx-auto d-block"
+               style="max-width:960px">
+          <h3 class="mt-4">
+            Optimise the web app
+            <small class="text-muted"> (OPTIONAL) Part 4 </small>
+          </h3>
+          <p> In the case where the web app is used in production, and/or the URL is shared publicly, it is strongly advised to optimise how the content is served.  For example, at a minimum, all dependencies of the <span class="font-monospace">index.html</span> file may be served by a CDN or an Azure service like <a href="https://azure.microsoft.com/products/app-service/static" target="_blank"><i class="fas fa-external-link-alt"></i> Static Web Apps</a>, for efficiency and security. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
