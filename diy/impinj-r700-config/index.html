@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Configure an Impinj R700 reader to forward ambient RAIN RFID data to Pareto Anywhere open source middleware for real-time location and context.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <title> reelyActive Impinj R700 Reader Configuration Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "reelyActive Impinj R700 Reader Configuration Guide",
+      "description": "Configure an Impinj R700 reader to forward ambient RAIN RFID data to Pareto Anywhere open source middleware for real-time location and context.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/impinj-r700-config/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Impinj R700 Configuration"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Configure an Impinj R700 Reader </h1>
+          <p class="lead"> Our step-by-step guide to configure the reader to forward data for processing by Pareto Anywhere. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Configure an Impinj R700 reader with Pareto Anywhere">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive configure the readers to make <em>any</em> physical space context-aware </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The R700 will forward ambient RAIN RFID decodings to a server running Pareto Anywhere. </dd>
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"> Pareto Anywhere </a> is open source middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
+                <dt class="col-sm-3"> What's the interface? </dt>
+                <dd class="col-sm-9"> This integration uses the Impinj IoT Device Interface which was introduced with the R700 reader. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> An Impinj R700 reader. </p>
+          <div class="card border-0 mb-3">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-2">
+                <img src="images/impinj-r700.jpg"
+                     class="img-fluid rounded-start" alt="Impinj R700">
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <h5 class="card-title"> Impinj R700 </h5>
+                  <p class="card-text text-muted"> Learn more from the manufacturer: </p>
+                  <p class="card-text">
+                    <a href="https://www.impinj.com/products/readers/impinj-r700"
+                       target="_blank" class="btn btn-sm btn-outline-primary">
+                      <i class="fas fa-external-link-alt"></i>&nbsp; Impinj
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Configure operation &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Connect to the R700 to configure its operating region and settings. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> How to power? </dt>
+                <dd class="col-sm-9"> The R700 is powered via PoE (Power over Ethernet), either from a PoE switch or a PoE injector. </dd>
+                <dt class="col-sm-3"> How to connect? </dt>
+                <dd class="col-sm-9"> The R700 accepts connections on the local network to which it is connected by Ethernet. </dd>
+              </dl>
+              <img src="images/connection-overview.jpg" class="card-img-bottom"
+                   alt="Impinj R700 power and connectivity">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Connect to the R700
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> First note the three pairs of digits on the reader label (<span class="font-monospace">impinj-XX-XX-XX</span>) and then: </p>
+          <ul>
+            <li> apply power <i class="fas fa-plug"></i> to the reader by connecting it to PoE power sourcing equipment (PSE) using a standard network cable </li>
+            <li> from a laptop <i class="fas fa-laptop"></i> connected to the same network as the reader, browse to <a href="http://impinj-XX-XX-XX.local" target="_blank">impinj-XX-XX-XX.local</a>, replacing the <span class="font-monospace">XX</span> as per above </li>
+            <li> if the browser warns of a potentially unsafe HTTPS connection, follow the necessary steps to proceed </li>
+            <li> log in to the reader with user <b>root</b> and password <b>impinj</b> </li>
+          </ul>
+          <p> If the reader's operating region is not configured (factory default), a notification will be displayed, as below.  Proceed to Part 2 to configure the operating region, otherwise skip ahead to Part 3. </p>
+          <img src="images/initial-connection-alert.png" class="img-fluid"
+               alt="Impinj R700 initial connection alert">
+          <h3 class="mt-4">
+            Configure the operating region
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the reader configuration page, change the operating region by following the 3 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="or1tab"
+                      data-bs-toggle="tab" data-bs-target="#or1content"
+                      type="button" role="tab" aria-controls="or1tab"
+                      aria-selected="true">
+                1
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="or2tab" data-bs-toggle="tab"
+                      data-bs-target="#or2content" type="button" role="tab"
+                      aria-controls="or2tab" aria-selected="false">
+                2
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="or3tab" data-bs-toggle="tab"
+                      data-bs-target="#or3content" type="button" role="tab"
+                      aria-controls="or3tab" aria-selected="false">
+                3
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="or1content"
+                 role="tabpanel" aria-labelledby="or1tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/operating-region-change.png"
+                       class="img-fluid" alt="Change operating region">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  Select <i class="fas fa-mouse-pointer"></i> <b>Change Region</b> from the R700 Reader section.
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="or2content" role="tabpanel"
+                 aria-labelledby="or2tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/operating-region-fcc.png"
+                       class="img-fluid" alt="Select operating region">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Select the operating region from the pull-down menu.  <span class="text-muted">For example, for the USA and Canada select <b>FCC Part 15.247</b>.</span> </p>
+                  <p> <span class="badge rounded-pill bg-danger"><i class="fas fa-exclamation-triangle"></i></span> <small class="text-danger text-uppercase">"You are responsible for ensuring that the RF settings are correctly set."</small> </p>
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>Change Region</b> to update the operating region. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="or3content" role="tabpanel"
+                 aria-labelledby="or3tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/operating-region-reboot.png"
+                       class="img-fluid" alt="Reboot into operating region">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  Select <i class="fas fa-mouse-pointer"></i> <b>Reboot</b> to complete the change to the new operating region.
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mt-3"> Once the reader has rebooted to the selected operating region, proceed to Part 3 below. </p>
+          <h3 class="mt-4">
+            Configure additional settings
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              From the reader configuration Home page, in the R700 Reader section, ensure that <b>Impinj IoT Device Interface</b> is the selected interface.
+            </div>
+            <div class="col-md-6">
+              <img src="images/interface-iot-device.png"
+                   class="img-fluid" alt="Impinj IoT Device Interface">
+            </div>
+          </div>
+          <p class="mt-3"> <em>If required,</em> configure the reader network settings from the Network page. </p>
+          <img src="images/network-overview.png" class="img-fluid"
+               alt="Impinj R700 Network Overview">
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configure data forwarding &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Configure the R700 to collect and forward data to a remote server running Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> How is data collected? </dt>
+                <dd class="col-sm-9"> The R700 supports inventory configurations which specify how/when to read tags. </dd>
+                <dt class="col-sm-3"> How is data forwarded? </dt>
+                <dd class="col-sm-9"> The R700 supports MQTT, Kafka and Webhook.  The webhook is natively supported by the <a href="https://github.com/reelyactive/barnowl-impinj" target="_blank">barnowl-impinj</a> module of Pareto Anywhere. </dd>
+              </dl>
+              <img src="images/forwarding-overview.png" class="img-fluid"
+                   alt="Impinj R700 Webhook to Pareto Anywhere">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Configure webhook
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Browse to the <b>Event Reporting</b> page and select the <b>Webhook</b> tab.  Complete the configuration as below: </p>
+          <table class="table table-hover">
+            <caption> <i class="fas fa-info-circle"></i> Leave all other fields blank </caption>
+            <thead>
+              <tr>
+                <th scope="col"> Parameter </th>
+                <th scope="col"> Value </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Enable Webhook Output </td>
+                <td> <i class="fas fa-check"></i> </td>
+              </tr>
+              <tr>
+                <td> Server URL </td>
+                <td> http://xxx.xxx.xxx.xxx/impinj<br><small class="text-muted">replace the x with the IP address of the Pareto Anywhere server</small> </td>
+              </tr>
+              <tr>
+                <td> Port </td>
+                <td> 3001 </td>
+              </tr>
+            </tbody>
+          </table>
+          <img src="images/event-reporting-webhook.png" class="card-img-bottom"
+               alt="Impinj R700 Webhook Event Reporting">
+          <p class="mt-3"> Click <i class="fas fa-mouse-pointer"></i> <b>Save</b> to save the webhook configuration and initiate forwarding. </p>
+          <img src="images/event-reporting-webhook-status.gif"
+               class="img-fluid" alt="Impinj R700 Webhook status">
+          <p class="mt-3"> The Webhook status at the top right of the reader configuration page will change from <span class="badge rounded-pill bg-info">&nbsp;</span> <span class="text-info">grey</span> to either <span class="badge rounded-pill bg-success">&nbsp;</span> <span class="text-success">green</span>, if the reader is able to HTTP POST data to the specified server, or  <span class="badge rounded-pill bg-danger">&nbsp;</span> <span class="text-danger">red</span>, otherwise. </p>
+          <p> Even if the Webhook status becomes <span class="badge rounded-pill bg-success">&nbsp;</span> <span class="text-success">green</span>, an inventory profile needs to be activated for tags to be read and the data to be forwarded.  This is covered next in Part 2. </p>
+          <h3 class="mt-4">
+            Activate inventory profile
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Browse to the <b>Profile Presets</b> page.  Activate an inventory configuration by clicking <i class="fas fa-mouse-pointer"></i> <b>Start</b> on the preset of your choice. </p>
+          <p> <span class="badge bg-primary"><i class="fas fa-info"></i></span> The <em>default</em> configuration can be used to validate the forwarding of tag reads on Antenna Port 1. </p>
+          <img src="images/profile-presets-overview.png" class="img-fluid"
+               alt="Impinj R700 Profile Presets">
+          <p class="mt-3"> When a configuration is running, the Reader status will turn <span class="badge rounded-pill bg-success">&nbsp;</span> <span class="text-success">green</span>. </p>
+          <img src="images/profile-presets-running.png" class="img-fluid"
+               alt="Impinj R700 active">
+          <h3 class="mt-4">
+            Create inventory profile
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the <b>Profile Presets</b> page, select <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create an inventory configuration with parameters that match the actual deployment, and with Tag Inventory fields optimised for processing by Pareto Anywhere. </p>
+          <p> The following tabs list the recommended and example settings for an inventory configuration. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="ip1tab"
+                      data-bs-toggle="tab" data-bs-target="#ip1content"
+                      type="button" role="tab" aria-controls="ip1tab"
+                      aria-selected="true">
+                Antenna
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ip2tab" data-bs-toggle="tab"
+                      data-bs-target="#ip2content" type="button" role="tab"
+                      aria-controls="ip2tab" aria-selected="false">
+                Fields
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ip3tab" data-bs-toggle="tab"
+                      data-bs-target="#ip3content" type="button" role="tab"
+                      aria-controls="ip3tab" aria-selected="false">
+                Behaviour
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ip4tab" data-bs-toggle="tab"
+                      data-bs-target="#ip4content" type="button" role="tab"
+                      aria-controls="ip4tab" aria-selected="false">
+                <i class="fas fa-eye"></i>
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="ip1content"
+                 role="tabpanel" aria-labelledby="ip1tab">
+              <table class="table table-hover">
+                <caption class="caption-top"> Example settings for Antenna Configurations </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"> Parameter </th>
+                    <th scope="col"> Value </th>
+                    <th scope="col"> Notes </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> Antenna Port </td>
+                    <td> 1 </td>
+                    <td class="text-muted"> Clone 1 to Ports 2-4 as required </td>
+                  </tr>
+                  <tr>
+                    <td> Transmit Power </td>
+                    <td> 3300 </td>
+                    <td class="text-muted"> 3300 cdBm = 33 dBm </td>
+                  </tr>
+                  <tr>
+                    <td> Session </td>
+                    <td> 0 </td>
+                    <td class="text-muted"> 0-3 </td>
+                  </tr>
+                  <tr>
+                    <td> Population Estimate </td>
+                    <td> 32 </td>
+                    <td class="text-muted"> 2<sup>x</sup> value, bias low </td>
+                  </tr>
+                  <tr>
+                    <td> RF Mode </td>
+                    <td> Max Throughput </td>
+                    <td class="text-muted"> Prioritise throughput </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="ip2content" role="tabpanel"
+                 aria-labelledby="ip2tab">
+              <table class="table table-hover">
+                <caption class="caption-top"> Recommended selected fields for Event Configuration </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"> Field </th>
+                    <th scope="col"> Value </th>
+                    <th scope="col"> raddec equivalent </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> Include Reader Hostname </td>
+                    <td> <i class="fas fa-check"></i> </td>
+                    <td class="text-muted font-monospace"> receiverId </td>
+                  </tr>
+                  <tr>
+                    <td> Antenna Port </td>
+                    <td> <i class="fas fa-check"></i> </td>
+                    <td class="text-muted font-monospace"> </td>
+                  </tr>
+                  <tr>
+                    <td> EPC </td>
+                    <td> <i class="fas fa-check"></i> </td>
+                    <td class="text-muted font-monospace"> transmitterId </td>
+                  </tr>
+                  <tr>
+                    <td> Last Seen Time </td>
+                    <td> <i class="fas fa-check"></i> </td>
+                    <td class="text-muted font-monospace"> timestamp </td>
+                  </tr>
+                  <tr>
+                    <td> Peak RSSI </td>
+                    <td> <i class="fas fa-check"></i> </td>
+                    <td class="text-muted font-monospace"> rssi </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="ip3content" role="tabpanel"
+                 aria-labelledby="ip3tab">
+              <table class="table table-hover">
+                <caption class="caption-top"> Recommended settings for Tag Inventory behaviour </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"> Parameter </th>
+                    <th scope="col"> Value </th>
+                    <th scope="col"> Notes </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> Reporting Inverval(s) </td>
+                    <td> 0 </td>
+                    <td class="text-muted"> Real-time </td>
+                  </tr>
+                  <tr>
+                    <td> Tag Cache Size </td>
+                    <td> 2048 </td>
+                    <td class="text-muted"> Adjust as required </td>
+                  </tr>
+                  <tr>
+                    <td> Antenna Identifier </td>
+                    <td> Port </td>
+                    <td class="text-muted"> Standard practice </td>
+                  </tr>
+                  <tr>
+                    <td> Tag Identifier </td>
+                    <td> EPC </td>
+                    <td class="text-muted"> Standard practice </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="ip4content" role="tabpanel"
+                 aria-labelledby="ip4tab">
+              <img src="images/inventory-event-configuration.png"
+                   class="img-fluid"
+                   alt="Inventory event configuration for Pareto Anywhere">
+            </div>
+          </div>
+          <p class="mt-3"> Click <i class="fas fa-mouse-pointer"></i> <b>Save</b> to save the configuration.  The configuration can be activated as described previously in Part 2. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Observe data in Pareto Anywhere &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> Run the Pareto Anywhere open source middleware to observe the forwarded data. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> How to run Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> We provide friendly tutorials to install on a laptop, a <i class="fab fa-raspberry-pi"></i> Pi, etc. </dd>
+                <dt class="col-sm-3"> Is there a quick and dirty way? </dt>
+                <dd class="col-sm-9"> Yes.  Our barnowl-impinj package provides a simple means to receive reader data and log to the console (see below). </dd>
+              </dl>
+              <img src="images/pareto-anywhere-overview.jpg"
+                   class="card-img-bottom"
+                   alt="Impinj R700 Data in Pareto Anywhere">
+            </div>
+          </div>
+          <p class="mt-4"> Observing data in Pareto Anywhere requires no additional action if an instance based on the pareto-anywhere package is running, or, for quick-and-dirty validation, run barnowl-impinj as described below. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="paretotab"
+                      data-bs-toggle="tab" data-bs-target="#paretocontent"
+                      type="button" role="tab" aria-controls="paretotab"
+                      aria-selected="true"> pareto-anywhere </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="barnowltab" data-bs-toggle="tab"
+                      data-bs-target="#barnowlcontent" type="button" role="tab"
+                      aria-controls="barnowltab"
+                      aria-selected="false"> barnowl-impinj </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="paretocontent"
+                 role="tabpanel" aria-labelledby="paretotab">
+              <p class="mt-2"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank">pareto-anywhere</a> package is already present and running on the target computer on the host network, the data forwarded by the gateway should be available in both the web apps and APIs. </p>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../pareto-anywhere-pc/">
+                    <img src="../pareto-anywhere-pc/images/icon.png"
+                         class="img-fluid">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../pareto-anywhere-pc/">
+                    <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
+                  </a>
+                  Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make any physical space context-aware.
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../pareto-anywhere-pi/">
+                    <img src="../pareto-anywhere-pi/images/icon.png"
+                         class="img-fluid">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../pareto-anywhere-pi/">
+                    <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
+                  </a>
+                  Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="barnowlcontent" role="tabpanel"
+                 aria-labelledby="barnowltab">
+              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-impinj" target="_blank">barnowl-impinj</a> standalone to listen for HTTP POSTs on port 3001 as follows: </p>
+              <pre>git clone https://github.com/reelyactive/barnowl-impinj.git
+npm install
+npm start</pre>
+              <p> If the reader is correctly configured, and at least one RAIN RFID tag is in range, <a href="https://github.com/reelyactive/raddec" target="_blank">raddec</a> data should appear in the console. </p>
+            </div>
+          </div>
+          <h3 class="mt-4"> Enjoy the real-time data stream </h3>
+          <p> Our cheatsheet details the <b class="font-monospace">raddec</b> JSON output from the Pareto Anywhere open source middleware. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <img src="../cheatsheet/images/icon.png" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <h5 class="mt-0 mb-1"> Developers Cheatsheet </h5>
+              </a>
+              "Owl" you need to know about Pareto Anywhere's core data structures.
+            </li>
+          </ul>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Let's put things in context, one space at a time.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2023 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
