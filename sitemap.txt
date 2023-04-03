@@ -11,6 +11,7 @@ https://reelyactive.github.io/diy/elasticsearch-email-integration/
 https://reelyactive.github.io/diy/elasticsearch-service-setup/
 https://reelyactive.github.io/diy/elasticsearch-slack-integration/
 https://reelyactive.github.io/diy/hinged-object-interaction-detection/
+https://reelyactive.github.io/diy/impinj-r700-config/
 https://reelyactive.github.io/diy/kibana/
 https://reelyactive.github.io/diy/kibana-alerts/
 https://reelyactive.github.io/diy/kibana-annotations/
