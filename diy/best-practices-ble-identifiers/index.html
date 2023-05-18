@@ -6,19 +6,11 @@
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
           content="Best practices for assigning Bluetooth Low Energy (BLE) identifiers, specifically for interoperability and interpretability.">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-49659454-2');
-    </script>
-    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
-    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
     <title> Best practices for Bluetooth Low Energy (BLE) identifiers </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
-    {
+    [{
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "Best practices for Bluetooth Low Energy (BLE) identifiers",
@@ -30,90 +22,108 @@
         "@type": "Organization",
         "url": "https://www.reelyactive.com"
       }
-    }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Best practices for Bluetooth Low Energy identifiers"
+      }]
+    }]
     </script>
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
-      <a class="navbar-brand" href="https://www.reelyactive.com/">
-        <img src="../common/images/reelyactive-logo-nav.png"
-             width="165" height="30" alt="reelyActive">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-              data-target="#navbarItems" aria-controls="navbarItems"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarItems">
-        <ul class="navbar-nav mr-auto"></ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="../../">
-              <i class="fas fa-home"></i>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown"
-               role="button" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-              <i class="fas fa-question-circle"></i>
-            </a>
-            <!-- Info about tracking and open source software/licenses -->
-            <div class="dropdown-menu dropdown-menu-right"
-                 aria-labelledby="navbarDropdown">
-              <a class="dropdown-item"
-                 href="https://www.reelyactive.com/how-we-observe/#digital">
-                <i class="fas fa-mouse-pointer"></i>
-                Page view tracking (gtag.js) &nbsp;
-                <span class="badge badge-warning">
-                  <i class="fas fa-user-tag"></i>
-                </span>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
+                shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://getbootstrap.com" >
-                <i class="fab fa-bootstrap"></i>
-                Bootstrap 4 &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://fontawesome.com" >
-                <i class="fab fa-font-awesome"></i>
-                Font Awesome (Free) &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-creative-commons"></i>
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://jquery.com" >
-                <i class="fab fa-js"></i>
-                JQuery &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://github.com/reelyactive/web-style-guide/" >
-                <i class="fas fa-code"></i>
-                Web Style Guide &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://www.reelyactive.com/made-in-montreal/" >
-                <i class="fab fa-canadian-maple-leaf"></i>
-                Made in Montr&eacute;al &nbsp;
-                <i class="fas fa-city"></i>
-              </a>
-            </div>
-          </li>
-        </ul>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
     <div class="container-fluid">
@@ -124,7 +134,7 @@
           <img src="images/header.png" class="img-fluid"
                alt="Best practices for Bluetooth Low Energy (BLE) identifiers">
           <!----- The TL;DR ----->
-          <div class="card my-4">
+          <div class="card hover-shadow my-4">
             <div class="card-body">
               <h2>
                 The TL;DR
@@ -133,12 +143,12 @@
               <p class="lead"> Learn how we at reelyActive assign BLE identifiers based on best practices we've established. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Established how?</dt>
-                <dd class="col-sm-9">When we founded reelyActive in 2012, we recognised that BLE would become the de facto global standard for active RFID, and have been consistently outspoken about best practices.</dd>
-                <dt class="col-sm-3">Why best practices?</dt>
-                <dd class="col-sm-9">BLE devices are all around us, representing people, products and places.  Best practices foster spontaneous discovery and interpretation, and maximise interoperability.</dd>
-                <dt class="col-sm-3">Are these observed?</dt>
-                <dd class="col-sm-9">Not especially.  As of 2020, we've seen few standard best practices emerge, hence our motivation to create this tutorial and <em>The InteroperaBLE Identifier!</em></dd>
+                <dt class="col-sm-3"> Established how? </dt>
+                <dd class="col-sm-9"> When we founded reelyActive in 2012, we recognised that BLE would become the de facto global standard for active RFID, and have been consistently outspoken about best practices. </dd>
+                <dt class="col-sm-3"> Why best practices? </dt>
+                <dd class="col-sm-9"> BLE devices are all around us, representing people, products and places.  Best practices foster spontaneous discovery and interpretation, and maximise interoperability. </dd>
+                <dt class="col-sm-3"> Are these observed? </dt>
+                <dd class="col-sm-9"> Not especially.  As of 2020, we've seen few standard best practices emerge, hence our motivation to create this tutorial and <em>The InteroperaBLE Identifier! </em></dd>
               </dl>
             </div>
           </div>
@@ -147,7 +157,7 @@
           <dl class="row">
             <dt class="col-sm-2 offset-sm-1">
               <span class="lead">
-                <a href="#part01" class="badge badge-secondary">Part 1 of 4</a>
+                <a href="#part01" class="badge bg-primary">Part 1 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -156,7 +166,7 @@
             </dd>
             <dt class="col-sm-2 offset-sm-1"> 
               <span class="lead">
-                <a href="#part02" class="badge badge-secondary">Part 2 of 4</a>
+                <a href="#part02" class="badge bg-primary">Part 2 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -165,7 +175,7 @@
             </dd>
             <dt class="col-sm-2 offset-sm-1">
               <span class="lead">
-                <a href="#part03" class="badge badge-secondary">Part 3 of 4</a>
+                <a href="#part03" class="badge bg-primary">Part 3 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -174,7 +184,7 @@
             </dd>
             <dt class="col-sm-2 offset-sm-1"> 
               <span class="lead">
-                <a href="#part04" class="badge badge-secondary">Part 4 of 4</a>
+                <a href="#part04" class="badge bg-primary">Part 4 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -183,21 +193,23 @@
             </dd>
           </dl>
           <p> Links to related tutorials are provided at the end. </p>
-          <!----- Part 1 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="part01">
+          <!----- Part 1 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="part01" class="card-title my-2">
                 Anatomy of a BLE advertising packet &nbsp;
-                <a href="#part01" class="badge badge-secondary">Part 1 of 4</a>
+                <a href="#part01" class="badge bg-primary">Part 1 of 4</a>
               </h2>
               <p class="lead"> Just enough structure with just enough space for data. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Advertising packet?</dt>
-                <dd class="col-sm-9">Here we'll examine only the advertising packets that BLE devices can spontaneously broadcast to any devices listening in range.</dd>
-                <dt class="col-sm-3">Why not other packets?</dt>
-                <dd class="col-sm-9">Paired (one-to-one) communication between Bluetooth devices is outside the scope of this tutorial, but the best practices for identifiers may nonetheless apply.</dd>
+                <dt class="col-sm-3"> Advertising packet? </dt>
+                <dd class="col-sm-9"> Here we'll examine only the advertising packets that BLE devices can spontaneously broadcast to any devices listening in range. </dd>
+                <dt class="col-sm-3"> Why not other packets? </dt>
+                <dd class="col-sm-9"> Paired (one-to-one) communication between Bluetooth devices is outside the scope of this tutorial, but the best practices for identifiers may nonetheless apply. </dd>
               </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="BLE Advertising Packet">-->
             </div>
           </div>
           <h3 class="mt-4"> The advertising packet structure </h3>
@@ -213,13 +225,13 @@
             <dd class="col-sm-7"> <em>Random identifier</em> selected automatically in software, or specifically by the user </dd>
           </dl>        
           <p>
-            <span class="badge badge-warning">
+            <span class="badge bg-warning">
               <i class="fas fa-exclamation-triangle"></i>
             </span>
             &nbsp; A random identifier <em>may not be static</em>.  A device may cycle a random identifier at any time.
           </p>
           <p>
-            <span class="badge badge-warning">
+            <span class="badge bg-warning">
               <i class="fas fa-exclamation-triangle"></i>
             </span>
             &nbsp; A random identifier <em>may not be unique</em>.  Collisions are nonetheless unlikely unless assignment is non-random.
@@ -227,80 +239,85 @@
           <h3 class="mt-4"> Other <em>optional</em> identifiers </h3>
           <p> A BLE advertising packet may include an <b>optional payload of up to 31 bytes</b> in which additional identifiers and/or data may reside.  The Bluetooth Generic Access Protocol (GAP), documented <a href="https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile/" target="_blank">here</a>, affords many payload options.  Below are the most common for identifiers. </p>
           <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="uuidtab" data-toggle="tab"
-                 href="#uuid" role="tab" aria-controls="uuid"
-                 aria-selected="true"> UUID </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="uuidtab" data-bs-toggle="tab"
+                 data-bs-target="#uuidcontent" type="button" role="tab"
+                 aria-controls="uuidcontent"
+                 aria-selected="true"> UUID </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="servicedatatab" data-toggle="tab"
-                 href="#servicedata" role="tab" aria-controls="servicedata"
-                 aria-selected="false"> Service Data </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="servicedatatab" data-bs-toggle="tab"
+                 data-bs-target="#servicedatacontent" type="button" role="tab"
+                 aria-controls="servicedatacontent"
+                 aria-selected="false"> Service Data </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="manufacturerdatatab" data-toggle="tab"
-                 href="#manufacturerdata" role="tab"
-                 aria-controls="manufacturerdata" aria-selected="false">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="manufacturerdatatab"
+                 data-bs-toggle="tab" data-bs-target="#manufacturerdatacontent"
+                 type="button" role="tab"
+                 aria-controls="manufacturerdatacontent" aria-selected="false">
                 Manufacturer Data
-              </a>
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
-            <div class="tab-pane fade show active" id="uuid"
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="uuidcontent"
                  role="tabpanel" aria-labelledby="uuidtab">
               <h4 class="mt-2"> <i class="fas fa-barcode"></i> Identifier as a UUID </h4>
               <p> Bluetooth GAP and the advertising packet payload capacity allow for one or more 16-bit or 32-bit service class UUIDs or a single 128-bit service class UUID.  Only a 128-bit UUID can be user-generated, as the shorter UUIDs are assigned by the Bluetooth SIG. </p>
               <p> A <em>service</em> class UUID is intended to represent a <em> common service</em> among a class of devices.  For instance, a given model of FitBit will advertise a common <em>service</em> UUID. </p>
               <p>
-                <span class="badge badge-danger">
+                <span class="badge bg-danger">
                   <i class="fas fa-times"></i>
                 </span>
                 &nbsp; A service class UUID is therefore <em>not</em> suited for the <em>unique</em> identification of a device.
               </p>
             </div>
-            <div class="tab-pane fade" id="servicedata"
+            <div class="tab-pane fade" id="servicedatacontent"
                  role="tabpanel" aria-labelledby="servicedatatab">
               <h4 class="mt-2"> <i class="fas fa-barcode"></i> Identifier as Service Data </h4>
               <p> Bluetooth GAP and the advertising packet payload capacity allow for the inclusion of up to 20 bytes of data for a specific 16-bit service class UUID. </p>
               <h5> Member Service Data </h5>
-              <p> An entity may purchase a 16-bit member service from the Bluetooth SIG and define the service data structure as the wish, either as an open or closed standard.  An example is Google Eddystone which has the reserved UUID <code>0xFEAA</code> and supports several different frame types <a href="https://github.com/google/eddystone/blob/master/protocol-specification.md" target="_blank">defined as open standards</a> (<i class="fas fa-thumbs-up"></i>).  Eddystone-UID is presented in detail in <a href="#part04">Part 4</a>.  Another example is Tile which has the reserved UUID <code>0xFEED</code> but whose specification is proprietary and not published. </p>
+              <p> An entity may purchase a 16-bit member service from the Bluetooth SIG and define the service data structure as the wish, either as an open or closed standard.  An example is Google Eddystone which has the reserved UUID <code>0xFEAA</code> and supports several different frame types <a href="https://github.com/google/eddystone/blob/master/protocol-specification.md" target="_blank">defined as open standards</a> (<i class="text-success fas fa-check"></i>).  Eddystone-UID is presented in detail in <a href="#part04">Part 4</a>.  Another example is Tile which has the reserved UUID <code>0xFEED</code> but whose specification is proprietary and not published. </p>
               <h5> GATT Service/Characteristic Data </h5>
               <p> The Bluetooth SIG maintains assigned numbers for <a href="https://www.bluetooth.com/specifications/gatt/services/" target="_blank">GATT Services</a> and <a href="https://www.bluetooth.com/specifications/gatt/characteristics/" target="_blank">Characteristics</a>.  It is possible to include service/characteristic data provided it does not exceed the payload capacity.  An example is reelyActive transceiver infrastructure, where each device advertises its unique EUI-64 identifier as a <a href="https://www.bluetooth.com/xml-viewer/?src=https://www.bluetooth.com/wp-content/uploads/Sitecore-Media-Library/Gatt/Xml/Characteristics/org.bluetooth.characteristic.system_id.xml" target="_blank">System ID characteristic</a> (<code>0x2A23</code>). </p>
               <p>
-                <span class="badge badge-success">
+                <span class="badge bg-success">
                   <i class="fas fa-check"></i>
                 </span>
                 &nbsp; Service data offers several alternatives for the <em>unique</em> identification of a device.
               </p>
             </div>
-            <div class="tab-pane fade" id="manufacturerdata"
+            <div class="tab-pane fade" id="manufacturerdatacontent"
                  role="tabpanel" aria-labelledby="manufacturerdatatab">
               <h4 class="mt-2"> <i class="fas fa-barcode"></i> Identifier as Manufacturer Data </h4>
               <p> Bluetooth GAP and the advertising packet payload capacity allow for the inclusion of up to 22 bytes of use-as-you-please data for manufacturers who register (at no cost) with the Bluetooth SIG and receive a 16-bit company identifier. </p>
-              <p> For instance, iBeacon is <a href="https://developer.apple.com/ibeacon/" target="_blank">defined as an open standard</a> (<i class="fas fa-thumbs-up"></i>) by Apple, uses their company identifier (<code>0x004C</code>), and includes a 128-bit UUID and a major and minor identifier of 16-bits apiece.  This is presented in detail in <a href="#part04">Part 4</a>. </p>
+              <p> For instance, iBeacon is <a href="https://developer.apple.com/ibeacon/" target="_blank">defined as an open standard</a> (<i class="text-success fas fa-check"></i>) by Apple, uses their company identifier (<code>0x004C</code>), and includes a 128-bit UUID and a major and minor identifier of 16-bits apiece.  This is presented in detail in <a href="#part04">Part 4</a>. </p>
               <p>
-                <span class="badge badge-success">
+                <span class="badge bg-success">
                   <i class="fas fa-check"></i>
                 </span>
                 &nbsp; Manufacturer data affords full freedom for the <em>unique</em> identification of a device, constrained only by the payload capacity.
               </p>
             </div>
           </div>
-          <!----- Part 2 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="part02">
+          <!----- Part 2 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="part02" class="card-title my-2">
                 Platform and OS constraints &nbsp;
-                <a href="#part02" class="badge badge-secondary">Part 2 of 4</a>
+                <a href="#part02" class="badge bg-primary">Part 2 of 4</a>
               </h2>
               <p class="lead"> Just because it's possible doesn't mean it's permitted by the platform or operating system. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Not permitted?</dt>
-                <dd class="col-sm-9">Resource constraints, design decisions, privacy concerns and even business models may restrict what can be sent, received or accessed.</dd>
-                <dt class="col-sm-3">What's the impact?</dt>
-                <dd class="col-sm-9">You might not be able to do <em>what</em> you want, or <em>how</em> you want to do it, especially if it needs to work on <em>all</em> platforms.</dd>
+                <dt class="col-sm-3"> Not permitted? </dt>
+                <dd class="col-sm-9"> Resource constraints, design decisions, privacy concerns and even business models may restrict what can be sent, received or accessed. </dd>
+                <dt class="col-sm-3"> What's the impact? </dt>
+                <dd class="col-sm-9"> You might not be able to do <em>what</em> you want, or <em>how</em> you want to do it, especially if it needs to work on <em>all</em> platforms. </dd>
               </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="BLE Constraints">-->
             </div>
           </div>
           <h3 class="mt-4"> The BLE processing pipeline </h3>
@@ -311,7 +328,7 @@
           <h3 class="mt-4"> Key constraints by platform/OS </h3>
           <p> The table below highlights the key constraints with respect to receiving and transmitting identifier data in BLE advertising packets. </p>
           <table class="table table-hover text-center">
-            <thead class="thead-dark">
+            <thead class="table-dark">
               <tr>
                 <th scope="col"> &nbsp; </th>
                 <th scope="col"> Raw </th>
@@ -328,180 +345,180 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="text-left table-dark">
+              <tr class="text-start table-info">
                 <th colspan="6">
                   <i class="fas fa-search"></i> &nbsp; Receive functionality
                 </th>
               </tr>
               <tr>
-                <th scope="row" class="text-left"> Access advertiser address </th>
+                <th scope="row" class="text-start"> Access advertiser address </th>
                 <td>
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="text-left"> Access PDU elements </th>
+                <th scope="row" class="text-start"> Access PDU elements </th>
                 <td>
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="text-left"> Access raw PDU </th>
+                <th scope="row" class="text-start"> Access raw PDU </th>
                 <td>
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
               </tr>
-              <tr class="text-left table-dark">
+              <tr class="text-start table-info">
                 <th colspan="6">
                   <i class="fas fa-wifi"></i> &nbsp; Transmit functionality
                 </th>
               </tr>
               <tr>
-                <th scope="row" class="text-left"> Specify advertiser address </th>
+                <th scope="row" class="text-start"> Specify advertiser address </th>
                 <td>
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-warning">
-                    <i class="fas fa-sync-alt"></i>
+                  <span class="badge rounded-pill bg-warning">
+                    <i class="fas fa-redo"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-warning">
-                    <i class="fas fa-sync-alt"></i>
+                  <span class="badge rounded-pill bg-warning">
+                    <i class="fas fa-redo"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-minus"></i>
                   </span>
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="text-left"> Transmit iBeacon </th>
+                <th scope="row" class="text-start"> Transmit iBeacon </th>
                 <td>
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-minus"></i>
                   </span>
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="text-left"> Transmit user-defined payload </th>
+                <th scope="row" class="text-start"> Transmit user-defined payload </th>
                 <td>
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge badge-pill badge-success">
+                  <span class="badge rounded-pill bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge badge-pill badge-light">
+                  <span class="badge rounded-pill bg-light">
                     <i class="fas fa-minus"></i>
                   </span>
                 </td>
@@ -509,13 +526,13 @@
             </tbody>
           </table>
           <p>
-            <span class="badge badge-pill badge-warning">
-              <i class="fas fa-sync-alt"></i>
+            <span class="badge rounded-pill bg-warning">
+              <i class="fas fa-redo"></i>
             </span>
             &nbsp; Mobile devices <i class="fas fa-mobile-alt"></i> use a random advertiser address which they cycle regularly (ex: every 15 minutes)
           </p>
           <p>
-            <span class="badge badge-pill badge-secondary">
+            <span class="badge rounded-pill bg-primary">
               <i class="fas fa-info-circle"></i>
             </span>
             &nbsp; reelyActive infrastructure operates raw, without a Bluetooth stack
@@ -524,14 +541,14 @@
           <p> The objective of BLE identifier best practices being to <em>maximise interoperability</em>, the platform and OS constraints presented above lead to the following observations: </p>
           <dl class="row">
             <dt class="col-sm-4 offset-sm-1"> 
-              <span class="badge badge-pill badge-danger">
+              <span class="badge rounded-pill bg-danger">
                 <i class="fas fa-times"></i>
               </span>
               &nbsp; Advertiser Address
             </dt>
-            <dd class="col-sm-7"> Although <em>mandatory</em>, access is not universal and mobile devices cycle the identifier periodically in the interest of user privacy (<i class="fas fa-thumbs-up"></i>). </dd>
+            <dd class="col-sm-7"> Although <em>mandatory</em>, access is not universal and mobile devices cycle the identifier periodically in the interest of user privacy (<i class="text-success fas fa-check"></i>). </dd>
             <dt class="col-sm-4 offset-sm-1">
-              <span class="badge badge-pill badge-success">
+              <span class="badge rounded-pill bg-success">
                 <i class="fas fa-check"></i>
               </span>
               &nbsp; Identifier in payload
@@ -539,21 +556,23 @@
             <dd class="col-sm-7"> All platforms allow <em>access</em> in some form to packet payload elements, and allow some form of user-defined payload <em>transmission</em>. </dd>
           </dl> 
           <p> The following section presents existing protocols and standards which include identifiers in the BLE advertising packet payload. </p>
-          <!----- Part 3 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="part03">
+          <!----- Part 3 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="part03" class="card-title my-2">
                 Existing protocols and standards &nbsp;
-                <a href="#part03" class="badge badge-secondary">Part 3 of 4</a>
+                <a href="#part03" class="badge bg-primary">Part 3 of 4</a>
               </h2>
               <p class="lead"> Eddystone and iBeacon are among the few widely observed open standards. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Whose standards?</dt>
-                <dd class="col-sm-9">Apple introduced the iBeacon open standard in 2013 and Google followed suit with the Eddystone open standard in 2015.</dd>
-                <dt class="col-sm-3">Et tu, Bluetooth?</dt>
-                <dd class="col-sm-9">The Bluetooth Core Specification is the foundation for higher-level protocols such as the above.</dd>
+                <dt class="col-sm-3"> Whose standards? </dt>
+                <dd class="col-sm-9"> Apple introduced the iBeacon open standard in 2013 and Google followed suit with the Eddystone open standard in 2015. </dd>
+                <dt class="col-sm-3"> Et tu, Bluetooth? </dt>
+                <dd class="col-sm-9"> The Bluetooth Core Specification is the foundation for higher-level protocols such as the above. </dd>
               </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="BLE Constraints">-->
             </div>
           </div>
           <h3 class="mt-4"> Beacons: a brief history </h3>
@@ -565,35 +584,33 @@
           <h3 class="mt-4"> iBeacon and Eddystone-UID </h3>
           <p> The following table compares the properties of iBeacon and Eddystone-UID which together emerged as the standards for proximity identification not just of BLE, but of <em>all</em> active RFID technologies. </p>
           <table class="table table-hover text-center">
-            <thead class="thead-dark">
+            <thead class="table-dark">
               <tr>
                 <th scope="col"> &nbsp; </th>
                 <th scope="col">
                   <i class="fab fa-apple"></i> &nbsp; iBeacon
                 </th>
-                <th scope="col">
-                  <i class="fab fa-google"></i> &nbsp; Eddystone-UID
-                </th>
+                <th scope="col"> Eddystone-UID </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th class="text-left"> Entity identifier </th>
+                <th class="text-start"> Entity identifier </th>
                 <td> 128-bit UUID </td>
                 <td> 80-bit Namespace ID </td>
               </tr>
               <tr>
-                <th class="text-left"> Instance identifier </th>
+                <th class="text-start"> Instance identifier </th>
                 <td> 16-bit Major & 16-bit Minor </td>
                 <td> 48-bit Instance ID </td>
               </tr>
               <tr>
-                <th class="text-left"> Tx Power Indication? </th>
+                <th class="text-start"> Tx Power Indication? </th>
                 <td> Yes, measured @ 1m </td>
                 <td> Yes, measured @ 0m </td>
               </tr>
               <tr>
-                <th class="text-left"> Additional data </th>
+                <th class="text-start"> Additional data </th>
                 <td> &mdash; </td>
                 <td> 16-bits RFU* </td>
               </tr>
@@ -602,49 +619,51 @@
           <p class="text-right text-muted small"> * Reserved for Future Use </p>
           <p class="mt-2"> In summary, both iBeacon and Eddystone-UID share the same structural elements, although the number of bits allocated to each varies.  Both have <b>at least 80-bits (2<sup>80</sup> values) of entity identifier</b> to indicate to which <em>entity</em> or <em>organisation</em> the device belongs, and <b>at least 32-bits (2<sup>32</sup> values) of instance identifier</b> to uniquely identify the <em>device</em> itself.  Moreover, both provide an indication of transmission power to facilitate ranging and proximity estimations. </p>
           <p> The following section presents a best practice for identification which can be implemented to equal effect in <em>either</em> iBeacon or Eddystone-UID. </p>
-          <!----- Part 4 ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container">
-              <h2 id="part04">
+          <!----- Part 4 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="part04" class="card-title my-2">
                 The InteroperaBLE Identifier &nbsp;
-                <a href="#part04" class="badge badge-secondary">Part 4 of 4</a>
+                <a href="#part04" class="badge bg-primary">Part 4 of 4</a>
               </h2>
               <p class="lead"> Our best practice proposal for maximum interoperability of BLE identifiers. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">What's the purpose?</dt>
-                <dd class="col-sm-9">To provide a means of identification that can be interpreted by <em>all</em> platforms and readily translated into a URL for potential association with a digital twin.</dd>
-                <dt class="col-sm-3">Doesn't that exist?</dt>
-                <dd class="col-sm-9">The Physical Web initiative by Google attempted this before it was discontinued.  To the best of our knowledge there are no widely-adopted alternatives.</dd>
+                <dt class="col-sm-3"> What's the purpose? </dt>
+                <dd class="col-sm-9"> To provide a means of identification that can be interpreted by <em>all</em> platforms and readily translated into a URL for potential association with a digital twin. </dd>
+                <dt class="col-sm-3"> Doesn't that exist? </dt>
+                <dd class="col-sm-9"> The Physical Web initiative by Google attempted this before it was discontinued.  To the best of our knowledge there are no widely-adopted alternatives. </dd>
               </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="InteroperaBLE Identifier">-->
             </div>
           </div>
           <h3 class="mt-4"> The InteroperaBLE Identifier structure </h3>
           <p> As a best practice, we propose the following four elements for a BLE identifier which we shall refer to as the <b>InteroperaBLE Identifier</b>*.  Together, these elements can be transmitted, received and interpreted across platforms and operating systems: </p>
           <dl class="row">
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
-              <span class="badge badge-pill badge-secondary">
+              <span class="badge rounded-pill bg-primary">
                 <i class="fas fa-barcode"></i>
               </span>
               &nbsp; Entity UUID
             </dt>
             <dd class="col-sm-7"> Identifies the entity or organisation responsible for the device. </dd>
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-              <span class="badge badge-pill badge-secondary">
+              <span class="badge rounded-pill bg-primary">
                 <i class="fas fa-barcode"></i>
               </span>
               &nbsp; Instance ID
             </dt>
             <dd class="col-sm-7"> Uniquely identifies the individual device (which itself may identify a person, product or place). </dd>
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-              <span class="badge badge-pill badge-secondary">
+              <span class="badge rounded-pill bg-primary">
                 <i class="fas fa-sitemap"></i>
               </span>
               &nbsp; Class
             </dt>
             <dd class="col-sm-7"> <em>Optional</em>.  Implicitly indicates what is associated with the device, and/or its hierarchy. </dd>
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-              <span class="badge badge-pill badge-secondary">
+              <span class="badge rounded-pill bg-primary">
                 <i class="fas fa-signal"></i>
               </span>
               &nbsp; Tx Power
@@ -668,52 +687,51 @@
           <h3 class="mt-4"> Implementation </h3>
           <p> The InteroperaBLE Identifier is implemented as Eddystone-UID and iBeacon as detailed below: </p>
           <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="eddystonetab" data-toggle="tab"
-                 href="#eddystone" role="tab" aria-controls="eddystone"
-                 aria-selected="true">
-                <i class="fab fa-google"></i> &nbsp; Eddystone-UID
-              </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="eddystonetab"
+                 data-bs-toggle="tab" data-bs-target="#eddystonecontent"
+                 type="button" role="tab" aria-controls="eddystonetab"
+                 aria-selected="true"> Eddystone-UID </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="ibeacontab" data-toggle="tab"
-                 href="#ibeacon" role="tab" aria-controls="ibeacon"
-                 aria-selected="false">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ibeacontab" data-bs-toggle="tab"
+                 data-bs-target="#ibeaconcontent" type="button" role="tab"
+                 aria-controls="ibeacontab" aria-selected="false">
                 <i class="fab fa-apple"></i> &nbsp; iBeacon
-              </a>
+              </button>
             </li>
           </ul>
           <!----- Eddystone-UID tab ----->
-          <div class="tab-content tab-content-reelyactive">
-            <div class="tab-pane fade show active" id="eddystone"
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="eddystonecontent"
                  role="tabpanel" aria-labelledby="eddystonetab">
               <img src="images/eddystone-uid-identifier-reelyactive-best-practices.png"
                    class="img-fluid"
                    alt="Eddystone-UID identifier best practices">
               <dl class="row mt-4">
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
-                  <span class="badge badge-pill badge-dark">
+                  <span class="badge rounded-pill bg-dark">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Entity UUID
                 </dt>
                 <dd class="col-sm-7"> Implement as 80-bit <em>elided</em> UUID in the <b>Namespace</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge badge-pill badge-secondary">
+                  <span class="badge rounded-pill bg-primary">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Instance ID
                 </dt>
                 <dd class="col-sm-7"> Implement in 28 least-significant bits of <b>Instance</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge badge-pill badge-secondary">
+                  <span class="badge rounded-pill bg-primary">
                     <i class="fas fa-sitemap"></i>
                   </span>
                   &nbsp; Class
                 </dt>
                 <dd class="col-sm-7"> Implement in bits 28-31 of <b>Instance</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge badge-pill badge-dark">
+                  <span class="badge rounded-pill bg-dark">
                     <i class="fas fa-signal"></i>
                   </span>
                   &nbsp; Tx Power
@@ -721,47 +739,47 @@
                 <dd class="col-sm-7"> Implement in <b>Ranging</b> byte. </dd>
               </dl>
               <p>
-                <span class="badge badge-warning">
+                <span class="badge bg-warning">
                   <i class="fas fa-exclamation-circle"></i>
                 </span>
                 &nbsp; The <em>elided</em> UUID has the form XXXXXXXX<del>-XXXX-MXXX-NXXX-</del>XXXXXXXXXXXX where 48-bits are removed as indicated by the strikeout, <a href="https://github.com/google/eddystone/tree/master/eddystone-uid#elided-version-4-uuid" target="_blank">as specified in the Eddystone documentation</a>
               </p>
               <p>
-                <span class="badge badge-secondary">
+                <span class="badge bg-primary">
                   <i class="fas fa-info-circle"></i>
                 </span>
                 &nbsp; The 32 most significant bits of the <b>Instance</b> are not required by the InteroperaBLE Identifier and should be set to zero, unless required for another purpose.
               </p>
             </div>
             <!----- iBeacon implementation tab ----->
-            <div class="tab-pane fade" id="ibeacon"
+            <div class="tab-pane fade" id="ibeaconcontent"
                  role="tabpanel" aria-labelledby="ibeacontab">
               <img src="images/ibeacon-identifier-reelyactive-best-practices.png"
                    class="img-fluid" alt="iBeacon identifier best practices">
               <dl class="row mt-4">
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
-                  <span class="badge badge-pill badge-dark">
+                  <span class="badge rounded-pill bg-dark">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Entity UUID
                 </dt>
                 <dd class="col-sm-7"> Implement as 128-bit UUID in the <b>Proximity UUID</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge badge-pill badge-secondary">
+                  <span class="badge rounded-pill bg-primary">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Instance ID
                 </dt>
                 <dd class="col-sm-7"> Implement in 28 least-significant bits of the combined <b>Major & Minor</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge badge-pill badge-secondary">
+                  <span class="badge rounded-pill bg-primary">
                     <i class="fas fa-sitemap"></i>
                   </span>
                   &nbsp; Class
                 </dt>
                 <dd class="col-sm-7"> Implement in the 4 most-significant bits of the <b>Major</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge badge-pill badge-dark">
+                  <span class="badge rounded-pill bg-dark">
                     <i class="fas fa-signal"></i>
                   </span>
                   &nbsp; Tx Power
@@ -770,126 +788,71 @@
               </dl>
             </div>
           </div>
-          <!-- Pareto Anywhere -->
-          <hr class="mt-4">
-          <div class="card my-4 bg-dark text-white">
-            <div class="row no-gutters">
-              <div class="col-md-4 my-auto">
-                <img src="../common/images/pareto-anywhere-logo-white.png"
-                     class="card-img p-4">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Embrace the ambient data in <em>your</em> space</h5>
-                  <p class="card-text"><small>Pareto Anywhere is pioneering open source software for real-time location and context.</small></p>
-                  <div class="btn-toolbar">
-                    <a href="https://www.reelyactive.com/pareto/anywhere/"
-                       class="btn btn-secondary m-1"> Learn More </a>
-                    <div class="dropdown">
-                      <a class="btn btn-outline-dark dropdown-toggle m-1"
-                         role="button" id="usecases"
-                         data-toggle="dropdown" aria-haspopup="true"
-                         aria-expanded="false"> Use Cases </a>
-                      <div class="dropdown-menu" aria-labelledby="usecases">
-                        <a href="https://www.reelyactive.com/use-cases/occupancy-analytics/"
-                           class="dropdown-item">
-                          <i class="fas fa-shoe-prints"></i>
-                          Occupancy Analytics
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/asset-tracking/"
-                           class="dropdown-item">
-                          <i class="fas fa-tag"></i> Asset Tracking
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/personnel-tracking/"
-                           class="dropdown-item">
-                          <i class="fas fa-user-tag"></i> Personnel Tracking
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/environmental-sensing/"
-                           class="dropdown-item">
-                          <i class="fas fa-thermometer-half"></i>
-                          Environmental Sensing
-                        </a>
-                        <a href="https://www.reelyactive.com/use-cases/interaction-detection/"
-                           class="dropdown-item">
-                          <i class="fas fa-people-arrows"></i>
-                          Interaction Detection
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!----- Where to next? ----->
-          <hr>
+          <!----- Where to next ----->
+          <hr class="my-4">
           <h2> Where to next? </h2>
           <p class="lead"> Continue exploring our open architecture and all its applications. </p>
-          <ul class="list-unstyled">
-            <li class="media my-2">
-              <a href="../rfid-unity/">
-                <img src="../rfid-unity/images/icon.png"
-                     class="align-self-start mr-3">
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="/">
+                <img src="../common/images/icon.png">
               </a>
-              <div class="media-body">
-                <a href="../rfid-unity/">
-                  <h5 class="mt-0 mb-1"> Enabling computers to understand who/what is where/how </h5>
-                </a>
-                Overview of the key insight behind reelyActive's technology and open source software.
-              </div>
             </li>
-            <li class="media my-2">
-              <a href="https://reelyactive.github.io/diract/" target="_blank">
-                <img src="../common/images/icon-diract.png"
-                     class="align-self-start mr-3">
+            <li class="list-group-item border-0">
+              <a href="/">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
               </a>
-              <div class="media-body">
-                <a href="https://reelyactive.github.io/diract/" target="_blank">
-                  <h5 class="mt-0 mb-1"> DirAct </h5>
-                </a>
-                Proximity interaction detection software for Bluetooth beacons.
-              </div>
-            </li>
-            <li class="media my-2">
-              <a href="../minew-e8-config/">
-                <img src="../minew-e8-config/images/icon.jpg"
-                     class="align-self-start mr-3">
-              </a>
-              <div class="media-body">
-                <a href="../minew-e8-config/">
-                  <h5 class="mt-0 mb-1"> Configure a Minew E8 beacon </h5>
-                </a>
-                Our step-by-step guide to configure an E8 beacon with the BeaconSET+ app.
-              </div>
-            </li>
-            <li class="media my-2">
-              <a href="../../">
-                <img src="../common/images/icon.png"
-                     class="align-self-start mr-3">
-              </a>
-              <div class="media-body">
-                <a href="../../">
-                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
-                </a>
-                The home for reelyActive developers.
-              </div>
+              Browse all developer documentation and tutorials.
             </li>
           </ul>
-          <p> &nbsp; </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <img src="../common/images/icon-pareto-anywhere.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Pareto Anywhere
+                </h5>
+              </a>
+              Open source middleware for context-aware physical spaces.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  reelyActive
+                </h5>
+              </a>
+              Let's put things in context, one space at a time.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <a href="https://reelyactive.github.io"> diyActive </a>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2023 </a>
     </footer>
 
     <!-- Optional JavaScript -->
-    <script defer src="../common/js/solid.min.js"></script>
-    <script defer src="../common/js/brands.min.js"></script>
-    <script defer src="../common/js/fontawesome.min.js"></script>
-    <script src="../common/js/jquery-3.4.0.min.js"></script>
-    <script src="../common/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
   </body>
 </html>
