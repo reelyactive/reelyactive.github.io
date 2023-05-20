@@ -227,7 +227,7 @@
             Enable SSH and predictable network interface names
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>boot</b> partition (ex: <code class="user-select-all">cd /media/user/boot/</code>), then: </p>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the root of the <b>bootfs</b> partition (ex: <code class="user-select-all">cd /media/user/bootfs/</code>), then: </p>
           <ol>
             <li> Enable SSH with the command <code class="user-select-all">sudo touch ./ssh</code> </li>
             <li> Open the file <b>cmdline.txt</b> and append the following to the first line: <code class="user-select-all">net.ifnames=0</code> </li>
@@ -238,7 +238,7 @@
             <small class="text-muted"> Part 2 </small>
           </h3>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> <a href="https://www.raspberrypi.com/news/raspberry-pi-bullseye-update-april-2022/" target="_blank">As of April 2022</a>, Raspberry Pi OS no longer ships with a default username & password! </p>
-          <p> From the same terminal <i class="fas fa-terminal"></i> in the root of the <b>boot</b> partition (ex: <code class="user-select-all">/media/user/boot/</code>): </p>
+          <p> From the same terminal <i class="fas fa-terminal"></i> in the root of the <b>bootfs</b> partition (ex: <code class="user-select-all">/media/user/bootfs/</code>): </p>
           <ol>
             <li> Create and open for editing a file called <b>userconf</b> (for example with the command <code class="user-select-all">sudo nano userconf</code>) </li>
             <li> Paste the following line into the userconf file and save </li>
