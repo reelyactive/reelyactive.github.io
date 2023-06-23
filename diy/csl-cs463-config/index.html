@@ -176,6 +176,179 @@
               </div>
             </div>
           </div>
+          <!----- Step 1 of X ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Configure network &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of X </a>
+              </h2>
+              <p class="lead"> Connect to the CS463 to configure its network settings. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> How to power? </dt>
+                <dd class="col-sm-9"> The CS463 is powered via PoE (Power over Ethernet), or from a DC supply which is likely provided. </dd>
+                <dt class="col-sm-3"> How to connect? </dt>
+                <dd class="col-sm-9"> The CS463 accepts connections over the Ethernet and/or WiFi network to which it is connected </dd>
+              </dl>
+              <img src="images/connection-overview.jpg" class="card-img-bottom"
+                   alt="CS463 power and connectivity">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Connect to the CS463
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Connect the CS463 to your computer <i class="fas fa-laptop"></i> with a network cable <i class="fas fa-ethernet"></i> and then: </p>
+          <ol>
+            <li> apply power <i class="fas fa-plug"></i> to the reader via the DC supply </li>
+            <li> set your <i class="fas fa-laptop"></i> computer's Ethernet <i class="fas fa-ethernet"></i> interface to the static IP address <span class="font-monospace">192.168.25.100</span> </li>
+            <li> after the reader boots <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 3 min </span> browse to the reader at <a href="http://192.168.25.160" target="_blank">192.168.25.160</a> </li>
+            <li> log in to the reader with user <b>root</b> and password <b>csl</b> </li>
+          </ol>
+          <h3 class="mt-4">
+            Configure Cloud Server
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> After logging in, from the left menu, select <b>Network | Cloud Server | Add Cloud Server</b> and enter the following configuration: </p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"> Parameter </th>
+                <th scope="col"> Value </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Server ID </td>
+                <td> Pareto Anywhere (local) </td>
+              </tr>
+              <tr>
+                <td> Description </td>
+                <td> Pareto Anywhere open source middleware running on the CS463 itself </td>
+              </tr>
+              <tr>
+                <td> Protocol </td>
+                <td> HTTP </td>
+              </tr>
+              <tr>
+                <td> Path </td>
+                <td> http://127.0.0.1:3001/csl </td>
+              </tr>
+            </tbody>
+          </table>
+          <p> Click <b><i class="fas fa-mouse-pointer"></i> Add</b> to save the configuration. </p>
+          <p> From the left menu, select <b>Network | Cloud Server | Configuration</b>, disable the <em>Buffer Undeliverable Tag Data</em> option<sup>*</sup> and then click <b><i class="fas fa-mouse-pointer"></i> Modify</b> to save the configuration. </p>
+          <p class="text-end small text-muted"><sup>*</sup> this prevents stale data from being unnecessarily forwarded to the real-time middleware </p>
+          <h3 class="mt-4">
+            Configure WiFi or Ethernet connectivity
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> <span class="badge bg-primary"><i class="fas fa-info"></i></span> The reader will require an Internet connection to install the middleware and its dependencies. </p>
+          <p> Configure <em>either</em> a WiFi <i class="fas fa-wifi"></i> or Ethernet <i class="fas fa-ethernet"></i> connection, as below, ensuring that the computer <i class="fas fa-laptop"></i> can connect to the same network to complete the configuration. </p>
+
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="wifitab"
+                      data-bs-toggle="tab" data-bs-target="#wificontent"
+                      type="button" role="tab" aria-controls="wifitab"
+                      aria-selected="true">
+                <i class="fas fa-wifi"></i> WiFi
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ethernettab" data-bs-toggle="tab"
+                      data-bs-target="#ethernetcontent" type="button" role="tab"
+                      aria-controls="ethernettab" aria-selected="false">
+                <i class="fas fa-ethernet"></i> Ethernet
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="wificontent"
+                 role="tabpanel" aria-labelledby="wifitab">
+              <p> From the left menu, select <b>Network | WiFi Configuration</b> and enter the WiFi credentials specific to <em>your</em> network, similar to the screenshot below. </p>
+              <img src="images/wifi-configuration.png" class="img-fluid"
+                   alt="CS463 WiFi configuration">
+              <p class="mt-3"> Click <b><i class="fas fa-mouse-pointer"></i> Set</b> to save the configuration.  The CS463 will automatically initiate the connection. </p>
+              <p class="mb-0"> From the left menu, select <b>Status</b> and scroll down to the Network Setting section.  Note the WiFi IP address that has been assigned to the reader, as this will be required in Step 2 below. </p>
+            </div>
+            <div class="tab-pane fade" id="ethernetcontent" role="tabpanel"
+                 aria-labelledby="ethernettab">
+              <p> From the left menu, select <b>Network | Ethernet Configuration</b> and enter the configuration specific to <em>your</em> network, similar to the screenshot below. </p>
+              <img src="images/ethernet-configuration.png" class="img-fluid"
+                   alt="CS463 Ethernet configuration">
+              <p class="mt-3 mb-0"> Click <b><i class="fas fa-mouse-pointer"></i> Set</b> to save the configuration.  The CS463 will adopt the new configuration on the next power cycle. </p>
+            </div>
+          </div>
+          <p class="mt-3"> From the left menu, select <b>Users | Logout</b>, disconnect the network cable <i class="fas fa-ethernet"></i> connecting your computer <i class="fas fa-laptop"></i> to the reader, and proceed to Step 2 below. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If the Ethernet <i class="fas fa-ethernet"></i> option was selected above, connect the reader to the network and perform a power cycle. </p>
+          <!----- Step 2 of X ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Install packages &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of X </a>
+              </h2>
+              <p class="lead"> Install Node.js, Pareto Anywhere and Node-RED from online repositories. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why Node.js? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> Why Node-RED? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/installation-overview.jpg"
+                   class="card-img-bottom"  alt="CS463 package installation">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Connect to the CS463 over the network
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> With your computer <i class="fas fa-laptop"></i> and the reader on the same network, complete the following: </p>
+          <ol>
+            <li> Open a terminal <i class="fas fa-terminal"></i> on the computer <i class="fas fa-laptop"></i> and SSH into the reader with the command <code>ssh root@xxx.xxx.xxx.xxx</code> replacing the x values with the reader's <em>new</em> IP address on the network </li>
+           <li> When prompted enter the password (<b>csl</b> by default) </li>
+          </ol>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it via the web interface. </p>
+          <h3 class="mt-4">
+            Add the CSL package repository
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the same terminal <i class="fas fa-terminal"></i>, open a new file for editing with the command <code class="user-select-all">sudo nano /etc/yum.repos.d/csl-remote-repo.repo</code> and <i class="fas fa-copy"></i> paste in the following contents: </p>
+          <pre class="user-select-all ms-5">[cslrepo]
+name=CSL Intelligent Reader Repository
+baseurl=http://repos01.convergence.com.hk/repo
+enabled=1
+gpgcheck=0</pre>
+          <p class="mt-3"> Save the file with <kbd>Ctrl+X</kbd> and <kbd>y</kbd>. </p>
+          <p> Update the reader's repositories with the command <code class="user-select-all">dnf -v repolist all</code> </p>
+          <h3 class="mt-4">
+            Install Node.js and Node-RED
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> From the same terminal <i class="fas fa-terminal"></i>, complete the following: </p>
+          <ol>
+            <li> install Node.js with the command <code class="user-select-all">sudo dnf install node</code> </li>
+            <li> install Node-RED with the command <code class="user-select-all">sudo npm install -g --unsafe-perm node-red</code> </li>
+          </ol>
+          <h3 class="mt-4">
+            Install Pareto Anywhere
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> First create a reelyActive folder under the home folder. </p>
+          <ol>
+            <li> Create (if it does not already exist) a <b>reelyActive</b> <i class="fas fa-folder-plus"></i> folder with the command <code class="user-select-all">mkdir ~/reelyActive</code> </li>
+            <li> Change to the reelyActive folder with the command <code class="user-select-all">cd ~/reelyActive</code> </li>
+          </ol>
+          <p> Next, install Pareto Anywhere under this folder. </p>
+          <ol>
+            <li> Clone the pareto-anywhere repository and submodules from our <i class="fab fa-github"></i> GitHub with the command <code class="user-select-all">git clone --recurse-submodules https://github.com/reelyactive/pareto-anywhere.git</code> </li>
+            <li> Change to the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd pareto-anywhere</code> </li>
+            <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 5 mins </span> </li>
+          </ol>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> It is possible that some dependencies produce warnings or errors.  <em>Do not despair:</em> in most cases these have no impact on functionality. </p>
           <h3 class="mt-4"> Enjoy the real-time data stream </h3>
           <p> Our cheatsheet details the <b class="font-monospace">raddec</b> JSON output from the Pareto Anywhere open source middleware. </p>
           <ul class="list-group list-group-horizontal">
