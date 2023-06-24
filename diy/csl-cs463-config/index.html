@@ -176,12 +176,12 @@
               </div>
             </div>
           </div>
-          <!----- Step 1 of X ----->
+          <!----- Step 1 of 5 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Configure network &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 1 of X </a>
+                <a href="#step01" class="badge bg-primary"> Step 1 of 5 </a>
               </h2>
               <p class="lead"> Connect to the CS463 to configure its network settings. </p>
               <hr>
@@ -283,12 +283,12 @@
           </div>
           <p class="mt-3"> From the left menu, select <b>Users | Logout</b>, disconnect the network cable <i class="fas fa-ethernet"></i> connecting your computer <i class="fas fa-laptop"></i> to the reader, and proceed to Step 2 below. </p>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If the Ethernet <i class="fas fa-ethernet"></i> option was selected above, connect the reader to the network and perform a power cycle. </p>
-          <!----- Step 2 of X ----->
+          <!----- Step 2 of 5 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Install packages &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 2 of X </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 5 </a>
               </h2>
               <p class="lead"> Install Node.js, Pareto Anywhere and Node-RED from online repositories. </p>
               <hr>
@@ -299,7 +299,7 @@
                 <dd class="col-sm-9"> Explain. </dd>
               </dl>
               <img src="images/installation-overview.jpg"
-                   class="card-img-bottom"  alt="CS463 package installation">
+                   class="card-img-bottom" alt="CS463 package installation">
             </div>
           </div>
           <h3 class="mt-4">
@@ -349,6 +349,165 @@ gpgcheck=0</pre>
             <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 5 mins </span> </li>
           </ol>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> It is possible that some dependencies produce warnings or errors.  <em>Do not despair:</em> in most cases these have no impact on functionality. </p>
+          <!----- Step 3 of 5 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Configure events &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 5 </a>
+              </h2>
+              <p class="lead"> Read tags and relay the data to Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/events-overview.jpg"
+                   class="card-img-bottom" alt="CS463 events configuration">
+            </div>
+          </div>
+          <p class="mt-4"> From your computer <i class="fas fa-laptop"></i> browse to the reader (by entering its IP address on the network) and log in to complete the configuration using the web interface. </p>
+          <h3 class="mt-4">
+            Add Resultant Action
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the left menu, select <b>Events | Resultant Action | Add Resultant Action</b> and enter the following configuration: </p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"> Parameter </th>
+                <th scope="col"> Value </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Resultant Action ID </td>
+                <td> Send to Pareto Anywhere (local) </td>
+              </tr>
+              <tr>
+                <td> Description </td>
+                <td> Relay data to Pareto Anywhere open source middleware running on the CS463 itself </td>
+              </tr>
+              <tr>
+                <td> Condition </td>
+                <td> None </td>
+              </tr>
+              <tr>
+                <td> Action Mode </td>
+                <td> Low Latency Alert to Server </td>
+              </tr>
+              <tr>
+                <td> Transport Type </td>
+                <td> HTTP POST </td>
+              </tr>
+              <tr>
+                <td> Server ID </td>
+                <td> Pareto Anywhere (local) </td>
+              </tr>
+              <tr>
+                <td> Data Format ID </td>
+                <td> Example Tag Upload to Cloud Server Data Format </td>
+              </tr>
+            </tbody>
+          </table>
+          <p> Click <b><i class="fas fa-mouse-pointer"></i> Add</b> to save the action. </p>
+          <h3 class="mt-4">
+            Edit Default Event
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the left menu, select <b>Events | Event Management | List Event</b> and select <b>Default Event</b> from the Event Table.  Update the configuration by changing the Resultant Action and selecting Event Enabled as follows: </p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"> Parameter </th>
+                <th scope="col"> Value </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Event ID </td>
+                <td> Default Event </td>
+              </tr>
+              <tr>
+                <td> Description </td>
+                <td> Ex Factory Default Event </td>
+              </tr>
+              <tr>
+                <td> Operation Profile </td>
+                <td> Default Profile </td>
+              </tr>
+              <tr>
+                <td> Exclusivity </td>
+                <td> Non-exclusive </td>
+              </tr>
+              <tr>
+                <td> Tag Duplicate Elimination Window </td>
+                <td> 6 seconds </td>
+              </tr>
+              <tr>
+                <td> Tag Duplicate Eliminate Antenna Differentiation </td>
+                <td> Disabled </td>
+              </tr>
+              <tr>
+                <td> Inventory Enabling Trigger </td>
+                <td> Always On </td>
+              </tr>
+              <tr>
+                <td> Inventory Enabling Action </td>
+                <td> None THEN None </td>
+              </tr>
+              <tr>
+                <td> Trigger Logic </td>
+                <td> Read Any Tags </td>
+              </tr>
+              <tr>
+                <td> Resultant Action </td>
+                <td> <b>Send to Pareto Anywhere (local)</b> THEN None </td>
+              </tr>
+              <tr>
+                <td> Inventory Disabling Trigger </td>
+                <td> Never Stop </td>
+              </tr>
+              <tr>
+                <td> Inventory Disabling Action </td>
+                <td> None THEN None </td>
+              </tr>
+              <tr>
+                <td> Event Enabled </td>
+                <td> <b>Enabled</b> </td>
+              </tr>
+            </tbody>
+          </table>
+          <p> Click <b><i class="fas fa-mouse-pointer"></i> Modify</b> to save the event configuration. </p>
+          <h3 class="mt-4">
+            Edit Operation Profile
+            <small class="text-muted"> (OPTIONAL) Part 3 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The Default Profile for operation will read tags on Antenna Port 1 only: <em>edit the profile as required.</em> </p>
+          <p> From the left menu, select <b>System | Operation Profile | List Profile</b> and select <b>Default Profile</b> from the Operation Profile table. </p>
+          <p> If the <em>only</em> modification is to add Antenna Ports as Capture Points, then it is reasonable to simply update the Default Profile. </p>
+          <p> However, if additional modifications are required, we recommend creating a <em>new</em> Operation Profile.  After creating a new profile, repeat Part 2 above for the Default Event to use the newly created Operation Profile. </p>
+          <!----- Step 4 of 5 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Observe data &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of 5 </a>
+              </h2>
+              <p class="lead"> Run Pareto Anywhere and Node-RED to observe tag data. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-overview.jpg"
+                   class="card-img-bottom" alt="CS463 & Pareto Anywhere">
+            </div>
+          </div>
           <h3 class="mt-4"> Enjoy the real-time data stream </h3>
           <p> Our cheatsheet details the <b class="font-monospace">raddec</b> JSON output from the Pareto Anywhere open source middleware. </p>
           <ul class="list-group list-group-horizontal">
@@ -364,6 +523,25 @@ gpgcheck=0</pre>
               "Owl" you need to know about Pareto Anywhere's core data structures.
             </li>
           </ul>
+          <!----- Step 5 of 5 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Automatically run on boot &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 5 of 5 </a>
+              </h2>
+              <p class="lead"> Configure a systemd service to run Pareto Anywhere and Node-RED each time the CS463 boots. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-systemd.jpg"
+                   class="card-img-bottom" alt="CS463 run on boot">
+            </div>
+          </div>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
