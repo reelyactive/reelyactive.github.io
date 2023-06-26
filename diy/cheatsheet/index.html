@@ -175,6 +175,7 @@
         "receiverIdType: 0,
         "rssi": -99,
         "numberOfDecodings": 1,
+        <em class="text-info">"receiverAntenna": 3,</em>
         <em class="text-info">"aoa": [ 0, 0 ]</em>
     }],
     <em class="text-info">"timestamp": 1645568542222,</em>
@@ -270,7 +271,7 @@
                           Array <small class="text-muted"> (minimum length 1) </small>
                         </dd>
                       </dl>
-                      <p> Radio <em>receivers</em> ordered by decreasing RSSI (signal strength).  Each object in the array has the following properties: </p>
+                      <p> Radio <em>receivers</em> ordered by decreasing RSSI (<i class="fas fa-signal"></i> signal strength).  Each object in the array has the following properties: </p>
                       <table class="table table-sm font-monospace ms-3">
                         <tbody>
                           <tr>
@@ -288,6 +289,10 @@
                           <tr>
                             <td> numberOfDecodings </td>
                             <td class="small text-muted"> (minimum 1) </td>
+                          </tr>
+                          <tr>
+                            <td> <em class="text-muted">receiverAntenna<sup>*</sup></em> </td>
+                            <td class="small text-muted"> <em>(whole number)</em> </td>
                           </tr>
                           <tr>
                             <td> <em class="text-muted">aoa<sup>*</sup></em> </td>
