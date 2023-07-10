@@ -131,7 +131,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Configure a CSL CS463 Reader </h1>
-          <p class="lead"> Our step-by-step guide to configure the reader to run Pareto Anywhere. </p>
+          <p class="lead"> Our step-by-step guide to configure the reader to run Pareto Anywhere at the edge. </p>
           <img src="images/header.jpg" class="img-fluid"
                alt="Configure a CSL CS463 reader with Pareto Anywhere">
           <!----- The TL;DR ----->
@@ -294,9 +294,9 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why Node.js? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dd class="col-sm-9"> Both Node-RED and Pareto Anywhere run on <i class="fab fa-node-js"></i> Node.js. </dd>
                 <dt class="col-sm-3"> Why Node-RED? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dd class="col-sm-9"> Node-RED is a popular and user-friendly way to program event-driven applications. </dd>
               </dl>
               <img src="images/packages-overview.jpg"
                    class="card-img-bottom" alt="CS463 package installation">
@@ -359,10 +359,10 @@ gpgcheck=0</pre>
               <p class="lead"> Read tags and relay the data to Pareto Anywhere. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What are events/actions? </dt>
+                <dd class="col-sm-9"> The CS463 supports "Events", like reading any tag, as triggers triggers for "Resultant Actions", like relaying data. </dd>
+                <dt class="col-sm-3"> How is data relayed? </dt>
+                <dd class="col-sm-9"> Data is HTTP POSTed to the local instance of Pareto Anywhere every time a tag is read. </dd>
               </dl>
               <img src="images/events-overview.jpg"
                    class="card-img-bottom" alt="CS463 events configuration">
@@ -444,7 +444,7 @@ gpgcheck=0</pre>
               </tr>
               <tr>
                 <td> Tag Duplicate Elimination Window </td>
-                <td> 6 seconds </td>
+                <td> 1 second </td>
               </tr>
               <tr>
                 <td> Tag Duplicate Eliminate Antenna Differentiation </td>
@@ -499,15 +499,16 @@ gpgcheck=0</pre>
               <p class="lead"> Run Pareto Anywhere and Node-RED to observe tag data. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> Why Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> Use Pareto Anywhere to visualise, consume and forward a standard, vendor-and-technology-agnostic real-time data stream. </dd>
+                <dt class="col-sm-3"> Why Node-RED? </dt>
+                <dd class="col-sm-9"> Use Node-RED to rapidly prototype event-driven applications. </dd>
               </dl>
               <img src="images/pareto-anywhere-overview.jpg"
                    class="card-img-bottom" alt="CS463 & Pareto Anywhere">
             </div>
           </div>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> This step will be documented once the CS463 supports an updated version of Node.js. </p>
           <h3 class="mt-4"> Enjoy the real-time data stream </h3>
           <p> Our cheatsheet details the <b class="font-monospace">raddec</b> JSON output from the Pareto Anywhere open source middleware. </p>
           <ul class="list-group list-group-horizontal">
@@ -533,15 +534,16 @@ gpgcheck=0</pre>
               <p class="lead"> Configure a systemd service to run Pareto Anywhere and Node-RED each time the CS463 boots. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> Why systemd? </dt>
+                <dd class="col-sm-9"> It is becoming the de facto standard for system and service management among <i class="fab fa-linux"></i> Linux distributions. </dd>
+                <dt class="col-sm-3"> How does it work? </dt>
+                <dd class="col-sm-9"> A .service file instructs systemd how to run the application. </dd>
               </dl>
               <img src="images/pareto-anywhere-systemd.jpg"
                    class="card-img-bottom" alt="CS463 run on boot">
             </div>
           </div>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> This step will be documented once the CS463 supports an updated version of Node.js. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
