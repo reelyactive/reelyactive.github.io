@@ -239,13 +239,13 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "",
-    "EventHubConnectionString": "",
-    "EventHubSendAppSetting": "",
-    "WebPubSubConnectionString": "",
     "iot_hub_name": "",
+    "EventHubConnectionString": "",
     "event_hub_name": "",
-    "web_pub_sub_hub_name": ""
+    "EventHubSendAppSetting": "",
+    "web_pub_sub_hub_name": "",
+    "WebPubSubConnectionString": "",
+    "AzureWebJobsStorage": "",
   }
 }</pre>
           <p> This file specifies the names and endpoints of the resource instances with which Pareto Anywhere for Azure will interface.  The <span class="font-monospace">"Values"</span> will be populated in the following steps of this tutorial. </p>
@@ -485,16 +485,16 @@
                    class="img-fluid mx-auto d-block" alt="IoT Hub endpoint">
           <p class="mt-3"> In the <b>local.settings.json</b> file, update the <span class="font-monospace">"EventHubConnectionString"</span> & <span class="font-monospace">"iot_hub_name"</span> values by <i class="fas fa-copy"></i> copying and pasting the following: </p>
           <ul>
-            <li> Event Hub-compatible endpoint </li>
             <li> Event Hub-compatible name </li>
+            <li> Event Hub-compatible endpoint </li>
           </ul>
           <p> as indicated below. </p>
           <pre class="ms-3">{
   "Values": {
     &vellip;
+    "iot_hub_name": "<b class="animate-breathing">pareto-anywhere-iot-hub</b>",
     "EventHubConnectionString": "<b class="animate-breathing">Endpoint=&hellip;</b>",
     &vellip;
-    "iot_hub_name": "<b class="animate-breathing">pareto-anywhere-iot-hub</b>",
   }
 }</pre>
           <p class="mt-2"> Then <i class="fas fa-save"></i> save the file. </p>
@@ -914,9 +914,9 @@
                   <pre class="ms-3">{
   "Values": {
     &vellip;
+    "web_pub_sub_hub_name": "<b class="animate-breathing">paretoanywherewps</b>",
     "WebPubSubConnectionString": "<b class="animate-breathing">Endpoint=&hellip;</b>",
     &vellip;
-    "web_pub_sub_hub_name": "<b class="animate-breathing">paretoanywherewps</b>"
   }
 }</pre>
                 </div>
@@ -1037,8 +1037,7 @@
                   <pre class="ms-3">{
   "Values": {
     &vellip;
-    "AzureWebJobsStorage": "<b class="animate-breathing">DefaultEndpointsProtocol=&hellip;</b>",
-    &vellip;
+    "AzureWebJobsStorage": "<b class="animate-breathing">DefaultEndpointsProtocol=&hellip;</b>"
   }
 }</pre>
                 </div>
@@ -1054,13 +1053,13 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=paretoanywherestorage;AccountKey=X;EndpointSuffix=core.windows.net",
-    "EventHubConnectionString": "Endpoint=sb://iothub-ns-pareto-any-24301626-e4d77e48f3.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=X;EntityPath=pareto-anywhere-iot-hub",
-    "EventHubSendAppSetting": "Endpoint=sb://pareto-anywhere-event-hub.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=X;EntityPath=pareto-anywhere-events",
-    "WebPubSubConnectionString": "Endpoint=https://pareto-anywhere-wps.webpubsub.azure.com;AccessKey=X;Version=1.0;",
     "iot_hub_name": "pareto-anywhere-iot-hub",
+    "EventHubConnectionString": "Endpoint=sb://iothub-ns-pareto-any-24301626-e4d77e48f3.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=X;EntityPath=pareto-anywhere-iot-hub",
     "event_hub_name": "pareto-anywhere-event-hub",
-    "web_pub_sub_hub_name": "paretoanywherewps"
+    "EventHubSendAppSetting": "Endpoint=sb://pareto-anywhere-event-hub.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=X;EntityPath=pareto-anywhere-events",
+    "web_pub_sub_hub_name": "paretoanywherewps",
+    "WebPubSubConnectionString": "Endpoint=https://pareto-anywhere-wps.webpubsub.azure.com;AccessKey=X;Version=1.0;",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=paretoanywherestorage;AccountKey=X;EndpointSuffix=core.windows.net"
   }
 }</pre>
           <!----- Step 4 of 5 ----->
