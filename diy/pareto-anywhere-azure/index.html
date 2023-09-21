@@ -910,16 +910,19 @@
                        alt="Web PubSub endpoint">
                 </div>
                 <div class="col-md-6 align-self-center">
-                  <p> From the Web PubSub instance page, select <i class="fas fa-mouse-pointer"></i> <b>Keys</b> in the Settings section of the menu on the left, and <i class="fas fa-copy"></i> copy and paste the contents of the <b>Primary Connection string</b> field into the <b>local.settings.json</b> file as the <span class="font-monospace">"WebPubSubConnectionString"</span> value, as indicated below.  Also enter the Web PubSub name as the <span class="font-monospace">"web_pub_sub_hub_name"</span> value, and then <i class="fas fa-save"></i> save the file. </p>
+                  <p> From the Web PubSub instance page, select <i class="fas fa-mouse-pointer"></i> <b>Keys</b> in the Settings section of the menu on the left, and <i class="fas fa-copy"></i> copy and paste the contents of the <b>Primary Connection string</b> field into the <b>local.settings.json</b> file as the <span class="font-monospace">"WebPubSubConnectionString"</span> value, as indicated below.  Also enter the Web PubSub name<sup>*</sup> as the <span class="font-monospace">"web_pub_sub_hub_name"</span> value, and then <i class="fas fa-save"></i> save the file. </p>
                   <pre class="ms-3">{
   "Values": {
     &vellip;
-    "web_pub_sub_hub_name": "<b class="animate-breathing">pareto-anywhere-wps</b>",
+    "web_pub_sub_hub_name": "<b class="animate-breathing">paretoanywherewps</b>",
     "WebPubSubConnectionString": "<b class="animate-breathing">Endpoint=&hellip;</b>",
     &vellip;
   }
 }</pre>
                 </div>
+              </div>
+              <div class="alert alert-primary mt-3" role="alert">
+                <sup>*</sup> The <b class="font-monospace">"web_pub_sub_hub_name"</b> value must contain only alphanumeric characters, even if the Web PubSub name, as displayed in the Azure Portal, contains other characters (like dashes).  Simply remove non-alphanumeric characters, for example, <span class="font-monospace">"pareto-anywhere-wps"</span> would be entered as <span class="font-monospace">"paretoanywherewps"</span>.
               </div>
             </div>
           </div>
@@ -1057,7 +1060,7 @@
     "EventHubConnectionString": "Endpoint=sb://iothub-ns-pareto-any-24301626-e4d77e48f3.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=X;EntityPath=pareto-anywhere-iot-hub",
     "event_hub_name": "pareto-anywhere-event-hub",
     "EventHubSendAppSetting": "Endpoint=sb://pareto-anywhere-event-hub.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=X;EntityPath=pareto-anywhere-events",
-    "web_pub_sub_hub_name": "pareto-anywhere-wps",
+    "web_pub_sub_hub_name": "paretoanywherewps",
     "WebPubSubConnectionString": "Endpoint=https://pareto-anywhere-wps.webpubsub.azure.com;AccessKey=X;Version=1.0;",
     "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=paretoanywherestorage;AccountKey=X;EndpointSuffix=core.windows.net"
   }
