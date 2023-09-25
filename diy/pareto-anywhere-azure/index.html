@@ -164,72 +164,118 @@
           <p> <b class="text-dark">Pareto Anywhere for Azure</b> ingests <em>vendor-specific data</em> from <a href="https://azure.microsoft.com/products/iot-hub" target="_blank"><i class="fas fa-external-link-alt"></i> Azure IoT Hub</a> and outputs <em>standard JSON</em> via <a href="https://azure.microsoft.com/products/event-hubs" target="_blank"><i class="fas fa-external-link-alt"></i>Azure Event Hubs</a>.  The standard JSON output can also be consumed and visualised from a Web application. </p>
           <!----- Prerequisites ----->
           <h2 class="mt-4"> Prerequisites </h2>
-          <p class="lead"> <i class="fab fa-node-js"></i> Node.js & <i class="fab fa-git-square"></i> git, as well as a Microsoft Azure account. </p>
-          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> From a terminal <i class="fas fa-terminal"></i> run <code>node --version</code> & <code>git --version</code> to check if <i class="fab fa-node-js"></i> Node.js & <i class="fab fa-git-square"></i> git are <em>already</em> installed on your <i class="fas fa-laptop"></i> computer. </p>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="https://nodejs.org/en/download/">
-                <img src="../common/images/icon-nodejs.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="https://nodejs.org/en/download/">
-                <h5 class="mt-0 mb-1">
-                  <i class="fas fa-external-link-alt"></i>
-                  Download Node.js
-                </h5>
-              </a>
-              Download and install the latest LTS version of <i class="fab fa-node-js"></i> Node.js.
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal mb-4">
-            <li class="list-group-item border-0">
-              <a href="https://git-scm.com/downloads">
-                <img src="../common/images/icon-git.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="https://git-scm.com/downloads">
-                <h5 class="mt-0 mb-1">
-                  <i class="fas fa-external-link-alt"></i>
-                  Download git
-                </h5>
-              </a>
-              Download and install the latest release of <i class="fab fa-git-square"></i> git.
-            </li>
-          </ul>
+          <p class="lead"> A Microsoft Azure account. </p>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> <em>If necessary,</em> <a href="https://azure.microsoft.com/free/" target="_blank"><i class="fas fa-external-link-alt"></i> create a (free) Azure account</a>.  Confirm that you can successfully log into an active Azure account. </p>
           <!----- Step 1 of 5 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
-                Installing locally &nbsp;
+                Preparing the environment &nbsp;
                 <a href="#step01" class="badge bg-primary"> Step 1 of 5 </a>
               </h2>
-              <p class="lead"> Install Pareto Anywhere for Azure and its dependencies on your <i class="fas fa-laptop"></i> computer. </p>
+              <p class="lead"> Prepare an environment for deployment <em>either</em> with <i class="fab fa-github"></i> Codespaces <em>or</em> on your <i class="fas fa-laptop"></i> computer. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Why a local install? </dt>
-                <dd class="col-sm-9"> The standard workflow is to <em>first</em> configure and test Pareto Anywhere for Azure locally, on your <i class="fas fa-laptop"></i> computer, before pushing the code to the <i class="fas fa-cloud"></i> cloud. </dd>
-                <dt class="col-sm-3"> Where's the source code? </dt>
-                <dd class="col-sm-9"> The code is maintained <a href="https://github.com/reelyactive/pareto-anywhere-azure" target="_blank"><i class="fas fa-external-link-alt"></i> on <i class="fab fa-github"></i> GitHub</a> by reelyActive. </dd>
+                <dt class="col-sm-3"> Why go <i class="fab fa-github"></i> Codespaces? </dt>
+                <dd class="col-sm-9"> <a href="https://github.com/features/codespaces/" target="_blank"><i class="fas fa-external-link-alt"></i> GitHub Codespaces</a> offers the convenience of a <i class="fas fa-cloud"></i> cloud environment with pre-installed dependencies. </dd>
+                <dt class="col-sm-3"> Why go <i class="fas fa-laptop"></i> local? </dt>
+                <dd class="col-sm-9"> A local deployment offers the familiarity of your own environment, however dependencies must be installed manually. </dd>
               </dl>
               <img src="images/clone-pareto-anywhere-azure.jpg"
                    class="card-img-bottom"
                    alt="Clone the pareto-anywhere-azure repository from GitHub">
             </div>
           </div>
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Validate the prerequisites for <em class="fw-bold">either</em> a <i class="fab fa-github"></i> Codespaces <em>or</em> a <i class="fas fa-laptop"></i> Local environment. </p>
+          <div class="card-group mt-3">
+            <div class="card hover-shadow">
+              <h5 class="card-header bg-info text-white">
+                <i class="fab fa-github"></i> Codespaces
+              </h5>
+              <div class="card-body">
+                <p class="card-text lead"> A <i class="fab fa-github"></i> GitHub account </p>
+                <p class="card-text"> Browse to <a href="https://github.com" target="_blank"><i class="fas fa-external-link-alt"></i> github.com</a> to create an account, if required, or to log into an existing account. </p>
+              </div>
+            </div>
+            <div class="card hover-shadow">
+              <h5 class="card-header bg-info text-white">
+                <i class="fas fa-laptop"></i> Local
+              </h5>
+              <div class="card-body">
+                <p class="card-text lead"> <i class="fab fa-node-js"></i> Node.js & <i class="fab fa-git-square"></i> git </p>
+                <p class="card-text small">
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> From a terminal <i class="fas fa-terminal"></i> run <code>node --version</code> & <code>git --version</code> to check if <i class="fab fa-node-js"></i> Node.js & <i class="fab fa-git-square"></i> git are <em>already</em> installed on your <i class="fas fa-laptop"></i> computer.
+                </p>
+                <ul class="card-text list-group list-group-horizontal">
+                  <li class="list-group-item border-0">
+                    <a href="https://nodejs.org/en/download/">
+                      <img src="../common/images/icon-nodejs.png">
+                    </a>
+                  </li>
+                  <li class="list-group-item border-0">
+                    <a href="https://nodejs.org/en/download/">
+                      <h5 class="mt-0 mb-1">
+                        <i class="fas fa-external-link-alt"></i>
+                        Download Node.js
+                      </h5>
+                    </a>
+                    Download and install the latest LTS version of <i class="fab fa-node-js"></i> Node.js.
+                  </li>
+                </ul>
+                <ul class="list-group list-group-horizontal mb-4">
+                  <li class="list-group-item border-0">
+                    <a href="https://git-scm.com/downloads">
+                      <img src="../common/images/icon-git.png">
+                    </a>
+                  </li>
+                  <li class="list-group-item border-0">
+                    <a href="https://git-scm.com/downloads">
+                      <h5 class="mt-0 mb-1">
+                        <i class="fas fa-external-link-alt"></i>
+                        Download git
+                      </h5>
+                    </a>
+                    Download and install the latest release of <i class="fab fa-git-square"></i> git.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
           <h3 class="mt-4">
             Install pareto-anywhere-azure
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and complete the following steps: </p>
-          <ol>
-            <li> Browse to the folder <i class="fas fa-folder"></i> in which you wish to download the pareto-anywhere-azure source code. </li>
-            <li> Clone the pareto-anywhere-azure repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/pareto-anywhere-azure.git</code> <small class="text-muted">(or <a href="https://github.com/reelyactive/pareto-anywhere-azure/archive/refs/heads/master.zip">download as ZIP</a> and extract as <i class="fas fa-folder-plus"></i> pareto-anywhere-azure).</small> </li>
-            <li> Browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd pareto-anywhere-azure</code> </li>
-            <li> Install all dependencies with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
-          </ol>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Complete the steps below for <em class="fw-bold">either</em> a <i class="fab fa-github"></i> Codespaces <em>or</em> a <i class="fas fa-laptop"></i> Local environment. </p>
+          <div class="card-group mt-3">
+            <div class="card hover-shadow">
+              <h5 class="card-header bg-info text-white">
+                <i class="fab fa-github"></i> Codespaces
+              </h5>
+              <div class="card-body">
+                <p class="card-text"> Open a web browser and complete the following steps:  </p>
+                <ol class="card-text">
+                  <li> Browse to <a href="https://github.com/reelyactive/pareto-anywhere-azure" target="_blank"><i class="fab fa-github"></i>/pareto-anywhere-azure</a> </li>
+                  <li> Click the <i class="fas fa-mouse-pointer"></i> <span class="badge text-bg-success">< > Code</span> button, select the Codespaces tab and click <i class="fas fa-mouse-pointer"></i> <b>+</b> to create a Codespace on master &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 5 mins </span> </li>
+                </ol>
+                <p class="card-text"> Pareto Anywhere for Azure and its <i class="fas fa-folder"></i> node_modules dependencies will <em>already</em> be installed once the IDE appears: type <code>npm list</code> in the terminal <i class="fas fa-terminal"></i> to list these modules and their versions, if desired. </p>
+              </div>
+            </div>
+            <div class="card hover-shadow">
+              <h5 class="card-header bg-info text-white">
+                <i class="fas fa-laptop"></i> Local
+              </h5>
+              <div class="card-body">
+                <p class="card-text"> Open a terminal <i class="fas fa-terminal"></i> and complete the following steps:  </p>
+                <ol class="card-text">
+                  <li> Browse to the folder <i class="fas fa-folder"></i> in which you wish to download the pareto-anywhere-azure source code. </li>
+                  <li> Clone the pareto-anywhere-azure repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/pareto-anywhere-azure.git</code> <small class="text-muted">(or <a href="https://github.com/reelyactive/pareto-anywhere-azure/archive/refs/heads/master.zip">download as ZIP</a> and extract as <i class="fas fa-folder-plus"></i> pareto-anywhere-azure).</small> </li>
+                  <li> Browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd pareto-anywhere-azure</code> </li>
+                  <li> Install all dependencies with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+                </ol>
+              </div>
+            </div>
+          </div>
           <h3 class="mt-4">
             Create the local settings file
             <small class="text-muted"> Part 2 </small>
@@ -249,11 +295,12 @@
   }
 }</pre>
           <p> This file specifies the names and endpoints of the resource instances with which Pareto Anywhere for Azure will interface.  The <span class="font-monospace">"Values"</span> will be populated in the following steps of this tutorial. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> <i class="fab fa-github"></i> <b>Codespaces</b> users may wish to <i class="fas fa-save"></i> save a local copy of this file as a backup in the event that the Codespace is deleted. </p>
           <h3 class="mt-4">
             Install the Azure dependencies
             <small class="text-muted"> Part 3 </small>
           </h3>
-          <p> Install the Azure Functions Core Tools and the Azure CLI on your <i class="fas fa-laptop"></i> computer by following the official Microsoft tutorials: </p>
+          <p> For a <i class="fas fa-laptop"></i> <b>Local</b> environment, install the Azure Functions Core Tools and the Azure CLI on your <i class="fas fa-laptop"></i> computer by following the official Microsoft tutorials: </p>
           <ol>
             <li> <a href="https://learn.microsoft.com/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools" target="_blank"><i class="fas fa-external-link-alt"></i> Install the Azure Functions Core Tools</a> <small class="text-muted">(v4.x or higher)</small> and confirm the installation by running the command <code class="user-select-all">func --version</code> and observing the installed version </li>
             <li> <a href="https://learn.microsoft.com/cli/azure/install-azure-cli" target="_blank"><i class="fas fa-external-link-alt"></i> How to install the Azure CLI</a>.  Confirm the installation by running the command <code class="user-select-all">az --version</code> and observing the installed version </li>
@@ -1069,26 +1116,26 @@
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step04" class="card-title my-2">
-                Run locally &nbsp;
+                Run in the environment &nbsp;
                 <a href="#step04" class="badge bg-primary"> Step 4 of 5 </a>
               </h2>
-              <p class="lead"> Validate the configuration by running Pareto Anywhere for Azure on your <i class="fas fa-laptop"></i> computer. </p>
+              <p class="lead"> Validate the configuration by running Pareto Anywhere for Azure <em>either</em> in <i class="fab fa-github"></i> Codespaces <em>or</em> on your <i class="fas fa-laptop"></i> computer. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will happen? </dt>
-                <dd class="col-sm-9"> The Azure Functions Core Tools will run the program locally, connecting with the resources created on <i class="fas fa-cloud"></i> Azure in the previous steps. </dd>
+                <dd class="col-sm-9"> The Azure Functions Core Tools will run the program within the environment, connecting with the resources created on <i class="fas fa-cloud"></i> Azure in the previous steps. </dd>
                 <dt class="col-sm-3"> Will data be processed? </dt>
-                <dd class="col-sm-9"> Yes, if there are messages at the IoT Hub, they will be processed<em>&mdash;on your computer&mdash;</em>by Pareto Anywhere for Azure. </dd>
+                <dd class="col-sm-9"> Yes, if there are messages at the IoT Hub, they will be processed<em>&mdash;within the environment&mdash;</em>by Pareto Anywhere for Azure. </dd>
               </dl>
               <img src="images/run-locally.png" class="card-img-bottom"
                    alt="Run Pareto Anywhere for Azure locally">
             </div>
           </div>
           <h3 class="mt-4">
-            Run the stateless function locally
+            Run the stateless function
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder, then run with the command <code class="user-select-all">func start</code>. </p>
+          <p> From the terminal <i class="fas fa-terminal"></i> browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder, then run with the command <code class="user-select-all">func start</code>. </p>
           <p> If the Azure resources and the local.settings.json file are correctly configured, the console output should appear as follows: </p>
           <pre class="text-muted ms-3">Azure Functions Core Tools
 Core Tools Version:       4.x.xxxx Commit hash: N/A  (64-bit)
@@ -1109,12 +1156,36 @@ For detailed output, run func with --verbose flag.
           <p class="mt-3"> If messages are received/queued at the IoT Hub, the console output will include notifications of Pareto Anywhere for Azure executing locally as follows: </p>
           <pre class="text-muted ms-3">[2023-01-23T12:34:56.789Z] Executing 'Functions.processIoTHubMessages'</pre>
           <h3 class="mt-4">
-            Browse to the web app locally
+            Browse to the web app
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Point a web browser to <a href="http://localhost:7071/app/" target="_blank">http://localhost:7071/app/</a> to observe the web application running locally. </p>
-          <img src="images/web-app.png" class="img-fluid mx-auto d-block"
-               style="max-width:960px">
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Complete the steps below for <em class="fw-bold">either</em> a <i class="fab fa-github"></i> Codespaces <em>or</em> a <i class="fas fa-laptop"></i> Local environment. </p>
+          <div class="card-group mt-3">
+            <div class="card hover-shadow">
+              <h5 class="card-header bg-info text-white">
+                <i class="fab fa-github"></i> Codespaces
+              </h5>
+              <div class="card-body">
+                <p class="card-text"> From the Codespaces IDE complete the following steps:  </p>
+                <ol class="card-text">
+                  <li> Select the <i class="fas fa-mouse-pointer"></i> <b>PORTS</b> tab </li>
+                  <li> In the <span class="font-monospace">function-app-preview (7071)</span> row, select the icon to <i class="fas fa-mouse-pointer"></i> <b>Copy Local Address (Ctrl+C)</b> </li>
+                </ol>
+                <p class="card-text"> Paste this address in a new browser tab, append <b>app/</b> to the URL, then follow the link to observe the web application served from <i class="fab fa-github"></i> Codespaces. </p>
+                <p class="card-text small text-muted text-end"> ex: https://some-random-name-7071.app.github.dev/<b>app/</b> </p>
+              </div>
+            </div>
+            <div class="card hover-shadow">
+              <h5 class="card-header bg-info text-white">
+                <i class="fas fa-laptop"></i> Local
+              </h5>
+              <div class="card-body">
+                <p class="card-text"> Point a web browser to <a href="http://localhost:7071/app/" target="_blank">http://localhost:7071/app/</a> to observe the web application running <i class="fas fa-laptop"></i> locally. </p>
+              </div>
+            </div>
+          </div>
+          <img src="images/web-app.png"
+               class="img-fluid mx-auto d-block mt-4 mw-100">
           <h3 class="mt-4">
             Customise the web app
             <small class="text-muted"> (OPTIONAL) Part 3 </small>
@@ -1271,7 +1342,7 @@ For detailed output, run func with --verbose flag.
             Run as an Azure Function
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Open a terminal <i class="fas fa-terminal"></i> and log in to Azure with the command <code class="user-select-all">az login</code>. </p>
+          <p> From the terminal <i class="fas fa-terminal"></i> log in to Azure with the command <code class="user-select-all">az login</code>. </p>
           <p> Browse to the <b>pareto-anywhere-azure</b> <i class="fas fa-folder"></i> folder, then publish to Azure with the following command: </p>
           <p class="ms-3"> <code class="user-select-all">func azure functionapp publish <b>app-name</b> --publish-local-settings -i</code> </p>
           <p> substituting <code><b>app-name</b></code> for the Function name you selected in Part 1 above (ex: pareto-anywhere). </p>
@@ -1289,8 +1360,8 @@ For detailed output, run func with --verbose flag.
             <small class="text-muted"> Part 3 </small>
           </h3>
           <p> Point a web browser to <a href="https://app-name.azurewebsites.net/app/" target="_blank">https://<b>app-name</b>.azurewebsites.net/app/</a>, again substituting <b class="text-primary">app-name</b> for the Function name you selected in Part 1 above, to observe the web application running on Azure. </p>
-          <img src="images/web-app.png" class="img-fluid mx-auto d-block"
-               style="max-width:960px">
+          <img src="images/web-app.png"
+               class="img-fluid mx-auto d-block mt-4 mw-100">
           <h3 class="mt-4">
             Optimise the web app
             <small class="text-muted"> (OPTIONAL) Part 4 </small>
