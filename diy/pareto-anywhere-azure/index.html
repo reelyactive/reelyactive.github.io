@@ -166,12 +166,12 @@
           <h2 class="mt-4"> Prerequisites </h2>
           <p class="lead"> A Microsoft Azure account. </p>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> <em>If necessary,</em> <a href="https://azure.microsoft.com/free/" target="_blank"><i class="fas fa-external-link-alt"></i> create a (free) Azure account</a>.  Confirm that you can successfully log into an active Azure account. </p>
-          <!----- Step 1 of 5 ----->
+          <!----- Step 1 of 6 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Preparing the environment &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 1 of 5 </a>
+                <a href="#step01" class="badge bg-primary"> Step 1 of 6 </a>
               </h2>
               <p class="lead"> Prepare an environment for deployment <em>either</em> with <i class="fab fa-github"></i> Codespaces <em>or</em> on your <i class="fas fa-laptop"></i> computer. </p>
               <hr>
@@ -305,12 +305,12 @@
             <li> <a href="https://learn.microsoft.com/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools" target="_blank"><i class="fas fa-external-link-alt"></i> Install the Azure Functions Core Tools</a> <small class="text-muted">(v4.x or higher)</small> and confirm the installation by running the command <code class="user-select-all">func --version</code> and observing the installed version </li>
             <li> <a href="https://learn.microsoft.com/cli/azure/install-azure-cli" target="_blank"><i class="fas fa-external-link-alt"></i> How to install the Azure CLI</a>.  Confirm the installation by running the command <code class="user-select-all">az --version</code> and observing the installed version </li>
           </ol>
-          <!----- Step 2 of 5 ----->
+          <!----- Step 2 of 6 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Creating an Azure IoT Hub &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 2 of 5 </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 6 </a>
               </h2>
               <p class="lead"> <em>If required,</em> create a Resource Group and an IoT Hub on <i class="fas fa-cloud"></i> Azure. </p>
               <hr>
@@ -545,12 +545,12 @@
   }
 }</pre>
           <p class="mt-2"> Then <i class="fas fa-save"></i> save the file. </p>
-          <!----- Step 3 of 5 ----->
+          <!----- Step 3 of 6 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Creating supporting resources &nbsp;
-                <a href="#step03" class="badge bg-primary"> Step 3 of 5 </a>
+                <a href="#step03" class="badge bg-primary"> Step 3 of 6 </a>
               </h2>
               <p class="lead"> Create an Event Hub, Web PubSub and storage account on <i class="fas fa-cloud"></i> Azure. </p>
               <hr>
@@ -1112,12 +1112,12 @@
     "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=paretoanywherestorage;AccountKey=X;EndpointSuffix=core.windows.net"
   }
 }</pre>
-          <!----- Step 4 of 5 ----->
+          <!----- Step 4 of 6 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step04" class="card-title my-2">
                 Run in the environment &nbsp;
-                <a href="#step04" class="badge bg-primary"> Step 4 of 5 </a>
+                <a href="#step04" class="badge bg-primary"> Step 4 of 6 </a>
               </h2>
               <p class="lead"> Validate the configuration by running Pareto Anywhere for Azure <em>either</em> in <i class="fab fa-github"></i> Codespaces <em>or</em> on your <i class="fas fa-laptop"></i> computer. </p>
               <hr>
@@ -1193,12 +1193,12 @@ For detailed output, run func with --verbose flag.
           <p> For convenience, the web app and all its dependencies are served by the Azure Function itself from the <span class="font-monospace">/serveWebApp</span> folder (and its <span class="font-monospace">/images /js /style</span> subfolders).  Simply edit the <span class="font-monospace">index.html</span> file and the dependencies as required, and the changes will appear as soon as the function restarts. </p>
           <p> The web app observes the <a href="https://reelyactive.github.io/web-style-guide/" target="_blank"><i class="fas fa-external-link-alt"></i> reelyActive Web Style Guide</a> with the additional dependencies of <a href="https://github.com/reelyactive/beaver/" target="_blank"><i class="fas fa-external-link-alt"></i> beaver.js</a> and <a href="https://github.com/reelyactive/cuttlefish/" target="_blank"><i class="fas fa-external-link-alt"></i> cuttlefish.js</a> to collect and render the real-time dynamic ambient data, respectively. </p>
           <p> The web app includes <a href="https://dtpr.io" target="_blank"><i class="fas fa-external-link-alt"></i> Digital Trust for Places & Routines (DTPR)</a> iconography to inform about the purpose, technology, accountability and data retention of the digital systems present in the physical space.  The icons, descriptions and links can easily be updated (in the <span class="font-monospace">index.html</span> file) to reflect the reality of the deployment. </p>
-          <!----- Step 5 of 5 ----->
+          <!----- Step 5 of 6 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step05" class="card-title my-2">
                 Run on Azure &nbsp;
-                <a href="#step05" class="badge bg-primary"> Step 5 of 5 </a>
+                <a href="#step05" class="badge bg-primary"> Step 5 of 6 </a>
               </h2>
               <p class="lead"> Complete the deployment by running Pareto Anywhere for Azure<em>&mdash;on <i class="fas fa-cloud"></i> Azure.</em> </p>
               <hr>
@@ -1367,6 +1367,117 @@ For detailed output, run func with --verbose flag.
             <small class="text-muted"> (OPTIONAL) Part 4 </small>
           </h3>
           <p> In the case where the web app is used in production, and/or the URL is shared publicly, it is strongly advised to optimise how the content is served.  For example, at a minimum, all dependencies of the <span class="font-monospace">index.html</span> file may be served by a CDN or an Azure service like <a href="https://azure.microsoft.com/products/app-service/static" target="_blank"><i class="fas fa-external-link-alt"></i> Static Web Apps</a>, for efficiency and security. </p>
+          <!----- Step 6 of 6 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step06" class="card-title my-2">
+                Create device profiles &nbsp;
+                <a href="#step06" class="badge bg-primary"> Step 6 of 6 </a>
+              </h2>
+              <p class="lead"> <em>Optionally</em> create device profile files to facilitate device identification and payload decoding.</em> </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Is this necessary? </dt>
+                <dd class="col-sm-9"> In the case of EnOcean Alliance devices, <em>yes</em>, as device identifier and EEP pairs are required to decode the payloads. </dd>
+                <dt class="col-sm-3"> How does it work? </dt>
+                <dd class="col-sm-9"> The function app can access the file(s) from memory at run time. </dd>
+              </dl>
+              <img src="images/device-profiles.png" class="card-img-bottom"
+                   alt="Create device profiles">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create a storage container
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Within the Storage Account resource created in <a href="#step03">Step 3</a>, from the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Storage Container</b> by following the 3 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="sc1tab"
+                      data-bs-toggle="tab" data-bs-target="#sc1content"
+                      type="button" role="tab" aria-controls="sc1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sc2tab" data-bs-toggle="tab"
+                      data-bs-target="#sc2content" type="button" role="tab"
+                      aria-controls="sc2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sc3tab" data-bs-toggle="tab"
+                      data-bs-target="#sc3content" type="button" role="tab"
+                      aria-controls="sc3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="sc1content"
+                 role="tabpanel" aria-labelledby="sc1tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="images/storagecontainer-containers.png"
+                       class="img-fluid" alt="Create storage container">
+                </div>
+                <div class="col-md-8 align-self-center">
+                  <p> From the Storage Account instance page, select <i class="fas fa-mouse-pointer"></i> <b>Containers</b> in the Data storage section of the menu on the left. </p>
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>+ Container</b> to create a new storage container. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="sc2content" role="tabpanel"
+                 aria-labelledby="sc2tab">
+              <div class="row">
+                <div class="col-md-8 align-self-center">
+                  <p> Enter the name <b>deviceprofiles</b> and click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create the storage container. </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="images/storagecontainer-create.png"
+                       class="img-fluid" alt="Create storage container">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="sc3content" role="tabpanel"
+                 aria-labelledby="sc3tab">
+              <div class="row">
+                <div class="col-md-6 align-self-center">
+                  <p> To upload files (blobs) to the deviceprofiles Container, <em>as required below,</em> simply click <i class="fas fa-mouse-pointer"></i> <b>Upload</b> from the Container overview page and follow the indications in the overlay at right. </p>
+                  <p class="small text-muted"> In the Advanced settings, consider reducing the <b>Block size</b> to the minimum of <b>64 KiB</b> for efficiency, as the files are unlikely to exceed that size. </p>
+                </div>
+                <div class="col-md-6">
+                  <img src="images/storagecontainer-uploadblob.png"
+                       class="img-fluid" alt="Upload blob to deviceprofiles">
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create and upload blobs
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Create and upload any of the blobs below, as required for the specific deployment. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="dp1tab"
+                      data-bs-toggle="tab" data-bs-target="#dp1content"
+                      type="button" role="tab" aria-controls="dp1tab"
+                      aria-selected="true"> enocean.json </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="dp1content"
+                 role="tabpanel" aria-labelledby="dp1tab">
+              <p> For EnOcean Alliance devices, create an <b>enocean.json</b> file based on the following model, consisting of pairs of device identifiers and EnOcean Equipment Profile (EEP) types. </p>
+              <pre class="user-select-all ms-3">{
+    "041400ab/7": { "eepType": "D2-14-41" },
+    "051700cd/7": { "eepType": "A5-04-03" },
+    "059100ef/7": { "eepType": "D5-00-01" }
+}</pre>
+              <p class="small text-muted"> Each 32-bit EnOcean Unique Radio Identifier (EURID) is entered as 8 <em>lowercase</em> hexadecimal characters (0-9, a-f), with the suffix /7 to specify the identifier type (see <a href="https://reelyactive.github.io/diy/cheatsheet/#idtype" target="_blank"><i class="fas fa-external-link-alt"></i> Cheatsheet</a>). </p>
+              <p class="small text-muted"> Each EEP type is entered as three dash-separated <em>uppercase</em> hexadecimal character pairs (see <a href="https://github.com/reelyactive/advlib-esp" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-esp</a> and its submodules for all implemented EEP types). </p>
+              <p> Upload the file to the <b>deviceprofiles</b> Container as specified in Part 1 above. </p>
+            </div>
+          </div>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
