@@ -296,7 +296,95 @@
             Create an Enrollment Group
             <small class="text-muted"> Part 3 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> From the Device Provisioning Service (DPS) resource page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Enrollment Group</b> for the Aruba access points by following the 5 tabbed steps below: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="dp1tab"
+                      data-bs-toggle="tab" data-bs-target="#dp1content"
+                      type="button" role="tab" aria-controls="dp1tab"
+                      aria-selected="true"> 1 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="dp2tab" data-bs-toggle="tab"
+                      data-bs-target="#dp2content" type="button" role="tab"
+                      aria-controls="dp2tab"
+                      aria-selected="false"> 2 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="dp3tab" data-bs-toggle="tab"
+                      data-bs-target="#dp3content" type="button" role="tab"
+                      aria-controls="dp3tab"
+                      aria-selected="false"> 3 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="dp4tab" data-bs-toggle="tab"
+                      data-bs-target="#dp4content" type="button" role="tab"
+                      aria-controls="dp4tab"
+                      aria-selected="false"> 4 </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="dp5tab" data-bs-toggle="tab"
+                      data-bs-target="#dp5content" type="button" role="tab"
+                      aria-controls="dp5tab"
+                      aria-selected="false"> 5 </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade show active" id="dp1content"
+                 role="tabpanel" aria-labelledby="dp1tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/dps-add-enrollment-group.png"
+                       class="img-fluid" alt="Create enrollment group">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Select <i class="fas fa-mouse-pointer"></i> <b>Manage enrollments</b> from the navigation menu at left. </p>
+                  <p> Then select <i class="fas fa-mouse-pointer"></i> <b>+ Add enrollment group</b> from the enrollment group menu bar. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="dp2content" role="tabpanel"
+                 aria-labelledby="dp2tab">
+              <p> Enter a meaningful Group name for your Enrollment Group and complete the settings as follows: </p>
+              <img src="images/enrollment-group-registration-provisioning.png"
+                   class="img-fluid mx-auto d-block"
+                   alt="Enrollment group registration and provisioning">
+              <p class="mt-2"> Click <i class="fas fa-mouse-pointer"></i> <b>Next: IoT hubs ></b> at the bottom of the page to continue the configuration. </p>
+            </div>
+            <div class="tab-pane fade" id="dp3content" role="tabpanel"
+                 aria-labelledby="dp3tab">
+              <p> Select your IoT Hub from the list and complete the settings as follows: </p>
+              <img src="images/enrollment-group-iot-hubs.png"
+                   class="img-fluid mx-auto d-block"
+                   alt="Enrollment group IoT hubs">
+              <p class="mt-2"> Click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> at the bottom of the page to validate the configuration. </p>
+            </div>
+            <div class="tab-pane fade" id="dp4content" role="tabpanel"
+                 aria-labelledby="dp4tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/enrollment-group-review-create.png"
+                       class="img-fluid"
+                       alt="Enrollment group review and create">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> at the bottom of the page after validating the enrollment group details. </p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="dp5content" role="tabpanel"
+                 aria-labelledby="dp5tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="images/dps-select-enrollment-group.png"
+                       class="img-fluid" alt="Enrollment group created">
+                </div>
+                <div class="col-md-6 align-self-center">
+                  <p> The enrollment group for the Aruba access points has been created. </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <!----- Step 2 of 3 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
