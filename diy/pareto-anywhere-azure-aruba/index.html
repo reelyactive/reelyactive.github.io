@@ -456,12 +456,143 @@
             Configure IoT Transport Stream
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> Log in to the interface from which you normally configure your Aruba APs and browse to the IoT Services section. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Create a new <b>IoT Transport</b> and enter the following settings: </p>
+              <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col"> Parameter </th>
+                      <th scope="col"> Value </th>
+                      <th scope="col"> Notes </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> Name </td>
+                      <th> pareto-anywhere-azure </th>
+                      <td class="text-muted">
+                        <small> User-defined </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Enabled </td>
+                      <th> <i class="fas fa-check"></i> </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> Server type </td>
+                      <th> Azure IoTHub </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> ID Scope </td>
+                      <th> </th>
+                      <td class="text-muted">
+                        <small> From Step 1 </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Group key </td>
+                      <th> </th>
+                      <td class="text-muted">
+                        <small> From Step 1 </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Transport services </td>
+                      <th> <i class="fas fa-check"></i> </th>
+                      <td class="text-muted">
+                        <small> Select one or more<sup>*</sup> <sup>**</sup> </small>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <img src="images/aruba-iot-transport.png" class="img-fluid"
+                   alt="Aruba IoT Transport">
+            </div>
+          </div>
+          <p class="text-end text-muted small mb-1"> <sup>*</sup>Serial Data requires the corresponding USB dongle to be connected to the AP(s). </p>
+          <p class="text-end text-muted small"> <sup>**</sup>It is recommended to aggressively filter BLE Data to remain within the IoT Hub daily message limit. </p>
+          <p class="mt-3"> Click <i class="fas fa-mouse-pointer"></i> <b>OK</b> to create the IoT Transport profile. </p>
           <h3 class="mt-4">
             Configure IoT Radio Profile
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> Again, from the interface from which you normally configure your Aruba APs, browse to the IoT Services section. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Create a new <b>IoT Radio</b> and, <em>in the case of BLE,</em> enter the following settings: </p>
+              <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col"> Parameter </th>
+                      <th scope="col"> Value </th>
+                      <th scope="col"> Notes </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> Name </td>
+                      <th> Internal-BLE </th>
+                      <td class="text-muted">
+                        <small> User-defined </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> State </td>
+                      <th> <i class="fas fa-check"></i> </th>
+                      <td class="text-muted"> <small> Enabled </small> </td>
+                    </tr>
+                    <tr>
+                      <td> Radio </td>
+                      <th> Internal </th>
+                      <td class="text-muted">
+                        <small> Serial devices use External </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Radio mode </td>
+                      <th> BLE </th>
+                      <td class="text-muted"> </td>
+                    </tr>
+                    <tr>
+                      <td> BLE mode </td>
+                      <th> Both </th>
+                      <td class="text-muted">
+                        <small> Either Scanning or Both </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Console </td>
+                      <th> Off </th>
+                      <td class="text-muted">
+                        <small> Used for debug </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Tx Power </td>
+                      <th> 0 <small>dBm</small> </th>
+                      <td class="text-muted">
+                        <small> For beaconing </small>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <img src="images/aruba-iot-radio.png" class="img-fluid"
+                   alt="Aruba IoT Radio">
+            </div>
+          </div>
+          <p class="mt-3"> Click <i class="fas fa-mouse-pointer"></i> <b>OK</b> to create the IoT Radio profile. </p>
           <h3 class="mt-4">
             Observe messages in IoT Hub
             <small class="text-muted"> Part 3 </small>
