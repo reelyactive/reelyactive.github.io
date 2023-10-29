@@ -1467,12 +1467,13 @@ For detailed output, run func with --verbose flag.
           <div class="tab-content tab-content-border">
             <div class="tab-pane fade show active" id="dp1content"
                  role="tabpanel" aria-labelledby="dp1tab">
-              <p> For EnOcean Alliance devices, create an <b>enocean.json</b> file based on the following model, consisting of pairs of device identifiers and EnOcean Equipment Profile (EEP) types. </p>
+              <p> For <em>sub-GHz</em> EnOcean Alliance devices, create an <b>enocean.json</b> file consisting of pairs of device identifiers and EnOcean Equipment Profile (EEP) types, based on the following example of 3 common devices. </p>
               <pre class="user-select-all ms-3">{
     "041400ab/7": { "eepType": "D2-14-41" },
     "051700cd/7": { "eepType": "A5-04-03" },
     "059100ef/7": { "eepType": "D5-00-01" }
 }</pre>
+              <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This file is <em>not</em> required for Bluetooth Low Energy (2.4GHz) EnOcean devices. </p>
               <p class="small text-muted"> Each 32-bit EnOcean Unique Radio Identifier (EURID) is entered as 8 <em>lowercase</em> hexadecimal characters (0-9, a-f), with the suffix /7 to specify the identifier type (see <a href="https://reelyactive.github.io/diy/cheatsheet/#idtype" target="_blank"><i class="fas fa-external-link-alt"></i> Cheatsheet</a>). </p>
               <p class="small text-muted"> Each EEP type is entered as three dash-separated <em>uppercase</em> hexadecimal character pairs (see <a href="https://github.com/reelyactive/advlib-esp" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-esp</a> and its submodules for all implemented EEP types). </p>
               <p> Upload the file to the <b>deviceprofiles</b> Container as specified in Part 1 above. </p>
