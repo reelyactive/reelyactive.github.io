@@ -452,11 +452,11 @@ dhcp-range=10.0.50.2,10.0.50.99,255.255.255.0,12h</pre>
             Download and install Node.js and npm 
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> To simplify installing and updating Node.js, the <a href="https://github.com/nodesource/distributions#readme" target="_blank"><i class="fas fa-external-link-alt"></i> NodeSource binary distributions</a> will be used.  From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
+          <p> To simplify installing and updating Node.js, the <a href="https://deb.nodesource.com/" target="_blank"><i class="fas fa-external-link-alt"></i> NodeSource binary distributions</a> will be used.  From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH over WiFi <i class="fas fa-wifi"></i>: </p>
           <ol>
             <li> Create a folder for the NodeSource GPG key with the command <code class="user-select-all">sudo mkdir -p /etc/apt/keyrings</code> </li>
             <li> Import the NodeSource GPG key with the command <code class="user-select-all">curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg</code> </li>
-            <li> Specify the version of Node.js (ex: 18<sup>*</sup>) to use with the command <code class="user-select-all">NODE_MAJOR=18</code> </li>
+            <li> Specify the version of Node.js (ex: 20<sup>*</sup>) to use with the command <code class="user-select-all">NODE_MAJOR=20</code> </li>
             <li> Create the .deb repository with the command <code class="user-select-all">echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list</code> </li>
             <li> Update and install Node.js with the command <code class="user-select-all">sudo apt-get update && sudo apt-get install -y nodejs</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
           </ol>
