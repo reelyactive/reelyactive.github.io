@@ -6,13 +6,6 @@
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
           content="Our step-by-step guide to create an asset tracking dashboard for physical spaces using Kibana.">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49659454-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-49659454-2');
-    </script>
     <link rel="stylesheet" href="../common/style/bootstrap.min.css">
     <link rel="stylesheet" href="../common/style/reelyactive.css">
     <title> Create an asset tracking dashboard in Kibana </title>
@@ -65,7 +58,7 @@
               <a class="dropdown-item"
                  href="https://www.reelyactive.com/how-we-observe/#digital">
                 <i class="fas fa-mouse-pointer"></i>
-                Page view tracking (gtag.js) &nbsp;
+                Privacy-centric metrics (beacon.js) &nbsp;
                 <span class="badge badge-warning">
                   <i class="fas fa-user-tag"></i>
                 </span>
@@ -402,7 +395,10 @@
     <script defer src="../common/js/solid.min.js"></script>
     <script defer src="../common/js/brands.min.js"></script>
     <script defer src="../common/js/fontawesome.min.js"></script>
-    <script src="../common/js/jquery-3.4.0.min.js"></script>
+    <script src="../common/js/jquery.min.js"></script>
     <script src="../common/js/bootstrap.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
   </body>
 </html>
