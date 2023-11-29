@@ -202,12 +202,12 @@
               Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
             </li>
           </ul>
-          <!----- Step 1 of 3 ----->
+          <!----- Step 1 of 4 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Connecting to the Nicla Vision &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+                <a href="#step01" class="badge bg-primary"> Step 1 of 4 </a>
               </h2>
               <p class="lead"> Connect with the Nicla Vision in the OpenMV IDE. </p>
               <hr>
@@ -251,12 +251,12 @@
                class="img-fluid d-block mx-auto mb-4"
                alt="The OpenMV IDE footer with connected device">
           <p> The Nicla Vision can now be programmed via the OpenMV IDE, which is the subject of the next step. </p>
-          <!----- Step 2 of 3 ----->
+          <!----- Step 2 of 4 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Programming the Nicla Vision &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 4 </a>
               </h2>
               <p class="lead"> Load a Python file and run it on the Nicla Vision. </p>
               <hr>
@@ -311,12 +311,12 @@ while(True):
             <small class="text-muted"> Part 3 </small>
           </h3>
           <p> Example to come. </p>
-          <!----- Step 3 of 3 ----->
+          <!----- Step 3 of 4 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Running other programs &nbsp;
-                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+                <a href="#step03" class="badge bg-primary"> Step 3 of 4 </a>
               </h2>
               <p class="lead"> Explore the potential of the Nicla Vision in context-aware physical spaces. </p>
               <hr>
@@ -343,6 +343,59 @@ while(True):
                    alt="Nicla Vision Gauge Reader in Pareto Anywhere">-->
             </div>
           </div>
+          <!----- Step 4 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Powering the Nicla Vision &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of 4 </a>
+              </h2>
+              <p class="lead"> Choose the power source best suited for the application. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Can it run on batteries? </dt>
+                <dd class="col-sm-9"> Yes, the Nicla Vision can be powered from a USB power bank, standard dry cell batteries, or Li-Po/Ion packs. </dd>
+                <dt class="col-sm-3"> How much autonomy? </dt>
+                <dd class="col-sm-9"> This depends on the capacity of the battery and the power consumption of the program that is running. </dd>
+              </dl>
+              <img src="images/nicla-vision-power.jpg" class="card-img-bottom"
+                   alt="Nicla Vision power">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            USB Connector
+            <small class="text-muted"> Option 1 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Power from the USB connector is prioritised over the ESLOV and the Battery Connector. </p>
+          <p> The Nicla Vision can be powered via USB, either via connection to a laptop, or from a standard USB power bank. </p>
+          <h3 class="mt-4">
+            ESLOV Connector (J5)
+            <small class="text-muted"> Option 2 </small>
+          </h3>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Power from the ESLOV is prioritised over the Battery Connector. </p>
+          <p> The Nicla Vision can be powered from the ESLOV Connector (J5) which nominally expects 5VDC, but can accept the range of voltages supported on the V<sub>IN</sub> pin<sup>*</sup> to which the ESLOV is diode-connected.  For instance, it is possible to power the Nicla Vision via the ESLOV with 3 x 1.5V batteries (ex: AAA, AA, C or D) using commercially-available 3-cell battery holders. </p>
+          <p class="small text-muted text-end"> <sup>*</sup>The datasheet specifies 3.5V-5.5V as recommended operating conditions. </p>
+          <div class="row">
+            <div class="col-md-3">
+              <img src="images/eslov-power-plug.jpg" class="img-fluid mb-3"
+                   alt="ESLOV power plug">
+            </div>
+            <div class="col-md-9 align-self-center">
+              <p> It is possible to create an ESLOV power cable from scratch using the following parts: </p>
+              <ul>
+                <li> JST connector <span class="font-monospace user-select-all">SHR-05V-S-B</span> &nbsp; <a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/SHR-05V-S-B/759869" target="_blank"><i class="fas fa-shopping-cart"></i> Buy on DigiKey </a> </li>
+                <li> JST jumper lead <span class="font-monospace user-select-all">ASSHSSH28K152</span> &nbsp; <a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/ASSHSSH28K152/6009452" target="_blank"><i class="fas fa-shopping-cart"></i> Buy on DigiKey </a> </li>
+              </ul>
+            </div>
+          </div>
+          <p> Cut the cable in half, and carefully feed the ends into the first and last slot of the plug, observing the orientation such that each metal tab locks into place.  Indicate Pin 1 (positive) with a red permanent marker, and take care to observe the polarity when connecting/soldering to a battery holder or alternative power source. </p>
+          <img src="images/eslov-power-connection.jpg" class="img-fluid"
+               alt="Nicla Vision powered from ESLOV connector">
+          <h3 class="mt-4">
+            Battery Connector (J4)
+            <small class="text-muted"> Option 3 </small>
+          </h3>
+          <p> The Nicla Vision can be powered from the Battery Connector (J4) using a single-cell 3.7 V Li-Po or Li-Ion battery.  See <a href="https://support.arduino.cc/hc/en-us/articles/4408893476498-Connect-a-battery-to-Nicla-Sense-ME-or-Nicla-Vision" target="_blank"><i class="fas fa-external-link-alt"></i> this tutorial</a> for details. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
