@@ -35,10 +35,12 @@ https://reelyactive.github.io/diy/minew-mg3-config/
 https://reelyactive.github.io/diy/minew-mg4-config/
 https://reelyactive.github.io/diy/minew-msp01-config/
 https://reelyactive.github.io/diy/minew-s1-config/
+https://reelyactive.github.io/diy/nicla-vision-dev/
 https://reelyactive.github.io/diy/oio-config/
 https://reelyactive.github.io/diy/oio-wlan/
 https://reelyactive.github.io/diy/oss-packages/
 https://reelyactive.github.io/diy/pareto-anywhere-azure/
+https://reelyactive.github.io/diy/pareto-anywhere-azure-aruba/
 https://reelyactive.github.io/diy/pareto-anywhere-pc/
 https://reelyactive.github.io/diy/pareto-anywhere-pi/
 https://reelyactive.github.io/diy/pi-kiosk/
