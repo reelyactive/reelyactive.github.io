@@ -144,18 +144,23 @@
               <p class="lead"> </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's the Expected Result? </dt>
+                <dd class="col-sm-9"> You'll  have a fleet of Nicla Vision devices capturing readings from a variety of different types of analog guages. </dd>
+                <dt class="col-sm-3"> What’s the alternative? </dt>
+                <dd class="col-sm-9"> Live camera feeds for all gauges, or more robust computer-vision solutions are possible, but this implementation meets the goals of being low-power, easy to set up, and robust enough to work in a variety of environments.
+                </dd>
+                <dt class="col-sm-3"> Is this for me? </dt>
+                <dd class="col-sm-9">  If you have analog gauges that need to be monitored for long periods of time without recharging, this might be the right solution for you.
+                </dd>
               </dl>
             </div>
           </div>
+
+
           <!----- Prerequisites ----->
           <h2 class="mt-4"> Prerequisites </h2>
           <p class="lead"> A Nicla Vision and, <em>optionally,</em> a Pareto Anywhere instance creating a context-aware space </p>
+          <p class="lead">It's also expected that you've gone through the <a href="https://reelyactive.github.io/diy/nicla-vision-dev/">Nicla Vision Development Guide</a>, to cover the basics of Nicla setup programming with OpenMV </p>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="https://shop.espruino.com/">
@@ -202,12 +207,15 @@
               Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
             </li>
           </ul>
-          <!----- Step 1 of X ----->
+
+
+
+          <!----- Step 1 of 8 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
-                Title &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 1 of 4 </a>
+                Getting the Nicla Gauge Reader Code
+                <a href="#step01" class="badge bg-primary"> Step 1 of 8 </a>
               </h2>
               <p class="lead"> Subtitle. </p>
               <hr>
@@ -221,31 +229,53 @@
                    alt="">
             </div>
           </div>
-          <!----- Step 2 of 4 ----->
+          <pre class="user-select-all">git clone https://github.com/reelyactive/nicla-vision-gauge-reader.git</pre>
+
+
+
+          <!----- Step 2 of 8 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
-                Title &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 2 of 4 </a>
+                Setting up files on the Nicla Vision &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 8 </a>
               </h2>
               <p class="lead"> Subtitle. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> How do I copy files onto the Nicla? </dt>
+                <dd class="col-sm-9"> The nicla vision should appear as an attached storage device. You can put files into the Nicla simply by copying them to this device. </dd>
+                <dt class="col-sm-3"> Why do I need to do this? </dt>
+                <dd class="col-sm-9"> While you can run code in OpenMV directly on the Nicla, the nicla will look for any referenced files (like configuration files, functions, etc) on the Nicla itself.</dd>
+                <dt class="col-sm-3"> Why are there extra files? </dt>
+                <dd class="col-sm-9"> To keep the code readable, and to make configuration easier, the software is broken up into a few files. </dd>
+                <dt class="col-sm-3"> What’s the ra_config.py file? </dt>
+                <dd class="col-sm-9"> The file ra_config.py should be the only file you have to edit. The config file is divided into sections and is heavily commented to explain what all the variables are for. Upcoming steps will explain how and why to edit some of the configuration variables. </dd>
               </dl>
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
             </div>
           </div>
-          <!----- Step 3 of 4 ----->
+          <h3 class="mt-4">
+            Copy the following files to the nicla vision
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p>
+            <ul>
+              <li>nicla-vision-gauge-reader/nicla/ra_functions.py</li>
+              <li>nicla-vision-gauge-reader/nicla/ra_config.py</li>
+              <li>nicla-vision-gauge-reader/nicla/ra_ble.py</li>
+            </ul>
+          </p>
+
+
+
+          <!----- Step 3 of 8 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
-                Title &nbsp;
-                <a href="#step03" class="badge bg-primary"> Step 3 of 4 </a>
+                Running the Code &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 8 </a>
               </h2>
               <p class="lead"> Subtitle. </p>
               <hr>
@@ -258,13 +288,34 @@
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
             </div>
+            <ul>
+              <li>Load main-guage1.py in OpenMV
+              <li>Connect your Nicla</li>
+              <li>Open the Serial Terminal</li>
+              <li>Make sure the Frame Buffer is visible</li>
+              <li>Click the start Icon</li>
+              <li>Point the nicla camera at a gauge</li>
+              <li>Adjust the position of the nicla until the framebuffer shows that it is capturing readings from the gauge. You want it to looks something like this: [screenshot]</li>
+            </ul>
+            <img src="images/gauge-closeup.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE">            
+            <p>
+            <h2>What the graphics on the gauge mean:</h2>
+            <img src="images/gauge-legend.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE, with a legend explaining what all the layered graphics mean">            
+            </p>
+            <p>
+              <h3>What are the flashing lights on the Nicla?</h3>
+                Every time the nicla captures a gauge value and sends it via Bluetooth, it flashes a green light. This will help you position the nicla when it’s not connected to a computer.
+                
+            </p>
           </div>
-          <!----- Step 4 of 4 ----->
+
+
+          <!----- Step 4 of 8 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step04" class="card-title my-2">
-                Title &nbsp;
-                <a href="#step04" class="badge bg-primary"> Step 4 of 4 </a>
+                Setting up a Gauge for Reading &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of 8 </a>
               </h2>
               <p class="lead"> Subtitle. </p>
               <hr>
@@ -278,6 +329,224 @@
                    alt="">
             </div>
           </div>
+          <p>
+            There are two methods the Nicla can use for determining the position of the gauge needle:
+          </p>
+          <h4>Absolute Positioning</h4> 
+          <p>With this method, it is assumed that the center of the needle, and the min and max values of the needle will always be in the same place. These positions are set in the configuration file with the variables:
+            <pre>
+  "use_color_dots" : False, # set this to FALSE  to use absolute positioning
+  "radian_point_min": .25 * math.pi, # the point in radians of the min gauge value
+  "radian_point_max": 1.75 * math.pi,  # the point in radians of the max gauge value
+  # coordinates of the center of the guage. This will usually be half of the width and height
+  "center_x" : 80,
+  "center_y" : 60,
+            </pre>
+          </p>
+            <h4>Colored Dots</h4>
+          <p>
+            Place small colored dots at the min and max gauge positions, and on the center of the gauge.
+            Then configure the color thresholds to identify those colors.
+          </p>
+
+
+          <!----- Step 5 of 8 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Color Dot Calibration &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 5 of 8 </a>
+              </h2>
+              <p class="lead"> Subtitle. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why do we need to do this, isn’t red just red? </dt>
+                <dd class="col-sm-9"> Depending on lighting, the gauge color, and other conditions, a red dot might not look exactly the same to the Nicla. So we need to do some testing to get the colors to register accurately. </dd>
+                <dt class="col-sm-3"> What’s LAB? </dt>
+                <dd class="col-sm-9"> LAB is another way of defining colors, like RGB, HSL, CMYK, etc. It stands for: 
+                  L*: Lightness, a*: Red/Green Value, b*: Blue/Yellow Value. It’s what the color detection algorithm uses to identify colors. </dd>
+                <dt class="col-sm-3"> What’s a threshhold? </dt>
+                <dd class="col-sm-9"> The color detection algorithm lets you define a range of values for L, A, and B that we want to single out for detection. In our situation, we may want to define thresholds for each of the colored dots we’re using in our setup. </dd>  
+              </dl>
+              <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
+                   alt="">
+            </div>
+          </div>
+
+          <h3 class="mt-4">
+            Run the code
+            <small class="text-muted"> Part 1 </small>
+          </h3>  
+          <p>
+            Make sure the serial terminal is on.
+          </p>
+          <p>
+            Start the code running when the nicla is pointed at the gauge in the intended setup. It's important to START it with the nicla in the right place, because the camera calibrates itself to its starting conditions</p>
+          </p>
+          
+          <h3 class="mt-4">
+            Point at the color
+            <small class="text-muted"> Part 2 </small>
+          </h3>  
+          <p>Point the small green circle in the center of the Frame Buffer view at the colored dot you want to match
+          </p>
+
+          <h3 class="mt-4">
+            Grab the color
+            <small class="text-muted"> Part 3 </small>
+          </h3>    
+          <p>Take note of the 3-value array being output in the Serial Terminal
+            <img src="images/gauge-terminal.png" class="img-fluid" alt="Closeup of a termninal readout of color LAB value in openMV IDE" >
+            <br>
+            This is the LAB value of the pixel in the center of the image
+          </p>        
+          
+          <h3 class="mt-4">
+            Create a Range
+            <small class="text-muted"> Part 4 </small>
+          </h3>            
+          <p>
+            Create a RANGE array, with values about +/- 10 from the given value, so eg
+            <br>
+            (52, -1, 13) becomes (42, 62, -9,11, 3, 23 )
+            <Br>
+            NOTE that the first value is LIGHTNESS, so you could try a wider range on that.
+          </p>
+          <h3 class="mt-4">
+            Update the Config
+            <small class="text-muted"> Part 5 </small>
+          </h3>     
+          <p>Plug this new range array into the ra_config.py, following the instructions there.
+            Make sure you are editing the ra_config.py on the device itself, but keep an updated version backed up on your computer as well.
+          </p>    
+          <strong>1. Create a new named threshold in the color_thresholds dictionary, eg</strong>
+          <pre>
+  "color_thresholds" : {
+    "yellow" : (50, 80, -5, 10, 25, 50),  # yellow_thresholds  (206, 174, 90)-> Lab(72.691%, 3.691%, 37.566%)
+    # Yellow Dot is for the CENTER.
+    "room4_yellow" : (45, 75, -15, 5, 15, 45),  # yellow_thresholds  (206, 174, 90)-> Lab(72.691%, 3.691%, 37.566%)
+    # The yellow dot in room 4 looks a little different
+  },
+          </pre>
+          <strong>2. change the value of one of the three variables in the config that indicate the threshold name for min_color, max_color, and gauge_center, eg:</strong>
+          <pre>
+  "min_color": "red", # the color of the dot at the MINIMUM value of the gauge
+  "max_color" : "green",# the color of the dot at the MAXIMUM value of the gauge
+  "center_color" : "room4_yellow", # the color of the dot at the CENTER of the gauge
+          </pre>
+
+
+          <h3 class="mt-4">
+            Try it out!            
+            <small class="text-muted"> Part 6 </small>
+          </h3>            
+          <p>Run the code again and see if it works!</p>
+
+
+
+          <!----- Step 6 of 8 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Observing the Bluetooth Values &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 6 of 8 </a>
+              </h2>
+              <p class="lead"> Subtitle. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
+                   alt="">
+            </div>
+          </div>
+          <p>
+            The Gauge values are sent from the Nicla as Hex values in the range 0-FFFF (65535), which can be divided by 65535 to get the percentage (0-100) of the gauge’s maximum value.
+          </p> 
+          <p>
+            Observe in Pareto Anywhere, or from any  Bluetooth Low Energy scanning  mobile app, a device named [Get Name Here]. The value is advertised as UUID [Number here]
+          </p>
+          <strong>[Screenshot] </strong>
+
+          <!----- Step 7 of 8 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Running the Nicla Detached &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 7 of 8 </a>
+              </h2>
+              <p class="lead"> Subtitle. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> How does the Nicla know what code to run? </dt>
+                <dd class="col-sm-9"> When the Nicla starts up, it automatically looks for  a file named main.py on the device itself, and runs it. </dd>
+              </dl>
+              <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
+                   alt="">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Copy the file
+            <small class="text-muted"> Part 1 </small>
+          </h3>          
+          <ul>
+            <li>Copy nicla-vision-gauge-reader/nicla/main-gauge1.py to the Nicla renaming it to main.py</li>
+            <li>Unplug and re-plug the Nicla, or press the reset button on the Nicla</li>
+          </ul>
+
+                    
+
+
+          <!----- Step 8 of 8 ---->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Running in Low-Power Mode &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 8 of 8 </a>
+              </h2>
+              <p class="lead"> Subtitle. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What’s low-power mode? </dt>
+                <dd class="col-sm-9"> In low-power mode, the Nicla spends most of it’s time “asleep,” only waking up briefly to do its job, then pulling the covers over its head and hitting snooze until it’s time to do it again. This way it only consumes a tiny bit of power. </dd>
+              </dl>
+              <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
+                   alt="">
+            </div>
+          </div>
+
+          <h3 class="mt-4">
+            Configuring Low-Power Mode
+            <small class="text-muted"> Part 1 </small>
+          </h3>          
+
+          <p>
+            Set the following configuration variables:
+            <pre>
+  "sleepmode" : True, # if true, sleep in between sending data (set to false for debugging)
+  "sleep_interval" : 10000, # how long to sleep, in ms, between jobs
+  "sends_per_wake" : 10, # how many data sends per wake session
+            </pre>
+          </p>
+          <p>
+            Each time the device wakes up, it will do several reads of the gauge and send out the values via bluetooth. The number of reads it does each time it wakes up is defined in “sends_per_wake.” The amount of time it sleeps is defined in “sleep_interval”
+          </p>
+          <p>
+            <strong>Note:</strong> When the device goes to sleep, it also disconnects from your computer if it’s connected, meaning you can’t copy files or update the ra_config.py file. 
+          </p>
+          <p>
+            <strong>To Turn off Low-Power Mode:</strong><BR>
+            Edit ra_config.py on your computer
+            <pre>
+  "sleepmode" : False,
+            </pre>
+            When you re-connect the Nicla to your computer , you have a brief window where the device is available to copy files to, before sleeping again. During this window, try to copy ra_config.py to it. This might result in ra_config.py on the nicla becoming corrupted, in which case main.py won’t run, meaning it won’t go back to sleep, it will stay attached to your computer, and you can now upload your new ra_config.py files.
+          </p>
+
+
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
