@@ -9,6 +9,7 @@
     <meta name="google-site-verification"
           content="-B67IDNb4QNZbyAhN4ZGgk9fRPUhVLZY1u8kLW8YJP4" />
     <link rel="stylesheet" href="diy/common/style/bootstrappyactive.min.css">
+    <script type="module" src="diy/common/js/color-modes.js"></script>
     <title> reelyActive Developers </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -30,8 +31,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="diy/common/images/reelyactive-developers-logo-nav.png"
@@ -48,6 +48,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -124,10 +154,10 @@
           <!----- Developer value proposition ----->
           <div class="text-center mt-5">
             <h2 class="mb-3">
-              <em id="topic" class="text-dark">Radio-frequency identification</em>
+              <em id="topic" class="text-body-secondary">Radio-frequency identification</em>
               <span class="text-secondary">is hard</span>.
             </h2>
-            <p class="lead text-muted"> We've embodied 20+ years of experience in our <span class="text-dark">open source ecosystem</span> to abstract away "owl" that's hard, freeing up <em>your</em> time to focus on meaningful application development. </p>
+            <p class="lead text-body-tertiary"> We've embodied 20+ years of experience in our <span class="text-body-secondary">open source ecosystem</span> to abstract away "owl" that's hard, freeing up <em>your</em> time to focus on meaningful application development. </p>
           </div>
           <!----- The TL;DR ----->
           <div class="card hover-shadow mt-5">
@@ -177,11 +207,11 @@
               </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <!-- Ambient Data tab -->
             <div class="tab-pane fade" id="adcontent" role="tabpanel"
                  aria-labelledby="adtab">
-              <p class="lead text-muted text-start"> <span class="text-ambient">Ambient Data</span> is machine-readable information at a human scale. </p>
+              <p class="lead text-body-secondary text-start"> <span class="text-ambient">Ambient Data</span> is machine-readable information at a human scale. </p>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <h5> Learn More </h5>
@@ -197,7 +227,8 @@
                   <ul class="list-group list-group-horizontal">
                     <li class="list-group-item border-0">
                       <a href="diy/devices/#devices">
-                        <img src="diy/devices/images/icon-devices.gif">
+                        <img src="diy/devices/images/icon-devices.gif"
+                             class="rounded-1">
                       </a>
                     </li>
                     <li class="list-group-item border-0">
@@ -210,7 +241,8 @@
                   <ul class="list-group list-group-horizontal">
                     <li class="list-group-item border-0">
                       <a href="diy/devices/#infrastructure">
-                        <img src="diy/devices/images/icon-infrastructure.gif">
+                        <img src="diy/devices/images/icon-infrastructure.gif"
+                             class="rounded-1">
                       </a>
                     </li>
                     <li class="list-group-item border-0">
@@ -226,7 +258,7 @@
             <!-- Pareto Anywhere tab -->
             <div class="tab-pane fade show active" id="pacontent"
                  role="tabpanel" aria-labelledby="patab">
-              <p class="lead text-muted text-center"> <span class="text-dark">Pareto Anywhere</span> is our open source middleware. </p>
+              <p class="lead text-body-secondary text-center"> <span class="text-body">Pareto Anywhere</span> is our open source middleware. </p>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <h5> Quick Start </h5>
@@ -251,7 +283,8 @@
                   <ul class="list-group list-group-horizontal">
                     <li class="list-group-item border-0">
                       <a href="diy/pareto-anywhere-pc/">
-                        <img src="diy/pareto-anywhere-pc/images/icon.png">
+                        <img src="diy/pareto-anywhere-pc/images/icon.png"
+                             class="rounded-1">
                       </a>
                     </li>
                     <li class="list-group-item border-0">
@@ -264,7 +297,8 @@
                   <ul class="list-group list-group-horizontal">
                     <li class="list-group-item border-0">
                       <a href="diy/pareto-anywhere-pi/">
-                        <img src="diy/pareto-anywhere-pi/images/icon.png">
+                        <img src="diy/pareto-anywhere-pi/images/icon.png"
+                             class="rounded-1">
                       </a>
                     </li>
                     <li class="list-group-item border-0">
@@ -277,7 +311,8 @@
                   <ul class="list-group list-group-horizontal">
                     <li class="list-group-item border-0">
                       <a href="diy/pareto-anywhere-azure/">
-                        <img src="diy/pareto-anywhere-azure/images/icon.png">
+                        <img src="diy/pareto-anywhere-azure/images/icon.png"
+                             class="rounded-1">
                       </a>
                     </li>
                     <li class="list-group-item border-0">
@@ -293,7 +328,7 @@
             <!-- Hyperlocal Context tab -->
             <div class="tab-pane fade" id="hlccontent" role="tabpanel"
                  aria-labelledby="hlctab">
-              <p class="lead text-muted text-end"> <span class="text-secondary">Hyperlocal Context</span> is a digital representation of a physical space and its occupants. </p>
+              <p class="lead text-body-secondary text-end"> <span class="text-secondary">Hyperlocal Context</span> is a digital representation of a physical space and its occupants. </p>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <h5> Learn More </h5>
@@ -307,7 +342,8 @@
                   <ul class="list-group list-group-horizontal">
                     <li class="list-group-item border-0">
                       <a href="diy/cheatsheet/">
-                        <img src="diy/cheatsheet/images/icon.png">
+                        <img src="diy/cheatsheet/images/icon.png"
+                             class="rounded-1">
                       </a>
                     </li>
                     <li class="list-group-item border-0">
@@ -381,7 +417,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="diy/">
-                <img src="diy/common/images/icon.png">
+                <img src="diy/common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -394,7 +430,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="index-2020.html">
-                <img src="diy/common/images/icon-diy.png">
+                <img src="diy/common/images/icon-diy.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -408,7 +444,8 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com" target="_blank">
-                <img src="diy/common/images/icon-reelyactive.png">
+                <img src="diy/common/images/icon-reelyactive.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -426,7 +463,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
