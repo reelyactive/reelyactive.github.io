@@ -7,6 +7,7 @@
     <meta name="description"
           content="Step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Configure a Raspberry Pi as a kiosk display </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -132,7 +162,7 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Configure a Raspberry Pi as a kiosk display </h1>
           <p class="lead"> Our step-by-step guide to configure a Raspberry Pi as a kiosk display that runs automatically on boot. </p>
-          <img src="images/header.jpg" class="img-fluid"
+          <img src="images/header.jpg" class="img-fluid rounded-1"
                alt="Configure a Raspberry Pi as a kiosk display">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -160,7 +190,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../pi-prep/">
-                <img src="../pi-prep/images/icon.jpg">
+                <img src="../pi-prep/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -173,7 +203,8 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pi/">
-                <img src="../pareto-anywhere-pi/images/icon.png">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -181,11 +212,11 @@
                 <span class="text-muted"> [OPTIONAL] </span>
                 <a href="../pareto-anywhere-pi/"> Run Pareto Anywhere on a Raspberry Pi </a>
               </h5>
-              Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
+              Install and run Pareto Anywhere open source IoT middleware on a <i class="fab fa-raspberry-pi"></i> Pi.
             </li>
           </ul>
           <!----- Step 1 of 2 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Installing X11 and Chromium &nbsp;
@@ -197,7 +228,7 @@
                 <dt class="col-sm-3"> Do I need to SSH into the Pi? </dt>
                 <dd class="col-sm-9"> Yes.  If you forgot how, recall <a href="../pi-prep/#step04" target="_blank">Step 4 from the Pi Prep tutorial</a>. </dd>
                 <dt class="col-sm-3"> Why X11? </dt>
-                <dd class="col-sm-9"> Raspberry Pi OS <em>Lite</em> does not include a display system by default, so the the X Window System must be installed manually. </dd>
+                <dd class="col-sm-9"> Raspberry Pi OS <em>Lite</em> is headless, it does not include a display system by default, so the the X Window System must be installed manually. </dd>
               </dl>
               <img src="images/pi-x11-chromium-kiosk.jpg"
                    class="card-img-bottom"
@@ -238,7 +269,7 @@
             <li> <em>Optionally,</em> install colour emojis &#x1f913; with the command <code class="user-select-all">sudo apt-get install fonts-noto-color-emoji</code> </li>
           </ol>
           <!----- Step 2 of 2 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Configure boot and display options &nbsp;
@@ -335,7 +366,7 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
                       aria-selected="false"> more&hellip; </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="rotatecontent"
                  role="tabpanel" aria-labelledby="rotatetab">
               <p class="mt-2"> Edit the <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html#display_hdmi_rotate" target="_blank"><i class="fas fa-external-link-alt"></i> display_rotate_hdmi</a> property and disable the DRM VC4 V3D driver for portrait displays: </p>
@@ -360,7 +391,8 @@ display_hdmi_rotate=1
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="https://www.raspberrypi.com/tutorials/how-to-use-a-raspberry-pi-in-kiosk-mode/" target="_blank">
-                <img src="../common/images/icon-raspberrypi.png">
+                <img src="../common/images/icon-raspberrypi.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -417,7 +449,7 @@ display_hdmi_rotate=1
             </div>
           </div>
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -448,7 +480,7 @@ display_hdmi_rotate=1
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../capspaces-pi/">
-                <img src="../capspaces-pi/images/icon.jpg">
+                <img src="../capspaces-pi/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -461,7 +493,7 @@ display_hdmi_rotate=1
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -474,7 +506,8 @@ display_hdmi_rotate=1
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -483,7 +516,7 @@ display_hdmi_rotate=1
                   <i class="fas fa-external-link-alt"></i> reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together, let's make sense of things.
             </li>
           </ul>
         </div>
@@ -492,7 +525,7 @@ display_hdmi_rotate=1
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
