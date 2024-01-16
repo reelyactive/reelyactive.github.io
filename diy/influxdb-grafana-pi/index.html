@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Collect, store and visualise Internet of Things data on a Raspberry Pi using the Pareto Anywhere, InfluxDB and Grafana open source stack.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Install InfluxDB and Grafana on a Pi </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Install InfluxDB and Grafana on a Pi",
+      "description": "Collect, store and visualise Internet of Things data on a Raspberry Pi using the Pareto Anywhere, InfluxDB and Grafana open source stack.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/influxdb-grafana-pi/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Install InfluxDB and Grafana on a Pi"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com">
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/">
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/">
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Install InfluxDB and Grafana on a Pi </h1>
+          <p class="lead"> Collect, store and visualise data from Pareto Anywhere open source IoT middleware<em>&mdash;all running at the edge.</em> </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="InfluxDB and Grafana on a Pi">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to install this open source stack on a <i class="fab fa-raspberry-pi"></i> Pi 4 <small class="text-body-secondary">(or better)</small> with 64-bit OS. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why <em>this</em> stack? </dt>
+                <dd class="col-sm-9"> InfluxDB and Grafana together uniquely offer powerful time series data analysis and visualisation capabilities, with the ability to run on a <i class="fab fa-raspberry-pi"></i> Pi as open source software. </dd>
+                <dt class="col-sm-3"> Why a <i class="fab fa-raspberry-pi"></i> Pi? </dt>
+                <dd class="col-sm-9"> The <i class="fab fa-raspberry-pi"></i> Pi has become a ubiquitous edge platform with an ecosystem of variants suitable for deployment in any environment and for any application. </dd>
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is our open source IoT middleware that makes sense of <em>who/what</em> <small>is</small> <em>where/how</em> as JSON time series data, well suited to this stack. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead text-body-secondary"> A <i class="fab fa-raspberry-pi"></i> Pi 4 <small class="text-body-tertiary">(or better)</small> with 64-bit OS. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pi-prep/">
+                <img src="../pi-prep/images/icon.jpg" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <h5 class="mt-0 mb-1">
+                <span class="text-body-secondary"> [OPTIONAL] </span>
+                <a href="../pi-prep/">
+                  Prepare a headless Raspberry Pi from scratch
+                </a>
+              </h5>
+              Our step-by-step guide to prepare a lean yet versatile SD card image based on Raspberry Pi OS Lite.
+            </li>
+          </ul>
+          <!----- Step 1 of 5 ----->
+          <div class="card hover-shadow mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing InfluxDB &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Fetch and install InfluxDB v2.x <small>(Open Source)</small> on the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's InfluxDB? </dt>
+                <dd class="col-sm-9"> <a href="https://www.influxdata.com/products/" target="_blank"><i class="fas fa-external-link-alt"></i> InfluxDB</a> is a purpose-built time series database that optimises processing and scaling for large workloads, with the ability to run cloud and/or edge. </dd>
+                <dt class="col-sm-3"> Why this version? </dt>
+                <dd class="col-sm-9"> <a href="https://www.influxdata.com/products/influxdb/" target="_blank"><i class="fas fa-external-link-alt"></i> InfluxDB Open Source</a> offers the key benefits of<em>&mdash;and compatibility with&mdash;</em>its cousins, while remaining easy to install and maintain standalone on a <i class="fab fa-raspberry-pi"></i> Pi. </dd>
+              </dl>
+              <img src="images/influxdb-installation.jpg"
+                   class="card-img-bottom" alt="Install InfluxDB">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install from package source
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
+          <ol>
+            <li> Retrieve the repository key with the command <code class="user-select-all">wget -q https://repos.influxdata.com/influxdata-archive_compat.key</code> </li>
+            <li> Check and add the key to trusted sources with the command <code class="user-select-all">echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null</code> </li>
+            <li> Add the repository to trusted sources with the command <code class="user-select-all">echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list</code> </li>
+            <li> Update and install from the trusted source repository with the command <code class="user-select-all">sudo apt-get update && sudo apt-get install influxdb2</code> </li>
+          </ol>
+          <h3 class="mt-4">
+            Enable the influxdb service
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, enable automatic startup on boot with the command <code class="user-select-all">sudo service influxdb start</code> </p>
+          <p> <i class="fas fa-check-circle text-success"></i> InfluxDB should now be running as a service on the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+          <p> Check the status of the InfluxDB service at any time with the command <code class="user-select-all">sudo service influxdb status</code> </p>
+          <!----- Step 2 of 5 ----->
+          <div class="card hover-shadow mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configuring InfluxDB &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Initial log in and basic configuration to receive/retrieve data. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Where's InfluxDB? </dt>
+                <dd class="col-sm-9"> InfluxDB runs on port <span class="font-monospace">8086</span> of the <i class="fab fa-raspberry-pi"></i> Pi, which can be accessed from a web browser. </dd>
+                <dt class="col-sm-3"> What configuration? </dt>
+                <dd class="col-sm-9"> InfluxDB organises data by <em>Organization</em> and <em>Bucket</em>, which we'll create in this Step, along with a token for the <i class="fas fa-database"></i> storage/retrieval APIs. </dd>
+              </dl>
+              <img src="images/influxdb-configuration.jpg"
+                   class="card-img-bottom" alt="Configure InfluxDB">
+            </div>
+          </div>
+          <h3 class="mt-4"> Configuration Summary </h3>
+          <div class="row justify-content-start">
+            <div class="col-11 col-lg-8 col-xxl-6 offset-1 offset-xxl-0">
+              <table class="table table-sm table-hover caption-top">
+                <caption> User </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"> Property </th>
+                    <th scope="col"> Value </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> Username </td>
+                    <td class="font-monospace"> admin </td>
+                  </tr>
+                  <tr>
+                    <td> Password </td>
+                    <td class="font-monospace"> influxdb2 </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-11 col-lg-8 col-xxl-6 offset-1 offset-xxl-0">
+              <table class="table table-sm table-hover caption-top">
+                <caption> Database </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"> Property </th>
+                    <th scope="col"> Value </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> Organization name </td>
+                    <td class="font-monospace"> reelyActive </td>
+                  </tr>
+                  <tr>
+                    <td> Bucket name </td>
+                    <td class="font-monospace"> pareto-anywhere </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!----- Step 3 of 5 ----->
+          <div class="card hover-shadow mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Installing Grafana &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Fetch and install Grafana on the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Grafana? </dt>
+                <dd class="col-sm-9"> <a href="https://grafana.com/grafana/" target="_blank"><i class="fas fa-external-link-alt"></i> Grafana</a> is a "single-pane-of-glass" dashboard that unifies data regardless of origin, with the ability to run cloud and/or edge. </dd>
+                <dt class="col-sm-3"> Why this version? </dt>
+                <dd class="col-sm-9"> <a href="https://grafana.com/oss/grafana/" target="_blank"><i class="fas fa-external-link-alt"></i> Grafana OSS</a> offers the key benefits of<em>&mdash;and compatibility with&mdash;</em>its cousins, while remaining easy to install and maintain standalone on a <i class="fab fa-raspberry-pi"></i> Pi. </dd>
+              </dl>
+              <img src="images/grafana-installation.jpg"
+                   class="card-img-bottom" alt="Install Grafana">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install from package source
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
+          <ol>
+            <li> Retrieve the repository key with the command <code class="user-select-all">wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -</code> </li>
+            <li> Add the repository to trusted sources with the command <code class="user-select-all">echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list</code> </li>
+            <li> Update and install from the trusted source repository with the command <code class="user-select-all">sudo apt-get update && sudo apt-get install -y grafana</code> </li>
+          </ol>
+          <h3 class="mt-4">
+            Enable the grafana-server service
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, enable automatic startup on boot with the command <code class="user-select-all">sudo systemctl enable grafana-server</code> </p>
+          <p> Start the grafana-server manually with the command <code class="user-select-all">sudo systemctl start grafana-server</code> </p>
+          <p> <i class="fas fa-check-circle text-success"></i> Grafana should now be running as a service on the <i class="fab fa-raspberry-pi"></i> Pi. </p>
+          <p> Check the status of the Grafana service at any time with the command <code class="user-select-all">sudo systemctl grafana-server status</code> </p>
+          <!----- Step 4 of 5 ----->
+          <div class="card hover-shadow mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Configuring Grafana &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Initial log in and configuration to retrieve data from InfluxDB. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Where's Grafana? </dt>
+                <dd class="col-sm-9"> Grafana runs on port <span class="font-monospace">3000</span> of the <i class="fab fa-raspberry-pi"></i> Pi, which can be accessed from a web browser. </dd>
+                <dt class="col-sm-3"> What configuration? </dt>
+                <dd class="col-sm-9"> Grafana pulls data from a <em>Data Source</em> which we'll configure as our InfluxDB bucket in this Step. </dd>
+              </dl>
+              <img src="images/grafana-configuration.jpg"
+                   class="card-img-bottom" alt="Configure Grafana">
+            </div>
+          </div>
+          <h3 class="mt-4"> Configuration Summary </h3>
+          <div class="row justify-content-start">
+            <div class="col-11 col-lg-8 col-xxl-6 offset-1 offset-xxl-0">
+              <table class="table table-sm table-hover caption-top">
+                <caption> User </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"> Property </th>
+                    <th scope="col"> Value </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> Username </td>
+                    <td class="font-monospace"> admin </td>
+                  </tr>
+                  <tr>
+                    <td> Password </td>
+                    <td class="font-monospace"> grafana </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-11 col-lg-8 col-xxl-6 offset-1 offset-xxl-0">
+              <table class="table table-sm table-hover caption-top">
+                <caption> Data Source </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"> Property </th>
+                    <th scope="col"> Value </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> Name </td>
+                    <td class="font-monospace"> InfluxDB </td>
+                  </tr>
+                  <tr>
+                    <td> Query language </td>
+                    <td class="font-monospace"> Flux </td>
+                  </tr>
+                  <tr>
+                    <td> URL </td>
+                    <td class="font-monospace"> http://localhost:8086 </td>
+                  </tr>
+                  <tr>
+                    <td> Organization </td>
+                    <td class="font-monospace"> reelyActive </td>
+                  </tr>
+                  <tr>
+                    <td> Token </td>
+                    <td class="font-monospace"> (from Step 2) </td>
+                  </tr>
+                  <tr>
+                    <td> Default Bucket </td>
+                    <td class="font-monospace"> pareto-anywhere </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!----- Step 5 of 5 ----->
+          <div class="card hover-shadow mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step05" class="card-title my-2">
+                Collecting data &nbsp;
+                <a href="#step05" class="badge bg-primary"> Step 5 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Run Pareto Anywhere to process and store data in InfluxDB for display in Grafana. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Where's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> Pareto Anywhere runs on port <span class="font-monospace">3001</span> of the <i class="fab fa-raspberry-pi"></i> Pi, which can be accessed from a web browser. </dd>
+                <dt class="col-sm-3"> What IoT data? </dt>
+                <dd class="col-sm-9"> Pareto Anywhere writes <em>dyn</em>amic <em>amb</em>ient <b>dynamb</b> data to InfluxDB using a standard set of properties, which are outlined in <a href="../cheatsheet/#dynamb">our cheatsheet</a>. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-data.jpg"
+                   class="card-img-bottom" alt="Pareto Anywhere data">
+            </div>
+          </div>
+
+
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="img-fluid">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2024 </a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
