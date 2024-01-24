@@ -352,10 +352,17 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
           <p> Depending on your display and <i class="fab fa-raspberry-pi"></i> Pi configuration, it may be necessary to configure additional settings to achieve the desired functionality.  Many of these settings can be found in <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html" target="_blank"><i class="fas fa-external-link-alt"></i> The config.txt file</a>, which is well documented&mdash;<i>and the place to look first!</i> </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="rotatetab"
-                      data-bs-toggle="tab" data-bs-target="#rotatecontent"
-                      type="button" role="tab" aria-controls="rotatetab"
+              <button class="nav-link active" id="darktab"
+                      data-bs-toggle="tab" data-bs-target="#darkcontent"
+                      type="button" role="tab" aria-controls="darktab"
                       aria-selected="true">
+                <i class="fas fa-adjust"></i> Dark theme
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="rotatetab" data-bs-toggle="tab"
+                      data-bs-target="#rotatecontent" type="button" role="tab"
+                      aria-controls="rotatetab" aria-selected="false">
                 <i class="fas fa-redo"></i> Rotate display
               </button>
             </li>
@@ -367,8 +374,14 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
             </li>
           </ul>
           <div class="tab-content tab-content-border border-light-subtle">
-            <div class="tab-pane fade show active" id="rotatecontent"
-                 role="tabpanel" aria-labelledby="rotatetab">
+            <div class="tab-pane fade show active" id="darkcontent"
+                 role="tabpanel" aria-labelledby="darktab">
+              <p class="mt-2"> An increasing number of web pages & applications <span class="text-body-secondary">(like this one!)</span> support light/dark themes.  To prioritise dark themes, add the <b class="font-monospace">--enable-features=WebUIDarkMode</b> and <b class="font-monospace">--force-dark-mode</b> flags to the <i class="fab fa-chrome"></i> <span class="font-monospace">chromium-browser</span> startup script command, like this: </p>
+<pre class="ms-5">chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class="user-select-all">--enable-features=WebUIDarkMode --force-dark-mode</b> https://reelyactive.github.io/diy/pi-kiosk/</pre>
+              <p> This should update the <span class="font-monospace">prefers-color-theme</span> media feature which triggers compatible web pages & applications <small>(ex:  <a href="https://getbootstrap.com/docs/5.3/customize/color-modes/" target="_blank"><i class="fas fa-external-link-alt"></i>Bootstrap 5.3</a> and our own <a href="https://github.com/reelyactive/web-style-guide" target="_blank"><i class="fab fa-github"></i> web-style-guide</a>)</small> to automatically render the desired theme.  </p>
+            </div>
+            <div class="tab-pane fade" id="rotatecontent" role="tabpanel"
+                 aria-labelledby="rotatetab">
               <p class="mt-2"> Edit the <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html#display_hdmi_rotate" target="_blank"><i class="fas fa-external-link-alt"></i> display_rotate_hdmi</a> property and disable the DRM VC4 V3D driver for portrait displays: </p>
               <pre class="ms-5"><b># /boot/config.txt</b>
 
