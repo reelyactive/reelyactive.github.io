@@ -7,6 +7,7 @@
     <meta name="description"
           content="Configure the Nicla Vision as a wireless gauge reader using OpenMV, Bluetooth Low Energy and our open source software.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Nicla Vision Gauge Reader Configuration Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -132,7 +162,7 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Configure a Nicla Vision Gauge Reader </h1>
           <p class="lead"> Our step-by-step guide to create a wireless gauge reader using OpenMV on the Nicla Vision. </p>
-          <img src="images/nicla_header.jpg" class="img-fluid"
+          <img src="images/nicla_header.jpg" class="img-fluid rounded-1"
                alt="Nicla Vision Gauge Reader">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -155,8 +185,6 @@
               </dl>
             </div>
           </div>
-
-
           <!----- Prerequisites ----->
           <h2 class="mt-4"> Prerequisites </h2>
           <p class="lead"> A Nicla Vision and, <em>optionally,</em> a Pareto Anywhere instance creating a context-aware space </p>
@@ -164,7 +192,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="https://shop.espruino.com/">
-                <img src="../common/images/icon-arduino.png">
+                <img src="../common/images/icon-arduino.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -178,7 +206,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pc/">
-                <img src="../pareto-anywhere-pc/images/icon.png">
+                <img src="../pareto-anywhere-pc/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -194,7 +223,8 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pi/">
-                <img src="../pareto-anywhere-pi/images/icon.png">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -207,11 +237,8 @@
               Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
             </li>
           </ul>
-
-
-
           <!----- Step 1 of 8 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Getting the Nicla Gauge Reader Code
@@ -228,11 +255,8 @@
           </div>
           <h3 class="mt-4">Download or clone the codebase from:</h3>
           <a href="https://github.com/reelyactive/nicla-vision-gauge-reader">https://github.com/reelyactive/nicla-vision-gauge-reader</a>
-
-
-
           <!----- Step 2 of 8 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Setting up files on the Nicla Vision &nbsp;
@@ -255,7 +279,6 @@
           </div>
           <h3>Before Copying Files:</h3>
           <img src="images/attachedDeviceFirstTime.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE">            
-         
           <h3 class="mt-4">
             Copy the following files to the nicla vision
           </h3>
@@ -269,11 +292,8 @@
           </p>
           <h3>After Copying Files:</h3>
           <img src="images/attachedDeviceFilesAdded.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE">            
-         
-
-
           <!----- Step 3 of 8 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Running the Code &nbsp;
@@ -286,7 +306,6 @@
                 <dd class="col-sm-9"> The instructions below assume you've gone through the <a href="../nicla-vision-dev/">Nicla Vision Development Guide</a>, to cover the basics of Nicla setup programming with OpenMV.</dd>
                 <dt class="col-sm-3"> How do I point the Nicla at a gauge? </dt>
                 <dd class="col-sm-9"> In a testing environment, you'll want to ensure that the position of the nicla is stable, but adjustable, and convenient for attaching to a computer while pointed at the gauge. Because the Nicla is so light, it's easiest to stablize the end of the usb cable that the Nicla plugs into, rather than the Nicla itself. A Desktop tripod can be a good solution.</dd>
-
               </dl>
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
@@ -314,12 +333,9 @@
           <p>
             <h3>What are the flashing lights on the Nicla?</h3>
               Every time the nicla captures a gauge value and sends it via Bluetooth, it flashes a green light. This will help you position the nicla when it’s not connected to a computer.
-              
           </p>
-
-
           <!----- Step 4 of 8 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step04" class="card-title my-2">
                 Setting up a Gauge for Reading &nbsp;
@@ -334,7 +350,6 @@
                 <dd class="col-sm-9"> In an ideal scenario, the Nicla camera is pointed directly at the center of the gauge, the needle is cleary identifiable, and the min and max needle values are in a consistent position. However, vibrations or installation requirements might make this difficult to achieve. So we need anohter way to identify key points in the image. </dd>
                 <dt class="col-sm-3"> Why is lighting complicated? </dt>
                 <dd class="col-sm-9"> Our solution for "installation complexity" is to use colored dots that the Nicla can easily find. However, different lighting conditions might make the Nicla see different colors on the dots. So we need to calibrate the color recognition algorithm is we use this approach.</dd>
-
               </dl>
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
@@ -359,10 +374,8 @@
             Place small colored dots at the min and max gauge positions, and on the center of the gauge.
             Then configure the color thresholds to identify those colors.
           </p>
-
-
           <!----- Step 5 of 8 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step05" class="card-title my-2">
                 Color Dot Calibration &nbsp;
@@ -383,7 +396,6 @@
                    alt="">
             </div>
           </div>
-
           <h3 class="mt-4">
             Run the code
             <small class="text-muted"> Part 1 </small>
@@ -397,7 +409,6 @@
           <p>
             Start the code running when the nicla is pointed at the gauge in the intended setup. It's important to START it with the nicla in the right place, because the camera calibrates itself to its starting conditions</p>
           </p>
-          
           <h3 class="mt-4">
             Point at the color
             <small class="text-muted"> Part 2 </small>
@@ -407,7 +418,6 @@
               <img src="images/niclaPointedAtRedDot.png" class="img-fluid" alt="Closeup of the nicla camera pointed at the Red dot on the gauge." >
             </center>
           </p>
-
           <h3 class="mt-4">
             Grab the color
             <small class="text-muted"> Part 3 </small>
@@ -417,7 +427,6 @@
             <br>
             This is the LAB value of the pixel in the center of the image
           </p>        
-          
           <h3 class="mt-4">
             Create a Range
             <small class="text-muted"> Part 4 </small>
@@ -451,18 +460,13 @@
   "max_color" : "green",# the color of the dot at the MAXIMUM value of the gauge
   "center_color" : "room4_yellow", # the color of the dot at the CENTER of the gauge
           </pre>
-
-
           <h3 class="mt-4">
             Try it out!            
             <small class="text-muted"> Part 6 </small>
           </h3>            
           <p>Run the code again and see if it works!</p>
-
-
-
           <!----- Step 6 of 8 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step06" class="card-title my-2">
                 Observing the Bluetooth Values &nbsp;
@@ -487,10 +491,8 @@
           <center>
             <img src="images/nrfConnect.png" class="img-fluid" width="50%" alt="Screenshot of nrfConnect iOS app, showing the Nicla Device sending data." >
           </center>
-
-
           <!----- Step 7 of 8 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step07" class="card-title my-2">
                 Running the Nicla Detached &nbsp;
@@ -514,12 +516,8 @@
             <li>Copy nicla-vision-gauge-reader/nicla/main-gauge1.py to the Nicla renaming it to main.py</li>
             <li>Unplug and re-plug the Nicla, or press the reset button on the Nicla</li>
           </ul>
-
-                    
-
-
           <!----- Step 8 of 8 ---->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step08" class="card-title my-2">
                 Running in Low-Power Mode &nbsp;
@@ -535,12 +533,10 @@
                    alt="">
             </div>
           </div>
-
           <h3 class="mt-4">
             Configuring Low-Power Mode
             <small class="text-muted"> Part 1 </small>
           </h3>          
-
           <p>
             Set the following configuration variables:
             <pre>
@@ -563,10 +559,8 @@
             </pre>
             When you re-connect the Nicla to your computer , you have a brief window where the device is available to copy files to, before sleeping again. During this window, try to copy ra_config.py to it. This might result in ra_config.py on the nicla becoming corrupted, in which case main.py won’t run, meaning it won’t go back to sleep, it will stay attached to your computer, and you can now upload your new ra_config.py files.
           </p>
-
-
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -597,7 +591,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="img-fluid">
+                <img src="../devices/images/icon.gif" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -610,7 +604,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png" class="img-fluid">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -623,7 +617,8 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -632,7 +627,7 @@
                   <i class="fas fa-external-link-alt"></i> reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together, let's make sense of things.
             </li>
           </ul>
         </div>
@@ -641,7 +636,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2023-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->

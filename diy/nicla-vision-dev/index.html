@@ -7,6 +7,7 @@
     <meta name="description"
           content="Develop Nicla Vision applications for context-aware physical spaces using OpenMV and Bluetooth Low Energy.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Nicla Vision Development Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -132,7 +162,7 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Nicla Vision Development Guide </h1>
           <p class="lead"> Develop Nicla Vision applications for context-aware physical spaces using OpenMV and Bluetooth Low Energy. </p>
-          <img src="images/header.jpg" class="img-fluid"
+          <img src="images/header.jpg" class="img-fluid rounded-1"
                alt="Nicla Vision Development with OpenMV">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -159,7 +189,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="https://shop.espruino.com/">
-                <img src="../common/images/icon-arduino.png">
+                <img src="../common/images/icon-arduino.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -173,7 +203,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pc/">
-                <img src="../pareto-anywhere-pc/images/icon.png">
+                <img src="../pareto-anywhere-pc/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -189,7 +220,8 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pi/">
-                <img src="../pareto-anywhere-pi/images/icon.png">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -203,7 +235,7 @@
             </li>
           </ul>
           <!----- Step 1 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Connecting to the Nicla Vision &nbsp;
@@ -252,7 +284,7 @@
                alt="The OpenMV IDE footer with connected device">
           <p> The Nicla Vision can now be programmed via the OpenMV IDE, which is the subject of the next step. </p>
           <!----- Step 2 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Programming the Nicla Vision &nbsp;
@@ -312,7 +344,7 @@ while(True):
           </h3>
           <p> Example to come. </p>
           <!----- Step 3 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Running other programs &nbsp;
@@ -344,7 +376,7 @@ while(True):
             </div>
           </div>
           <!----- Step 4 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step04" class="card-title my-2">
                 Powering the Nicla Vision &nbsp;
@@ -397,7 +429,7 @@ while(True):
           </h3>
           <p> The Nicla Vision can be powered from the Battery Connector (J4) using a single-cell 3.7 V Li-Po or Li-Ion battery.  See <a href="https://support.arduino.cc/hc/en-us/articles/4408893476498-Connect-a-battery-to-Nicla-Sense-ME-or-Nicla-Vision" target="_blank"><i class="fas fa-external-link-alt"></i> this tutorial</a> for details. </p>
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -428,7 +460,7 @@ while(True):
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="img-fluid">
+                <img src="../devices/images/icon.gif" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -441,7 +473,7 @@ while(True):
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png" class="img-fluid">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -454,7 +486,8 @@ while(True):
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -463,7 +496,7 @@ while(True):
                   <i class="fas fa-external-link-alt"></i> reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together, let's make sense of things.
             </li>
           </ul>
         </div>
@@ -472,7 +505,7 @@ while(True):
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2023-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
