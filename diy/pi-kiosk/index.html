@@ -169,7 +169,7 @@
             <div class="card-body">
               <h2>
                 The TL;DR
-                <small class="text-muted"> (Too Long; Didn't Read) </small>
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
               </h2>
               <p class="lead"> Learn how we at reelyActive configure a Raspberry Pi as a kiosk display. </p>
               <p> The Raspberry Pi can act as a digital display driver thanks to its HDMI port. </p>
@@ -209,7 +209,7 @@
             </li>
             <li class="list-group-item border-0">
               <h5 class="mt-0 mb-1">
-                <span class="text-muted"> [OPTIONAL] </span>
+                <span class="text-body-secondary"> [OPTIONAL] </span>
                 <a href="../pareto-anywhere-pi/"> Run Pareto Anywhere on a Raspberry Pi </a>
               </h5>
               Install and run Pareto Anywhere open source IoT middleware on a <i class="fab fa-raspberry-pi"></i> Pi.
@@ -239,7 +239,7 @@
           <p> Both the <i class="fab fa-raspberry-pi"></i> Pi and the computer <i class="fas fa-laptop"></i> used for its configuration must be on the <em>same</em> network, with which they can access the Internet. </p>
           <h3 class="mt-4">
             Boot the Pi and connect via SSH
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> With <a href="../pi-prep/" target="_blank">the prepared micro SD card <i class="fas fa-sd-card"></i></a> inserted into the <i class="fab fa-raspberry-pi"></i>  Pi, complete the following: </p>
           <ol>
@@ -250,7 +250,7 @@
           <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code class="user-select-all">sudo raspi-config</code> </p>
           <h3 class="mt-4">
             Install the X Window System (X11)
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH: </p>
           <ol>
@@ -260,7 +260,7 @@
           </ol>
           <h3 class="mt-4">
             Install Chromium and kiosk dependencies
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH: </p>
           <ol>
@@ -290,9 +290,9 @@
           <p class="mt-4"> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH: </p>
           <h3 class="mt-4">
             Create the kiosk startup script
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
-          <p> Create a new file called <b>kiosk</b> in the pi user's home folder with the command <code class="user-select-all">nano ~/kiosk</code> and paste in the following template, updating <span class="text-primary">the URL on the last line</span> as required <span class="text-muted">(unless you like this tutorial so much that you plan to display it on a big screen!)</span>: </p>
+          <p> Create a new file called <b>kiosk</b> in the pi user's home folder with the command <code class="user-select-all">nano ~/kiosk</code> and paste in the following template, updating <span class="text-primary">the URL on the last line</span> as required <span class="text-body-secondary">(unless you like this tutorial so much that you plan to display it on a big screen!)</span>: </p>
           <pre class="user-select-all">#!/bin/sh
 xset -dpms     # disable DPMS (Energy Star) features.
 xset s off     # disable screen saver
@@ -303,14 +303,14 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
           <p> Make the kiosk script file executable with the command <code class="user-select-all">chmod 755 ~/kiosk</code>
           <h3 class="mt-4">
             Add the kiosk script to .bashrc
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> Initiation of the X Windows System and the kiosk script will be added to the pi user's .bashrc file which runs each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
           <p> Edit the <b>~/.bashrc</b> file with the command <code class="user-select-all">nano ~/.bashrc</code> to include the following as the last line: </p>
           <pre class="user-select-all">xinit /home/pi/kiosk -- vt$(fgconsole)</pre>
           <h3 class="mt-4">
             Configure boot and display with the raspi-config tool
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p> From the command prompt <i class="fas fa-terminal"></i> on the Pi <i class="fab fa-raspberry-pi"></i>, enter the command <code>sudo raspi-config</code> which will open a text-based menu.  Update the configuration as per the following table where the settings are indicated in [ ]. </p>
           <table class="table table-hover">
@@ -347,7 +347,7 @@ chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 <b class
           <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  If a display is connected via HDMI, following the boot sequence, the <i class="fab fa-chrome"></i> Chromium browser should open in kiosk mode and display the specified webpage. </p>
           <h3 class="mt-4">
             Configure custom settings
-            <small class="text-muted"> (OPTIONAL) Part 4 </small>
+            <small class="text-body-secondary"> (OPTIONAL) Part 4 </small>
           </h3>
           <p> Depending on your display and <i class="fab fa-raspberry-pi"></i> Pi configuration, it may be necessary to configure additional settings to achieve the desired functionality.  Many of these settings can be found in <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html" target="_blank"><i class="fas fa-external-link-alt"></i> The config.txt file</a>, which is well documented&mdash;<i>and the place to look first!</i> </p>
           <ul class="nav nav-tabs" role="tablist">
@@ -392,7 +392,7 @@ display_hdmi_rotate=1
 #dtoverlay=vc4-kms-v3d
 #max_framebuffers=2</pre>
               <p class="text-end mb-0">
-                <small class="text-muted"> Thanks to Mike for validating this configuration on a Pi 3B! </small>
+                <small class="text-body-secondary"> Thanks to Mike for validating this configuration on a Pi 3B! </small>
               </p>
             </div>
             <div class="tab-pane fade" id="morecontent" role="tabpanel"
@@ -417,7 +417,7 @@ display_hdmi_rotate=1
           </ul>
           <h3 class="mt-4">
             Display Pareto Anywhere Apps
-            <small class="text-muted"> (OPTIONAL) Part 5 </small>
+            <small class="text-body-secondary"> (OPTIONAL) Part 5 </small>
           </h3>
           <p> If <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is running on the <i class="fab fa-raspberry-pi"></i> Pi, any of the <a href="https://www.reelyactive.com/pareto/anywhere/apps/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere Apps</a> can be displayed in kiosk mode, such as the following, simply by updating <span class="text-primary">the URL</span> in the <b>kiosk</b> file (see Part 1): </p>
           <div id="carouselApps" class="carousel slide carousel-fade"
@@ -492,7 +492,7 @@ display_hdmi_rotate=1
               <div class="col-10 offset-sm-1 align-self-center">
                 <div class="card-body">
                   <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
-                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                  <small class="card-text text-body-secondary"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
                 </div>
               </div>
             </div>

@@ -169,7 +169,7 @@
             <div class="card-body">
               <h2>
                 The TL;DR
-                <small class="text-muted"> (Too Long; Didn't Read) </small>
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
               </h2>
               <p class="lead"> Learn how to program a Nicla Vision board with existing applications, or develop your own. </p>
               <hr>
@@ -197,7 +197,7 @@
                 <h5 class="mt-0 mb-1"> <i class="fas fa-external-link-alt"></i> Buy a Nicla Vision<sup>*</sup> from the Arduino Store </h5>
               </a>
               Support <i class="fas fa-hand-holding-heart"></i> the ongoing development of the Arduino open source hardware ecosystem!
-              <p class="small text-muted text-end mb-0"> <sup>*</sup> a standard USB A to micro-B cable is required<em>&mdash;but not included!</em> </p>
+              <p class="small text-body-secondary text-end mb-0"> <sup>*</sup> a standard USB A to micro-B cable is required<em>&mdash;but not included!</em> </p>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
@@ -209,7 +209,7 @@
             </li>
             <li class="list-group-item border-0">
               <h5 class="mt-0 mb-1">
-                <span class="text-muted">[OPTIONAL]</span>
+                <span class="text-body-secondary">[OPTIONAL]</span>
                 <a href="../pareto-anywhere-pc/">
                   Run Pareto Anywhere on a PC
                 </a>
@@ -226,7 +226,7 @@
             </li>
             <li class="list-group-item border-0">
               <h5 class="mt-0 mb-1">
-                <span class="text-muted">[OPTIONAL]</span>
+                <span class="text-body-secondary">[OPTIONAL]</span>
                 <a href="../pareto-anywhere-pi/">
                   Run Pareto Anywhere on a Raspberry Pi
                 </a>
@@ -262,16 +262,16 @@
           </ol>
           <h3 class="mt-4">
             Connect the antenna and USB cable
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> The Nicla Vision ships with an <em>external</em> 2.4/5GHz antenna for <i class="fab fa-bluetooth"></i> BLE & <i class="fas fa-wifi"></i> WiFi connectivity.  Install this antenna by carefully aligning the connector and applying sufficient pressure for it to snap into place. </p>
-          <p class="small text-muted"> Note that once connected, the antenna should only be removed using a specialised tool, in order not to damage the connector. </p>
+          <p class="small text-body-secondary"> Note that once connected, the antenna should only be removed using a specialised tool, in order not to damage the connector. </p>
           <p> Choose a USB A to micro-B cable of sufficient length to allow the camera to be pointed at subjects of interest while tethered.  Connect the micro-B end to the Nicla Vision and the other end to the <i class="fas fa-laptop"></i> laptop. </p>
           <img src="images/nicla-vision-connections.jpg" class="img-fluid"
                alt="Nicla Vision Connections">
           <h3 class="mt-4">
             Connect in the OpenMV IDE
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> Run the OpenMV IDE on your <i class="fas fa-laptop"></i> laptop.  The default view should resemble the following.  Annotations have been added to highlight key features. </p>
           <img src="images/openmv-ide.png"
@@ -305,7 +305,7 @@
           <p class="mt-4"> From the OpenMV IDE connected to the Nicla Vision: </p>
           <h3 class="mt-4">
             Run "helloworld.py"
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> The OpenMV IDE should open a helloworld.py file by default.  Click the <i class="fas fa-mouse-pointer"></i> <b>Start <small>(run script)</small></b> icon at the bottom left of the IDE to run this script on the Nicla Vision. </p>
           <p> Show the <b>Serial Terminal</b> to observe the number of frames per second (fps) printed to the console.  Show the <b>Frame Buffer</b> to observe what the camera sees, as well as the <b>Histogram</b> of the colour space. </p>
@@ -315,7 +315,7 @@
           <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Stop <small>(halt script)</small></b> icon at the bottom left of the IDE to stop running this script on the Nicla Vision. </p>
           <h3 class="mt-4">
             Run "helloadvertising.py"
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> Open a new file in the OpenMV IDE, and copy <kbd>Ctrl+C</kbd> and paste <kbd>Ctrl+V</kbd> the following lines of code into the code editor window: </p>
           <pre class="user-select-all ms-4">import bluetooth, time
@@ -340,7 +340,7 @@ while(True):
                alt="helloadvertising.py in Pareto Anywhere API">
           <h3 class="mt-4">
             Combine machine vision and BLE
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p> Example to come. </p>
           <!----- Step 3 of 4 ----->
@@ -366,7 +366,7 @@ while(True):
             <div class="col-md-6 col-xxl-8">
               <h3>
                 Gauge Reader
-                <small class="text-muted"> Code </small>
+                <small class="text-body-secondary"> Code </small>
               </h3>
               <p> Load our <a href="https://github.com/reelyactive/nicla-vision-gauge-reader/" target="_blank"><i class="fab fa-github"></i> nicla-vision-gauge-reader</a> code to interpret and transmit analogue gauge level data that can be observed in Pareto Anywhere's APIs and web apps. </p>
             </div>
@@ -396,17 +396,17 @@ while(True):
           </div>
           <h3 class="mt-4">
             USB Connector
-            <small class="text-muted"> Option 1 </small>
+            <small class="text-body-secondary"> Option 1 </small>
           </h3>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Power from the USB connector is prioritised over the ESLOV and the Battery Connector. </p>
           <p> The Nicla Vision can be powered via USB, either via connection to a laptop, or from a standard USB power bank. </p>
           <h3 class="mt-4">
             ESLOV Connector (J5)
-            <small class="text-muted"> Option 2 </small>
+            <small class="text-body-secondary"> Option 2 </small>
           </h3>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Power from the ESLOV is prioritised over the Battery Connector. </p>
           <p> The Nicla Vision can be powered from the ESLOV Connector (J5) which nominally expects 5VDC, but can accept the range of voltages supported on the V<sub>IN</sub> pin<sup>*</sup> to which the ESLOV is diode-connected.  For instance, it is possible to power the Nicla Vision via the ESLOV with 3 x 1.5V batteries (ex: AAA, AA, C or D) using commercially-available 3-cell battery holders. </p>
-          <p class="small text-muted text-end"> <sup>*</sup>The datasheet specifies 3.5V-5.5V as recommended operating conditions. </p>
+          <p class="small text-body-secondary text-end"> <sup>*</sup>The datasheet specifies 3.5V-5.5V as recommended operating conditions. </p>
           <div class="row">
             <div class="col-md-3">
               <img src="images/eslov-power-plug.jpg" class="img-fluid mb-3"
@@ -425,7 +425,7 @@ while(True):
                alt="Nicla Vision powered from ESLOV connector">
           <h3 class="mt-4">
             Battery Connector (J4)
-            <small class="text-muted"> Option 3 </small>
+            <small class="text-body-secondary"> Option 3 </small>
           </h3>
           <p> The Nicla Vision can be powered from the Battery Connector (J4) using a single-cell 3.7 V Li-Po or Li-Ion battery.  See <a href="https://support.arduino.cc/hc/en-us/articles/4408893476498-Connect-a-battery-to-Nicla-Sense-ME-or-Nicla-Vision" target="_blank"><i class="fas fa-external-link-alt"></i> this tutorial</a> for details. </p>
           <!----- Attribution ----->
@@ -448,7 +448,7 @@ while(True):
               <div class="col-10 offset-sm-1 align-self-center">
                 <div class="card-body">
                   <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
-                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. &nbsp; We invite you to <i class="fas fa-donate"></i> <a href="https://github.com/sponsors/openmv" target="_blank">sponsor OpenMV</a> too! </small>
+                  <small class="card-text text-body-secondary"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. &nbsp; We invite you to <i class="fas fa-donate"></i> <a href="https://github.com/sponsors/openmv" target="_blank">sponsor OpenMV</a> too! </small>
                 </div>
               </div>
             </div>
