@@ -7,6 +7,7 @@
     <meta name="description"
           content="reelyActive Developers directory of device configuration tutorials and development guides.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Devices </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -42,8 +43,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -60,6 +60,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -83,7 +113,7 @@
                 <li class="dropdown-divider"></li>
                 <li>
                   <a class="dropdown-item" target="_blank"
-                     href="https://getbootstrap.com" >
+                     href="https://getbootstrap.com">
                     <i class="fab fa-bootstrap"></i>
                     Bootstrap 5 &nbsp;
                     <span class="badge bg-light text-dark">
@@ -93,7 +123,7 @@
                 </li>
                 <li>
                   <a class="dropdown-item" target="_blank"
-                     href="https://fontawesome.com" >
+                     href="https://fontawesome.com">
                     <i class="fab fa-font-awesome"></i>
                     Font Awesome (Free) &nbsp;
                     <span class="badge bg-light text-dark">
@@ -104,7 +134,7 @@
                 </li>
                 <li>
                   <a class="dropdown-item" target="_blank"
-                     href="https://github.com/reelyactive/web-style-guide/" >
+                     href="https://github.com/reelyactive/web-style-guide/">
                     <i class="fas fa-code"></i>
                     Web Style Guide &nbsp;
                     <span class="badge bg-light text-dark">
@@ -115,7 +145,7 @@
                 <li class="dropdown-divider"></li>
                 <li>
                   <a class="dropdown-item" target="_blank"
-                     href="https://www.reelyactive.com/made-in-montreal/" >
+                     href="https://www.reelyactive.com/made-in-montreal/">
                     <i class="fab fa-canadian-maple-leaf"></i>
                     Made in Montr&eacute;al &nbsp;
                     <i class="fas fa-city"></i>
@@ -134,7 +164,7 @@
           <img src="../common/images/reelyactive-developers-title.png"
                class="img-fluid mt-4" alt="reelyActive Developers">
           <!----- Ambient Devices 1 of 2 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="devices" class="card-title my-2">
                 Ambient Devices &nbsp;
@@ -154,135 +184,142 @@
           </div>
           <h3 class="mt-4">
             Espruino
-            <small class="text-muted"> Devices </small>
+            <small class="text-body-secondary"> Devices </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="banglejs-dev/">
-                <img src="../banglejs-dev/images/icon.jpg">
+                <img src="../banglejs-dev/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../banglejs-dev/">
                 <h5 class="mt-0 mb-1"> Bangle.js Development Guide </h5>
               </a>
-              <small class="text-muted"> Discover and develop Bangle.js applications for context-aware physical spaces using Espruino and Bluetooth Low Energy. </small>
+              <small class="text-body-secondary"> Discover and develop Bangle.js applications for context-aware physical spaces using Espruino and Bluetooth Low Energy. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="puckjs-dev/">
-                <img src="../puckjs-dev/images/icon.jpg">
+                <img src="../puckjs-dev/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../puckjs-dev/">
                 <h5 class="mt-0 mb-1"> Puck.js Development Guide </h5>
               </a>
-              <small class="text-muted"> Discover and develop Puck.js applications for context-aware physical spaces using Espruino and Bluetooth Low Energy. </small>
+              <small class="text-body-secondary"> Discover and develop Puck.js applications for context-aware physical spaces using Espruino and Bluetooth Low Energy. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             Arduino
-            <small class="text-muted"> Devices </small>
+            <small class="text-body-secondary"> Devices </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="nicla-vision-dev/">
-                <img src="../nicla-vision-dev/images/icon.png">
+                <img src="../nicla-vision-dev/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../nicla-vision-dev/">
                 <h5 class="mt-0 mb-1"> Nicla Vision Development Guide </h5>
               </a>
-              <small class="text-muted"> Develop Nicla Vision applications for context-aware physical spaces using OpenMV and Bluetooth Low Energy. </small>
+              <small class="text-body-secondary"> Develop Nicla Vision applications for context-aware physical spaces using OpenMV and Bluetooth Low Energy. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="nicla-vision-dev/">
-                <img src="../nicla-vision-gauge-reader-config/images/icon.png">
+                <img src="../nicla-vision-gauge-reader-config/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../nicla-vision-gauge-reader-config/">
                 <h5 class="mt-0 mb-1"> Nicla Vision Gauge Reader Configuration Guide </h5>
               </a>
-              <small class="text-muted"> Create a wireless gauge reader using OpenMV and Bluetooth Low Energy. </small>
+              <small class="text-body-secondary"> Create a wireless gauge reader using OpenMV and Bluetooth Low Energy. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             Minew
-            <small class="text-muted"> Devices </small>
+            <small class="text-body-secondary"> Devices </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-b10-config/">
-                <img src="../minew-b10-config/images/icon.png">
+                <img src="../minew-b10-config/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-b10-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew B10 Wristband </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the multi-use wristband with the BeaconSET+ app. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the multi-use wristband with the BeaconSET+ app. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-msp01-config/">
-                <img src="../minew-msp01-config/images/icon.jpg">
+                <img src="../minew-msp01-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-msp01-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew MSP01 PIR Sensor </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the passive infrared sensor with the BeaconSET+ app. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the passive infrared sensor with the BeaconSET+ app. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-e8-config/">
-                <img src="../minew-e8-config/images/icon.jpg">
+                <img src="../minew-e8-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-e8-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew E8 beacon </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure an E8 beacon with the BeaconSET+ app. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure an E8 beacon with the BeaconSET+ app. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-s1-config/">
-                <img src="../minew-s1-config/images/icon.jpg">
+                <img src="../minew-s1-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-s1-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew S1 beacon </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure a S1 beacon with the BeaconSET+ app. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure a S1 beacon with the BeaconSET+ app. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-c6-config/">
-                <img src="../minew-c6-config/images/icon.jpg">
+                <img src="../minew-c6-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-c6-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew C6 beacon </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure a C6 beacon with the BeaconSET+ app. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure a C6 beacon with the BeaconSET+ app. </small>
             </li>
           </ul>
           <!----- Ambient Infrastructure 2 of 2 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="infrastructure" class="card-title my-2">
                 Ambient Infrastructure &nbsp;
@@ -302,149 +339,157 @@
           </div>
           <h3 class="mt-4">
             HPE Aruba Networking
-            <small class="text-muted"> Infrastructure </small>
+            <small class="text-body-secondary"> Infrastructure </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../aruba-instant-config/">
-                <img src="../aruba-instant-config/images/icon.jpg">
+                <img src="../aruba-instant-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../aruba-instant-config/">
                 <h5 class="mt-0 mb-1"> Configure an Aruba Instant AP </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the access point(s) to forward data for processing by Pareto Anywhere. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the access point(s) to forward data for processing by Pareto Anywhere. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-azure-aruba/">
-                <img src="../pareto-anywhere-azure-aruba/images/icon.png">
+                <img src="../pareto-anywhere-azure-aruba/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-azure-aruba/">
                 <h5 class="mt-0 mb-1"> Run Pareto Anywhere for Azure with Aruba APs </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Azure, with HPE Aruba Networking access points as an IoT data source. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Azure, with HPE Aruba Networking access points as an IoT data source. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             <i class="fab fa-raspberry-pi"></i> Pi
-            <small class="text-muted"> Infrastructure </small>
+            <small class="text-body-secondary"> Infrastructure </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pi/">
-                <img src="../pareto-anywhere-pi/images/icon.png">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pi/">
                 <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             Minew
-            <small class="text-muted"> Infrastructure </small>
+            <small class="text-body-secondary"> Infrastructure </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-g1-config/">
-                <img src="../minew-g1-config/images/icon.png">
+                <img src="../minew-g1-config/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-g1-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew G1 gateway </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the gateway to forward data for processing by Pareto Anywhere. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the gateway to forward data for processing by Pareto Anywhere. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-mg3-config/">
-                <img src="../minew-mg3-config/images/icon.jpg">
+                <img src="../minew-mg3-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-mg3-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew MG3 gateway </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the gateway to forward data for processing by Pareto Anywhere. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the gateway to forward data for processing by Pareto Anywhere. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../minew-mg4-config/">
-                <img src="../minew-mg4-config/images/icon.jpg">
+                <img src="../minew-mg4-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../minew-mg4-config/">
                 <h5 class="mt-0 mb-1"> Configure a Minew MG4 gateway </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the gateway to forward data for processing by Pareto Anywhere. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the gateway to forward data for processing by Pareto Anywhere. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             Impinj
-            <small class="text-muted"> Infrastructure </small>
+            <small class="text-body-secondary"> Infrastructure </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../impinj-r700-config/">
-                <img src="../impinj-r700-config/images/icon.jpg">
+                <img src="../impinj-r700-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../impinj-r700-config/">
                 <h5 class="mt-0 mb-1"> Configure an Impinj R700 reader </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the reader to forward data for processing by Pareto Anywhere. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the reader to forward data for processing by Pareto Anywhere. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             Laird
-            <small class="text-muted"> Infrastructure </small>
+            <small class="text-body-secondary"> Infrastructure </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../laird-ig60-prep/">
-                <img src="../laird-ig60-prep/images/icon.jpg">
+                <img src="../laird-ig60-prep/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../laird-ig60-prep/">
                 <h5 class="mt-0 mb-1"> Prepare a Laird IG60 gateway from scratch </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to prepare a lean yet versatile SD card image for the IG60. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to prepare a lean yet versatile SD card image for the IG60. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             reelyActive
-            <small class="text-muted"> Infrastructure </small>
+            <small class="text-body-secondary"> Infrastructure </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../oio-config/">
-                <img src="../oio-config/images/icon.jpg">
+                <img src="../oio-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../oio-config/">
                 <h5 class="mt-0 mb-1"> Configure an Owl-in-One </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to configure the WiFi and/or program the software of an Owl-in-One. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to configure the WiFi and/or program the software of an Owl-in-One. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../oio-wlan/">
-                <img src="../oio-wlan/images/icon.jpg">
+                <img src="../oio-wlan/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -452,24 +497,25 @@
                 <h5 class="mt-0 mb-1"> Create a WLAN of Owl-in-Ones and a laptop
  </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to create a local wireless network by configuring an Owl-in-One as an access point. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to create a local wireless network by configuring an Owl-in-One as an access point. </small>
             </li>
           </ul>
           <h3 class="mt-4">
             Personal Computer
-            <small class="text-muted"> Infrastructure </small>
+            <small class="text-body-secondary"> Infrastructure </small>
           </h3>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pc/">
-                <img src="../pareto-anywhere-pc/images/icon.png">
+                <img src="../pareto-anywhere-pc/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pc/">
                 <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to install and run Pareto Anywhere on a personal computer to make any physical space context-aware. </small>
+              <small class="text-body-secondary"> Our step-by-step guide to install and run Pareto Anywhere on a personal computer to make any physical space context-aware. </small>
             </li>
           </ul>
           <!----- Where to next ----->
@@ -479,7 +525,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="/">
-                <img src="../common/images/icon.png">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -493,7 +539,8 @@
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com/pareto/anywhere/"
                  target="_blank">
-                <img src="../common/images/icon-pareto-anywhere.png">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -504,13 +551,14 @@
                   Pareto Anywhere
                 </h5>
               </a>
-              Open source middleware for context-aware physical spaces.
+              The open source IoT middleware that makes sense of things.
             </li>
           </ul>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -520,7 +568,7 @@
                   reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together, let's make sense of things.
             </li>
           </ul>
         </div>
@@ -529,7 +577,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->

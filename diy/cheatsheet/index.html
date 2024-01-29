@@ -7,6 +7,7 @@
     <meta name="description"
           content="reelyActive Developers cheatsheet of data structures and concepts for Pareto Anywhere middleware and our open technology architecture.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Cheatsheet </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -42,8 +43,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -60,6 +60,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -145,7 +175,7 @@
                role="button"> #idtype </a>
           </p>
           <!----- raddec ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="raddec" class="card-title my-2">
                 raddec &nbsp;
@@ -166,7 +196,7 @@
           <div class="row mt-4">
             <div class="col-lg-6 mb-3">
               <h3 class="mb-3"> JSON <small>raddec</small> </h3>
-              <pre class="text-dark">
+              <pre>
 {
     "transmitterId": "...",
     "transmitterIdType": 0,
@@ -175,13 +205,13 @@
         "receiverIdType: 0,
         "rssi": -99,
         "numberOfDecodings": 1,
-        <em class="text-info">"receiverAntenna": 3,</em>
-        <em class="text-info">"aoa": [ 0, 0 ]</em>
+        <em class="text-body-secondary">"receiverAntenna": 3,</em>
+        <em class="text-body-secondary">"aoa": [ 0, 0 ]</em>
     }],
-    <em class="text-info">"timestamp": 1645568542222,</em>
-    <em class="text-info">"packets": [ '...' ],</em>
-    <em class="text-info">"events": [ 0, 2 ],</em>
-    <em class="text-info">"position": [ 0, 0, 0 ]</em>
+    <em class="text-body-secondary">"timestamp": 1645568542222,</em>
+    <em class="text-body-secondary">"packets": [ '...' ],</em>
+    <em class="text-body-secondary">"events": [ 0, 2 ],</em>
+    <em class="text-body-secondary">"position": [ 0, 0, 0 ]</em>
 }</pre>
               <h3 class="mb-3"> Binary <small>raddec</small> </h3>
               <p> A raddec can be converted to/from a compact binary representation using the <a href="https://github.com/reelyactive/raddec" target="_blank"><i class="fab fa-github"></i> raddec</a> library. </p>
@@ -211,7 +241,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          String <small class="text-muted"> (hexadecimal, lowercase) </small>
+                          String <small class="text-body-secondary"> (hexadecimal, lowercase) </small>
                         </dd>
                       </dl>
                       <p> Radio-identifier of the <em>transmitting</em> device. </p>
@@ -239,7 +269,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Number <small class="text-muted"> (whole number) </small>
+                          Number <small class="text-body-secondary"> (whole number) </small>
                         </dd>
                       </dl>
                       <p> Type of radio-identifier of the <em>transmitting</em> device.  See <a href="#idtype">#idtype</a> index below. </p>
@@ -268,7 +298,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Array <small class="text-muted"> (minimum length 1) </small>
+                          Array <small class="text-body-secondary"> (minimum length 1) </small>
                         </dd>
                       </dl>
                       <p> Radio <em>receivers</em> ordered by decreasing RSSI (<i class="fas fa-signal"></i> signal strength).  Each object in the array has the following properties: </p>
@@ -276,31 +306,31 @@
                         <tbody>
                           <tr>
                             <td> receiverId </td>
-                            <td class="small text-muted"> (hexadecimal, lowercase) </td>
+                            <td class="small text-body-secondary"> (hexadecimal, lowercase) </td>
                           </tr>
                           <tr>
                             <td> receiverIdType </td>
-                            <td class="small text-muted"> (whole number) See <a href="#idtype">#idtype</a> </td>
+                            <td class="small text-body-secondary"> (whole number) See <a href="#idtype">#idtype</a> </td>
                           </tr>
                           <tr>
                             <td> rssi </td>
-                            <td class="small text-muted"> in dBm (integer) </td>
+                            <td class="small text-body-secondary"> in dBm (integer) </td>
                           </tr>
                           <tr>
                             <td> numberOfDecodings </td>
-                            <td class="small text-muted"> (minimum 1) </td>
+                            <td class="small text-body-secondary"> (minimum 1) </td>
                           </tr>
                           <tr>
-                            <td> <em class="text-muted">receiverAntenna<sup>*</sup></em> </td>
-                            <td class="small text-muted"> <em>(whole number)</em> </td>
+                            <td> <em class="text-body-secondary">receiverAntenna<sup>*</sup></em> </td>
+                            <td class="small text-body-secondary"> <em>(whole number)</em> </td>
                           </tr>
                           <tr>
-                            <td> <em class="text-muted">aoa<sup>*</sup></em> </td>
-                            <td class="small text-muted"> <em>[ azimuth, elevation ]</em> </td>
+                            <td> <em class="text-body-secondary">aoa<sup>*</sup></em> </td>
+                            <td class="small text-body-secondary"> <em>[ azimuth, elevation ]</em> </td>
                           </tr>
                         </tbody>
                       </table>
-                      <p class="small text-muted text-end"><sup>*</sup> optional property</p>
+                      <p class="small text-body-secondary text-end"><sup>*</sup> optional property</p>
                     </div>
                   </div>
                 </div>
@@ -329,7 +359,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Number <small class="text-muted"> (whole number) </small>
+                          Number <small class="text-body-secondary"> (whole number) </small>
                         </dd>
                       </dl>
                       <p> UNIX epoch (in milliseconds) representing the time at which the radio-transmission was received. </p>
@@ -356,7 +386,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Array <small class="text-muted"> (minimum length 0) </small>
+                          Array <small class="text-body-secondary"> (minimum length 0) </small>
                         </dd>
                       </dl>
                       <p> Hexadecimal strings (lowercase) representing individual raw transmission payloads, without duplicates. </p>
@@ -384,11 +414,11 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Array <small class="text-muted"> (minimum length 1) </small>
+                          Array <small class="text-body-secondary"> (minimum length 1) </small>
                         </dd>
                       </dl>
                       <p> Index list of events associated with this radio decoding: </p>
-                      <ol start="0" class="font-monospace text-muted ms-3">
+                      <ol start="0" class="font-monospace text-body-secondary ms-3">
                         <li> APPEARANCE </li>
                         <li> DISPLACEMENT </li>
                         <li> PACKETS </li>
@@ -419,7 +449,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Array <small class="text-muted"> (minimum length 2) </small>
+                          Array <small class="text-body-secondary"> (minimum length 2) </small>
                         </dd>
                       </dl>
                       <p> The calculated position of the transmitting device based on its radio decodings. </p>
@@ -431,7 +461,7 @@
             </div>
           </div>
           <!----- dynamb ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="dynamb" class="card-title my-2">
                 dynamb &nbsp;
@@ -452,14 +482,14 @@
           <div class="row mt-4">
             <div class="col-lg-6 mb-3">
               <h3 class="mb-3"> JSON <small>dynamb</small> </h3>
-              <pre class="text-dark">
+              <pre>
 {
     "deviceId": "...",
     "deviceIdType": 0,
     "timestamp": 1645568542222,
-    <em class="text-muted">"property<sub>0</sub>": value<sub>0</sub>,</em>
-    <em class="text-muted">    &#x22ee;     :   &#x22ee;</em>
-    <em class="text-muted">"property<sub>n</sub>": value<sub>n</sub></em>
+    <em class="text-body-secondary">"property<sub>0</sub>": value<sub>0</sub>,</em>
+    <em class="text-body-secondary">    &#x22ee;     :   &#x22ee;</em>
+    <em class="text-body-secondary">"property<sub>n</sub>": value<sub>n</sub></em>
 }</pre>
             </div>
             <div class="col-lg-6">
@@ -485,7 +515,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          String <small class="text-muted"> (hexadecimal, lowercase) </small>
+                          String <small class="text-body-secondary"> (hexadecimal, lowercase) </small>
                         </dd>
                       </dl>
                       <p> Identifier of the device from which the data originates. </p>
@@ -512,7 +542,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Number <small class="text-muted"> (whole number) </small>
+                          Number <small class="text-body-secondary"> (whole number) </small>
                         </dd>
                       </dl>
                       <p> Type of identifier of the device from which the data originates.  See <a href="#idtype">#idtype</a> index below. </p>
@@ -539,7 +569,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Number <small class="text-muted"> (whole number) </small>
+                          Number <small class="text-body-secondary"> (whole number) </small>
                         </dd>
                       </dl>
                       <p> UNIX epoch (in milliseconds) representing the time at which the data was collected. </p>
@@ -863,7 +893,7 @@
             <li> <sup>4</sup> Expected interpretations by length are <span class="font-monospace">[ entries, exits ], [ total ]</span> </li>
           </ul>
           <!----- spatem ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="spatem" class="card-title my-2">
                 spatem &nbsp;
@@ -884,7 +914,7 @@
           <div class="row mt-4">
             <div class="col-lg-6 mb-3">
               <h3 class="mb-3"> JSON <small>spatem</small> </h3>
-              <pre class="text-dark">
+              <pre>
 {
     "deviceId": "...",
     "deviceIdType": 0,
@@ -925,7 +955,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          String <small class="text-muted"> (hexadecimal, lowercase) </small>
+                          String <small class="text-body-secondary"> (hexadecimal, lowercase) </small>
                         </dd>
                       </dl>
                       <p> Identifier of the device from which the data originates. </p>
@@ -952,7 +982,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Number <small class="text-muted"> (whole number) </small>
+                          Number <small class="text-body-secondary"> (whole number) </small>
                         </dd>
                       </dl>
                       <p> Type of identifier of the device from which the data originates.  See <a href="#idtype">#idtype</a> index below. </p>
@@ -1006,7 +1036,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Object <small class="text-muted"> (GeoJSON FeatureCollection) </small>
+                          Object <small class="text-body-secondary"> (GeoJSON FeatureCollection) </small>
                         </dd>
                       </dl>
                       <p> A GeoJSON FeatureCollection, the contents of which correspond with the spatem <span class="font-monospace">type</span>.  See <a href="https://www.rfc-editor.org/rfc/rfc7946" target="_blank"><i class="fas fa-external-link-alt"></i> RFC 7946</a>. </p>
@@ -1033,7 +1063,7 @@
                       <dl class="row font-monospace">
                         <dt class="col-3"> Type </dt>
                         <dd class="col-9">
-                          Number <small class="text-muted"> (whole number) </small>
+                          Number <small class="text-body-secondary"> (whole number) </small>
                         </dd>
                       </dl>
                       <p> UNIX epoch (in milliseconds) representing the time at which the spatial-temporal data was compiled. </p>
@@ -1044,7 +1074,7 @@
             </div>
           </div>
           <!----- idtype ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="idtype" class="card-title my-2">
                 Identifier Type &nbsp;
@@ -1125,7 +1155,7 @@
                 <td class="font-monospace"> 32 bits </td>
                 <td class="small align-middle"> EnOcean Alliance </td>
               </tr>
-              <tr class="text-muted">
+              <tr class="text-body-secondary">
                 <td class="font-monospace text-center"> 8+ </td>
                 <td> Reserved </td>
                 <td class="font-monospace"> variable </td>
@@ -1140,7 +1170,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="/">
-                <img src="../common/images/icon.png">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -1154,7 +1184,8 @@
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com/pareto/anywhere/"
                  target="_blank">
-                <img src="../common/images/icon-pareto-anywhere.png">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -1165,7 +1196,7 @@
                   Pareto Anywhere
                 </h5>
               </a>
-              Open source middleware for context-aware physical spaces.
+              The open source IoT middleware that makes sense of things.
             </li>
           </ul>
           <ul class="list-group list-group-horizontal mb-4">
@@ -1181,7 +1212,7 @@
                   reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together, let's make sense of things.
             </li>
           </ul>
         </div>
@@ -1190,7 +1221,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
