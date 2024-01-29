@@ -132,7 +132,7 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Configure a Nicla Vision Gauge Reader </h1>
           <p class="lead"> Our step-by-step guide to create a wireless gauge reader using OpenMV on the Nicla Vision. </p>
-          <img src="images/header.jpg" class="img-fluid"
+          <img src="images/nicla_header.jpg" class="img-fluid"
                alt="Nicla Vision Gauge Reader">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -217,19 +217,17 @@
                 Getting the Nicla Gauge Reader Code
                 <a href="#step01" class="badge bg-primary"> Step 1 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Why is this code on GitHub? </dt>
+                <dd class="col-sm-9"> We benefit from open source software, so we believe in providing free and open access to our software & technologies as well. </dd>
               </dl>
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
             </div>
           </div>
-          <pre class="user-select-all">git clone https://github.com/reelyactive/nicla-vision-gauge-reader.git</pre>
+          <h3 class="mt-4">Download or clone the codebase from:</h3>
+          <a href="https://github.com/reelyactive/nicla-vision-gauge-reader">https://github.com/reelyactive/nicla-vision-gauge-reader</a>
 
 
 
@@ -240,11 +238,10 @@
                 Setting up files on the Nicla Vision &nbsp;
                 <a href="#step02" class="badge bg-primary"> Step 2 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> How do I copy files onto the Nicla? </dt>
-                <dd class="col-sm-9"> The nicla vision should appear as an attached storage device. You can put files into the Nicla simply by copying them to this device. </dd>
+                <dd class="col-sm-9"> The nicla vision should appear as an attached storage device. You will probably see a main.py file already in it's filesystem. You can put files into the Nicla simply by copying them to this device. </dd>
                 <dt class="col-sm-3"> Why do I need to do this? </dt>
                 <dd class="col-sm-9"> While you can run code in OpenMV directly on the Nicla, the nicla will look for any referenced files (like configuration files, functions, etc) on the Nicla itself.</dd>
                 <dt class="col-sm-3"> Why are there extra files? </dt>
@@ -256,10 +253,13 @@
                    alt="">
             </div>
           </div>
+          <h3>Before Copying Files:</h3>
+          <img src="images/attachedDeviceFirstTime.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE">            
+         
           <h3 class="mt-4">
             Copy the following files to the nicla vision
-            <small class="text-muted"> Part 1 </small>
           </h3>
+          <p class="lead"> Right into the root folder of the Nicla attached storage device.</p>
           <p>
             <ul>
               <li>nicla-vision-gauge-reader/nicla/ra_functions.py</li>
@@ -267,7 +267,9 @@
               <li>nicla-vision-gauge-reader/nicla/ra_ble.py</li>
             </ul>
           </p>
-
+          <h3>After Copying Files:</h3>
+          <img src="images/attachedDeviceFilesAdded.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE">            
+         
 
 
           <!----- Step 3 of 8 ----->
@@ -277,37 +279,43 @@
                 Running the Code &nbsp;
                 <a href="#step03" class="badge bg-primary"> Step 3 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
+              <p class="lead"> Beginning your adventure in gauge-reading. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Prerequisites? </dt>
+                <dd class="col-sm-9"> The instructions below assume you've gone through the <a href="../nicla-vision-dev/">Nicla Vision Development Guide</a>, to cover the basics of Nicla setup programming with OpenMV.</dd>
+                <dt class="col-sm-3"> How do I point the Nicla at a gauge? </dt>
+                <dd class="col-sm-9"> In a testing environment, you'll want to ensure that the position of the nicla is stable, but adjustable, and convenient for attaching to a computer while pointed at the gauge. Because the Nicla is so light, it's easiest to stablize the end of the usb cable that the Nicla plugs into, rather than the Nicla itself. A Desktop tripod can be a good solution.</dd>
+
               </dl>
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
             </div>
-            <ul>
-              <li>Load main-guage1.py in OpenMV
-              <li>Connect your Nicla</li>
-              <li>Open the Serial Terminal</li>
-              <li>Make sure the Frame Buffer is visible</li>
-              <li>Click the start Icon</li>
-              <li>Point the nicla camera at a gauge</li>
-              <li>Adjust the position of the nicla until the framebuffer shows that it is capturing readings from the gauge. You want it to looks something like this: [screenshot]</li>
-            </ul>
-            <img src="images/gauge-closeup.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE">            
-            <p>
-            <h2>What the graphics on the gauge mean:</h2>
-            <img src="images/gauge-legend.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE, with a legend explaining what all the layered graphics mean">            
-            </p>
-            <p>
-              <h3>What are the flashing lights on the Nicla?</h3>
-                Every time the nicla captures a gauge value and sends it via Bluetooth, it flashes a green light. This will help you position the nicla when it’s not connected to a computer.
-                
-            </p>
           </div>
+          <h3 class="mt-4">
+            Step-by-step
+          </h3>          
+          <ol>
+            <li>Load main-gauge1.py in OpenMV
+            <li>Connect your Nicla</li>
+            <li>Open the Serial Terminal</li>
+            <li>Make sure the Frame Buffer is visible</li>
+            <li>Click the start Icon</li>
+            <li>Point the nicla camera at a gauge</li>
+            <li>Adjust the position of the nicla until the framebuffer shows that it is capturing readings from the gauge. You want it to looks something like this:</li>
+          </ol>
+          <center>
+          <img src="images/gauge-closeup.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE">            
+          </center>
+          <p>
+          <h2>What the graphics on the gauge mean:</h2>
+          <img src="images/gauge-legend.png" class="img-fluid" alt="Closeup of a gauge as viewed in the openMV IDE, with a legend explaining what all the layered graphics mean">            
+          </p>
+          <p>
+            <h3>What are the flashing lights on the Nicla?</h3>
+              Every time the nicla captures a gauge value and sends it via Bluetooth, it flashes a green light. This will help you position the nicla when it’s not connected to a computer.
+              
+          </p>
 
 
           <!----- Step 4 of 8 ----->
@@ -317,13 +325,16 @@
                 Setting up a Gauge for Reading &nbsp;
                 <a href="#step04" class="badge bg-primary"> Step 4 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
+              <p class="lead"> aka "Fiddling with it until it works". </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Why is this hard? </dt>
+                <dd class="col-sm-9"> This software has to deal with two real-world constraints: lighting and installation complexity. </dd>
+                <dt class="col-sm-3"> What do you mean "installation complexity?" </dt>
+                <dd class="col-sm-9"> In an ideal scenario, the Nicla camera is pointed directly at the center of the gauge, the needle is cleary identifiable, and the min and max needle values are in a consistent position. However, vibrations or installation requirements might make this difficult to achieve. So we need anohter way to identify key points in the image. </dd>
+                <dt class="col-sm-3"> Why is lighting complicated? </dt>
+                <dd class="col-sm-9"> Our solution for "installation complexity" is to use colored dots that the Nicla can easily find. However, different lighting conditions might make the Nicla see different colors on the dots. So we need to calibrate the color recognition algorithm is we use this approach.</dd>
+
               </dl>
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
@@ -338,7 +349,7 @@
   "use_color_dots" : False, # set this to FALSE  to use absolute positioning
   "radian_point_min": .25 * math.pi, # the point in radians of the min gauge value
   "radian_point_max": 1.75 * math.pi,  # the point in radians of the max gauge value
-  # coordinates of the center of the guage. This will usually be half of the width and height
+  # coordinates of the center of the gauge. This will usually be half of the width and height
   "center_x" : 80,
   "center_y" : 60,
             </pre>
@@ -357,7 +368,7 @@
                 Color Dot Calibration &nbsp;
                 <a href="#step05" class="badge bg-primary"> Step 5 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
+              <p class="lead"> Adjusting the algorithm to match lighting conditions. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why do we need to do this, isn’t red just red? </dt>
@@ -381,6 +392,9 @@
             Make sure the serial terminal is on.
           </p>
           <p>
+            Make sure that the value for color_calibration_on in ra_config.py is set to <b>True</b>.
+          </p>
+          <p>
             Start the code running when the nicla is pointed at the gauge in the intended setup. It's important to START it with the nicla in the right place, because the camera calibrates itself to its starting conditions</p>
           </p>
           
@@ -388,7 +402,10 @@
             Point at the color
             <small class="text-muted"> Part 2 </small>
           </h3>  
-          <p>Point the small green circle in the center of the Frame Buffer view at the colored dot you want to match
+          <p>Point the small green circle in the center of the Frame Buffer view at the colored dot you want to match. Here it's pointed at the red dot:
+            <center>
+              <img src="images/niclaPointedAtRedDot.png" class="img-fluid" alt="Closeup of the nicla camera pointed at the Red dot on the gauge." >
+            </center>
           </p>
 
           <h3 class="mt-4">
@@ -451,13 +468,10 @@
                 Observing the Bluetooth Values &nbsp;
                 <a href="#step06" class="badge bg-primary"> Step 6 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What are some good BLE scanning tools? </dt>
+                <dd class="col-sm-9"> <a href="https://www.nordicsemi.com/Products/Development-tools/nrf-connect-for-mobile">nRF Connect</a> for iOS or Android is a great tool for finding BLE devices and inspecting the data they are sending out.  </dd>
               </dl>
               <img src="images/nicla-vision-x.jpg" class="card-img-bottom"
                    alt="">
@@ -467,9 +481,13 @@
             The Gauge values are sent from the Nicla as Hex values in the range 0-FFFF (65535), which can be divided by 65535 to get the percentage (0-100) of the gauge’s maximum value.
           </p> 
           <p>
-            Observe in Pareto Anywhere, or from any  Bluetooth Low Energy scanning  mobile app, a device named [Get Name Here]. The value is advertised as UUID [Number here]
+            Observe in Pareto Anywhere, or from any  Bluetooth Low Energy scanning  mobile app, a device named <b>MPY NIMBLE</b>>. The value is advertised as UUID 2AF9
           </p>
-          <strong>[Screenshot] </strong>
+          <p>In nrfConnect it will look like this:</p>          
+          <center>
+            <img src="images/nrfConnect.png" class="img-fluid" width="50%" alt="Screenshot of nrfConnect iOS app, showing the Nicla Device sending data." >
+          </center>
+
 
           <!----- Step 7 of 8 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
@@ -478,7 +496,7 @@
                 Running the Nicla Detached &nbsp;
                 <a href="#step07" class="badge bg-primary"> Step 7 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
+              <p class="lead"> Time to let the little guy run on its own. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> How does the Nicla know what code to run? </dt>
@@ -507,7 +525,7 @@
                 Running in Low-Power Mode &nbsp;
                 <a href="#step08" class="badge bg-primary"> Step 8 of 8 </a>
               </h2>
-              <p class="lead"> Subtitle. </p>
+              <p class="lead"> Sipping battery power like a good bourbon. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What’s low-power mode? </dt>
