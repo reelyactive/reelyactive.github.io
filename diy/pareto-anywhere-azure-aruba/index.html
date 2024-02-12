@@ -183,12 +183,12 @@
           <h2 class="mt-4"> Prerequisites </h2>
           <p class="lead"> A Microsoft Azure account and Aruba APs. </p>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> <em>If necessary,</em> <a href="https://azure.microsoft.com/free/" target="_blank"><i class="fas fa-external-link-alt"></i> create a (free) Azure account</a>.  Confirm that you can successfully log into an active Azure account. </p>
-          <!----- Step 1 of 3 ----->
+          <!----- Step 1 of 4 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Deploying Azure IoT resources &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+                <a href="#step01" class="badge bg-primary"> Step 1 of 4 </a>
               </h2>
               <p class="lead"> Create a resource group on Azure with an IoT Hub and Device Provisioning Service. </p>
               <hr>
@@ -451,12 +451,12 @@
             </div>
           </div>
           <p class="mt-3"> <span class="badge rounded-pill bg-success"><i class="fas fa-check"></i></span> The Azure IoT Hub and Device Provisioning Service are now ready to accept connections and data from your Aruba APs, which is the subject of the next step. </p>
-          <!----- Step 2 of 3 ----->
+          <!----- Step 2 of 4 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Configuring Aruba APs &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 4 </a>
               </h2>
               <p class="lead"> Configure Aruba IoT Transport for Azure on the access point(s). </p>
               <hr>
@@ -621,12 +621,12 @@
                alt="Azure IoT Hub usage statistics">
           <p class="mt-3"> If the radio and transport configuration is successful, and IoT device data is available, within a short delay the message count should increase, and the number of IoT Devices should match the number of configured APs.  It is recommended to check these statistics periodically: <em>data is discarded once the daily message quota is reached!</em> </p>
           <p class="mt-2"> <span class="badge rounded-pill bg-success"><i class="fas fa-check"></i></span> Data is now available at the IoT Hub for processing by Pareto Anywhere for Azure, which is the subject of the next step. </p>
-          <!----- Step 3 of 3 ----->
+          <!----- Step 3 of 4 ----->
           <div class="card hover-shadow mt-5 bg-light border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Deploying Pareto Anywhere for Azure &nbsp;
-                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+                <a href="#step03" class="badge bg-primary"> Step 3 of 4 </a>
               </h2>
               <p class="lead"> Deploy Pareto Anywhere for Azure using the IoT Hub as a source of data. </p>
               <hr>
@@ -697,6 +697,75 @@
               <p> Upload the file to the <b>deviceprofiles</b> Container as specified above. </p>
             </div>
           </div>
+          <!----- Step 4 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-light border-0">
+            <div class="card-body pt-4">
+              <h2 id="step04" class="card-title my-2">
+                Updating Pareto Anywhere for Azure &nbsp;
+                <a href="#step04" class="badge bg-primary"> Step 4 of 4 </a>
+              </h2>
+              <p class="lead"> Periodically update to the latest version<em>&mdash;as required.</em> </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> When to update? </dt>
+                <dd class="col-sm-9"> Pareto Anywhere for Azure is regularly updated to the latest <a href="" target="_blank"><i class="fas fa-external-link-alt"></i> advlib</a> libraries to decode new sensor/device payloads.  Update your deployment to support new sensors/devices, as required. </dd>
+                <dt class="col-sm-3"> What is updated? </dt>
+                <dd class="col-sm-9"> Only the Azure Function App will be updated: the other Azure resources remain unchanged. </dd>
+              </dl>
+              <img src="images/update-pareto-anywhere-azure.png"
+                   class="card-img-bottom"
+                   alt="Updating Pareto Anywhere for Azure">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Redeploy the Function App
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="armtemplatetab"
+                      data-bs-toggle="tab" data-bs-target="#armtemplatecontent"
+                      type="button" role="tab" aria-controls="armtemplatetab"
+                      aria-selected="true"> Option 1: ARM Template </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="clitab" data-bs-toggle="tab"
+                      data-bs-target="#clicontent" type="button" role="tab"
+                      aria-controls="clitab"
+                      aria-selected="false"> Option 2: Azure CLI </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border">
+            <div class="tab-pane fade" id="armtemplatecontent"
+                 role="tabpanel" aria-labelledby="armtemplatetab">
+              <p class="mt-2"> Click the <i class="fas fa-mouse-pointer"></i> <b>Deploy to Azure</b> button below to automatically redeploy, using an ARM Template, the Pareto Anywhere for Azure Function App to the resource group created in Step 1: </p>
+              <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Freelyactive%2Fpareto-anywhere-azure%2Fmaster%2Fdeployments%2Fupdate-pareto-anywhere%2Fazuredeploy.json"
+                 target="_blank" class="pe-none">
+                <img src="images/deploybutton.png"
+                     class="img-fluid mx-auto d-block hover-shadow"
+                     alt="Update Pareto Anywhere for Azure">
+              </a>
+              <p class="mt-3"> <span class="badge rounded-pill bg-danger"><i class="fas fa-exclamation-triangle"></i></span> The button above is disabled while we develop this feature.  <em>In the meantime, kindly use Option 2 instead.</em> </p>
+            </div>
+            <div class="tab-pane fade show active" id="clicontent"
+                 role="tabpanel" aria-labelledby="clitab">
+              <p class="mt-2"> Update the Azure Function App from a .ZIP bundle with a single command using the Azure CLI <small>(Command Line Interface)</small>.  <a href="https://learn.microsoft.com/cli/azure/install-azure-cli" target="_blank"><i class="fas fa-external-link-alt"></i> Install the Azure CLI</a> on your <i class="fas fa-laptop"></i> computer by following the tutorial specific to your operating system. </p>
+              <p> Open a <i class="fas fa-terminal"></i> terminal and log into your Azure account with the command <code class="user-select-all"> az login </code> </p>
+              <p class="small"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If you manage multiple tenants, add the tenant flag and specify the tenant-id <code class="user-select-all"> az login --tenant <b>tenant-id</b> </code> </p>
+              <p> Download to your <i class="fas fa-laptop"></i> computer the latest <b>function-app.zip</b> bundle from <i class="fab fa-github"></i>/pareto-anywhere-azure: </p>
+              <p class="text-center">
+                <a class="btn btn-primary" href="https://github.com/reelyactive/pareto-anywhere-azure/raw/master/deployments/pareto-anywhere-azure/packages/function-app.zip" role="button"> Download function-app.zip </a> </p>
+              <p> From the <i class="fas fa-folder"></i> folder where the <b>function-app.zip</b> bundle was downloaded, run the following command to update the Pareto Anywhere for Azure Function App: </p>
+              <p class="ms-5"> <code class="user-select-all"> az functionapp deployment source config-zip -g <b>resource-group-name</b> -n <b>function-app-name</b> --src function-app.zip </code> </p>
+              <p class="small"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Change <b class="font-monospace">resource-group-name</b> and <b class="font-monospace">function-app-name</b> in the above command to match the values specific to your deployment, which can easily be found via the Azure Portal. </p>
+              <p> Although the Pareto Anywhere for Azure codebase is small, the upload is significantly larger and may take some time on a slow Internet connection.  Once the command completes, the updated code will run automatically. </p>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Confirm normal operation
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+            <p> Check that the updated Function App is operating as expected via the Azure Portal and/or web dashboard. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5">
             <div class="row g-0">
