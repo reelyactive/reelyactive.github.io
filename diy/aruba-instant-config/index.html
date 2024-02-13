@@ -7,6 +7,7 @@
     <meta name="description"
           content="Configure an Aruba Instant AP to forward ambient Bluetooth Low Energy data to Pareto Anywhere open source middleware for real-time location and context.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> reelyActive Aruba AP Configuration Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -132,14 +162,14 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Configure an Aruba Instant AP </h1>
           <p class="lead"> Our step-by-step guide to configure the access point(s) to forward data for processing by Pareto Anywhere. </p>
-          <img src="images/header.png" class="img-fluid"
+          <img src="images/header.png" class="img-fluid rounded-1"
                alt="Aruba Instant AP Config with Pareto Anywhere">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
             <div class="card-body">
               <h2>
                 The TL;DR
-                <small class="text-muted"> (Too Long; Didn't Read) </small>
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
               </h2>
               <p class="lead"> Learn how we at reelyActive configure the APs for open source telemetry and more </p>
               <hr>
@@ -160,7 +190,7 @@
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-azure-aruba/">
                 <img src="../pareto-anywhere-azure-aruba/images/icon.png"
-                     class="img-fluid">
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -182,13 +212,13 @@
                 <div class="card-body">
                   <h5 class="card-title"> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span>&nbsp; AOS 10 workaround </h5>
                   <p class="card-text"> Early adopters of AOS 10 can install the AOS8 app from the IoT Connector App Store to continue to enjoy the functionality presented in this tutorial. </p>
-                  <p class="card-text"><small class="text-muted"> AOS 10 will be fully supported in future<em>&mdash;this is a temporary workaround.</em> </small></p>
+                  <p class="card-text"><small class="text-body-secondary"> AOS 10 will be fully supported in future<em>&mdash;this is a temporary workaround.</em> </small></p>
                 </div>
               </div>
             </div>
           </div>
           <!----- Step 1 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Connect to the AP &nbsp;
@@ -208,18 +238,18 @@
           </div>
           <h3 class="mt-4">
             Connect the AP to the local network
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> Ensure that the access point is powered <i class="fas fa-plug"></i> and connected to the local network <i class="fas fa-network-wired"></i> from which it will be configured. </p>
           <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Consult the <a href="https://asp.arubanetworks.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> specific to your AP model, if required. </p>
           <h3>
             Log in as admin
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> From a computer <i class="fas fa-laptop"></i> on the local network, browse to the access point via its IP address (ex: http://192.168.0.1). </p>
           <p> Log in with the username <b>admin</b> and the corresponding password, then proceed to the next step. </p>
           <!----- Step 2 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Configure the IoT Transport Stream &nbsp;
@@ -241,7 +271,7 @@
           <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Aruba Instant version <b>8.8</b> or greater is required.  First upgrade the AP firmware if/as required. </p>
           <h3 class="mt-4">
             Create a new transport stream
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <div class="row mt-3">
             <div class="col-md-6">
@@ -259,7 +289,7 @@
           </div>
           <h3 class="mt-4">
             Configure the transport stream
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p class="mb-4"> <span class="badge bg-primary"><i class="fas fa-info"></i></span> Consult the <a href="https://asp.arubanetworks.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> for the latest <em>Aruba IoT Websocket Interface</em> guide, if required. </p>
           <div class="row mt-3">
@@ -278,98 +308,98 @@
                     <tr>
                       <td> Name </td>
                       <th> reelyActive </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> User-defined </small>
                       </td>
                     </tr>
                     <tr>
                       <td> State </td>
                       <th> Enabled </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> Server type </td>
                       <th> Telemetry Websocket </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> Server URL </td>
                       <th> ws://x.x.x.x/aruba </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Substitute x.x.x.x for Pareto Anywhere server IP address<sup>*</sup> </small> </td>
                     </tr>
                     <tr>
                       <td> Device classes </td>
                       <th> All </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Optionally filter by class </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Reporting interval </td>
                       <th> 900 seconds </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Reduce to 5 seconds or less for occupancy analytics </small>
                       </td>
                     </tr>
                     <tr>
                       <td> BLE data forwarding </td>
                       <th> Enabled </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Forwards payload/sensor data </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Per-frame filtering </td>
                       <th> Disabled </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> RSSI reporting format </td>
                       <th> Last </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Best option for real-time location </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Environment type </td>
                       <th> Office </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Influences RSSI-based distance estimation in device filters </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Proxy </td>
                       <th> &mdash; </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Complete if required </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Authentication </td>
                       <th> Use token </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Required </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Access token </td>
                       <th> token </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Ignored by Pareto Anywhere </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Device filters </td>
-                      <th> 5 seconds <br> <small class="text-muted">(Reporting activity)</small> </th>
-                      <td class="text-muted">
+                      <th> 5 seconds <br> <small class="text-body-secondary">(Reporting activity)</small> </th>
+                      <td class="text-body-secondary">
                         <small> Pareto Anywhere discards stale data </small>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p class="text-end text-muted"> <small> <sup>*</sup>A Pareto Anywhere instance running on port 3001 of 192.168.0.123 would require ws://192.168.0.123:3001/aruba </small> </p>
+              <p class="text-end text-body-secondary"> <small> <sup>*</sup>A Pareto Anywhere instance running on port 3001 of 192.168.0.123 would require ws://192.168.0.123:3001/aruba </small> </p>
             </div>
             <div class="col-xxl-6">
               <div id="carouselTransport" class="carousel carousel-dark slide"
@@ -415,7 +445,7 @@
           </div>
           <p class="mt-3"> Click OK to complete the configuration. </p>
           <!----- Step 3 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Configure the IoT Radio Profile &nbsp;
@@ -435,7 +465,7 @@
           </div>
           <h3 class="mt-4">
             Create a new radio profile
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <div class="row mt-3">
             <div class="col-md-6">
@@ -453,7 +483,7 @@
           </div>
           <h3 class="mt-4">
             Configure the radio profile
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p class="mb-4"> <span class="badge bg-primary"><i class="fas fa-info"></i></span> Consult the <a href="https://asp.arubanetworks.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> for the latest <em>IoT &ndash; Basic Setup Guide</em>, if required. </p>
           <div class="row mt-3">
@@ -472,41 +502,41 @@
                     <tr>
                       <td> Name </td>
                       <th> reelyActive </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> User-defined </small>
                       </td>
                     </tr>
                     <tr>
                       <td> State </td>
                       <th> Enabled </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> Radio </td>
                       <th> Internal </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> Radio mode </td>
                       <th> BLE </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> BLE operational mode </td>
                       <th> Both </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Beaconing = discoverability, Scanning = discovery </small> 
                       </td>
                     </tr>
                     <tr>
                       <td> Console </td>
                       <th> Off </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> Tx Power </td>
                       <th> 0 dBm </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                   </tbody>
                 </table>
@@ -520,7 +550,7 @@
           <p class="mt-3"> Click OK to complete the configuration. </p>
           <h3 class="mt-4">
             Save the changes
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <div class="row mt-3">
             <div class="col-md-4">
@@ -557,7 +587,7 @@
                       aria-selected="false"> barnowl-aruba </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="paretocontent"
                  role="tabpanel" aria-labelledby="paretotab">
               <p class="mt-2"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank">pareto-anywhere</a> package is already present and running on the target computer on the host network, the data forwarded by the AP should be available in both the web apps and APIs. </p>
@@ -565,7 +595,7 @@
                 <li class="list-group-item border-0">
                   <a href="../pareto-anywhere-pc/">
                     <img src="../pareto-anywhere-pc/images/icon.png"
-                         class="img-fluid">
+                         class="rounded-1">
                   </a>
                 </li>
                 <li class="list-group-item border-0">
@@ -579,7 +609,7 @@
                 <li class="list-group-item border-0">
                   <a href="../pareto-anywhere-pi/">
                     <img src="../pareto-anywhere-pi/images/icon.png"
-                         class="img-fluid">
+                         class="rounded-1">
                   </a>
                 </li>
                 <li class="list-group-item border-0">
@@ -604,7 +634,7 @@ npm start</pre>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../cheatsheet/">
-                <img src="../cheatsheet/images/icon.png" class="img-fluid">
+                <img src="../cheatsheet/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -615,7 +645,7 @@ npm start</pre>
             </li>
           </ul>
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -634,7 +664,7 @@ npm start</pre>
               <div class="col-10 offset-sm-1 align-self-center">
                 <div class="card-body">
                   <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
-                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                  <small class="card-text text-body-secondary"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
                 </div>
               </div>
             </div>
@@ -646,7 +676,7 @@ npm start</pre>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="img-fluid">
+                <img src="../devices/images/icon.gif" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -659,7 +689,7 @@ npm start</pre>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -672,7 +702,8 @@ npm start</pre>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com/pareto/anywhere/infrastructure/aruba/" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -688,7 +719,7 @@ npm start</pre>
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2018-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2018-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
