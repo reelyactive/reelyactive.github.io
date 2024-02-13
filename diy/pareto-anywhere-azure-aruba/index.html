@@ -162,14 +162,14 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Run Pareto Anywhere for Azure with Aruba APs </h1>
           <p class="lead"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Azure, with HPE Aruba Networking access points as an IoT data source. </p>
-          <img src="images/header.png" class="img-fluid"
+          <img src="images/header.png" class="img-fluid rounded-1"
                alt="Run Pareto Anywhere for Azure with Aruba APs">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
             <div class="card-body">
               <h2>
                 The TL;DR
-                <small class="text-muted"> (Too Long; Didn't Read) </small>
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
               </h2>
               <p class="lead"> Learn how to deploy Pareto Anywhere for Azure in a single click with simplified Aruba IoT Transport integration. </p>
               <p> The open source middleware will transform ambient wireless data relayed from Aruba APs to Azure IoT Hub into real-time context: who/what is how. </p>
@@ -191,7 +191,7 @@
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-azure/">
                 <img src="../pareto-anywhere-azure/images/icon.png"
-                     class="img-fluid">
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -205,10 +205,11 @@
           <h2 class="mt-4"> Architecture Overview </h2>
           <p class="lead"> Aruba & Azure resources and their implication in the data paths </p>
           <a href="images/aruba-azure-architecture.png">
-            <img src="images/aruba-azure-architecture.png" class="img-fluid"
+            <img src="images/aruba-azure-architecture.png"
+                 class="img-fluid rounded-1"
                  alt="Pareto Anywhere for Azure architecture diagram">
           </a>
-          <p> APs relay data using <a href="https://www.arubanetworks.com/assets/tg/TB_Aruba-IoT-Transport-for-Microsoft-Azure.pdf" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba IoT Transport for Microsoft Azure</a> to <a href="https://azure.microsoft.com/products/iot-hub" target="_blank"><i class="fas fa-external-link-alt"></i> Azure IoT Hub</a>, which is ingested by <b class="text-dark">Pareto Anywhere for Azure</b> and output as <em>standard JSON</em> via <a href="https://azure.microsoft.com/products/event-hubs" target="_blank"><i class="fas fa-external-link-alt"></i>Azure Event Hubs</a>.  The standard JSON output can also be consumed and visualised from a Web application. </p>
+          <p> APs relay data using <a href="https://www.arubanetworks.com/assets/tg/TB_Aruba-IoT-Transport-for-Microsoft-Azure.pdf" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba IoT Transport for Microsoft Azure</a> to <a href="https://azure.microsoft.com/products/iot-hub" target="_blank"><i class="fas fa-external-link-alt"></i> Azure IoT Hub</a>, which is ingested by <b class="text-body-emphasis">Pareto Anywhere for Azure</b> and output as <em>standard JSON</em> via <a href="https://azure.microsoft.com/products/event-hubs" target="_blank"><i class="fas fa-external-link-alt"></i>Azure Event Hubs</a>.  The standard JSON output can also be consumed and visualised from a Web application. </p>
           <!----- Prerequisites ----->
           <h2 class="mt-4"> Prerequisites </h2>
           <p class="lead"> A Microsoft Azure account and Aruba APs. </p>
@@ -234,7 +235,7 @@
           </div>
           <h3 class="mt-4">
             Create a new Resource Group
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> From the home page of the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Resource Group</b> in your geographical region by following the 5 tabbed steps below: </p>
           <ul class="nav nav-tabs" role="tablist">
@@ -300,7 +301,7 @@
               <img src="images/resourcegroups-details.png"
                    class="img-fluid mx-auto d-block"
                    alt="Resource group details">
-              <p class="mt-3"> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Limit the resource group name to <i>no more than 16 lowercase characters</i> to avoid resource naming errors during the build automation <span class="text-muted">(ex: mybuilding-iot)</span>. </p>
+              <p class="mt-3"> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Limit the resource group name to <i>no more than 16 lowercase characters</i> to avoid resource naming errors during the build automation <span class="text-body-secondary">(ex: mybuilding-iot)</span>. </p>
             </div>
             <div class="tab-pane fade" id="rg4content" role="tabpanel"
                  aria-labelledby="rg4tab">
@@ -330,7 +331,7 @@
           </div>
           <h3 class="mt-4">
             Deploy an IoT Hub and DPS
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Deploy to Azure</b> button below to automatically deploy, using an ARM Template, an IoT Hub and Device Provisioning Service to the resource group: </p>
           <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Freelyactive%2Fpareto-anywhere-azure%2Fmaster%2Fdeployments%2Fiot-hub-dps%2Fazuredeploy.json"
@@ -342,7 +343,7 @@
           <p class="mt-3"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The name of each resource will automatically be generated, based on the name of the resource group, in order to facilitate the solution build. </p>
           <h3 class="mt-4">
             Create an Enrollment Group
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p> From the Device Provisioning Service (DPS) resource page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, create a new <b>Enrollment Group</b> for the Aruba access points by following the 5 tabbed steps below: </p>
           <ul class="nav nav-tabs" role="tablist">
@@ -435,7 +436,7 @@
           </div>
           <h3 class="mt-4">
             Retrieve the symmetric key and ID Scope
-            <small class="text-muted"> Part 4 </small>
+            <small class="text-body-secondary"> Part 4 </small>
           </h3>
           <p> The DPS and enrollment group allow the Aruba APs to securely connect to Azure and the IoT Hub using just two parameters: a <b>symmetric key</b> and an <b>ID Scope</b>.  Retrieve these parameters, which will be required in Step 2, from the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a> as follows: </p>
           <ul class="nav nav-tabs mt-3" role="tablist">
@@ -502,7 +503,7 @@
           </div>
           <h3 class="mt-4">
             Configure IoT Transport Stream
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> Log in to the interface from which you normally configure your Aruba APs and browse to the IoT Services section. </p>
           <div class="row">
@@ -521,38 +522,38 @@
                     <tr>
                       <td> Name </td>
                       <th> pareto-anywhere-azure </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> User-defined </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Enabled </td>
                       <th> <i class="fas fa-check"></i> </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> Server type </td>
                       <th> Azure IoTHub </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> ID Scope </td>
                       <th> </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> From Step 1 </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Group key </td>
                       <th> </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> From Step 1 </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Transport services </td>
                       <th> <i class="fas fa-check"></i> </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Select one or more<sup>*</sup> <sup>**</sup> </small>
                       </td>
                     </tr>
@@ -565,12 +566,12 @@
                    alt="Aruba IoT Transport">
             </div>
           </div>
-          <p class="text-end text-muted small mb-1"> <sup>*</sup>Serial Data requires the corresponding USB dongle to be connected to the AP(s). </p>
-          <p class="text-end text-muted small"> <sup>**</sup>It is recommended to aggressively filter BLE Data to remain within the IoT Hub daily message limit. </p>
+          <p class="text-end text-body-secondary small mb-1"> <sup>*</sup>Serial Data requires the corresponding USB dongle to be connected to the AP(s). </p>
+          <p class="text-end text-body-secondary small"> <sup>**</sup>It is recommended to aggressively filter BLE Data to remain within the IoT Hub daily message limit. </p>
           <p class="mt-3"> Click <i class="fas fa-mouse-pointer"></i> <b>OK</b> to create the IoT Transport profile. </p>
           <h3 class="mt-4">
             Configure IoT Radio Profile
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> Again, from the interface from which you normally configure your Aruba APs, browse to the IoT Services section. </p>
           <div class="row">
@@ -589,45 +590,45 @@
                     <tr>
                       <td> Name </td>
                       <th> Internal-BLE </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> User-defined </small>
                       </td>
                     </tr>
                     <tr>
                       <td> State </td>
                       <th> <i class="fas fa-check"></i> </th>
-                      <td class="text-muted"> <small> Enabled </small> </td>
+                      <td class="text-body-secondary"> <small> Enabled </small> </td>
                     </tr>
                     <tr>
                       <td> Radio </td>
                       <th> Internal </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Serial devices use External </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Radio mode </td>
                       <th> BLE </th>
-                      <td class="text-muted"> </td>
+                      <td class="text-body-secondary"> </td>
                     </tr>
                     <tr>
                       <td> BLE mode </td>
                       <th> Both </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Either Scanning or Both </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Console </td>
                       <th> Off </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> Used for debug </small>
                       </td>
                     </tr>
                     <tr>
                       <td> Tx Power </td>
                       <th> 0 <small>dBm</small> </th>
-                      <td class="text-muted">
+                      <td class="text-body-secondary">
                         <small> For beaconing </small>
                       </td>
                     </tr>
@@ -643,7 +644,7 @@
           <p class="mt-3"> Click <i class="fas fa-mouse-pointer"></i> <b>OK</b> to create the IoT Radio profile. </p>
           <h3 class="mt-4">
             Observe messages in IoT Hub
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p> From the IoT Hub resource page in the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, check the usage statistics from the Overview section. </p>
           <img src="images/iot-hub-messages.png"
@@ -673,7 +674,7 @@
           </div>
           <h3 class="mt-4">
             Deploy Pareto Anywhere for Azure
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Deploy to Azure</b> button below to automatically deploy, using an ARM Template, Pareto Anywhere for Azure (and its supporting resources) to the resource group created in Step 1: </p>
           <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Freelyactive%2Fpareto-anywhere-azure%2Fmaster%2Fdeployments%2Fpareto-anywhere-azure%2Fazuredeploy.json"
@@ -685,14 +686,14 @@
           <p class="mt-3"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The name of each resource will automatically be generated, based on the name of the resource group, in order to facilitate the solution build. </p>
           <h3 class="mt-4">
             Observe data in the web app
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> Point a web browser to <a href="https://resource-group-name-pareto-anywhere.azurewebsites.net/app/" target="_blank">https://<b>resource-group-name</b>-pareto-anywhere.azurewebsites.net/app/</a>, substituting <b class="text-primary">resource-group-name</b> for the resource group name you selected in Step 1, to observe the web application running on Azure. </p>
           <img src="images/web-app.png" alt="Pareto Anywhere for Azure web app"
                class="img-fluid mx-auto d-block mt-4 mw-100">
           <h3 class="mt-4">
             Create device profiles
-            <small class="text-muted"> (OPTIONAL) Part 3 </small>
+            <small class="text-body-secondary"> (OPTIONAL) Part 3 </small>
           </h3>
           <p> From the home page of the <a href="https://portal.azure.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Azure Portal</a>, browse to the <b>Storage Account</b> resource that was created in your resource group.  Select <i class="fas fa-mouse-pointer"></i> <b>Containers</b> from the menu at left and then select <i class="fas fa-mouse-pointer"></i> <b>deviceprofiles</b> from the list. </p>
           <div class="row">
@@ -722,8 +723,8 @@
     "059100ef/7": { "eepType": "D5-00-01" }
 }</pre>
               <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This file is <em>not</em> required for Bluetooth Low Energy (2.4GHz) EnOcean devices. </p>
-              <p class="small text-muted"> Each 32-bit EnOcean Unique Radio Identifier (EURID) is entered as 8 <em>lowercase</em> hexadecimal characters (0-9, a-f), with the suffix /7 to specify the identifier type (see <a href="https://reelyactive.github.io/diy/cheatsheet/#idtype" target="_blank"><i class="fas fa-external-link-alt"></i> Cheatsheet</a>). </p>
-              <p class="small text-muted"> Each EEP type is entered as three dash-separated <em>uppercase</em> hexadecimal character pairs (see <a href="https://github.com/reelyactive/advlib-esp" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-esp</a> and its submodules for all implemented EEP types). </p>
+              <p class="small text-body-secondary"> Each 32-bit EnOcean Unique Radio Identifier (EURID) is entered as 8 <em>lowercase</em> hexadecimal characters (0-9, a-f), with the suffix /7 to specify the identifier type (see <a href="https://reelyactive.github.io/diy/cheatsheet/#idtype" target="_blank"><i class="fas fa-external-link-alt"></i> Cheatsheet</a>). </p>
+              <p class="small text-body-secondary"> Each EEP type is entered as three dash-separated <em>uppercase</em> hexadecimal character pairs (see <a href="https://github.com/reelyactive/advlib-esp" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-esp</a> and its submodules for all implemented EEP types). </p>
               <p> Upload the file to the <b>deviceprofiles</b> Container as specified above. </p>
             </div>
           </div>
@@ -749,7 +750,7 @@
           </div>
           <h3 class="mt-4">
             Redeploy the Function App
-            <small class="text-muted"> Part 1 </small>
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
@@ -793,11 +794,11 @@
           </div>
           <h3 class="mt-4">
             Confirm normal operation
-            <small class="text-muted"> Part 2 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
             <p> Check that the updated Function App is operating as expected via the Azure Portal and/or web dashboard. </p>
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -816,7 +817,7 @@
               <div class="col-10 offset-sm-1 align-self-center">
                 <div class="card-body">
                   <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
-                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                  <small class="card-text text-body-secondary"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
                 </div>
               </div>
             </div>
@@ -828,7 +829,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="img-fluid">
+                <img src="../devices/images/icon.gif" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -841,7 +842,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png" class="img-fluid">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -854,7 +855,8 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com/pareto/anywhere/infrastructure/aruba/" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
