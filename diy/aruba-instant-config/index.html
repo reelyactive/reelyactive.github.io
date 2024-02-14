@@ -171,15 +171,15 @@
                 The TL;DR
                 <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive configure the APs for open source telemetry and more </p>
+              <p class="lead"> Configure APs as IoT infrastructure using reelyActive's open source middleware </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
-                <dd class="col-sm-9"> The AP(s) will forward Bluetooth Low Energy packet traffic to a server running Pareto Anywhere. </dd>
+                <dd class="col-sm-9"> The APs will forward <i class="fab fa-bluetooth"></i> Bluetooth Low Energy, EnOcean Alliance and/or WiFi packets to a server running Pareto Anywhere. </dd>
                 <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
-                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"> Pareto Anywhere </a> is open source middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
                 <dt class="col-sm-3"> Aruba Instant only? </dt>
-                <dd class="col-sm-9"> Compatible products such as Aruba Central and controllers can be configured to forward data to Pareto Anywhere through interfaces similar to those shown here. </dd>
+                <dd class="col-sm-9"> APs can just as well be configured using Aruba Central or controllers through interfaces similar to those shown here. </dd>
               </dl>
             </div>
           </div>
@@ -202,21 +202,11 @@
           </ul>
           <!----- Prerequisites ----->
           <h2 id="prerequisites" class="mt-4"> Prerequisites </h2>
-          <p class="lead"> One or more Aruba Instant APs running AOS 8.8 or higher. </p>
-          <div class="card">
-            <div class="row g-0">
-              <div class="col-md-3">
-                <img src="images/aos8-app.png" class="img-fluid rounded-start" alt="AOS8 App">
-              </div>
-              <div class="col-md-9">
-                <div class="card-body">
-                  <h5 class="card-title"> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span>&nbsp; AOS 10 workaround </h5>
-                  <p class="card-text"> Early adopters of AOS 10 can install the AOS8 app from the IoT Connector App Store to continue to enjoy the functionality presented in this tutorial. </p>
-                  <p class="card-text"><small class="text-body-secondary"> AOS 10 will be fully supported in future<em>&mdash;this is a temporary workaround.</em> </small></p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p class="lead"> One or more HPE Aruba Networking access points. </p>
+          <ul class="list-unstyled ms-3">
+            <li> <i class="fas fa-check text-success"></i> AOS 8.8 and higher is supported </li>
+            <li> <i class="fas fa-check text-success"></i>  AOS 10 and higher is supported </li>
+          </ul>
           <!----- Step 1 of 3 ----->
           <div class="card hover-shadow mt-5">
             <div class="card-body pt-4">
@@ -241,7 +231,7 @@
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p> Ensure that the access point is powered <i class="fas fa-plug"></i> and connected to the local network <i class="fas fa-network-wired"></i> from which it will be configured. </p>
-          <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Consult the <a href="https://asp.arubanetworks.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> specific to your AP model, if required. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Consult the <a href="https://asp.arubanetworks.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> specific to your AP model, if required. </p>
           <h3>
             Log in as admin
             <small class="text-body-secondary"> Part 2 </small>
@@ -261,14 +251,14 @@
                 <dt class="col-sm-3"> What's a transport stream? </dt>
                 <dd class="col-sm-9"> A transport stream defines what data is forwarded where and how, in this case what ambient BLE data is sent to Pareto Anywhere via Websocket. </dd>
                 <dt class="col-sm-3"> Why IoT and not RTLS? </dt>
-                <dd class="col-sm-9"> The IoT service affords both real-time location and sensing of a wide range of devices while the RTLS service is specific to more precise location of only certain devices. </dd>
+                <dd class="col-sm-9"> The IoT service affords both real-time location and sensing for a wide range of devices whereas the RTLS service is specific to more precise location of only certain devices. </dd>
               </dl>
               <img src="images/transport-stream-table.png"
                    class="card-img-bottom" alt="IoT Transport Streams">
             </div>
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
-          <p> <span class="badge bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Aruba Instant version <b>8.8</b> or greater is required.  First upgrade the AP firmware if/as required. </p>
+          <p> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Aruba Instant version <b>8.8</b> or greater is required.  First upgrade the AP firmware if/as required. </p>
           <h3 class="mt-4">
             Create a new transport stream
             <small class="text-body-secondary"> Part 1 </small>
@@ -291,7 +281,7 @@
             Configure the transport stream
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p class="mb-4"> <span class="badge bg-primary"><i class="fas fa-info"></i></span> Consult the <a href="https://asp.arubanetworks.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> for the latest <em>Aruba IoT Websocket Interface</em> guide, if required. </p>
+          <p class="mb-4"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Consult the <a href="https://asp.arubanetworks.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> for the latest <em>Aruba IoT Websocket Interface</em> guide, if required. </p>
           <div class="row mt-3">
             <div class="col-xxl-6">
               <p> Complete the new transport stream popup as follows: </p>
@@ -402,16 +392,17 @@
               <p class="text-end text-body-secondary"> <small> <sup>*</sup>A Pareto Anywhere instance running on port 3001 of 192.168.0.123 would require ws://192.168.0.123:3001/aruba </small> </p>
             </div>
             <div class="col-xxl-6">
-              <div id="carouselTransport" class="carousel carousel-dark slide"
+              <div id="carouselTransport" class="carousel slide"
                    data-bs-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-bs-target="#carouselTransport"
-                      data-bs-slide-to="0" class="active"></li>
-                  <li data-bs-target="#carouselTransport"
-                      data-bs-slide-to="1"></li>
-                  <li data-bs-target="#carouselTransport"
-                      data-bs-slide-to="2"></li>
-                </ol>
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselTransport"
+                          data-bs-slide-to="0" class="active"
+                          aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselTransport"
+                          data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselTransport"
+                          data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-bs-interval="4800">
                     <img src="images/transport-stream-config-1.png"
@@ -457,7 +448,7 @@
                 <dt class="col-sm-3"> What's a radio profile? </dt>
                 <dd class="col-sm-9"> A radio profile defines which low-power wireless radios will be enabled on the AP as well as their configuration. </dd>
                 <dt class="col-sm-3"> Why BLE? </dt>
-                <dd class="col-sm-9"> Bluetooth Low Energy devices may spontaneously transmit advertising packets for discovery and interaction, an abundant source of ambient data which can be received by the AP's BLE radio. </dd>
+                <dd class="col-sm-9"> <i class="fab fa-bluetooth"></i> Bluetooth Low Energy devices may spontaneously transmit advertising packets for discovery, interaction and telemetry, an abundant source of ambient data which can be received by the AP's BLE radio. </dd>
               </dl>
               <img src="images/radio-profile-table.png"
                    class="card-img-bottom" alt="IoT Radio Profiles">
@@ -590,7 +581,7 @@
           <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="paretocontent"
                  role="tabpanel" aria-labelledby="paretotab">
-              <p class="mt-2"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank">pareto-anywhere</a> package is already present and running on the target computer on the host network, the data forwarded by the AP should be available in both the web apps and APIs. </p>
+              <p class="mt-2"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank"><i class="fas fa-external-link-alt"></i> pareto-anywhere</a> package is already present and running on the target computer on the host network, the data forwarded by the AP should be available in both the web apps and APIs. </p>
               <ul class="list-group list-group-horizontal">
                 <li class="list-group-item border-0">
                   <a href="../pareto-anywhere-pc/">
@@ -602,7 +593,7 @@
                   <a href="../pareto-anywhere-pc/">
                     <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
                   </a>
-                  Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make any physical space context-aware.
+                  Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make sense of things.
                 </li>
               </ul>
               <ul class="list-group list-group-horizontal mb-2">
@@ -616,17 +607,18 @@
                   <a href="../pareto-anywhere-pi/">
                     <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
                   </a>
-                  Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
+                  Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make sense of things.
                 </li>
               </ul>
             </div>
             <div class="tab-pane fade" id="barnowlcontent" role="tabpanel"
                  aria-labelledby="barnowltab">
-              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-aruba" target="_blank">barnowl-aruba</a> standalone to initiate a WebSocket server on port 3001 using the /aruba route as follows: </p>
+              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-aruba" target="_blank"><i class="fas fa-external-link-alt"></i> barnowl-aruba</a> standalone to initiate a WebSocket server on port 3001 using the /aruba route as follows: </p>
               <pre>git clone https://github.com/reelyactive/barnowl-aruba.git
 npm install
 npm start</pre>
-              <p> If the access point is correctly configured, and at least one compatible Bluetooth Low Energy device is advertising in range, <a href="https://github.com/reelyactive/raddec" target="_blank">raddec</a> data should appear in the console. </p>
+              <p> If the access point is correctly configured, and at least one compatible <i class="fab fa-bluetooth"></i> Bluetooth Low Energy device is advertising in range, <a href="https://reelyactive.github.io/diy/cheatsheet/#raddec" target="_blank"><i class="fas fa-external-link-alt"></i> raddec</a> data should appear in the console. </p>
+              <p> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span> AOS 10 requires secure WebSockets (wss://): consult the <a href="https://github.com/reelyactive/barnowl-aruba" target="_blank"><i class="fas fa-external-link-alt"></i> barnowl-aruba</a> documentation regarding the <b class="font-monospace small">npm run secure</b> option. </p>
             </div>
           </div>
           <h3 class="mt-4"> Enjoy the real-time data stream </h3>
