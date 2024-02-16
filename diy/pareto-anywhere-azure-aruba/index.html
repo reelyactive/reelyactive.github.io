@@ -754,31 +754,30 @@
           </h3>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="armtemplatetab"
+              <button class="nav-link active" id="armtemplatetab"
                       data-bs-toggle="tab" data-bs-target="#armtemplatecontent"
                       type="button" role="tab" aria-controls="armtemplatetab"
                       aria-selected="true"> Option 1: ARM Template </button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="clitab" data-bs-toggle="tab"
+              <button class="nav-link" id="clitab" data-bs-toggle="tab"
                       data-bs-target="#clicontent" type="button" role="tab"
                       aria-controls="clitab"
                       aria-selected="false"> Option 2: Azure CLI </button>
             </li>
           </ul>
           <div class="tab-content tab-content-border border-light-subtle">
-            <div class="tab-pane fade" id="armtemplatecontent"
+            <div class="tab-pane fade show active" id="armtemplatecontent"
                  role="tabpanel" aria-labelledby="armtemplatetab">
               <p class="mt-2"> Click the <i class="fas fa-mouse-pointer"></i> <b>Deploy to Azure</b> button below to automatically redeploy, using an ARM Template, the Pareto Anywhere for Azure Function App to the resource group created in Step 1: </p>
               <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Freelyactive%2Fpareto-anywhere-azure%2Fmaster%2Fdeployments%2Fupdate-pareto-anywhere%2Fazuredeploy.json"
-                 target="_blank" class="pe-none">
+                 target="_blank">
                 <img src="images/deploybutton.png"
                      class="img-fluid mx-auto d-block hover-shadow"
                      alt="Update Pareto Anywhere for Azure">
               </a>
-              <p class="mt-3"> <span class="badge rounded-pill bg-danger"><i class="fas fa-exclamation-triangle"></i></span> The button above is disabled while we develop this feature.  <em>In the meantime, kindly use Option 2 instead.</em> </p>
             </div>
-            <div class="tab-pane fade show active" id="clicontent"
+            <div class="tab-pane fade" id="clicontent"
                  role="tabpanel" aria-labelledby="clitab">
               <p class="mt-2"> Update the Azure Function App from a .ZIP bundle with a single command using the Azure CLI <small>(Command Line Interface)</small>.  <a href="https://learn.microsoft.com/cli/azure/install-azure-cli" target="_blank"><i class="fas fa-external-link-alt"></i> Install the Azure CLI</a> on your <i class="fas fa-laptop"></i> computer by following the tutorial specific to your operating system. </p>
               <p> Open a <i class="fas fa-terminal"></i> terminal and log into your Azure account with the command <code class="user-select-all"> az login </code> </p>
