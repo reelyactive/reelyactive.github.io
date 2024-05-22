@@ -330,6 +330,23 @@ while(True):
     img = sensor.snapshot()</pre>
           <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Start <small>(run script)</small></b> icon at the bottom left of the IDE to run this script on the Nicla Vision. </p>
           <p> Observe in the IDE the framebuffer with the full 80&deg; field of view of the Nicla Vision's GC2145 sensor. </p>
+          <button class="btn btn-sm btn-outline-primary mb-2" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#collapseFoV"
+                  aria-expanded="false" aria-controls="collapseFoV">
+            More on framesizes & FoV
+          </button>
+          <div class="collapse" id="collapseFoV">
+            <div class="card card-body">
+              <p> The GC2145 has limited settings for full frame capture.  The sensor internally has a resolution of 1600x1200.  These dimensions can be divided by <em>non-even</em> values to scale down the resolution: <em>even</em> values cause issues.  Full FoV resolutions are therefore: </p>
+              <ul>
+                <li> 1600 x 1200 </li>
+                <li> 533 x 400 </li>
+                <li> 320 x 240 <small>(requires <a href="https://docs.openmv.io/library/omv.sensor.html#sensor.ioctl" target="_blank" class="font-monospace">sensor.ioctl(sensor.IOCTL_SET_FOV_WIDE, True)</a> which reduces FPS) </small> </li>
+              </ul>
+              <p> The <a href="https://docs.openmv.io/library/omv.sensor.html#sensor.set_framesize" target="_blank" class="font-monospace">sensor.set_framesize()</a> function will crop the given resolution out of one of the above three full-FoV resolutions.  Hence, <b>QVGA</b> (320 x 240) with the <b class="font-monospace">SET_FOV_WIDE</b> ioctl results in the maximum field of view on the Nicla Vision as no cropping is applied. </p>
+              <p class="small text-end mb-0"> Thank you to <a href="https://github.com/kwagyeman" target="_blank"><i class="fab fa-github"></i>/kwagyeman</a> for the detailed explanation which enabled this summary! </p>
+            </div>
+          </div>
           <h3 class="mt-4">
             Run "helloadvertising.py"
             <small class="text-body-secondary"> Part 3 </small>
