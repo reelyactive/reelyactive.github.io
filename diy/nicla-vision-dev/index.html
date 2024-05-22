@@ -314,10 +314,27 @@
                alt="OpenMV running helloworld.py on Nicla Vision">
           <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Stop <small>(halt script)</small></b> icon at the bottom left of the IDE to stop running this script on the Nicla Vision. </p>
           <h3 class="mt-4">
-            Run "helloadvertising.py"
+            Run "hellomaxfov.py"
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> Open a new file in the OpenMV IDE, and copy <kbd>Ctrl+C</kbd> and paste <kbd>Ctrl+V</kbd> the following lines of code into the code editor window: </p>
+          <p> Access the full <i class="fas fa-eye"></i> field of view (FoV) of the Nicla.  Open a new file in the OpenMV IDE, and copy <kbd>Ctrl+C</kbd> and paste <kbd>Ctrl+V</kbd> the following lines of code into the code editor window: </p>
+          <pre class="user-select-all ms-4">import sensor, image
+
+sensor.reset()
+sensor.ioctl(sensor.IOCTL_SET_FOV_WIDE, True) # Maximise the FoV
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QVGA)             # Select QVGA for maximum FoV
+sensor.skip_frames(time = 2000)
+
+while(True):
+    img = sensor.snapshot()</pre>
+          <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Start <small>(run script)</small></b> icon at the bottom left of the IDE to run this script on the Nicla Vision. </p>
+          <p> Observe in the IDE the framebuffer with the full 80&deg; field of view of the Nicla Vision's GC2145 sensor. </p>
+          <h3 class="mt-4">
+            Run "helloadvertising.py"
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> Advertise user-defined <i class="fab fa-bluetooth"></i> Bluetooth Low Energy wireless packets.  Open a new file in the OpenMV IDE, and copy <kbd>Ctrl+C</kbd> and paste <kbd>Ctrl+V</kbd> the following lines of code into the code editor window: </p>
           <pre class="user-select-all ms-4">import bluetooth, time
 
 # Advertising payload bytes:
@@ -340,7 +357,7 @@ while(True):
                alt="helloadvertising.py in Pareto Anywhere API">
           <h3 class="mt-4">
             Combine machine vision and BLE
-            <small class="text-body-secondary"> Part 3 </small>
+            <small class="text-body-secondary"> Part 4 </small>
           </h3>
           <p> Example to come. </p>
           <!----- Step 3 of 4 ----->
