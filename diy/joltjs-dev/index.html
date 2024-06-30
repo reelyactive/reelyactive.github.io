@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Discover and develop Jolt.js applications using Espruino, Bluetooth Low Energy and Pareto Anywhere open source IoT middleware.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Jolt.js Development Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Jolt.js Development Guide",
+      "description": "Discover and develop Jolt.js applications using Espruino, Bluetooth Low Energy and Pareto Anywhere open source IoT middleware.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/joltjs-dev/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Jolt.js Development Guide"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Jolt.js Development Guide </h1>
+          <p class="lead"> Discover and develop Jolt.js applications using Espruino, Bluetooth Low Energy and Pareto Anywhere open source IoT middleware. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="Jolt.js Development with Web Bluetooth">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to program a Jolt.js motor board driver with existing applications, or develop your own. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Jolt.js? </dt>
+                <dd class="col-sm-9"> Jolt.js is an open hardware device that combines a <i class="fab fa-bluetooth"></i> Bluetooth Low Energy (BLE) microcontroller with motor control drivers in a compact square format. </dd>
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The Jolt.js will share sensor data and/or identifiers wirelessly <i class="fas fa-wifi"></i> using BLE advertising packets. </dd>
+                <dt class="col-sm-3"> Is there an easier way? </dt>
+                <dd class="col-sm-9"> Programming Espruino devices like the Jolt.js from the browser using Web Bluetooth is <em>already</em> incredibly easy. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A Jolt.js and, <em>optionally,</em> a Pareto Anywhere instance to make sense of the data </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://shop.espruino.com/">
+                <img src="../common/images/espruino-icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://shop.espruino.com/">
+                <h5 class="mt-0 mb-1"> <i class="fas fa-external-link-alt"></i> Buy a Jolt.js from the Espruino Shop </h5>
+              </a>
+              Support <i class="fas fa-hand-holding-heart"></i> the ongoing development of Espruino open source software and devices!
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pc/">
+                <img src="../pareto-anywhere-pc/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <h5 class="mt-0 mb-1">
+                <span class="text-body-secondary">[OPTIONAL]</span>
+                <a href="../pareto-anywhere-pc/">
+                  Run Pareto Anywhere on a PC
+                </a>
+              </h5>
+              Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make any physical space context-aware.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <h5 class="mt-0 mb-1">
+                <span class="text-body-secondary">[OPTIONAL]</span>
+                <a href="../pareto-anywhere-pi/">
+                  Run Pareto Anywhere on a Raspberry Pi
+                </a>
+              </h5>
+              Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
+            </li>
+          </ul>
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Connecting to the Jolt.js &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Browse to the Espruino IDE and connect using Web Bluetooth. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Espruino? </dt>
+                <dd class="col-sm-9"> <a href="https://www.espruino.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Espruino</a> is a JavaScript Interpreter for microcontrollers.  It is open source firmware that ships with the Puck.js. </dd>
+                <dt class="col-sm-3"> What's Web Bluetooth? </dt>
+                <dd class="col-sm-9"> Web Bluetooth enables web browsers to  connect and interact with <i class="fab fa-bluetooth"></i> Bluetooth Low Energy devices, like the Puck.js. </dd>
+              </dl>
+              <img src="images/joltjs-connect.png" class="card-img-bottom"
+                   alt="Connect to the Jolt.js">
+            </div>
+          </div>
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p class="lead"> A web browser which supports Web Bluetooth </p>
+          <p> Many<em>&mdash;but not all&mdash;</em>modern browsers such as <i class="fab fa-chrome"></i> Chrome support Web Bluetooth by default.  MDN maintains <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#Browser_compatibility" target="_blank"><i class="fas fa-external-link-alt"></i> this list of browser compatibility</a> should your preferred web browser fail to support Web Bluetooth by default. </p>
+          <h3 class="mt-4">
+            Browse to the Espruino IDE
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> Point a web browser to <a href="https://espruino.com/ide/" target="_blank"><i class="fas fa-external-link-alt"></i> espruino.com/ide/</a> and observe the integrated development environment (IDE) as in the screenshot below. </p>
+          <img src="images/espruino-ide.png" class="img-fluid"
+               alt="Espruino IDE">
+          <h3 class="mt-4">
+            Connect with Web Bluetooth
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> Click on the <i class="fas fa-mouse-pointer"></i> Connect/Disconnect icon at top left, and then select <i class="fas fa-mouse-pointer"></i> Web Bluetooth from the popup. </p>
+          <img src="images/espruino-ide-connect.png" class="img-fluid"
+               alt="Connecting to a device in the Espruino IDE">
+          <h3 class="mt-4">
+            Pair with the Jolt.js
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> Identify and select <i class="fas fa-mouse-pointer"></i> Jolt.js from the list of scanned devices, then click <i class="fas fa-mouse-pointer"></i> Pair. </p>
+          <p> <span class="badge rounded-pill bg-secondary"><i class="fas fa-info"></i></span> If the desired Jolt.js <em>does not</em> appear, check the following: </p>
+          <ul>
+            <li> is it powered on? </li>
+            <li> is it within a few metres of the computer? </li>
+            <li> is the Jolt.js connectable in the Settings menu? </li>
+          </ul>
+          <img src="images/espruino-ide-web-bluetooth-pairing.png"
+               class="img-fluid" alt="Web Bluetooth pairing in Espruino IDE">
+          <p class="mt-4"> If pairing is successful, the Connect/Disconnect icon at top left will turn green. </p>
+          <img src="images/espruino-ide-web-bluetooth-paired.png"
+               class="img-fluid" alt="Jolt.js paired in Espruino IDE">
+          <p class="mt-4"> The Jolt.js can now be programmed wirelessly from the browser using Web Bluetooth, which is the subject of the next step. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Programming the Jolt.js &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Load a JavaScript file and send it to the Jolt.js. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why JavaScript? </dt>
+                <dd class="col-sm-9"> JavaScript runs on almost every modern website (client-side), on many back-ends with Node.js (server-side), and lends itself well even to embedded devices with Espruino. </dd>
+                <dt class="col-sm-3"> Any alternatives? </dt>
+                <dd class="col-sm-9"> The Espruino IDE provides a Graphical Editor for novices to program with blocks. </dd>
+              </dl>
+              <img src="images/joltjs-program.png" class="card-img-bottom"
+                   alt="Program the Jolt.js">
+            </div>
+          </div>
+          <p class="mt-4"> From the Espruino IDE connected to the Jolt.js: </p>
+          <h3 class="mt-4">
+            Enter the "Hello World!" program
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> Copy <kbd>Ctrl+C</kbd> and paste <kbd>Ctrl+V</kbd> the following lines of code into the code editor window of the Espruino IDE: </p>
+          <pre class="user-select-all">// Blink green for 100ms
+function blinkGreen() {
+  LED2.write(true);
+  setTimeout(function () { LED2.write(false); }, 100);
+}
+
+// Detect button press and blink green
+setWatch(blinkGreen, BTN, { edge: "rising", repeat: true, debounce: 50 });
+
+// Transmit Bluetooth Low Energy advertising packets
+NRF.setAdvertising({}, {
+    showName: false,
+    manufacturer: 0x0590,
+    manufacturerData: JSON.stringify({ name: "Jolt.js" })
+});</pre>
+          <img src="images/espruino-ide-paste-hello-world.png" class="img-fluid"
+               alt="Paste the Hello World code into the Espruino IDE">
+          <h3 class="mt-4">
+            Upload to RAM
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> Click on the <i class="fas fa-mouse-pointer"></i> Send to Espruino button in the centre toolbar, ensuring that the default option to write to <b>RAM</b> is selected. </p>
+          <img src="images/espruino-ide-send.png" class="img-fluid"
+               alt="Send code to the Jolt.js in the Espruino IDE">
+          <p class="mt-4"> A progress bar will appear in the bottom right corner followed by <b>SENT</b> in the bottom left corner of the IDE once the program upload completes. </p>
+          <p> The program will automatically execute and any console output, including error messages, may be observed in the area highlighted in the screenshot below. </p>
+          <img src="images/espruino-ide-sent.png" class="img-fluid"
+               alt="Command prompt on the Jolt.js in the Espruino IDE">
+          <h3 class="mt-4">
+            Observe the "Hello World!" output
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> The Jolt.js will <i class="fas fa-lightbulb animate-breathing text-success"></i> blink green on <i class="fas fa-hand-pointer animate-breathing text-body-secondary"></i> button press. </p>
+          <p class="mt-4"> The Jolt.js <em>will not,</em> however, transmit <i class="fab fa-bluetooth"></i> Bluetooth Low Energy advertising packets while it is connected.  Click on the <i class="fas fa-mouse-pointer"></i> Connect/Disconnect icon at top left to disconnect from the Puck.js. </p>
+          <img src="images/espruino-ide-disconnect.png" class="img-fluid"
+               alt="Disconnect from the Puck.js in the Espruino IDE">
+          <p class="mt-4"> If an instance of Pareto Anywhere is running, the Jolt.js should be discoverable by its <i class="fab fa-bluetooth"></i> Bluetooth Low Energy advertising packets which use the company code <tt>0x0590</tt> registered to Pur3 Ltd, the company which develops the Espruino open source firmware running on the Puck.js as well as the web IDE we used to upload our "Hello World!" program. </p>
+          <p class="mt-4"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Program execution will continue until the battery is removed or until another program is executed via the Espruino IDE. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Running other programs &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> Explore the potential of the Jolt.js in context-aware physical spaces. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What are context-aware physical spaces? </dt>
+                <dd class="col-sm-9"> These are spaces that make sense of <em>who/what</em> is <em>where/how</em> by collecting and processing <a href="https://www.reelyactive.com/ambient-data/" target="_blank"><i class="fas fa-external-link-alt"></i> ambient wireless data</a>, like that advertised by the Jolt.js. </dd>
+                <dt class="col-sm-3"> Why use Jolt.js? </dt>
+                <dd class="col-sm-9"> The Jolt.js is the first open source wireless motor driver platform we've identified that offers unconstrained programming freedom, allowing, among other things, the development of novel interactions in context-aware physical spaces. </dd>
+              </dl>
+              <img src="images/espruino-apps.png" class="card-img-bottom"
+                   alt="Espruino Apps">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            More programs
+            <small class="text-body-secondary"> <i class="fab fa-github"></i> </small>
+          </h3>
+          <p class="mt-4"> See our <a href="https://github.com/reelyactive/espruino-apps#espruino-apps" target="_blank"><i class="fas fa-external-link-alt"></i> Espruino Apps</a> repository on GitHub for the latest available programs. </p>
+          <!----- Attribution ----->
+          <div class="card hover-shadow my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-body-secondary"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. &nbsp; We invite you to <i class="fas fa-hand-holding-heart"></i> Gordon's work on Espruino with <a href="https://www.espruino.com/Donate" target="_blank">a donation</a> too! </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../banglejs-dev/">
+                <img src="../banglejs-dev/images/icon.jpg" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../banglejs-dev/">
+                <h5 class="mt-0 mb-1"> Bangle.js Development Guide </h5>
+              </a>
+              Discover and develop Bangle.js smart watch applications.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../puckjs-dev/">
+                <img src="../puckjs-dev/images/icon.jpg" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../puckjs-dev/">
+                <h5 class="mt-0 mb-1"> Puck.js Development Guide </h5>
+              </a>
+              Discover and develop Puck.js wireless sensor applications.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2024 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
