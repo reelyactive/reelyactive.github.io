@@ -314,9 +314,9 @@
                     </tr>
                     <tr>
                       <td> Server URL </td>
-                      <th> ws://x.x.x.x/aruba </th>
+                      <th> ws://&hellip; wss://&hellip; <br> <small class="text-body-secondary">(See examples)</small> </th>
                       <td class="text-body-secondary">
-                        <small> Substitute x.x.x.x for Pareto Anywhere server IP address<sup>*</sup> </small> </td>
+                        <small> Secure WebSockets recommended for production deployments. </small> </td>
                     </tr>
                     <tr>
                       <td> Device classes </td>
@@ -389,10 +389,28 @@
                   </tbody>
                 </table>
               </div>
-              <p class="text-end text-body-secondary"> <small> <sup>*</sup>A Pareto Anywhere instance running on port 3001 of 192.168.0.123 would require ws://192.168.0.123:3001/aruba </small> </p>
             </div>
             <div class="col-xxl-6">
-              <div id="carouselTransport" class="carousel slide"
+              <div class="card">
+                <h5 class="card-header bg-body-secondary">
+                  <i class="fas fa-link text-primary"></i> &nbsp;
+                  Server URL
+                </h5>
+                <div class="card-body">
+                  <p class="card-text"> The server URL depends on the AOS version and whether regular or secure WebSockets are used. </p>
+                  <dl class="card-text row">
+                    <dt class="col-12"> AOS 8 WebSocket </dt>
+                    <dd class="col-12 offset-1"> ws://192.168.0.123:3001/aruba/aos8 <br> <small class="text-body-secondary"> Pareto Anywhere on LAN, using port 3001 </small></dd>
+                    <dt class="col-12"> AOS 8 Secure WebSocket </dt>
+                    <dd class="col-12 offset-1"> wss://12.34.56.78/aruba/aos8 <br> <small class="text-body-secondary"> Pareto Anywhere on WAN, using port 80 </small></dd>
+                    <dt class="col-12"> AOS 10 Secure WebSocket<sup>*</sup> </dt>
+                    <dd class="col-12 offset-1"> wss://12.34.56.78:3001/aruba/aos10 <br> <small class="text-body-secondary"> Pareto Anywhere on WAN, using port 3001 </small></dd>
+                  </dl>
+                  <p class="card-text mb-0"> Adapt the examples above as per your configuration. </p>
+                  <p class="card-text small text-body-secondary text-end"> <sup>*</sup>AOS 10 requires secure WebSockets. </p>
+                </div>
+              </div>
+              <div id="carouselTransport" class="carousel slide mt-5"
                    data-bs-ride="carousel">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselTransport"
@@ -421,20 +439,15 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-5">
-                <h5 class="card-header bg-dark text-white">
-                  <i class="fas fa-user-shield text-secondary"></i> &nbsp;
-                  Security Best Practices
-                </h5>
-                <div class="card-body">
-                  <p class="card-text"> The given transport stream parameters are intended to facilitate initial integration on a trusted local network. </p>
-                  <p class="card-text"> The use of <b>wss://</b> rather than ws:// is strongly recommended for production deployments and for data forwarding to remote instances, which in turn requires advanced configuration of Pareto Anywhere. </p>
-                  <p class="card-text"> <a href="https://www.reelyactive.com/contact/?get-started=beyond#content" target="_blank">Contact us</a> about our <a href="https://www.reelyactive.com/beyond/" target="_blank">Beyond Integration</a> plan for assistance. </p>
-                </div>
-              </div>
             </div>
           </div>
           <p class="mt-3"> Click OK to complete the configuration. </p>
+          <h3 class="mt-4">
+            Upload the CA certificate
+            <small class="text-body-secondary"> (OPTIONAL) Part 3 </small>
+          </h3>
+          <p class="mb-4"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Required only when using <em>Secure</em> WebSockets. </p>
+          <p> From the admin page, browse to the section where security certificates are managed, and upload the CA certificate (ex: <span class="font-monospace">CA_certificate.pem</span>).  Assign the certificate to IoT Transport (ex: Security - Certificate Usage - IoT CA Cert). </p>
           <!----- Step 3 of 3 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
@@ -476,7 +489,7 @@
             Configure the radio profile
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p class="mb-4"> <span class="badge bg-primary"><i class="fas fa-info"></i></span> Consult the <a href="https://networkingsupport.hpe.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> for the latest <em>IoT &ndash; Basic Setup Guide</em>, if required. </p>
+          <p class="mb-4"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Consult the <a href="https://networkingsupport.hpe.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Aruba documentation</a> for the latest <em>IoT &ndash; Basic Setup Guide</em>, if required. </p>
           <div class="row mt-3">
             <div class="col-md-6">
               <p> Complete the new radio profile popup as follows: </p>
@@ -610,10 +623,11 @@
                   Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make sense of things.
                 </li>
               </ul>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If using <em>Secure</em> WebSockets, add the corresponding <span class="font-monospace">certificate.pem</span> and <span class="font-monospace">key.pem</span> files to the <span class="font-monospace">/config</span> folder of pareto-anywhere. <small class="text-body-secondary"> Pareto Anywhere will automatically detect these files on boot and use HTTPS & WSS for secure operation. </small> </p>
             </div>
             <div class="tab-pane fade" id="barnowlcontent" role="tabpanel"
                  aria-labelledby="barnowltab">
-              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-aruba" target="_blank"><i class="fas fa-external-link-alt"></i> barnowl-aruba</a> standalone to initiate a WebSocket server on port 3001 using the /aruba route as follows: </p>
+              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-aruba" target="_blank"><i class="fas fa-external-link-alt"></i> barnowl-aruba</a> standalone to initiate a WebSocket server on port 3001 using the /aruba/aos8 route as follows: </p>
               <pre>git clone https://github.com/reelyactive/barnowl-aruba.git
 npm install
 npm start</pre>
