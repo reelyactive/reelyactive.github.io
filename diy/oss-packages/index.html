@@ -6,16 +6,16 @@
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
           content="Canonical list and description of reelyActive open source software packages for RTLS, M2M and contextual IoT.">
-    <link rel="stylesheet" href="../common/style/bootstrap.min.css">
-    <link rel="stylesheet" href="../common/style/reelyactive.css">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> reelyActive Open Source Software packages list </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
-    {
+    [{
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "reelyActive Open Source Software packages list",
-      "description": "Canonical list and description of reelyActive open source software packages for RTLS, M2M and contextual IoT.",
+      "description": "Canonical list and description of reelyActive open source software packages for the Internet of Things.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/oss-packages/images/header.jpg",
@@ -23,593 +23,676 @@
         "@type": "Organization",
         "url": "https://www.reelyactive.com"
       }
-    }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Open Source Software Packages"
+      }]
+    }]
     </script>
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-reelyactive bg-reelyactive">
-      <a class="navbar-brand" href="https://www.reelyactive.com/">
-        <img src="../common/images/reelyactive-logo-nav.png"
-             width="165" height="30" alt="reelyActive">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-              data-target="#navbarItems" aria-controls="navbarItems"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarItems">
-        <ul class="navbar-nav mr-auto"></ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="../../">
-              <i class="fas fa-home"></i>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown"
-               role="button" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-              <i class="fas fa-question-circle"></i>
-            </a>
-            <!-- Info about tracking and open source software/licenses -->
-            <div class="dropdown-menu dropdown-menu-right"
-                 aria-labelledby="navbarDropdown">
-              <a class="dropdown-item"
-                 href="https://www.reelyactive.com/how-we-observe/#digital">
-                <i class="fas fa-mouse-pointer"></i>
-                Privacy-centric metrics (beacon.js) &nbsp;
-                <span class="badge badge-warning">
-                  <i class="fas fa-user-tag"></i>
-                </span>
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://getbootstrap.com" >
-                <i class="fab fa-bootstrap"></i>
-                Bootstrap 4 &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://fontawesome.com" >
-                <i class="fab fa-font-awesome"></i>
-                Font Awesome (Free) &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-creative-commons"></i>
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://jquery.com" >
-                <i class="fab fa-js"></i>
-                JQuery &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <a class="dropdown-item" target="_blank"
-                 href="https://github.com/reelyactive/web-style-guide/" >
-                <i class="fas fa-code"></i>
-                Web Style Guide &nbsp;
-                <span class="badge badge-light">
-                  <i class="fab fa-osi"></i> MIT
-                </span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" target="_blank"
-                 href="https://www.reelyactive.com/made-in-montreal/" >
-                <i class="fab fa-canadian-maple-leaf"></i>
-                Made in Montr&eacute;al &nbsp;
-                <i class="fas fa-city"></i>
-              </a>
-            </div>
-          </li>
-        </ul>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
+    <!-- Content -->
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Open Source Software packages list </h1>
-          <p class="lead"> A canonical list and descriptions of the core reelyActive OSS packages. </p>
-          <!--<img src="images/header.jpg" class="img-fluid"
-               alt="reelyActive Open Source Software packages">-->
+          <p class="lead"> A canonical list and descriptions of the core reelyActive OSS packages for IoT. </p>
+          <img src="images/header.jpg" class="img-fluid"
+               alt="reelyActive Open Source Software packages">
           <!----- The TL;DR ----->
-          <div class="card my-4">
+          <div class="card hover-shadow my-4">
             <div class="card-body">
               <h2>
                 The TL;DR
-                <small class="text-muted"> (Too Long; Didn't Read) </small>
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn about our software packages, their mascots, and how they all work together. </p>
+              <p class="lead"> Learn about our modular software packages, their mascots, and how they all work together. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3">Why so many?</dt>
-                <dd class="col-sm-9">These software modules can be combined in many ways as part of our open architecture to best fit the target application.</dd>
-                <dt class="col-sm-3">Why mascots?</dt>
-                <dd class="col-sm-9">So that each package has a memorable name and image.</dd>
-                <dt class="col-sm-3">Why mascot stories?</dt>
-                <dd class="col-sm-9">Not only were they fun to write, they add context to each package.</dd>
+                <dt class="col-sm-3"> Why so many? </dt>
+                <dd class="col-sm-9"> These software modules can be combined in many ways as part of our open architecture to best fit the target application. </dd>
+                <dt class="col-sm-3"> Why mascots? </dt>
+                <dd class="col-sm-9"> So that each package has a memorable name, image and story. </dd>
+                <dt class="col-sm-3"> Why mascot stories? </dt>
+                <dd class="col-sm-9"> Not only were they fun to write, they add <em>context</em> to each package. </dd>
               </dl>
             </div>
           </div>
           <!----- barnowl ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/barnowl-logo.png" class="img-fluid"
-                     alt="barnowl by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/barnowl-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="barnowl by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="barnowl">
-                  barnowl &nbsp;
-                  <a href="#barnowl" class="badge badge-secondary">
-                    Server-Side <i class="fab fa-node-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="barnowl" class="card-title my-2">
+                    barnowl &nbsp;
+                    <a href="#barnowl" class="badge text-bg-primary">
+                      Server-Side <i class="fab fa-node-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Converts any RF decoding into standard JSON. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/barnowl"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/barnowl
                   </a>
-                </h2>
-                <p class="lead"> Converts RF decodings into JSON. </p>
-                <hr>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/barnowl">
-                  <i class="fab fa-github"></i>
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://www.npmjs.com/package/barnowl">
-                  <i class="fab fa-npm"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="barnowlinfotab" data-toggle="tab"
-                 href="#barnowlinfo" role="tab" aria-controls="barnowlinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="barnowlinfotab"
+                      data-bs-toggle="tab" data-bs-target="#barnowlinfo"
+                      type="button" role="tab" aria-controls="barnowlinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="barnowlstorytab" data-toggle="tab"
-                 href="#barnowlstory" role="tab" aria-controls="barnowlstory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="barnowlstorytab" data-bs-toggle="tab"
+                      data-bs-target="#barnowlstory" type="button" role="tab"
+                      aria-controls="barnowlstorytab"
+                      aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="barnowlinfo"
                  role="tabpanel" aria-labelledby="barnowlinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/barnowl/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="barnowl Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="barnowlstory" role="tabpanel"
-                 aria-labelledby="barnowlstorytab">
-              <div class="text-justify my-2">
-                <p> The Barn Owl has the best hearing of any animal tested. Since this middleware is effectively listening (via hardware 'ears') for all the wireless devices in a Smart Space, <b>barnowl</b> would seem a more than fitting name. Moreover, <a href="https://en.wikipedia.org/wiki/Barn_owl" target="_blank">Wikipedia introduces the Barn Owl</a> as "the most widely distributed species of owl, and one of the most widespread of all birds". An ambitiously inspiring fact considering our vision for a global crowdsourced infrastructure of Wireless Sensor Networks in the Internet of Things (IoT). </p>
-                <p> Don't think we can top that? Well check out this quote: "the barn owl is the most economically beneficial species to humans". Yes, <a href="http://www.hungryowl.org/education/natural_history.html" target="_blank">apparently</a> the U.S. Fish and Wildlife Service is prepared to argue so. Too ambitious? Well, consider this quote from <a href="https://en.wikipedia.org/wiki/Jeremy_Rifkin" target="_blank">Jeremy Rifkin</a>: "What makes the IoT a disruptive technology in the way we organize economic life is that it helps humanity reintegrate itself into the complex choreography of the biosphere, and by doing so, dramatically increases productivity without compromising the ecological relationships that govern the planet." </p>
-                <p> Can a few hundred lines of server-side Javascript known as <b>barnowl</b> really live up to that? Owl we know is it can tyto do its nest! </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="barnowlstory"
+                 role="tabpanel" aria-labelledby="barnowlstorytab">
+              <p> The Barn Owl has the best hearing of any animal tested. Since this middleware is effectively listening (via hardware 'ears') for all the wireless devices in a Smart Space, <b>barnowl</b> would seem a more than fitting name. Moreover, <a href="https://en.wikipedia.org/wiki/Barn_owl" target="_blank">Wikipedia introduces the Barn Owl</a> as "the most widely distributed species of owl, and one of the most widespread of all birds". An ambitiously inspiring fact considering our vision for a global crowdsourced infrastructure of Wireless Sensor Networks in the Internet of Things (IoT). </p>
+              <p> Don't think we can top that? Well check out this quote: "the barn owl is the most economically beneficial species to humans". Yes, <a href="http://www.hungryowl.org/education/natural_history.html" target="_blank">apparently</a> the U.S. Fish and Wildlife Service is prepared to argue so. Too ambitious? Well, consider this quote from <a href="https://en.wikipedia.org/wiki/Jeremy_Rifkin" target="_blank">Jeremy Rifkin</a>: "What makes the IoT a disruptive technology in the way we organize economic life is that it helps humanity reintegrate itself into the complex choreography of the biosphere, and by doing so, dramatically increases productivity without compromising the ecological relationships that govern the planet." </p>
+              <p> Can a few hundred lines of server-side Javascript known as <b>barnowl</b> really live up to that? Owl we know is it can tyto do its nest! </p>
             </div>
           </div>
           <!----- barnacles ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/barnacles-logo.png" class="img-fluid"
-                     alt="barnacles by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/barnacles-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="barnacles by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="barnacles">
-                  barnacles &nbsp;
-                  <a href="#barnacles" class="badge badge-secondary">
-                    Server-Side <i class="fab fa-node-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="barnacles" class="card-title my-2">
+                    barnacles &nbsp;
+                    <a href="#barnacles" class="badge text-bg-primary">
+                      Server-Side <i class="fab fa-node-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Processes & distributes RF decodings as hyperlocal context. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/barnacles"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/barnacles
                   </a>
-                </h2>
-                <p class="lead"> Aggregates and distributes radio decodings (raddecs). </p>
-                <hr>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/barnacles">
-                  <i class="fab fa-github"></i>
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://www.npmjs.com/package/barnacles">
-                  <i class="fab fa-npm"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="barnaclesinfotab" data-toggle="tab"
-                 href="#barnaclesinfo" role="tab" aria-controls="barnaclesinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="barnaclesinfotab"
+                      data-bs-toggle="tab" data-bs-target="#barnaclesinfo"
+                      type="button" role="tab" aria-controls="barnaclesinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="barnaclesstorytab" data-toggle="tab"
-                 href="#barnaclesstory" role="tab" aria-controls="barnaclesstory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="barnaclesstorytab"
+                      data-bs-toggle="tab" data-bs-target="#barnaclesstory"
+                      type="button" role="tab" aria-controls="barnaclesstorytab"
+                      aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="barnaclesinfo"
                  role="tabpanel" aria-labelledby="barnaclesinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/barnacles/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="barnacles Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="barnaclesstory" role="tabpanel"
-                 aria-labelledby="barnaclesstorytab">
-              <div class="text-justify my-2">
-                <p> As <a href="https://en.wikipedia.org/wiki/Barnacle#Sexual_reproduction" target="_blank">Wikipedia so eloquently states</a>, "To facilitate genetic transfer between isolated individuals, <b>barnacles</b> have extraordinarily long penises." And given the current state of isolation of nodes in today's IoT, this package (pun intended) needs "the largest penis to body size ratio of the animal kingdom". </p>
-                <p> Also, we hope the name provides occasions to overhear our Qu&eacute;b&eacute;cois colleagues say things like <em>"Tu veux tu configurer ta barnacle!?!"</em> </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="barnaclesstory"
+                 role="tabpanel" aria-labelledby="barnaclesstorytab">
+              <p> As <a href="https://en.wikipedia.org/wiki/Barnacle#Sexual_reproduction" target="_blank">Wikipedia so eloquently states</a>, "To facilitate genetic transfer between isolated individuals, <b>barnacles</b> have extraordinarily long penises." And given the current state of isolation of nodes in today's IoT, this package (pun intended) needs "the largest penis to body size ratio of the animal kingdom". </p>
+              <p> Also, we hope the name provides occasions to overhear our Qu&eacute;b&eacute;cois colleagues say things like <em>"Tu veux tu configurer ta barnacle!?!"</em> </p>
             </div>
           </div>
           <!----- barterer ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/barterer-logo.png" class="img-fluid"
-                     alt="barterer by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/barterer-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="barterer by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="barterer">
-                  barterer &nbsp;
-                  <a href="#barterer" class="badge badge-secondary">
-                    Server-Side <i class="fab fa-node-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="barterer" class="card-title my-2">
+                    barterer &nbsp;
+                    <a href="#barterer" class="badge text-bg-primary">
+                      Server-Side <i class="fab fa-node-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Real-time location & sensor data API. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/barterer"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/barterer
                   </a>
-                </h2>
-                <p class="lead"> A REST API for real-time location and sensor data. </p>
-                <hr>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/barterer">
-                  <i class="fab fa-github"></i>
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://www.npmjs.com/package/barterer">
-                  <i class="fab fa-npm"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="bartererinfotab" data-toggle="tab"
-                 href="#bartererinfo" role="tab" aria-controls="bartererinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="bartererinfotab"
+                      data-bs-toggle="tab" data-bs-target="#bartererinfo"
+                      type="button" role="tab" aria-controls="bartererinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="bartererstorytab" data-toggle="tab"
-                 href="#bartererstory" role="tab" aria-controls="bartererstory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="bartererstorytab"
+                      data-bs-toggle="tab" data-bs-target="#bartererstory"
+                      type="button" role="tab" aria-controls="bartererstorytab"
+                      aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="bartererinfo"
                  role="tabpanel" aria-labelledby="bartererinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/barterer/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="barterer Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="bartererstory" role="tabpanel"
-                 aria-labelledby="bartererstorytab">
-              <div class="text-justify my-2">
-                <p> Barter is a system of exchange by which goods or services are directly exchanged for other goods or services without using a medium of exchange, such as money. Seems fitting for an API in an open Internet of Things. </p>
-                <p> Why is <b>barterer</b> represented by a starfish? Well, in our software architecture, <b>barterer</b> consumes data from barnacles, and in nature, starfish consume barnacles. One such example is the species <a href="https://en.wikipedia.org/wiki/Pisaster_ochraceus" target="_blank">Pisaster ochraceus</a>. And, as Wikipedia states, "while most individuals are purple, they can be orange, orange-ochre, yellow, reddish, or brown". Orange was the only colour in the reelyActive palette which fit, so there you have it, an orange starfish. </p>
-                <p> If we stretch the story even further, the initials of Pisaster Ochraceus (PO) are the same as the architect of our original API (P-O). That API was named bartender, but alas, that name had already been claimed on npmjs, and so we <em>exchanged</em> it for <b>barterer</b> (pun intended, as usual). </p>
-                <p> Why is the starfish holding scales with a one and a zero? Because he's bartering digital information of course! </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="bartererstory"
+                 role="tabpanel" aria-labelledby="bartererstorytab">
+              <p> Barter is a system of exchange by which goods or services are directly exchanged for other goods or services without using a medium of exchange, such as money. Seems fitting for an API in an open Internet of Things. </p>
+              <p> Why is <b>barterer</b> represented by a starfish? Well, in our software architecture, <b>barterer</b> consumes data from barnacles, and in nature, starfish consume barnacles. One such example is the species <a href="https://en.wikipedia.org/wiki/Pisaster_ochraceus" target="_blank">Pisaster ochraceus</a>. And, as Wikipedia states, "while most individuals are purple, they can be orange, orange-ochre, yellow, reddish, or brown". Orange was the only colour in the reelyActive palette which fit, so there you have it, an orange starfish. </p>
+              <p> If we stretch the story even further, the initials of Pisaster Ochraceus (PO) are the same as the architect of our original API (P-O). That API was named bartender, but alas, that name had already been claimed on npmjs, and so we <em>exchanged</em> it for <b>barterer</b> (pun intended, as usual). </p>
+              <p> Why is the starfish holding scales with a one and a zero? Because he's bartering digital information of course! </p>
             </div>
           </div>
           <!----- chickadee ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/chickadee-logo.png" class="img-fluid"
-                     alt="chickadee by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/chickadee-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="chickadee by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="chickadee">
-                  chickadee &nbsp;
-                  <a href="#chickadee" class="badge badge-secondary">
-                    Server-Side <i class="fab fa-node-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="chickadee" class="card-title my-2">
+                    chickadee &nbsp;
+                    <a href="#chickadee" class="badge text-bg-primary">
+                      Server-Side <i class="fab fa-node-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Contextual associations store and hyperlocal context API. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/chickadee"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/chickadee
                   </a>
-                </h2>
-                <p class="lead"> Manages and stores contextual associations. </p>
-                <hr>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/chickadee">
-                  <i class="fab fa-github"></i>
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://www.npmjs.com/package/chickadee">
-                  <i class="fab fa-npm"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="chickadeeinfotab" data-toggle="tab"
-                 href="#chickadeeinfo" role="tab" aria-controls="chickadeeinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="chickadeeinfotab"
+                      data-bs-toggle="tab" data-bs-target="#chickadeeinfo"
+                      type="button" role="tab" aria-controls="chickadeeinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="chickadeestorytab" data-toggle="tab"
-                 href="#chickadeestory" role="tab" aria-controls="chickadeestory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="chickadeestorytab"
+                      data-bs-toggle="tab" data-bs-target="#chickadeestory"
+                      type="button" role="tab" aria-controls="chickadeestorytab"
+                      aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="chickadeeinfo"
                  role="tabpanel" aria-labelledby="chickadeeinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/chickadee/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="chickadee Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="chickadeestory" role="tabpanel"
-                 aria-labelledby="chickadeestorytab">
-              <div class="text-justify my-2">
-                <p> The <a href="http://www.allaboutbirds.org/guide/black-capped_chickadee/lifehistory" target="_blank">Cornell Lab of Ornithology explains</a>: "The Black-Capped Chickadee hides seeds and other food items to eat later. Each item is placed in a different spot and the <b>chickadee</b> can remember thousands of hiding places." Not only does it have an outstanding associative memory, it is also "almost universally considered <em>cute</em> thanks to its oversized round head, tiny body, and curiosity about everything, including humans." </p>
-                <p> If you were entrusting a bird to associate your wireless device with your online stories you'd want it to be cute and friendly enough to eat out of your hand, right? We could have named this package <a href="http://www.allaboutbirds.org/guide/clarks_nutcracker/lifehistory" target="_blank">Clark's Nutcracker</a>, the bird with arguably the best associative memory, but the whole nut-cracking thing doesn't inspire the same level of friendliness now does it? </p>
-                <p> One more fun fact that we feel compelled to pass along: "Every autumn Black-capped Chickadees allow brain neurons containing old information to die, replacing them with new neurons so they can adapt to changes in their social flocks and environment even with their tiny brains." Wow, that's database efficiency that we can aspire to! </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="chickadeestory"
+                 role="tabpanel" aria-labelledby="chickadeestorytab">
+              <p> The <a href="http://www.allaboutbirds.org/guide/black-capped_chickadee/lifehistory" target="_blank">Cornell Lab of Ornithology explains</a>: "The Black-Capped Chickadee hides seeds and other food items to eat later. Each item is placed in a different spot and the <b>chickadee</b> can remember thousands of hiding places." Not only does it have an outstanding associative memory, it is also "almost universally considered <em>cute</em> thanks to its oversized round head, tiny body, and curiosity about everything, including humans." </p>
+              <p> If you were entrusting a bird to associate your wireless device with your online stories you'd want it to be cute and friendly enough to eat out of your hand, right? We could have named this package <a href="http://www.allaboutbirds.org/guide/clarks_nutcracker/lifehistory" target="_blank">Clark's Nutcracker</a>, the bird with arguably the best associative memory, but the whole nut-cracking thing doesn't inspire the same level of friendliness now does it? </p>
+              <p> One more fun fact that we feel compelled to pass along: "Every autumn Black-capped Chickadees allow brain neurons containing old information to die, replacing them with new neurons so they can adapt to changes in their social flocks and environment even with their tiny brains." Wow, that's database efficiency that we can aspire to! </p>
             </div>
           </div>
           <!----- json-silo ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/json-silo-logo.png" class="img-fluid"
-                     alt="json-silo by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/json-silo-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="json-silo by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="json-silo">
-                  json-silo &nbsp;
-                  <a href="#json-silo" class="badge badge-secondary">
-                    Server-Side <i class="fab fa-node-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="json-silo" class="card-title my-2">
+                    chickadee &nbsp;
+                    <a href="#json-silo" class="badge text-bg-primary">
+                      Server-Side <i class="fab fa-node-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Lightweight digital twins store and API. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/json-silo"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/json-silo
                   </a>
-                </h2>
-                <p class="lead"> Contextual data silo. </p>
-                <hr>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/json-silo">
-                  <i class="fab fa-github"></i>
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://www.npmjs.com/package/json-silo">
-                  <i class="fab fa-npm"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="jsonsiloinfotab" data-toggle="tab"
-                 href="#jsonsiloinfo" role="tab" aria-controls="jsonsiloinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="jsonsiloinfotab"
+                      data-bs-toggle="tab" data-bs-target="#jsonsiloinfo"
+                      type="button" role="tab" aria-controls="jsonsiloinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="jsonsilostorytab" data-toggle="tab"
-                 href="#jsonsilostory" role="tab" aria-controls="jsonsilostory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="jsonsilostorytab"
+                      data-bs-toggle="tab" data-bs-target="#jsonsilostory"
+                      type="button" role="tab" aria-controls="jsonsilostorytab"
+                      aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="jsonsiloinfo"
                  role="tabpanel" aria-labelledby="jsonsiloinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/json-silo/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="json-silo Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="jsonsilostory" role="tabpanel"
-                 aria-labelledby="jsonsilostorytab">
-              <div class="text-justify my-2">
-                <p> The <b>json-silo</b> is exactly that: a data silo for <a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JSON</a>! Simple enough, right? So why does it have a grain silo with a hockey mask for a mascot? </p>
-                <p> At reelyActive we've always been outspoken about the need for an open Internet of Things as opposed to a bunch of siloed applications. In 2013, on social media we recycled the <a href="https://en.wikipedia.org/wiki/More_cowbell" target="_blank">"More cowbell" meme</a> with an image of Will Ferrell banging on a grain silo with the caption <a href="https://reelyactive.github.io/images/moreSilo.jpg" target="_blank">"The Internet of Things does not need More Silo"</a>. When it came time to create a mascot for the <b>json-silo</b>, we decided to start with that grain silo. </p>
-                <p> Now, how do you visually represent JSON in association with a grain silo? Sure, we could have slapped the official JSON logo on that silo, but where's the fun in that? Instead, for those of us who grew up in the eighties, hearing "JSON" out of context (pun intended) evokes the image of <a href="https://en.wikipedia.org/wiki/Jason_Voorhees" target="_blank">Jason Voorhees</a> from the Friday the 13th series of films, specifically the iconic hockey goaltender mask he wore. Not only does that "Jason" mask make for a silly visual pun, it also gives a nod to our hometown heritage, where <a href="https://en.wikipedia.org/wiki/Jacques_Plante" target="_blank">Jacques Plante</a> of the Montreal Canadiens was the first goaltender to wear such a mask full-time, which would later become standard practice. We'd be pleased to see the use of personal data lockers become standard practice too. </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="jsonsilostory"
+                 role="tabpanel" aria-labelledby="jsonsilostorytab">
+              <p> The <b>json-silo</b> is exactly that: a data silo for <a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JSON</a>! Simple enough, right? So why does it have a grain silo with a hockey mask for a mascot? </p>
+              <p> At reelyActive we've always been outspoken about the need for an open Internet of Things as opposed to a bunch of siloed applications. In 2013, on social media we recycled the <a href="https://en.wikipedia.org/wiki/More_cowbell" target="_blank">"More cowbell" meme</a> with an image of Will Ferrell banging on a grain silo with the caption <a href="https://reelyactive.github.io/images/moreSilo.jpg" target="_blank">"The Internet of Things does not need More Silo"</a>. When it came time to create a mascot for the <b>json-silo</b>, we decided to start with that grain silo. </p>
+              <p> Now, how do you visually represent JSON in association with a grain silo? Sure, we could have slapped the official JSON logo on that silo, but where's the fun in that? Instead, for those of us who grew up in the eighties, hearing "JSON" out of context (pun intended) evokes the image of <a href="https://en.wikipedia.org/wiki/Jason_Voorhees" target="_blank">Jason Voorhees</a> from the Friday the 13th series of films, specifically the iconic hockey goaltender mask he wore. Not only does that "Jason" mask make for a silly visual pun, it also gives a nod to our hometown heritage, where <a href="https://en.wikipedia.org/wiki/Jacques_Plante" target="_blank">Jacques Plante</a> of the Montreal Canadiens was the first goaltender to wear such a mask full-time, which would later become standard practice. We'd be pleased to see the use of personal data lockers become standard practice too. </p>
             </div>
           </div>
           <!----- beaver ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/beaver-logo.png" class="img-fluid"
-                     alt="beaver by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/beaver-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="beaver by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="beaver">
-                  beaver &nbsp;
-                  <a href="#beaver" class="badge badge-secondary">
-                    Client-Side <i class="fab fa-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="beaver" class="card-title my-2">
+                    beaver &nbsp;
+                    <a href="#barnowl" class="badge text-bg-primary">
+                      Client-Side <i class="fab fa-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Maintains a hyperlocal context graph from an IoT data stream. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/beaver"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/beaver
                   </a>
-                </h2>
-                <p class="lead"> Collects the real-time data stream. </p>
-                <hr>
-                <a class="btn btn-primary" role="button" target="_blank"
-                   href="https://reelyactive.github.io/beaver">
-                  Demo
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/beaver">
-                  <i class="fab fa-github"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="beaverinfotab" data-toggle="tab"
-                 href="#beaverinfo" role="tab" aria-controls="beaverinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="beaverinfotab"
+                      data-bs-toggle="tab" data-bs-target="#beaverinfo"
+                      type="button" role="tab" aria-controls="beaverinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="beaverstorytab" data-toggle="tab"
-                 href="#beaverstory" role="tab" aria-controls="beaverstory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="beaverstorytab" data-bs-toggle="tab"
+                      data-bs-target="#beaverstory" type="button" role="tab"
+                      aria-controls="beaverstorytab"
+                      aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="beaverinfo"
                  role="tabpanel" aria-labelledby="beaverinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/beaver/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="beaver Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="beaverstory" role="tabpanel"
-                 aria-labelledby="beaverstorytab">
-              <div class="text-justify my-2">
-                <p> After humans, beavers are the animals with the greatest impact on their ecosystem. Industrious and ingenious hydrological engineers, beavers build dams, filling the ponds which provide them food and protection. In turn, these basins of water provide food and habitat for diverse fauna and flora, contributing to a thriving ecosystem. </p>
-                <p> Introduced to the web browser habitat in 2016, <b>beaver.js</b> has adapted to fill ponds in your computer's memory, collecting the steady stream of real-time events from an upstream source. In turn, this pool of data provides a staple food for other client-side Javascript species such as the occasional migratory cormorant.js. </p>
-                <p> Oh yeah, and the beaver is the <a href="https://en.wikipedia.org/wiki/National_symbols_of_Canada" target="_blank">national animal of Canada</a> eh? And the oversized rodent is currently celebrating its 40th anniversary as the <a href="https://en.wikipedia.org/wiki/Amik" target="_blank">mascot of the 1976 Olympics</a> of our native Montreal. We wood be dammed not to chews it as a mascot! </p>
-                <p> Don’t like our punny ending? Why not <em>lodge</em> a complaint? </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="beaverstory"
+                 role="tabpanel" aria-labelledby="beaverstorytab">
+              <p> After humans, beavers are the animals with the greatest impact on their ecosystem. Industrious and ingenious hydrological engineers, beavers build dams, filling the ponds which provide them food and protection. In turn, these basins of water provide food and habitat for diverse fauna and flora, contributing to a thriving ecosystem. </p>
+              <p> Introduced to the web browser habitat in 2016, <b>beaver.js</b> has adapted to fill ponds in your computer's memory, collecting the steady stream of real-time events from an upstream source. In turn, this pool of data provides a staple food for other client-side Javascript species such as the occasional migratory cormorant.js. </p>
+              <p> Oh yeah, and the beaver is the <a href="https://en.wikipedia.org/wiki/National_symbols_of_Canada" target="_blank">national animal of Canada</a> eh? And the oversized rodent is currently celebrating its 40th anniversary as the <a href="https://en.wikipedia.org/wiki/Amik" target="_blank">mascot of the 1976 Olympics</a> of our native Montreal. We wood be dammed not to chews it as a mascot! </p>
+              <p> Don’t like our punny ending? Why not <em>lodge</em> a complaint? </p>
             </div>
           </div>
           <!----- cormorant ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/cormorant-logo.png" class="img-fluid"
-                     alt="cormorant by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/cormorant-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="cormorant by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="cormorant">
-                  cormorant &nbsp;
-                  <a href="#cormorant" class="badge badge-secondary">
-                    Client-Side <i class="fab fa-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="cormorant" class="card-title my-2">
+                    cormorant &nbsp;
+                    <a href="#cormorant" class="badge text-bg-primary">
+                      Client-Side <i class="fab fa-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Fetches digital twins in the form of JSON-LD & Schema.org from any given URL. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/cormorant"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/cormorant
                   </a>
-                </h2>
-                <p class="lead"> Fetches JSON-LD stories via URLs. </p>
-                <hr>
-                <a class="btn btn-primary" role="button" target="_blank"
-                   href="https://reelyactive.github.io/cormorant">
-                  Demo
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/cormorant">
-                  <i class="fab fa-github"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="cormorantinfotab" data-toggle="tab"
-                 href="#cormorantinfo" role="tab" aria-controls="cormorantinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="cormorantinfotab"
+                      data-bs-toggle="tab" data-bs-target="#cormorantinfo"
+                      type="button" role="tab" aria-controls="cormorantinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="cormorantstorytab" data-toggle="tab"
-                 href="#cormorantstory" role="tab" aria-controls="cormorantstory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="cormorantstorytab"
+                      data-bs-toggle="tab" data-bs-target="#cormorantstory"
+                      type="button" role="tab" aria-controls="cormorantstorytab"
+                      aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="cormorantinfo"
                  role="tabpanel" aria-labelledby="cormorantinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/cormorant/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="cormorant Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="cormorantstory" role="tabpanel"
-                 aria-labelledby="cormorantstorytab">
-              <div class="text-justify my-2">
-                <p> Cormorants are a family of aquatic birds well adapted for diving to catch fish in their long, slender bill which is hooked in an <em>Angular</em> kind of way. In its client-side habitat, <b>cormorant.js</b> will commonly dive into pools created by beaver.js in search of linked data, adeptly swimming from URL to URL, to collect its prey: JSON-LD. </p>
-                <p> Cormorants are also known as shags. If you've read our other mascot stories, at this point you may be surprised that we didn't play on the shag & beaver theme. We could have, but it seems rather tame once you discover the mechanics of how that goes down for our other mascot, the cuttlefish! </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="cormorantstory"
+                 role="tabpanel" aria-labelledby="cormorantstorytab">
+              <p> Cormorants are a family of aquatic birds well adapted for diving to catch fish in their long, slender bill which is hooked in an <em>Angular</em> kind of way. In its client-side habitat, <b>cormorant.js</b> will commonly dive into pools created by beaver.js in search of linked data, adeptly swimming from URL to URL, to collect its prey: JSON-LD. </p>
+              <p> Cormorants are also known as shags. If you've read our other mascot stories, at this point you may be surprised that we didn't play on the shag & beaver theme. We could have, but it seems rather tame once you discover the mechanics of how that goes down for our other mascot, the cuttlefish! </p>
             </div>
           </div>
           <!----- cuttlefish ----->
-          <div class="jumbotron jumbotron-fluid my-4">
-            <div class="container row">
-              <div class="col-sm-12 col-md-4">
-                <img src="../common/images/cuttlefish-logo.png" class="img-fluid"
-                     alt="cuttlefish by reelyActive">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="row d-flex align-items-center g-0">
+              <div class="col-md-3">
+                <img src="../common/images/cuttlefish-logo.png" loading="lazy"
+                     class="img-fluid p-3" alt="cuttlefish by reelyActive">
               </div>
-              <div class="col-sm-12 col-md-8 mt-4">
-                <h2 id="cuttlefish">
-                  cuttlefish &nbsp;
-                  <a href="#cuttlefish" class="badge badge-secondary">
-                    Client-Side <i class="fab fa-js"></i>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h2 id="cuttlefish" class="card-title my-2">
+                    cuttlefish &nbsp;
+                    <a href="#cuttlefish" class="badge text-bg-primary">
+                      Client-Side <i class="fab fa-js"></i>
+                    </a>
+                  </h2>
+                  <p class="lead"> Facilitates human-friendly HTML rendering of machine-friendly IoT data. </p>
+                  <hr>
+                  <a href="https://github.com/reelyactive/cuttlefish"
+                     target="_blank" class="btn btn-sm btn-outline-primary"
+                     role="button">
+                    <i class="fab fa-github"></i>/reelyactive/cuttlefish
                   </a>
-                </h2>
-                <p class="lead"> Human-friendly HTML rendering of machine-friendly JSON-LD. </p>
-                <hr>
-                <a class="btn btn-primary" role="button" target="_blank"
-                   href="https://reelyactive.github.io/cuttlefish">
-                  Demo
-                </a>
-                <a class="btn btn-outline-dark" role="button" target="_blank"
-                   href="https://github.com/reelyactive/cuttlefish">
-                  <i class="fab fa-github"></i>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="cuttlefishinfotab" data-toggle="tab"
-                 href="#cuttlefishinfo" role="tab" aria-controls="cuttlefishinfo"
-                 aria-selected="true"> <i class="fas fa-info-circle"></i> Info </a>
+          <ul class="nav nav-tabs mt-4" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="cuttlefishinfotab"
+                      data-bs-toggle="tab" data-bs-target="#cuttlefishinfo"
+                      type="button" role="tab" aria-controls="cuttlefishinfotab"
+                      aria-selected="true">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="cuttlefishstorytab" data-toggle="tab"
-                 href="#cuttlefishstory" role="tab" aria-controls="cuttlefishstory"
-                 aria-selected="false"> <i class="fas fa-book-open"></i> Story </a>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="cuttlefishstorytab"
+                      data-bs-toggle="tab" data-bs-target="#cuttlefishstory"
+                      type="button" role="tab"
+                      aria-controls="cuttlefishstorytab" aria-selected="false"> 
+                <i class="fas fa-book-open"></i> Story
+              </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-reelyactive">
+          <div class="tab-content border-light-subtle tab-content-border">
             <div class="tab-pane fade show active" id="cuttlefishinfo"
                  role="tabpanel" aria-labelledby="cuttlefishinfotab">
-              <div class="text-justify my-2">
-                <p> Info to come... </p>
-              </div>
+              <img src="https://reelyactive.github.io/cuttlefish/images/overview.png"
+                   class="img-fluid" loading="lazy"
+                   alt="cuttlefish Architecture Overview">
             </div>
-            <div class="tab-pane fade" id="cuttlefishstory" role="tabpanel"
-                 aria-labelledby="cuttlefishstorytab">
-              <div class="text-justify my-2">
-                <p> The cuttlefish isn't actually a fish, but rather a cephalopod, which is a class of marine animals remarkable for how quickly and diversely they can communicate visually. <a href="https://en.wikipedia.org/wiki/Cuttlefish#Communication" target="_blank">As per Wikipedia</a>: "flamboyant cuttlefish use between 42 and 75 chromatic, seven textural, 14 postural, and seven locomotor elements" to communicate. </p>
-                <p> Given that <b>cuttlefish.js</b> communicates machine-readable data as human-readable visual information, that unprecedented natural vocabulary sets some serious expectations for UI/UX design! Seriously. Read <a href="http://discovermagazine.com/2006/apr/cephalopod-morphing/" target="_blank">Jaron Lanier's 2006 article in Discover Magazine</a>. </p>
-                <p> In its client-side habitat, cuttlefish.js will consume and render the JSON-LD fetched by cormorant.js. And while you may suspect that cuttlefish and cormorants have nothing more in common than the fact that the pupil of the former resembles the distinct wing shape of the latter, check out <a href="https://youtu.be/OQq__WdJBMw?t=2m40s" target="_blank">this video</a> we found on the Internets. Yeah, if that skate were a beaver... </p>
-                <p> Speaking of videos, we'd be remiss not to share with you Ze Frank's <a href="https://youtu.be/GDwOi7HpHtQ" target="_blank">True Facts about the Cuttlefish</a>. May we also suggest an images search for "cute baby cuttlefish". You're welcome. </p>
-              </div>
+            <div class="tab-pane text-justify fade" id="cuttlefishstory"
+                 role="tabpanel" aria-labelledby="cuttlefishstorytab">
+              <p> The cuttlefish isn't actually a fish, but rather a cephalopod, which is a class of marine animals remarkable for how quickly and diversely they can communicate visually. <a href="https://en.wikipedia.org/wiki/Cuttlefish#Communication" target="_blank">As per Wikipedia</a>: "flamboyant cuttlefish use between 42 and 75 chromatic, seven textural, 14 postural, and seven locomotor elements" to communicate. </p>
+              <p> Given that <b>cuttlefish.js</b> communicates machine-readable data as human-readable visual information, that unprecedented natural vocabulary sets some serious expectations for UI/UX design! Seriously. Read <a href="http://discovermagazine.com/2006/apr/cephalopod-morphing/" target="_blank">Jaron Lanier's 2006 article in Discover Magazine</a>. </p>
+              <p> In its client-side habitat, cuttlefish.js will consume and render the JSON-LD fetched by cormorant.js. And while you may suspect that cuttlefish and cormorants have nothing more in common than the fact that the pupil of the former resembles the distinct wing shape of the latter, check out <a href="https://youtu.be/OQq__WdJBMw?t=2m40s" target="_blank">this video</a> we found on the Internets. Yeah, if that skate were a beaver... </p>
+              <p> Speaking of videos, we'd be remiss not to share with you Ze Frank's <a href="https://youtu.be/GDwOi7HpHtQ" target="_blank">True Facts about the Cuttlefish</a>. May we also suggest an images search for "cute baby cuttlefish". You're welcome. </p>
             </div>
           </div>
           <!----- Where to next? ----->
-          <hr>
+          <hr class="my-4">
           <h2> Where to next? </h2>
           <p class="lead"> Continue exploring our open architecture and all its applications. </p>
-          <ul class="list-unstyled">
-            <li class="media my-2">
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png"
-                     class="align-self-start mr-3">
+                <img src="../common/images/icon.png" class="rounded-1">
               </a>
-              <div class="media-body">
-                <a href="../../">
-                  <h5 class="mt-0 mb-1"> diyActive Home </h5>
-                </a>
-                The home for reelyActive developers.
-              </div>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
             </li>
           </ul>
-          <p> &nbsp; </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <a href="https://reelyactive.github.io"> diyActive </a>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2020 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
-    <script defer src="../common/js/solid.min.js"></script>
-    <script defer src="../common/js/brands.min.js"></script>
-    <script defer src="../common/js/fontawesome.min.js"></script>
-    <script src="../common/js/jquery.min.js"></script>
-    <script src="../common/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
             data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
     </script>
