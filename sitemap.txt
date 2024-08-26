@@ -3,6 +3,7 @@ https://reelyactive.github.io/diy/
 https://reelyactive.github.io/diy/aruba-instant-config/
 https://reelyactive.github.io/diy/banglejs-dev/
 https://reelyactive.github.io/diy/best-practices-ble-identifiers/
+https://reelyactive.github.io/diy/best-practices-ble-advertising-data/
 https://reelyactive.github.io/diy/capspaces-pi/
 https://reelyactive.github.io/diy/cheatsheet/
 https://reelyactive.github.io/diy/contact-tracing-architectures/

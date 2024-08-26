@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Best practices for Bluetooth Low Energy (BLE) advertising data, specifically for interoperability and interpretability.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Best practices for Bluetooth Low Energy (BLE) advertising data </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Best practices for Bluetooth Low Energy (BLE) advertising data",
+      "description": "Best practices for Bluetooth Low Energy (BLE) advertising data, specifically for interoperability and interpretability.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/best-practices-ble-advertising-data/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Best practices for Bluetooth Low Energy advertising data"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Best practices for BLE advertising data </h1>
+          <p class="lead"> Structuring Bluetooth Low Energy (BLE) advertising data for interoperability and interpretability </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Best practices for Bluetooth Low Energy (BLE) advertising data">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive structure BLE advertising packets based on best practices we've established. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Established how? </dt>
+                <dd class="col-sm-9"> When we founded reelyActive in 2012, we recognised that BLE would become a de facto global standard for human-scale wireless data exchange, and have been consistently outspoken about best practices. </dd>
+                <dt class="col-sm-3"> Why best practices? </dt>
+                <dd class="col-sm-9"> BLE devices are all around us, representing people, products and places.  Best practices foster spontaneous discovery and interpretation, and maximise interoperability. </dd>
+                <dt class="col-sm-3"> Are these observed? </dt>
+                <dd class="col-sm-9"> Not especially.  As of 2024, we've seen few standard best practices emerge, hence our motivation to create this tutorial and <em>The InteroperaBLE Identifier! </em></dd>
+              </dl>
+            </div>
+          </div>
+          <h2 class="mt-4"> Best practices breakdown </h2>
+          <p> This tutorial is organised into four parts as follows: </p>
+          <dl class="row">
+            <dt class="col-sm-2 offset-sm-1">
+              <span class="lead">
+                <a href="#part01" class="badge text-bg-primary">Part 1 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> Anatomy of a BLE advertising packet </span> <br>
+              <span class="text-muted"> Just enough structure with just enough space for data </span>
+            </dd>
+            <dt class="col-sm-2 offset-sm-1"> 
+              <span class="lead">
+                <a href="#part02" class="badge text-bg-primary">Part 2 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> Mind the GAP as we GATT started </span> <br>
+              <span class="text-muted"> Strict specifications simplify interoperability </span>
+            </dd>
+            <dt class="col-sm-2 offset-sm-1">
+              <span class="lead">
+                <a href="#part03" class="badge text-bg-primary">Part 3 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> Established protocols and standards </span> <br>
+              <span class="text-muted"> Open standards outside the Bluetooth specification </span>
+            </dd>
+            <dt class="col-sm-2 offset-sm-1"> 
+              <span class="lead">
+                <a href="#part04" class="badge text-bg-primary">Part 4 of 4</a>
+              </span>
+            </dt>
+            <dd class="col-sm-9">
+              <span class="lead"> The InteroperaBLE Identifier </span> <br>
+              <span class="text-muted"> Our best practice proposal for if-nothing-else-fits interoperability </span>
+            </dd>
+          </dl>
+          <p> Links to related tutorials are provided at the end. </p>
+          <!----- Part 1 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="part01" class="card-title my-2">
+                Anatomy of a BLE advertising packet &nbsp;
+                <a href="#part01" class="badge text-bg-primary">Part 1 of 4</a>
+              </h2>
+              <p class="lead"> Just enough structure with just enough space for a modest amount of data. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Advertising packet? </dt>
+                <dd class="col-sm-9"> Here we'll examine only the advertising packets that BLE devices can spontaneously broadcast to any devices listening in range. </dd>
+                <dt class="col-sm-3"> Why not other packets? </dt>
+                <dd class="col-sm-9"> Paired (one-to-one) communication between Bluetooth devices is outside the scope of this tutorial, but the best practices for GATT nonetheless apply to both. </dd>
+              </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="BLE Advertising Packet">-->
+            </div>
+          </div>
+          <h3 class="mt-4"> The advertising packet structure </h3>
+          <p> The diagram below illustrates the structure of a BLE advertising packet with the <b>Packet Data Unit (PDU)</b> expanded and identifier content highlighted.  The preamble, access address and CRC are typically generated/processed automatically, and are irrelevant to this discussion. </p>
+          <img src="images/ble-advertising-packet.png" class="img-fluid my-2"
+               alt="BLE Advertising Packet Structure">
+          <h3 class="mt-4"> The <em>mandatory</em> Advertiser Address </h3>
+          <p> Every BLE advertising packet includes a <b>48-bit Advertiser Address</b> which uniquely identifies the device that is advertising data.  See our best practices guide on <em>identifiers</em> to learn more about this, and other options for interoperable device identification: </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://reelyactive.github.io/best-practices-ble-identifiers/"
+                 target="_blank">
+                <img src="https://reelyactive.github.io/diy/best-practices-ble-identifiers/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://reelyactive.github.io/best-practices-ble-identifiers/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Best Practices for BLE Identifiers
+                </h5>
+              </a>
+              Assigning Bluetooth Low Energy identifiers for interoperability and interpretability.
+            </li>
+          </ul>
+          <h3 class="mt-4"> The <em>optional</em> payload </h3>
+          <p> A BLE advertising packet may include an <b>optional payload of up to 31 bytes</b> for additional data.  The Bluetooth Generic Access Protocol (GAP), documented <a href="https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile/" target="_blank">here</a>, affords many payload options.  Below are the most common for data. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="servicedatatab"
+                 data-bs-toggle="tab" data-bs-target="#servicedatacontent"
+                 type="button" role="tab" aria-controls="servicedatacontent"
+                 aria-selected="true"> Service Data </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="manufacturerdatatab"
+                 data-bs-toggle="tab" data-bs-target="#manufacturerdatacontent"
+                 type="button" role="tab"
+                 aria-controls="manufacturerdatacontent" aria-selected="false">
+                Manufacturer Data
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="commondatatab" data-bs-toggle="tab"
+                 data-bs-target="#commondatacontent" type="button" role="tab"
+                 aria-controls="commondatacontent" aria-selected="false">
+                Other Common Data
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="servicedatacontent"
+                 role="tabpanel" aria-labelledby="servicedatatab">
+              <h4 class="mt-2"> <i class="fas fa-database"></i> Advertising data as Service Data </h4>
+              <p> Bluetooth GAP and the advertising packet payload capacity allow for the inclusion of up to 20 bytes of data for a specific 16-bit service class UUID. </p>
+              <table class="table table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col"> Common Data Type </th>
+                    <th scope="col"> Name </th>
+                    <th scope="col"> Max. Data </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-monospace"> 0x16 </td>
+                    <td> Service Data (16-bit UUID) </td>
+                    <td> 20 bytes </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> 0x20 </td>
+                    <td> Service Data (32-bit UUID) </td>
+                    <td> 18 bytes </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> 0x21 </td>
+                    <td> Service Data (128-bit UUID) </td>
+                    <td> 6 bytes </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h5> GATT Service/Characteristic Data </h5>
+              <p> The Bluetooth SIG maintains assigned numbers for <a href="https://www.bluetooth.com/specifications/gatt/services/" target="_blank">GATT Services</a> and <a href="https://www.bluetooth.com/specifications/gatt/characteristics/" target="_blank">Characteristics</a>.  It is possible to include service/characteristic data provided it does not exceed the payload capacity.  An example is <i class="fas fa-battery-half
+"></i> battery, where a device advertises the percentage as a <a href="https://bitbucket.org/bluetooth-SIG/public/src/main/gss/org.bluetooth.characteristic.battery_level.yaml" target="_blank">Battery Level characteristic</a> (<code>0x2A19</code>). </p>
+              <h5> Member Service Data </h5>
+              <p> An entity may purchase a 16-bit member service from the Bluetooth SIG and define the service data structure as the wish, either as an open or closed standard.  An example is Google Eddystone which has the reserved UUID <code>0xFEAA</code> and supports several different frame types <a href="https://github.com/google/eddystone/blob/master/protocol-specification.md" target="_blank">defined as open standards</a> (<i class="text-success fas fa-check"></i>).  Eddystone-TLM, which includes battery voltage, temperature, tx count and uptime, is presented in detail in <a href="#part03">Part 3</a>.  Another example is Tile which has the reserved UUID <code>0xFEED</code> but whose specification is proprietary and not published. </p>
+              <p>
+                <span class="badge text-bg-success">
+                  <i class="fas fa-check"></i>
+                </span>
+                &nbsp; Service data offers strictly interpreted representations of many common data types.
+              </p>
+            </div>
+            <div class="tab-pane fade" id="manufacturerdatacontent"
+                 role="tabpanel" aria-labelledby="manufacturerdatatab">
+              <h4 class="mt-2"> <i class="fas fa-database"></i> Advertising data as Manufacturer Data </h4>
+              <p> Bluetooth GAP and the advertising packet payload capacity allow for the inclusion of up to 22 bytes of use-as-you-please data for manufacturers who register (at no cost) with the Bluetooth SIG and receive a 16-bit company identifier. </p>
+              <table class="table table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col"> Common Data Type </th>
+                    <th scope="col"> Name </th>
+                    <th scope="col"> Max. Data </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-monospace"> 0xff </td>
+                    <td> Manufacturer Specific Data </td>
+                    <td> 22 bytes </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p> For instance, Espruino device users may use the manufacturer's company identifier (<code>0x0590</code>) to send any data as a JSON string, for convenience.  This is presented in detail in <a href="#part03">Part 3</a>. </p>
+              <p>
+                <span class="badge text-bg-success">
+                  <i class="fas fa-check"></i>
+                </span>
+                &nbsp; Manufacturer data affords full freedom for the representation of data, constrained only by the payload capacity.
+              </p>
+            </div>
+            <div class="tab-pane fade" id="commondatacontent"
+                 role="tabpanel" aria-labelledby="commondatatab">
+              <h4 class="mt-2"> <i class="fas fa-database"></i> Advertising data as (other) Common Data </h4>
+              <p> Bluetooth GAP specifies other common data types which may be relevant, a subset of which are listed below. </p>
+              <table class="table table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col"> Common Data Type </th>
+                    <th scope="col"> Name </th>
+                    <th scope="col"> Max. Data </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-monospace"> 0x08 </td>
+                    <td> Shortened Local Name </td>
+                    <td> 22 bytes </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> 0x09 </td>
+                    <td> Complete Local Name </td>
+                    <td> 22 bytes </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> 0x19 </td>
+                    <td> Appearance </td>
+                    <td> 2 bytes </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> 0x24 </td>
+                    <td> URI </td>
+                    <td> 22 bytes </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> 0x31 </td>
+                    <td> Encrypted Advertising Data </td>
+                    <td> 22 bytes </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p> For instance, a Local Name type could be used to represent the name of the device (or an associated person, product or place) as a short string of characters. </p>
+            </div>
+          </div>
+          <!----- Part 2 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="part02" class="card-title my-2">
+                Mind the GAP as we GATT started &nbsp;
+                <a href="#part02" class="badge text-bg-primary">Part 2 of 4</a>
+              </h2>
+              <p class="lead"> Observe the Bluetooth Specification whenever possible to maximise interoperability. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's GAP? </dt>
+                <dd class="col-sm-9"> The Generic Access Protocol (GAP) defines the basic requirements of a Bluetooth device, including behaviours and methods. </dd>
+                <dt class="col-sm-3"> What's GATT? </dt>
+                <dd class="col-sm-9"> The Generic ATTribute Profile (GATT) establishes common operations and a framework for data transportation and storage. </dd>
+              </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="BLE GAP & GATT">-->
+            </div>
+          </div>
+          <h3 class="mt-4"> Data-as-a-Service </h3>
+          <p> How to use GATT services and characteristics in an advertising packet. </p>
+          <p> The following section presents how open standards outside the Bluetooth Specification can be used in the absence of an appropriate Service/Characteristic to represent the data. </p>
+          <!----- Part 3 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="part03" class="card-title my-2">
+                Established protocols and standards &nbsp;
+                <a href="#part03" class="badge text-bg-primary">Part 3 of 4</a>
+              </h2>
+              <p class="lead"> Reinforce existing open standards before creating yet another standard. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Whose standards? </dt>
+                <dd class="col-sm-9"> Some companies offer their member service and/or company code as an open standard for others to use. </dd>
+                <dt class="col-sm-3"> Can I do that too? </dt>
+                <dd class="col-sm-9"> Yes, you can register with the Bluetooth SIG for a company code (free) or 16-bit Member Service UUID (paid) and publish your own open standard, or keep it private. </dd>
+              </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="BLE Constraints">-->
+            </div>
+          </div>
+          <h3 class="mt-4"> Member Services (16-bit UUID) </h3>
+          <p> Eddystone-TLM. </p>
+          <h3 class="mt-4"> Manufacturer Specific Data </h3>
+          <p> Espruino & DirAct. </p>
+          <p> The following section presents the InteroperaBLE Identifier as an <em>if-nothing-else-fits</em> option for representing data in a BLE advertising packet. </p>
+          <!----- Part 4 of 4 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="part04" class="card-title my-2">
+                The InteroperaBLE Identifier &nbsp;
+                <a href="#part04" class="badge text-bg-primary">Part 4 of 4</a>
+              </h2>
+              <p class="lead"> Leverage existing standards to represent data in an interoperable way. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's the purpose? </dt>
+                <dd class="col-sm-9"> To provide a means of identification that can be interpreted by <em>all</em> platforms and readily translated into a URL for potential association with a digital twin. </dd>
+                <dt class="col-sm-3"> What kind of data? </dt>
+                <dd class="col-sm-9"> The InteroperaBLE Identifier is well suited to boolean data (<small class="font-monospace">true/false</small>), Unicode characters (ex: emoji) and anything that completes a URI/URL. </dd>
+              </dl>
+              <!--<img src="images/x.png"
+                   class="card-img-bottom" alt="InteroperaBLE Identifier">-->
+            </div>
+          </div>
+          <h3 class="mt-4"> The InteroperaBLE Identifier for Data </h3>
+          <p> See our Best Practices for BLE Identifiers tutorial for an introduction to the InteroperaBLE Identifier with regards to its primary purpose: identification. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://reelyactive.github.io/best-practices-ble-identifiers/#part04"
+                 target="_blank">
+                <img src="https://reelyactive.github.io/diy/best-practices-ble-identifiers/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://reelyactive.github.io/diy/best-practices-ble-identifiers/#part04"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Best Practices for BLE Identifiers
+                </h5>
+              </a>
+              Part 4: The InteroperaBLE Identifier.
+            </li>
+          </ul>
+          <p> In addition to interoperable identification, the InteroperaBLE Identifier can also encapsulate data in its Entity UUID and Instance ID, which is presented next. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://reelyactive.github.io/interoperable-identifier/"
+                 target="_blank">
+                <img src="https://reelyactive.github.io/interoperable-identifier/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://reelyactive.github.io/interoperable-identifier/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  The InteroperaBLE Identifier
+                </h5>
+              </a>
+              An open specification by reelyActive to maximise the interoperability of radio-identifiers.
+            </li>
+          </ul>
+          <p class="mt-2"> Moreover, all defined InteroperaBLE Identifiers are interpreted by our <a href="https://github.com/reelyactive/advlib-interoperable" target="_blank"><i class="fab fa-github"></i>/advlib-interoperable</a> open source interpreter module which is included in our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> open source IoT middleware. </p>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="/">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="/">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Pareto Anywhere
+                </h5>
+              </a>
+              The open source IoT middleware that makes sense of things.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2024 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
