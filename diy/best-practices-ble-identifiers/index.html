@@ -7,6 +7,7 @@
     <meta name="description"
           content="Best practices for assigning Bluetooth Low Energy (BLE) identifiers, specifically for interoperability and interpretability.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Best practices for Bluetooth Low Energy (BLE) identifiers </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -157,7 +187,7 @@
           <dl class="row">
             <dt class="col-sm-2 offset-sm-1">
               <span class="lead">
-                <a href="#part01" class="badge bg-primary">Part 1 of 4</a>
+                <a href="#part01" class="badge text-bg-primary">Part 1 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -166,7 +196,7 @@
             </dd>
             <dt class="col-sm-2 offset-sm-1"> 
               <span class="lead">
-                <a href="#part02" class="badge bg-primary">Part 2 of 4</a>
+                <a href="#part02" class="badge text-bg-primary">Part 2 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -175,7 +205,7 @@
             </dd>
             <dt class="col-sm-2 offset-sm-1">
               <span class="lead">
-                <a href="#part03" class="badge bg-primary">Part 3 of 4</a>
+                <a href="#part03" class="badge text-bg-primary">Part 3 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -184,7 +214,7 @@
             </dd>
             <dt class="col-sm-2 offset-sm-1"> 
               <span class="lead">
-                <a href="#part04" class="badge bg-primary">Part 4 of 4</a>
+                <a href="#part04" class="badge text-bg-primary">Part 4 of 4</a>
               </span>
             </dt>
             <dd class="col-sm-9">
@@ -194,11 +224,11 @@
           </dl>
           <p> Links to related tutorials are provided at the end. </p>
           <!----- Part 1 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="part01" class="card-title my-2">
                 Anatomy of a BLE advertising packet &nbsp;
-                <a href="#part01" class="badge bg-primary">Part 1 of 4</a>
+                <a href="#part01" class="badge text-bg-primary">Part 1 of 4</a>
               </h2>
               <p class="lead"> Just enough structure with just enough space for data. </p>
               <hr>
@@ -225,13 +255,13 @@
             <dd class="col-sm-7"> <em>Random identifier</em> selected automatically in software, or specifically by the user </dd>
           </dl>        
           <p>
-            <span class="badge bg-warning">
+            <span class="badge text-bg-warning">
               <i class="fas fa-exclamation-triangle"></i>
             </span>
             &nbsp; A random identifier <em>may not be static</em>.  A device may cycle a random identifier at any time.
           </p>
           <p>
-            <span class="badge bg-warning">
+            <span class="badge text-bg-warning">
               <i class="fas fa-exclamation-triangle"></i>
             </span>
             &nbsp; A random identifier <em>may not be unique</em>.  Collisions are nonetheless unlikely unless assignment is non-random.
@@ -260,14 +290,14 @@
               </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="uuidcontent"
                  role="tabpanel" aria-labelledby="uuidtab">
               <h4 class="mt-2"> <i class="fas fa-barcode"></i> Identifier as a UUID </h4>
               <p> Bluetooth GAP and the advertising packet payload capacity allow for one or more 16-bit or 32-bit service class UUIDs or a single 128-bit service class UUID.  Only a 128-bit UUID can be user-generated, as the shorter UUIDs are assigned by the Bluetooth SIG. </p>
               <p> A <em>service</em> class UUID is intended to represent a <em> common service</em> among a class of devices.  For instance, a given model of FitBit will advertise a common <em>service</em> UUID. </p>
               <p>
-                <span class="badge bg-danger">
+                <span class="badge text-bg-danger">
                   <i class="fas fa-times"></i>
                 </span>
                 &nbsp; A service class UUID is therefore <em>not</em> suited for the <em>unique</em> identification of a device.
@@ -282,7 +312,7 @@
               <h5> GATT Service/Characteristic Data </h5>
               <p> The Bluetooth SIG maintains assigned numbers for <a href="https://www.bluetooth.com/specifications/gatt/services/" target="_blank">GATT Services</a> and <a href="https://www.bluetooth.com/specifications/gatt/characteristics/" target="_blank">Characteristics</a>.  It is possible to include service/characteristic data provided it does not exceed the payload capacity.  An example is reelyActive transceiver infrastructure, where each device advertises its unique EUI-64 identifier as a <a href="https://www.bluetooth.com/xml-viewer/?src=https://www.bluetooth.com/wp-content/uploads/Sitecore-Media-Library/Gatt/Xml/Characteristics/org.bluetooth.characteristic.system_id.xml" target="_blank">System ID characteristic</a> (<code>0x2A23</code>). </p>
               <p>
-                <span class="badge bg-success">
+                <span class="badge text-bg-success">
                   <i class="fas fa-check"></i>
                 </span>
                 &nbsp; Service data offers several alternatives for the <em>unique</em> identification of a device.
@@ -294,7 +324,7 @@
               <p> Bluetooth GAP and the advertising packet payload capacity allow for the inclusion of up to 22 bytes of use-as-you-please data for manufacturers who register (at no cost) with the Bluetooth SIG and receive a 16-bit company identifier. </p>
               <p> For instance, iBeacon is <a href="https://developer.apple.com/ibeacon/" target="_blank">defined as an open standard</a> (<i class="text-success fas fa-check"></i>) by Apple, uses their company identifier (<code>0x004C</code>), and includes a 128-bit UUID and a major and minor identifier of 16-bits apiece.  This is presented in detail in <a href="#part04">Part 4</a>. </p>
               <p>
-                <span class="badge bg-success">
+                <span class="badge text-bg-success">
                   <i class="fas fa-check"></i>
                 </span>
                 &nbsp; Manufacturer data affords full freedom for the <em>unique</em> identification of a device, constrained only by the payload capacity.
@@ -302,11 +332,11 @@
             </div>
           </div>
           <!----- Part 2 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="part02" class="card-title my-2">
                 Platform and OS constraints &nbsp;
-                <a href="#part02" class="badge bg-primary">Part 2 of 4</a>
+                <a href="#part02" class="badge text-bg-primary">Part 2 of 4</a>
               </h2>
               <p class="lead"> Just because it's possible doesn't mean it's permitted by the platform or operating system. </p>
               <hr>
@@ -353,27 +383,27 @@
               <tr>
                 <th scope="row" class="text-start"> Access advertiser address </th>
                 <td>
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
@@ -381,27 +411,27 @@
               <tr>
                 <th scope="row" class="text-start"> Access PDU elements </th>
                 <td>
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
@@ -409,27 +439,27 @@
               <tr>
                 <th scope="row" class="text-start"> Access raw PDU </th>
                 <td>
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
@@ -442,27 +472,27 @@
               <tr>
                 <th scope="row" class="text-start"> Specify advertiser address </th>
                 <td>
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-warning">
+                  <span class="badge rounded-pill text-bg-warning">
                     <i class="fas fa-redo"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-warning">
+                  <span class="badge rounded-pill text-bg-warning">
                     <i class="fas fa-redo"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-minus"></i>
                   </span>
                 </td>
@@ -470,27 +500,27 @@
               <tr>
                 <th scope="row" class="text-start"> Transmit iBeacon </th>
                 <td>
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-minus"></i>
                   </span>
                 </td>
@@ -498,27 +528,27 @@
               <tr>
                 <th scope="row" class="text-start"> Transmit user-defined payload </th>
                 <td>
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-times"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td> 
-                  <span class="badge rounded-pill bg-success">
+                  <span class="badge rounded-pill text-bg-success">
                     <i class="fas fa-check"></i>
                   </span>
                 </td>
                 <td>
-                  <span class="badge rounded-pill bg-light">
+                  <span class="badge rounded-pill text-bg-light">
                     <i class="fas fa-minus"></i>
                   </span>
                 </td>
@@ -526,13 +556,13 @@
             </tbody>
           </table>
           <p>
-            <span class="badge rounded-pill bg-warning">
+            <span class="badge rounded-pill text-bg-warning">
               <i class="fas fa-redo"></i>
             </span>
             &nbsp; Mobile devices <i class="fas fa-mobile-alt"></i> use a random advertiser address which they cycle regularly (ex: every 15 minutes)
           </p>
           <p>
-            <span class="badge rounded-pill bg-primary">
+            <span class="badge rounded-pill text-bg-primary">
               <i class="fas fa-info-circle"></i>
             </span>
             &nbsp; reelyActive infrastructure operates raw, without a Bluetooth stack
@@ -541,14 +571,14 @@
           <p> The objective of BLE identifier best practices being to <em>maximise interoperability</em>, the platform and OS constraints presented above lead to the following observations: </p>
           <dl class="row">
             <dt class="col-sm-4 offset-sm-1"> 
-              <span class="badge rounded-pill bg-danger">
+              <span class="badge rounded-pill text-bg-danger">
                 <i class="fas fa-times"></i>
               </span>
               &nbsp; Advertiser Address
             </dt>
             <dd class="col-sm-7"> Although <em>mandatory</em>, access is not universal and mobile devices cycle the identifier periodically in the interest of user privacy (<i class="text-success fas fa-check"></i>). </dd>
             <dt class="col-sm-4 offset-sm-1">
-              <span class="badge rounded-pill bg-success">
+              <span class="badge rounded-pill text-bg-success">
                 <i class="fas fa-check"></i>
               </span>
               &nbsp; Identifier in payload
@@ -557,11 +587,11 @@
           </dl> 
           <p> The following section presents existing protocols and standards which include identifiers in the BLE advertising packet payload. </p>
           <!----- Part 3 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="part03" class="card-title my-2">
                 Existing protocols and standards &nbsp;
-                <a href="#part03" class="badge bg-primary">Part 3 of 4</a>
+                <a href="#part03" class="badge text-bg-primary">Part 3 of 4</a>
               </h2>
               <p class="lead"> Eddystone and iBeacon are among the few widely observed open standards. </p>
               <hr>
@@ -620,11 +650,11 @@
           <p class="mt-2"> In summary, both iBeacon and Eddystone-UID share the same structural elements, although the number of bits allocated to each varies.  Both have <b>at least 80-bits (2<sup>80</sup> values) of entity identifier</b> to indicate to which <em>entity</em> or <em>organisation</em> the device belongs, and <b>at least 32-bits (2<sup>32</sup> values) of instance identifier</b> to uniquely identify the <em>device</em> itself.  Moreover, both provide an indication of transmission power to facilitate ranging and proximity estimations. </p>
           <p> The following section presents a best practice for identification which can be implemented to equal effect in <em>either</em> iBeacon or Eddystone-UID. </p>
           <!----- Part 4 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="part04" class="card-title my-2">
                 The InteroperaBLE Identifier &nbsp;
-                <a href="#part04" class="badge bg-primary">Part 4 of 4</a>
+                <a href="#part04" class="badge text-bg-primary">Part 4 of 4</a>
               </h2>
               <p class="lead"> Our best practice proposal for maximum interoperability of BLE identifiers. </p>
               <hr>
@@ -642,28 +672,28 @@
           <p> As a best practice, we propose the following four elements for a BLE identifier which we shall refer to as the <b>InteroperaBLE Identifier</b>*.  Together, these elements can be transmitted, received and interpreted across platforms and operating systems: </p>
           <dl class="row">
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
-              <span class="badge rounded-pill bg-primary">
+              <span class="badge rounded-pill text-bg-primary">
                 <i class="fas fa-barcode"></i>
               </span>
               &nbsp; Entity UUID
             </dt>
             <dd class="col-sm-7"> Identifies the entity or organisation responsible for the device. </dd>
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-              <span class="badge rounded-pill bg-primary">
+              <span class="badge rounded-pill text-bg-primary">
                 <i class="fas fa-barcode"></i>
               </span>
               &nbsp; Instance ID
             </dt>
             <dd class="col-sm-7"> Uniquely identifies the individual device (which itself may identify a person, product or place). </dd>
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-              <span class="badge rounded-pill bg-primary">
+              <span class="badge rounded-pill text-bg-primary">
                 <i class="fas fa-sitemap"></i>
               </span>
               &nbsp; Class
             </dt>
             <dd class="col-sm-7"> <em>Optional</em>.  Implicitly indicates what is associated with the device, and/or its hierarchy. </dd>
             <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-              <span class="badge rounded-pill bg-primary">
+              <span class="badge rounded-pill text-bg-primary">
                 <i class="fas fa-signal"></i>
               </span>
               &nbsp; Tx Power
@@ -702,7 +732,7 @@
             </li>
           </ul>
           <!----- Eddystone-UID tab ----->
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="eddystonecontent"
                  role="tabpanel" aria-labelledby="eddystonetab">
               <img src="images/eddystone-uid-identifier-reelyactive-best-practices.png"
@@ -710,28 +740,28 @@
                    alt="Eddystone-UID identifier best practices">
               <dl class="row mt-4">
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
-                  <span class="badge rounded-pill bg-dark">
+                  <span class="badge rounded-pill text-bg-dark">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Entity UUID
                 </dt>
                 <dd class="col-sm-7"> Implement as 80-bit <em>elided</em> UUID in the <b>Namespace</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge rounded-pill bg-primary">
+                  <span class="badge rounded-pill text-bg-primary">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Instance ID
                 </dt>
                 <dd class="col-sm-7"> Implement in 28 least-significant bits of <b>Instance</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge rounded-pill bg-primary">
+                  <span class="badge rounded-pill text-bg-primary">
                     <i class="fas fa-sitemap"></i>
                   </span>
                   &nbsp; Class
                 </dt>
                 <dd class="col-sm-7"> Implement in bits 28-31 of <b>Instance</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge rounded-pill bg-dark">
+                  <span class="badge rounded-pill text-bg-dark">
                     <i class="fas fa-signal"></i>
                   </span>
                   &nbsp; Tx Power
@@ -739,13 +769,13 @@
                 <dd class="col-sm-7"> Implement in <b>Ranging</b> byte. </dd>
               </dl>
               <p>
-                <span class="badge bg-warning">
+                <span class="badge text-bg-warning">
                   <i class="fas fa-exclamation-circle"></i>
                 </span>
                 &nbsp; The <em>elided</em> UUID has the form XXXXXXXX<del>-XXXX-MXXX-NXXX-</del>XXXXXXXXXXXX where 48-bits are removed as indicated by the strikeout, <a href="https://github.com/google/eddystone/tree/master/eddystone-uid#elided-version-4-uuid" target="_blank">as specified in the Eddystone documentation</a>
               </p>
               <p>
-                <span class="badge bg-primary">
+                <span class="badge text-bg-primary">
                   <i class="fas fa-info-circle"></i>
                 </span>
                 &nbsp; The 32 most significant bits of the <b>Instance</b> are not required by the InteroperaBLE Identifier and should be set to zero, unless required for another purpose.
@@ -758,28 +788,28 @@
                    class="img-fluid" alt="iBeacon identifier best practices">
               <dl class="row mt-4">
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2"> 
-                  <span class="badge rounded-pill bg-dark">
+                  <span class="badge rounded-pill text-bg-dark">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Entity UUID
                 </dt>
                 <dd class="col-sm-7"> Implement as 128-bit UUID in the <b>Proximity UUID</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge rounded-pill bg-primary">
+                  <span class="badge rounded-pill text-bg-primary">
                     <i class="fas fa-barcode"></i>
                   </span>
                   &nbsp; Instance ID
                 </dt>
                 <dd class="col-sm-7"> Implement in 28 least-significant bits of the combined <b>Major & Minor</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge rounded-pill bg-primary">
+                  <span class="badge rounded-pill text-bg-primary">
                     <i class="fas fa-sitemap"></i>
                   </span>
                   &nbsp; Class
                 </dt>
                 <dd class="col-sm-7"> Implement in the 4 most-significant bits of the <b>Major</b>. </dd>
                 <dt class="col-sm-4 col-lg-3 offset-sm-1 offset-lg-2">
-                  <span class="badge rounded-pill bg-dark">
+                  <span class="badge rounded-pill text-bg-dark">
                     <i class="fas fa-signal"></i>
                   </span>
                   &nbsp; Tx Power
@@ -847,7 +877,7 @@
                   Pareto Anywhere
                 </h5>
               </a>
-              Open source middleware for context-aware physical spaces.
+              The open source IoT middleware that makes sense of things.
             </li>
           </ul>
           <ul class="list-group list-group-horizontal mb-4">
@@ -863,7 +893,7 @@
                   reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together, let's make sense of things.
             </li>
           </ul>
         </div>
@@ -872,7 +902,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
