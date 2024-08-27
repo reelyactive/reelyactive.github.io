@@ -427,6 +427,80 @@
           </div>
           <h3 class="mt-4"> Data-as-a-Service </h3>
           <p> How to use GATT services and characteristics in an advertising packet. </p>
+          <p> The following table was compiled using the <a href="https://www.bluetooth.com/specifications/assigned-numbers/" target="_blank"><i class="fas fa-external-link-alt"></i> Assigned Numbers Document</a> and the <a href="https://www.bluetooth.com/specifications/gss/" target="_blank"><i class="fas fa-external-link-alt"></i> GATT Specification Supplement</a>. </p>
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th scope="col"> UUID </th>
+                <th scope="col"> Name </th>
+                <th scope="col"> PDU Bytes </th>
+                <th scope="col"> Data Type </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-monospace"> 0x2A19 </td>
+                <td> Battery Level </td>
+                <td class="font-monospace"> 04 16 19 2a XX </td>
+                <td> uint8 <small>(1% resolution)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2A6C </td>
+                <td> Elevation </td>
+                <td class="font-monospace"> 06 16 6c 2a XX XX XX </td>
+                <td> sint24 <small>(0.01m resolution)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2A6D </td>
+                <td> Pressure </td>
+                <td class="font-monospace"> 07 16 6d 2a XX XX XX XX </td>
+                <td> uint32 <small>(0.1Pa resolution)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2A6E </td>
+                <td> Temperature </td>
+                <td class="font-monospace"> 05 16 6e 2a XX XX </td>
+                <td> sint16 <small>(0.01&deg;C resolution)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2A6F </td>
+                <td> Humidity </td>
+                <td class="font-monospace"> 05 16 6f 2a XX XX </td>
+                <td> uint16 <small>(0.01% resolution)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2AA1 </td>
+                <td> Magnetic Flux Density 3D </td>
+                <td class="font-monospace"> 09 16 a1 2a XX XX YY YY ZZ ZZ </td>
+                <td> 3 x sint16 <small>(10<sup>-7</sup>T resolution)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2AA2 </td>
+                <td> Language </td>
+                <td class="font-monospace"> ** 16 a2 2a XX .. XX </td>
+                <td> utf8s <small>(variable-length)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2AF9 </td>
+                <td> Generic Level </td>
+                <td class="font-monospace"> 05 16 f9 2a XX XX </td>
+                <td> uint16 <small>(unitless)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2AFB </td>
+                <td> Illuminance </td>
+                <td class="font-monospace"> 06 16 fb 2a XX XX XX </td>
+                <td> uint24 <small>(0.01lux resolution)</small> </td>
+              </tr>
+              <tr>
+                <td class="font-monospace"> 0x2B8C </td>
+                <td> CO<sub>2</sub> Concentration </td>
+                <td class="font-monospace"> 05 16 8c 2b XX XX </td>
+                <td> uint16 <small>(ppm resolution)</small> </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-2"> Many GATT characteristics and services are processed by our <a href="https://github.com/reelyactive/advlib-ble-services" target="_blank"><i class="fab fa-github"></i>/advlib-ble-services</a> open source library module which is included in our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> open source IoT middleware. </p>
           <p> The following section presents how open standards outside the Bluetooth Specification can be used in the absence of an appropriate Service/Characteristic to represent the data. </p>
           <!----- Part 3 of 4 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
