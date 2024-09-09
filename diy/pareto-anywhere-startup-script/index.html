@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to run a custom Pareto Anywhere configuration using a simple startup script.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Create a Pareto Anywhere startup script </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Create a Pareto Anywhere startup script",
+      "description": "Step-by-step guide to run a custom Pareto Anywhere configuration using a simple startup script.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pareto-anywhere-startup-script/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Create a Pareto Anywhere startup script"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Create a Pareto Anywhere startup script </h1>
+          <p class="lead"> Our step-by-step guide to run a custom Pareto Anywhere configuration using a simple startup script. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Create a Pareto Anywhere startup script">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to create and run a script which configures Pareto Anywhere exactly to your needs. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why custom configuration? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> uses a highly modular architecture: adding/removing modules from the default configuration may better accommodate your specific IoT deployment. </dd>
+                <dt class="col-sm-3"> Is this <em>Java</em>Script? </dt>
+                <dd class="col-sm-9"> Yes, this is a simple <i class="fab fa-node-js"></i> Node.js script which can easily be edited by anyone with basic coding skills. </dd>
+                <dt class="col-sm-3"> Is there an easier way? </dt>
+                <dd class="col-sm-9"> At reelyActive, our business is impartial guidance.  <a href="https://www.reelyactive.com/contact/" target="_blank"><i class="fas fa-external-link-alt"></i> Contact us</a> if you'd prefer that we make sense of things together. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Create the startup script &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Create the bin/pareto-anywhere-x file that reflects your specific IoT deployment. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/startupscript.png" class="card-img-bottom"
+                   alt="Create the Pareto Anywhere startup script">
+            </div>
+          </div>
+          <h3 class="mt-4"> Prerequisites </h3>
+          <p class="lead mb-2"> Pareto Anywhere installed from <i class="fab fa-github"></i> GitHub </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span>  These instructions assume that Pareto Anywhere has been installed by cloning the <a href="" target="_blank"><i class="fab fa-github"></i>/pareto-anywhere</a> repository. </p>
+          <h3 class="mt-4">
+            Create the default startup script
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> In the <i class="fas fa-folder"></i> <b>bin</b> folder of the cloned pareto-anywhere repository, create a file called <b>pareto-anywhere-x</b>, changing <b>x</b> for the name of your configuration <small class="text-body-secondary">(ex: <span class="font-monospace">pareto-anywhere-custom</span>)</small>, and copy <kbd>Ctrl+C</kbd> and paste <kbd>Ctrl+V</kbd> in the following contents: </p>
+          <pre class="ms-4 user-select-all">#!/usr/bin/env node
+
+const ParetoAnywhere = require('../lib/paretoanywhere.js');
+
+const OPTIONS = {};
+
+let pa = new ParetoAnywhere(OPTIONS);</pre>
+          <p> The default script is as simple as that!  Validate that it works by opening a <i class="fas fa-terminal"></i> terminal and running, from the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, the following command: <code class="user-select-all">node bin/pareto-anywhere-x</code>. </p>
+          <h3 class="mt-4">
+            Edit OPTIONS
+            <small class="text-body-secondary"> [OPTIONAL] Part 2 </small>
+          </h3>
+          <p> Edit the <span class="font-monospace">OPTIONS</span> in the script, as JSON, <em>if required</em>. </p>
+          <p> For example, to disable CORS, specify the <span class="font-monospace">OPTIONS</span> as follows: </p>
+          <pre class="ms-4 user-select-all">const OPTIONS = { useCors: false };</pre>
+          <h3 class="mt-4">
+            Add modules
+            <small class="text-body-secondary"> [OPTIONAL] Part 3 </small>
+          </h3>
+          <p> Edit the script to add optional modules, <em>if required</em>. </p>
+          <p> For example, to add logfile functionality using the barnacles-logfile module, add the highlighted lines below. </p>
+          <pre class="ms-4 text-body-secondary">#!/usr/bin/env node
+
+const ParetoAnywhere = require('../lib/paretoanywhere.js');
+
+const OPTIONS = {};
+<span class="text-body-emphasis user-select-all">
+// ----- Exit gracefully if the optional dependency is not found -----
+let BarnaclesLogfile;
+try {
+  BarnaclesLogfile = require('barnacles-logfile');
+}
+catch(err) {
+  console.log('This script requires barnacles-logfile.  Install with:');
+  console.log('\r\n    "npm install barnacles-logfile"\r\n');
+  return console.log('and then run this script again.');
+}
+// -------------------------------------------------------------------
+</span>
+let pa = new ParetoAnywhere(OPTIONS);
+<span class="text-body-emphasis user-select-all">
+// Add the Logfile interface with the given options
+const BARNACLES_LOGFILE_OPTIONS = {};
+pa.barnacles.addInterface(BarnaclesLogfile, BARNACLES_LOGFILE_OPTIONS);</span></pre>
+          <p> Modify the above, as required, to accommodate <span class="font-monospace">barnowl-x</span> <em>input</em> interfaces (see <a href="https://github.com/reelyactive/barnowl/" target="_blank"><i class="fab fa-github"></i>/barnowl</a>) and/or <span class="font-monospace">barnacles-x</span> <em>output</em> interfaces (see <a href="https://github.com/reelyactive/barnacles/" target="_blank"><i class="fab fa-github"></i>/barnacles</a>).
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Run the startup script &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Validate that Pareto Anywhere runs with the specified configuration. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/run.png" class="card-img-bottom"
+                   alt="Run">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Run the script
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> From the <i class="fas fa-terminal"></i> terminal, change to the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder and run the command <code class="user-select-all">node bin/pareto-anywhere-x</code>, changing the "x" to the name of your configuration.  Verify that there are no errors in the console logs. </p>
+          <p> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span>  If any modules were added in Step 1 above, then it is normal to observe messages about missing modules that need to be installed: this is covered next in Part 2. </p>
+          <h3 class="mt-4">
+            Install missing modules
+            <small class="text-body-secondary"> [OPTIONAL] Part 2 </small>
+          </h3>
+          <p> Should any modules be missing, these must be installed manually as follows. </p>
+          <p> From the <i class="fas fa-terminal"></i> terminal, in the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, install each missing module with the command <code class="user-select-all">npm install module-name</code>, changing "module-name" for the name of the module. </p>
+          <p> Run the startup script again and verify that there are no erorrs in the console logs. </p>
+          <p> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span>  The <code>npm install</code> command will update the package.json file which is under <i class="fab fa-git-square"></i> git version control.  See Step 3 below for instructions on updating with a modified package.json. </p>
+          <h3 class="mt-4">
+            Run as a service
+            <small class="text-body-secondary"> [OPTIONAL] Part 3 </small>
+          </h3>
+          <p> In a production environment, Pareto Anywhere is normally run as a service which starts automatically on boot and restarts should any errors be encountered. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-windows-service/">
+                <img src="../pareto-anywhere-windows-service/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-windows-service/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere as a Windows service </h5>
+              </a>
+              Our step-by-step guide for production deployments on <i class="fab fa-windows"></i> Windows machines.
+            </li>
+          </ul>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Update Pareto Anywhere &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> Update to the latest version of Pareto Anywhere while maintaining the custom configuration. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/update.png" class="card-img-bottom"
+                   alt="Update">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Fetch and revert
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> From the <i class="fas fa-terminal"></i> terminal, in the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, check for updates with the command <code class="user-select-all">git fetch</code>. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> If there are no updates to the <b>master</b> branch, skip this entire step and check again for updates in future. </p>
+          <p> Before pulling updates, first check if any <i class="fab fa-git-square"></i> git version-controlled files have been locally modified, by running <code class="user-select-all">git status</code>.  Modified files will be listed under <span class="font-monospace">Changes not staged for commit</span>. </p>
+          <p> Revert any locally-modified files, with the command <code class="user-select-all">git checkout -- filename</code>, changing "filename" to the actual file name.  In most cases, only <b>package.json</b> will have changed, which can be reverted with the command <code class="user-select-all">git checkout -- package.json</code>. </p>
+          <p> Run <code class="user-select-all">git status</code> once again to confirm that there are no locally-modified files. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> It is normal to see the startup script itself listed under <span class="font-monospace">Untracked files</span>. </p>
+          <h3 class="mt-4">
+            Pull and install
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> From the <i class="fas fa-terminal"></i> terminal, in the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, update to the latest version of the code base with the command <code class="user-select-all">git pull origin master --recurse-submodules</code>. </p>
+          <p> Update any package dependencies with the command <code class="user-select-all">npm install</code>. </p>
+          <h3 class="mt-4">
+            Update added modules
+            <small class="text-body-secondary"> [OPTIONAL] Part 3 </small>
+          </h3>
+          <p> If any modules were added in Step 1 above, they can each be updated by again running from <i class="fas fa-terminal"></i> terminal, in the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, the command <code class="user-select-all">npm install module-name</code>, changing "module-name" for the name of the module. </p>
+select-all">npm install</code>. </p>
+          <h3 class="mt-4">
+            Restart the service
+            <small class="text-body-secondary"> [OPTIONAL] Part 4 </small>
+          </h3>
+          <p> If running Pareto Anywhere in the background as a service, it may be necessary to manually restart the service to benefit from the update. </p>
+          <p> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Check the console output of the startup script when restarting the service to ensure that Pareto Anywhere is indeed running. </p>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="/">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="/">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Pareto Anywhere
+                </h5>
+              </a>
+              The open source IoT middleware that makes sense of things.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2024 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
