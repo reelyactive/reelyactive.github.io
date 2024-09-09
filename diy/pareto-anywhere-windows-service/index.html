@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to run Pareto Anywhere, or any other Node.js program, as a Windows Service.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Run Pareto Anywhere as a Windows Service </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Run Pareto Anywhere as a Windows Service",
+      "description": "Step-by-step guide to run Pareto Anywhere, or any other Node.js program, as a Windows Service.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pareto-anywhere-windows-service/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Run Pareto Anywhere as a Windows Service"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Run Pareto Anywhere as a Windows service </h1>
+          <p class="lead"> Our step-by-step guide for production deployments on <i class="fab fa-windows"></i> Windows machines </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Run Pareto Anywhere as a Windows service">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive use node-windows to run Pareto Anywhere in production on <i class="fab fa-windows"></i> Windows machines. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Windows service? </dt>
+                <dd class="col-sm-9"> A Windows service is simply a computer program that operates in the background on a <i class="fab fa-windows"></i> Windows machine. </dd>
+                <dt class="col-sm-3"> What's node-windows? </dt>
+                <dd class="col-sm-9"> An open source library to install/start/stop/uninstall <i class="fab fa-node-js"></i> Node.js scripts as Windows background services for production environments. </dd>
+                <dt class="col-sm-3"> Any Node.js program? </dt>
+                <dd class="col-sm-9"> Yes, although this tutorial is specific to <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a>, it applies equally well to <em>any</em> <i class="fab fa-node-js"></i> Node.js program. </em></dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Create app.js &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Create the app.js file that defines how Pareto Anywhere will run as a Windows service. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why app.js? </dt>
+                <dd class="col-sm-9"> The node-windows library used to create the Windows service expects a file called app.js. </dd>
+                <dt class="col-sm-3"> What does app.js do? </dt>
+                <dd class="col-sm-9"> The file instructs the node-windows library how to create the Windows service, and how to handle service-specific events. </dd>
+              </dl>
+              <img src="images/appjs.png" class="card-img-bottom"
+                   alt="Create app.js for node-windows">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Create app.js for Pareto Anywhere
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> In the root of the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, create a file called <b>app.js</b>, copy <kbd>Ctrl+C</kbd> and paste <kbd>Ctrl+V</kbd> in the following contents: </p>
+          <pre class="ms-4 user-select-all">const Service = require('node-windows').Service;
+
+// Create a new service object
+let svc = new Service({
+    name: "Pareto Anywhere",
+    description: "The open source IoT middleware by reelyActive",
+    script: require('path').join(__dirname, 'bin//pareto-anywhere'),
+    nodeOptions: [
+      '--harmony',
+      '--max_old_space_size=4096'
+    ],
+    workingDirectory: require('path').join(__dirname)
+});
+
+// The "install" event indicates that the process is available as a service.
+svc.on('install', () => { svc.start(); });
+
+// The "start" event indicates that process has actually started working.
+svc.on('start', () => {
+  console.log('Pareto Anywhere is running as a Windows Service.');
+});
+
+svc.install();</pre>
+          <h3 class="mt-4">
+            Customise app.js
+            <small class="text-body-secondary"> [OPTIONAL] Part 2 </small>
+          </h3>
+          <p> Edit the <b>app.js</b> file as required for the target environment. </p>
+          <p> For instance, to start Pareto Anywhere with a different script than the default, edit the <span class="font-monospace">bin//pareto-anywhere</span> path of the <span class="font-monospace">script</span> property <small class="text-body-secondary">(ex: <span class="font-monospace">bin//pareto-anywhere-influxdb2</span>)</small>. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Install and link node-windows &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Install node-windows using npm and link from Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why node-windows? </dt>
+                <dd class="col-sm-9"> <a href="https://github.com/coreybutler/node-windows" target="_blank"><i class="fab fa-github"></i>/node-windows</a> is an established open source library that does exactly what's required: simplifying the process of running a <i class="fab fa-node-js"></i> Node.js program as a Windows service. </dd>
+                <dt class="col-sm-3"> Is Visual Studio required? </dt>
+                <dd class="col-sm-9"> No!  The node-windows library does <em>not</em> use native modules, and hence should install easily without cumbersome Windows dependencies, like Visual Studio. </dd>
+              </dl>
+              <img src="images/node-windows.png" class="card-img-bottom"
+                   alt="Install and link node-windows">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install node-windows
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> From a <i class="fas fa-terminal"></i> terminal on the <i class="fab fa-windows"></i> Windows machine, install the node-windows package globally with the command <code class="user-select-all">npm install -g node-windows</code>. </p>
+          <h3 class="mt-4">
+            Link Pareto Anywhere
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> From a <i class="fas fa-terminal"></i> terminal on the <i class="fab fa-windows"></i> Windows machine, browse to the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder and create a symlink to the installed node-windows package with the command <code class="user-select-all">npm link node-windows</code>. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Run and verify the Windows service &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> Confirm that Pareto Anywhere is running consistently as a Windows service. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> How does that work? </dt>
+                <dd class="col-sm-9"> Simply running the app.js script will initiate the creation of a Windows service by the node-windows library. </dd>
+                <dt class="col-sm-3"> Will it run on boot? </dt>
+                <dd class="col-sm-9"> Yes, and that will be tested in Part 2 below. </dd>
+              </dl>
+              <img src="images/windows-service.png" class="card-img-bottom"
+                   alt="Pareto Anywhere running as a Windows Service">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Run as a Windows Service
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> From a <i class="fas fa-terminal"></i> terminal on the <i class="fab fa-windows"></i> Windows machine, browse to the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder and run the <b>app.js</b> script with the command <code class="user-select-all">node app.js</code>. </p>
+          <p> Open the <b>Services</b> app on the <i class="fab fa-windows"></i> Windows machine and confirm that <b>Pareto Anywhere</b> is indeed running. </p>
+          <p> Open a web browser on the <i class="fab fa-windows"></i> Windows machine and browse to <a href="http://localhost:3001" target="_blank"> http://localhost:3001 </a> to observe the Pareto Anywhere home page. </p>
+          <h3 class="mt-4">
+            Reboot and test
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> Reboot the <i class="fab fa-windows"></i> Windows machine and confirm, as above, that Pareto Anywhere continues to run as a Windows service. </p>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="/">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="/">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Pareto Anywhere
+                </h5>
+              </a>
+              The open source IoT middleware that makes sense of things.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2024 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
