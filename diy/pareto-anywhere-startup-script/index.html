@@ -229,8 +229,55 @@ let pa = new ParetoAnywhere(OPTIONS);</pre>
             <small class="text-body-secondary"> [OPTIONAL] Part 3 </small>
           </h3>
           <p> Edit the script to add optional modules, <em>if required</em>. </p>
-          <p> For example, to add logfile functionality using the barnacles-logfile module, add the highlighted lines below. </p>
-          <pre class="ms-4 text-body-secondary">#!/usr/bin/env node
+
+
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="barnowltab"
+                      data-bs-toggle="tab" data-bs-target="#barnowlcontent"
+                      type="button" role="tab" aria-controls="barnowltab"
+                      aria-selected="true"> barnowl-x </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="barnaclestab" data-bs-toggle="tab"
+                      data-bs-target="#barnaclescontent" type="button"
+                      role="tab" aria-controls="barnaclestab"
+                      aria-selected="false"> barnacles-x </button>
+            </li>
+          </ul>
+          <div class="tab-content border-light-subtle tab-content-border mb-3">
+            <div class="tab-pane fade show active" id="barnowlcontent"
+                 role="tabpanel" aria-labelledby="barnowltab">
+              <p> For example, to add <i class="fab fa-bluetooth"></i> HCI <em>input</em> functionality using the <a href="https://github.com/reelyactive/barnowl-hci" target="_blank"><i class="fab fa-github"></i>/barnowl-hci</a> module, add the highlighted lines below. </p>
+              <pre class="ms-4 text-body-secondary">#!/usr/bin/env node
+
+const ParetoAnywhere = require('../lib/paretoanywhere.js');
+
+const OPTIONS = {};
+<span class="text-body-emphasis user-select-all">
+// ----- Exit gracefully if the optional dependency is not found -----
+let BarnowlHci;
+try {
+  BarnowlHci = require('barnowl-hci');
+}
+catch(err) {
+  console.log('This script requires barnowl-hci.  Install with:');
+  console.log('\r\n    "npm install barnowl-hci"\r\n');
+  return console.log('and then run this script again.');
+}
+// -------------------------------------------------------------------
+</span>
+let pa = new ParetoAnywhere(OPTIONS);
+<span class="text-body-emphasis user-select-all">
+// Add the HCI interface with the given options
+const BARNOWL_HCI_OPTIONS = {};
+pa.barnowl.addListener(BarnowlHci, {}, BarnowlHci.SocketListener,
+                       BARNOWL_HCI_OPTIONS);</span></pre>
+            </div>
+            <div class="tab-pane fade" id="barnaclescontent" role="tabpanel"
+                 aria-labelledby="barnaclestab">
+              <p> For example, to add <i class="fas fa-scroll"></i> logfile <em>output</em> functionality using the <a href="https://github.com/reelyactive/barnacles-logfile" target="_blank"><i class="fab fa-github"></i>/barnacles-logfile</a> module, add the highlighted lines below. </p>
+              <pre class="ms-4 text-body-secondary">#!/usr/bin/env node
 
 const ParetoAnywhere = require('../lib/paretoanywhere.js');
 
@@ -253,6 +300,8 @@ let pa = new ParetoAnywhere(OPTIONS);
 // Add the Logfile interface with the given options
 const BARNACLES_LOGFILE_OPTIONS = {};
 pa.barnacles.addInterface(BarnaclesLogfile, BARNACLES_LOGFILE_OPTIONS);</span></pre>
+            </div>
+          </div>
           <p> Modify the above, as required, to accommodate <span class="font-monospace">barnowl-x</span> <em>input</em> interfaces (see <a href="https://github.com/reelyactive/barnowl/" target="_blank"><i class="fab fa-github"></i>/barnowl</a>) and/or <span class="font-monospace">barnacles-x</span> <em>output</em> interfaces (see <a href="https://github.com/reelyactive/barnacles/" target="_blank"><i class="fab fa-github"></i>/barnacles</a>).
           <!----- Step 2 of 3 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
