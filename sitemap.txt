@@ -46,6 +46,8 @@ https://reelyactive.github.io/diy/pareto-anywhere-azure/
 https://reelyactive.github.io/diy/pareto-anywhere-azure-aruba/
 https://reelyactive.github.io/diy/pareto-anywhere-pc/
 https://reelyactive.github.io/diy/pareto-anywhere-pi/
+https://reelyactive.github.io/diy/pareto-anywhere-startup-script/
+https://reelyactive.github.io/diy/pareto-anywhere-windows-service/
 https://reelyactive.github.io/diy/pi-kiosk/
 https://reelyactive.github.io/diy/pi-prep/
 https://reelyactive.github.io/diy/puckjs-dev/
