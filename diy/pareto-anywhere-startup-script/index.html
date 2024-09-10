@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Step-by-step guide to run a custom Pareto Anywhere configuration using a simple startup script.">
+          content="Step-by-step guide to run a custom Pareto Anywhere configuration, initiated by a simple startup script.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
     <script type="module" src="../common/js/color-modes.js"></script>
     <title> Create a Pareto Anywhere startup script </title>
@@ -15,7 +15,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "Create a Pareto Anywhere startup script",
-      "description": "Step-by-step guide to run a custom Pareto Anywhere configuration using a simple startup script.",
+      "description": "Step-by-step guide to run a custom Pareto Anywhere configuration, intiated by a simple startup script.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/pareto-anywhere-startup-script/images/header.png",
@@ -160,7 +160,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Create a Pareto Anywhere startup script </h1>
-          <p class="lead"> Our step-by-step guide to run a custom Pareto Anywhere configuration using a simple startup script. </p>
+          <p class="lead"> Our step-by-step guide to run a custom Pareto Anywhere configuration, initiated by a simple startup script. </p>
           <img src="images/header.png" class="img-fluid"
                alt="Create a Pareto Anywhere startup script">
           <!----- The TL;DR ----->
@@ -192,10 +192,10 @@
               <p class="lead"> Create the bin/pareto-anywhere-x file that reflects your specific IoT deployment. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> Why a script? </dt>
+                <dd class="col-sm-9"> A script combines the flexibility of code with the practicality of a configuration file. </dd>
+                <dt class="col-sm-3"> Just one? </dt>
+                <dd class="col-sm-9"> No, create as many scripts as there are configurations to be supported! </dd>
               </dl>
               <img src="images/startupscript.png" class="card-img-bottom"
                    alt="Create the Pareto Anywhere startup script">
@@ -203,7 +203,7 @@
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
           <p class="lead mb-2"> Pareto Anywhere installed from <i class="fab fa-github"></i> GitHub </p>
-          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span>  These instructions assume that Pareto Anywhere has been installed by cloning the <a href="" target="_blank"><i class="fab fa-github"></i>/pareto-anywhere</a> repository. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span>  These instructions assume that Pareto Anywhere has been installed on the target machine by cloning the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank"><i class="fab fa-github"></i>/pareto-anywhere</a> repository. </p>
           <h3 class="mt-4">
             Create the default startup script
             <small class="text-body-secondary"> Part 1 </small>
@@ -216,7 +216,7 @@ const ParetoAnywhere = require('../lib/paretoanywhere.js');
 const OPTIONS = {};
 
 let pa = new ParetoAnywhere(OPTIONS);</pre>
-          <p> The default script is as simple as that!  Validate that it works by opening a <i class="fas fa-terminal"></i> terminal and running, from the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, the following command: <code class="user-select-all">node bin/pareto-anywhere-x</code>. </p>
+          <p> The default script is as simple as that!  Validate that it works by opening a <i class="fas fa-terminal"></i> terminal and running, from the <i class="fas fa-folder"></i> <b>pareto-anywhere</b> folder, the following command: <code class="user-select-all">node bin/pareto-anywhere-x</code>, again changing <b>x</b> for the name of your configuration <small class="text-body-secondary">(ex: <span class="font-monospace">node bin/pareto-anywhere-custom</span>)</small>. </p>
           <h3 class="mt-4">
             Edit OPTIONS
             <small class="text-body-secondary"> [OPTIONAL] Part 2 </small>
@@ -264,10 +264,10 @@ pa.barnacles.addInterface(BarnaclesLogfile, BARNACLES_LOGFILE_OPTIONS);</span></
               <p class="lead"> Validate that Pareto Anywhere runs with the specified configuration. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> How does it run? </dt>
+                <dd class="col-sm-9"> Both Pareto Anywhere and the startup script run using <i class="fab fa-node-js"></i> Node.js, which is a free, open-source, cross-platform JavaScript runtime environment. </dd>
+                <dt class="col-sm-3"> Production-friendly? </dt>
+                <dd class="col-sm-9"> Yes, see Part 3 below which explains how to run, in a production environment, as a background service on common platforms. </dd>
               </dl>
               <img src="images/run.png" class="card-img-bottom"
                    alt="Run">
@@ -316,10 +316,10 @@ pa.barnacles.addInterface(BarnaclesLogfile, BARNACLES_LOGFILE_OPTIONS);</span></
               <p class="lead"> Update to the latest version of Pareto Anywhere while maintaining the custom configuration. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
-                <dt class="col-sm-3"> What? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> Why update? </dt>
+                <dd class="col-sm-9"> Pareto Anywhere is frequently updated with features, fixes and support for new IoT devices. </dd>
+                <dt class="col-sm-3"> Any risks? </dt>
+                <dd class="col-sm-9"> There should be no breaking changes in minor version updates.  Nonetheless, for production environments, consider including a staging instance as a best practice. </dd>
               </dl>
               <img src="images/update.png" class="card-img-bottom"
                    alt="Update">
