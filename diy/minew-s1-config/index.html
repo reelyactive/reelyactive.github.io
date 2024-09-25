@@ -5,8 +5,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Configure a Minew S1 sensor beacon to transmit temperature and humidity data for real-time sensing in context-aware physical spaces.">
+          content="Configure a Minew S1 sensor beacon to transmit temperature and humidity data for IoT applications.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> reelyActive Minew S1 Sensor Configuration Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -14,7 +15,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "reelyActive Minew S1 Sensor Configuration Guide",
-      "description": "Configure a Minew S1 sensor beacon to transmit temperature and humidity data for real-time sensing in context-aware physical spaces.",
+      "description": "Configure a Minew S1 sensor beacon to transmit temperature and humidity data for IoT applications.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/minew-s1-config/images/header.jpg",
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -141,13 +171,13 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive configure the sensor to transmit data efficiently </p>
+              <p class="lead"> Learn how we at reelyActive configure the S1 for real-time sensing and location </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
                 <dd class="col-sm-9"> The S1 will <i class="fas fa-wifi"></i> transmit <i class="fas fa-thermometer-half"></i> temperature and <i class="fas fa-water"></i> humidity data periodically to any <i class="fab fa-bluetooth"></i> Bluetooth Low Energy receivers in range. </dd>
                 <dt class="col-sm-3"> How to capture the data? </dt>
-                <dd class="col-sm-9"> The BeaconSET+ mobile app, which is used for configuration, can display the data.  Our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank">Pareto Anywhere</a> open source middleware processes the data for any application. </dd>
+                <dd class="col-sm-9"> The BeaconSET+ mobile app, which is used for configuration, can display the data.  Our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> open source IoT middleware processes the data for any application. </dd>
                 <dt class="col-sm-3"> How long does this take? </dt>
                 <dd class="col-sm-9"> A S1 can be configured in <span class="badge bg-info"><i class="fas fa-clock"></i> a few minutes</span> when all prerequisites are in place. </dd>
               </dl>
@@ -160,7 +190,7 @@
             <div class="row d-flex align-items-center g-0">
               <div class="col-2">
                 <img src="images/minew-s1.jpg"
-                     class="img-fluid rounded-start" alt="Minew S1">
+                     class="img-fluid rounded-1" alt="Minew S1">
               </div>
               <div class="col-10">
                 <div class="card-body">
@@ -180,7 +210,7 @@
             <div class="row d-flex align-items-center g-0">
               <div class="col-2">
                 <img src="../common/images/icon-beaconset-plus.png"
-                     class="img-fluid rounded-start" alt="BeaconSET+ icon">
+                     class="img-fluid rounded-1" alt="BeaconSET+ icon">
               </div>
               <div class="col-10">
                 <div class="card-body">
@@ -201,7 +231,7 @@
             </div>
           </div>
           <!----- Step 1 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Detect and connect &nbsp;
@@ -264,7 +294,7 @@
           </div>
           <p> <span class="badge rounded-pill bg-success"><i class="fas fa-info"></i></span> Too many devices detected?  Select <em>Edit Filter</em> in the app and reduce the RSSI threshold to display only devices in close proximity. </p>
           <!----- Step 2 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Configure the transmission SLOTs &nbsp;
@@ -392,7 +422,7 @@
               </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border text-center p-0">
+          <div class="tab-content tab-content-border text-center border-light-subtle p-0">
             <div class="tab-pane fade" id="slot1content"
                  role="tabpanel" aria-labelledby="slot1tab">
               <h5 class="bg-info bg-gradient text-white py-1"> Empty </h5>
@@ -403,11 +433,11 @@
               <h5 class="bg-ambient bg-gradient text-white py-1 mb-0"> UID </h5>
               <table class="table table-sm table-hover text-start mx-auto">
                 <caption> SLOT2: "On temperature above threshold, transmit &#x1f975; emoji" </caption>
-                <thead class="table-light">
+                <thead class="table-info">
                   <tr> <th> Frame Type </th> <td> UID </td> </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Adv Content </th> <td> &nbsp; </td>
                   </tr>
                   <tr>
@@ -423,13 +453,13 @@
                   </tr>
                 </tbody>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Base params </th>
                     <td> Ignored <small class="text-muted">(see Trigger)</small> </td>
                   </tr>
                 </tbody>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Trigger </th> <td> &nbsp; </td>
                   </tr>
                   <tr>
@@ -452,11 +482,11 @@
               <h5 class="bg-ambient bg-gradient text-white py-1 mb-0"> UID </h5>
               <table class="table table-sm table-hover text-start mx-auto">
                 <caption> SLOT3: "On temperature below threshold, transmit &#x1f976; emoji" </caption>
-                <thead class="table-light">
+                <thead class="table-info">
                   <tr> <th> Frame Type </th> <td> UID </td> </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Adv Content </th> <td> &nbsp; </td>
                   </tr>
                   <tr>
@@ -472,13 +502,13 @@
                   </tr>
                 </tbody>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Base params </th>
                     <td> Ignored <small class="text-muted">(see Trigger)</small> </td>
                   </tr>
                 </tbody>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Trigger </th> <td> &nbsp; </td>
                   </tr>
                   <tr>
@@ -511,11 +541,11 @@
               <h5 class="bg-ambient bg-gradient text-white py-1 mb-0"> HT </h5>
               <table class="table table-sm table-hover text-start mx-auto">
                 <caption> SLOT6: "Periodically transmit <i class="fas fa-thermometer-half"></i> temperature and <i class="fas fa-water"></i> data" </caption>
-                <thead class="table-light">
+                <thead class="table-info">
                   <tr> <th> Frame Type </th> <td> HT </td> </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Base params </th>
                     <td> &nbsp; </td>
                   </tr>
@@ -524,7 +554,7 @@
                   <tr> <td> Radio TxPower </td> <td> 0dBm </td> </tr>
                 </tbody>
                 <tbody class="table-group-divider">
-                  <tr class="table-light">
+                  <tr class="table-info">
                     <th> Trigger </th>
                     <td> Disabled <small class="text-muted">(Base params apply)</small>
                   </tr>
@@ -544,7 +574,7 @@
             </div>
           </div>
           <!----- Step 3 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Observe data in Pareto Anywhere &nbsp;
@@ -554,7 +584,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
-                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank">Pareto Anywhere</a> is open source middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
                 <dt class="col-sm-3"> Can other software be used? </dt>
                 <dd class="col-sm-9"> Yes.  Any software that can receive and interpret <i class="fab fa-bluetooth"></i> Bluetooth Low Energy packets can be used. </dd>
               </dl>
@@ -572,7 +602,7 @@
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pc/">
                 <img src="../pareto-anywhere-pc/images/icon.png"
-                     class="img-fluid">
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -586,7 +616,7 @@
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pi/">
                 <img src="../pareto-anywhere-pi/images/icon.png"
-                     class="img-fluid">
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -615,7 +645,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../cheatsheet/">
-                <img src="../cheatsheet/images/icon.png" class="img-fluid">
+                <img src="../cheatsheet/images/icon.png"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -639,7 +670,7 @@
             </div>
           </div>
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow bg-body-secondary border-0 my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -670,7 +701,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="img-fluid">
+                <img src="../devices/images/icon.gif"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -683,7 +715,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png" class="img-fluid">
+                <img src="../common/images/icon.png"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -693,10 +726,28 @@
               Browse all developer documentation and tutorials.
             </li>
           </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/devices/minew/" target="_blank">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/devices/minew/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> Minew Devices & Pareto Anywhere
+                </h5>
+              </a>
+              Realise interoperable IoT solutions with open source middleware.
+            </li>
+          </ul>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -705,7 +756,7 @@
                   <i class="fas fa-external-link-alt"></i> reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together let's put things in context.
             </li>
           </ul>
         </div>
@@ -714,7 +765,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
