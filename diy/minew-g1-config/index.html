@@ -5,8 +5,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Configure a Minew G1 gateway to forward ambient Bluetooth Low Energy data to Pareto Anywhere open source middleware for real-time location and context.">
+          content="Configure a Minew G1 gateway to forward ambient Bluetooth Low Energy data to Pareto Anywhere open source IoT middleware for real-time location and context.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> reelyActive Minew G1 Gateway Configuration Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -14,7 +15,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "reelyActive Minew G1 Gateway Configuration Guide",
-      "description": "Configure a Minew G1 gateway to forward ambient Bluetooth Low Energy data to Pareto Anywhere open source middleware for real-time location and context.",
+      "description": "Configure a Minew G1 gateway to forward ambient Bluetooth Low Energy data to Pareto Anywhere open source IoT middleware for real-time location and context.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/minew-g1-config/images/header.jpg",
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -141,13 +171,13 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive configure the gateways to make <em>any</em> physical space context-aware </p>
+              <p class="lead"> Learn how we at reelyActive configure the gateways to enable interoperable IoT solutions </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
                 <dd class="col-sm-9"> The G1 will forward ambient Bluetooth Low Energy packets to a server running Pareto Anywhere. </dd>
                 <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
-                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"> Pareto Anywhere </a> is open source middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
                 <dt class="col-sm-3"> Is that all the G1 can do? </dt>
                 <dd class="col-sm-9"> No.  The G1 can also provide WiFi connectivity as an AP or repeater and store offline data, but these are outside the scope of this tutorial. </dd>
               </dl>
@@ -158,7 +188,7 @@
           <p class="lead"> A Minew G1 gateway running firmware v4.x.x or later. </p>
           <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Firmware v3.x.x and earlier is <em>not</em> recommended, because data is forwarded with an incorrect <span class="font-monospace">content-type</span>, and is discarded in Pareto Anywhere v1.7+ and barnowl-minew v1.0+. </p>
           <!----- Step 1 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Configure connectivity &nbsp;
@@ -224,7 +254,7 @@
               </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="ethernetcontent"
                  role="tabpanel" aria-labelledby="ethernettab">
               <p class="mt-2"> By default, the gateway will be configured to connect to the host network via Ethernet, obtaining an IP address using DHCP.  If this is the desired connection, then no action is required aside from the physical connection to the Ethernet network. </p>
@@ -246,7 +276,7 @@
             </div>
           </div>
           <!----- Step 2 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Configure data capture and forwarding &nbsp;
@@ -303,7 +333,7 @@
               </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="genericcontent"
                  role="tabpanel" aria-labelledby="generictab">
               <img src="images/service-generic.png"
@@ -365,7 +395,7 @@
             </div>
           </div>
           <!----- Step 3 of 3 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Observe data in Pareto Anywhere &nbsp;
@@ -399,7 +429,7 @@
                       aria-selected="false"> barnowl-minew </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="paretocontent"
                  role="tabpanel" aria-labelledby="paretotab">
               <p class="mt-2"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank">pareto-anywhere</a> package is already present and running on the target computer on the host network, the data forwarded by the gateway should be available in both the web apps and APIs. </p>
@@ -407,7 +437,7 @@
                 <li class="list-group-item border-0">
                   <a href="../pareto-anywhere-pc/">
                     <img src="../pareto-anywhere-pc/images/icon.png"
-                         class="img-fluid">
+                         class="img-fluid rounded-1">
                   </a>
                 </li>
                 <li class="list-group-item border-0">
@@ -421,7 +451,7 @@
                 <li class="list-group-item border-0">
                   <a href="../pareto-anywhere-pi/">
                     <img src="../pareto-anywhere-pi/images/icon.png"
-                         class="img-fluid">
+                         class="img-fluid rounded-1">
                   </a>
                 </li>
                 <li class="list-group-item border-0">
@@ -446,7 +476,8 @@ npm start</pre>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../cheatsheet/">
-                <img src="../cheatsheet/images/icon.png" class="img-fluid">
+                <img src="../cheatsheet/images/icon.png"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -457,7 +488,7 @@ npm start</pre>
             </li>
           </ul>
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow bg-body-secondary border-0 my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -488,7 +519,8 @@ npm start</pre>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="img-fluid">
+                <img src="../devices/images/icon.gif"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -501,7 +533,8 @@ npm start</pre>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png" class="img-fluid">
+                <img src="../common/images/icon.png"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -514,7 +547,8 @@ npm start</pre>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com" target="_blank">
-                <img src="../common/images/icon-reelyactive.png">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="img-fluid rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -523,7 +557,7 @@ npm start</pre>
                   <i class="fas fa-external-link-alt"></i> reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together let's put things in context.
             </li>
           </ul>
         </div>
@@ -532,7 +566,7 @@ npm start</pre>
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2024 </a>
     </footer>
 
     <!-- Optional JavaScript -->
