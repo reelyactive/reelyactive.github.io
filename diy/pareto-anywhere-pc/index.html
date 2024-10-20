@@ -218,7 +218,7 @@
                 <dt class="col-sm-3"> Is there a container option? </dt>
                 <dd class="col-sm-9"> Yes, the details for a Docker implementation are instead documented in the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank"><i class="fab fa-github"></i>/pareto-anywhere</a> repository. </dd>
               </dl>
-              <img src="images/clone-pareto-anywhere.jpg"
+              <img src="images/clone-pareto-anywhere.png"
                    class="card-img-bottom"
                    alt="Clone the pareto-anywhere repository from GitHub">
             </div>
@@ -288,12 +288,12 @@
               <p class="lead"> Confirm that everything works! </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Do I need an IoT data source? </dt>
-                <dd class="col-sm-9"> No.  Pareto Anywhere runs even in the absence of source data. </dd>
+                <dt class="col-sm-3"> Do I need IoT data? </dt>
+                <dd class="col-sm-9"> No.  Pareto Anywhere runs even in the absence of IoT source data. </dd>
                 <dt class="col-sm-3"> Can I test my IoT data source? </dt>
                 <dd class="col-sm-9"> Yes.  In the second part of this step you'll find how to quickly validate the integration with common hardware/modules. </dd>
               </dl>
-              <img src="images/pareto-anywhere-on-pc.jpg"
+              <img src="images/pareto-anywhere-on-pc.png"
                    class="card-img-bottom" alt="Pareto Anywhere on PC">
             </div>
           </div>
@@ -540,120 +540,98 @@
               "Owl" you need to know about Pareto Anywhere's core data structures.
             </li>
           </ul>
-          <h3 class="mt-4">
-            Automatically run on boot
-            <small class="text-muted"> (OPTIONAL) Part 5 </small>
-          </h3>
-          <p> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies <em>only</em> to <i class="fab fa-linux"></i> Linux distributions that have <a href="https://en.wikipedia.org/wiki/Systemd#Adoption" target="_blank">adopted systemd</a>. </p>
-          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Consult our <a href="../pareto-anywhere-windows-service">Run Pareto Anywhere as a Windows service</a> tutorial for <i class="fab fa-windows"></i> Windows systems. </p>
-          <p> Configure systemd to run the pareto-anywhere service by completing the following: </p>
-          <ol>
-            <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere.service /lib/systemd/system</code> </li>
-            <li> If necessary, edit the <b class="user-select-all">/lib/systemd/system/pareto-anywhere.service</b> file you copied so that the <span class="font-monospace">WorkingDirectory</span>, <span class="font-monospace">ExecStart</span> and <span class="font-monospace">User</span> lines match your configuration </li>
-            <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere.service</code> </li>
-            <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere.service</code> </li>
-            <li> Browse again to <a href="http://localhost:3001">localhost:3001</a> and observe the Pareto Anywhere landing page </li>
-          </ol>
           <!----- Step 3 of 3 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
-                Installing Elasticsearch & Kibana &nbsp;
+                Run custom as a service &nbsp;
                 <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
               </h2>
-              <p class="lead"> <em>Optionally</em> install this duo to explore and analyse contextual data over time. </p>
+              <p class="lead"> <em>Optionally</em> customise Pareto Anywhere and run automatically on boot. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Why a local database? </dt>
-                <dd class="col-sm-9"> A <em>local</em> <i class="fas fa-laptop"></i> Elasticsearch instance stores the real-time data stream from Pareto Anywhere, facilitating standalone/offline data capture and analysis. </dd>
-                <dt class="col-sm-3"> Is there a hosted option? </dt>
-                <dd class="col-sm-9"> Yes.  <em>The hosted</em> <i class="fas fa-cloud"></i> Elasticsearch Service is recommended whenever Internet-connectivity is available, as it includes additional features such as machine learning. </dd>
+                <dt class="col-sm-3"> Why custom? </dt>
+                <dd class="col-sm-9"> Pareto Anywhere uses a highly modular architecture which can easily be adapted to any given deployment. </dd>
+                <dt class="col-sm-3"> Why run as a service? </dt>
+                <dd class="col-sm-9"> To maximise uptime in a production deployment. </dd>
               </dl>
-              <img src="images/elasticsearch-kibana.jpg"
-                   class="card-img-bottom" alt="Pareto Anywhere with Elastic">
+              <img src="images/pareto-anywhere-production.png"
+                   class="card-img-bottom" alt="Pareto Anywhere in production">
             </div>
           </div>
           <h3 class="mt-4">
-            Install Elasticsearch
+            Run using a startup script
             <small class="text-muted"> (OPTIONAL) Part 1 </small>
           </h3>
-          <p> Elasticsearch can be installed <em>locally</em> on the <i class="fas fa-laptop"></i> PC, free of cost, under the Elastic License.  Follow <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html" target="_blank"><i class="fas fa-external-link-alt"></i> the Elasticsearch installation instructions</a> for your platform/OS. </p>
-          <p> Elasticsearch can also run as a <em>hosted</em> <i class="fas fa-cloud"></i> service, bundled with Kibana, and starting with a free trial.  Learn how in this tutorial: </p>
+          <p> Add or remove modules from the default Pareto Anywhere configuration, <em>if required,</em> to better accommodate your specific IoT deployment. </p>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
-              <a href="../elastic-cloud-deployment/">
-                <img src="../elastic-cloud-deployment/images/icon.png"
-                     class="img-fluid">
+              <a href="../pareto-anywhere-startup-script/">
+                <img src="../pareto-anywhere-startup-script/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
-              <a href="../elastic-cloud-deployment/">
-                <h5 class="mt-0 mb-1"> Elastic Cloud Deployment Guide </h5>
+              <a href="../pareto-anywhere-startup-script/">
+                <h5 class="mt-0 mb-1"> Create a Pareto Anywhere startup script </h5>
               </a>
-              Our step-by-step guide to deploy an Elastic Cloud instance for use with Pareto Anywhere.
+              Run a custom Pareto Anywhere configuration, initiated by a simple startup script.
             </li>
           </ul>
           <h3 class="mt-4">
-            Install Kibana
+            Run as a service
             <small class="text-muted"> (OPTIONAL) Part 2 </small>
           </h3>
-          <p> Kibana can be installed <em>locally</em> on the <i class="fas fa-laptop"></i> PC, free of cost, under the Elastic License.  Follow <a href="https://www.elastic.co/guide/en/kibana/current/install.html" target="_blank"><i class="fas fa-external-link-alt"></i> the Kibana installation instructions</a> for your platform/OS. </p>
-          <p> Kibana can also run as a <em>hosted</em> <i class="fas fa-cloud"></i> service, bundled with Elasticsearch, and starting with a free trial.  Learn how in this tutorial: </p>
-          <ul class="list-group list-group-horizontal mb-4">
-            <li class="list-group-item border-0">
-              <a href="../elastic-cloud-deployment/">
-                <img src="../elastic-cloud-deployment/images/icon.png"
-                     class="img-fluid">
-              </a>
+          <p> Run Pareto Anywhere automatically on boot, and restart on failure, by following the instructions specific to your architecture. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="windowstab"
+                      data-bs-toggle="tab" data-bs-target="#windowscontent"
+                      type="button" role="tab" aria-controls="windowstab"
+                      aria-selected="true">
+                <i class="fab fa-windows"></i> Windows
+              </button>
             </li>
-            <li class="list-group-item border-0">
-              <a href="../elastic-cloud-deployment/">
-                <h5 class="mt-0 mb-1"> Elastic Cloud Deployment Guide </h5>
-              </a>
-              Our step-by-step guide to deploy an Elastic Cloud instance for use with Pareto Anywhere.
-            </li>
-          </ul>
-          <h3 class="mt-4">
-            Point Pareto Anywhere to Elasticsearch
-            <small class="text-muted"> Part 3 </small>
-          </h3>
-          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Pareto Anywhere will <em>automatically</em> connect to a <em>local</em> <i class="fas fa-laptop"></i> Elasticsearch instance. </p>
-          <p> If Elasticsearch is installed and running <em>locally</em> on the <i class="fas fa-laptop"></i> PC, no further action is required.  Pareto Anywhere will automatically connect to and write to a <em>local</em> Elasticsearch instance (running at <a href="http://localhost:9200" target="_blank">localhost:9200</a>). </p>
-          <p> If Elasticsearch is running as a <em>hosted</em> <i class="fas fa-cloud"></i> service, update the ELASTICSEARCH_NODE environment variable as in the table below, specifying the <em>user</em>, <em>pass</em> and <em>server</em>, so that Pareto Anywhere can connect to and write data to the remote instance. </p>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col"> Environment Variable </th>
-                <th scope="col"> Default Value </th>
-                <th scope="col"> Updated Value </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td> ELASTICSEARCH_NODE </td>
-                <td> http://localhost:9200 </td>
-                <td> https://user:pass@server.com </td>
-              </tr>
-            </tbody>
-          </table>
-          <h3 class="mt-4">
-            Explore the data in Kibana
-            <small class="text-muted"> Part 4 </small>
-          </h3>
-          <p> Browse to the <em>local</em> (<a href="http://localhost:5601" target="_blank">localhost:5601</a>) or <em>hosted</em> Kibana instance and begin analysing context-aware physical spaces over time starting with the following tutorial: </p>
-          <ul class="list-group list-group-horizontal mb-4">
-            <li class="list-group-item border-0">
-              <a href="../kibana/">
-                <img src="../kibana/images/icon.jpg" class="img-fluid">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="../kibana/">
-                <h5 class="mt-0 mb-1"> Kibana integration overview </h5>
-              </a>
-              Our guide to integrating and using Kibana with Pareto Anywhere.
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="linuxtab" data-bs-toggle="tab"
+                      data-bs-target="#linuxcontent" type="button" role="tab"
+                      aria-controls="linuxtab" aria-selected="false">
+                <i class="fab fa-linux"></i> Linux
+              </button>
             </li>
           </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="windowscontent"
+                 role="tabpanel" aria-labelledby="windowstab">
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../pareto-anywhere-windows-service/">
+                    <img src="../pareto-anywhere-windows-service/images/icon.png"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../pareto-anywhere-windows-service/">
+                    <h5 class="mt-0 mb-1"> Run Pareto Anywhere as a Windows service </h5>
+                  </a>
+                  Our step-by-step guide for production deployments on <i class="fab fa-windows"></i> Windows machines.
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="linuxcontent"
+                 role="tabpanel" aria-labelledby="linuxtab">
+              <p class="mt-2"> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span> These instructions apply <em>only</em> to <i class="fab fa-linux"></i> Linux distributions that have <a href="https://en.wikipedia.org/wiki/Systemd#Adoption" target="_blank">adopted systemd</a>. </p>
+              <p> Configure systemd to run the pareto-anywhere service by completing the following: </p>
+              <ol>
+                <li> Open a terminal <i class="fas fa-terminal"></i> and change to the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder.</li>
+                <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere.service /lib/systemd/system</code> </li>
+                <li> If necessary, edit the <b class="user-select-all">/lib/systemd/system/pareto-anywhere.service</b> file you copied so that the <span class="font-monospace">WorkingDirectory</span>, <span class="font-monospace">ExecStart</span> and <span class="font-monospace">User</span> lines match your configuration. </li>
+                <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere.service</code> </li>
+                <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere.service</code> </li>
+                <li> Browse again to <a href="http://localhost:3001">localhost:3001</a> and observe the Pareto Anywhere landing page. </li>
+              </ol>
+            </div>
+          </div>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-body-secondary border-0 my-5">
             <div class="row g-0">
