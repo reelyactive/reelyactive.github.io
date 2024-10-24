@@ -626,10 +626,16 @@
                 <li> Open a terminal <i class="fas fa-terminal"></i> and change to the <b>pareto-anywhere</b> <i class="fas fa-folder"></i> folder.</li>
                 <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere.service /lib/systemd/system</code> </li>
                 <li> If necessary, edit the <b class="user-select-all">/lib/systemd/system/pareto-anywhere.service</b> file you copied so that the <span class="font-monospace">WorkingDirectory</span>, <span class="font-monospace">ExecStart</span> and <span class="font-monospace">User</span> lines match your configuration. </li>
+                <li> If using the (default) <span class="font-monospace">User=reelyactive</span>: </li>
+                <ul>
+                  <li> Create the user with the command <code class="user-select-all">sudo useradd reelyactive</code> </li>
+                  <li> Assign the <span class="font-monospace">reelyactive</span> user rwx permissions recursively to the /data <i class="fas fa-folder"></i> subfolder for local storage (ex: <code class="user-select-all">setfacl -R -m u:reelyactive:rwx data</code>) </li>
+                </ul>
                 <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere.service</code> </li>
                 <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere.service</code> </li>
                 <li> Browse again to <a href="http://localhost:3001">localhost:3001</a> and observe the Pareto Anywhere landing page. </li>
               </ol>
+              <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Check the status and output of the service at any time with <code class="user-select-all">sudo systemctl status pareto-anywhere.service</code> </p>
             </div>
           </div>
           <!----- Attribution ----->
