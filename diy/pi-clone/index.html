@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Collect, store and visualise Internet of Things data on a Raspberry Pi using the Pareto Anywhere, InfluxDB and Grafana open source stack.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Install InfluxDB and Grafana on a Pi </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Install InfluxDB and Grafana on a Pi",
+      "description": "Collect, store and visualise Internet of Things data on a Raspberry Pi using the Pareto Anywhere, InfluxDB and Grafana open source stack.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/influxdb-grafana-pi/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Install InfluxDB and Grafana on a Pi"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com">
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/">
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/">
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h1>
+          <p class="lead"> Once you have a Raspberry Pi setup and working just the way you'd like it to, create a disk image so that it can be replicated on other Rasperry Pi devices. </p>
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why create a disk image? </dt>
+                <dd class="col-sm-9"> Ensure that each new Raspberry Pi device has the exact same configuration. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead text-body-secondary"> A <i class="fab fa-raspberry-pi"></i> Pi 4 <small class="text-body-tertiary">(or better)</small> with 64-bit OS. </p>
+          <p class="lead text-body-secondary"> The SD card containing the Raspberry Pi OS you would like to clone</p>
+          <p class="lead text-body-secondary"> An SD card reader</p>
+          <p class="lead text-body-secondary"> A USB key that is at least twice the GB as the source SD card</p>
+          <!----- Step 1 of 5 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Boot up Raspberry Pi &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary">Boot up the Raspberry Pi with a basic version of Raspberry Pi OS Lite </p>
+              <p class="lead text-body-secondary">Connect to the RPi and open a terminal </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why use a Raspberry Pi to clone an SD card? </dt>
+                <dd class="col-sm-9"> There are several different ways to clone an SD card that will be OS specific. This tutorial assumes everyone has a Raspberry Pi, instead of writing out different steps for Unix, Mac, and Windows. </dd>
+              </dl>
+            </div>
+          </div>          
+          <!----- Step 2 of 5 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Insert the source SD card &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 2 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary">Using an SD card reader, insert the source SD card into one of the available USB ports on the Raspberry Pi </p>
+              <hr>
+            </div>
+          </div>
+          <p>With the SD card reader inserted, use the following command to identify the location of the card
+            <br>
+            <code class="user-select-all">sudo fdisk -l</code>
+            <p>
+              The output will include a list of block devices, including the SD card. The SD card will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
+              <br>
+              It will appear similar to the following:
+              <pre class="user-select-all">
+  Disk /dev/sda: 7.36 GiB, 7901020160 bytes, 15431680 sectors
+  Disk model: Storage Device
+              </pre>
+            </p>
+            <p>
+              While there are two partions on the SD card, (eg: <code class="user-select-all">/dev/sda1</code> and <code class="user-select-all">/dev/sda2</code>),
+              the partition that will be cloned is the entire disk, not just one partition. As such, we are interested in the block device, not the partition.
+            </p>
+            <p>
+              The block device id will look similar to the following: 
+              <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc..., it does not have a number at the end.
+            </p>
+
+          </p>
+          <!----- Step 3 of 5 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Insert the USB Drive &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 2 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary">Insert and mount a USB Drive, making it available to the Raspberry Pi </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why use a USB Drive? </dt>
+                <dd class="col-sm-9"> 
+                  It is necessary to have enough storage to hold both the full image of the SD card, as well as the final shrunk and zipped file.
+                  Using a USB Drive will minimize the risk of running out of space during the cloning process, as most USB drives are larger than 
+                  the SD cards used in Raspberry Pi devices.
+                  Using a USB Drive will also allow you to easily transfer the zipped image to another device, such as a laptop or desktop computer.
+                </dd>
+              </dl>              
+            </div>
+          </div>
+          <p>Insert the USB drive into an available USB port on the Raspberry Pi.</p>
+          <p>To identify the USB drive, use the same command as used to identify the SD Card:
+            <br>
+            <code class="user-select-all">sudo fdisk -l</code>
+          </p>
+          <p>
+            <b>Note:</b> The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
+          </p>
+          <p>Once you've identified the drive (ie: sda, sdb, etc...) from the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, 
+            mount the drive to a directory on the Raspberry Pi with the following command:
+            <br>
+            <code class="user-select-all">sudo mount /dev/sdb2 /mnt</code>
+          </p>
+          <p>
+            <b>Note:</b> The folder <code class="user-select-all">/mnt</code> will be the name of the folder representing the USB drive
+            and will be referenced in a later step.
+          </p>                  
+          <!----- Step 2 of 5 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Clone the source SD card &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 3 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Use the Raspberry Pi to clone the source SD card. </p>
+              <hr>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Clone the SD card
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p>With the Raspberry Pi setup with the SD card connected and USB Drive mounted, it's now ready to clone the entire contents of the SD card to a single *.img file. </p>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:
+            <br>
+            <b>Note:</b> If you saved the image to a different location, change to that directory instead.
+            <br>
+            <code class="user-select-all">cd /mnt</code>
+          </p>          
+          <p>
+            Type in the following command:
+            <br>
+            <code class="user-select-all">sudo dd if=/dev/sda of=my-pareto-anywhere.img bs=4M status=progress</code>
+          </p>
+          <p>
+            <b>Notes:</b> 
+            <ul>
+              <li>This command requires root privileges</li>
+              <li>The <code class="user-select-all">if</code> parameter, eg: <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, is the location of the SD card, identified in Step 2.</li>
+              <li>The <code class="user-select-all">of</code> parameter, <code class="user-select-all">my-pareto-anywhere.img</code> is the name of the file where the contents of the SD card will be written.
+                It can be named anything you like, but it's recommended to use a name that is descriptive of the contents of the SD card, it will be referenced in a later step.
+                It will be the same size as the SD card, so make sure you have enough space on the USB drive to hold the entire image.
+              </li>
+              <li><b>Warning!</b> This can take a long time; an 8 GB SD card 
+                took about 12 minutes to copy. The `status=progress` argument 
+                will display how many bytes have been written out during this 
+                process.</li>
+            </ul>
+          </p>
+
+          <!----- Step 5 of 5 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step05" class="card-title my-2">
+                Shrink the image. &nbsp;
+                <a href="#step05" class="badge bg-primary"> Step 5 of 5 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Install and run `pishrink.sh` to compress the cloned img file. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What is PiShrink? </dt>
+                <dd class="col-sm-9"> <a href="https://github.com/Drewsif/PiShrink" target="_blank">PiShrink</a> is an open-source script that will compress a pi image </dd>
+              </dl>              
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install PiShrink
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
+          <ol>
+            <li> Download the script from github with the command:
+              <br>
+              <code class="user-select-all">wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</code> 
+            </li>
+            <li> Add execute permissions with the command: 
+              <br>
+              <code class="user-select-all">sudo chmod +x pishrink.sh</code> 
+            </li>
+            <li> Move the script to a folder for executables found in the path with the command:
+              <br> 
+              <code class="user-select-all">sudo mv pishrink.sh /usr/local/bin</code>
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Shrink the pi image
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> At this step, you can remove the source SD card if desired, as it's no longer needed for this process. </p>
+          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
+          <ol>
+            <li> Change to the directory where the image is located on the USB drive with the command:
+              <br>
+              <b>Note:</b> If you saved the image to a different location, change to that directory instead.
+              <br>
+              <code class="user-select-all">cd /mnt</code>
+            </li>
+            <li> Shrink and gzip the image with the command:
+              <br>
+              <code class="user-select-all">sudo pishrink.sh -vz my-pareto-anywhere.img my-paretoanywhere.img.gz</code> 
+              <br>
+              <b>Notes:</b> 
+              <ul>
+                <li>This process can take a long time, 15 minutes or longer!</li>
+                <li>The <code class="user-select-all">-v</code> tells PiShrink to be verbose</li>
+                <li>The <code class="user-select-all">-z</code> tells PiShrink to gzip the image</li>
+                <li>The first argument, <code class="user-select-all">my-pareto-anywhere.img</code> is the source image file</li>
+                <li>The second argument, <code class="user-select-all">my-pareto-anywhere.img.gz</code> is the destination image file that is zipped</li>
+              </ul>
+            </li>
+          </ol>
+          <hr>
+          <p> 
+            That's it! You can now eject the USB drive from the Raspberry Pi, plug it into your laptop, and copy the `my-pareto-anywhere.img.gz` file to your hard drive, upload
+            it to a cloud storage service, or share it with others. It can be used to create a new SD card with Raspberry Pi Imager.
+          </p>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2024 </a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
