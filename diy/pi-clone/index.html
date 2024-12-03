@@ -227,33 +227,30 @@
               <hr>
             </div>
           </div>
-          <ol>
-            <p>
-            <li>
-              <p>
-            With the SD card reader inserted, use the following command to identify the location of the card:
-              </p>
-              <kbd class="user-select-all">sudo fdisk -l</kbd>
-            </li>
-          </ol>
-          <br>
-            <p>
-              The output will include a list of block devices, including the SD card. The SD card will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
-              <br>
-              It will appear similar to the following:
-              <pre class="user-select-all">
+          <p>
+            <ol>
+              <li>
+                With the SD card reader inserted, identify the location of the card with the command: 
+                <kbd class="user-select-all">sudo fdisk -l</kbd>
+              </li>
+            </ol>
+          </p>
+          <p>
+            The output will include a list of block devices, including the SD card. The SD card will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
+            <br><br>
+            It will appear similar to the following:
+            <pre class="user-select-all">
   Disk /dev/sda: 7.36 GiB, 7901020160 bytes, 15431680 sectors
   Disk model: Storage Device
-              </pre>
-            </p>
-            <p>
-              While there are two partions on the SD card, (eg: <code class="user-select-all">/dev/sda1</code> and <code class="user-select-all">/dev/sda2</code>),
-              the partition that will be cloned is the entire disk, not just one partition. As such, we are interested in the block device, not the partition.
-            </p>
-            <p>
-              The block device id will look similar to the following: 
-              <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc..., it does not have a number at the end.
-            </p>
+            </pre>
+          </p>
+          <p>
+            While there are two partions on the SD card, (eg: <code class="user-select-all">/dev/sda1</code> and <code class="user-select-all">/dev/sda2</code>),
+            the partition that will be cloned is the entire disk, not just one partition. As such, we are interested in the block device, not the partition.
+          </p>
+          <p>
+            The block device id will look similar to the following: 
+            <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc..., it does not have a number at the end.
           </p>
           <hr>
           <!----- Step 2 of 5 ----->
@@ -284,8 +281,10 @@
             </p>
             <p>
               <li>
-                <p>To identify the USB drive, use the same command as used to identify the SD Card:</p>
-                <p><kbd class="user-select-all">sudo fdisk -l</kbd></p>
+                <p>
+                  Identify the USB drive with the command:
+                  <kbd class="user-select-all">sudo fdisk -l</kbd>
+                </p>
                 <p>
                   <i class="fas fa-question-circle"></i>
                   The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
@@ -294,9 +293,11 @@
             </p>
             <p>
               <li>
-                <p>Once you've identified the drive (ie: sda, sdb, etc...) from the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, 
-                  mount the drive to a directory on the Raspberry Pi with the following command:</p>  
-                <p><kbd class="user-select-all">sudo mount /dev/sdb2 /mnt</kbd></p>
+                <p>
+                  Once you've identified the drive (ie: sda, sdb, etc...) from the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, 
+                  mount the drive to a directory on the Raspberry Pi with the command:
+                  <kbd class="user-select-all">sudo mount /dev/sdb2 /mnt</kbd>
+                </p>
                 <p>
                   <b>Note:</b> The <code class="user-select-all">/mnt</code>  directory is a common location to mount external drives. If you have a different location you would like to use, you can change this to a different directory. 
                   The directory name will be referenced in a later step.
@@ -323,22 +324,20 @@
           
           <p>With the Raspberry Pi setup with the SD card connected and USB Drive mounted, it's now ready to clone the entire contents of the SD card to a single *.img file. </p>
           <ol>
-          <p>
-            <li>
-              <p>From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:</p>
-              <p><kbd class="user-select-all">cd /mnt</kbd></p>
-              <p><b>Note:</b> If you saved the image to a different location, change to that directory instead.</p>
-            </li>
-          </p>
-          <p>
-            <li>
-              <p>
-                Type in the following command:
-              </p>
-              <kbd class="user-select-all">
-                sudo dd if=/dev/sda of=my-pareto-anywhere.img bs=4M status=progress
-              </kbd>
-            </li>
+            <p>
+              <li>
+                <p>
+                  From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:
+                  <kbd class="user-select-all">cd /mnt</kbd>
+                </p>
+                <p><b>Note:</b> If you mounted the SD card to a different directory, change to that directory instead.</p>
+              </li>
+            </p>
+            <p>
+              <li>
+                Use the <code>dd</code> application to start cloning the SD card with the command:
+                <kbd class="user-select-all">sudo dd if=/dev/sda of=my-pareto-anywhere.img bs=4M status=progress</kbd>
+              </li>
             </p>
             <p>
               <li>
@@ -394,19 +393,21 @@
           <ol>
             <p>
             <li>
-              <p>Download the script from github with the command:</p>
-              <kbd class="user-select-all">wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</kbd> 
+                Download the pishrink script from github with the command:
+                <kbd class="user-select-all">wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</kbd> 
             </li>
             </p>
             <p>
             <li>
-              <p>Add execute permissions with the command:</p>
-              <kbd class="user-select-all">sudo chmod +x pishrink.sh</kbd> 
+              <p>
+                Add execute permissions to the pishrink script with the command:
+                <kbd class="user-select-all">sudo chmod +x pishrink.sh</kbd> 
+              </p>
             </li>
             </p>
             <p>
             <li>
-              <p>Move the script to a folder for executables found in the path with the command:</p>
+              Move the script to a folder for executables found in the path with the command:
               <kbd class="user-select-all">sudo mv pishrink.sh /usr/local/bin</kbd>
             </li>
             </p>
@@ -419,16 +420,17 @@
           <ol>
             <p>
               <li>
-                <p>Change to the directory where the image is located on the USB drive with the command:</p>
-                <p><kbd class="user-select-all">cd /mnt</kbd></p>
-                <p><b>Note:</b> If you saved the image to a different location, change to that directory instead.</p>
+                <p>
+                  Change to the directory where the image is located on the USB drive with the command:
+                  <kbd class="user-select-all">cd /mnt</kbd>
+                </p>
+                <p><b>Note:</b> If you saved the image to a different directory, change to that directory instead.</p>
               </li>
             </p>
             <p>
               <li> 
-                <p>Shrink and gzip the image with the command:</p>
+                Shrink and gzip the image with the command:
                 <kbd class="user-select-all">sudo pishrink.sh -vz my-pareto-anywhere.img my-paretoanywhere.img.gz</kbd>
-                <br>
               </li>
             </p>
           </ol>
