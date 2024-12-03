@@ -231,7 +231,7 @@
             <p>
             <li>
               <p>
-            With the SD card reader inserted, use the following command to identify the location of the card
+            With the SD card reader inserted, use the following command to identify the location of the card:
               </p>
               <kbd class="user-select-all">sudo fdisk -l</kbd>
             </li>
@@ -277,14 +277,19 @@
             </div>
           </div>
           <ol>
-            <li>
-              Insert the USB drive into an available USB port on the Raspberry Pi.
-            </li>
-            <li>
-              To identify the USB drive, use the same command as used to identify the SD Card:
-              <br>
-              <kbd class="user-select-all">sudo fdisk -l</kbd>
-            </li>
+            <p>
+              <li>
+                Insert the USB drive into an available USB port on the Raspberry Pi.
+              </li>
+            </p>
+            <p>
+              <li>
+                <p>
+                  To identify the USB drive, use the same command as used to identify the SD Card:
+                </p>
+                <kbd class="user-select-all">sudo fdisk -l</kbd>
+              </li>
+            </p>
           </ol>
           <p>
           </p>
@@ -321,17 +326,17 @@
           <p>With the Raspberry Pi setup with the SD card connected and USB Drive mounted, it's now ready to clone the entire contents of the SD card to a single *.img file. </p>
           <ol>
           <p>
-            <li> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:
-              <br>
-              <b>Note:</b> If you saved the image to a different location, change to that directory instead.
-              <br>
-              <kbd class="user-select-all">cd /mnt</kbd>
+            <li>
+              <p>From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:</p>
+              <p><kbd class="user-select-all">cd /mnt</kbd></p>
+              <p><b>Note:</b> If you saved the image to a different location, change to that directory instead.</p>
             </li>
           </p>
           <p>
             <li>
-              Type in the following command:
-              <br/>
+              <p>
+                Type in the following command:
+              </p>
               <kbd class="user-select-all">
                 sudo dd if=/dev/sda of=my-pareto-anywhere.img bs=4M status=progress
               </kbd>
@@ -390,20 +395,20 @@
           <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
           <ol>
             <p>
-            <li>Download the script from github with the command:
-              <br>
+            <li>
+              <p>Download the script from github with the command:</p>
               <kbd class="user-select-all">wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</kbd> 
             </li>
             </p>
             <p>
-            <li>Add execute permissions with the command: 
-              <br>
+            <li>
+              <p>Add execute permissions with the command:</p>
               <kbd class="user-select-all">sudo chmod +x pishrink.sh</kbd> 
             </li>
             </p>
             <p>
-            <li>Move the script to a folder for executables found in the path with the command:
-              <br> 
+            <li>
+              <p>Move the script to a folder for executables found in the path with the command:</p>
               <kbd class="user-select-all">sudo mv pishrink.sh /usr/local/bin</kbd>
             </li>
             </p>
@@ -415,16 +420,15 @@
           <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
           <ol>
             <p>
-              <li>Change to the directory where the image is located on the USB drive with the command:
-                <br>
-                <b>Note:</b> If you saved the image to a different location, change to that directory instead.
-                <br>
-                <kbd class="user-select-all">cd /mnt</kbd>
+              <li>
+                <p>Change to the directory where the image is located on the USB drive with the command:</p>
+                <p><kbd class="user-select-all">cd /mnt</kbd></p>
+                <p><b>Note:</b> If you saved the image to a different location, change to that directory instead.</p>
               </li>
             </p>
             <p>
-              <li> Shrink and gzip the image with the command:
-                <br>
+              <li> 
+                <p>Shrink and gzip the image with the command:</p>
                 <kbd class="user-select-all">sudo pishrink.sh -vz my-pareto-anywhere.img my-paretoanywhere.img.gz</kbd>
                 <br>
               </li>
