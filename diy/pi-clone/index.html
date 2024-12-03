@@ -160,7 +160,7 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h1>
+         <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h1>
           <p class="lead"> Once you have a Raspberry Pi setup and working just the way you'd like it to, create a disk image so that it can be replicated on other Rasperry Pi devices. </p>
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -179,10 +179,15 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
           </div>
           <!----- Prerequisites ----->
           <h2 class="mt-4"> Prerequisites </h2>
-          <p class="lead text-body-secondary"> A <i class="fab fa-raspberry-pi"></i> Pi 4 <small class="text-body-tertiary">(or better)</small> with 64-bit OS. </p>
-          <p class="lead text-body-secondary"> The SD card containing the Raspberry Pi OS you would like to clone</p>
-          <p class="lead text-body-secondary"> An SD card reader</p>
-          <p class="lead text-body-secondary"> A USB key that is at least twice the GB as the source SD card</p>
+          <ul class="lead text-body-secondary">
+          <li>
+            A <i class="fab fa-raspberry-pi"></i> Pi 4 <small class="text-body-tertiary">(or better)</small> with 64-bit OS.
+            (<b>Tutorial:</b> <a href="../pi-prep/"> Learn how to setup a Raspberry Pi </a>)
+          </li>
+          <li>SD card containing the Raspberry Pi OS you would like to clone</li>
+          <li>SD card reader</li>
+          <li>USB key at least 2x the GB as the source SD card</li>
+          </ul>
           <!----- Step 1 of 5 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
@@ -198,21 +203,40 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
                 <dd class="col-sm-9"> There are several different ways to clone an SD card that will be OS specific. This tutorial assumes everyone has a Raspberry Pi, instead of writing out different steps for Unix, Mac, and Windows. </dd>
               </dl>
             </div>
-          </div>          
+          </div>
+          <ol>
+            <li>
+              <p>Boot up the Raspberry Pi with the SD card containing the Raspberry Pi OS you would like to clone.</p>
+            </li>
+            <li>
+              <p>Connect to the Raspberry Pi with SSH or a monitor and keyboard.</p>
+            </li>
+            <li>
+              <p>Open a terminal on the Raspberry Pi.</p>
+            </li>
+          </ol>
+          <hr>
           <!----- Step 2 of 5 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
-              <h2 id="step01" class="card-title my-2">
+              <h2 id="step02" class="card-title my-2">
                 Insert the source SD card &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 2 of 5 </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 5 </a>
               </h2>
               <p class="lead text-body-secondary">Using an SD card reader, insert the source SD card into one of the available USB ports on the Raspberry Pi </p>
               <hr>
             </div>
           </div>
-          <p>With the SD card reader inserted, use the following command to identify the location of the card
-            <br>
-            <code class="user-select-all">sudo fdisk -l</code>
+          <ol>
+            <p>
+            <li>
+              <p>
+            With the SD card reader inserted, use the following command to identify the location of the card
+              </p>
+              <kbd class="user-select-all">sudo fdisk -l</kbd>
+            </li>
+          </ol>
+          <br>
             <p>
               The output will include a list of block devices, including the SD card. The SD card will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
               <br>
@@ -230,14 +254,14 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
               The block device id will look similar to the following: 
               <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc..., it does not have a number at the end.
             </p>
-
           </p>
-          <!----- Step 3 of 5 ----->
+          <hr>
+          <!----- Step 2 of 5 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
-              <h2 id="step01" class="card-title my-2">
+              <h2 id="step03" class="card-title my-2">
                 Insert the USB Drive &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 2 of 5 </a>
+                <a href="#step03" class="badge bg-primary"> Step 3 of 5 </a>
               </h2>
               <p class="lead text-body-secondary">Insert and mount a USB Drive, making it available to the Raspberry Pi </p>
               <hr>
@@ -252,13 +276,21 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
               </dl>              
             </div>
           </div>
-          <p>Insert the USB drive into an available USB port on the Raspberry Pi.</p>
-          <p>To identify the USB drive, use the same command as used to identify the SD Card:
-            <br>
-            <code class="user-select-all">sudo fdisk -l</code>
+          <ol>
+            <li>
+              Insert the USB drive into an available USB port on the Raspberry Pi.
+            </li>
+            <li>
+              To identify the USB drive, use the same command as used to identify the SD Card:
+              <br>
+              <kbd class="user-select-all">sudo fdisk -l</kbd>
+            </li>
+          </ol>
+          <p>
           </p>
           <p>
-            <b>Note:</b> The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
+            <i class="fas fa-question-circle"></i>
+            The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
           </p>
           <p>Once you've identified the drive (ie: sda, sdb, etc...) from the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, 
             mount the drive to a directory on the Raspberry Pi with the following command:
@@ -268,13 +300,14 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
           <p>
             <b>Note:</b> The folder <code class="user-select-all">/mnt</code> will be the name of the folder representing the USB drive
             and will be referenced in a later step.
-          </p>                  
-          <!----- Step 2 of 5 ----->
+          </p>  
+          <hr>                
+          <!----- Step 4 of 5 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
-              <h2 id="step02" class="card-title my-2">
+              <h2 id="step04" class="card-title my-2">
                 Clone the source SD card &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 3 of 5 </a>
+                <a href="#step04" class="badge bg-primary"> Step 4 of 5 </a>
               </h2>
               <p class="lead text-body-secondary"> Use the Raspberry Pi to clone the source SD card. </p>
               <hr>
@@ -284,34 +317,50 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
             Clone the SD card
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
+          
           <p>With the Raspberry Pi setup with the SD card connected and USB Drive mounted, it's now ready to clone the entire contents of the SD card to a single *.img file. </p>
-          <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:
-            <br>
-            <b>Note:</b> If you saved the image to a different location, change to that directory instead.
-            <br>
-            <code class="user-select-all">cd /mnt</code>
-          </p>          
+          <ol>
           <p>
-            Type in the following command:
-            <br>
-            <code class="user-select-all">sudo dd if=/dev/sda of=my-pareto-anywhere.img bs=4M status=progress</code>
+            <li> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:
+              <br>
+              <b>Note:</b> If you saved the image to a different location, change to that directory instead.
+              <br>
+              <kbd class="user-select-all">cd /mnt</kbd>
+            </li>
           </p>
+          <p>
+            <li>
+              Type in the following command:
+              <br/>
+              <kbd class="user-select-all">
+                sudo dd if=/dev/sda of=my-pareto-anywhere.img bs=4M status=progress
+              </kbd>
+            </li>
+            </p>
+            <p>
+              <li>
+                Once the <code>dd</code> process has completed, you can remove the source SD card if desired, as it's no longer needed for this process.
+              </li>
+            </p>
+          </ol>
           <p>
             <b>Notes:</b> 
             <ul>
               <li>This command requires root privileges</li>
-              <li>The <code class="user-select-all">if</code> parameter, eg: <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, is the location of the SD card, identified in Step 2.</li>
-              <li>The <code class="user-select-all">of</code> parameter, <code class="user-select-all">my-pareto-anywhere.img</code> is the name of the file where the contents of the SD card will be written.
+              <li>The <code>if</code> parameter, eg: <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, is the location of the SD card, identified in Step 2.</li>
+              <li>The <code>of</code> parameter, <code class="user-select-all">my-pareto-anywhere.img</code> is the name of the file where the contents of the SD card will be written.
                 It can be named anything you like, but it's recommended to use a name that is descriptive of the contents of the SD card, it will be referenced in a later step.
                 It will be the same size as the SD card, so make sure you have enough space on the USB drive to hold the entire image.
               </li>
-              <li><b>Warning!</b> This can take a long time; an 8 GB SD card 
+              <li>
+                <i class="fas fa-exclamation-triangle"></i>
+                This can take a long time; an 8 GB SD card 
                 took about 12 minutes to copy. The `status=progress` argument 
                 will display how many bytes have been written out during this 
                 process.</li>
             </ul>
           </p>
-
+          <hr>
           <!----- Step 5 of 5 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
@@ -324,6 +373,13 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
               <dl class="row">
                 <dt class="col-sm-3"> What is PiShrink? </dt>
                 <dd class="col-sm-9"> <a href="https://github.com/Drewsif/PiShrink" target="_blank">PiShrink</a> is an open-source script that will compress a pi image </dd>
+              </dl>
+              <dl class="row">
+                <dt class="col-sm-3"> Why srhink the image? </dt>
+                <dd class="col-sm-9">
+                  A typical SD card will contain a lot of empty space. The <code>dd</code> program will copy all of this empty space even though it's not really needed. Shrinking the image will
+                  remove this empty space, making the image smaller and easier to transfer to other devices.
+                </dd>
               </dl>              
             </div>
           </div>
@@ -333,49 +389,58 @@ C          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h
           </h3>
           <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
           <ol>
-            <li> Download the script from github with the command:
+            <p>
+            <li>Download the script from github with the command:
               <br>
-              <code class="user-select-all">wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</code> 
+              <kbd class="user-select-all">wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</kbd> 
             </li>
-            <li> Add execute permissions with the command: 
+            </p>
+            <p>
+            <li>Add execute permissions with the command: 
               <br>
-              <code class="user-select-all">sudo chmod +x pishrink.sh</code> 
+              <kbd class="user-select-all">sudo chmod +x pishrink.sh</kbd> 
             </li>
-            <li> Move the script to a folder for executables found in the path with the command:
+            </p>
+            <p>
+            <li>Move the script to a folder for executables found in the path with the command:
               <br> 
-              <code class="user-select-all">sudo mv pishrink.sh /usr/local/bin</code>
+              <kbd class="user-select-all">sudo mv pishrink.sh /usr/local/bin</kbd>
             </li>
+            </p>
           </ol>
           <h3 class="mt-4">
             Shrink the pi image
-            <small class="text-body-secondary"> Part 1 </small>
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> At this step, you can remove the source SD card if desired, as it's no longer needed for this process. </p>
           <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
           <ol>
-            <li> Change to the directory where the image is located on the USB drive with the command:
-              <br>
-              <b>Note:</b> If you saved the image to a different location, change to that directory instead.
-              <br>
-              <code class="user-select-all">cd /mnt</code>
-            </li>
-            <li> Shrink and gzip the image with the command:
-              <br>
-              <code class="user-select-all">sudo pishrink.sh -vz my-pareto-anywhere.img my-paretoanywhere.img.gz</code> 
-              <br>
-              <b>Notes:</b> 
-              <ul>
-                <li>This process can take a long time, 15 minutes or longer!</li>
-                <li>The <code class="user-select-all">-v</code> tells PiShrink to be verbose</li>
-                <li>The <code class="user-select-all">-z</code> tells PiShrink to gzip the image</li>
-                <li>The first argument, <code class="user-select-all">my-pareto-anywhere.img</code> is the source image file</li>
-                <li>The second argument, <code class="user-select-all">my-pareto-anywhere.img.gz</code> is the destination image file that is zipped</li>
-              </ul>
-            </li>
+            <p>
+              <li>Change to the directory where the image is located on the USB drive with the command:
+                <br>
+                <b>Note:</b> If you saved the image to a different location, change to that directory instead.
+                <br>
+                <kbd class="user-select-all">cd /mnt</kbd>
+              </li>
+            </p>
+            <p>
+              <li> Shrink and gzip the image with the command:
+                <br>
+                <kbd class="user-select-all">sudo pishrink.sh -vz my-pareto-anywhere.img my-paretoanywhere.img.gz</kbd>
+                <br>
+              </li>
+            </p>
           </ol>
+          <b>Notes:</b> 
+          <ul>
+            <li>This process can take a long time, 15 minutes or longer!</li>
+            <li>The <code class="user-select-all">-v</code> tells PiShrink to be verbose</li>
+            <li>The <code class="user-select-all">-z</code> tells PiShrink to gzip the image</li>
+            <li>The first argument, <code class="user-select-all">my-pareto-anywhere.img</code> is the source image file</li>
+            <li>The second argument, <code class="user-select-all">my-pareto-anywhere.img.gz</code> is the destination image file that is zipped</li>
+          </ul>          
           <hr>
           <p> 
-            That's it! You can now eject the USB drive from the Raspberry Pi, plug it into your laptop, and copy the `my-pareto-anywhere.img.gz` file to your hard drive, upload
+            That's it! You can now eject the USB drive from the Raspberry Pi, plug it into your laptop, and copy the <code>my-pareto-anywhere.img.gz</code> file to your hard drive, upload
             it to a cloud storage service, or share it with others. It can be used to create a new SD card with Raspberry Pi Imager.
           </p>
           <!----- Where to next ----->
