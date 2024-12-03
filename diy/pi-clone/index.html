@@ -284,28 +284,26 @@
             </p>
             <p>
               <li>
+                <p>To identify the USB drive, use the same command as used to identify the SD Card:</p>
+                <p><kbd class="user-select-all">sudo fdisk -l</kbd></p>
                 <p>
-                  To identify the USB drive, use the same command as used to identify the SD Card:
+                  <i class="fas fa-question-circle"></i>
+                  The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
                 </p>
-                <kbd class="user-select-all">sudo fdisk -l</kbd>
               </li>
             </p>
-          </ol>
-          <p>
-          </p>
-          <p>
-            <i class="fas fa-question-circle"></i>
-            The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
-          </p>
-          <p>Once you've identified the drive (ie: sda, sdb, etc...) from the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, 
-            mount the drive to a directory on the Raspberry Pi with the following command:
-            <br>
-            <code class="user-select-all">sudo mount /dev/sdb2 /mnt</code>
-          </p>
-          <p>
-            <b>Note:</b> The folder <code class="user-select-all">/mnt</code> will be the name of the folder representing the USB drive
-            and will be referenced in a later step.
-          </p>  
+            <p>
+              <li>
+                <p>Once you've identified the drive (ie: sda, sdb, etc...) from the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, 
+                  mount the drive to a directory on the Raspberry Pi with the following command:</p>  
+                <p><kbd class="user-select-all">sudo mount /dev/sdb2 /mnt</kbd></p>
+                <p>
+                  <b>Note:</b> The <code class="user-select-all">/mnt</code>  directory is a common location to mount external drives. If you have a different location you would like to use, you can change this to a different directory. 
+                  The directory name will be referenced in a later step.
+                </p>                
+              </li>
+            </p>
+          </ol>  
           <hr>                
           <!----- Step 4 of 5 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
