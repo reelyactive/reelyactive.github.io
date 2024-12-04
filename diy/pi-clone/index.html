@@ -161,7 +161,9 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h1>
-          <p class="lead"> Once you have a Raspberry Pi setup and working just the way you'd like it to, create a disk image so that it can be replicated on other Rasperry Pi devices. </p>
+          <p class="lead"> Once you have a Raspberry Pi setup and working just the way you'd like it to, with all the software and configuration settings, create a disk image so that it can be replicated on other Rasperry Pi devices. </p>
+          <img src="images/header.png" class="img-fluid"
+          alt="Cloning an SD card using a Raspberry Pi">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
             <div class="card-body">
@@ -173,7 +175,10 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why create a disk image? </dt>
-                <dd class="col-sm-9"> Ensure that each new Raspberry Pi device has the exact same configuration. </dd>
+                <dd class="col-sm-9"> 
+                  <p>Ensure that each new Raspberry Pi device has the exact same configuration. </p>
+                  <p>Save time re-installing software on new Raspberry Pi devices.</p>
+                </dd>
               </dl>
             </div>
           </div>
@@ -181,10 +186,13 @@
           <h2 class="mt-4"> Prerequisites </h2>
           <ul class="lead text-body-secondary">
           <li>
-            A <i class="fab fa-raspberry-pi"></i> Pi 4 <small class="text-body-tertiary">(or better)</small> with 64-bit OS.
+            Any <i class="fab fa-raspberry-pi"></i> Pi with Raspberry Pi OS installed
             (<b>Tutorial:</b> <a href="../pi-prep/"> Learn how to setup a Raspberry Pi </a>)
           </li>
-          <li>SD card containing the Raspberry Pi OS you would like to clone</li>
+          <li>
+            SD card containing the Raspberry Pi OS, with all the software and configuration settings that you would like to clone
+            (<b>Tutorial:</b> <a href="../pi-stack/"> Learn how to install Pareto Anywhere on a Raspberry Pi </a>)
+          </li>
           <li>SD card reader</li>
           <li>USB key at least 2x the GB as the source SD card</li>
           </ul>
@@ -195,26 +203,26 @@
                 Boot up Raspberry Pi &nbsp;
                 <a href="#step01" class="badge bg-primary"> Step 1 of 5 </a>
               </h2>
-              <p class="lead text-body-secondary">Boot up the Raspberry Pi with a basic version of Raspberry Pi OS Lite </p>
-              <p class="lead text-body-secondary">Connect to the RPi and open a terminal </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Why use a Raspberry Pi to clone an SD card? </dt>
-                <dd class="col-sm-9"> There are several different ways to clone an SD card that will be OS specific. This tutorial assumes everyone has a Raspberry Pi, instead of writing out different steps for Unix, Mac, and Windows. </dd>
+                <dd class="col-sm-9"> There are several different ways to clone an SD card that will be OS specific. This tutorial assumes developers following this tutorial have a Raspberry Pi, instead of writing out different steps for Unix, Mac, and Windows. </dd>
               </dl>
             </div>
           </div>
-          <ol>
-            <li>
-              <p>Boot up the Raspberry Pi with the SD card containing the Raspberry Pi OS you would like to clone.</p>
-            </li>
-            <li>
-              <p>Connect to the Raspberry Pi with SSH or a monitor and keyboard.</p>
-            </li>
-            <li>
-              <p>Open a terminal on the Raspberry Pi.</p>
-            </li>
-          </ol>
+          <p>
+            <ol>
+              <li>
+                <p>Boot up the Raspberry Pi with the SD card containing the base Raspberry Pi OS. (not the card you would like to clone)</p>
+              </li>
+              <li>
+                <p>Connect to the Raspberry Pi with SSH or a monitor and keyboard.</p>
+              </li>
+              <li>
+                <p>Open a <i class="fas fa-terminal"></i> terminal on the Raspberry Pi.</p>
+              </li>
+            </ol>
+          </p>
           <hr>
           <!----- Step 2 of 5 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
@@ -225,6 +233,10 @@
               </h2>
               <p class="lead text-body-secondary">Using an SD card reader, insert the source SD card into one of the available USB ports on the Raspberry Pi </p>
               <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why use a Raspberry Pi to clone an SD card? </dt>
+                <dd class="col-sm-9"> There are several different ways to clone an SD card that will be OS specific. This tutorial assumes developers following this tutorial have a Raspberry Pi, instead of writing out different steps for Unix, Mac, and Windows. </dd>
+              </dl>
             </div>
           </div>
           <p>
