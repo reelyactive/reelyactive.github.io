@@ -327,6 +327,14 @@
               </h2>
               <p class="lead text-body-secondary"> Use the Raspberry Pi to clone the source SD card. </p>
               <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why use <code>dd</code>? </dt>
+                <dd class="col-sm-9">
+                  It is not enough to copy all of the files from one SD card to another.
+                  <br><br>
+                  <code>dd</code> makes a bit-for-bit copy of the entire SD card, including the boot sector, partition table, and all of the data on the card, saving it all to a single file.
+                </dd>
+              </dl>              
             </div>
           </div>
           <h3 class="mt-4">
