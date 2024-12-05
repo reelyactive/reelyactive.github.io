@@ -161,7 +161,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
          <h1 class="mt-4"> Create a disk image from a Raspberry Pi SD card </h1>
-          <p class="lead"> Once you have a Raspberry Pi setup and working just the way you'd like it to, with all the software and configuration settings, create a disk image so that it can be replicated on other Rasperry Pi devices. </p>
+          <p class="lead"> Once you have a Raspberry Pi setup and working just the way you'd like it to, with all the software and configuration settings, use create a disk image so that it can be replicated on other Rasperry Pi devices. </p>
           <img src="images/header.png" class="img-fluid"
           alt="Cloning an SD card using a Raspberry Pi">
           <!----- The TL;DR ----->
@@ -189,14 +189,29 @@
           </div>
           <!----- Prerequisites ----->
           <h2 class="mt-4"> Prerequisites </h2>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <img src="./images/raspberry-pi.png" class="rounded-1">
+            </li>
+            <li class="list-group-item border-0">
+              <h5 class="mt-0 mb-1">
+                <i class="fab fa-raspberry-pi"></i> &nbsp; Raspberry Pi
+              </h5>
+              Any Pi with Raspberry Pi OS installed
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <img src="./images/sd-card.png" class="rounded-1">
+            </li>
+            <li class="list-group-item border-0">
+              <h5 class="mt-0 mb-1">
+                SD Card
+              </h5>
+              containing the Raspberry Pi OS, with all the software and configuration settings that you would like to clone
+            </li>
+          </ul>                    
           <ul class="lead text-body-secondary">
-          <li>
-            Any <i class="fab fa-raspberry-pi"></i> Pi with Raspberry Pi OS installed
-          </li>
-          <li>
-            SD card containing the Raspberry Pi OS, with all the software and configuration settings that you would like to clone
-            (<b>Tutorial:</b> <a href="../pi-stack/"> Learn how to install Pareto Anywhere on a Raspberry Pi </a>)
-          </li>
           <li>SD card reader</li>
           <li>USB key at least 2x the GB as the source SD card</li>
           </ul>
@@ -217,7 +232,7 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="../pareto-anywhere-pi/">
-                <img src="../pareto-anywhere-pi/images/icon.jpg" class="rounded-1">
+                <img src="../pareto-anywhere-pi/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -271,7 +286,6 @@
               </li>
             </ol>
           </p>
-          <hr>
           <h3 class="mt-4">
             Insert the source SD card <i class="fas fa-sd-card"></i>&nbsp;
             <small class="text-body-secondary"> Part 2 </small>
@@ -314,7 +328,6 @@
             The block device id will look similar to the following: 
             <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc..., it does not have a number at the end.
           </p>
-          <hr>
           <h3 class="mt-4">
             Insert the USB Drive <i class="fas fa-sd-card"></i>&nbsp;
             <small class="text-body-secondary"> Part 3 </small>
@@ -333,7 +346,7 @@
                   <kbd class="user-select-all">sudo fdisk -l</kbd>
                 </p>
                 <p>
-                  <i class="fas fa-info-circle"></i>
+                  <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span>
                   The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
                 </p>
               </li>
@@ -346,13 +359,13 @@
                   <kbd class="user-select-all">sudo mount /dev/sdb2 /mnt</kbd>
                 </p>
                 <p>
-                  <i class="fas fa-check-circle"></i> <b>Note:</b> The <code class="user-select-all">/mnt</code>  directory is a common location to mount external drives. If you have a different location you would like to use, you can change this to a different directory. 
+                  <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> 
+                  The <code class="user-select-all">/mnt</code>  directory is a common location to mount external drives. If you have a different location you would like to use, you can change this to a different directory. 
                   The directory name will be referenced in a later step.
                 </p>                
               </li>
             </p>
-          </ol>  
-          <hr>            
+          </ol>
           <!----- Step 2 of 3 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
@@ -386,7 +399,10 @@
                   From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, change to the directory where the image is located on the USB drive with the command:
                   <kbd class="user-select-all">cd /mnt</kbd>
                 </p>
-                <p><i class="fas fa-check-circle"></i> <b>Note:</b> If you mounted the SD card to a different directory, change to that directory instead.</p>
+                <p>
+                  <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span>
+                  If you mounted the SD card to a different directory, change to that directory instead.
+              </p>
               </li>
             </p>
             <p>
@@ -403,17 +419,14 @@
             </p>
           </ol>
           <p>
-            <i class="fas fa-check-circle"></i> <b>Notes:</b> 
+            <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i> &nbsp; Notes: </span>
             <ul>
-              <li>This command requires root privileges</li>
-              <li>The <code>if</code> parameter, eg: <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, is the location of the SD card, identified in Step 2.</li>
+              <li>The <code>if</code> parameter, eg: <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, is the location of the SD card, identified in <a href="#step01">Step 1</a>, Part 2.</li>
               <li>The <code>of</code> parameter, <code class="user-select-all">pi-clone.img</code> is the name of the file where the contents of the SD card will be written.
-                It can be named anything you like, but it's recommended to use a name that is descriptive of the contents of the SD card, it will be referenced in a later step.
-                It will be the same size as the SD card, so make sure you have enough space on the USB drive to hold the entire image.
+              <li>The output file will be the same size as the SD card, so make sure you have enough space on the USB drive to hold the entire image.</li>
               </li>
             </ul>
           </p>
-          <hr>
           <!----- Step 3 of 3 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
@@ -475,7 +488,9 @@
                   Change to the directory where the image is located on the USB drive with the command:
                   <kbd class="user-select-all">cd /mnt</kbd>
                 </p>
-                <p><i class="fas fa-check-circle"></i> <b>Note:</b> If you saved the image to a different directory, change to that directory instead.</p>
+                <p>
+                  <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span>
+                  If you saved the image to a different directory, change to that directory instead.</p>
               </li>
             </p>
             <p>
@@ -492,7 +507,7 @@
               </li>
             </p>            
           </ol>
-          <b>Notes:</b>
+          <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i> &nbsp; Notes: </span>
           <ul>
             <li>The <code class="user-select-all">-v</code> tells PiShrink to be verbose</li>
             <li>The <code class="user-select-all">-z</code> tells PiShrink to gzip the image</li>
