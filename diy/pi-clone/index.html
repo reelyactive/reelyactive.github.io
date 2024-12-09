@@ -275,7 +275,7 @@
             </ol>
           </p>
           <h3 class="mt-4">
-            Insert the source SD card <i class="fas fa-sd-card"></i>&nbsp;
+            Insert and identify the source SD card <i class="fas fa-sd-card"></i>&nbsp;
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p>Using an SD card reader, insert the source SD card into one of the available USB ports on the Raspberry Pi. </p>
@@ -293,7 +293,7 @@
               </p>
               <p>
                 <li>
-                  With the SD card reader inserted, identify the location of the card with the command: 
+                  Identify the location of the SD card with the command: 
                   <kbd class="user-select-all">sudo fdisk -l</kbd>
                 </li>
               </p>
@@ -305,8 +305,7 @@
             It will appear similar to the following:
             <pre class="user-select-all">
   Disk /dev/sda: 7.36 GiB, 7901020160 bytes, 15431680 sectors
-  Disk model: Storage Device
-            </pre>
+  Disk model: Storage Device</pre>
           </p>
           <p>
             While there are two partions on the SD card, (eg: <code class="user-select-all">/dev/sda1</code> and <code class="user-select-all">/dev/sda2</code>),
@@ -317,7 +316,7 @@
             <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc..., it does not have a number at the end.
           </p>
           <h3 class="mt-4">
-            Insert the USB Drive <i class="fas fa-sd-card"></i>&nbsp;
+            Insert and mount the USB Drive <i class="fas fa-sd-card"></i>&nbsp;
             <small class="text-body-secondary"> Part 3 </small>
           </h3>              
           <p class="lead text-body-secondary">Insert and mount a USB Drive to which the disk image will be written</p>
@@ -335,7 +334,16 @@
                 </p>
                 <p>
                   <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span>
-                  The USB drive will be identified as a block device, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
+                  The USB drive will be identified as a <b>Disk</b>, such as <code class="user-select-all">/dev/sda</code>, <code class="user-select-all">/dev/sdb</code>, etc...
+                  with the <b>Device</b> partions listed below it, such as <code class="user-select-all">/dev/sdb1</code>, <code class="user-select-all">/dev/sdb2</code>, etc...
+                  It will appear similar to the following:
+                  <pre class="user-select-all">
+  Disk /dev/sdb: 7.36 GiB, 7901020160 bytes, 15431680 sectors
+  Disk model: Storage Device
+  ...
+  Device     Boot Start      End  Sectors  Size Id Type
+  /dev/sdb1        8064 15431679 15429632 14.4G  b HPFS/NTFS/exFAT</pre>
+                  It is the identifier <code>/dev/sdb1</code> that will be used to mount the drive.                  
                 </p>
               </li>
             </p>
@@ -344,7 +352,7 @@
                 <p>
                   Once you've identified the drive (ie: sda, sdb, etc...) from the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, 
                   mount the drive to a directory on the Raspberry Pi with the command:
-                  <kbd class="user-select-all">sudo mount /dev/sdb2 /mnt</kbd>
+                  <kbd class="user-select-all">sudo mount /dev/sdb1 /mnt</kbd>
                 </p>
                 <p>
                   <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> 
@@ -468,6 +476,10 @@
             Shrink the pi image
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
+          <p>
+            <span class="badge rounded-pill text-bg-primary"><i class="fas fa-exclamation-triangle"></i></span>
+            This next step will overwrite the original image file with a new, smaller image file. If you'd like to keep the original <code>pi-clone.img</code>, make a copy of it before proceeding.
+          </p>
           <p> From the command prompt <i class="fas fa-terminal"></i> on the <i class="fab fa-raspberry-pi"></i> Pi, complete the following steps: </p>
           <ol>
             <p>
@@ -484,10 +496,64 @@
             <p>
               <li> 
                 Shrink and gzip the image with the command:
-                <kbd class="user-select-all">sudo pishrink.sh -vz pi-clone.img pi-clone.img.gz</kbd>
-                <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 15+ mins </span>
+                <kbd class="user-select-all">sudo pishrink.sh -vz pi-clone.img</kbd>
+                <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 30+ mins </span>
               </li>
             </p>
+            <div class="accordion" id="piShrinkOutput">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Example output from &nbsp;<code>pishrink.sh</code>
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#piShrinkOutput">
+                  <div class="accordion-body">
+                    <pre class="user-select-all">
+PiShrink v24.10.23 - https://github.com/Drewsif/PiShrink
+
+pishrink.sh: Gathering data
+pishrink.sh: Checking filesystem
+rootfs: 122290/445312 files (0.1% non-contiguous), 1018640/1808384 blocks
+resize2fs 1.47.0 (5-Feb-2023)
+pishrink.sh: Shrinking filesystem
+resize2fs 1.47.0 (5-Feb-2023)
+Resizing the filesystem on /dev/loop0 to 1463731 (4k) blocks.
+Begin pass 2 (max = 8046)
+Relocating blocks             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Begin pass 3 (max = 56)
+Scanning inode table          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+The filesystem on /dev/loop0 is now 1463731 (4k) blocks long.
+
+pishrink.sh: Zeroing any free space left
+PiShrink v24.10.23 - https://github.com/Drewsif/PiShrink
+
+pishrink.sh: Gathering data
+pishrink.sh: An existing /etc/rc.local was not found, autoexpand may fail...
+grep: /tmp/tmp.uGvlhvd09L/etc/rc.local: No such file or directory
+Creating new /etc/rc.local
+pishrink.sh: Checking filesystem
+rootfs: 122290/445312 files (0.1% non-contiguous), 1018640/1808384 blocks
+resize2fs 1.47.0 (5-Feb-2023)
+pishrink.sh: Shrinking filesystem
+resize2fs 1.47.0 (5-Feb-2023)
+Resizing the filesystem on /dev/loop0 to 1463731 (4k) blocks.
+Begin pass 2 (max = 8046)
+Relocating blocks             XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Begin pass 3 (max = 56)
+Scanning inode table          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+The filesystem on /dev/loop0 is now 1463731 (4k) blocks long.
+
+pishrink.sh: Zeroing any free space leftpishrink.sh: Zeroed 1.8G
+pishrink.sh: Shrinking partition
+pishrink.sh: Truncating image
+pishrink.sh: Using gzip on the shrunk image
+pi-clone.img:	 78.9% -- replaced with pi-clone.img.gz
+pishrink.sh: Shrunk pi-clone.img.gz from 7.5G to 1.3G</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
             <p>
               <li> 
                 Once PiShrink has completed, safely unmount the USB drive with the command:
