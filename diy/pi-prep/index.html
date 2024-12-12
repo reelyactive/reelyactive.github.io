@@ -7,6 +7,7 @@
     <meta name="description"
           content="Step-by-step guide to install Raspberry Pi OS Lite for lean, headless operation with friendly network settings and the latest version of Node.js.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Headless Raspberry Pi Preparation Guide </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -82,7 +112,7 @@
                 <li class="dropdown-divider"></li>
                 <li>
                   <a class="dropdown-item" target="_blank"
-                     href="https://getbootstrap.com" >
+                     href="https://getbootstrap.com">
                     <i class="fab fa-bootstrap"></i>
                     Bootstrap 5 &nbsp;
                     <span class="badge bg-light text-dark">
@@ -103,7 +133,7 @@
                 </li>
                 <li>
                   <a class="dropdown-item" target="_blank"
-                     href="https://github.com/reelyactive/web-style-guide/" >
+                     href="https://github.com/reelyactive/web-style-guide/">
                     <i class="fas fa-code"></i>
                     Web Style Guide &nbsp;
                     <span class="badge bg-light text-dark">
@@ -114,7 +144,7 @@
                 <li class="dropdown-divider"></li>
                 <li>
                   <a class="dropdown-item" target="_blank"
-                     href="https://www.reelyactive.com/made-in-montreal/" >
+                     href="https://www.reelyactive.com/made-in-montreal/">
                     <i class="fab fa-canadian-maple-leaf"></i>
                     Made in Montr&eacute;al &nbsp;
                     <i class="fas fa-city"></i>
@@ -132,8 +162,7 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Install Raspberry Pi OS to an SD Card </h1>
           <p class="lead"> Our step-by-step guide to prepare a lean yet versatile SD card image based on <a href="https://www.raspberrypi.com/software/operating-systems/" target="_blank">Raspberry Pi OS Lite</a>. </p>
-          <img src="images/header.png" class="img-fluid"
-               alt="Install Raspberry Pi OS on an SD card">
+          <img src="images/header.png" class="img-fluid" alt="Install Raspberry Pi OS on an SD card">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
             <div class="card-body">
@@ -154,7 +183,7 @@
             </div>
           </div>
           <!----- Step 1 of 2 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Flashing the OS to a SD Card &nbsp;
@@ -165,12 +194,14 @@
               <dl class="row">
                 <dt class="col-sm-3"> Why Raspberry Pi Imager? </dt>
                 <dd class="col-sm-9"> 
-                  <p>It is officially supported by the Raspberry Pi Foundation, and works on various OSes, including Raspberry Pi OS itself. </p>
-                  <p>It manages all of the various Raspberry Pi OS images, ensuring you'll be installing the latest available option for your selection.</p>
+                  <p>
+                    It is officially supported by the Raspberry Pi Foundation and works on various OSes, including Raspberry Pi OS itself.
+                    It manages all of the various Raspberry Pi OS images, ensuring you'll be installing the latest available option for your selection.</p>
                 </dd>
-
-                <dt class="col-sm-3"> Why Lite? </dt>
+                <dt class="col-sm-3"> Why Pi OS Lite? </dt>
                 <dd class="col-sm-9"> It includes all the key ingredients for headless operation while keeping the disk image small. </dd>
+                <dt class="col-sm-3"> Why OS customisation? </dt>
+                <dd class="col-sm-9"> Unless you have a monitor and keyboard for the Raspberry Pi, good luck with the first connection otherwise! </dd>
             </div>
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
@@ -200,96 +231,104 @@
             Flash the Raspberry Pi OS image to the SD card
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> From the computer with which you intend to flash the SD card <i class="fas fa-sd-card"></i>: </p>
+          <p class="lead"> From the computer with which you intend to flash the SD card <i class="fas fa-sd-card"></i>: </p>
           <ol>
-            <li> Insert the SD card (via sd card reader if required) and observe that it is recognised/mounted by the operating system. </li>
-            <li> Run Raspberry Pi Imager (see Prerequisites above) by double-clicking its executable AppImage or desktop icon </li>
-          </ol>
-          <div class="row">
-            <div>
-              <div id="carouselConnectivity"
-                   class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="images/imager1.png" class="d-block w-100">
+            <p>
+              <li> Insert the SD card (using an SD card reader if required) and observe that it is recognised/mounted by the operating system. </li>
+            </p>
+            <p>
+              <li> Run Raspberry Pi Imager by double-clicking its executable AppImage or desktop icon. </li>
+            </p>
+            <p>
+            <li>
+              <p>In the Raspberry Pi Imager interface:</p>
+                <div>
+                  <div id="carouselRaspberryPiImager"
+                       class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="images/imager1.png" class="d-block w-100">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="images/imager2.png" class="d-block w-100">
+                      </div>                  
+                      <div class="carousel-item">
+                        <img src="images/imager3.png" class="d-block w-100">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="images/imager4.png" class="d-block w-100">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="images/imager5.png" class="d-block w-100">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="images/imager6.png" class="d-block w-100">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="images/imager7.png" class="d-block w-100">
+                      </div>                  
+                    </div>
+                    <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselRaspberryPiImager"
+                            data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true">
+                      </span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselRaspberryPiImager"
+                            data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true">
+                      </span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
                   </div>
-                  <div class="carousel-item">
-                    <img src="images/imager2.png" class="d-block w-100">
-                  </div>                  
-                  <div class="carousel-item">
-                    <img src="images/imager3.png" class="d-block w-100">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/imager4.png" class="d-block w-100">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/imager5.png" class="d-block w-100">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/imager6.png" class="d-block w-100">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/imager7.png" class="d-block w-100">
-                  </div>                  
-                </div>
-                <button class="carousel-control-prev" type="button"
-                        data-bs-target="#carouselConnectivity"
-                        data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true">
-                  </span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button"
-                        data-bs-target="#carouselConnectivity"
-                        data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true">
-                  </span>
-                  <span class="visually-hidden">Next</span>
-                </button>
               </div>
-            </div>
-          </div>
-          <div>
-            <p>
-              <strong>In the Raspberry Pi Imager interface:</strong>
+              <p>
+              <div>            
+                <p>
+                  <span class="badge bg-secondary"> 1 </span> &nbsp;
+                  Click the <em>"Choose Device"</em> button.
+                </p>
+                <p>
+                  <span class="badge bg-secondary"> 2 </span> &nbsp;
+                  Select "Raspberry Pi 4" from the list of devices.
+                </p>
+                <p>
+                  <span class="badge bg-secondary"> 3 </span> &nbsp;
+                  Click the <em>"Choose OS"</em> button.
+                </p>            
+                <p>
+                  <span class="badge bg-secondary"> 4 </span> &nbsp;
+                  Scroll down and select <em>"Raspberry Pi OS (other)"</em>.
+                </p>
+                <p>
+                  <span class="badge bg-secondary"> 5 </span> &nbsp;
+                  Select <em>"Raspberry Pi OS Lite (64-bit)"</em> from the list of available OSes.
+                </p>
+                <p>
+                  <span class="badge bg-secondary"> 6 </span> &nbsp;
+                  Click the <em>"Choose Storage"</em> button.
+                </p>
+                <p>
+                  <span class="badge bg-secondary"> 7 </span> &nbsp;
+                  Select the SD card from the list of available storage devices.
+                </p>
+              </div>
             </p>
-            <p>
-              <span class="badge bg-secondary"> 1 </span> &nbsp;
-              Click the <em>"Choose Device"</em> button.
-            </p>
-            <p>
-              <span class="badge bg-secondary"> 2 </span> &nbsp;
-              Select "Raspberry Pi 4" from the list of devices.
-            </p>
-            <p>
-              <span class="badge bg-secondary"> 3 </span> &nbsp;
-              Click the <em>"Choose OS"</em> button.
-            </p>            
-            <p>
-              <span class="badge bg-secondary"> 4 </span> &nbsp;
-              Scroll down and select <em>"Raspberry Pi OS (other)"</em>.
-            </p>
-            <p>
-              <span class="badge bg-secondary"> 5 </span> &nbsp;
-              Select <em>"Raspberry Pi OS Lite (64-bit)"</em> from the list of available OSes.
-            </p>
-            <p>
-              <span class="badge bg-secondary"> 6 </span> &nbsp;
-              Click the <em>"Choose Storage"</em> button.
-            </p>
-            <p>
-              <span class="badge bg-secondary"> 7 </span> &nbsp;
-              Select the SD card from the list of available storage devices.
-            </p>
-          </div>          
+            </li>
+          </p>
+          </ol>
+
+         
           <h3 class="mt-4">
             Pre-configuring the OS
             <small class="text-muted"> Part 2 </small>
           </h3>      
-          <p class="lead"> Configure Raspberry Pi OS <i>before</i> with Raspberry Pi Imager, ensuring a painless initial connection. </p>    
+          <p class="lead"> Configure Raspberry Pi OS <i>before first boot</i> with Raspberry Pi Imager, ensuring a painless initial connection. </p>    
           <p class="mt-4">
             After selecting the <b>Raspberry Pi Device</b>, the <b>Operating System</b>, and <b>Storage</b>, when selecting "Next", a dialogue will ask if you'd like to customise the Raspberryp Pi OS settings. 
-            <div class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="2400">
+            <div id="carouselEditCustomisation" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="2400">
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <img src="images/imager-next.png"
@@ -302,15 +341,29 @@
                   alt="Customisation prompt dialogue">
                 </div>
               </div>
+              <button class="carousel-control-prev" type="button"
+                data-bs-target="#carouselEditCustomisation"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true">
+                </span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button"
+                      data-bs-target="#carouselEditCustomisation"
+                      data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true">
+                </span>
+                <span class="visually-hidden">Next</span>
+              </button>            
             </div>
           </p>
           <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span>
             Be sure to select "Edit Settings"; selecting "Yes" will apply the settings previously used and you may have to start over! </p>
           </p>
           <h3 class="mt-4">
-            Set General customisation options
+            Set customisation options
           </h3>
-          <ol>
+          <p>From the <em>General</em> tab:</p>
             <p>
               <span class="badge bg-secondary"> 1 </span> &nbsp;
               <strong>Set hostname:</strong>
@@ -333,14 +386,14 @@
               <span class="badge bg-secondary"> 4 </span> &nbsp;
               <strong>Set locale settings:</strong> (OPTIONAL) Select the Time zone and Keyboard layout. It is not required at this step and can be set later if desired.</li>
             </p>
+            <p>From the <em>Services</em> tab:</p>
             <p>
               <span class="badge bg-secondary"> 5 </span> &nbsp;
-              <strong>Enable SSH:</strong> From the <em>Services</em> tab, select <em>"Enable SSH"</em> and select the <em>"Use password authentication"</em> radio button.</em> 
+              <strong>Enable SSH:</strong> Select <em>"Enable SSH"</em> and select the <em>"Use password authentication"</em> radio button.</em> 
               This will allow you to login to the Pi via SSH using the username and password you earlier.
             </li>
-            </p>            
-          </ol>
-          <div class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="2400">
+            </p>
+          <div id="carouselCustomisation" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="2400">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="images/imager-customisation-general.png"
@@ -353,9 +406,23 @@
                 alt="Customisation prompt dialogue">
               </div>
             </div>
+            <button class="carousel-control-prev" type="button"
+            data-bs-target="#carouselCustomisation"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+            </span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button"
+                  data-bs-target="#carouselCustomisation"
+                  data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">
+            </span>
+            <span class="visually-hidden">Next</span>
+          </button>            
           </div>
           <!----- Step 2 of 2 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 First boot &nbsp;
@@ -368,28 +435,35 @@
                 <dd class="col-sm-9"> The Raspberry Pi Imager makes it easy to configure the WiFi settings, so why not? </dd>
                 <dt class="col-sm-3"> Why use SSH? </dt>
                 <dd class="col-sm-9"> Unless you have a display and keyboard connected to the Pi, the only way to remotely execute commands is over SSH! </dd>
-                <dt class="col-sm-3"> Why more pre-config? </dt>
-                <dd class="col-sm-9"> Unless you have a monitor and keyboard for the <i class="fab fa-raspberry-pi"></i> Pi, good luck with the first connection otherwise! </dd>                
               </dl>
             </div>
           </div>
           <p class="mt-4"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The SD card should only be inserted into (or removed from) the Pi when it is <em>disconnected</em> from power. </p>
           <h3 class="mt-4">
-            Boot the Pi and connect via SSH over Ethernet
+            Boot the Pi and connect via SSH over WiFi
             <small class="text-muted"> Part 1 </small>
           </h3>
-          <p> With the SD card <i class="fas fa-sd-card"></i> inserted into the <i class="fab fa-raspberry-pi"></i> Pi, complete the following: </p>
+          <p class="lead"> With the SD card <i class="fas fa-sd-card"></i> inserted into the <i class="fab fa-raspberry-pi"></i> Pi, complete the following: </p>
           <ol>
-            <li> Plug in the Raspberry Pi so that it turns on. </li>
-            <li> Open a terminal on your laptop and SSH into the Pi with the command: <kbd class="user-select-all">ssh username:password@10.0.50.100</kbd> 
-              <br>
-              <em>username</em> and <em>password</em> are the values used when configuring the Raspberry Pi. (The suggested values from earlier are: <em>username:</em> pi / <em>password:</em> berryinsecure) </li>
+            <p>
+              <li> Insert the SD card into the Raspberry Pi. </li>
+            </p>
+            <p>
+              <li> Plug in the Raspberry Pi so that it turns on. </li>
+            </p>
+            <p>
+              <li> 
+                <p>Open a terminal on your laptop and SSH into the Pi with the command: <kbd class="user-select-all">ssh username:password@10.0.50.100</kbd></p>
+                <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
+                <em>username</em> and <em>password</em> are the values used when configuring the Raspberry Pi. (The suggested values from earlier are: <em>username:</em> pi / <em>password:</em> berryinsecure) 
+              </li>
+            </p>
           </ol>
           <p> Now that you're logged in to the Raspberry Pi, it is possible to execute commands such as <kbd>raspi-config</kbd>.</p>
           <hr>
           <h2> Conclusion </h2>
           <p> 
-            You've successfully prepared a lean, headless Raspberry Pi OS Lite installation with friendly network settings and the latest version of Node.js.
+            You've successfully prepared a lean, headless Raspberry Pi OS Lite installation with friendly network settings.
           </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5 bg-body-secondary">
