@@ -161,7 +161,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Flash an OS for use on a Raspberry Pi</h1>
-          <p class="lead"> Our step-by-step guide to prepare an SD card with a custom image or <a href="https://www.raspberrypi.com/software/operating-systems/" target="_blank">Raspberry Pi OS Lite</a>. </p>
+          <p class="lead"> Our step-by-step guide to prepare an SD card with a custom image or Raspberry Pi OS Lite. </p>
           <img src="images/header.png" class="img-fluid" alt="Install Raspberry Pi OS on an SD card">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -170,11 +170,11 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive prepare a SD card image for a headless <i class="fab fa-raspberry-pi"></i> Pi. </p>
+              <p class="lead"> Learn how we at reelyActive flash a disk image for a headless <i class="fab fa-raspberry-pi"></i> Pi. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
-                <dd class="col-sm-9"> A clean, lean installation of the latest Raspberry Pi OS Lite build ready to install Node.js and other programs like our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> middleware. </dd>
+                <dd class="col-sm-9"> A clean, lean installation of the latest <a href="https://www.raspberrypi.com/software/operating-systems/" target="_blank">Raspberry Pi OS Lite</a> build ready to install Node.js and other programs like our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> middleware. </dd>
                 <dt class="col-sm-3"> What is a custom image? </dt>
                 <dd class="col-sm-9"> A custom image is a complete backup of an operating system with all of the software and settings, useful for replicating a Raspberry Pi.
                 <dt class="col-sm-3"> What is a headless system? </dt>
@@ -201,12 +201,14 @@
                 <dd class="col-sm-9"> It includes all the key ingredients for headless operation while keeping the disk image small. </dd>
                 <dt class="col-sm-3"> Why OS customisation? </dt>
                 <dd class="col-sm-9"> Unless you have a monitor and keyboard for the Raspberry Pi, good luck with the first connection otherwise! </dd>
+                <dt class="col-sm-3"> Is an SD Card the only option? </dt>
+                <dd class="col-sm-9"> While this tutorial supposes using an SD Card, it will work equally as well when flashing a mounted compute module. </dd>
             </div>
           </div>
           <h3 class="mt-4"> Prerequisites </h3>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
-              <i class="fab fa-raspberry-pi display-2"></i>
+              <i class="fab fa-raspberry-pi fa-4x"></i>
             </li>
             <li class="list-group-item border-0">
               <h5 class="mt-0 mb-1">
@@ -217,7 +219,7 @@
           </ul>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
-              <i class="fas fa-sd-card display-2"></i>
+              <i class="fas fa-sd-card fa-4x"></i>
             </li>
             <li class="list-group-item border-0">
               <h5 class="mt-0 mb-1">
@@ -279,7 +281,7 @@
                   </p>
                   <p>
                     <span class="badge bg-secondary"> 2 </span> &nbsp;
-                    Select <em>"Raspberry Pi 4"</em> from the list of devices.
+                    Select the target device from the list of devices. In our case, we're selecting the <em>"Raspberry Pi 4"</em>.
                   </p>
                 </div>
               </li>
@@ -471,8 +473,12 @@
           <p>
             After selecting the <b>Raspberry Pi Device</b>, the <b>Operating System</b>, and <b>Storage</b>, when selecting <em>"Next"</em>, a dialogue will ask if you'd like to customise the Raspberryp Pi OS settings. 
           </p>
-          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span>
-            Be sure to select <em>"Edit Settings"</em>; selecting <em>"Yes"</em> will apply the settings previously used and you may have to start over! </p>
+          <p>
+            Click <em>"Edit Settings"</em> to customise the settings before flashing the OS to the SD card.
+          </p>
+          <p>
+            <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span>
+            Selecting <em>"Yes"</em> will apply the settings previously used and you may have to start over! </p>
           </p>
           </div>
           <div class="col-lg-6">
@@ -608,6 +614,7 @@
                 </p>
                 <p>
                   Click <em>"Yes"</em> to start the writing process.
+                  <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 15+ mins </span>
                 </p>
                 <p>
                   After writing and verifying the process, you may safely remove the SD card from the computer.
@@ -652,11 +659,7 @@
                 
                 <p>
                   <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
-                  <em>pi</em> and <em>berryinsecure</em> are the username and password entered when customizing the Raspberry Pi. If you change them, use the values you set. <em>pareto</em> is the hostname you set for the Raspberry Pi.
-                </p>
-                <p>
-                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
-                  <em>pareto</em> is the hostname you set for the Raspberry Pi.
+                  <em>pi</em> and <em>berryinsecure</em> are the username and password. <em>pareto</em> is the hostname you set for the Raspberry Pi. If you changed these values when customizing the Raspberry Pi, use the values you set.
                 </p>
                 <div class="accordion" id="piShrinkOutput">
                   <div class="accordion-item">
@@ -686,9 +689,8 @@
                         <p>
                           <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
                           Having multiple Raspberry Pi devices on the network can make it difficult to determine which IP address belongs to which device, and can cause 
-                          difficulty when connecting to it using the hostname. Ensure that the hostname is unique for each Raspberry Pi device.
-                        </p>  
-
+                          difficulty when connecting to it using the hostname. Consider assigning a unique hostname for each Raspberry Pi device.
+                        </p>
                       </div>
                     </div>
                   </div>
