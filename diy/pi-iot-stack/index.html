@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to install Raspberry Pi OS Lite for lean, headless operation with friendly network settings and the latest version of Node.js.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Raspberry Pi IoT Software Stack Installation Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Headless Raspberry Pi Preparation Guide",
+      "description": "Step-by-step guide to install Raspberry Pi OS Lite for lean, headless operation with friendly network settings and the latest version of Node.js.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pi-prep/images/header.jpg",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Pi Preparation Guide"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com">
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/">
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/">
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Install a bunch of open source software onto a Raspberry Pi.</h1>
+          <p class="lead"> Our step-by-step guide to installing software. </p>
+          <img src="images/header.png" class="img-fluid" alt="Install Raspberry Pi OS on an SD card">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive flash a disk image for a headless <i class="fab fa-raspberry-pi"></i> Pi. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> A clean, lean installation of the latest <a href="https://www.raspberrypi.com/software/operating-systems/" target="_blank">Raspberry Pi OS Lite</a> build ready to install Node.js and other programs like our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> middleware. </dd>
+                <dt class="col-sm-3"> What is a custom image? </dt>
+                <dd class="col-sm-9"> A custom image is a complete backup of an operating system with all of the software and settings, useful for replicating a Raspberry Pi.
+                <dt class="col-sm-3"> What is a headless system? </dt>
+                <dd class="col-sm-9"> A system without a monitor, keyboard, or mouse; typically accessed remotely over a network using SSH. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 2 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Flashing the OS to a SD Card &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 2 </a>
+              </h2>
+              <p class="lead"> Use Raspberry Pi Imager to select a Raspberry Pi device, disk image, and apply important common settings. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why Raspberry Pi Imager? </dt>
+                <dd class="col-sm-9">
+                    It is officially supported by the Raspberry Pi Foundation and works on various OSes, including Raspberry Pi OS itself.
+                    It manages all of the various images available for different devices, ensuring you'll be installing the best available option for your selected device.
+                </dd>
+                <dt class="col-sm-3"> Why Pi OS Lite? </dt>
+                <dd class="col-sm-9"> It includes all the key ingredients for headless operation while keeping the disk image small. </dd>
+                <dt class="col-sm-3"> Why OS customisation? </dt>
+                <dd class="col-sm-9"> Unless you have a monitor and keyboard for the Raspberry Pi, good luck with the first connection otherwise! </dd>
+                <dt class="col-sm-3"> Is an SD Card the only option? </dt>
+                <dd class="col-sm-9"> While this tutorial supposes using an SD Card, it will work equally as well when flashing a mounted compute module. </dd>
+            </div>
+          </div>
+          <h3 class="mt-4"> Prerequisites </h3>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <i class="fab fa-raspberry-pi fa-4x"></i>
+            </li>
+            <li class="list-group-item border-0">
+              <h5 class="mt-0 mb-1">
+                Raspberry Pi 
+              </h5>
+              A Raspberry Pi
+            </li>
+          </ul>
+
+          <h3 class="mt-4">
+            Initializing the Raspberry Pi
+          </h3>
+          <p class="lead">
+            Before installing new software on a Raspberry Pi, it is a good idea to update the package list and upgrade the installed packages to their latest versions; this ensures that you have the latest security updates and bug fixes.
+          </p>
+          <p>
+            Update the package lists and upgrade the packages with the command:
+            <kbd class="user-select-all">sudo apt update && sudo apt upgrade</kbd>
+          </p>
+          <h3 class="mt-4">
+            Create a new root user
+          </h3>
+          <p class="lead">
+            For some of the changes to persist when using the Raspberry Pi Imager, a new user is created that will run pareto-anywhere and barnowl-hci. 
+          </p>
+          <p>The `reelyactive` user is created so that when we create a disk image, the default user that is created by the Raspberry Pi Imager does not replace the user needed to run all of the installed software.</p>
+          <ol>
+            <li>
+              <p>
+                Create the user with the command:
+                <kbd class="user-select-all">sudo adduser reelyactive</kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Add the user to the <em>`sudo`</em> group with the command:</em>
+                <kbd class="user-select-all">sudo adduser reelyactive sudo</kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Log out from the terminal, and log back in with the newly created <em>`reelyactive`</em> user.
+              </p>
+            </li>
+          </ol>
+          <p>
+            <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
+            The remainder of the steps will be done with the <em>`reelyactive`</em> user.
+          </p>
+
+          <h3 class="mt-4">
+            Install `git`
+          </h3>
+          <p class="lead">
+            <em>`git`</em> is not installed by default on the Lite version of Raspberry Pi, and is required for cloning some github repositories.
+          </p>
+          <ol>
+            <li>
+              Install <em>`git`</em> with the command:
+              <kbd class="user-select-all">sudo apt install git</kbd>
+            </li>
+          </ol>
+          
+          <h3 class="mt-4">
+            Install node-red, nodejs, and npm
+          </h3>
+          <p class="lead">
+            Node and npm are required, and node-red is optional.
+          </p>
+          <p>Node and npm are required, and node-red is optional.</p>
+          <p>There are a few ways to install <em>node</em> and <em>npm</em>. At reelyActive, we install both by using the node-red install script, an interactive shell script which will guide you through the process of installing all three.</p>
+          <ol>
+            <li>
+              <p>
+                Initialize the <em>`node-red`</em> installation script with the command:
+              <kbd class="user-select-all">
+                bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+              </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                After node is installed, the script will prompt you for settings. Go ahead and select the defaults for all of the answers. 
+                Except don't setup user security. No username / password is required for `node-red`.
+                Do not setup a passphrase.
+              </p>
+            </li>
+            <li>
+              <p>
+                Enable the nodered.service with the command:
+                <kbd class="user-select-all">
+                  sudo systemctl enable nodered.service
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Start the node-red service with the command:
+                <kbd class="user-select-all">
+                  node-red-start
+                </kbd>
+                <br>
+                (rebooting the Raspberry Pi will also start the service, once enabled as above)
+              </p>
+            </li>
+            <li>
+              <p>
+                With node-red now running on the Raspberry Pi, you can access the node-red editor by navigating to the Raspberry Pi's IP address on port 1880 in a web browser.
+                (For example: http://pareto.local:1880)
+              </p>
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Install Influxdb2
+          </h3>
+          <p class="lead"><em>`influxdb2`</em> is a time series database, useful for storing <em>`dynambs`</em> and <em>`raddecs`</em> collected by <em>`pareto-anywhere`</em></p>
+          <p>
+            While this still uses apt to install the package, it does require adding an additional archive to the list of apt sources.
+          </p>
+          <ol>
+            <li>
+              <p>
+                Add the influxdb2 apt packge with the command:
+                <br>
+                <kbd class="user-select-all">
+                  wget -q https://repos.influxdata.com/influxdata-archive_compat.key &&
+                  echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null &&
+                  echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Update the apt package list with the command:
+                <kbd class="user-select-all">
+                  sudo apt update
+                </kbd>
+              </p>              
+            </li>
+            <li>
+              <p>
+                Install <em>influxdb2</em> with the command:
+                <kbd class="user-select-all">
+                  sudo apt install influxdb2
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Start influxdb2 as a service with the command:
+                <kbd class="user-select-all">
+                  sudo service influxdb start
+                </kbd>
+              </p>              
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Configure Influxdb2
+          </h3>
+          <ol>
+            <li>
+              <p>
+                Open a web browser and navigate to <a href="http://pareto.local:8086" target="_blank">http://pareto.local:8086</a> to access the InfluxDB web interface.
+              </p>
+            </li>
+            <li>
+              <p>
+                Click the "Get Started" button to configure the newly installed InfluxDB instance.
+              </p>
+            </li>
+            <li>
+              <p>
+                Enter the following details to configure InfluxDB, and click "Continue":
+                <ul>
+                  <li><strong>Username:</strong> admin</li>
+                  <li><strong>Password:</strong> paretoanywhere</li>
+                  <li><strong>Initial Organization Name:</strong> reelyActive</li>
+                  <li><strong>Initial Bucket Name:</strong> pareto-anywhere</li>
+                </ul>
+              </p>
+            </li>
+            <li>
+              <p>
+                After the Initial User Setup is complete, there will be a message, "You are ready to go!". 
+                Below that, the <em>`operator token`</em> will be displayed. 
+                Be sure to copy this token, as it will be needed later when configuring <em>`pareto-anywhere`</em>.
+              </p>
+            </li>
+          </ol>
+
+
+          <h3 class="mt-4">
+            Install pareto-anywhere
+          </h3>
+          <p class="lead">
+            reelyActive's middleware for processing wireless signals. Additional detail
+            https://reelyactive.github.io/diy/pareto-anywhere-pi/
+          </p>
+          <ol>
+            <li>
+              <p>Go to the home directory for the <em>`reelyactive`</em> user with the command:
+                <kbd class="user-select-all">cd ~</kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Clone the pareto-anywhere github repo with the command:
+                <kbd class="user-select-all">
+                  git clone --recurse-submodules https://github.com/reelyactive/pareto-anywhere.git
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Change to the newly created `pareto-anywhere` directory with the command:
+                <kbd class="user-select-all">
+                  cd pareto-anywhere
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Add reelyActive's <em>`barnacles-influxdb2`</em> package to the pareto-anywhere project with the command:
+                <kbd class="user-select-all">
+                  npm install barnacles-influxdb2
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Initialize the project with the command:
+                <kbd class="user-select-all">
+                  npm install
+                </kbd>
+              </p>              
+            </li>
+          </ol>
+          <p>Setup `pareto-anywhere` to run as a service using <em>`systemd`</em></p>
+          <p>
+            Additional details about setting up services on a Raspberry Pi can be found here:
+            <a href="https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all#method-3-systemd" target="_blank">https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all#method-3-systemd</a>
+          </p>
+          <p>There is a sample <em>`units`</em> file that is in the `pareto-anywhere` repo that can be copied and modified.</p>
+          <ol>
+            <li>
+              <p>
+              Copy the <em>`units`</em> file with the command:
+              <kbd class="user-select-all">cp ./units/pareto-anywhere-pi.service ./units/pareto-anywhere-influxdb2-pi.service</kbd>
+            </p>
+            </li>
+            <li>
+              <p>
+              Open the new file in an editor with the command: 
+              <kbd class="user-select-all">pico ./units/pareto-anywhere-influxdb2-pi.service</kbd>
+            </p>
+            </li>
+            <li>
+              <p>
+                Edit the <em>`WorkingDirectory`</em> value. This will set the working directory use the `reelyactive` user that was created in an earlier step. The <em>`reelyactive`</em> user will be used to run the service regardless of any user being logged in.
+                <pre>     WorkingDirectory=/home/reelyactive/pareto-anywhere</pre>
+              </p>
+            </li>
+            <li>
+              <p>
+                Edit the <em>`User`</em> value.
+                <pre>     User=reelyactive</pre>
+              </p>
+            </li>
+            <li>
+              <p>
+                Edit the <em>`ExecStart`</em> value. This will execute the <em>`influxdb2`</em> script found in the <em>`package.json`</em> file of <em>`pareto-anywhere`</em>, sending collected <em>`raddecs`</em> and <em>`dynambs`</em> to the influxdb2 database.
+                <pre>     ExecStart=/usr/bin/npm run influxdb2</pre>
+              </p>
+            </li>
+            <li>
+              <p>
+                Add the following environment variable within the <em>`[Service]`</em> section of the file. The value of <strong>INFLUXDB_TOKEN</strong>
+              </p>
+              <pre>     Environment="INFLUXDB_TOKEN=z19KuC8DRXp9kS0l0CD0H3jDBfvI7n4F3S12BM8OXxEP9XbbYmdnEQxuxlnWSqWYoHi4w_BRQcgEv2Cz_ew-0w=="</pre>
+            </li>
+            <li>
+              <p>
+                With the values in the <em>`units`</em> edited, now copy the file over to the system directory with the command:
+                <kbd class="user-select-all">sudo cp ./units/pareto-anywhere-influxdb2-pi.service /lib/systemd/system</kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Enable the pareto-anywhere service with the command:
+                <kbd class="user-select-all">
+                  sudo systemctl enable pareto-anywhere-influxdb2-pi.service
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Start the pareto-anywhere service with the command:
+                <kbd class="user-select-all">
+                  sudo systemctl start pareto-anywhere-influxdb2-pi.service
+                </kbd>
+                (or reboot the Raspberry Pi) 
+              </p>
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Install barnowl-hci
+          </h3>
+          <p class="lead">
+            <em>`barnowl-hci`</em> runs independently from <em>`pareto-anywhere`</em>, and will capture and forward all BLE signals captured on the Raspberry Pi's built-in bluetooth radio to <em>`pareto-anywhere`</em>.
+          </p>
+          <ol>
+            <li>
+              <p>Go to the home directory for the reelyactive user with the command:
+                <kbd class="user-select-all">cd ~</kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Clone the barnowl-hci repo with the command:
+                <kbd class="user-select-all">
+                  git clone --recurse-submodules https://github.com/reelyactive/barnowl-hci.git
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Change directory to the newly created `pareto-anywhere` directory with the command:
+                <kbd class="user-select-all">
+                  cd barnowl-hci
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>Initialize the node project with the commands:
+                <kbd class="user-select-all">
+                  npm install
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>Assign the radio privileges with the node command:
+                <kbd class="user-select-all">
+                  npm run privileges
+                </kbd>
+              </p>
+            </li>            
+            <li>
+              <p>
+                Start <em>`barnowl-hci`</em> with the command:
+                <kbd class="user-select-all">
+                  npm run forwarder
+                </kbd>
+              </p>
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Install Grafana
+          </h3>
+          <p>
+            Full Instructions: https://grafana.com/tutorials/install-grafana-on-raspberry-pi/
+          </p>
+          <ol>
+            <li>
+              <p>
+                Install Grafana with the command:
+                <kbd class="user-select-all">
+                  sudo apt install grafana
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Enable Grafana to run as a service with the command:
+                <kbd class="user-select-all">
+                  sudo systemctl enable grafana-server.service
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Start the Grafana service (or reboot the Raspberry Pi) with the command:
+                <kbd class="user-select-all">
+                  sudo systemctl start grafana-server
+                </kbd>
+              </p>
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Install MQTT
+          </h3>
+          <p>
+            Full Instructions: https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/
+          </p>
+          <ol>
+            <li>
+              <p>
+                Install MQTT and its clients with the command:
+                <kbd class="user-select-all">
+                  sudo apt install mosquitto mosquitto-clients
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Enable MQTT to run as a service with the command:
+                <kbd class="user-select-all">
+                  sudo systemctl enable mosquitto.service
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Start the MQTT service (or reboot the Raspberry Pi) with the command:
+                <kbd class="user-select-all">
+                  sudo /bin/systemctl start mosquitto
+                </kbd>
+              </p>
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Port forwarding (Optional)
+          </h3>
+          <ol>
+            <li>
+              <p>
+                Install <em>`iptables`</em> with the command:
+                <kbd class="user-select-all">
+                  sudo apt install iptables
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                Configure the port forwarding with the command:
+                <kbd class="user-select-all">
+                  sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3001
+                </kbd>
+              </p>
+            </li>
+            <li>
+              <p>To check that <em>`pareto-anywhere`</em> is running, and can be accessed via port 80, open a browser window, and going to the following URL: http://localhost/</p>
+            </li>
+          </ol>
+          <h3 class="mt-4">
+            Testing Configuration
+          </h3>
+          <p>
+            Check if the proper services are running with the following commands
+          </p>
+          <hr>
+          <h2> Conclusion </h2>
+          <p>
+            You've taken a bare-bones Raspberry Pi OS Lite image and installed software that  
+            You can now access the Raspberry Pi remotely over SSH, and have installed a variety of services including <em>node-red</em>, <em>influxdb2</em>, <em>pareto-anywhere</em>, and <em>barnowl-hci</em>.
+          </p>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-light border-0 my-5 bg-body-secondary">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeberhardt-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-rnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeberhardt" target="_blank">James Eberhardt</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <img src="../pi-kiosk/images/icon.jpg">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pi-kiosk/">
+                <h5 class="mt-0 mb-1"> Configure a Raspberry Pi as a kiosk display </h5>
+              </a>
+              Our step-by-step guide to configure a <i class="fab fa-raspberry-pi"></i> Pi as a kiosk display that runs automatically on boot.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Let's put things in context, one space at a time.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2019-2023 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
