@@ -160,8 +160,9 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <h1 class="mt-4"> Install a bunch of open source software onto a Raspberry Pi.</h1>
-          <p class="lead"> Our step-by-step guide to installing software. </p>
+          <h1 class="mt-4"> Install software on a Raspberry Pi for IoT Development with <em>`pareto-anywhere`</em>.</h1>
+          <p class="small text-muted"> Last updated: 2024-01-08 </p>
+          <p class="lead"> Our step-by-step guide to installing several open-source software packages that compliment <em>`pareto-anywhere`</em> to create a pipeline for IoT development. </p>
           <img src="images/header.png" class="img-fluid" alt="Install Raspberry Pi OS on an SD card">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -170,15 +171,15 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive flash a disk image for a headless <i class="fab fa-raspberry-pi"></i> Pi. </p>
+              <p class="lead"> Learn how we at reelyActive install software for an IoT Development Stack. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
-                <dd class="col-sm-9"> A clean, lean installation of the latest <a href="https://www.raspberrypi.com/software/operating-systems/" target="_blank">Raspberry Pi OS Lite</a> build ready to install Node.js and other programs like our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> middleware. </dd>
-                <dt class="col-sm-3"> What is a custom image? </dt>
-                <dd class="col-sm-9"> A custom image is a complete backup of an operating system with all of the software and settings, useful for replicating a Raspberry Pi.
-                <dt class="col-sm-3"> What is a headless system? </dt>
-                <dd class="col-sm-9"> A system without a monitor, keyboard, or mouse; typically accessed remotely over a network using SSH. </dd>
+                <dd class="col-sm-9"> A Raspberry Pi with a lean, headless OS, and the latest version of Node.js, ready to run <em>`pareto-anywhere`</em> and <em>`barnowl-hci`</em>. </dd>
+                <dt class="col-sm-3"> Why open-source? </dt>
+                <dd class="col-sm-9"> We believe in the power of open source to drive innovation and collaboration. </dd>
+                <dt class="col-sm-3"> What are the components in the end-to-end pipeline? </dt>
+                <dd class="col-sm-9"> The main components are to capture wireless signals (barnowl-hci), process those signals (pareto-anywhere), store them (InfluxDB2), and finally to analyze them (Grafana). </dd>
               </dl>
             </div>
           </div>
@@ -219,17 +220,23 @@
           </ul>
 
           <h3 class="mt-4">
-            Initializing the Raspberry Pi
+            Initializing the Raspberry Pi &nbsp;
+            <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p class="lead">
             Before installing new software on a Raspberry Pi, it is a good idea to update the package list and upgrade the installed packages to their latest versions; this ensures that you have the latest security updates and bug fixes.
           </p>
-          <p>
-            Update the package lists and upgrade the packages with the command:
-            <kbd class="user-select-all">sudo apt update && sudo apt upgrade</kbd>
-          </p>
+          <ol>
+            <li>
+              <p>
+                Update the package lists and upgrade the packages with the command:
+                <kbd class="user-select-all">sudo apt update && sudo apt upgrade</kbd>
+              </p>              
+            </li>
+          </ol>
           <h3 class="mt-4">
-            Create a new root user
+            Create a new root user &nbsp;
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p class="lead">
             For some of the changes to persist when using the Raspberry Pi Imager, a new user is created that will run pareto-anywhere and barnowl-hci. 
@@ -260,7 +267,8 @@
           </p>
 
           <h3 class="mt-4">
-            Install `git`
+            Install `git` &nbsp;
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p class="lead">
             <em>`git`</em> is not installed by default on the Lite version of Raspberry Pi, and is required for cloning some github repositories.
@@ -322,7 +330,8 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Install Influxdb2
+            Install Influxdb2 &nbsp;
+            <small class="text-body-secondary"> Part 4 </small>
           </h3>
           <p class="lead"><em>`influxdb2`</em> is a time series database, useful for storing <em>`dynambs`</em> and <em>`raddecs`</em> collected by <em>`pareto-anywhere`</em></p>
           <p>
@@ -366,7 +375,8 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Configure Influxdb2
+            Configure Influxdb2 &nbsp;
+            <small class="text-body-secondary"> Part 5 </small>
           </h3>
           <ol>
             <li>
@@ -401,7 +411,8 @@
 
 
           <h3 class="mt-4">
-            Install pareto-anywhere
+            Install pareto-anywhere &nbsp;
+            <small class="text-body-secondary"> Part 6 </small>
           </h3>
           <p class="lead">
             reelyActive's middleware for processing wireless signals. Additional detail
@@ -514,7 +525,8 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Install barnowl-hci
+            Install barnowl-hci &nbsp;
+            <small class="text-body-secondary"> Part 7 </small>
           </h3>
           <p class="lead">
             <em>`barnowl-hci`</em> runs independently from <em>`pareto-anywhere`</em>, and will capture and forward all BLE signals captured on the Raspberry Pi's built-in bluetooth radio to <em>`pareto-anywhere`</em>.
@@ -565,7 +577,8 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Install Grafana
+            Install Grafana &nbsp;
+            <small class="text-body-secondary"> Part 8 </small>
           </h3>
           <p>
             Full Instructions: https://grafana.com/tutorials/install-grafana-on-raspberry-pi/
@@ -597,7 +610,8 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Install MQTT
+            Install MQTT &nbsp;
+            <small class="text-body-secondary"> Part 9 </small>
           </h3>
           <p>
             Full Instructions: https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/
@@ -629,7 +643,8 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Port forwarding (Optional)
+            Port forwarding (Optional) &nbsp;
+            <small class="text-body-secondary"> Part 10 </small>
           </h3>
           <ol>
             <li>
