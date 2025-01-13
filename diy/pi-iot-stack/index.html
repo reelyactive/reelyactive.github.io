@@ -161,7 +161,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Install software on a Raspberry Pi for IoT Development with <em>`pareto-anywhere`</em>.</h1>
-          <p class="small text-muted"> Last updated: 2024-01-08 </p>
+          <p class="small text-muted"> Last updated: 2024-01-13 </p>
           <p class="lead"> Our step-by-step guide to installing several open-source software packages that compliment <em>`pareto-anywhere`</em> to create a pipeline for IoT development. </p>
           <img src="images/header.png" class="img-fluid" alt="Install Raspberry Pi OS on an SD card">
           <!----- The TL;DR ----->
@@ -180,6 +180,8 @@
                 <dd class="col-sm-9"> We believe in the power of open source to drive innovation and collaboration. </dd>
                 <dt class="col-sm-3"> What are the components in the end-to-end pipeline? </dt>
                 <dd class="col-sm-9"> The main components are to capture wireless signals (barnowl-hci), process those signals (pareto-anywhere), store them (InfluxDB2), and finally to analyze them (Grafana). </dd>
+                <dt class="col-sm-3"> What about security? </dt>
+                <dd class="col-sm-9"> This setup implements the minimum requirements needed, in some cases with no security at all. If deploying to a production environment, be sure to add security to each of these components. </dd>
               </dl>
             </div>
           </div>
@@ -189,10 +191,8 @@
               <i class="fab fa-raspberry-pi fa-4x"></i>
             </li>
             <li class="list-group-item border-0">
-              <h5 class="mt-0 mb-1">
-                Raspberry Pi 
-              </h5>
-              A Raspberry Pi
+              <h5 class="mt-0 mb-1"> Raspberry Pi </h5>
+              A Raspberry Pi 4 with Raspberry Pi OS Lite installed on an SD card, with terminal access. (ex: <a href="../pi-prep/">Prepare a Raspberry Pi from scratch</a>) 
             </li>
           </ul>          
           <!----- Step 1 of 2 ----->
@@ -205,25 +205,24 @@
               <p class="lead"> Use Raspberry Pi Imager to select a Raspberry Pi device, disk image, and apply important common settings. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Why Raspberry Pi Imager? </dt>
-                <dd class="col-sm-9">
-                    It is officially supported by the Raspberry Pi Foundation and works on various OSes, including Raspberry Pi OS itself.
-                    It manages all of the various images available for different devices, ensuring you'll be installing the best available option for your selected device.
+                <dt class="col-sm-3"> Why update the Raspberry Pi packages? </dt>
+                <dd class="col-sm-9"> Even with a "fresh" install of Raspberry Pi OS, packages are constantly being updated. Before installing any new software, it is a good idea to 
+                  update the package list and upgrade the installed packages to their latest versions. </dd>
                 </dd>
-                <dt class="col-sm-3"> Why Pi OS Lite? </dt>
-                <dd class="col-sm-9"> It includes all the key ingredients for headless operation while keeping the disk image small. </dd>
-                <dt class="col-sm-3"> Why OS customisation? </dt>
-                <dd class="col-sm-9"> Unless you have a monitor and keyboard for the Raspberry Pi, good luck with the first connection otherwise! </dd>
-                <dt class="col-sm-3"> Is an SD Card the only option? </dt>
-                <dd class="col-sm-9"> While this tutorial supposes using an SD Card, it will work equally as well when flashing a mounted compute module. </dd>
-            </div>
+                <dt class="col-sm-3"> Why create a new user? </dt>
+                <dd class="col-sm-9"> The `reelyactive` user is created so that when we create a disk image, the default user that is created by the Raspberry Pi Imager does not replace the user needed to run all of the installed software. </dd>
+                <dt class="col-sm-3"> Why add the user to the <em>`sudo`</em> group? </dt>
+                <dd class="col-sm-9"> The `reelyactive` user is added to the `sudo` group so that the user can run commands with elevated privileges. </dd>
+                <dt class="col-sm-3"> Why install <em>`git`</em> </dt>
+                <dd class="col-sm-9"> <em>`git`</em> is not installed by default on the Lite version of Raspberry Pi, and is required to clone the repositories for <em>`pareto-anywhere`</em> and <em>`barnowl-hci`</em>. </dd>
+              </div>
           </div>
           <h3 class="mt-4">
             Initializing the Raspberry Pi &nbsp;
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p class="lead">
-            Before installing new software on a Raspberry Pi, it is a good idea to update the package list and upgrade the installed packages to their latest versions; this ensures that you have the latest security updates and bug fixes.
+            Get the Raspberry Pi ready for the software installation with the following steps.
           </p>
           <ol>
             <li>
@@ -232,16 +231,12 @@
                 <kbd class="user-select-all">sudo apt update && sudo apt upgrade</kbd>
               </p>              
             </li>
-          </ol>
-          <h3 class="mt-4">
-            Create a new root user &nbsp;
-            <small class="text-body-secondary"> Part 2 </small>
-          </h3>
-          <p class="lead">
-            For some of the changes to persist when using the Raspberry Pi Imager, a new user is created that will run pareto-anywhere and barnowl-hci. 
-          </p>
-          <p>The `reelyactive` user is created so that when we create a disk image, the default user that is created by the Raspberry Pi Imager does not replace the user needed to run all of the installed software.</p>
-          <ol>
+            <li>
+              <p>
+                Install <em>`git`</em> with the command:
+                <kbd class="user-select-all">sudo apt install git</kbd>
+              </p>
+            </li>
             <li>
               <p>
                 Create the user with the command:
@@ -263,64 +258,38 @@
           <p>
             <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
             The remainder of the steps will be done with the <em>`reelyactive`</em> user.
-          </p>
-
-          <h3 class="mt-4">
-            <img src="./images/git.svg" width="60" height="60" alt="Git Logo"/>
-            Install `git` &nbsp;
-            <small class="text-body-secondary"> Part 3 </small>
-          </h3>
-          <p class="lead">
-            <em>`git`</em> is not installed by default on the Lite version of Raspberry Pi, and is required for cloning some github repositories.
-          </p>
-          <ol>
-            <li>
-              Install <em>`git`</em> with the command:
-              <kbd class="user-select-all">sudo apt install git</kbd>
-            </li>
-          </ol>
-          
+          </p>          
           <!----- Step 1 of 5 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
-              <h2 id="step01" class="card-title my-2">
+              <h2 id="step02" class="card-title my-2">
                 <img src="./images/node-red-hexagon-logo.png" width="60" height="60" alt="Node-Red Logo"/>
                 Install node-red, nodejs, and npm &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 3 of 5 </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 7 </a>
               </h2>
               <p class="lead"> 
-                 
-                 
-                
+                The JavaScript runtime used to run `pareto-anywhere`.
               </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What is nodejs? </dt>
-                <dd class="col-sm-9">
-                  <em>`nodejs`</em> is the JavaScript runtime used to run `pareto-anywhere`.
-                </dd>
-                <dt class="col-sm-3"> What is npm? </dt>
-                <dd class="col-sm-9">
-                  <em>`npm`</em> is a package manager used by nodejs.
-                </dd>
                 <dt class="col-sm-3"> What is node-red? </dt>
                 <dd class="col-sm-9">
                   <em>`node-red`</em> is a flow-based development tool for visual programming, useful for creating IoT applications based on triggers sent by `pareto-anywhere`. 
                 </dd>                                
                 <dt class="col-sm-3"> Are all of these required? </dt>
-                <dd class="col-sm-9"> nodejs and npm are required, and node-red is optional. </dd>
+                <dd class="col-sm-9"> nodejs and npm are required; node-red is optional. </dd>
                 <dt class="col-sm-3"> Is this this only way to install nodejs and npm? </dt>
                 <dd class="col-sm-9"> 
                   There are several ways to install nodejs and npm, depending on your environment. At reelyActive, we like the ease of use
                   of the node-red install script, which will guide you through the process of installing all three.
-                  <br>
-                  More information about installing `node-red` on a Raspberry Pi can be found at <a href="https://nodered.org/docs/getting-started/raspberrypi" target="_blank">https://nodered.org/docs/getting-started/raspberrypi</a>
-                </dd>                
+                </dd>
+                <dt class="col-sm-3">Having difficulties?</dt>
+                <dd class="col-sm-9">More information about installing `node-red` on a Raspberry Pi can be found at <a href="https://nodered.org/docs/getting-started/raspberrypi" target="_blank">https://nodered.org/docs/getting-started/raspberrypi</a></dd>
             </div>
           </div>
           <br>
           <p class="lead">
-            Install <em>`node-red`</em>, <em>`nodejs`</em>, and <em>`npm`</em> with the following steps, using the install script from the node-red github repository.
+            Using the script from the node-red github repository, install <em>`node-red`</em>, <em>`nodejs`</em>, and <em>`npm`</em> with the following steps.
           </p>
           <ol>
             <li>
@@ -333,14 +302,17 @@
             </li>
             <li>
               <p>
-                After node is installed, the script will prompt you for settings. Go ahead and select the defaults for all of the answers. 
-                Except don't setup user security. No username / password is required for `node-red`.
-                Do not setup a passphrase.
+                The install script will prompt you for several settings. With the following exceptions, select the defaults for all of the answers.
+                <ul>
+                  <li>Don't setup user security. This can be setup later if you'd like.</li>
+                  <li>No username / password is required for `node-red`.</li>
+                  <li>Do not setup a passphrase.</li>
+                </ul> 
               </p>
             </li>
             <li>
               <p>
-                Enable the nodered.service with the command:
+                Once the install script is complete, enable the nodered.service with the command:
                 <kbd class="user-select-all">
                   sudo systemctl enable nodered.service
                 </kbd>
@@ -374,12 +346,14 @@
               <p class="lead"> <em>`influxdb2`</em> is a time series database, useful for storing <em>`dynambs`</em> and <em>`raddecs`</em> collected by <em>`pareto-anywhere`</em> </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Is this the only way to install them? </dt>
+                <dt class="col-sm-3"> What is the `apt` archive used for `influxdb2`? </dt>
                 <dd class="col-sm-9">
-                  There are a few ways to install <em>node</em> and <em>npm</em>. At reelyActive, we install both by using the node-red install script, an interactive shell script which will guide you through the process of installing all three.
+                  The archive contains all the details used to install the `influxdb2` package, and is hosted in the InfluxData repo.
                 </dd>
-                <dt class="col-sm-3"> Are all of these required? </dt>
-                <dd class="col-sm-9"> Node and npm are required, and node-red is optional. </dd>
+                <dt class="col-sm-3"> Having difficulties? </dt>
+                <dd class="col-sm-9"> More information about installing <em>`influxdb2`</em> on a Raspberry Pi can be found here: 
+                  <a href="https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi" target="_blank">https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi</a>
+                </dd>
             </div>
           </div>
           <h3 class="mt-4">
@@ -387,7 +361,7 @@
             <small class="text-body-secondary"> Part 1 </small>
           </h3>          
           <p>
-            While this still uses apt to install the package, it does require adding an additional archive to the list of apt sources.
+            Add the influxdb2 apt packge and install influxdb2 with the following steps.
           </p>
           <ol>
             <li>
@@ -430,6 +404,7 @@
             Configure Influxdb2 &nbsp;
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
+          <p>Use the web interface to configure <em>influxdb2</em> with the following steps. </p>
           <ol>
             <li>
               <p>
@@ -716,13 +691,18 @@
                 <dd class="col-sm-9">
                   There are a few ways to install <em>node</em> and <em>npm</em>. At reelyActive, we install both by using the node-red install script, an interactive shell script which will guide you through the process of installing all three.
                 </dd>
-                <dt class="col-sm-3"> Are all of these required? </dt>
-                <dd class="col-sm-9"> Node and npm are required, and node-red is optional. </dd>
+                <dt class="col-sm-3"> Having difficulties? </dt>
+                <dd class="col-sm-9"> 
+                  More information about installing <em>`grafana`</em> on a Raspberry Pi can be found here: 
+                  <a href="https://grafana.com/tutorials/install-grafana-on-raspberry-pi/" target="_blank">https://grafana.com/tutorials/install-grafana-on-raspberry-pi/</a>
+                </dd>
+              </dl> 
             </div>
           </div>
-          <p>
-            Full Instructions: https://grafana.com/tutorials/install-grafana-on-raspberry-pi/
-          </p>
+          <br>
+          <p class="lead">
+            Install Grafaana and configure it to run as a service with the following steps.
+          </p>          
           <ol>
             <li>
               <p>
@@ -755,22 +735,20 @@
               <h2 id="step01" class="card-title my-2">
                 <img src="./images/mqtt.svg" width="60" height="60" alt="MQTT Logo"/>
                 Install MQTT &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 6 of 7 </a>
+                <a href="#step01" class="badge bg-primary"> Step 7 of 7 </a>
               </h2>
-              <p class="lead"> Use Raspberry Pi Imager to select a Raspberry Pi device, disk image, and apply important common settings. </p>
+                <p class="lead"> Connect <em>`Barnacles`</em> to MQTT to send out messages that have been captured and processed by <em>`pareto-anywhere`</em> </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Is this the only way to install them? </dt>
-                <dd class="col-sm-9">
-                  There are a few ways to install <em>node</em> and <em>npm</em>. At reelyActive, we install both by using the node-red install script, an interactive shell script which will guide you through the process of installing all three.
+                <dt class="col-sm-3"> Having difficulties? </dt>
+                <dd class="col-sm-9"> 
+                  More information about installing <em>`mqtt`</em> on a Raspberry Pi can be found here: 
+                  <a href="https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/" target="_blank">https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/</a>
                 </dd>
-                <dt class="col-sm-3"> Are all of these required? </dt>
-                <dd class="col-sm-9"> Node and npm are required, and node-red is optional. </dd>
+              </dl>
             </div>
           </div>
-          <p>
-            Full Instructions: https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/
-          </p>
+          <br>
           <ol>
             <li>
               <p>
@@ -807,7 +785,7 @@
           <h2> Conclusion </h2>
           <p>
             You've taken a bare-bones Raspberry Pi OS Lite image and installed software that  
-            You can now access the Raspberry Pi remotely over SSH, and have installed a variety of services including <em>node-red</em>, <em>influxdb2</em>, <em>pareto-anywhere</em>, and <em>barnowl-hci</em>.
+            you can now access the Raspberry Pi remotely over SSH, and have installed a variety of services including <em>node-red</em>, <em>influxdb2</em>, <em>pareto-anywhere</em>, and <em>barnowl-hci</em>.
           </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5 bg-body-secondary">
