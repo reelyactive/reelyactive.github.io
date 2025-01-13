@@ -160,9 +160,9 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <h1 class="mt-4"> Install software on a Raspberry Pi for IoT Development with <em>`pareto-anywhere`</em>.</h1>
+          <h1 class="mt-4"> Install software on a Raspberry Pi for IoT Development with <em>pareto-anywhere</em>.</h1>
           <p class="small text-muted"> Last updated: 2024-01-13 </p>
-          <p class="lead"> Our step-by-step guide to installing several open-source software packages that compliment <em>`pareto-anywhere`</em> to create a pipeline for IoT development. </p>
+          <p class="lead"> Our step-by-step guide to installing several open-source software packages that compliment <em>pareto-anywhere</em> to create a pipeline for IoT development. </p>
           <img src="images/header.png" class="img-fluid" alt="Install Raspberry Pi OS on an SD card">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -210,11 +210,11 @@
                   update the package list and upgrade the installed packages to their latest versions. </dd>
                 </dd>
                 <dt class="col-sm-3"> Why create a new user? </dt>
-                <dd class="col-sm-9"> The `reelyactive` user is created so that when we create a disk image, the default user that is created by the Raspberry Pi Imager does not replace the user needed to run all of the installed software. </dd>
-                <dt class="col-sm-3"> Why add the user to the <em>`sudo`</em> group? </dt>
-                <dd class="col-sm-9"> The `reelyactive` user is added to the `sudo` group so that the user can run commands with elevated privileges. </dd>
-                <dt class="col-sm-3"> Why install <em>`git`</em> </dt>
-                <dd class="col-sm-9"> <em>`git`</em> is not installed by default on the Lite version of Raspberry Pi OS, and is required to clone the repositories for <em>`pareto-anywhere`</em> and <em>`barnowl-hci`</em>. </dd>
+                <dd class="col-sm-9"> The reelyactive user is created so that when we create a disk image, the default user that is created by the Raspberry Pi Imager does not replace the user needed to run all of the installed software. </dd>
+                <dt class="col-sm-3"> Why add the user to the <em>sudo</em> group? </dt>
+                <dd class="col-sm-9"> The reelyactive user is added to the sudo group so that the user can run commands with elevated privileges. </dd>
+                <dt class="col-sm-3"> Why install <em>git</em> </dt>
+                <dd class="col-sm-9"> <em>git</em> is not installed by default on the Lite version of Raspberry Pi OS, and is required to clone the repositories for <em>pareto-anywhere</em> and <em>barnowl-hci</em>. </dd>
               </div>
           </div>
           <h3 class="mt-4">
@@ -233,7 +233,7 @@
             </li>
             <li>
               <p>
-                Install <em>`git`</em> with the command:
+                Install <em>git</em> with the command:
                 <kbd class="user-select-all">sudo apt install git</kbd>
               </p>
             </li>
@@ -245,19 +245,19 @@
             </li>
             <li>
               <p>
-                Add the user to the <em>`sudo`</em> group with the command:</em>
+                Add the user to the <em>sudo</em> group with the command:</em>
                 <kbd class="user-select-all">sudo adduser reelyactive sudo</kbd>
               </p>
             </li>
             <li>
               <p>
-                Log out from the terminal, and log back in with the newly created <em>`reelyactive`</em> user.
+                Log out from the terminal, and log back in with the newly created <em>reelyactive</em> user.
               </p>
             </li>
           </ol>
           <p>
             <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
-            The remainder of the steps will be done with the <em>`reelyactive`</em> user.
+            The remainder of the steps will be done with the <em>reelyactive</em> user.
           </p>          
           <!----- Step 1 of 5 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
@@ -268,13 +268,13 @@
                 <a href="#step02" class="badge bg-primary"> Step 2 of 7 </a>
               </h2>
               <p class="lead"> 
-                The JavaScript runtime used to run `pareto-anywhere`.
+                The JavaScript runtime used to run pareto-anywhere.
               </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What is node-red? </dt>
                 <dd class="col-sm-9">
-                  <em>`node-red`</em> is a flow-based development tool for visual programming, useful for creating IoT applications based on events sent by `pareto-anywhere`. 
+                  <em>node-red</em> is a flow-based development tool for visual programming, useful for creating IoT applications based on events sent by pareto-anywhere. 
                 </dd>                                
                 <dt class="col-sm-3"> Are all of these required? </dt>
                 <dd class="col-sm-9"> nodejs and npm are required; node-red is optional. </dd>
@@ -284,17 +284,17 @@
                   of the node-red install script, which will guide you through the process of installing all three.
                 </dd>
                 <dt class="col-sm-3">Having difficulties?</dt>
-                <dd class="col-sm-9">More information about installing `node-red` on a Raspberry Pi can be found at <a href="https://nodered.org/docs/getting-started/raspberrypi" target="_blank">https://nodered.org/docs/getting-started/raspberrypi</a></dd>
+                <dd class="col-sm-9">More information about installing node-red on a Raspberry Pi can be found at <a href="https://nodered.org/docs/getting-started/raspberrypi" target="_blank">https://nodered.org/docs/getting-started/raspberrypi</a></dd>
             </div>
           </div>
           <br>
           <p class="lead">
-            Using the script from the node-red github repository, install <em>`node-red`</em>, <em>`nodejs`</em>, and <em>`npm`</em> with the following steps.
+            Using the script from the node-red github repository, install <em>node-red</em>, <em>nodejs</em>, and <em>npm</em> with the following steps.
           </p>
           <ol>
             <li>
               <p>
-                Initialize the <em>`node-red`</em> installation script with the command:
+                Initialize the <em>node-red</em> installation script with the command:
               <kbd class="user-select-all">
                 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
               </kbd>
@@ -305,7 +305,7 @@
                 The install script will prompt you for several settings. With the following exceptions, select the defaults for all of the answers.
                 <ul>
                   <li>Don't setup user security. This can be setup later if you'd like.</li>
-                  <li>No username / password is required for `node-red`.</li>
+                  <li>No username / password is required for node-red.</li>
                   <li>Do not setup a passphrase.</li>
                 </ul> 
               </p>
@@ -343,15 +343,15 @@
                 Install Influxdb2 &nbsp;
                 <a href="#step01" class="badge bg-primary"> Step 3 of 7 </a>
               </h2>
-              <p class="lead"> <em>`influxdb2`</em> is a time series database, useful for storing <em>`dynambs`</em> and <em>`raddecs`</em> collected by <em>`pareto-anywhere`</em> </p>
+              <p class="lead"> <em>influxdb2</em> is a time series database, useful for storing <em>dynambs</em> and <em>raddecs</em> collected by <em>pareto-anywhere</em> </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What is the `apt` archive used for `influxdb2`? </dt>
+                <dt class="col-sm-3"> What is the apt archive used for influxdb2? </dt>
                 <dd class="col-sm-9">
-                  The archive contains all the details used to install the `influxdb2` package, and is hosted in the InfluxData repo.
+                  The archive contains all the details used to install the influxdb2 package, and is hosted in the InfluxData repo.
                 </dd>
                 <dt class="col-sm-3"> Having difficulties? </dt>
-                <dd class="col-sm-9"> More information about installing <em>`influxdb2`</em> on a Raspberry Pi can be found here: 
+                <dd class="col-sm-9"> More information about installing <em>influxdb2</em> on a Raspberry Pi can be found here: 
                   <a href="https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi" target="_blank">https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi</a>
                 </dd>
             </div>
@@ -430,8 +430,8 @@
             <li>
               <p>
                 After the <strong>Initial User Setup</strong> is complete, there will be a message, "You are ready to go!". 
-                Below that, the <em>`operator token`</em> will be displayed. 
-                Be sure to copy this token, as it will be needed later when configuring <em>`pareto-anywhere`</em>.
+                Below that, the <em>operator token</em> will be displayed. 
+                Be sure to copy this token, as it will be needed later when configuring <em>pareto-anywhere</em>.
               </p>
             </li>
           </ol>
@@ -451,19 +451,19 @@
                   Additional details about setting up services on a Raspberry Pi can be found here:
                   <a href="https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all#method-3-systemd" target="_blank">https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all#method-3-systemd</a> 
                 </dd>
-                <dt class="col-sm-3">What is <em>`barnacles-influxdb2`</em>?</dt>
+                <dt class="col-sm-3">What is <em>barnacles-influxdb2</em>?</dt>
                 <dd class="col-sm-9">
-                  <em>`barnacles`</em> is an add-on package for <em>`pareto-anywhere`</em> that sends a real-time stream of <em>`raddec`</em> and <em>`dynamb`</em> objects to the influxdb2 databse.
+                  <em>barnacles</em> is an add-on package for <em>pareto-anywhere</em> that sends a real-time stream of <em>raddec</em> and <em>dynamb</em> objects to the influxdb2 databse.
                 </dd>
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9"> 
-                  More information about installing <em>`pareto-anywhere`</em> on a Raspberry Pi can be found here:
+                  More information about installing <em>pareto-anywhere</em> on a Raspberry Pi can be found here:
                   <a href="https://reelyactive.github.io/diy/pareto-anywhere-pi/" target="_blank">https://reelyactive.github.io/diy/pareto-anywhere-pi/</a>
                 </dd>
             </div>
           </div>
           <h3 class="mt-4">
-            Install `pareto-anywhere` &nbsp;
+            Install pareto-anywhere &nbsp;
             <small class="text-body-secondary"> Part 1 </small>
           </h3>          
           <p class="lead">
@@ -471,7 +471,7 @@
           </p>
           <ol>
             <li>
-              <p>Go to the home directory for the <em>`reelyactive`</em> user with the command:
+              <p>Go to the home directory for the <em>reelyactive</em> user with the command:
                 <kbd class="user-select-all">cd ~</kbd>
               </p>
             </li>
@@ -485,7 +485,7 @@
             </li>
             <li>
               <p>
-                Change to the newly created `pareto-anywhere` directory with the command:
+                Change to the newly created pareto-anywhere directory with the command:
                 <kbd class="user-select-all">
                   cd pareto-anywhere
                 </kbd>
@@ -493,7 +493,7 @@
             </li>
             <li>
               <p>
-                Add reelyActive's <em>`barnacles-influxdb2`</em> package to the pareto-anywhere project with the command:
+                Add reelyActive's <em>barnacles-influxdb2</em> package to the pareto-anywhere project with the command:
                 <kbd class="user-select-all">
                   npm install barnacles-influxdb2
                 </kbd>
@@ -509,14 +509,14 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Setup `pareto-anywhere` to run as a service &nbsp;
+            Setup pareto-anywhere to run as a service &nbsp;
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p>Run <em>`pareto-anywhere`</em> whenever your Raspberry Pi boots up! There is a sample <em>`units`</em> file that is in the `pareto-anywhere` repo that can be copied and modified.</p>
+          <p>Run <em>pareto-anywhere</em> whenever your Raspberry Pi boots up! There is a sample <em>units</em> file that is in the pareto-anywhere repo that can be copied and modified.</p>
           <ol>
             <li>
               <p>
-              Copy the <em>`units`</em> file with the command:
+              Copy the <em>units</em> file with the command:
               <kbd class="user-select-all">cp ./units/pareto-anywhere-pi.service ./pareto-anywhere-influxdb2-pi.service</kbd>
             </p>
             </li>
@@ -528,31 +528,31 @@
             </li>
             <li>
               <p>
-                Edit the <em>`WorkingDirectory`</em> value. This will set the working directory use the `reelyactive` user that was created in an earlier step. The <em>`reelyactive`</em> user will be used to run the service regardless of any user being logged in.
+                Edit the <em>WorkingDirectory</em> value. This will set the working directory use the reelyactive user that was created in an earlier step. The <em>reelyactive</em> user will be used to run the service regardless of any user being logged in.
                 <pre>     WorkingDirectory=/home/reelyactive/pareto-anywhere</pre>
               </p>
             </li>
             <li>
               <p>
-                Edit the <em>`User`</em> value.
+                Edit the <em>User</em> value.
                 <pre>     User=reelyactive</pre>
               </p>
             </li>
             <li>
               <p>
-                Edit the <em>`ExecStart`</em> value. This will execute the <em>`influxdb2`</em> script found in the <em>`package.json`</em> file of <em>`pareto-anywhere`</em>, sending collected <em>`raddecs`</em> and <em>`dynambs`</em> to the influxdb2 database.
+                Edit the <em>ExecStart</em> value. This will execute the <em>influxdb2</em> script found in the <em>package.json</em> file of <em>pareto-anywhere</em>, sending collected <em>raddecs</em> and <em>dynambs</em> to the influxdb2 database.
                 <pre>     ExecStart=/usr/bin/npm run influxdb2</pre>
               </p>
             </li>
             <li>
               <p>
-                Add the following environment variable within the <em>`[Service]`</em> section of the file. The value of <strong>INFLUXDB_TOKEN</strong>
+                Add the following environment variable within the <em>[Service]</em> section of the file. The value of <strong>INFLUXDB_TOKEN</strong>
               </p>
               <pre>     Environment="INFLUXDB_TOKEN=z19KuC8DRXp9kS0l0CD0H3jDBfvI7n4F3S12BM8OXxEP9XbbYmdnEQxuxlnWSqWYoHi4w_BRQcgEv2Cz_ew-0w=="</pre>
             </li>
             <li>
               <p>
-                With the values in the <em>`units`</em> edited, move the file over to the system directory with the command:
+                With the values in the <em>units</em> edited, move the file over to the system directory with the command:
                 <kbd class="user-select-all">sudo mv ./pareto-anywhere-influxdb2-pi.service /lib/systemd/system</kbd>
               </p>
             </li>
@@ -579,12 +579,12 @@
             <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p class="lead">
-            If you would like to access <em>`pareto-anywhere`</em> via port 80, you can use <em>`iptables`</em> to forward the traffic from port 80 to port 3001.
+            If you would like to access <em>pareto-anywhere</em> via port 80, you can use <em>iptables</em> to forward the traffic from port 80 to port 3001.
           </p>
           <ol>
             <li>
               <p>
-                Install <em>`iptables`</em> with the command:
+                Install <em>iptables</em> with the command:
                 <kbd class="user-select-all">
                   sudo apt install iptables
                 </kbd>
@@ -599,7 +599,7 @@
               </p>
             </li>
             <li>
-              <p>To check that <em>`pareto-anywhere`</em> is running, and can be accessed via port 80, open a browser window, and going to the following URL: http://localhost/</p>
+              <p>To check that <em>pareto-anywhere</em> is running, and can be accessed via port 80, open a browser window, and going to the following URL: http://localhost/</p>
             </li>
           </ol>                    
           <!----- Step 5 of 7 ----->
@@ -611,19 +611,19 @@
                 <a href="#step05" class="badge bg-primary"> Step 5 of 7 </a>
               </h2>
               <p class="lead">
-                <em>`barnowl-hci`</em> runs independently from <em>`pareto-anywhere`</em>, using the built-in Bluetooth radio on the Raspberry Pi to capture and forward all captured BLE signals to <em>`pareto-anywhere`</em>.
+                <em>barnowl-hci</em> runs independently from <em>pareto-anywhere</em>, using the built-in Bluetooth radio on the Raspberry Pi to capture and forward all captured BLE signals to <em>pareto-anywhere</em>.
               </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9">             
-                  More information about running <em>`barnowl-hci`</em> on a Raspberry Pi can be found here:
+                  More information about running <em>barnowl-hci</em> on a Raspberry Pi can be found here:
                   <a href="https://github.com/reelyactive/barnowl-hci" target="_blank">https://github.com/reelyactive/barnowl-hci</a> 
                 </dd>
             </div>
           </div>
           <h3 class="mt-4">
-            Install `barnowl-hci` &nbsp;
+            Install barnowl-hci &nbsp;
             <small class="text-body-secondary"> Part 1 </small>
           </h3>                          
           <ol>
@@ -642,7 +642,7 @@
             </li>
             <li>
               <p>
-                Change directory to the newly created `pareto-anywhere` directory with the command:
+                Change directory to the newly created pareto-anywhere directory with the command:
                 <kbd class="user-select-all">
                   cd barnowl-hci
                 </kbd>
@@ -664,7 +664,7 @@
             </li>            
             <li>
               <p>
-                Start <em>`barnowl-hci`</em> with the command:
+                Start <em>barnowl-hci</em> with the command:
                 <kbd class="user-select-all">
                   npm run forwarder
                 </kbd>
@@ -672,14 +672,14 @@
             </li>
           </ol>
           <h3 class="mt-4">
-            Setup `barnowl-hci` to run as a service using <em>`systemd`</em>
+            Setup barnowl-hci to run as a service using <em>systemd</em>
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p>Run <em>`barnowl-hci`</em> whenever your Raspberry Pi boots up! There is a sample <em>`units`</em> file that is in the `barnowl-hci` repo that can be copied and modified.</p>
+          <p>Run <em>barnowl-hci</em> whenever your Raspberry Pi boots up! There is a sample <em>units</em> file that is in the barnowl-hci repo that can be copied and modified.</p>
           <ol>
             <li>
               <p>
-              Copy the <em>`units`</em> file with the command:
+              Copy the <em>units</em> file with the command:
               <kbd class="user-select-all">cp ./units/barnowl-hci-forwarder-pi.service ./barnowl-hci-forwarder-pi.service</kbd>
             </p>
             </li>
@@ -691,19 +691,19 @@
             </li>
             <li>
               <p>
-                Edit the <em>`WorkingDirectory`</em> value. This will set the working directory to use the <em>`reelyactive`</em> user that was created in an earlier step. The <em>`reelyactive`</em> user will be used to run the service regardless of any user being logged in.
+                Edit the <em>WorkingDirectory</em> value. This will set the working directory to use the <em>reelyactive</em> user that was created in an earlier step. The <em>reelyactive</em> user will be used to run the service regardless of any user being logged in.
                 <pre>     WorkingDirectory=/home/reelyactive/barnowl-hci</pre>
               </p>
             </li>
             <li>
               <p>
-                Edit the <em>`User`</em> value.
+                Edit the <em>User</em> value.
                 <pre>     User=reelyactive</pre>
               </p>
             </li>
             <li>
               <p>
-                With the values in the <em>`units`</em> file edited, move the file over to the system directory with the command:
+                With the values in the <em>units</em> file edited, move the file over to the system directory with the command:
                 <kbd class="user-select-all">sudo mv ./barnowl-hci-forwarder-pi.service /lib/systemd/system</kbd>
               </p>
             </li>
@@ -738,7 +738,7 @@
               <dl class="row">
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9"> 
-                  More information about installing <em>`grafana`</em> on a Raspberry Pi can be found here: 
+                  More information about installing <em>grafana</em> on a Raspberry Pi can be found here: 
                   <a href="https://grafana.com/tutorials/install-grafana-on-raspberry-pi/" target="_blank">https://grafana.com/tutorials/install-grafana-on-raspberry-pi/</a>
                 </dd>
               </dl> 
@@ -782,12 +782,12 @@
                 Install MQTT &nbsp;
                 <a href="#step07" class="badge bg-primary"> Step 7 of 7 </a>
               </h2>
-                <p class="lead"> Add MQTT to the IoT stack to send out messages that have been captured and processed by <em>`pareto-anywhere`</em> </p>
+                <p class="lead"> Add MQTT to the IoT stack to send out messages that have been captured and processed by <em>pareto-anywhere</em> </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9"> 
-                  More information about installing <em>`mqtt`</em> on a Raspberry Pi can be found here: 
+                  More information about installing <em>mqtt</em> on a Raspberry Pi can be found here: 
                   <a href="https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/" target="_blank">https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/</a>
                 </dd>
               </dl>
