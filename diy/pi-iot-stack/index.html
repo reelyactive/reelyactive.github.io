@@ -194,12 +194,12 @@
               A <i class="fab fa-raspberry-pi"></i> Pi 4 with <i class="fab fa-raspberry-pi"></i> Pi OS Lite installed on an SD card, with terminal access. (ex: <a href="../pi-prep/">Prepare a <i class="fab fa-raspberry-pi"></i> Pi from scratch</a>) 
             </li>
           </ul>          
-          <!----- Step 1 of 7 ----->
+          <!----- Step 1 of 6 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Setting up the <i class="fab fa-raspberry-pi"></i> Pi &nbsp;
-                <a href="#step01" class="badge bg-primary"> Step 1 of 7 </a>
+                <a href="#step01" class="badge bg-primary"> Step 1 of 6 </a>
               </h2>
               <p class="lead"> Do some basic housekeeping to prepare the <i class="fab fa-raspberry-pi"></i> Pi for the software installation. </p>
               <hr>
@@ -258,13 +258,13 @@
             <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span>
             The remainder of the steps will be done with the <em>reelyactive</em> user.
           </p>          
-          <!----- Step 2 of 7 ----->
+          <!----- Step 2 of 6 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 <img src="./images/node-red-hexagon-logo.png" width="60" height="60" alt="Node-Red Logo"/>
                 Install node-red, nodejs, and npm &nbsp;
-                <a href="#step02" class="badge bg-primary"> Step 2 of 7 </a>
+                <a href="#step02" class="badge bg-primary"> Step 2 of 6 </a>
               </h2>
               <p class="lead"> 
                 The JavaScript runtime used to run pareto-anywhere.
@@ -334,113 +334,47 @@
               </p>
             </li>
           </ol>
-          <!----- Step 3 of 7 ----->
+          <!----- Step 3 of 6 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 <img src="./images/influxdb-logo.svg" width="60" height="60" alt="InfluxDB Logo"/>
-                Install Influxdb2 &nbsp;
-                <a href="#step03" class="badge bg-primary"> Step 3 of 7 </a>
+                Install Influxdb2 and 
+                <img src="./images/grafana.svg" width="60" height="60" alt="Grafana Logo"/> Grafana &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 6 </a>
               </h2>
-              <p class="lead"> <em>influxdb2</em> is a time series database, useful for storing <em>dynambs</em> and <em>raddecs</em> collected by <em>pareto-anywhere</em> </p>
-              <hr>
-              <dl class="row">
-                <dt class="col-sm-3"> What is the apt archive used for influxdb2? </dt>
-                <dd class="col-sm-9">
-                  The archive contains all the details used to install the influxdb2 package, and is hosted in the InfluxData repo.
-                </dd>
-                <dt class="col-sm-3"> Having difficulties? </dt>
-                <dd class="col-sm-9"> More information about installing <em>influxdb2</em> on a <i class="fab fa-raspberry-pi"></i> Pi can be found here: 
-                  <a href="https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi" target="_blank">https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi</a>
-                </dd>
+              <p class="lead"> 
+                <em>influxdb2</em> is a time series database, useful for storing <em>dynambs</em> and <em>raddecs</em> collected by <em>pareto-anywhere</em>. 
+                Add Grafana to the IoT stack to create dashboards that show you real-time information about all your IoT sensors.
+              </p>              
             </div>
           </div>
-          <h3 class="mt-4">
-            Install Influxdb2 &nbsp;
-            <small class="text-body-secondary"> Part 1 </small>
-          </h3>          
-          <p>
-            Add the influxdb2 apt packge and install influxdb2 with the following steps.
-          </p>
-          <ol>
-            <li>
-              <p>
-                Add the influxdb2 apt packge with the command:
-                <br>
-                <kbd class="user-select-all">
-                  wget -q https://repos.influxdata.com/influxdata-archive_compat.key &&
-                  echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null &&
-                  echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list
-                </kbd>
-              </p>
-            </li>
-            <li>
-              <p>
-                Update the apt package list with the command:
-                <kbd class="user-select-all">
-                  sudo apt update
-                </kbd>
-              </p>              
-            </li>
-            <li>
-              <p>
-                Install <em>influxdb2</em> with the command:
-                <kbd class="user-select-all">
-                  sudo apt install influxdb2
-                </kbd>
-              </p>
-            </li>
-            <li>
-              <p>
-                Start influxdb2 as a service with the command:
-                <kbd class="user-select-all">
-                  sudo service influxdb start
-                </kbd>
-              </p>              
-            </li>
-          </ol>
-          <h3 class="mt-4">
-            Configure Influxdb2 &nbsp;
-            <small class="text-body-secondary"> Part 2 </small>
-          </h3>
-          <p>Use the web interface to configure <em>influxdb2</em> with the following steps. </p>
-          <ol>
-            <li>
-              <p>
-                Open a web browser and navigate to <a href="http://pareto.local:8086" target="_blank">http://pareto.local:8086</a> to access the InfluxDB web interface.
-              </p>
-            </li>
-            <li>
-              <p>
-                Click the "Get Started" button to configure the newly installed InfluxDB instance.
-              </p>
-            </li>
-            <li>
-              <p>
-                Enter the following details to configure InfluxDB, and click "Continue":
-                <ul>
-                  <li><strong>Username:</strong> admin</li>
-                  <li><strong>Password:</strong> paretoanywhere</li>
-                  <li><strong>Initial Organization Name:</strong> reelyActive</li>
-                  <li><strong>Initial Bucket Name:</strong> pareto-anywhere</li>
-                </ul>
-              </p>
-            </li>
-            <li>
-              <p>
-                After the <strong>Initial User Setup</strong> is complete, there will be a message, "You are ready to go!". 
-                Below that, the <em>operator token</em> will be displayed. 
-                Be sure to copy this token, as it will be needed later when configuring <em>pareto-anywhere</em>.
-              </p>
-            </li>
-          </ol>
-          <!----- Step 4 of 7 ----->
+            <div>
+            <p class="lead">
+              Jump on over to our tutorial on how to install InfluxDB and Grafana on a <i class="fab fa-raspberry-pi"></i> Pi, and configure them to work together with <em>pareto-anywhere</em>.
+              When completed, come back here to continue with the next steps.
+            </p>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item border-0">
+                <a href="../influxdb-grafana-pi/">
+                  <img src="../influxdb-grafana-pi/images/icon.png">
+                </a>
+              </li>
+              <li class="list-group-item border-0">
+                <a href="../influxdb-grafana-pi/">
+                  <h5 class="mt-0 mb-1"> Install InfluxDB2 and Grafana on a Pi </h5>
+                </a>
+                Our step-by-step guide to installing InfluxDB2 and Grafana on a <i class="fab fa-raspberry-pi"></i> Pi to use with <em>pareto-anywhere</em>.
+              </li>
+            </ul>
+          </div>          
+          <!----- Step 4 of 6 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step04" class="card-title my-2">
                 <img src="./images/pareto-anywhere-light-60x60.png" width="60" height="60" alt="Pareto-Anywhere Logo"/>
                 Install pareto-anywhere &nbsp;
-                <a href="#step04" class="badge bg-primary"> Step 4 of 7 </a>
+                <a href="#step04" class="badge bg-primary"> Step 4 of 6 </a>
               </h2>
               <p class="lead"> reelyActive's middleware for processing wireless signals. </p>
               <hr>
@@ -492,19 +426,11 @@
             </li>
             <li>
               <p>
-                Add reelyActive's <em>barnacles-influxdb2</em> package to the pareto-anywhere project with the command:
+                Add reelyActive's <em>barnacles-influxdb2</em> package to the pareto-anywhere project and initialzied the project with the command:
                 <kbd class="user-select-all">
                   npm install barnacles-influxdb2
                 </kbd>
               </p>
-            </li>
-            <li>
-              <p>
-                Initialize the project with the command:
-                <kbd class="user-select-all">
-                  npm install
-                </kbd>
-              </p>              
             </li>
           </ol>
           <h3 class="mt-4">
@@ -600,14 +526,17 @@
             <li>
               <p>To check that <em>pareto-anywhere</em> is running, and can be accessed via the default port 80, open a browser window and navigate to the Pi's IP address in a web browser. (For example: http://pareto.local)</p>
             </li>
-          </ol>                    
-          <!----- Step 5 of 7 ----->
+          </ol>  
+          <div class="text-center">
+            <img src="./images/pareto-anywhere.png" class="img-fluid" alt="Pareto-Anywhere Home Page"/>
+          </div>
+          <!----- Step 5 of 6 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step05" class="card-title my-2">
                 <img src="./images/barnowl-hci-logo.png" width="60" height="60" alt="barnowl-hci Icon"/>
                 Install barnowl-hci &nbsp;
-                <a href="#step05" class="badge bg-primary"> Step 5 of 7 </a>
+                <a href="#step05" class="badge bg-primary"> Step 5 of 6 </a>
               </h2>
               <p class="lead">
                 <em>barnowl-hci</em> runs independently from <em>pareto-anywhere</em>, using the built-in Bluetooth radio on the <i class="fab fa-raspberry-pi"></i> Pi to capture and forward all captured BLE signals to <em>pareto-anywhere</em>.
@@ -641,7 +570,7 @@
             </li>
             <li>
               <p>
-                Change directory to the newly created pareto-anywhere directory with the command:
+                Change directory to the newly created barnowl-hci directory with the command:
                 <kbd class="user-select-all">
                   cd barnowl-hci
                 </kbd>
@@ -723,68 +652,16 @@
                 (or reboot the <i class="fab fa-raspberry-pi"></i> Pi) 
               </p>
             </li>
-          </ol>          
-          <!----- Step 6 of 7 ----->
-          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
-            <div class="card-body pt-4">
-              <h2 id="step06" class="card-title my-2">
-                <img src="./images/grafana.svg" width="60" height="60" alt="Grafana Logo"/>
-                Install Grafana &nbsp;
-                <a href="#step06" class="badge bg-primary"> Step 6 of 7 </a>
-              </h2>
-              <p class="lead">Add Grafana to the IoT stack to create dashboards that show you real-time information about all your IoT sensors. </p>
-              <hr>
-              <dl class="row">
-                <dt class="col-sm-3"> Having difficulties? </dt>
-                <dd class="col-sm-9"> 
-                  More information about installing <em>grafana</em> on a <i class="fab fa-raspberry-pi"></i> Pi can be found here: 
-                  <a href="https://grafana.com/tutorials/install-grafana-on-raspberry-pi/" target="_blank">https://grafana.com/tutorials/install-grafana-on-raspberry-pi/</a>
-                </dd>
-              </dl> 
-            </div>
-          </div>
-          <br>
-          <p class="lead">
-            Install Grafana and configure it to run as a service with the following steps.
-          </p>          
-          <ol>
-            <li>
-              <p>
-                Install Grafana with the command:
-                <kbd class="user-select-all">
-                  sudo apt install grafana
-                </kbd>
-              </p>
-            </li>
-            <li>
-              <p>
-                Enable Grafana to run as a service with the command:
-                <kbd class="user-select-all">
-                  sudo systemctl enable grafana-server.service
-                </kbd>
-              </p>
-            </li>
-            <li>
-              <p>
-                Start the Grafana service (or reboot the <i class="fab fa-raspberry-pi"></i> Pi) with the command:
-                <kbd class="user-select-all">
-                  sudo systemctl start grafana-server
-                </kbd>
-              </p>
-            </li>
-            <li>
-              <p>To check that <em>Grafana</em> is running, open a browser window, <i class="fab fa-raspberry-pi"></i> Pi's IP address in a web browser. (For example: http://pareto.local)</p>
-            </li>            
           </ol>
-          <!----- Step 7 of 7 ----->
+          <!----- Step 6 of 6 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step07" class="card-title my-2">
                 <img src="./images/mqtt.svg" width="60" height="60" alt="MQTT Logo"/>
                 Install MQTT &nbsp;
-                <a href="#step07" class="badge bg-primary"> Step 7 of 7 </a>
+                <a href="#step07" class="badge bg-primary"> Step 6 of 6 </a>
               </h2>
-                <p class="lead"> Add MQTT to the IoT stack to send out messages that have been captured and processed by <em>pareto-anywhere</em> </p>
+                <p class="lead"> Add MQTT to the IoT stack to send out messages that have been captured and processed by <em>pareto-anywhere</em>. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Having difficulties? </dt>
