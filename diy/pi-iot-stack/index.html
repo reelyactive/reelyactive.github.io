@@ -160,7 +160,7 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-          <h1 class="mt-4"> Install software on a Raspberry Pi for IoT Development with <em>pareto-anywhere</em>.</h1>
+          <h1 class="mt-4"> Install software on a <i class="fab fa-raspberry-pi"></i> Pi for IoT Development with <em>pareto-anywhere</em>.</h1>
           <p class="lead"> Our step-by-step guide to installing several open-source software packages that compliment <em>pareto-anywhere</em> to create a pipeline for IoT development. </p>
           <img src="images/header.png" class="img-fluid" alt="Install Raspberry Pi OS on an SD card">
           <!----- The TL;DR ----->
@@ -174,7 +174,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
-                <dd class="col-sm-9"> Several open-source software packages all working together on a single Raspberry Pi to capture and use data from your IoT sensors.</dd>
+                <dd class="col-sm-9"> Several open-source software packages all working together on a single <i class="fab fa-raspberry-pi"></i> Pi to capture and use data from your IoT sensors.</dd>
                 <dt class="col-sm-3"> Why open-source? </dt>
                 <dd class="col-sm-9"> We believe in the power of open source to drive innovation and collaboration. </dd>
                 <dt class="col-sm-3"> What are the components in the end-to-end pipeline? </dt>
@@ -190,38 +190,38 @@
               <i class="fab fa-raspberry-pi fa-4x"></i>
             </li>
             <li class="list-group-item border-0">
-              <h5 class="mt-0 mb-1"> Raspberry Pi </h5>
-              A Raspberry Pi 4 with Raspberry Pi OS Lite installed on an SD card, with terminal access. (ex: <a href="../pi-prep/">Prepare a Raspberry Pi from scratch</a>) 
+              <h5 class="mt-0 mb-1"> <i class="fab fa-raspberry-pi"></i> Pi </h5>
+              A <i class="fab fa-raspberry-pi"></i> Pi 4 with <i class="fab fa-raspberry-pi"></i> Pi OS Lite installed on an SD card, with terminal access. (ex: <a href="../pi-prep/">Prepare a <i class="fab fa-raspberry-pi"></i> Pi from scratch</a>) 
             </li>
           </ul>          
           <!----- Step 1 of 7 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
-                Setting up the Raspberry Pi &nbsp;
+                Setting up the <i class="fab fa-raspberry-pi"></i> Pi &nbsp;
                 <a href="#step01" class="badge bg-primary"> Step 1 of 7 </a>
               </h2>
-              <p class="lead"> Do some basic housekeeping to prepare the Raspberry Pi for the software installation. </p>
+              <p class="lead"> Do some basic housekeeping to prepare the <i class="fab fa-raspberry-pi"></i> Pi for the software installation. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Why update the Raspberry Pi packages? </dt>
-                <dd class="col-sm-9"> Even with a "fresh" install of Raspberry Pi OS, packages are constantly being updated. Before installing any new software, it is a good idea to 
+                <dt class="col-sm-3"> Why update the <i class="fab fa-raspberry-pi"></i> Pi packages? </dt>
+                <dd class="col-sm-9"> Even with a "fresh" install of <i class="fab fa-raspberry-pi"></i> Pi OS, packages are constantly being updated. Before installing any new software, it is a good idea to 
                   update the package list and upgrade the installed packages to their latest versions. </dd>
                 </dd>
                 <dt class="col-sm-3"> Why create a new user? </dt>
-                <dd class="col-sm-9"> The reelyactive user is created so that when we create a disk image, the default user that is created by the Raspberry Pi Imager does not replace the user needed to run all of the installed software. </dd>
+                <dd class="col-sm-9"> The reelyactive user is created so that when we create a disk image, the default user that is created by the <i class="fab fa-raspberry-pi"></i> Pi Imager does not replace the user needed to run all of the installed software. </dd>
                 <dt class="col-sm-3"> Why add the user to the <em>sudo</em> group? </dt>
                 <dd class="col-sm-9"> The reelyactive user is added to the sudo group so that the user can run commands with elevated privileges. </dd>
                 <dt class="col-sm-3"> Why install <em>git</em> </dt>
-                <dd class="col-sm-9"> <em>git</em> is not installed by default on the Lite version of Raspberry Pi OS, and is required to clone the repositories for <em>pareto-anywhere</em> and <em>barnowl-hci</em>. </dd>
+                <dd class="col-sm-9"> <em>git</em> is not installed by default on the Lite version of <i class="fab fa-raspberry-pi"></i> Pi OS, and is required to clone the repositories for <em>pareto-anywhere</em> and <em>barnowl-hci</em>. </dd>
               </div>
           </div>
           <h3 class="mt-4">
-            Initializing the Raspberry Pi &nbsp;
+            Initializing the <i class="fab fa-raspberry-pi"></i> Pi &nbsp;
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
           <p class="lead">
-            Get the Raspberry Pi ready for the software installation with the following steps.
+            Get the <i class="fab fa-raspberry-pi"></i> Pi ready for the software installation with the following steps.
           </p>
           <ol>
             <li>
@@ -283,7 +283,7 @@
                   of the node-red install script, which will guide you through the process of installing all three.
                 </dd>
                 <dt class="col-sm-3">Having difficulties?</dt>
-                <dd class="col-sm-9">More information about installing node-red on a Raspberry Pi can be found at <a href="https://nodered.org/docs/getting-started/raspberrypi" target="_blank">https://nodered.org/docs/getting-started/raspberrypi</a></dd>
+                <dd class="col-sm-9">More information about installing node-red on a <i class="fab fa-raspberry-pi"></i> Pi can be found at <a href="https://nodered.org/docs/getting-started/raspberrypi" target="_blank">https://nodered.org/docs/getting-started/raspberrypi</a></dd>
             </div>
           </div>
           <br>
@@ -324,12 +324,12 @@
                   node-red-start
                 </kbd>
                 <br>
-                (rebooting the Raspberry Pi will also start the service, once enabled as above)
+                (rebooting the <i class="fab fa-raspberry-pi"></i> Pi will also start the service, once enabled as above)
               </p>
             </li>
             <li>
               <p>
-                With node-red now running on the Raspberry Pi, you can access the node-red editor by navigating to the Raspberry Pi's IP address on port 1880 in a web browser.
+                With node-red now running on the <i class="fab fa-raspberry-pi"></i> Pi, you can access the node-red editor by navigating to the <i class="fab fa-raspberry-pi"></i> Pi's IP address on port 1880 in a web browser.
                 (For example: http://pareto.local:1880)
               </p>
             </li>
@@ -350,7 +350,7 @@
                   The archive contains all the details used to install the influxdb2 package, and is hosted in the InfluxData repo.
                 </dd>
                 <dt class="col-sm-3"> Having difficulties? </dt>
-                <dd class="col-sm-9"> More information about installing <em>influxdb2</em> on a Raspberry Pi can be found here: 
+                <dd class="col-sm-9"> More information about installing <em>influxdb2</em> on a <i class="fab fa-raspberry-pi"></i> Pi can be found here: 
                   <a href="https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi" target="_blank">https://docs.influxdata.com/influxdb/v2/install/?t=Raspberry+Pi</a>
                 </dd>
             </div>
@@ -447,7 +447,7 @@
               <dl class="row">
                 <dt class="col-sm-3"> What is a service? </dt>
                 <dd class="col-sm-9">             
-                  Additional details about setting up services on a Raspberry Pi can be found here:
+                  Additional details about setting up services on a <i class="fab fa-raspberry-pi"></i> Pi can be found here:
                   <a href="https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all#method-3-systemd" target="_blank">https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all#method-3-systemd</a> 
                 </dd>
                 <dt class="col-sm-3">What is <em>barnacles-influxdb2</em>?</dt>
@@ -456,7 +456,7 @@
                 </dd>
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9"> 
-                  More information about installing <em>pareto-anywhere</em> on a Raspberry Pi can be found here:
+                  More information about installing <em>pareto-anywhere</em> on a <i class="fab fa-raspberry-pi"></i> Pi can be found here:
                   <a href="https://reelyactive.github.io/diy/pareto-anywhere-pi/" target="_blank">https://reelyactive.github.io/diy/pareto-anywhere-pi/</a>
                 </dd>
             </div>
@@ -511,7 +511,7 @@
             Setup pareto-anywhere to run as a service &nbsp;
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p>Run <em>pareto-anywhere</em> whenever your Raspberry Pi boots up! There is a sample <em>units</em> file that is in the pareto-anywhere repo that can be copied and modified.</p>
+          <p>Run <em>pareto-anywhere</em> whenever your <i class="fab fa-raspberry-pi"></i> Pi boots up! There is a sample <em>units</em> file that is in the pareto-anywhere repo that can be copied and modified.</p>
           <ol>
             <li>
               <p>
@@ -569,7 +569,7 @@
                 <kbd class="user-select-all">
                   sudo systemctl start pareto-anywhere-influxdb2-pi.service
                 </kbd>
-                (or reboot the Raspberry Pi) 
+                (or reboot the <i class="fab fa-raspberry-pi"></i> Pi) 
               </p>
             </li>
           </ol>
@@ -598,7 +598,7 @@
               </p>
             </li>
             <li>
-              <p>To check that <em>pareto-anywhere</em> is running, and can be accessed via the default port 80, open a browser window, Raspberry Pi's IP address in a web browser. (For example: http://pareto.local)</p>
+              <p>To check that <em>pareto-anywhere</em> is running, and can be accessed via the default port 80, open a browser window and navigate to the Pi's IP address in a web browser. (For example: http://pareto.local)</p>
             </li>
           </ol>                    
           <!----- Step 5 of 7 ----->
@@ -610,13 +610,13 @@
                 <a href="#step05" class="badge bg-primary"> Step 5 of 7 </a>
               </h2>
               <p class="lead">
-                <em>barnowl-hci</em> runs independently from <em>pareto-anywhere</em>, using the built-in Bluetooth radio on the Raspberry Pi to capture and forward all captured BLE signals to <em>pareto-anywhere</em>.
+                <em>barnowl-hci</em> runs independently from <em>pareto-anywhere</em>, using the built-in Bluetooth radio on the <i class="fab fa-raspberry-pi"></i> Pi to capture and forward all captured BLE signals to <em>pareto-anywhere</em>.
               </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9">             
-                  More information about running <em>barnowl-hci</em> on a Raspberry Pi can be found here:
+                  More information about running <em>barnowl-hci</em> on a Pi can be found here:
                   <a href="https://github.com/reelyactive/barnowl-hci" target="_blank">https://github.com/reelyactive/barnowl-hci</a> 
                 </dd>
             </div>
@@ -674,7 +674,7 @@
             Setup barnowl-hci to run as a service using <em>systemd</em>
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p>Run <em>barnowl-hci</em> whenever your Raspberry Pi boots up! There is a sample <em>units</em> file that is in the barnowl-hci repo that can be copied and modified.</p>
+          <p>Run <em>barnowl-hci</em> whenever your <i class="fab fa-raspberry-pi"></i> Pi boots up! There is a sample <em>units</em> file that is in the barnowl-hci repo that can be copied and modified.</p>
           <ol>
             <li>
               <p>
@@ -720,7 +720,7 @@
                 <kbd class="user-select-all">
                   sudo systemctl start barnowl-hci-forwarder-pi.service
                 </kbd>
-                (or reboot the Raspberry Pi) 
+                (or reboot the <i class="fab fa-raspberry-pi"></i> Pi) 
               </p>
             </li>
           </ol>          
@@ -737,7 +737,7 @@
               <dl class="row">
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9"> 
-                  More information about installing <em>grafana</em> on a Raspberry Pi can be found here: 
+                  More information about installing <em>grafana</em> on a <i class="fab fa-raspberry-pi"></i> Pi can be found here: 
                   <a href="https://grafana.com/tutorials/install-grafana-on-raspberry-pi/" target="_blank">https://grafana.com/tutorials/install-grafana-on-raspberry-pi/</a>
                 </dd>
               </dl> 
@@ -766,12 +766,15 @@
             </li>
             <li>
               <p>
-                Start the Grafana service (or reboot the Raspberry Pi) with the command:
+                Start the Grafana service (or reboot the <i class="fab fa-raspberry-pi"></i> Pi) with the command:
                 <kbd class="user-select-all">
                   sudo systemctl start grafana-server
                 </kbd>
               </p>
             </li>
+            <li>
+              <p>To check that <em>Grafana</em> is running, open a browser window, <i class="fab fa-raspberry-pi"></i> Pi's IP address in a web browser. (For example: http://pareto.local)</p>
+            </li>            
           </ol>
           <!----- Step 7 of 7 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
@@ -786,7 +789,7 @@
               <dl class="row">
                 <dt class="col-sm-3"> Having difficulties? </dt>
                 <dd class="col-sm-9"> 
-                  More information about installing <em>mqtt</em> on a Raspberry Pi can be found here: 
+                  More information about installing <em>mqtt</em> on a <i class="fab fa-raspberry-pi"></i> Pi can be found here: 
                   <a href="https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/" target="_blank">https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/</a>
                 </dd>
               </dl>
@@ -812,24 +815,18 @@
             </li>
             <li>
               <p>
-                Start the MQTT service (or reboot the Raspberry Pi) with the command:
+                Start the MQTT service (or reboot the <i class="fab fa-raspberry-pi"></i> Pi) with the command:
                 <kbd class="user-select-all">
                   sudo /bin/systemctl start mosquitto
                 </kbd>
               </p>
             </li>
           </ol>
-          <h3 class="mt-4">
-            Testing Configuration
-          </h3>
-          <p>
-            Check if the proper services are running with the following commands
-          </p>
           <hr>
           <h2> Conclusion </h2>
           <p>
-            You've taken a bare-bones Raspberry Pi OS Lite image and installed software that  
-            you can now access the Raspberry Pi remotely over SSH, and have installed a variety of services including <em>node-red</em>, <em>influxdb2</em>, <em>pareto-anywhere</em>, and <em>barnowl-hci</em>.
+            You've taken a bare-bones <i class="fab fa-raspberry-pi"></i> Pi OS Lite image and installed software that  
+            you can now access the <i class="fab fa-raspberry-pi"></i> Pi remotely over SSH, and have installed a variety of services including <em>node-red</em>, <em>influxdb2</em>, <em>pareto-anywhere</em>, and <em>barnowl-hci</em>.
           </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-light border-0 my-5 bg-body-secondary">
@@ -868,7 +865,7 @@
             </li>
             <li class="list-group-item border-0">
               <a href="../pi-kiosk/">
-                <h5 class="mt-0 mb-1"> Configure a Raspberry Pi as a kiosk display </h5>
+                <h5 class="mt-0 mb-1"> Configure a <i class="fab fa-raspberry-pi"></i> Pi as a kiosk display </h5>
               </a>
               Our step-by-step guide to configure a <i class="fab fa-raspberry-pi"></i> Pi as a kiosk display that runs automatically on boot.
             </li>
