@@ -18,7 +18,7 @@
       "description": "Step-by-step guide to install Raspberry Pi OS Lite for lean, headless operation with friendly network settings and the latest version of Node.js.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
-      "image": "https://reelyactive.github.io/diy/pi-prep/images/header.jpg",
+      "image": "https://reelyactive.github.io/diy/pi-iot-stack/images/header.jpg",
       "author": {
         "@type": "Organization",
         "url": "https://www.reelyactive.com"
@@ -262,7 +262,7 @@
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
-                Install nodejs and npm using nvm &nbsp;
+                Install Node-RED, Node.js, and NPM &nbsp;
                 <a href="#step02" class="badge bg-primary"> Step 2 of 6 </a>
               </h2>
               <p class="lead"> 
@@ -270,65 +270,69 @@
               </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What is nvm? </dt>
-                <dd class="col-sm-9"> <em>nvm</em> stands for a "node version manager", and is a tool that allows you to install and manage multiple versions of nodejs and npm. </dd>                         
-                <dt class="col-sm-3"> Is this this only way to install nodejs and npm? </dt>
+                <dt class="col-sm-3"> What is node-red? </dt>
+                <dd class="col-sm-9">
+                  <em>Node-RED</em> is a flow-based development tool for visual programming, useful for creating IoT applications based on events sent by pareto-anywhere. 
+                </dd>                                
+                <dt class="col-sm-3"> Are all of these required? </dt>
+                <dd class="col-sm-9"> Node.js and NPM are required; Node-RED is optional. </dd>
+                <dt class="col-sm-3"> Is this this only way to install Node.js and NPM? </dt>
                 <dd class="col-sm-9"> 
-                  There are several ways to install nodejs and npm, depending on your environment. At reelyActive, we like the ease of use
-                  of nvm, which can manage having different nodejs environments on the same machine.
+                  There are several ways to install Node.js and NPM, depending on your environment. At reelyActive, we like the ease of use
+                  of the Node-RED install script, which will guide you through the process of installing all three.
                 </dd>
                 <dt class="col-sm-3">Having difficulties?</dt>
-                <dd class="col-sm-9">
-                  More information about installing nodejs and npm on a <i class="fab fa-raspberry-pi"></i> Pi can be found at <a href="https://nodejs.org/en/download" target="_blank">https://nodejs.org/en/download</a>.
-                </dd>
+                <dd class="col-sm-9">More information about installing Node-RED on a <i class="fab fa-raspberry-pi"></i> Pi can be found at <a href="https://nodered.org/docs/getting-started/raspberrypi" target="_blank">https://nodered.org/docs/getting-started/raspberrypi</a></dd>
             </div>
           </div>
           <br>
           <p class="lead">
-            Using the script from the <em>nvm</em> github repository, install nvm, which will then be used to install <em>nodejs</em> and <em>npm</em> with the following steps.
+            Using the script from the Node-RED github repository, install <em>Node-RED</em>, <em>Node.js</em>, and <em>NPM</em> with the following steps.
           </p>
           <ol>
             <li>
               <p>
-                Download and run the <em>nvm</em> installation script with the command:
+                Initialize the <em>Node-RED</em> installation script with the command:
+              <kbd class="user-select-all">
+                bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+              </kbd>
+              </p>
+            </li>
+            <li>
+              <p>
+                The install script will prompt you for several settings. With the following exceptions, select the defaults for all of the answers.
+                <ul>
+                  <li>Don't setup user security. This can be setup later if you'd like.</li>
+                  <li>No username / password is required for Node-RED.</li>
+                  <li>Do not setup a passphrase.</li>
+                </ul> 
+              </p>
+            </li>
+            <li>
+              <p>
+                Once the install script is complete, enable the nodered.service with the command:
                 <kbd class="user-select-all">
-                  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+                  sudo systemctl enable nodered.service
                 </kbd>
               </p>
             </li>
             <li>
               <p>
-                Close and reopen the terminal to make the <em>nvm</em> command available.
+                Start the Node-RED service with the command:
+                <kbd class="user-select-all">
+                  node-red-start
+                </kbd>
+                <br>
+                (rebooting the <i class="fab fa-raspberry-pi"></i> Pi will also start the service, once enabled as above)
               </p>
             </li>
             <li>
               <p>
-                Install the latest version of <em>nodejs</em> and <em>npm</em> with the command:
-                <kbd class="user-select-all">
-                  nvm install --lts
-                </kbd>
+                To check that <em>Node-RED</em> is running, open a web browser and navigate to the <i class="fab fa-raspberry-pi"></i> Pi's IP address on port 1880.
+                (For example: http://pareto.local:1880)
               </p>
             </li>
-            <p>
-              That's it. It's really that easy. 
-            </p>
-            <li>
-              <p>
-                To check which version of <em>nodejs</em> was installed, run the following command:
-                <kbd class="user-select-all">
-                  node -v
-                </kbd>
-              </p>
-            </li>
-            <li>
-              <p>
-                To check which version of <em>npm</em> was installed, run the following command:
-                <kbd class="user-select-all">
-                  npm -v
-                </kbd>
-              </p>
-            </li>
-          </ol>
+          </ol>  
           <!----- Step 3 of 6 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
