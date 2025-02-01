@@ -5,8 +5,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware.">
+          content="Step-by-step guide to install and run Pareto Anywhere open source IoT middleware on a Raspberry Pi.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
     <title> Run Pareto Anywhere on a Raspberry Pi </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -14,7 +15,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "Run Pareto Anywhere on a Raspberry Pi",
-      "description": "Step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware.",
+      "description": "Step-by-step guide to install and run Pareto Anywhere open source IoT middleware on a Raspberry Pi.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
       "image": "https://reelyactive.github.io/diy/pareto-anywhere-pi/images/header.jpg",
@@ -41,8 +42,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="../common/images/reelyactive-developers-logo-nav.png"
@@ -59,6 +59,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -131,7 +161,7 @@
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Run Pareto Anywhere on a Raspberry Pi </h1>
-          <p class="lead"> Our step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware. </p>
+          <p class="lead"> Our step-by-step guide to install and run on any version of the ubiquitous <i class="fab fa-raspberry-pi"></i> Pi. </p>
           <img src="images/header.jpg" class="img-fluid"
                alt="Run Pareto Anywhere on a Raspberry Pi">
           <!----- The TL;DR ----->
@@ -141,12 +171,11 @@
                 The TL;DR
                 <small class="text-muted"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how we at reelyActive run our Pareto Anywhere open source middleware on a <i class="fab fa-raspberry-pi"></i> Pi. </p>
-              <p> The Raspberry Pi will transform ambient wireless data into real-time context: who/what is where/how. </p>
+              <p class="lead"> Learn how we at reelyActive run our open source IoT middleware on a <i class="fab fa-raspberry-pi"></i> Pi. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What will this accomplish? </dt>
-                <dd class="col-sm-9"> The <i class="fab fa-raspberry-pi"></i> Pi will serve contextual APIs and web apps<em>&mdash;accessible on the local network at <a href="http://pareto.local" target="_blank">pareto.local</a>&mdash;</em>and can forward data to a remote Elasticsearch instance for analysis. </dd>
+                <dd class="col-sm-9"> The <i class="fab fa-raspberry-pi"></i> Pi will serve contextual APIs and web apps<em>&mdash;accessible on the local network at <a href="http://pareto.local" target="_blank">pareto.local</a>&mdash;</em>and can forward data to a local (or remote) open source stack enabling IoT applications. </dd>
                 <dt class="col-sm-3"> Why use a Pi? </dt>
                 <dd class="col-sm-9"> A <i class="fab fa-raspberry-pi"></i> Pi is ubiquitous and cost-effective, and can even collect <a href="https://www.reelyactive.com/ambient-data/" target="_blank"><i class="fas fa-external-link-alt"></i> ambient data</a> using its onboard <i class="fab fa-bluetooth"></i> Bluetooth Low Energy radio. </dd>
                 <dt class="col-sm-3"> Does this apply only to the Pi? </dt>
@@ -160,18 +189,18 @@
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="../pi-prep/">
-                <img src="../pi-prep/images/icon.jpg">
+                <img src="../pi-prep/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../pi-prep/">
-                <h5 class="mt-0 mb-1"> Prepare a Raspberry Pi from scratch </h5>
+                <h5 class="mt-0 mb-1"> Headless Raspberry Pi preparation guide </h5>
               </a>
-              Our step-by-step tutorial on how we install and configure Raspberry Pi OS Lite on a <i class="fab fa-raspberry-pi"></i> Pi.
+              Our step-by-step guide to flash Raspberry Pi OS Lite to any <i class="fab fa-raspberry-pi"></i> Pi.
             </li>
           </ul>
           <!----- Step 1 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
                 Installing Pareto Anywhere &nbsp;
@@ -181,7 +210,7 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> Do I need to SSH into the Pi? </dt>
-                <dd class="col-sm-9"> Yes, unless you've connected a keyboard and display directly to the Pi.  If you forgot how to SSH in, recall <a href="../pi-prep/#step04" target="_blank">Step 4 from the Pi Prep tutorial</a>. </dd>
+                <dd class="col-sm-9"> Yes, unless you've connected a keyboard and display directly to the Pi.  If you forgot how to SSH in, recall <a href="../pi-prep/#step02" target="_blank">Step 2 from the Pi Prep tutorial</a>. </dd>
                 <dt class="col-sm-3"> Do I need a GitHub account? </dt>
                 <dd class="col-sm-9"> No.  You can clone the public repository <em>without</em> a GitHub account. </dd>
               </dl>
@@ -220,7 +249,7 @@
           </ol>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> It is possible that some dependencies produce warnings or errors.  <em>Do not despair:</em> in most cases these have no impact on functionality. </p>
           <!----- Step 2 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step02" class="card-title my-2">
                 Run Pareto Anywhere &nbsp;
@@ -293,27 +322,15 @@
                       aria-selected="false"> EnOcean </button>
             </li>
           </ul>
-          <div class="tab-content tab-content-border">
+          <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade" id="gatewayscontent"
                  role="tabpanel" aria-labelledby="gatewaystab">
-              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from reelyActive Owl-in-Ones and Minew G1 gateways.  Follow the step-by-step tutorials below to forward data from these gateways. </p>
-              <ul class="list-group list-group-horizontal">
-                <li class="list-group-item border-0">
-                  <a href="../oio-config/">
-                    <img src="../oio-config/images/icon.jpg">
-                  </a>
-                </li>
-                <li class="list-group-item border-0">
-                  <a href="../oio-config/">
-                    <h5 class="mt-0 mb-1"> Configure an Owl-in-One </h5>
-                  </a>
-                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets to the host <span class="text-primary">xxx.xxx.xxx.xxx</span> on port 50001 
-                </li>
-              </ul>
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from reelyActive Owl-in-Ones and Minew gateways.  Follow the step-by-step tutorials below to forward data from these gateways. </p>
               <ul class="list-group list-group-horizontal mb-2">
                 <li class="list-group-item border-0">
                   <a href="../minew-g1-config/">
-                    <img src="../minew-g1-config/images/icon.png">
+                    <img src="../minew-g1-config/images/icon.png"
+                         class="rounded-1">
                   </a>
                 </li>
                 <li class="list-group-item border-0">
@@ -323,10 +340,52 @@
                   <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
                 </li>
               </ul>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg3-config/">
+                    <img src="../minew-mg3-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg3-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Minew MG3 Gateway </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg4-config/">
+                    <img src="../minew-mg4-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg4-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Minew MG4 Gateway </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../oio-config/">
+                    <img src="../oio-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../oio-config/">
+                    <h5 class="mt-0 mb-1"> Configure an Owl-in-One </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets to the host <span class="text-primary">xxx.xxx.xxx.xxx</span> on port 50001 
+                </li>
+              </ul>
             </div>
             <div class="tab-pane fade" id="apscontent" role="tabpanel"
                  aria-labelledby="apstab">
-              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from compatible Aruba and Huawei APs.  Follow the step-by-step tutorials below to forward data from these access points. </p>
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from compatible HPE Aruba Networking and Huawei APs.  Follow the step-by-step tutorials below to forward data from these access points. </p>
               <ul class="list-group list-group-horizontal">
                 <li class="list-group-item border-0">
                   <a href="../aruba-instant-config/">
@@ -377,7 +436,22 @@
             </div>
             <div class="tab-pane fade" id="readerscontent" role="tabpanel"
                  aria-labelledby="readerstab">
-              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient RAIN RFID data forwarded from compatible Impinj and RF Controls readers.  See the <a href="https://github.com/reelyactive/barnowl-impinj" target="_blank"><i class="fas fa-external-link-alt"></i> barnowl-impinj</a> and <a href="https://github.com/reelyactive/barnowl-rfcontrols" target="_blank"><i class="fas fa-external-link-alt"></i>barnowl-rfcontrols</a> modules, respectively, for additional details. </p>
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient RAIN RFID data forwarded from compatible Impinj and RF Controls readers. </p>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../impinj-r700-config/">
+                    <img src="../impinj-r700-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../impinj-r700-config/">
+                    <h5 class="mt-0 mb-1"> Configure an Impinj R700 Reader </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward IoT Device Interface event data to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>/impinj
+                </li>
+              </ul>
+              <p class="mt-4 mb-2"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Data from RFC OS will automatically be ingested if running on the same machine <small class="text-body-secondary">(see <a href="https://github.com/reelyactive/barnowl-rfcontrols" target="_blank"><i class="fas fa-external-link-alt"></i>barnowl-rfcontrols</a>).</small> </p>
             </div>
             <div class="tab-pane fade" id="enoceancontent" role="tabpanel"
                  aria-labelledby="enoceantab">
@@ -434,11 +508,11 @@
             Enjoy the data
             <small class="text-muted"> Part 4 </small>
           </h3>
-          <p> Our cheatsheet details the <b class="font-monospace">raddec</b> and <b class="font-monospace">dynamb</b> JSON output from the Pareto Anywhere open source middleware. </p>
+          <p> Our cheatsheet details the <b class="font-monospace">raddec</b>, <b class="font-monospace">dynamb</b> &amp; <b class="font-monospace">spatem</b> JSON output from Pareto Anywhere. </p>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../cheatsheet/">
-                <img src="../cheatsheet/images/icon.png" class="img-fluid">
+                <img src="../cheatsheet/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -449,7 +523,7 @@
             </li>
           </ul>
           <!----- Step 3 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
                 Automatically run on boot &nbsp;
@@ -481,38 +555,8 @@
           </ol>
           <p> Observe the Pareto Anywhere landing page. </p>
           <h3 class="mt-4">
-            Set any environment variables
-            <small class="text-muted"> (OPTIONAL) Part 2 </small>
-          </h3>
-          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> This <em>optional</em> step applies only if custom environment variable configuration is required. </p>
-          <p> To configure the <i class="fab fa-raspberry-pi"></i> Pi to forward data to the Elastic Cloud, first follow this tutorial to retrieve the Node URL which will serve as the ELASTICSEARCH_NODE environment variable. </p>
-          <ul class="list-group list-group-horizontal mb-4">
-            <li class="list-group-item border-0">
-              <a href="../elastic-cloud-deployment/">
-                <img src="../elastic-cloud-deployment/images/icon.png"
-                     class="img-fluid">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="../elastic-cloud-deployment/">
-                <h5 class="mt-0 mb-1"> Elastic Cloud Deployment Guide </h5>
-              </a>
-              Our step-by-step guide to deploy an Elastic Cloud instance for use with Pareto Anywhere.
-            </li>
-          </ul>
-          <p> Should your configuration require any environment variables to be set differently than the defaults, <em>for example to connect to a remote Elasticsearch database,</em> these variables can be added to .conf files associated with the pareto-anywhere-pi.service as follows: </p>
-          <ol>
-            <li> Create a pareto-anywhere-pi.service configuration file with the command <code class="user-select-all">sudo systemctl edit pareto-anywhere-pi.service</code> </li>
-            <li> In the file editor, add a <b>[Service]</b> line followed by the environment variables, one on each line, as in the example below:
-            <pre class="my-1"><code class="user-select-all">[Service]
-Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
-</code></pre> </li>
-            <li> Save the file as <b>/etc/systemd/system/pareto-anywhere-pi.service.d/environment.conf</b> (or similar) </li>
-          </ol>
-          <p> The environment variables from this .conf file will be observed each time the service runs. </p>
-          <h3 class="mt-4">
             Confirm that Pareto Anywhere runs on boot
-            <small class="text-muted"> Part 3 </small>
+            <small class="text-muted"> Part 2 </small>
           </h3>
           <p> Reboot and again observe the Pareto Anywhere landing page as follows: </p>
           <ol>
@@ -525,7 +569,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
               <a href="../pi-kiosk/">
-                <img src="../pi-kiosk/images/icon.jpg" class="img-fluid">
+                <img src="../pi-kiosk/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -536,7 +580,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
             </li>
           </ul>
           <!----- Step 4 of 4 ----->
-          <div class="card hover-shadow mt-5 bg-light border-0">
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
               <h2 id="step04" class="card-title my-2">
                 Discover pareto.local &nbsp;
@@ -604,9 +648,8 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
           <p> Validate the redirect rule at any time with the command <code class="user-select-all">sudo iptables -t nat -L</code> and observe the REDIRECT in the PREROUTING chain. </p>
           <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Because mDNS is not supported by all networks and operating systems, browsing to pareto.local may fail.  Pareto Anywhere will nonetheless be accessible at http://xxx.xxx.xxx.xxx where the x values are the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
           <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Any time you visit a <a href="https://www.reelyactive.com/context-aware-physical-spaces/" target="_blank"><i class="fas fa-external-link-alt"></i> context-aware physical space</a>, try browsing to <a href="http://pareto.local" target="_blank">pareto.local</a> while connected to the local WiFi<em>&mdash;imagine what you can discover!</em> </p>
-
           <!----- Attribution ----->
-          <div class="card hover-shadow bg-light border-0 my-5">
+          <div class="card hover-shadow bg-body-secondary border-0 my-5">
             <div class="row g-0">
               <div class="col-2 col-sm-1 align-self-center">
                 <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
@@ -637,7 +680,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="img-fluid">
+                <img src="../devices/images/icon.gif" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -650,7 +693,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="../../">
-                <img src="../common/images/icon.png" class="img-fluid">
+                <img src="../common/images/icon.png">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -672,7 +715,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
                   <i class="fas fa-external-link-alt"></i> reelyActive
                 </h5>
               </a>
-              Let's put things in context, one space at a time.
+              Together, let's make sense of things.
             </li>
           </ul>
         </div>
@@ -681,7 +724,7 @@ Environment="ELASTICSEARCH_NODE=https://user:pass@server.com"
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2021-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2021-2025 </a>
     </footer>
 
     <!-- Optional JavaScript -->
