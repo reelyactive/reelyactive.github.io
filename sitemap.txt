@@ -1,6 +1,7 @@
 https://reelyactive.github.io/
 https://reelyactive.github.io/diy/
 https://reelyactive.github.io/diy/aruba-instant-config/
+https://reelyactive.github.io/diy/aruba-iotops-config/
 https://reelyactive.github.io/diy/banglejs-dev/
 https://reelyactive.github.io/diy/best-practices-ble-identifiers/
 https://reelyactive.github.io/diy/best-practices-ble-advertising-data/
