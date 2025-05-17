@@ -233,14 +233,22 @@
           </ol>
           <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> If you're still using the default password, this is as good a time as any to change it.  Simply run <code class="user-select-all">sudo raspi-config</code> </p>
           <h3 class="mt-4">
-            Install pareto-anywhere and its dependencies
+            Create a reelyactive user
             <small class="text-muted"> Part 2 </small>
           </h3>
-          <p> First create a reelyActive folder under the home folder. </p>
+          <p> First create a reelyactive user to install and run Pareto Anywhere. </p>
           <ol>
-            <li> Create (if it does not already exist) a <b>reelyActive</b> <i class="fas fa-folder-plus"></i> folder with the command <code class="user-select-all">mkdir ~/reelyActive</code> </li>
-            <li> Change to the reelyActive folder with the command <code class="user-select-all">cd ~/reelyActive</code> </li>
+            <li> Create the reelyactive user with the command <code class="user-select-all">sudo adduser reelyactive</code> </li>
+            <li> When prompted enter the user password (<b>paretoanywhere</b> is the default) </il>
+            <li> Add the reelyactive user to the <span class="font-monospace">sudo</span> group with the command <code class="user-select-all">sudo adduser reelyactive sudo</code> </li>
           </ol>
+          <p> Log out and log back in as the <span class="text-body-emphasis">reelyactive</span> user for the remainder of the installation </p>
+          <h3 class="mt-4">
+            Install pareto-anywhere and its dependencies
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Change to the <span class="text-body-emphasis">reelyactive</span> user's home folder with the command <code class="user-select-all">cd ~</code> </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> The provided scripts assume <span class="text-body-emphasis">reelyactive</span> as user with <span class="font-monospace">/home/reelyactive/</span> as home folder. </p>
           <p> Next, install Pareto Anywhere under this folder. </p>
           <ol>
             <li> Clone the pareto-anywhere repository and submodules from our <i class="fab fa-github"></i> GitHub with the command <code class="user-select-all">git clone --recurse-submodules https://github.com/reelyactive/pareto-anywhere.git</code> </li>
@@ -405,9 +413,9 @@
                  aria-labelledby="onboardtab">
               <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data from its onboard radio provided an instance of <a href="https://github.com/reelyactive/barnowl-hci">barnowl-hci</a> is running and forwarding the data.  Follow the instructions below to install and run automatically each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
               <h4> Install barnowl-hci </h4>
-              <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, complete the following: </p>
+              <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH as the <span class="text-body-emphasis">reelyactive</span> user, complete the following: </p>
               <ol>
-                <li> Return to the <b>reelyActive</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd ~/reelyActive</code> </li>
+                <li> Return to the <span class="text-body-emphasis">reelyactive</span> user's home <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd ~</code> </li>
                 <li> Clone the barnowl-hci repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/barnowl-hci.git</code> </li>
                 <li> Change to the <b>barnowl-hci</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd barnowl-hci</code>
                 <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
@@ -423,12 +431,12 @@
               <h4> Enable the barnowl-hci-forwarder service </h4>
               <p> Configure systemd to run the barnowl-hci-forwarder service by completing the following: </p>
               <ol>
-                <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/barnowl-hci-forwarder-pi.service /lib/systemd/system</code> </li>
-                <li> Enable the barnowl-hci-forwarder service with the command <code class="user-select-all">sudo systemctl enable barnowl-hci-forwarder-pi.service</code> </li>
-                <li> Start the barnowl-hci-forwarder service with the command <code class="user-select-all">sudo systemctl start barnowl-hci-forwarder-pi.service</code> </li>
+                <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/barnowl-hci-forwarder.service /lib/systemd/system</code> </li>
+                <li> Enable the barnowl-hci-forwarder service with the command <code class="user-select-all">sudo systemctl enable barnowl-hci-forwarder.service</code> </li>
+                <li> Start the barnowl-hci-forwarder service with the command <code class="user-select-all">sudo systemctl start barnowl-hci-forwarder.service</code> </li>
               </ol>
               <p> The <i class="fab fa-raspberry-pi"></i> Pi will now automatically and continuously scan for ambient <i class="fab fa-bluetooth"></i> devices each time it boots, forwarding the data to Pareto Anywhere. </p>
-              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable barnowl-hci-forwarder-pi.service</code>. </p>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable barnowl-hci-forwarder.service</code>. </p>
             </div>
             <div class="tab-pane fade" id="reelcontent" role="tabpanel"
                  aria-labelledby="reeltab">
@@ -457,15 +465,15 @@
                  aria-labelledby="enoceantab">
               <p class="mt-2"> Pareto Anywhere will automatically listen for ambient EnOcean Wireless Standard data from a connected USB dongle provided an instance of <a href="https://github.com/reelyactive/barnowl-enocean">barnowl-enocean</a> is running and forwarding the data.  Follow the instructions below to install and run automatically each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
               <h4> Install barnowl-enocean </h4>
-              <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH, complete the following: </p>
+              <p> From the same terminal <i class="fas fa-terminal"></i> connected to the <i class="fab fa-raspberry-pi"></i> Pi via SSH as the <span class="text-body-emphasis">reelyactive</span> user, complete the following: </p>
               <ol>
-                <li> Return to the <b>reelyActive</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd ~/reelyActive</code> </li>
+                <li> Return to the <span class="text-body-emphasis">reelyactive</span> user's home <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd ~</code> </li>
                 <li> Clone the barnowl-enocean repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/barnowl-enocean.git</code> </li>
                 <li> Change to the <b>barnowl-enocean</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd barnowl-enocean</code>
                 <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
               </ol>
               <h4> Assign serial privileges </h4>
-              <p> Include the pi user in the dialout group to facilitate serial access to the USB dongle with the command <code class="user-select-all">sudo usermod -a -G dialout pi</code> </p>
+              <p> Include the reelyactive user in the dialout group to facilitate serial access to the USB dongle with the command <code class="user-select-all">sudo usermod -a -G dialout reelyactive</code> </p>
               <p> Run barnowl-enocean once to confirm that it can listen for ambient data: </p>
               <ul>
                 <li> <code class="user-select-all">npm start</code> will output radio decodings (raddecs) to the console for quick-and-dirty testing </li>
@@ -475,12 +483,12 @@
               <h4> Enable the barnowl-enocean-forwarder service </h4>
               <p> Configure systemd to run the barnowl-enocean-forwarder service by completing the following: </p>
               <ol>
-                <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/barnowl-enocean-forwarder-pi.service /lib/systemd/system</code> </li>
-                <li> Enable the barnowl-enocean-forwarder service with the command <code class="user-select-all">sudo systemctl enable barnowl-enocean-forwarder-pi.service</code> </li>
-                <li> Start the barnowl-enocean-forwarder service with the command <code class="user-select-all">sudo systemctl start barnowl-enocean-forwarder-pi.service</code> </li>
+                <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/barnowl-enocean-forwarder.service /lib/systemd/system</code> </li>
+                <li> Enable the barnowl-enocean-forwarder service with the command <code class="user-select-all">sudo systemctl enable barnowl-enocean-forwarder.service</code> </li>
+                <li> Start the barnowl-enocean-forwarder service with the command <code class="user-select-all">sudo systemctl start barnowl-enocean-forwarder.service</code> </li>
               </ol>
               <p> The <i class="fab fa-raspberry-pi"></i> Pi will now automatically listen to a connected EnOcean USB dongle each time it boots, forwarding the data to Pareto Anywhere. </p>
-              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable barnowl-enocean-forwarder-pi.service</code>. </p>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable barnowl-enocean-forwarder.service</code>. </p>
             </div>
           </div>
           <h3 class="mt-4">
@@ -548,9 +556,9 @@
           </h3>
           <p> Configure systemd to run the pareto-anywhere service by completing the following: </p>
           <ol>
-            <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere-pi.service /lib/systemd/system</code> </li>
-            <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere-pi.service</code> </li>
-            <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere-pi.service</code> </li>
+            <li> Copy the unit file to the systemd system folder with the command <code class="user-select-all">sudo cp units/pareto-anywhere.service /lib/systemd/system</code> </li>
+            <li> Enable the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl enable pareto-anywhere.service</code> </li>
+            <li> Start the pareto-anywhere service with the command <code class="user-select-all">sudo systemctl start pareto-anywhere.service</code> </li>
             <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
           </ol>
           <p> Observe the Pareto Anywhere landing page. </p>
@@ -564,7 +572,7 @@
             <li> From the computer <i class="fas fa-laptop"></i>, browse again to <b>xxx.xxx.xxx.xxx:3001</b> replacing the x values with the Pi's IP address </li>
           </ol>
           <p> Once again observe the Pareto Anywhere landing page.  The middleware will indeed run each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
-          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable pareto-anywhere-pi.service</code>. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> If necessary, it is possible to disable the service with the command <code class="user-select-all">sudo systemctl disable pareto-anywhere.service</code>. </p>
           <p> Pareto Anywhere is now installed and will run on each boot.  The Pi can now <em>optionally</em> be configured as a kiosk display, which is the subject of the following tutorial: </p>
           <ul class="list-group list-group-horizontal mb-4">
             <li class="list-group-item border-0">
@@ -627,8 +635,8 @@
               </tr>
             </tbody>
           </table>
-          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  Once rebooted, try SSHing back into the <i class="fab fa-raspberry-pi"></i> Pi from your <i class="fas fa-laptop"></i> computer with the command <code class="user-select-all">ssh pi@pareto.local</code> in preparation for Part 2 below. </p>
-          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Because mDNS is not supported by all networks and operating systems, SSHing to pi@pareto.local may fail.  In this case, revert to ssh pi@xxx.xxx.xxx.xxx where the x values are the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
+          <p> Upon completing the above, select <b>&lt;Finish&gt;</b> and select <b>&lt;Yes&gt;</b> when prompted to reboot.  Once rebooted, try SSHing back into the <i class="fab fa-raspberry-pi"></i> Pi from your <i class="fas fa-laptop"></i> computer with the command <code class="user-select-all">ssh reelyactive@pareto.local</code> in preparation for Part 2 below. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Because mDNS is not supported by all networks and operating systems, SSHing to reelyactive@pareto.local may fail.  In this case, revert to ssh reelyactive@xxx.xxx.xxx.xxx where the x values are the <i class="fab fa-raspberry-pi"></i> Pi's IP address. </p>
           <h3 class="mt-4">
             Route Pareto Anywhere to port 80
             <small class="text-muted"> Part 2 </small>
