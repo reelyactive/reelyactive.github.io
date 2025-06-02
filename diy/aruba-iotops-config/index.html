@@ -353,10 +353,10 @@
               <p class="lead"> Create an IoT Transport Profile. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's IoT Transport? </dt>
+                <dd class="col-sm-9"> An IoT transport profile specifies a secure WebSocket connection that forwards IoT data to a remote server. </dd>
+                <dt class="col-sm-3"> Where does it run? </dt>
+                <dd class="col-sm-9"> IoT transport profiles also run on the IoT Connector. </dd>
               </dl>
               <!--<img src="images/transport.png"
                    class="card-img-bottom" alt="Aruba IoT Transport">-->
@@ -366,31 +366,152 @@
             Browse to Transport
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> In Aruba Central, browse to the <b>IoT Operations</b> dashboard by selecting the target <b>AP Group</b>, <b>Applications</b> menu item and <b>IoT Operations</b> tab. </p>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Manage</b> in the <b>Transports</b> card. </p>
           <img src="images/manage-transports.png" class="img-fluid rounded"
                alt="Manage Aruba IoT Transports">
           <h3 class="mt-4">
             Create the transport
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>&#xff0b;</b> in the transports table to create a new transport profile.  An <b>Add Transport Profile</b> dialog should appear.  Complete the fields as follows: </p>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th scope="col"> Parameter </th>
+                  <th scope="col"> Value </th>
+                  <th scope="col"> Notes </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> Name </td>
+                  <th> reelyActive </th>
+                  <td class="text-body-secondary">
+                    <small> User-defined </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Description </td>
+                  <th> Pareto Anywhere </th>
+                  <td class="text-body-secondary">
+                    <small> User-defined </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Stream Type </td>
+                  <th> Data Frames </th>
+                  <td class="text-body-secondary">
+                    <small> Forwards payload/sensor data </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Subscriptions </td>
+                  <th> ... </th>
+                  <td class="text-body-secondary">
+                    <small> Application-specific device class filters </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Protocol Type </td>
+                  <th> WSS </th>
+                  <td class="text-body-secondary">
+                    <small> Only <em>secure</em> WebSockets are supported </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> URL </td>
+                  <th> wss://xxx.xxx.xxx.xxx:3001/aruba/aos10 </th>
+                  <td class="text-body-secondary">
+                    <small> Specify the target IP & port </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Format Type </td>
+                  <th> protobuf </th>
+                  <td class="text-body-secondary">
+                    <small> Efficient data encoding for transport </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Authentication </td>
+                  <th> Use token </th>
+                  <td class="text-body-secondary">
+                    <small> Currently ignored by Pareto Anywhere </small>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create the IoT transport profile. </p>
           <img src="images/create-transport.png" class="img-fluid rounded"
                alt="Create Aruba IoT Transport">
+          <p class="mt-3"> The IoT transport profile will deploy to the IoT Connector.  A certificate will be required to establish a <em>secure</em> WebSocket connection, which is covered next. </p>
           <h3 class="mt-4">
             Browse to Certificates
             <small class="text-body-secondary"> Part 3 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> In Aruba Central: </p>
+          <ol>
+            <li> Select the <b>AP group</b> which will collect the IoT data </li>
+            <li> Select <b>Organization</b> from the left menu </li>
+            <li> Select the <b>Network Structure</b> tab in the top bar </li>
+            <li> Click on <b>Certificates</b> in the Certificates card </li>
+          </ol>
           <img src="images/manage-certificates.png" class="img-fluid rounded"
                alt="Manage certificates in Aruba Central">
           <h3 class="mt-4">
             Add the CA certificate
             <small class="text-body-secondary"> Part 4 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>&#xff0b;</b> in the certificates table to add a new certificate.  An <b>Add Certificate</b> dialog should appear.  Complete the fields as follows: </p>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th scope="col"> Parameter </th>
+                  <th scope="col"> Value </th>
+                  <th scope="col"> Notes </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> Name </td>
+                  <th> Pareto Anywhere </th>
+                  <td class="text-body-secondary">
+                    <small> User-defined </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Type </td>
+                  <th> CA Certificate </th>
+                  <td class="text-body-secondary">
+                    <small> Certification Authority (CA) certificate </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Format </td>
+                  <th> PEM </th>
+                  <td class="text-body-secondary">
+                    <small> Privacy Enhanced Mail (PEM) </small>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Certificate File </td>
+                  <th> certificate.pem </th>
+                  <td class="text-body-secondary">
+                    <small> User-generated </small>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p> The generation of the certificate file is outside the scope of this tutorial.  For instructions to create a self-signed certificate for testing on a local network see the <a href="https://github.com/reelyactive/barnowl-aruba?tab=readme-ov-file#creating-certificates-for-secure-websockets-on-local-network" target="_blank"><i class="fas fa-external-link-alt"></i> Creating Certificates for Secure WebSockets on Local Network</a> section of our barnowl-aruba module documentation. </p>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Add</b> to upload the certificate. </p>
           <img src="images/add-certificate.png" class="img-fluid rounded"
                alt="Add CA certificate for Aruba IoT Transport">
-          <p class="mt-3"> Observing data in Pareto Anywhere requires no additional action if an instance based on the pareto-anywhere package is running, or, for quick-and-dirty validation, run barnowl-aruba as described below. </p>
+          <p class="mt-3"> The certificate will automatically be deployed to the IoT Controller, and the <em>secure</em> WebSocket connection will be attempted.  Observing data in Pareto Anywhere requires no additional action if an instance based on the pareto-anywhere package is running, or, for quick-and-dirty validation, run barnowl-aruba as described below. </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="paretotab"
