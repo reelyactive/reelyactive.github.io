@@ -231,10 +231,10 @@
               <p class="lead"> Instantiate an IoT Connector on the AP(s) or on an external server. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's an IoT Connector? </dt>
+                <dd class="col-sm-9"> The IoT Connector provisions multiple applications to be computed at the edge for agile IoT application support. </dd>
+                <dt class="col-sm-3"> Where does it run? </dt>
+                <dd class="col-sm-9"> An IoT Connector can run directly on some series of APs, or on an external server called a Data Collector. </dd>
               </dl>
               <!--<img src="images/connector.png"
                    class="card-img-bottom" alt="Create a Connector">-->
@@ -244,22 +244,36 @@
             Browse to IoT Operations
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> In Aruba Central: </p>
+          <ol>
+            <li> Select the <b>AP group</b> which will collect the IoT data </li>
+            <li> Select <b>Applications</b> from the left menu </li>
+            <li> Select the <b>IoT Operations</b> tab in the top bar </li>
+            <li> Click on <b>Add Connector</b> in the Connectors card </li>
+          </ol>
           <img src="images/add-connector.png" class="img-fluid rounded"
                alt="Add an Aruba IoT Connector">
+          <p class="mt-3"> A <b>Manage Connector</b> dialog should appear. </p>
           <h3 class="mt-4">
             Create the Connector
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> In the <b>Manage Connector</b> dialog: </p>
+          <ul>
+            <li> Select <b>Access Point</b> as the platform type </li>
+            <li> Check the box to <b>Add all Access Points...</b> </li>
+          </ul>
+          <p> Then click <i class="fas fa-mouse-pointer"></i> <b>Confirm</b> to create the connector on each AP. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> For larger-scale deployments, a <b>Data Collector</b> is the preferred platform.  Consult the Aruba documentation should you choose this option. </p>
           <img src="images/create-connector.png"
                class="img-fluid mx-auto d-block rounded"
                alt="Create an Aruba IoT Connector">
+          <p class="mt-3"> The IoT Connector will begin to deploy to the AP(s). </p>
           <h3 class="mt-4">
             Confirm operation
             <small class="text-body-secondary"> Part 3 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> Observe the <b>IoT Operations</b> dashboard update as the IoT Connector is deployed. </p>
           <div class="carousel slide carousel-fade" data-bs-ride="carousel"
                data-bs-interval="1600">
             <div class="carousel-inner">
@@ -275,6 +289,7 @@
               </div>
             </div>
           </div>
+          <p class="mt-3"> The number of <i class="fab fa-bluetooth"></i> Bluetooth Low Energy (BLE) devices in range of the APs will appear in the <b>IoT Devices</b> card.  The APs are already collecting <a href="https://www.reelyactive.com/ambient-data/" target="_blank"><i class="fas fa-external-link-alt"></i> ambient data</a>!  Classifying, filtering and interpreting this ambient data is covered in the next step. </p>
           <!----- Step 2 of 3 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
@@ -285,10 +300,10 @@
               <p class="lead"> Choose IoT Applications to classify the devices of interest. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's an IoT App? </dt>
+                <dd class="col-sm-9"> Each IoT App is an edge compute module developed by an Aruba partner to serve a specific purpose. </dd>
+                <dt class="col-sm-3"> Where do they run? </dt>
+                <dd class="col-sm-9"> IoT Apps are deployed on, and run inside, the IoT Connector. </dd>
               </dl>
               <!--<img src="images/applications.png"
                    class="card-img-bottom" alt="Aruba IoT Applications">-->
@@ -298,30 +313,36 @@
             Browse to IoT Applications
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> In Aruba Central, browse to the <b>IoT Operations</b> dashboard by selecting the target <b>AP Group</b>, <b>Applications</b> menu item and <b>IoT Operations</b> tab. </p>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Manage</b> in the <b>IoT Applications</b> card. </p>
           <img src="images/manage-iot-apps.png" class="img-fluid rounded"
                alt="Manage Aruba IoT Apps">
-          <p class="mt-3"> Details to come. </p>
+          <p class="mt-3"> The list of available apps should appear, where each card represents an IoT Application. </p>
           <img src="images/available-iot-apps.png" class="img-fluid rounded"
                alt="Aruba IoT Apps">
+          <p class="mt-3"> Browse through the IoT Applications to determine which may be of interest in the context of your deployment. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> IoT Applications are regularly added.  It's worth checking the list periodically to discover new possibilities. </p>
           <h3 class="mt-4">
             Install an IoT App
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> Select the card of any IoT Application of interest and click <i class="fas fa-mouse-pointer"></i> <b>Install</b> to deploy it to the IoT Connector(s). </p>
           <img src="images/install-iot-app.png" class="img-fluid rounded"
                alt="Install an Aruba IoT App">
-          <p class="mt-3"> Details to come. </p>
+          <p class="mt-3"> The <b>IoT Applications</b> card in the <b>IoT Operations</b> dashboard will update to show the status of each app across all IoT Connectors. </p>
           <img src="images/iot-apps-status.png"
                class="img-fluid mx-auto d-block rounded"
                alt="Aruba IoT Apps status">
+          <p class="mt-3"> As required, again click <i class="fas fa-mouse-pointer"></i> <b>Manage</b> in the <b>IoT Applications</b> card to install, update or remove apps. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> reelyActive maintains IoT Applications both for technology partners and for our own open source IoT technologies. </p>
           <h3 class="mt-4">
             Observe device classification
             <small class="text-body-secondary"> Part 3 </small>
           </h3>
-          <p> Details to come. </p>
+          <p> From the <b>IoT Operations</b> dashboard, in the <b>IoT Devices</b> card, click <i class="fas fa-mouse-pointer"></i> <b>View</b> to see the list of devices detected<em>&mdash;and classified&mdash;</em> by the AP(s). </p>
           <img src="images/devices-table-columns.png" class="img-fluid rounded"
                alt="Aruba IoT Operations devices table column selection">
+          <p class="mt-3"> Click on the <i class="fas fa-mouse-pointer"></i> <b>Address</b> of any device to see additional data collected by the AP and processed by any corresponding IoT Apps. </p>
           <!----- Step 3 of 3 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
