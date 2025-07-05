@@ -5,8 +5,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="reelyActive Developers directory of all tutorials and documentation.">
+          content="Directory of all tutorials and documentation for reelyActive Developers.">
     <link rel="stylesheet" href="common/style/bootstrappyactive.min.css">
+    <script type="module" src="common/js/color-modes.js"></script>
     <title> Directory </title>
     <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
     <script type="application/ld+json">
@@ -14,7 +15,7 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "Directory",
-      "description": "reelyActive Developers directory of all tutorials and documentation.",
+      "description": "Directory of all tutorials and documentation for reelyActive Developers.",
       "proficiencyLevel": "Beginner",
       "genre": "style guide",
       "image": "https://reelyactive.github.io/diy/images/reelyactive-developers-title.png",
@@ -42,8 +43,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white
-                shadow">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">
           <img src="common/images/reelyactive-developers-logo-nav.png"
@@ -60,6 +60,36 @@
           </ul>
           <!-- Right-aligned navigation items -->
           <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
                  role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -138,7 +168,7 @@
           <ul class="list-group list-group-horizontal mt-4">
             <li class="list-group-item border-0">
               <a href="cheatsheet/">
-                <img src="cheatsheet/images/icon.png">
+                <img src="cheatsheet/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -148,38 +178,136 @@
               <small class="text-muted"> "Owl" you need to know about Pareto Anywhere's core data structures. </small>
             </li>
           </ul>
+          <!-- Pareto Anywhere -->
+          <h2 class="mt-5"> Pareto Anywhere </h2>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-pc/">
+                <img src="pareto-anywhere-pc/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-pc/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
+              </a>
+              <small class="text-muted"> Our step-by-step guide to install and run Pareto Anywhere on a personal computer to make any physical space context-aware. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-pi/">
+                <img src="pareto-anywhere-pi/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-pi/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
+              </a>
+              <small class="text-muted"> Our step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-startup-script/">
+                <img src="pareto-anywhere-startup-script/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-startup-script/">
+                <h5 class="mt-0 mb-1"> Create a Pareto Anywhere startup script </h5>
+              </a>
+              <small class="text-muted"> Our step-by-step guide to run a custom Pareto Anywhere configuration, initiated by a simple startup script. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-windows-service/">
+                <img src="pareto-anywhere-windows-service/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-windows-service/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere as a Windows service </h5>
+              </a>
+              <small class="text-muted"> Our step-by-step guide for production deployments on <i class="fab fa-windows"></i> Windows machines </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-azure/">
+                <img src="pareto-anywhere-azure/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-azure/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere for Azure </h5>
+              </a>
+              <small class="text-muted"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Microsoft Azure. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-azure-aruba/">
+                <img src="pareto-anywhere-azure-aruba/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="pareto-anywhere-azure-aruba/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere for Azure with Aruba APs </h5>
+              </a>
+              <small class="text-muted"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Azure, with HPE Aruba Networking access points as an IoT data source. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="hello-pareto-anywhere/">
+                <img src="hello-pareto-anywhere/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="hello-pareto-anywhere/">
+                <h5 class="mt-0 mb-1"> Hello Pareto Anywhere! </h5>
+              </a>
+              <small class="text-muted"> A getting started guide oriented towards developers familiar with the open source software model. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="oss-packages/">
+                <img src="oss-packages/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="oss-packages/">
+                <h5 class="mt-0 mb-1"> Open Source Software packages list </h5>
+              </a>
+              <small class="text-muted"> A canonical list and descriptions of the core reelyActive OSS packages. </small>
+            </li>
+          </ul>
           <!-- Ambient Devices -->
           <h2 class="mt-5"> Ambient Devices </h2>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="banglejs-dev/">
-                <img src="banglejs-dev/images/icon.jpg">
+                <img src="banglejs-dev/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="banglejs-dev/">
                 <h5 class="mt-0 mb-1"> Bangle.js Development Guide </h5>
               </a>
-              <small class="text-muted"> Discover and develop Bangle.js applications for context-aware physical spaces using Espruino and Bluetooth Low Energy. </small>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="best-practices-ble-identifiers/">
-                <img src="best-practices-ble-identifiers/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="best-practices-ble-identifiers/">
-                <h5 class="mt-0 mb-1"> Best practices for BLE identifiers </h5>
-              </a>
-              <small class="text-muted"> Assignment of Bluetooth Low Energy (BLE) identifiers for interoperability and interpretability. </small>
+              <small class="text-muted"> Discover and develop Bangle.js <i class="fab fa-bluetooth"></i> smart watch applications. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="minew-b10-config/">
-                <img src="minew-b10-config/images/icon.png">
+                <img src="minew-b10-config/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -192,7 +320,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="minew-c6-config/">
-                <img src="minew-c6-config/images/icon.jpg">
+                <img src="minew-c6-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -205,7 +333,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="minew-e8-config/">
-                <img src="minew-e8-config/images/icon.jpg">
+                <img src="minew-e8-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -222,7 +350,7 @@
               </a>
             </li>
             <li class="list-group-item border-0">
-              <a href="minew-msp01-config/">
+              <a href="minew-msp01-config/" class="rounded-1">
                 <h5 class="mt-0 mb-1"> Configure a Minew MSP01 PIR Sensor </h5>
               </a>
               <small class="text-muted"> Our step-by-step guide to configure the passive infrared sensor with the BeaconSET+ app. </small>
@@ -231,7 +359,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="minew-s1-config/">
-                <img src="minew-s1-config/images/icon.jpg">
+                <img src="minew-s1-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -243,8 +371,21 @@
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
+              <a href="joltjs-dev/">
+                <img src="joltjs-dev/images/icon.jpg" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="joltjs-dev/">
+                <h5 class="mt-0 mb-1"> Jolt.js Development Guide </h5>
+              </a>
+              <small class="text-muted"> Discover and develop Jolt.js <i class="fab fa-bluetooth"></i> wireless motor driver applications. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
               <a href="nicla-vision-dev/">
-                <img src="nicla-vision-dev/images/icon.png">
+                <img src="nicla-vision-dev/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -256,15 +397,29 @@
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
+              <a href="nicla-vision-gauge-reader-config/">
+                <img src="nicla-vision-gauge-reader-config/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="nicla-vision-gauge-reader-config/">
+                <h5 class="mt-0 mb-1"> Nicla Vision Gauge Reader Configuration Guide </h5>
+              </a>
+              <small class="text-body-secondary"> Create a wireless gauge reader using OpenMV and Bluetooth Low Energy. </small>
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
               <a href="puckjs-dev/">
-                <img src="puckjs-dev/images/icon.jpg">
+                <img src="puckjs-dev/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="puckjs-dev/">
                 <h5 class="mt-0 mb-1"> Puck.js Development Guide </h5>
               </a>
-              <small class="text-muted"> Discover and develop Puck.js applications for context-aware physical spaces using Espruino and Bluetooth Low Energy. </small>
+              <small class="text-muted"> Discover and develop Puck.js <i class="fab fa-bluetooth"></i> wireless sensor applications. </small>
             </li>
           </ul>
           <!-- Ambient Infrastructure -->
@@ -272,7 +427,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="aruba-iotops-config/">
-                <img src="aruba-iotops-config/images/icon.png">
+                <img src="aruba-iotops-config/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -285,7 +441,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="aruba-instant-config/">
-                <img src="aruba-instant-config/images/icon.jpg">
+                <img src="aruba-instant-config/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -298,7 +455,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="minew-g1-config/">
-                <img src="minew-g1-config/images/icon.png">
+                <img src="minew-g1-config/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -311,7 +468,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="minew-mg3-config/">
-                <img src="minew-mg3-config/images/icon.jpg">
+                <img src="minew-mg3-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -324,7 +481,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="minew-mg4-config/">
-                <img src="minew-mg4-config/images/icon.jpg">
+                <img src="minew-mg4-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -337,7 +494,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="impinj-r700-config/">
-                <img src="impinj-r700-config/images/icon.jpg">
+                <img src="impinj-r700-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -350,7 +507,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="oio-config/">
-                <img src="oio-config/images/icon.jpg">
+                <img src="oio-config/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -363,7 +520,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="oio-wlan/">
-                <img src="oio-wlan/images/icon.jpg">
+                <img src="oio-wlan/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -377,7 +534,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="laird-ig60-prep/">
-                <img src="laird-ig60-prep/images/icon.jpg">
+                <img src="laird-ig60-prep/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -390,7 +547,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="pi-prep/">
-                <img src="pi-prep/images/icon.jpg">
+                <img src="pi-prep/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -403,7 +560,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="laptop-prep/">
-                <img src="laptop-prep/images/icon.jpg">
+                <img src="laptop-prep/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -413,110 +570,34 @@
               <small class="text-muted"> Our step-by-step guide to prepare a laptop with the minimum prerequisites for our open source software. </small>
             </li>
           </ul>
-          <!-- Pareto Anywhere -->
-          <h2 class="mt-5"> Pareto Anywhere </h2>
+          <!-- Best Practices -->
+          <h2 class="mt-5"> Best Practices </h2>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
-              <a href="pareto-anywhere-pc/">
-                <img src="pareto-anywhere-pc/images/icon.png">
+              <a href="best-practices-ble-identifiers/">
+                <img src="best-practices-ble-identifiers/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
-              <a href="pareto-anywhere-pc/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
+              <a href="best-practices-ble-identifiers/">
+                <h5 class="mt-0 mb-1"> Best practices for BLE identifiers </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to install and run Pareto Anywhere on a personal computer to make any physical space context-aware. </small>
+              <small class="text-muted"> Assignment of Bluetooth Low Energy (BLE) identifiers for interoperability and interpretability. </small>
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
-              <a href="pareto-anywhere-pi/">
-                <img src="pareto-anywhere-pi/images/icon.png">
+              <a href="best-practices-ble-advertising-data/">
+                <img src="best-practices-ble-advertising-data/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
-              <a href="pareto-anywhere-pi/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
+              <a href="best-practices-ble-advertising-data/">
+                <h5 class="mt-0 mb-1"> Best practices for BLE advertising data </h5>
               </a>
-              <small class="text-muted"> Our step-by-step guide to install and run Pareto Anywhere on a Raspberry Pi to make any physical space context-aware. </small>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-startup-script/">
-                <img src="pareto-anywhere-startup-script/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-startup-script/">
-                <h5 class="mt-0 mb-1"> Create a Pareto Anywhere startup script </h5>
-              </a>
-              <small class="text-muted"> Our step-by-step guide to run a custom Pareto Anywhere configuration, initiated by a simple startup script. </small>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-windows-service/">
-                <img src="pareto-anywhere-windows-service/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-windows-service/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere as a Windows service </h5>
-              </a>
-              <small class="text-muted"> Our step-by-step guide for production deployments on <i class="fab fa-windows"></i> Windows machines </small>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-azure/">
-                <img src="pareto-anywhere-azure/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-azure/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere for Azure </h5>
-              </a>
-              <small class="text-muted"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Microsoft Azure. </small>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-azure-aruba/">
-                <img src="pareto-anywhere-azure-aruba/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="pareto-anywhere-azure-aruba/">
-                <h5 class="mt-0 mb-1"> Run Pareto Anywhere for Azure with Aruba APs </h5>
-              </a>
-              <small class="text-muted"> Our step-by-step guide to deploy and run Pareto Anywhere as a serverless function on Azure, with HPE Aruba Networking access points as an IoT data source. </small>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="hello-pareto-anywhere/">
-                <img src="hello-pareto-anywhere/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="hello-pareto-anywhere/">
-                <h5 class="mt-0 mb-1"> Hello Pareto Anywhere! </h5>
-              </a>
-              <small class="text-muted"> A getting started guide oriented towards developers familiar with the open source software model. </small>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item border-0">
-              <a href="oss-packages/">
-                <img src="oss-packages/images/icon.png">
-              </a>
-            </li>
-            <li class="list-group-item border-0">
-              <a href="oss-packages/">
-                <h5 class="mt-0 mb-1"> Open Source Software packages list </h5>
-              </a>
-              <small class="text-muted"> A canonical list and descriptions of the core reelyActive OSS packages. </small>
+              <small class="text-muted"> Structuring Bluetooth Low Energy (BLE) advertising data for interoperability and interpretability. </small>
             </li>
           </ul>
           <!-- Integrations -->
@@ -524,7 +605,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-alerts/">
-                <img src="kibana-alerts/images/icon.png">
+                <img src="kibana-alerts/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -537,7 +618,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-annotations/">
-                <img src="kibana-annotations/images/icon.png">
+                <img src="kibana-annotations/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -550,7 +632,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-asset-tracking-dashboard/">
-                <img src="kibana-asset-tracking-dashboard/images/icon.png">
+                <img src="kibana-asset-tracking-dashboard/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -563,7 +646,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-occupancy-dashboard/">
-                <img src="kibana-occupancy-dashboard/images/icon.png">
+                <img src="kibana-occupancy-dashboard/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -576,7 +660,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-pie-chart-zone-activity/">
-                <img src="kibana-pie-chart-zone-activity/images/icon.png">
+                <img src="kibana-pie-chart-zone-activity/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -589,7 +674,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-rssi-filter/">
-                <img src="kibana-rssi-filter/images/icon.png">
+                <img src="kibana-rssi-filter/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -602,7 +688,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-heatmap-space-time/">
-                <img src="kibana-heatmap-space-time/images/icon.png">
+                <img src="kibana-heatmap-space-time/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -615,7 +702,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-timelion-receivers/">
-                <img src="kibana-timelion-receivers/images/icon.png">
+                <img src="kibana-timelion-receivers/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -628,7 +716,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-room-occupancy-timeseries/">
-                <img src="kibana-room-occupancy-timeseries/images/icon.png">
+                <img src="kibana-room-occupancy-timeseries/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -641,7 +730,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-bar-chart-time-analysis/">
-                <img src="kibana-bar-chart-time-analysis/images/icon.png">
+                <img src="kibana-bar-chart-time-analysis/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -654,7 +744,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-visual-builder-occupancy-timeseries/">
-                <img src="kibana-visual-builder-occupancy-timeseries/images/icon.png">
+                <img src="kibana-visual-builder-occupancy-timeseries/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -680,7 +771,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana-export-data-csv-file/">
-                <img src="kibana-export-data-csv-file/images/icon.png">
+                <img src="kibana-export-data-csv-file/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -693,7 +785,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="elasticsearch-email-integration/">
-                <img src="elasticsearch-email-integration/images/icon.png">
+                <img src="elasticsearch-email-integration/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -706,7 +799,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="elasticsearch-slack-integration/">
-                <img src="elasticsearch-slack-integration/images/icon.png">
+                <img src="elasticsearch-slack-integration/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -719,7 +813,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="kibana/">
-                <img src="kibana/images/icon.jpg">
+                <img src="kibana/images/icon.jpg" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -732,7 +826,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="elasticsearch-service-setup/">
-                <img src="elasticsearch-service-setup/images/icon.png">
+                <img src="elasticsearch-service-setup/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -747,7 +842,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="contact-tracing-architectures/">
-                <img src="contact-tracing-architectures/images/icon.png">
+                <img src="contact-tracing-architectures/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -764,7 +860,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="showcase-asset-tracking/">
-                <img src="common/images/icon.png">
+                <img src="common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -777,7 +873,7 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="showcase-personnel-tracking/">
-                <img src="common/images/icon.png">
+                <img src="common/images/icon.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -790,7 +886,8 @@
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="showcase-interaction-detection/">
-                <img src="showcase-interaction-detection/images/icon.jpg">
+                <img src="showcase-interaction-detection/images/icon.jpg"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -808,7 +905,8 @@
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com/pareto/anywhere/"
                  target="_blank">
-                <img src="common/images/icon-pareto-anywhere.png">
+                <img src="common/images/icon-pareto-anywhere.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -819,13 +917,13 @@
                   Pareto Anywhere
                 </h5>
               </a>
-              Our open source middleware for context-aware physical spaces.
+              Our open source IoT middleware that makes sense of things.
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
               <a href="https://www.reelyactive.com/diract/" target="_blank">
-                <img src="common/images/icon-diract.png">
+                <img src="common/images/icon-diract.png" class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
@@ -849,10 +947,10 @@
               <a href="https://www.reelyactive.com" target="_blank">
                 <h5 class="mt-0 mb-1">
                   <i class="fas fa-external-link-alt"></i>
-                  www.reelyActive.com
+                  reelyActive
                 </h5>
               </a>
-              Make <em>any</em> physical space context-aware for what matters for <em>your</em> business.
+              Together, let's make sense of things.
             </li>
           </ul>
           <ul class="list-group list-group-horizontal mb-4">
@@ -874,7 +972,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2023 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2014-2025 </a>
     </footer>
 
     <!-- Optional JavaScript -->
