@@ -36,6 +36,7 @@ https://reelyactive.github.io/diy/minew-e8-config/
 https://reelyactive.github.io/diy/minew-g1-config/
 https://reelyactive.github.io/diy/minew-mg3-config/
 https://reelyactive.github.io/diy/minew-mg4-config/
+https://reelyactive.github.io/diy/minew-mg7-config/
 https://reelyactive.github.io/diy/minew-msp01-config/
 https://reelyactive.github.io/diy/minew-s1-config/
 https://reelyactive.github.io/diy/nicla-vision-dev/
