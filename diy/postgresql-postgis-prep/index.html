@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Install and prepare PostgreSQL and PostGIS for use with Pareto Anywhere open source IoT middleware by reelyActive.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Install PostgreSQL and PostGIS </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Install PostgreSQL and PostGIS",
+      "description": "Install and prepare PostgreSQL and PostGIS for use with Pareto Anywhere open source IoT middleware by reelyActive.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/postgres-postgis-prep/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Install PostgreSQL and PostGIS"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com">
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/">
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/">
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Install PostgreSQL and PostGIS </h1>
+          <p class="lead"> Prepare the open source relational database with geospatial support to receive IoT and RTLS data from Pareto Anywhere. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="PostgreSQL and PostGIS">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to install the pair for IoT and RTLS applications with Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes the data from just about <em>any</em>thing usable. </dd>
+                <dt class="col-sm-3"> Why include PostGIS? </dt>
+                <dd class="col-sm-9"> To handle the real-time location (RTLS) data provided by Pareto Anywhere, and to facilitate geospatial queries and analysis. </dd>
+                <dt class="col-sm-3"> Can I <em>just</em> install the pair? </dt>
+                <dd class="col-sm-9"> <em>Sure!</em>  Just follow Step 1 to install PostgreSQL & PostGIS and skip the rest. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing PostgreSQL and PostGIS &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Install the pair on a specific operating system. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's PostgreSQL? </dt>
+                <dd class="col-sm-9"> <a href="https://www.postgresql.org/" target="_blank"><i class="fas fa-external-link-alt"></i> PostgreSQL</a> is the world's most advanced open source relational database. </dd>
+                <dt class="col-sm-3"> What's PostGIS? </dt>
+                <dd class="col-sm-9"> <a href="https://postgis.net/" target="_blank"><i class="fas fa-external-link-alt"></i> PostGIS</a> extends the capabilities of the PostgreSQL relational database by adding support for storing, indexing, and querying geospatial data. </dd>
+              </dl>
+              <img src="images/postgresql-postgis-installation.png"
+                   class="card-img-bottom" alt="Install PostgreSQL and PostGIS">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install PostgreSQL
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p class="mt-4"> Follow the instructions specific to your operating system to install PostgreSQL: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="sqllinuxtab"
+                      data-bs-toggle="tab" data-bs-target="#sqllinuxcontent"
+                      type="button" role="tab" aria-controls="sqllinuxtab"
+                      aria-selected="true">
+                <i class="fab fa-linux"></i> Linux
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sqlwindowstab" data-bs-toggle="tab"
+                      data-bs-target="#sqlwindowscontent" type="button"
+                      role="tab" aria-controls="sqlwindowstab"
+                      aria-selected="false">
+                <i class="fab fa-windows"></i> Windows
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="sqllinuxcontent"
+                 role="tabpanel" aria-labelledby="sqllinuxtab">
+              <p class="mt-2"> Open a terminal <i class="fas fa-terminal"></i> and then: </p>
+              <ol>
+                <li> Update the package list with the command <code class="user-select-all">sudo apt update</code> </li>
+                <li> Upgrade to the latest package versions with the command <code class="user-select-all">sudo apt upgrade</code> </li>
+                <li> Install PostgreSQL with the command <code class="user-select-all">sudo apt install postgresql</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; <1 min </span> </li>
+              </ol>
+              <p class="mb-1">
+                <small class="text-muted"> The installed PostgreSQL version will depend on your OS version (ex: postgresql-16 on Ubuntu 24.10). </small>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="sqlwindowscontent" role="tabpanel"
+                 aria-labelledby="sqlwindowstab">
+              <p class="mt-2"> Download the latest PostgreSQL version from <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads" target="_blank">EDB</a> and follow the installer instructions. </p>
+              <p class="mb-1">
+                <small class="text-muted"> The default installer settings should apply to common use cases. </small>
+              </p>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install PostGIS
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p class="mt-4"> Again, follow the instructions specific to your operating system to install PostGIS: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="gislinuxtab"
+                      data-bs-toggle="tab" data-bs-target="#gislinuxcontent"
+                      type="button" role="tab" aria-controls="gislinuxtab"
+                      aria-selected="true">
+                <i class="fab fa-linux"></i> Linux
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="giswindowstab" data-bs-toggle="tab"
+                      data-bs-target="#giswindowscontent" type="button"
+                      role="tab" aria-controls="giswindowstab"
+                      aria-selected="false">
+                <i class="fab fa-windows"></i> Windows
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="gislinuxcontent"
+                 role="tabpanel" aria-labelledby="gislinuxtab">
+              <p class="mt-2"> Open a terminal <i class="fas fa-terminal"></i> and then install PostGIS with the command <code class="user-select-all">sudo apt install postgresql-postgis</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; <1 min </span> </p>
+              <p class="mb-1">
+                <small class="text-muted"> The installed PostGIS version will depend on your OS version (ex: postgresql-16-postgis-3 on Ubuntu 24.10). </small>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="giswindowscontent" role="tabpanel"
+                 aria-labelledby="giswindowstab">
+              <p class="mt-2"> Run the StackBuilder program provided by the PostgreSQL installation, select the Spatial Extensions / PostGIS option and complete the installation. </p>
+              <p class="mb-1">
+                <small class="text-muted"> The default installer settings should apply to common use cases. </small>
+              </p>
+            </div>
+          </div>
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Creating the database &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Create the database with PostGIS extension. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's a database? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What's an extension? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/postgresql-database.png"
+                   class="card-img-bottom" alt="PostgreSQL database creation">
+            </div>
+          </div>
+          <p class="mt-4"> Detailed Parts to come... </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Creating the tables &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Create the database tables. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's a table? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+                <dt class="col-sm-3"> What's a schema? </dt>
+                <dd class="col-sm-9"> Explain. </dd>
+              </dl>
+              <img src="images/postgresql-tables.png"
+                   class="card-img-bottom" alt="PostgreSQL tables creation">
+            </div>
+          </div>
+          <p class="mt-4"> Detailed Parts to come... </p>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2025 </a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
