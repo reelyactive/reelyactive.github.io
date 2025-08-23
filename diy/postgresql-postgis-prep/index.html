@@ -285,6 +285,7 @@
               </p>
             </div>
           </div>
+          <p class="mt-3"> Now that PostgreSQL and PostGIS are installed, it is possible to create a database with the PostGIS extension, which is covered in Step 2 below. </p>
           <!----- Step 2 of 3 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
@@ -295,36 +296,58 @@
               <p class="lead text-body-secondary"> Create the database with PostGIS extension. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> What's a database? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
                 <dt class="col-sm-3"> What's an extension? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dd class="col-sm-9"> PostgreSQL extensions, like PostGIS, package user-visible functions and/or use hooks to modify how the database handles certain processes. </dd>
+                <dt class="col-sm-3"> Can I use pgAdmin? </dt>
+                <dd class="col-sm-9"> The instructions below are for command line execution.  If the <a href="https://www.pgadmin.org/" target="_blank"><i class="fas fa-external-link-alt"></i> pgAdmin</a> interface is available, they can instead be executed through its graphical user interface. </dd>
               </dl>
               <img src="images/postgresql-database.png"
                    class="card-img-bottom" alt="PostgreSQL database creation">
             </div>
           </div>
-          <p class="mt-4"> Detailed Parts to come... </p>
+          <h3 class="mt-4">
+            Create the database
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and then log in to PostgreSQL as the <span class="font-monospace">postgres</span> user with the command <code class="user-select-all">sudo -u postgres psql</code> </p>
+          <p> Once logged in, the terminal <i class="fas fa-terminal"></i> prompt should change to <b class="font-monospace">postgres=#</b>, accepting database queries.  Enter the following queries: </p>
+          <ul>
+            <li> <code class="user-select-all">CREATE USER reelyactive WITH ENCRYPTED PASSWORD 'paretoanywhere';</code> </li>
+            <li> <code class="user-select-all">CREATE DATABASE pareto_anywhere WITH OWNER reelyactive;</code> </li>
+          </ul>
+          <p> This will create a database called <b>pareto_anywhere</b> owned by user <b>reelyactive</b> with password <b>paretoanywhere</b>. </p>
+          <h3 class="mt-4">
+            Create the PostGIS extension
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> Remain logged in to the database and enter the following queries: </p>
+          <ul>
+            <li> <code class="user-select-all">CREATE EXTENSION postgis;</code> </li>
+            <li> <code class="user-select-all">SELECT postgis_full_version();</code> </li>
+          </ul>
+          <p class="mb-1"> This will create the PostGIS extension on the database.  The second query simply verifies the extension version number.<sup>*</sup> </p>
+          <p class="text-end text-body-secondary small"> <sup>*</sup> <span class="font-monospace">ERROR:  function postgis_full_version() does not exist</span> would indicate that creation of the PostGIS extension was unsuccessful. </p>
+          <p class="mt-3"> Now that the database is created, it is possible to create tables in which data to write the IoT and RTLS data, which is covered in Step 3 below. </p>
           <!----- Step 3 of 3 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
               <h2 id="step03" class="card-title my-2">
-                Creating the tables &nbsp;
+                Creating the tables and indexes &nbsp;
                 <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
               </h2>
-              <p class="lead text-body-secondary"> Create the database tables. </p>
+              <p class="lead text-body-secondary"> Create the database tables and indexes. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What's a table? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
-                <dt class="col-sm-3"> What's a schema? </dt>
-                <dd class="col-sm-9"> Explain. </dd>
+                <dd class="col-sm-9"> A database table is a structured collection of data organised into columns and rows, where each row is an entry. </dd>
+                <dt class="col-sm-3"> What's an index? </dt>
+                <dd class="col-sm-9"> A database index is a data structure designed to speed up data retrieval operations within a table by providing a rapid way to locate specific rows. </dd>
               </dl>
               <img src="images/postgresql-tables.png"
                    class="card-img-bottom" alt="PostgreSQL tables creation">
             </div>
           </div>
-          <p class="mt-4"> Detailed Parts to come... </p>
+          <p class="mt-4"> See <a href="https://github.com/reelyactive/barnacles-postgres?tab=readme-ov-file#creating-tables" target="_blank">Creating tables</a> and <a href="https://github.com/reelyactive/barnacles-postgres?tab=readme-ov-file#creating-indexes" target="_blank">Creating indexes</a> in the barnacles-postgres documentation. </p>
           <!----- Where to next ----->
           <hr class="my-4">
           <h2> Where to next? </h2>
