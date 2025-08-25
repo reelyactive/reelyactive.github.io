@@ -311,21 +311,25 @@
           </h3>
           <p> Open a terminal <i class="fas fa-terminal"></i> and then log in to PostgreSQL as the <span class="font-monospace">postgres</span> user with the command <code class="user-select-all">sudo -u postgres psql</code> </p>
           <p> Once logged in, the terminal <i class="fas fa-terminal"></i> prompt should change to <b class="font-monospace">postgres=#</b>, accepting database queries.  Enter the following queries: </p>
-          <ul>
+          <ul class="list-unstyled ms-4">
             <li> <code class="user-select-all">CREATE USER reelyactive WITH ENCRYPTED PASSWORD 'paretoanywhere';</code> </li>
             <li> <code class="user-select-all">CREATE DATABASE pareto_anywhere WITH OWNER reelyactive;</code> </li>
           </ul>
-          <p> This will create a database called <b>pareto_anywhere</b> owned by user <b>reelyactive</b> with password <b>paretoanywhere</b>. </p>
+          <p> This will create a database called <i class="fas fa-database"></i> <b>pareto_anywhere</b> owned by user <b>reelyactive</b> with password <b>paretoanywhere</b>. </p>
           <h3 class="mt-4">
             Create the PostGIS extension
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> Remain logged in to the database and enter the following queries: </p>
-          <ul>
+          <p> Remain logged in as the <span class="font-monospace">postgres</span> user and change to the <i class="fas fa-database"></i> <b>pareto_anywhere</b> database with the following command: </p>
+          <ul class="list-unstyled ms-4">
+            <li> <code class="user-select-all">\c pareto_anywhere</code> </li>
+          </ul>
+          <p> Then enter the following queries: </p>
+          <ul class="list-unstyled ms-4">
             <li> <code class="user-select-all">CREATE EXTENSION postgis;</code> </li>
             <li> <code class="user-select-all">SELECT postgis_full_version();</code> </li>
           </ul>
-          <p class="mb-1"> This will create the PostGIS extension on the database.  The second query simply verifies the extension version number.<sup>*</sup> </p>
+          <p class="mb-1"> This will create the PostGIS extension on the <i class="fas fa-database"></i> <b>pareto_anywhere</b> database.  The second query simply verifies the PostGIS version number.<sup>*</sup> </p>
           <p class="text-end text-body-secondary small"> <sup>*</sup> <span class="font-monospace">ERROR:  function postgis_full_version() does not exist</span> would indicate that creation of the PostGIS extension was unsuccessful. </p>
           <p class="mt-3"> Now that the database is created, it is possible to create tables in which data to write the IoT and RTLS data, which is covered in Step 3 below. </p>
           <!----- Step 3 of 3 ----->
