@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Install Grafana and configure with a PostgreSQL database to viusalise IoT and RTLS data from Pareto Anywhere open source IoT middleware by reelyActive.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Grafana with PostgreSQL </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Grafana with PostgreSQL",
+      "description": "Install Grafana and configure with a PostgreSQL database to viusalise IoT and RTLS data from Pareto Anywhere open source IoT middleware by reelyActive.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/grafana-postgres-prep/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Grafana with PostgreSQL"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com">
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/">
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/">
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Grafana with PostgreSQL </h1>
+          <p class="lead"> Prepare Grafana to visualise IoT and RTLS data from Pareto Anywhere via a PostgreSQL database. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Grafana and PostgreSQL">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to install and prepare Grafana for IoT and RTLS applications with Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes the data from just about <em>any</em>thing usable. </dd>
+                <dt class="col-sm-3"> Why PostgreSQL? </dt>
+                <dd class="col-sm-9"> <a href="https://www.postgresql.org/" target="_blank"><i class="fas fa-external-link-alt"></i> PostgreSQL</a>, the world's most advanced open source relational database, facilitates time series and geospatial queries of the IoT and RTLS data from Pareto Anywhere. </dd>
+                <dt class="col-sm-3"> Is this stack open source? </dt>
+                <dd class="col-sm-9"> <em>Yes!</em>  Pareto Anywhere + PostgreSQL + Grafana OSS represents an open source stack for Internet of Things (IoT) and real-time location systems (RTLS) applications. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing Grafana &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Install the dashboarding tool on a specific operating system. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Local installation? </dt>
+                <dd class="col-sm-9"> Yes.  Grafana will be installed on the local machine, expecting a local installation of PostgreSQL. </dd>
+                <dt class="col-sm-3"> OSS or Enterprise? </dt>
+                <dd class="col-sm-9"> Choose Grafana Enterprise for a path to premium features, OSS (Open Source Software) otherwise. </dd>
+              </dl>
+              <img src="images/grafana-installation.png"
+                   class="card-img-bottom" alt="Install Grafana">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install Grafana
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p class="mt-4"> Follow the instructions specific to your operating system to install Grafana: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="sqllinuxtab"
+                      data-bs-toggle="tab" data-bs-target="#sqllinuxcontent"
+                      type="button" role="tab" aria-controls="sqllinuxtab"
+                      aria-selected="true">
+                <i class="fab fa-linux"></i> Linux
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sqlwindowstab" data-bs-toggle="tab"
+                      data-bs-target="#sqlwindowscontent" type="button"
+                      role="tab" aria-controls="sqlwindowstab"
+                      aria-selected="false">
+                <i class="fab fa-windows"></i> Windows
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="sqllinuxcontent"
+                 role="tabpanel" aria-labelledby="sqllinuxtab">
+              <p class="mt-2"> Follow the official <a href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/" target="_blank"><i class="fas fa-external-link-alt"></i> Install Grafana on Debian or Ubuntu</a> tutorial. </p>
+            </div>
+            <div class="tab-pane fade" id="sqlwindowscontent" role="tabpanel"
+                 aria-labelledby="sqlwindowstab">
+              <p class="mt-2"> Follow the official <a href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/windows/" target="_blank"><i class="fas fa-external-link-alt"></i> Install Grafana on Windows</a> tutorial. </p>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Run Grafana
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p class="mt-4"> Follow the instructions specific to your operating system to run Grafana: </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="gislinuxtab"
+                      data-bs-toggle="tab" data-bs-target="#gislinuxcontent"
+                      type="button" role="tab" aria-controls="gislinuxtab"
+                      aria-selected="true">
+                <i class="fab fa-linux"></i> Linux
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="giswindowstab" data-bs-toggle="tab"
+                      data-bs-target="#giswindowscontent" type="button"
+                      role="tab" aria-controls="giswindowstab"
+                      aria-selected="false">
+                <i class="fab fa-windows"></i> Windows
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="gislinuxcontent"
+                 role="tabpanel" aria-labelledby="gislinuxtab">
+              <p class="mt-2"> Open a terminal <i class="fas fa-terminal"></i> and start the grafana systemd service with the following command: </p>
+              <ul class="list-unstyled ms-4">
+                <li> <code class="user-select-all">sudo systemctl start grafana-server</code> </li>
+              </ul>
+              <p> In the case where Grafana should run automatically each time the machine boots, run also the following command: </p>
+              <ul class="list-unstyled ms-4">
+                <li> <code class="user-select-all">sudo systemctl enable grafana-server</code> </li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="giswindowscontent" role="tabpanel"
+                 aria-labelledby="giswindowstab">
+              <p class="mt-2"> Execute the <b class="font-monospace">bin/grafana-server.exe</b> file provided by the installation. </p>
+              <p class="mt-2"> In the case where Grafana should run automatically each time the machine boots, use <a href="https://nssm.cc/" target="_blank"><i class="fas fa-external-link-alt"></i> NSSM</a>, as recommended in the Grafana installation tutorial. </p>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Log in to Grafana
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p class="mt-4"> With Grafana running locally, browse to the login page at <a href="http://localhost:3000" target="_blank"><i class="fas fa-external-link-alt"></i> localhost:3000</a> and then: </p>
+          <ul>
+            <li> Log in with username <b>admin</b> and password <b>admin</b> </li>
+            <li> When prompted, change the admin password (ex: <b>paretoanywhere</b>) </li>
+            <li> Log in with the username <b>admin</b> and the chosen password </li>
+          </ul>          
+          <p class="mt-3"> The Welcome page should be displayed following a successful login.  It is now possible to connect PostgreSQL as a data source, which is covered in Step 2 below. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configuring the data source &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Select and configure PostgreSQL as a data source. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's a data source? </dt>
+                <dd class="col-sm-9"> A data source provides the data for Grafana to visualise.  In this case it is a PostgreSQL <i class="fas fa-database"></i> database. </dd>
+                <dt class="col-sm-3"> Local PostgreSQL only? </dt>
+                <dd class="col-sm-9"> This tutorial covers the simple case of a local PostgreSQL instance, but Grafana can equally connect to a remote instance. </dd>
+              </dl>
+              <img src="images/postgresql-datasource.png"
+                   class="card-img-bottom" alt="PostgreSQL data source">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Add data source
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> From the <i class="fas fa-home"></i> Home screen of Grafana, do <em>either</em> of the following: </p>
+          <ul>
+            <li> click the <i class="fas fa-mouse-pointer"></i> <b>Add your first data source</b> link from the Welcome panel &nbsp; <em>-or-</em> </li>
+            <li> select <i class="fas fa-mouse-pointer"></i> <b>Data Sources</b> from menu at left, and then click the <i class="fas fa-mouse-pointer"></i> <b>+ Add new data source</b> button from the Data Sources page </li>
+          </ul>
+          <p> Then, from the list of data sources, scroll down to the <i class="fas fa-database"></i> <b>PostgreSQL</b> data source and <i class="fas fa-mouse-pointer"></i> click its icon: </p>
+          <img src="images/postgresql-datasource-card.png" class="img-fluid"
+               alt="PostgreSQL data source">
+          <p class="mt-3"> This will open a PostgreSQL data source configuration page.  Complete the configuration as described in Part 2 below. </p>
+          <h3 class="mt-4">
+            Configure data source
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> From the PostgreSQL data source configuration page, complete the fields as specified in the tables below: </p>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-sm table-hover caption-top">
+                <caption> Settings </caption>
+                <tbody>
+                  <tr>
+                    <th> Name </th>
+                    <td class="font-monospace user-select-all"> grafana-postgresql-paretoanywhere </td>
+                  </tr>
+                  <tr>
+                    <th> Default </th>
+                    <td class="font-monospace"> true </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-hover caption-top">
+                <caption> Connection </caption>
+                <tbody>
+                  <tr>
+                    <th> Host URL </th>
+                    <td class="font-monospace user-select-all"> localhost:5432 </td>
+                  </tr>
+                  <tr>
+                    <th> Database name </th>
+                    <td class="font-monospace user-select-all"> pareto_anywhere </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-hover caption-top">
+                <caption> Authentication </caption>
+                <tbody>
+                  <tr>
+                    <th> Username </th>
+                    <td class="font-monospace user-select-all"> grafana </td>
+                  </tr>
+                  <tr>
+                    <th> Password </th>
+                    <td class="font-monospace user-select-all"> paretoanywhere </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-hover caption-top">
+                <caption> Additional settings </caption>
+                <tbody>
+                  <tr>
+                    <th> Version </th>
+                    <td class="font-monospace"> 15<sup>*</sup> </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="small text-end text-body-secondary"><sup>*</sup>select the <em>closest</em> version to the installed PostgreSQL instance </p>
+              <p> All other configuration options may be left at the default values. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/postgresql-datasource-settings.png"
+                   class="img-fluid rounded mx-auto d-block"
+                   alt="PostgreSQL data source settings">
+            </div>
+          </div>
+          <p class="mt-3"> Click the <i class="fas fa-mouse-pointer"></i> <b>Save & test</b> button to complete the configuration.  A <i class="fas fa-check text-success"></i> <b>Database Connection OK</b> message should appear. </p>
+          <p> The PostgreSQL data source is successfully configured.  It is now possible to build queries for visualisation, which is covered in Step 3 below. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Building a query/visualisation &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Build a PostgreSQL query to visualise IoT and RTLS data. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's a query? </dt>
+                <dd class="col-sm-9"> In the case of a PostgreSQL data source, a query is an expression in the PostgreSQL variant of the standard SQL language, which returns data from the database. </dd>
+                <dt class="col-sm-3"> Which visualisations? </dt>
+                <dd class="col-sm-9"> Grafana supports many visualisations.  For IoT data it is common to use Time Series, and for RTLS data it is common to use GeoMap. </dd>
+              </dl>
+              <img src="images/postgresql-query-visualisation.png"
+                   class="card-img-bottom" alt="PostgreSQL query visualisation">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Add new visualisation
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <div class="row mt-4">
+            <div class="col-4 align-self-center">
+              <img src="images/dashboard-add-visualization.png"
+                   class="img-fluid rounded mx-auto d-block"
+                   alt="Grafana dashboard add visualization">
+            </div>
+            <div class="col-8 align-self-center">
+              <p> In Grafana, open an existing dashboard, or create a new dashboard. </p>
+              <p> From the top menu of the dashboard, click <i class="fas fa-mouse-pointer"></i> <b>Add</b> and select <b>Visualization</b>. </p>
+              <p> An Edit panel screen will appear with a <b>Queries</b> window, similar to that shown below. </p>
+            </div>
+          </div>
+          <img src="images/visualization-new-query.png"
+               class="img-fluid rounded mt-4 mx-auto d-block"
+               alt="Grafana visualization query">
+          <h3 class="mt-4">
+            Enter query
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p class="mt-4"> In the <b>Queries</b> window, click the <i class="fas fa-mouse-pointer"></i> <b>Code</b> selector and paste in the following query: </p>
+          <div class="row">
+            <div class="col-md-6 align-self-center">
+              <pre class="ms-3 user-select-all">SELECT
+  $__timeGroupAlias(timestamp, 1m),
+  COUNT(dynamb)
+FROM dynamb
+GROUP BY 1;</pre>
+            </div>
+            <div class="col-md-6 align-self-center">
+              <img src="images/visualization-query-code.png"
+                   class="img-fluid rounded mx-auto d-block"
+                   alt="Grafana visualization query code">
+            </div>
+          </div>
+          <p class="mt-4"> This query will count the number of dynamb entries per minute as a time series. </p>
+          <h3 class="mt-4">
+            Run query
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Run query</b> to execute the query on the PostgreSQL database and visualise the result, which may resemble the following: </p>
+          <img src="images/visualization-preview.png"
+               class="img-fluid rounded mt-4 mx-auto d-block"
+               alt="Grafana visualization preview">
+          <p class="mt-3"> If the visualisation indicates <b>No data</b> and a warning icon appears at the top left of the panel, then an error has occurred.  Hover over the icon to observe the error message. </p>
+          <h3 class="mt-4">
+            Configure panel
+            <small class="text-body-secondary"> Part 4 </small>
+          </h3>
+          <p> Customise the visualisation by editing the panel options at right.  Consult the following Grafana documentation pages for details: </p>
+          <ul>
+            <li> <a href="https://grafana.com/docs/grafana/latest/panels-visualizations/configure-panel-options/" target="_blank"><i class="fas fa-external-link-alt"></i> Configure panel options</a> </li>
+            <li> <a href="https://grafana.com/docs/grafana/latest/panels-visualizations/configure-standard-options/" target="_blank"><i class="fas fa-external-link-alt"></i> Configure standard options</a> </li>
+            <li> <a href="https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/time-series/" target="_blank"><i class="fas fa-external-link-alt"></i> Time series visualization</a> </li>
+          </ul>
+          <p> After the panel is configured, click <i class="fas fa-mouse-pointer"></i> <b>Save dashboard</b> to save the visualisation and the dashboard in which it resides. </p>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2025 </a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
