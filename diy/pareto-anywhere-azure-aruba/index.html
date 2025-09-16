@@ -698,26 +698,103 @@
                 Configure IoT transport for Azure app
                 <small class="text-body-secondary"> Part 2 </small>
               </h3>
-              <p> Enter the Environment Variables: </p>
-              <p> and click <i class="fas fa-mouse-pointer"></i> <b>Next</b>. </p>
+              <p> Enter the <span class="text-body-emphasis">Environment Variables</span>: </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"> Key </th>
+                    <th scope="col"> Value </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-monospace"> ID_SCOPE </td>
+                    <td> Copy the <i class="fas fa-copy"></i> <b>ID Scope</b> from the Azure IoT Hub Device Provisioning Service (DPS) <br> <small class="text-body-secondary">(Overview page)</small> </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> DPS_CONNECTION_STRING </td>
+                    <td> Copy the <i class="fas fa-copy"></i> <b>Primary connection string</b> from the Azure IoT Hub Device Provisioning Service (DPS) <br> <small class="text-body-secondary">(Settings&rarr;Shared access policies&rarr;provisioningserviceowner page)</small> </td>
+                  </tr>
+                  <tr>
+                    <td class="font-monospace"> HUB_CONNECTION_STRING </td>
+                    <td> Copy the <i class="fas fa-copy"></i> <b>Primary connection string</b> from the Azure IoT Hub <br> <small class="text-body-secondary">(Security settings&rarr;Shared access policies&rarr;iothubowner page)</small> </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-end"> and click <i class="fas fa-mouse-pointer"></i> <b>Next</b>. </p>
               <img src="images/aos10-app-parameters-1.png"
                    class="img-fluid rounded mx-auto d-block mb-3 mw-100"
                    alt="IoT Transport for Azure Environment Variables">
-              <p> Enter the Subscriptions: </p>
-              <p> and click <i class="fas fa-mouse-pointer"></i> <b>Next</b>. </p>
+              <p> Enter the <span class="text-body-emphasis">Subscriptions</span>: </p>
+              <ul>
+                <li> add one or more <span class="font-monospace">DEVICE_CLASS</span> lines </li>
+                <li class="fst-italic text-body-secondary"> ensure that each selected device class has a corresponding classifier app installed from the app marketplace </li>
+              </ul>
+              <p class="text-end"> and click <i class="fas fa-mouse-pointer"></i> <b>Next</b>. </p>
               <img src="images/aos10-app-parameters-2.png"
                    class="img-fluid rounded mx-auto d-block mb-3 mw-100"
                    alt="IoT Transport for Azure Subscriptions">
-              <p> Enter the Permissions: </p>
-              <p> and click <i class="fas fa-mouse-pointer"></i> <b>Next</b>. </p>
+              <p> Enter the <span class="text-body-emphasis">Permissions</span>: </p>
+              <ul>
+                <li> create a rule for each subscribed <span class="font-monospace">DEVICE_CLASS</span> </li>
+                <li> select <span class="font-monospace">READ_ONLY</span> for the Device Context to enable northbound IoT data, or <span class="font-monospace">READ_WRITE</span> to enable both northbound and southbound </li>
+                <li> select the corresponding permissions for GATT, in the case where paired Bluetooth Low Energy interactions occur <small class="text-body-secondary">(else leave as <span class="font-monospace">BLOCK</span>)</small> </li>
+                <li> select the corresponding permissions for Serial Data Access, in the case where a USB dongle (ex: EnOcean) is used <small class="text-body-secondary">(else leave as <span class="font-monospace">BLOCK</span>)</small> </li>
+              </ul>
+              <p class="text-end"> and click <i class="fas fa-mouse-pointer"></i> <b>Next</b>. </p>
               <img src="images/aos10-app-parameters-3.png"
                    class="img-fluid rounded mx-auto d-block mb-3 mw-100"
                    alt="IoT Transport for Azure Permissions">
-              <p> Enter the External URLs: </p>
-              <p> and click <i class="fas fa-mouse-pointer"></i> <b>Submit</b>. </p>
+              <p> Enter the <span class="text-body-emphasis">External URLs</span>: </p>
+              <ul>
+                <li> Azure IoT Hub Device Provisioning Service (DPS) <b>Service endpoint</b> <br> <small class="text-body-secondary">(Overview page)</small> </li>
+                <li> IoT Hub <b>Hostname</b> <br> <small class="text-body-secondary">(Overview page)</small> </li>
+              </ul>
+              <p class="text-end"> and click <i class="fas fa-mouse-pointer"></i> <b>Submit</b>. </p>
               <img src="images/aos10-app-parameters-4.png"
                    class="img-fluid rounded mx-auto d-block mb-3 mw-100"
                    alt="IoT Transport for Azure External URLs">
+              <p> The IoT transport for Azure app will now be installed on the connector. </p>
+              <h3 class="mt-4">
+                Upload X509 certificate
+                <small class="text-body-secondary"> Part 3 </small>
+              </h3>
+              <p> In IoT Operations, browse, via the connector, to the IoT transport for Azure app, following its successful installation. </p>
+              <img src="images/aos10-app-certificate.png"
+                   class="img-fluid rounded mx-auto d-block mb-3 mw-100"
+                   alt="IoT Transport for Azure certificate">
+              <p> The app page should now feature an <b>App Info</b> section containing a X509 certificate which has been generated. </p>
+              <p> Copy the contents of the <b>App Info</b> box to a file on the local <i class="fas fa-laptop"></i> computer called <i class="fas fa-copy"></i> <b class="font-monospace">certificate.pem</b> </p>
+              <p> In the Azure portal, select the Azure IoT Hub Device Provisioning Service (DPS), select <b>Certificates</b> from the <b>Settings</b> menu and then click <i class="fas fa-mouse-pointer"></i> <b>Add</b>. </p>
+              <img src="images/dps-add-certificate.png"
+                   class="img-fluid rounded mx-auto d-block mb-3 mw-100"
+                   alt="Add certificate in Azure DPS">
+              <div class="row">
+                <div class="col-6 align-self-center">
+                  <p> In the Add Certificate popup: </p>
+                  <ul>
+                    <li> choose <b>aos10</b> as the certificate name </li>
+                    <li> select the <b class="font-monospace">certificate.pem</b> file from the local <i class="fas fa-laptop"></i> computer </li>
+                    <li> check the option to <i class="fas fa-check"></i> Set certificate status to be verified on upload </li>
+                  </ul>
+                  <p class="text-end"> and click <i class="fas fa-mouse-pointer"></i> <b>Save</b>. </p>
+                </div>
+                <div class="col-6 align-self-center">
+                  <img src="images/dps-add-certificate-popup.png"
+                       class="img-fluid rounded mx-auto d-block mb-3 mw-100"
+                       alt="Add certificate popup in Azure DPS">
+                </div>
+              </div>
+              <p> Next, select <b>Manage enrollments</b> from the <b>Settings</b> menu and then click <i class="fas fa-mouse-pointer"></i> <b>Add enrollment group</b>. </p>
+              <img src="images/dps-add-enrollment-group.png"
+                   class="img-fluid rounded mx-auto d-block mb-3 mw-100"
+                   alt="Add enrollment group in Azure DPS">
+              <p> From the pull-down, select <b>X.509 certificates uploaded to this DPS instance</b> as the Attestation mechanism, and then select <b>aos10</b> as the Primary certificate.  Name the group, and then select <i class="fas fa-check"></i> Enable this enrollment. </p>
+              <img src="images/dps-add-x509-enrollment-group.png"
+                   class="img-fluid rounded mx-auto d-block mb-3 mw-100"
+                   alt="Add X509 enrollment group in Azure DPS">
+              <p> Click <i class="fas fa-mouse-pointer"></i> <b>Next: IoT hubs</b>, and from the pull-down, select the IoT Hub that was created in Step 1. </p>
+              <p> Finally, click <i class="fas fa-mouse-pointer"></i> <b>Review + create</b> to create the enrollment group.  The IoT transport for Azure app will now provision with the Azure DPS and relay IoT data. </p>
             </div>
           </div>
           <p class="mt-4"> <span class="badge rounded-pill bg-success"><i class="fas fa-check"></i></span> Data is now available at the IoT Hub for processing by Pareto Anywhere for Azure, which is the subject of the next step. </p>
