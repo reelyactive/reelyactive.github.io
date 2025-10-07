@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Configure an Impinj R700 reader to forward ambient RAIN RFID data to Pareto Anywhere open source middleware for real-time location and context.">
+          content="Configure an Impinj R700 reader to forward ambient RAIN RFID data to Pareto Anywhere open source IoT middleware to make sense of things, and put the data to good use.">
     <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
     <script type="module" src="../common/js/color-modes.js"></script>
     <title> reelyActive Impinj R700 Reader Configuration Guide </title>
@@ -15,10 +15,10 @@
       "@context": "https://schema.org", 
       "@type": "TechArticle",
       "headline": "reelyActive Impinj R700 Reader Configuration Guide",
-      "description": "Configure an Impinj R700 reader to forward ambient RAIN RFID data to Pareto Anywhere open source middleware for real-time location and context.",
+      "description": "Configure an Impinj R700 reader to forward ambient RAIN RFID data to Pareto Anywhere open source IoT middleware to make sense of things, and put the data to good use.",
       "proficiencyLevel": "Beginner",
       "genre": "tutorial",
-      "image": "https://reelyactive.github.io/diy/impinj-r700-config/images/header.jpg",
+      "image": "https://reelyactive.github.io/diy/impinj-r700-config/images/header.png",
       "author": {
         "@type": "Organization",
         "url": "https://www.reelyactive.com"
@@ -162,7 +162,7 @@
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
           <h1 class="mt-4"> Configure an Impinj R700 Series Reader </h1>
           <p class="lead"> Our step-by-step guide to configure the reader to forward data for processing by Pareto Anywhere. </p>
-          <img src="images/header.jpg" class="img-fluid rounded"
+          <img src="images/header.png" class="img-fluid rounded"
                alt="Configure an Impinj R700 reader with Pareto Anywhere">
           <!----- The TL;DR ----->
           <div class="card hover-shadow my-4">
@@ -177,7 +177,7 @@
                 <dt class="col-sm-3"> What will this accomplish? </dt>
                 <dd class="col-sm-9"> The R700 will forward ambient RAIN RFID decodings to a server running Pareto Anywhere. </dd>
                 <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
-                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"> <i class="fas fa-external-link-alt"></i> Pareto Anywhere </a> is open source IoT middleware that makes sense of <em>who/what</em> is <em>where/how</em>, in any physical space, in real time. </dd>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"> <i class="fas fa-external-link-alt"></i> Pareto Anywhere </a> is open source IoT middleware that makes the data from just about <em>any</em>thing usable. </dd>
                 <dt class="col-sm-3"> What's the interface? </dt>
                 <dd class="col-sm-9"> This integration uses the Impinj IoT Device Interface which was introduced with the R700 Series family of readers. </dd>
               </dl>
@@ -225,7 +225,7 @@
                 <dt class="col-sm-3"> How to connect? </dt>
                 <dd class="col-sm-9"> The R700 accepts connections on the local network to which it is connected by Ethernet. </dd>
               </dl>
-              <img src="images/connection-overview.jpg" class="card-img-bottom"
+              <img src="images/connection-overview.png" class="card-img-bottom"
                    alt="Impinj R700 power and connectivity">
             </div>
           </div>
@@ -347,7 +347,7 @@
                 <dt class="col-sm-3"> How is data forwarded? </dt>
                 <dd class="col-sm-9"> The R700 supports MQTT, Kafka and Webhook.  The webhook is natively supported by the <a href="https://github.com/reelyactive/barnowl-impinj" target="_blank">barnowl-impinj</a> module of Pareto Anywhere. </dd>
               </dl>
-              <img src="images/forwarding-overview.jpg" class="img-fluid"
+              <img src="images/forwarding-overview.png" class="img-fluid"
                    alt="Impinj R700 Webhook to Pareto Anywhere">
             </div>
           </div>
@@ -574,7 +574,7 @@
                 <dt class="col-sm-3"> Is there a quick and dirty way? </dt>
                 <dd class="col-sm-9"> Yes.  Our barnowl-impinj package provides a simple means to receive reader data and log to the console (see below). </dd>
               </dl>
-              <img src="images/pareto-anywhere-overview.jpg"
+              <img src="images/pareto-anywhere-overview.png"
                    class="card-img-bottom"
                    alt="Impinj R700 Data in Pareto Anywhere">
             </div>
@@ -597,7 +597,7 @@
           <div class="tab-content tab-content-border border-light-subtle">
             <div class="tab-pane fade show active" id="paretocontent"
                  role="tabpanel" aria-labelledby="paretotab">
-              <p class="mt-2"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank">pareto-anywhere</a> package is already present and running on the target computer on the host network, the data forwarded by the gateway should be available in both the web apps and APIs. </p>
+              <p class="mt-2"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank">pareto-anywhere</a> package is already present and running on the target computer on the host network, the data forwarded by the reader should be available in both the web apps and APIs. </p>
               <ul class="list-group list-group-horizontal">
                 <li class="list-group-item border-0">
                   <a href="../pareto-anywhere-pc/">
@@ -609,7 +609,7 @@
                   <a href="../pareto-anywhere-pc/">
                     <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
                   </a>
-                  Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make any physical space context-aware.
+                  Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make sense of things.
                 </li>
               </ul>
               <ul class="list-group list-group-horizontal mb-2">
@@ -623,7 +623,7 @@
                   <a href="../pareto-anywhere-pi/">
                     <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
                   </a>
-                  Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
+                  Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make sense of things.
                 </li>
               </ul>
             </div>
