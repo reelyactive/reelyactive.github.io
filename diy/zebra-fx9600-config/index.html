@@ -744,11 +744,12 @@
             </div>
             <div class="tab-pane fade" id="barnowlcontent" role="tabpanel"
                  aria-labelledby="barnowltab">
-              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-zebra" target="_blank">barnowl-zebra</a> standalone to connect via Web Socket as follows: </p>
+              <p class="mt-2"> To quickly collect real-time tag data directly from the reader, it is possible to run <a href="https://github.com/reelyactive/barnowl-zebra" target="_blank">barnowl-zebra</a> standalone to connect via Web Socket as follows: </p>
               <pre>git clone https://github.com/reelyactive/barnowl-zebra.git
 cd barnowl-zebra
 npm install
-npm run websocket xxx.xxx.xxx.xxx</pre>
+npm run websocket FX9600<b>123456</b><sup>*</sup></pre>
+              <p class="small text-body-secondary text-end"> <sup>*</sup> change <span class="font-monospace">FX9600123456</span> with the hostname or IP address of the reader </p>
               <p> If the reader is correctly configured, and at least one RAIN RFID tag is in range, <a href="https://github.com/reelyactive/raddec" target="_blank">raddec</a> data should appear in the console. </p>
             </div>
           </div>
