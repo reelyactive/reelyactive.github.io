@@ -229,13 +229,13 @@
             Connect to the FX9600
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
-          <p> First note the six last digits of the MAC on the reader label (<span class="font-monospace">C47DCC<b>123456</b></span>) and then: </p>
+          <p class="mb-1"> First note the six last digits of the MAC on the reader label (<span class="font-monospace">C47DCC<b>123456</b></span>) and then: </p>
           <ul>
             <li> apply power <i class="fas fa-plug"></i> to the reader by connecting it to PoE power sourcing equipment (PSE) using a standard network cable </li>
             <li> from a laptop <i class="fas fa-laptop"></i> connected to the same network as the reader, browse to <a href="http://FX9600123456" target="_blank">http://FX9600<b>123456</b></a>, replacing the <span class="font-monospace">123456</span> with the digits from the label </li>
             <li> if the browser warns of a potentially unsafe HTTPS connection, follow the necessary steps to proceed </li>
-            <li> observe the User Login page </li>
           </ul>
+          <p> The login page should appear in the browser. </p>
           <h3 class="mt-4">
             Log in to the reader
             <small class="text-body-secondary"> Part 2 </small>
@@ -246,7 +246,7 @@
           <p> If this is the <em>first ever</em> log in on the FX9600, enter <b>change</b> as the admin password and click <i class="fas fa-mouse-pointer"></i> <b>Login</b>. </p>
           <div class="row">
             <div class="col-md-6">
-              <p> A popup dialog may appear, proposing to switch the reader from HTTP to HTTPS mode: </p>
+              <p class="mb-1"> A popup dialog may appear, proposing to switch the reader from HTTP to HTTPS mode: </p>
               <ul class="list-unstyled ms-3">
                 <li> <i class="fas fa-mouse-pointer"></i> <b>Cancel</b> to remain in HTTP mode <br> <small class="text-body-secondary">(recommended for sandbox deployments)</small> </li>
                 <li> <i class="fas fa-mouse-pointer"></i> <b>OK</b> to switch to HTTPS mode <br> <small class="text-body-secondary">(recommended for production deployments)</small> </li>
@@ -544,6 +544,7 @@
             </div>
             <div class="col-md-8">
               <p> From the Reader Administration Console, browse to the Zebra IoT Connector - <b>Operating Mode</b> page from the menu at left. </p>
+              <p> Select and configure <b>Inventory</b> or <b>Simple</b> operation mode as indicated in the tabs below. </p>
             </div>
           </div>
           <ul class="nav nav-tabs mt-3" role="tablist">
@@ -642,6 +643,11 @@
               </table>
             </div>
           </div>
+          <p class="mt-3"> Complete the <b>Antenna Configuration</b> by enabling <i class="fas fa-check"></i> Ports with connected antennas and adjusting the Transmit Power as required. </p>
+          <img src="images/operation-antenna-configuration.png"
+               class="img-fluid rounded mx-auto d-block mb-3"
+               alt="Zebra IoT Connector antenna configuration">
+          <p> Click <i class="fas fa-mouse-pointer"></i> <b>Set Properties</b> to save the Operating Mode configuration. </p>
           <h3 class="mt-4">
             Read tags
             <small class="text-body-secondary"> Part 4 </small>
@@ -660,6 +666,14 @@
                    alt="Zebra IoT Connector running">
             </div>
           </div>
+          <p class="mt-3 mb-1"> The <b>Connection Status</b> table should reflect the state of the endpoint(s): </p>
+          <ul>
+            <li> <b>MQTT</b> <span class="text-success">connected</span> indicates that the reader successfully connected with the remote MQTT broker. </li>
+            <li> <b>Web Socket</b> <span class="text-success">connected</span> indicates that the remote client has successfully connected with the reader. </li>
+          </ul>
+          <img src="images/connection-status.png"
+               class="img-fluid rounded mx-auto d-block"
+               alt="Zebra IoT Connector connection status">
           <!----- Step 3 of 3 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
             <div class="card-body pt-4">
@@ -710,7 +724,7 @@
                   <a href="../pareto-anywhere-pc/">
                     <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
                   </a>
-                  Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make any physical space context-aware.
+                  Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make make sense of things.
                 </li>
               </ul>
               <ul class="list-group list-group-horizontal mb-2">
@@ -724,13 +738,13 @@
                   <a href="../pareto-anywhere-pi/">
                     <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
                   </a>
-                  Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make any physical space context-aware.
+                  Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make sense of things.
                 </li>
               </ul>
             </div>
             <div class="tab-pane fade" id="barnowlcontent" role="tabpanel"
                  aria-labelledby="barnowltab">
-              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-zebra" target="_blank">barnowl-zebra</a> standalone to connect via Web Sockets as follows: </p>
+              <p class="mt-2"> To quickly validate that data is correctly received on the target computer on the host network, it is possible to run <a href="https://github.com/reelyactive/barnowl-zebra" target="_blank">barnowl-zebra</a> standalone to connect via Web Socket as follows: </p>
               <pre>git clone https://github.com/reelyactive/barnowl-zebra.git
 cd barnowl-zebra
 npm install
