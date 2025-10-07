@@ -60,6 +60,7 @@ https://reelyactive.github.io/diy/rfid-unity/
 https://reelyactive.github.io/diy/showcase-asset-tracking/
 https://reelyactive.github.io/diy/showcase-interaction-detection/
 https://reelyactive.github.io/diy/showcase-personnel-tracking/
+https://reelyactive.github.io/diy/zebra-fx9600-config/
 https://reelyactive.github.io/advlib/
 https://reelyactive.github.io/beaver/
 https://reelyactive.github.io/cormorant/
