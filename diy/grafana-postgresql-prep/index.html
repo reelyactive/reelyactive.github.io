@@ -327,8 +327,19 @@
             </div>
           </div>
           <h3 class="mt-4">
-            Add data source
+            Create database user
             <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and then log in to PostgreSQL as the <span class="font-monospace">postgres</span> user with the command <code class="user-select-all">sudo -u postgres psql</code> </p>
+          <p> Once logged in, the terminal <i class="fas fa-terminal"></i> prompt should change to <b class="font-monospace">postgres=#</b>, accepting database queries.  Enter the following queries: </p>
+          <ul class="list-unstyled ms-4">
+            <li> <code class="user-select-all">CREATE USER grafana WITH ENCRYPTED PASSWORD 'paretoanywhere';</code> </li>
+            <li> <code class="user-select-all">GRANT pg_read_all_data TO grafana;</code> </li>
+          </ul>
+          <p> This will create a user <b>grafana</b> with password <b>paretoanywhere</b>, having read access to <em>all</em> databases. </p>
+          <h3 class="mt-4">
+            Add data source
+            <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> From the <i class="fas fa-home"></i> Home screen of Grafana, do <em>either</em> of the following: </p>
           <ul>
@@ -341,7 +352,7 @@
           <p class="mt-3"> This will open a PostgreSQL data source configuration page.  Complete the configuration as described in Part 2 below. </p>
           <h3 class="mt-4">
             Configure data source
-            <small class="text-body-secondary"> Part 2 </small>
+            <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <p> From the PostgreSQL data source configuration page, complete the fields as specified in the tables below: </p>
           <div class="row">
