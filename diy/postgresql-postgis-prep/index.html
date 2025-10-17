@@ -388,7 +388,95 @@
                    class="card-img-bottom" alt="PostgreSQL tables creation">
             </div>
           </div>
-          <p class="mt-4"> See <a href="https://github.com/reelyactive/barnacles-postgres?tab=readme-ov-file#creating-tables" target="_blank">Creating tables</a> and <a href="https://github.com/reelyactive/barnacles-postgres?tab=readme-ov-file#creating-indexes" target="_blank">Creating indexes</a> in the barnacles-postgres documentation. </p>
+          <h3 class="mt-4">
+            Alternative
+            <small class="text-body-secondary"> (OPTIONAL) </small>
+          </h3>
+          <p class="mb-1"> The <a href="https://github.com/reelyactive/barnacles-postgres"><i class="fab fa-github"></i>/barnacles-postgres</a> module provides scripts as a <em>convenient <u>alternative</u></em> to Parts 1-3 below: </p>
+          <ul>
+            <li> <a href="https://github.com/reelyactive/barnacles-postgres?tab=readme-ov-file#creating-tables" target="_blank">Creating tables</a> with <code class="user-select-all">npm run create-tables</code> </li>
+            <li> <a href="https://github.com/reelyactive/barnacles-postgres?tab=readme-ov-file#creating-indexes" target="_blank">Creating indexes</a> with <code class="user-select-all">npm run create-indexes</code> </li>
+          </ul>
+          <h3>
+            Connect to the database
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> Open a terminal <i class="fas fa-terminal"></i> and then log in to PostgreSQL as the <span class="font-monospace">reelyactive</span> user on the <i class="fas fa-database"></i> <b>pareto_anywhere</b> database with the command <code class="user-select-all">psql -U reelyactive -h 127.0.0.1 -d pareto_anywhere</code> </p>
+          <p> Once logged in, the terminal <i class="fas fa-terminal"></i> prompt should change to <b class="font-monospace">pareto_anywhere=></b>, accepting database queries.  Enter the queries to create the tables and indexes, as indicated in Parts 2 & 3 below. </p>
+          <h3 class="mt-4">
+            Create the tables
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> While logged in as the <span class="font-monospace">reelyactive</span> user on the <i class="fas fa-database"></i> <b>pareto_anywhere</b> database, create the <b class="font-monospace">raddec</b>, <b class="font-monospace">dynamb</b> and <b class="font-monospace">spatem</b> tables with the following queries: </p>
+          <ul class="list-unstyled ms-4">
+            <li class="mb-3"> <code class="user-select-all">CREATE TABLE <b>raddec</b> ( _storeid bigint GENERATED ALWAYS AS IDENTITY, transmittersignature varchar(36) NOT NULL, timestamp timestamptz DEFAULT current_timestamp, raddec JSONB NOT NULL );</code> </li>
+            <li class="mb-3"> <code class="user-select-all">CREATE TABLE <b>dynamb</b> ( _storeId bigint GENERATED ALWAYS AS IDENTITY, devicesignature varchar(36) NOT NULL, timestamp timestamptz DEFAULT current_timestamp, dynamb JSONB NOT NULL );</code> </li>
+            <li class="mb-3"> <code class="user-select-all">CREATE TABLE <b>spatem</b> ( _storeId bigint GENERATED ALWAYS AS IDENTITY, devicesignature varchar(36) NOT NULL, timestamp timestamptz DEFAULT current_timestamp, spatem JSONB NOT NULL );</code> </li>
+            <li> <code class="user-select-all">SELECT AddGeometryColumn ('spatem','geom',4326,'POINT',3);
+</code> </li>
+          </ul>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> The fourth and final query above applies the PostGIS extension, adding a geometry column to the <b class="font-monospace">spatem</b> table. </p>
+          <h3 class="mt-4">
+            Create the indexes
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> While logged in as the <span class="font-monospace">reelyactive</span> user on the <i class="fas fa-database"></i> <b>pareto_anywhere</b> database, create indexes on the <b class="font-monospace">raddec</b>, <b class="font-monospace">dynamb</b> and <b class="font-monospace">spatem</b> tables with the following queries: </p>
+          <ul class="list-unstyled ms-4">
+            <li> <code class="user-select-all">CREATE INDEX raddec_transmitter_idx ON <b>raddec</b> (transmittersignature);</code> </li>
+            <li class="mb-3"> <code class="user-select-all">CREATE INDEX raddec_timestamp_idx ON <b>raddec</b> USING BRIN(timestamp);</code> </li>
+            <li> <code class="user-select-all">CREATE INDEX dynamb_device_idx ON <b>dynamb</b> (devicesignature);</code> </li>
+            <li class="mb-3"> <code class="user-select-all">CREATE INDEX dynamb_timestamp_idx ON <b>dynamb</b> USING BRIN(timestamp);</code> </li>
+            <li> <code class="user-select-all">CREATE INDEX spatem_device_idx ON <b>spatem</b> (devicesignature);</code> </li>
+            <li> <code class="user-select-all">CREATE INDEX spatem_timestamp_idx ON <b>spatem</b> USING BRIN(timestamp);</code> </li>
+          </ul>
+          <p> Our cheatsheet details the <b class="font-monospace">raddec</b>, <b class="font-monospace">dynamb</b> and <b class="font-monospace">spatem</b> JSON output from the open source IoT middleware. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <img src="../cheatsheet/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <h5 class="mt-0 mb-1"> Developers Cheatsheet </h5>
+              </a>
+              "Owl" you need to know about Pareto Anywhere's core data structures.
+            </li>
+          </ul>
+          <h3 class="mt-4">
+            Validate the connection
+            <small class="text-body-secondary"> (OPTIONAL) Part 4 </small>
+          </h3>
+          <p> Observing data from Pareto Anywhere is as simple as running a specific startup script, or, for quick-and-dirty validation, run barnacles-postgres as described below. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="paretotab"
+                      data-bs-toggle="tab" data-bs-target="#paretocontent"
+                      type="button" role="tab" aria-controls="paretotab"
+                      aria-selected="true"> pareto-anywhere </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="barnaclestab" data-bs-toggle="tab"
+                      data-bs-target="#barnaclescontent" type="button" role="tab"
+                      aria-controls="barnaclestab"
+                      aria-selected="false"> barnacles-postgres </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="paretocontent"
+                 role="tabpanel" aria-labelledby="paretotab">
+              <p class="mt-2 mb-1"> If a Pareto Anywhere installation based on the <a href="https://github.com/reelyactive/pareto-anywhere" target="_blank"><i class="fas fa-external-link-alt"></i> pareto-anywhere</a> package is already present on the same <i class="fas fa-laptop"></i> computer as the <i class="fas fa-database"></i> PostgreSQL database, simply start Pareto Anywhere with the command <code class="user-select-all">npm run postgres</code>. </p>
+            </div>
+            <div class="tab-pane fade" id="barnaclescontent" role="tabpanel"
+                 aria-labelledby="barnaclestab">
+              <p class="mt-2"> To quickly validate the installation, it is possible to run <a href="https://github.com/reelyactive/barnacles-postgres" target="_blank"><i class="fas fa-external-link-alt"></i> barnacles-postgres</a> standalone to initiate a database connection as follows: </p>
+              <pre>git clone https://github.com/reelyactive/barnacles-postgres.git
+cd barnacles-postgres
+npm install
+npm start</pre>
+              <p class="mb-1"> If the database is correctly configured, <span class="font-monospace text-body-emphasis">barnacles-postgres: connected to database</span> should appear in the console. </p>
+            </div>
+          </div>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-body-secondary border-0 my-5">
             <div class="row g-0">
