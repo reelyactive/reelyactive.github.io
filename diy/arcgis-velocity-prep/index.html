@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Configure ArcGIS Velocity to ingest RTLS data from Pareto Anywhere open source IoT middleware by reelyActive.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> ArcGIS Velocity </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "ArcGIS Velocity",
+      "description": "Configure ArcGIS Velocity to ingest RTLS data from Pareto Anywhere open source IoT middleware by reelyActive.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/arcgis-velocity-prep/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "ArcGIS Velocity"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com">
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/">
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/">
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> ArcGIS Velocity </h1>
+          <p class="lead"> Configure ArcGIS Velocity to ingest real-time location data from Pareto Anywhere. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="ArcGIS Velocity and Pareto Anywhere">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to consume RTLS data from Pareto Anywhere in ArcGIS Online. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes the data from just about <em>any</em>thing usable. </dd>
+                <dt class="col-sm-3"> What's ArcGIS Velocity? </dt>
+                <dd class="col-sm-9"> <a href="https://www.esri.com/en-us/arcgis/products/arcgis-velocity/overview" target="_blank"><i class="fas fa-external-link-alt"></i> ArcGIS Velocity</a> is a cloud-native add-on capability for ArcGIS Online which can ingest data from IoT platforms like Pareto Anywhere. </dd>
+                <dt class="col-sm-3"> RTLS in GIS? </dt>
+                <dd class="col-sm-9"> <em>Yes!</em> Real-time location systems (RTLS) and geographic information systems (GIS) have indeed "found" one another, making a powerful duo. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> ArcGIS Online and ArcGIS Velocity. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.esri.com/en-us/arcgis/products/arcgis-velocity/licensing">
+                <img src="../common/images/icon-arcgis-velocity.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.esri.com/en-us/arcgis/products/arcgis-velocity/licensing">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  ArcGIS Velocity
+                </h5>
+              </a>
+              Obtain a licensed instance from Esri.
+            </li>
+          </ul>
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Preparing associations &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Associate positions with infrastructure and tags with <em>things</em> to be located. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/association-overview.png"
+                   class="card-img-bottom" alt="Pareto Anywhere associations">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Associate positions
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/associate-position.png"
+                   class="img-fluid rounded" alt="Associate position">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Associate tags
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/associate-tag.png"
+                   class="img-fluid rounded" alt="Associate tag">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Observe spatem data
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/hello-spatem.png"
+                   class="img-fluid rounded" alt="Hello spatem!">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Enter API path
+            <small class="text-body-secondary"> Part 4 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <div class="carousel slide carousel-fade" data-bs-ride="carousel"
+                   data-bs-interval="2400">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="images/chickadee-api-human-readable.png"
+                         class="d-block w-100 rounded" alt="Human-readable">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="images/chickadee-api-machine-readable.png"
+                         class="d-block w-100 rounded" alt="Machine-readable">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="font-monospace mt-3"> http://your.server:3001/context/tag/owl/?format=geojson&depth=1 </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configuring ArcGIS Velocity &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Configure a HTTP poller and confirm the data schema. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/arcgis-velocity-overview.png"
+                   class="card-img-bottom" alt="ArcGIS Velocity configuration">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Configure HTTP poller
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/configure-http-poller.png"
+                   class="img-fluid rounded" alt="Configure HTTP poller">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Confirm schema
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> Explain. </p>
+          <img src="images/confirm-schema.png"
+               class="img-fluid rounded" alt="Confirm schema">
+          <h3 class="mt-4">
+            Identify key fields
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/identify-key-fields.png"
+                   class="img-fluid rounded" alt="Identify key fields">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Set polling interval
+            <small class="text-body-secondary"> Part 4 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/feed-polling-interval.png"
+                   class="img-fluid rounded" alt="Feed polling interval">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Save feed
+            <small class="text-body-secondary"> Part 5 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-6">
+              <p> Explain. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/save-feed.png"
+                   class="img-fluid rounded" alt="Save feed">
+            </div>
+          </div>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Using ArcGIS Online &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Put the RTLS data to good use on the map. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/arcgis-online-overview.png"
+                   class="card-img-bottom" alt="ArcGIS Online">
+            </div>
+          </div>
+          <p class="mt-4"> Details to come... </p>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-body-secondary border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2025 </a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
