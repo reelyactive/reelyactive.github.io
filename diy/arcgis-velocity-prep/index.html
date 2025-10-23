@@ -210,11 +210,11 @@
                 Preparing associations &nbsp;
                 <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
               </h2>
-              <p class="lead text-body-secondary"> Associate positions with infrastructure and tags with <em>things</em> to be located. </p>
+              <p class="lead text-body-secondary"> Associate <i class="fas fa-map-marked-alt"></i> positions with infrastructure and <i class="fas fa-tags"></i> tags with <em>things</em> to be located. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What are associations? </dt>
+                <dd class="col-sm-9"> Associations are metadata properties <small class="text-body-secondary">(<i class="fas fa-link"></i> url, <i class="fas fa-tags"></i> tags, <i class="fas fa-sitemap"></i> directory & <i class="fas fa-map-marked-alt"></i> position)</small> that can be assigned to any identifiable device. </dd>
                 <dt class="col-sm-3"> Question? </dt>
                 <dd class="col-sm-9"> Answer. </dd>
               </dl>
@@ -226,39 +226,72 @@
             Associate positions
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
+          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> A position can be 2D or 3D <small class="text-body-secondary">(using altitude or floor/level)</small>. Each element must be <i class="fas fa-hashtag"></i> numerical. </p>
           <div class="row">
             <div class="col-md-6">
-              <p> Explain. </p>
+              <p> In order to estimate the real-time location of wireless devices, the <i class="fas fa-map-marked-alt"></i> <b>position</b> of fixed receiver infrastructure <small class="text-body-secondary">(i.e. gateways, APs, readers)</small> must be known. </p>
+              <p> It is possible to associate a position with any identifiable device via graphical user interface in Pareto Anywhere Apps <small class="text-body-secondary">(Devices Observer & Hyperlocal Context Explorer)</small>: </p>
+              <ul>
+                <li> Select the device by its <i class="fas fa-mouse-pointer"></i> <b>node</b> or <i class="fas fa-mouse-pointer"></i> <b>identifier</b> </li>
+                <li> Select the <i class="fas fa-mouse-pointer"></i> <b>Associations</b> tab from the bar that appears, as in the screenshot </li>
+                <li> Enter the device position as <span class="font-monospace">longitude, latitude, altitude</span> </li>
+                <li> Click <i class="fas fa-mouse-pointer"></i> <i class="fas fa-save"></i> <b>Save</b> to complete the position association </li>
+              </ul>
+              <p> <i class="fas fa-redo"></i> Repeat this process to associate a position with each fixed receiver. </p>
             </div>
             <div class="col-md-6">
               <img src="images/associate-position.png"
                    class="img-fluid rounded" alt="Associate position">
             </div>
           </div>
+          <div class="card hover-shadow mt-3">
+            <div class="card-body">
+              <p class="card-text"> <span class="badge bg-info rounded-pill"><i class="fas fa-lightbulb text-warning"></i></span> Alternatively, associate positions programmatically using the <span class="font-monospace">/associations</span> API: </p>
+              <p class="card-text font-monospace text-center mb-1"> PUT /associations/{id}/{type}/position<sup>*</sup> </p>
+              <p class="card-text small text-body-secondary text-end mb-0"> <sup>*</sup> See <a href="https://github.com/reelyactive/chickadee#put-associationsidtype" target="_blank"><i class="fab fa-github"></i>/reelyactive/chickadee</a> </p>
+            </div>
+          </div>
           <h3 class="mt-4">
-            Associate tags
+            Observe spatem data
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <div class="row">
             <div class="col-md-6">
-              <p> Explain. </p>
+              <p> Browse to the Hello Spatem! web app in Pareto Anywhere Apps to confirm that real-time location data is observed.  This validates that the positioning engine<sup>*</sup> is able to estimate the location of devices based on the position associations completed in Part 1. </p>
+              <p class="small text-body-secondary text-end"> <sup>*</sup> See <a href="https://github.com/reelyactive/chimps#positioning-engines" target="_blank"><i class="fab fa-github"></i>/reelyactive/chimps</a> </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/hello-spatem.png"
+                   class="img-fluid rounded" alt="Hello spatem!">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Associate tags
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> A tag is any combination of characters, like a word.  Tags are encoded as an Array of Strings. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> In order to represent a group of devices of interest <small class="text-body-secondary">(ex: asset class, team of personnel)</small> to be located in ArcGIS, it is customary to associate each device with a common <i class="fas fa-tag"></i> <b>tag</b>. </p>
+              <p> It is possible to associate tags with any identifiable device via graphical user interface in Pareto Anywhere Apps <small class="text-body-secondary">(Devices Observer & Hyperlocal Context Explorer)</small>: </p>
+              <ul>
+                <li> Select the device by its <i class="fas fa-mouse-pointer"></i> <b>node</b> or <i class="fas fa-mouse-pointer"></i> <b>identifier</b> </li>
+                <li> Select the <i class="fas fa-mouse-pointer"></i> <b>Associations</b> tab from the bar that appears, as in the screenshot </li>
+                <li> Enter the device tags as <span class="font-monospace">tag1, tag2, ...</span> </li>
+                <li> Click <i class="fas fa-mouse-pointer"></i> <i class="fas fa-save"></i> <b>Save</b> to complete the tags association </li>
+              </ul>
+              <p> <i class="fas fa-redo"></i> Repeat this process to associate one or more tags with each device to be located. </p>
             </div>
             <div class="col-md-6">
               <img src="images/associate-tag.png"
                    class="img-fluid rounded" alt="Associate tag">
             </div>
           </div>
-          <h3 class="mt-4">
-            Observe spatem data
-            <small class="text-body-secondary"> Part 3 </small>
-          </h3>
-          <div class="row">
-            <div class="col-md-6">
-              <p> Explain. </p>
-            </div>
-            <div class="col-md-6">
-              <img src="images/hello-spatem.png"
-                   class="img-fluid rounded" alt="Hello spatem!">
+          <div class="card hover-shadow mt-3">
+            <div class="card-body">
+              <p class="card-text"> <span class="badge bg-info rounded-pill"><i class="fas fa-lightbulb text-warning"></i></span> Alternatively, associate tags programmatically using the <span class="font-monospace">/associations</span> API: </p>
+              <p class="card-text font-monospace text-center mb-1"> PUT /associations/{id}/{type}/tags<sup>*</sup> </p>
+              <p class="card-text small text-body-secondary text-end mb-0"> <sup>*</sup> See <a href="https://github.com/reelyactive/chickadee#put-associationsidtype" target="_blank"><i class="fab fa-github"></i>/reelyactive/chickadee</a> </p>
             </div>
           </div>
           <h3 class="mt-4">
