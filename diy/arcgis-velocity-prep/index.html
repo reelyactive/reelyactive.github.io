@@ -214,9 +214,9 @@
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What are associations? </dt>
-                <dd class="col-sm-9"> Associations are metadata properties <small class="text-body-secondary">(<i class="fas fa-link"></i> url, <i class="fas fa-tags"></i> tags, <i class="fas fa-sitemap"></i> directory & <i class="fas fa-map-marked-alt"></i> position)</small> that can be assigned to any identifiable device. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dd class="col-sm-9"> Associations are metadata properties <small class="text-body-secondary">(<i class="fas fa-link"></i> url, <i class="fas fa-tags"></i> tags, <i class="fas fa-sitemap"></i> directory & <i class="fas fa-map-marked-alt"></i> position)</small> that can be assigned to any identifiable <i class="fas fa-wifi"></i> device. </dd>
+                <dt class="col-sm-3"> Why make associations? </dt>
+                <dd class="col-sm-9"> Associate <i class="fas fa-map-marked-alt"></i> positions to facilitate real-time location of <i class="fas fa-wifi"></i> devices.  Associate <i class="fas fa-tags"></i> tags to facilitate querying specific groupings of <i class="fas fa-wifi"></i> devices. </dd>
               </dl>
               <img src="images/association-overview.png"
                    class="card-img-bottom" alt="Pareto Anywhere associations">
@@ -226,7 +226,7 @@
             Associate positions
             <small class="text-body-secondary"> Part 1 </small>
           </h3>
-          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> A position can be 2D or 3D <small class="text-body-secondary">(using altitude or floor/level)</small>. Each element must be <i class="fas fa-hashtag"></i> numerical. </p>
+          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> A <i class="fas fa-map-marked-alt"></i> <b>position</b> can be 2D or 3D <small class="text-body-secondary">(using altitude or floor/level)</small>. Each element must be <i class="fas fa-hashtag"></i> numerical. </p>
           <div class="row">
             <div class="col-md-6">
               <p> In order to estimate the real-time location of wireless devices, the <i class="fas fa-map-marked-alt"></i> <b>position</b> of fixed receiver infrastructure <small class="text-body-secondary">(i.e. gateways, APs, readers)</small> must be known. </p>
@@ -255,6 +255,7 @@
             Observe spatem data
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
+          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> A <b>spatem</b> is a JSON representation of <u>spa</u>tial <u>tem</u>poral data in relation to a specific device. </p>
           <div class="row">
             <div class="col-md-6">
               <p> Browse to the Hello Spatem! web app in Pareto Anywhere Apps to confirm that real-time location data is observed.  This validates that the positioning engine<sup>*</sup> is able to estimate the location of devices based on the position associations completed in Part 1. </p>
@@ -269,15 +270,15 @@
             Associate tags
             <small class="text-body-secondary"> Part 3 </small>
           </h3>
-          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> A tag is any combination of characters, like a word.  Tags are encoded as an Array of Strings. </p>
+          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> A <i class="fas fa-tag"></i> <b>tag</b> is any combination of characters, like a word.  Tags are encoded as an Array of Strings. </p>
           <div class="row">
             <div class="col-md-6">
-              <p> In order to represent a group of devices of interest <small class="text-body-secondary">(ex: asset class, team of personnel)</small> to be located in ArcGIS, it is customary to associate each device with a common <i class="fas fa-tag"></i> <b>tag</b>. </p>
+              <p> In order to group devices of interest <small class="text-body-secondary">(ex: asset classes, teams of personnel)</small> to be located in ArcGIS, it is customary to associate each device with a common <i class="fas fa-tag"></i> <b>tag</b>. </p>
               <p> It is possible to associate tags with any identifiable device via graphical user interface in Pareto Anywhere Apps <small class="text-body-secondary">(Devices Observer & Hyperlocal Context Explorer)</small>: </p>
               <ul>
                 <li> Select the device by its <i class="fas fa-mouse-pointer"></i> <b>node</b> or <i class="fas fa-mouse-pointer"></i> <b>identifier</b> </li>
                 <li> Select the <i class="fas fa-mouse-pointer"></i> <b>Associations</b> tab from the bar that appears, as in the screenshot </li>
-                <li> Enter the device tags as <span class="font-monospace">tag1, tag2, ...</span> </li>
+                <li> Enter the device tag(s) as <span class="font-monospace">tag1, tag2, ...</span> </li>
                 <li> Click <i class="fas fa-mouse-pointer"></i> <i class="fas fa-save"></i> <b>Save</b> to complete the tags association </li>
               </ul>
               <p> <i class="fas fa-redo"></i> Repeat this process to associate one or more tags with each device to be located. </p>
@@ -295,12 +296,19 @@
             </div>
           </div>
           <h3 class="mt-4">
-            Enter API path
+            Validate API route
             <small class="text-body-secondary"> Part 4 </small>
           </h3>
+          <p> <span class="badge bg-primary rounded-pill"><i class="fas fa-info"></i></span> ArcGIS Velocity can interpret <b>GeoJSON</b>, which Pareto Anywhere can extract from <b>spatem</b> data. </p>
           <div class="row">
             <div class="col-md-6">
-              <p> Explain. </p>
+              <p> It is now possible to make a <span class="text-body-emphasis">single API call</a> to return, as GeoJSON, the real-time location of <em>all</em> devices, or a group of devices associated with a given <i class="fas fa-tag"></i> tag. </p>
+              <p class="mb-2"> The <b class="font-monospace">/context</b> API supports the query <b class="font-monospace">?format=geojson</b> to structure the response as GeoJSON.  Browse to: </p>
+              <p class="font-monospace ms-4 mb-1"> /context/<b>?format=geojson</b> </p>
+              <p> to query the real-time location of <em>all</em> devices. </p>
+              <p class="mb-2"> To instead query the real-time location of devices with the <b>"owl"</b> <i class="fas fa-tag"></i> tag, browse to: </p>
+              <p class="font-monospace ms-4 mb-1"> /context/<b>tag/owl/</b>?format=geojson<b>&depth=1</b> </p>
+              <p> The <b class="font-monospace">depth=1</b> parameter limits the response to the queried devices, omitting any receiving devices <small class="text-body-secondary">(which represent the next level of depth in the hyperlocal context graph)</small>. </p>
             </div>
             <div class="col-md-6">
               <div class="carousel slide carousel-fade" data-bs-ride="carousel"
@@ -318,7 +326,9 @@
               </div>
             </div>
           </div>
-          <p class="font-monospace mt-3"> http://your.server:3001/context/tag/owl/?format=geojson&depth=1 </p>
+          <p class="mt-3 mb-2"> For example, if Pareto Anywhere is hosted on <b class="font-monospace">127.0.0.1</b> and <em>every</em> <i class="fas fa-tag"></i> <b>owl</b> is to be located, the full URL would be: </p>
+          <p class="font-monospace ms-4"> <a href="http://127.0.0.1:3001/context/tag/owl/?format=geojson&depth=1" target="_blank">http://<b>127.0.0.1</b>:3001/context/tag/owl/?format=geojson&depth=1</a> </p>
+          <p> Validate the API route which provides the real-time location of <em>exactly</em> the devices required by the application.  ArcGIS Velocity will poll the URL, which is covered next in Step 2. </p>
           <!----- Step 2 of 3 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
