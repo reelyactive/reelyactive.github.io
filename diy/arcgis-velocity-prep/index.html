@@ -171,7 +171,7 @@
                 The TL;DR
                 <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
               </h2>
-              <p class="lead"> Learn how to consume RTLS data from Pareto Anywhere in ArcGIS Online. </p>
+              <p class="lead"> Learn how to consume RTLS/IoT data from Pareto Anywhere in ArcGIS Online. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
@@ -207,10 +207,10 @@
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
               <h2 id="step01" class="card-title my-2">
-                Preparing associations &nbsp;
+                Preparing the location API &nbsp;
                 <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
               </h2>
-              <p class="lead text-body-secondary"> Associate <i class="fas fa-map-marked-alt"></i> positions with infrastructure and <i class="fas fa-tags"></i> tags with <em>things</em> to be located. </p>
+              <p class="lead text-body-secondary"> Associate <i class="fas fa-map-marked-alt"></i> positions and <i class="fas fa-tags"></i> tags to facilitate a specific GeoJSON API call. </p>
               <hr>
               <dl class="row">
                 <dt class="col-sm-3"> What are associations? </dt>
@@ -246,7 +246,7 @@
           </div>
           <div class="card hover-shadow mt-3">
             <div class="card-body">
-              <p class="card-text"> <span class="badge bg-info rounded-pill"><i class="fas fa-lightbulb text-warning"></i></span> Alternatively, associate positions programmatically using the <span class="font-monospace">/associations</span> API: </p>
+              <p class="card-text"> <span class="badge bg-info rounded-pill"><i class="fas fa-lightbulb text-warning"></i></span> Alternatively, associate positions <em>programmatically</em> using the <span class="font-monospace">/associations</span> API: </p>
               <p class="card-text font-monospace text-center mb-1"> PUT /associations/{id}/{type}/position<sup>*</sup> </p>
               <p class="card-text small text-body-secondary text-end mb-0"> <sup>*</sup> See <a href="https://github.com/reelyactive/chickadee#put-associationsidtype" target="_blank"><i class="fab fa-github"></i>/reelyactive/chickadee</a> </p>
             </div>
@@ -290,7 +290,7 @@
           </div>
           <div class="card hover-shadow mt-3">
             <div class="card-body">
-              <p class="card-text"> <span class="badge bg-info rounded-pill"><i class="fas fa-lightbulb text-warning"></i></span> Alternatively, associate tags programmatically using the <span class="font-monospace">/associations</span> API: </p>
+              <p class="card-text"> <span class="badge bg-info rounded-pill"><i class="fas fa-lightbulb text-warning"></i></span> Alternatively, associate tags <em>programmatically</em> using the <span class="font-monospace">/associations</span> API: </p>
               <p class="card-text font-monospace text-center mb-1"> PUT /associations/{id}/{type}/tags<sup>*</sup> </p>
               <p class="card-text small text-body-secondary text-end mb-0"> <sup>*</sup> See <a href="https://github.com/reelyactive/chickadee#put-associationsidtype" target="_blank"><i class="fab fa-github"></i>/reelyactive/chickadee</a> </p>
             </div>
