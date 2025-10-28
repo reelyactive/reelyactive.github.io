@@ -339,10 +339,10 @@
               <p class="lead text-body-secondary"> Configure a HTTP poller and confirm the data schema. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's HTTP polling? </dt>
+                <dd class="col-sm-9"> This is a method of retrieving data by periodically GETing a specific API route. </dd>
+                <dt class="col-sm-3"> What's the schema? </dt>
+                <dd class="col-sm-9"> The API returns a standard <a href="https://github.com/reelyactive/chickadee#formatgeojson" target="_blank"><i class="fas fa-external-link-alt"></i> GeoJSON FeatureCollection</a>, augmented with device identifiers in each feature's properties. </dd>
               </dl>
               <img src="images/arcgis-velocity-overview.png"
                    class="card-img-bottom" alt="ArcGIS Velocity configuration">
@@ -354,7 +354,7 @@
           </h3>
           <div class="row">
             <div class="col-md-6">
-              <p> Explain. </p>
+              <p> In ArcGIS Velocity, configure a HTTP poller with the <i class="fas fa-link"></i> URL of the API route validated in Step 1, Part 4 above.  Select the GET method. </p>
             </div>
             <div class="col-md-6">
               <img src="images/configure-http-poller.png"
@@ -365,16 +365,71 @@
             Confirm schema
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> Explain. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> In ArcGIS Velocity, confirm the schema of the data returned by the API, using the following configuration: </p>
+            </div>
+            <div class="col-md-6">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <th scope="row"> Data format </th>
+                    <td> JSON </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> Root node </th>
+                    <td> features </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> Flatten </th>
+                    <td> <i class="fas fa-check"></i> </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> Flatten arrays </th>
+                    <td> <i class="fas fa-check"></i> </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
           <img src="images/confirm-schema.png"
                class="img-fluid rounded" alt="Confirm schema">
+          <p class="mt-3"> Rename, for clarity, any fields that will be used when manipulating and visualising the data <small class="text-body-secondary">(ex: deviceId, deviceIdType, x, y, z)</small>.  Note that the Z-axis should be of type Float64 unless using integer-only floor/level values. </p>
           <h3 class="mt-4">
             Identify key fields
             <small class="text-body-secondary"> Part 3 </small>
           </h3>
           <div class="row">
             <div class="col-md-6">
-              <p> Explain. </p>
+              <p> In ArcGIS Velocity, identify key fields as follows: </p>
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <th scope="row"> Location type </th>
+                    <td> X/Y fields </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> X (longitude) </th>
+                    <td> x </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> Y (latitude) </th>
+                    <td> y </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> Z (altitude) </th>
+                    <td> z <small class="text-body-secondary">(or None)</small> </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> Spatial reference </th>
+                    <td> GCS WGS 1984 </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"> Track ID </th>
+                    <td> deviceId </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="col-md-6">
               <img src="images/identify-key-fields.png"
@@ -387,7 +442,8 @@
           </h3>
           <div class="row">
             <div class="col-md-6">
-              <p> Explain. </p>
+              <p> In ArcGIS Velocity set the polling interval to an appropriate value for the application. </p>
+              <p> <span class="badge bg-warning rounded-pill"><i class="fas fa-exclamation-triangle"></i></span> ArcGIS Velocity may limit the frequency/quantity of allowed ingestion based on the license type. </p>
             </div>
             <div class="col-md-6">
               <img src="images/feed-polling-interval.png"
@@ -400,7 +456,7 @@
           </h3>
           <div class="row">
             <div class="col-md-6">
-              <p> Explain. </p>
+              <p> In ArcGIS Velocity, save the feed with a meaningful name <small class="text-body-secondary">(ex: related to the API tag value)</small>. </p>
             </div>
             <div class="col-md-6">
               <img src="images/save-feed.png"
