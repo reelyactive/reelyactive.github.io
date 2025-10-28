@@ -1,5 +1,6 @@
 https://reelyactive.github.io/
 https://reelyactive.github.io/diy/
+https://reelyactive.github.io/diy/arcgis-velocity-prep/
 https://reelyactive.github.io/diy/aruba-instant-config/
 https://reelyactive.github.io/diy/aruba-iotops-config/
 https://reelyactive.github.io/diy/banglejs-dev/
