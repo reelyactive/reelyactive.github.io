@@ -10,6 +10,7 @@ https://reelyactive.github.io/diy/capspaces-pi/
 https://reelyactive.github.io/diy/cheatsheet/
 https://reelyactive.github.io/diy/contact-tracing-architectures/
 https://reelyactive.github.io/diy/devices/
+https://reelyactive.github.io/diy/ela-innovation/config/
 https://reelyactive.github.io/diy/elasticsearch-email-integration/
 https://reelyactive.github.io/diy/elasticsearch-service-setup/
 https://reelyactive.github.io/diy/elasticsearch-slack-integration/

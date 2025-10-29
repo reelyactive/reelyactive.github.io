@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="reelyActive's guide to configuring ELA Innovation beacons and sensors for IoT applications.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> ELA Innovation Beacon Configuration Guide </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "ELA Innovation Beacon Configuration Guide",
+      "description": "reelyActive's guide to configuring ELA Innovation beacons and sensors for IoT applications.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/ela-innovation-config/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "ELA Innovation Beacon Configuration"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Configure ELA Innovation beacons </h1>
+          <p class="lead"> Our step-by-step guide to configure the beacons and sensors using Device Manager software. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Configure ELA Innovation beacons with Device Manager">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how we at reelyActive configure the rugged beacons for real-time sensing and location </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The packet type(s), advertising interval and identifiers of <a href="https://elainnovation.com/en/products-catalog/" target="_blank"><i class="fas fa-external-link-alt"></i> ELA Innovation beacons</a> will be configured from a host <i class="fab fa-windows"></i> PC. </dd>
+                <dt class="col-sm-3"> How to capture the data? </dt>
+                <dd class="col-sm-9"> ELA Innovation offers <a href="https://apps.microsoft.com/detail/9n1404ldd68b" target="_blank"><i class="fas fa-external-link-alt"></i> Device Manager Connector</a> for <i class="fab fa-windows"></i> PCs.  Our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> open source IoT middleware processes the data for any application. </dd>
+                <dt class="col-sm-3"> How long does this take? </dt>
+                <dd class="col-sm-9"> Once the host <i class="fab fa-windows"></i> PC is set up, beacons can be configured in under a minute. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> ELA Innovation beacons, the Device Manager PC software, and a NFC reader. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://elainnovation.com/en/device-manager-suite/">
+                <img src="images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://elainnovation.com/en/device-manager-suite/">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Device Manager Suite
+                </h5>
+              </a>
+              Download for <i class="fab fa-windows"></i> PC from ELA Innovation.
+            </li>
+          </ul>        
+          <!----- Step 1 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Prepare host PC &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 3 </a>
+              </h2>
+              <p class="lead"> Run Device Manager PC on the host PC with a NFC reader. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why Device Manager PC? </dt>
+                <dd class="col-sm-9"> Device Manager PC is the vendor-maintained software that is required to configure the beacons. </dd>
+                <dt class="col-sm-3"> Any alternatives? </dt>
+                <dd class="col-sm-9"> ELA Innovation beacons can be pre-configured by the manufacturer. </dd>
+              </dl>
+              <img src="images/host-pc-setup.png" class="card-img-bottom"
+                   alt="Device Manager host PC setup">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install Device Manager PC
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> Install the Device Manager PC software using the <i class="fab fa-windows"></i> Windows installer provided with the download. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> An instructional video is available on the <a href="https://elainnovation.com/en/device-manager-suite/" target="_blank"><i class="fas fa-external-link-alt"></i>Device Manager Suite</a> web page. </p>
+          <h3 class="mt-4">
+            Connect NFC reader
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Connect the NFC reader to a free USB port on the host <i class="fas fa-laptop"></i> PC and validate that it is recognised by <i class="fab fa-windows"></i> Windows. </p>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> ELA Innovation recommends the <a href="https://www.acs.com.hk/en/products/342/acr1252u-usb-nfc-reader-iii-nfc-forum-certified-reader/" target="_blank"><i class="fas fa-external-link-alt"></i>ACR1252U</a> USB NFC reader. </p>
+          <h3 class="mt-4">
+            Prepare Device Manager PC
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Run the Device Manager PC software by double-clicking on the Desktop icon or selecting from the Windows Start menu, and observe the welcome screen. </p>
+          <img src="images/device-manager-welcome.png"
+               class="img-fluid rounded d-block mx-auto mb-3"
+               alt="Device Manager PC welcome screen">
+          <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Play</b> icon in the NFC Programmer box to open a dialog to select the connected NFC reader. </p>
+          <img src="images/device-manager-programmer.png"
+               class="img-fluid rounded d-block mx-auto mb-3"
+               alt="Device Manager NFC programmer selection">
+          <p class="mb-1"> Click the <i class="fas fa-mouse-pointer"></i> <b>ACS ACR1252</b> button<sup>*</sup> to select the connected NFC reader.  The NFC reader panel should appear. </p>
+          <p class="text-body-secondary small text-end"><sup>*</sup>If a different model of reader is connected, select that instead. </p>
+          <img src="images/device-manager-configuration.png"
+               class="img-fluid rounded d-block mx-auto mb-3"
+               alt="Device Manager NFC Tag Configuration">
+          <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Gear</b> icon in the NFC reader panel to open the <b>TAG Configuration</b> panel. </p>
+          <p> <span class="badge rounded-pill bg-success"><i class="fas fa-check"></i></span> It is now possible to configure beacons via NFC from the <b>TAG Configuration</b> panel, which is covered in Step 2. </p>
+          <!----- Step 2 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configure the beacon(s) &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 3 </a>
+              </h2>
+              <p class="lead"> Configure beacons one-at-a-time from the host PC via NFC. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What packet format? </dt>
+                <dd class="col-sm-9"> We recommend the Manufacturer data format as it allows identification as ELA Innovation beacons and ensures unambiguous interpretation of sensor data. </dd>
+                <dt class="col-sm-3"> What advertising interval? </dt>
+                <dd class="col-sm-9"> The advertising interval is always a compromise of battery life vs. update rate: consult the <a href="https://elainnovation.com/en/documentation/" target="_blank"><i class="fas fa-external-link-alt"></i> Autonomy Charts</a> to make an informed decision. </dd>
+              </dl>
+              <img src="images/configuration-overview.png"
+                   class="card-img-bottom"
+                   alt="Device Manager PC configuration overview">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Read the current configuration
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-4 col-xxl-6">
+              <p> Place the beacon on the NFC reader and click the <i class="fas fa-mouse-pointer"></i> <b>Read</b> icon in the TAG Configuration panel. </p>
+              <p> Information about the version, technology and firmware of the beacon should appear, as well as logical groupings of configurable parameters. </p>
+            </div>
+            <div class="col-md-8 col-xxl-6">
+              <img src="images/device-manager-read.png"
+                   class="img-fluid" alt="Device Manager PC tag read">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Edit the configuration
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Edit the parameters in each logical grouping as required for the intended application. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <p> The <b>Advanced BLE</b> grouping, when available, provides the option to advertise manufacturer data and battery level.  The recommended settings are: </p>
+              <table class="table table-hover">
+                <tr>
+                  <th scope="row"> Manufacturer Data Enable </th>
+                  <td class="font-monospace"> True </td>
+                </tr>
+                <tr>
+                  <th scope="row"> Battery in Scan Response </th>
+                  <td class="font-monospace"> True </td>
+                </tr>
+              </table>
+              <p class="small"> Using manufacturer data ensures that the beacon will be recognised as an ELA Innovation device by its <i class="fab fa-bluetooth"></i> Company ID, and that the sensor data will be processed accordingly. </p>
+              <p class="small"> For gateway infrastructure that is configured to <em>actively</em> scan devices, the battery option is an efficient way to relay the battery level in a scan response packet. </p>
+            </div>
+            <div class="col-md-6">
+              <img src="images/device-manager-advanced-ble.png"
+                   class="img-fluid rounded"
+                   alt="Device Manager PC Advanced BLE">
+            </div>
+          </div>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-exclamation-triangle"></i></span> Manufacturer data must be enabled for accurate device classification in HPE Aruba IoT Operations. </p>
+          <h3 class="mt-4">
+            Write the configuration
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <div class="row">
+            <div class="col-md-4 col-xxl-6">
+              <p> Click the <i class="fas fa-mouse-pointer"></i> <b>Write</b> icon in the TAG Configuration panel to update the configuration of the beacon. </p>
+              <p> A popup should appear confirming the success of the write. </p>
+            </div>
+            <div class="col-md-8 col-xxl-6">
+              <img src="images/device-manager-write.png"
+                   class="img-fluid" alt="Device Manager PC tag write">
+            </div>
+          </div>
+          <p class="mt-4"> <span class="badge rounded-pill bg-success"><i class="fas fa-check"></i></span> The beacon is now configured.  Repeat Step 2 for each beacon.  Observing the advertised data is covered in Step 3. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Observe data in Pareto Anywhere &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead"> <em>Optionally</em> observe the transmitted data in your web browser. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes the data from just about <em>any</em>thing usable. </dd>
+                <dt class="col-sm-3"> Can other software be used? </dt>
+                <dd class="col-sm-9"> Yes.  Any software that can receive and interpret <i class="fab fa-bluetooth"></i> Bluetooth Low Energy packets can be used. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-overview.png"
+                   class="card-img-bottom"
+                   alt="ELA Innovation Data in Pareto Anywhere">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Install Pareto Anywhere
+            <small class="text-muted"> (OPTIONAL) Part 1 </small>
+          </h3>
+          <p> Follow one of our tutorials to install Pareto Anywhere on your platform of choice: </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pc/">
+                <img src="../pareto-anywhere-pc/images/icon.png"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pc/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a PC </h5>
+              </a>
+              Install and run Pareto Anywhere on a <i class="fas fa-laptop"></i> personal computer to make sense of things.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-2">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <img src="../pareto-anywhere-pi/images/icon.png"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pi/">
+                <h5 class="mt-0 mb-1"> Run Pareto Anywhere on a Raspberry Pi </h5>
+              </a>
+              Install and run Pareto Anywhere on a <i class="fab fa-raspberry-pi"></i> Pi to make sense of things.
+            </li>
+          </ul>
+          <h3 class="mt-4">
+            Observe the /context API
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Browse to the /context API of the Pareto Anywhere instance, specifying the beacon's identifier in the route as follows: </p>
+          <p class="font-monospace text-center"> http://pareto.local/context/device/e467dd123456/2 </p>
+          <p class="mb-1"> Change <span class="font-monospace">pareto.local</span> to the IP address and port (ex: <span class="font-monospace">127.0.0.1:3001</span>) as required, and the identifier of the device (ex: <span class="font-monospace">e467dd000000</span>) to that of your beacon.<sup>*</sup> &nbsp; The <span class="font-monospace">/2</span> at the end specifies that the identifier is an EUI-48. </p>
+          <p class="text-muted small text-end"><sup>*</sup>alternatively, open the Devices Observer web app and select the beacon's identifier from the list of detected devices. </p>
+          <img src="images/pareto-anywhere-context.png"
+               class="img-fluid rounded mx-auto d-block mt-3"
+               alt="ELA Innovation beacon in Pareto Anywhere /context API">
+          <h3 class="mt-4">
+            Enjoy the data
+            <small class="text-muted"> (OPTIONAL) Part 3 </small>
+          </h3>
+          <p> Our cheatsheet details the <b class="font-monospace">raddec</b> and <b class="font-monospace">dynamb</b> JSON output from the Pareto Anywhere open source middleware. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <img src="../cheatsheet/images/icon.png"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <h5 class="mt-0 mb-1"> Developers Cheatsheet </h5>
+              </a>
+              "Owl" you need to know about Pareto Anywhere's core data structures.
+            </li>
+          </ul>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-body-secondary border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/devices/ela-innovation/" target="_blank">
+                <img src="../common/images/icon-pareto-anywhere.png"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com/pareto/anywhere/devices/ela-innovation/"
+                 target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> ELA Innovation Devices & Pareto Anywhere
+                </h5>
+              </a>
+              Realise interoperable IoT solutions with open source middleware.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="img-fluid rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2025 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
