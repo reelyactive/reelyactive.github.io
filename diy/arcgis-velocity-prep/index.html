@@ -473,16 +473,42 @@
               <p class="lead text-body-secondary"> Put the RTLS data to good use on the map. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's the feed? </dt>
+                <dd class="col-sm-9"> ArcGIS Velocity provides a WebSocket feed for use in ArcGIS web maps, inserted as a Stream Layer. </dd>
+                <dt class="col-sm-3"> What else is possible? </dt>
+                <dd class="col-sm-9"> Additional context and storytelling can be added to the data feed within the web map using the <a href="https://developers.arcgis.com/experience-builder/" target="_blank"><i class="fas fa-external-link-alt"></i> ArcGIS Experience Builder</a>. </dd>
               </dl>
               <img src="images/arcgis-online-overview.png"
                    class="card-img-bottom" alt="ArcGIS Online">
             </div>
           </div>
-          <p class="mt-4"> Details to come... </p>
+          <h3 class="mt-4">
+            Add Stream layer
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> Open a web map in ArcGIS Online, click <i class="fas fa-mouse-pointer"></i> <b>Add Data</b>, and then either: </p>
+          <div class="row">
+            <div class="col-md-6 col-xxl-8">
+              <ul>
+                <li> select <i class="fas fa-mouse-pointer"></i> <b>Browse Layers</b> to select the <span class="text-body-emphasis">Stream layer (hosted)</span> from the catalogue &nbsp; <em class="animate-breathing">-or-</em></li>
+                <li> select <i class="fas fa-mouse-pointer"></i> <b>Add layer from URL</b> to manually enter the hosted Stream layer URL </li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-xxl-4">
+              <img src="images/web-map-add-data.png"
+                   class="img-fluid rounded" alt="Add data in ArcGIS web map">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Observe live data
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> Once the Stream layer is active on the map, live records should appear, updating based on the polling interval set in Step 2 Part 4. </p>
+          <h3 class="mt-4">
+            Enrich the experience
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> Consult the Esri developer documentation for <a href="https://developers.arcgis.com/documentation/mapping-and-location-services/mapping/web-maps/" target="_blank"><i class="fas fa-external-link-alt"></i> Web maps</a> and <a href="https://developers.arcgis.com/experience-builder/guide/" target="_blank"><i class="fas fa-external-link-alt"></i> ArcGIS Experience Builder</a> to tell the story of the live location data on the map. </p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-body-secondary border-0 my-5">
             <div class="row g-0">
@@ -514,15 +540,16 @@
           <p class="lead"> Continue exploring our open architecture and all its applications. </p>
           <ul class="list-group list-group-horizontal">
             <li class="list-group-item border-0">
-              <a href="../devices/">
-                <img src="../devices/images/icon.gif" class="rounded-1">
+              <a href="../grafana-postgresql-geomap/">
+                <img src="../grafana-postgresql-geomap/images/icon.png"
+                     class="rounded-1">
               </a>
             </li>
             <li class="list-group-item border-0">
               <a href="../devices/">
-                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+                <h5 class="mt-0 mb-1"> Grafana geomap with PostgreSQL </h5>
               </a>
-              Browse all device configuration tutorials and development guides.
+              Use an ArcGIS Map Server as a map layer for data visualisation.
             </li>
           </ul>
           <ul class="list-group list-group-horizontal">
