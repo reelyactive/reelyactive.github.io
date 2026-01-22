@@ -653,7 +653,7 @@
                 <td> V </td>
               </tr>
               <tr>
-                <td class="text-ambient"> <i class="fas fa-cloud"</i> </td>
+                <td class="text-ambient"> <i class="fas fa-smog"</i> </td>
                 <td class="font-monospace"> carbonDioxideConcentration </td>
                 <td class="font-monospace"> 1000 </td>
                 <td> Number </td>
@@ -665,6 +665,20 @@
                 <td class="font-monospace"> 1600 </td>
                 <td> Number </td>
                 <td> ppm </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-hashtag"</i> </td>
+                <td class="font-monospace"> count </td>
+                <td class="font-monospace"> 123 </td>
+                <td> Number </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-hashtag"</i> </td>
+                <td class="font-monospace"> counts </td>
+                <td class="font-monospace"> [ 1, 2, 3 ] </td>
+                <td> Array of Number </td>
+                <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-water"</i> </td>
@@ -681,11 +695,32 @@
                 <td> m </td>
               </tr>
               <tr>
+                <td class="text-ambient"> <i class="fas fa-stopwatch"</i> </td>
+                <td class="font-monospace"> duration </td>
+                <td class="font-monospace"> 1000 </td>
+                <td> Number </td>
+                <td> ms </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-stopwatch"</i> </td>
+                <td class="font-monospace"> durations </td>
+                <td class="font-monospace"> [ 958, 1049 ] </td>
+                <td> Array of Number </td>
+                <td> ms </td>
+              </tr>
+              <tr>
                 <td class="text-ambient"> <i class="fas fa-layer-group"</i> </td>
                 <td class="font-monospace"> elevation </td>
                 <td class="font-monospace"> 152 </td>
                 <td> Number </td>
                 <td> m </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-plug"</i> </td>
+                <td class="font-monospace"> energy </td>
+                <td class="font-monospace"> 21 </td>
+                <td> Number </td>
+                <td> kWh </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-compass"</i> </td>
@@ -723,16 +758,44 @@
                 <td> &mdash; </td>
               </tr>
               <tr>
+                <td class="text-ambient"> <i class="fas fa-skull-crossbones"</i> </td>
+                <td class="font-monospace"> isCarbonMonoxideDetected </td>
+                <td class="font-monospace"> [ true ] </td>
+                <td> Array of Boolean <sup>2</sup> </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-skull-crossbones"</i> </td>
+                <td class="font-monospace"> isCarbonMonoxideDetectedCycle </td>
+                <td class="font-monospace"> 26 </td>
+                <td> Number </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
                 <td class="text-ambient"> <i class="fas fa-compress-alt"</i> </td>
                 <td class="font-monospace"> isContactDetected </td>
-                <td class="font-monospace"> [ true ] </td>
+                <td class="font-monospace"> [ false ] </td>
                 <td> Array of Boolean <sup>2</sup> </td>
                 <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-compress-alt"</i> </td>
                 <td class="font-monospace"> isContactDetectedCycle </td>
-                <td class="font-monospace"> 26 </td>
+                <td class="font-monospace"> 39 </td>
+                <td> Number </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-smog"</i> </td>
+                <td class="font-monospace"> isGasDetected </td>
+                <td class="font-monospace"> [ true ] </td>
+                <td> Array of Boolean <sup>2</sup> </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-smog"</i> </td>
+                <td class="font-monospace"> isGasDetectedCycle </td>
+                <td class="font-monospace"> 52 </td>
                 <td> Number </td>
                 <td> &mdash; </td>
               </tr>
@@ -753,49 +816,77 @@
               <tr>
                 <td class="text-ambient"> <i class="fas fa-check"</i> </td>
                 <td class="font-monospace"> isInputDetectedCycle </td>
-                <td class="font-monospace"> 39 </td>
+                <td class="font-monospace"> 65 </td>
+                <td> Number </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-lightbulb"</i> </td>
+                <td class="font-monospace"> isLightDetected </td>
+                <td class="font-monospace"> [ true ] </td>
+                <td> Array of Boolean <sup>2</sup> </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-lightbulb"</i> </td>
+                <td class="font-monospace"> isLightDetectedCycle </td>
+                <td class="font-monospace"> 78 </td>
                 <td> Number </td>
                 <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-tint"</i> </td>
                 <td class="font-monospace"> isLiquidDetected </td>
-                <td class="font-monospace"> [ true ] </td>
+                <td class="font-monospace"> [ false ] </td>
                 <td> Array of Boolean <sup>2</sup> </td>
                 <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-tint"</i> </td>
                 <td class="font-monospace"> isLiquidDetectedCycle </td>
-                <td class="font-monospace"> 52 </td>
+                <td class="font-monospace"> 91 </td>
                 <td> Number </td>
                 <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-walking"</i> </td>
                 <td class="font-monospace"> isMotionDetected </td>
-                <td class="font-monospace"> [ false ] </td>
+                <td class="font-monospace"> [ true ] </td>
                 <td> Array of Boolean <sup>2</sup> </td>
                 <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-walking"</i> </td>
                 <td class="font-monospace"> isMotionDetectedCycle </td>
-                <td class="font-monospace"> 65 </td>
+                <td class="font-monospace"> 104 </td>
                 <td> Number </td>
                 <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-user-check"</i> </td>
                 <td class="font-monospace"> isOccupancyDetected </td>
-                <td class="font-monospace"> [ true ] </td>
+                <td class="font-monospace"> [ false ] </td>
                 <td> Array of Boolean <sup>2</sup> </td>
                 <td> &mdash; </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-user-check"</i> </td>
                 <td class="font-monospace"> isOccupancyDetectedCycle </td>
-                <td class="font-monospace"> 78 </td>
+                <td class="font-monospace"> 117 </td>
+                <td> Number </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-fire"</i> </td>
+                <td class="font-monospace"> isSmokeDetected </td>
+                <td class="font-monospace"> [ true ] </td>
+                <td> Array of Boolean <sup>2</sup> </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-fire"</i> </td>
+                <td class="font-monospace"> isSmokeDetectedCycle </td>
+                <td class="font-monospace"> 130 </td>
                 <td> Number </td>
                 <td> &mdash; </td>
               </tr>
@@ -828,7 +919,7 @@
                 <td> G </td>
               </tr>
               <tr>
-                <td class="text-ambient"> <i class="fas fa-cloud"</i> </td>
+                <td class="text-ambient"> <i class="fas fa-smog"</i> </td>
                 <td class="font-monospace"> methaneConcentration </td>
                 <td class="font-monospace"> 1.908 </td>
                 <td> Number </td>
@@ -934,6 +1025,13 @@
                 <td> [ lon, lat, ele ] </td>
               </tr>
               <tr>
+                <td class="text-ambient"> <i class="fas fa-cog"</i> </td>
+                <td class="font-monospace"> power </td>
+                <td class="font-monospace"> 1600 </td>
+                <td> Number </td>
+                <td> W </td>
+              </tr>
+              <tr>
                 <td class="text-ambient"> <i class="fas fa-cloud"</i> </td>
                 <td class="font-monospace"> pressure </td>
                 <td class="font-monospace"> 101325 </td>
@@ -946,6 +1044,13 @@
                 <td class="font-monospace"> [ 101325, 99999, null ] </td>
                 <td> Array of Number <sup>2</sup> </td>
                 <td> Pa </td>
+              </tr>
+              <tr>
+                <td class="text-ambient"> <i class="fas fa-code"</i> </td>
+                <td class="font-monospace"> raw </td>
+                <td class="font-monospace"> "0123456789abcdef" </td>
+                <td> String </td>
+                <td> Hex </td>
               </tr>
               <tr>
                 <td class="text-ambient"> <i class="fas fa-water"</i> </td>
@@ -983,6 +1088,13 @@
                 <td> &deg;C </td>
               </tr>
               <tr>
+                <td class="text-ambient"> <i class="fas fa-comment"</i> </td>
+                <td class="font-monospace"> text </td>
+                <td class="font-monospace"> "Interoperability!" </td>
+                <td> String </td>
+                <td> &mdash; </td>
+              </tr>
+              <tr>
                 <td class="text-ambient"> <i class="fas fa-satellite-dish"</i> </td>
                 <td class="font-monospace"> txCount </td>
                 <td class="font-monospace"> 123456789 </td>
@@ -1018,7 +1130,7 @@
                 <td> m/s </td>
               </tr>
               <tr>
-                <td class="text-ambient"> <i class="fas fa-cloud"</i> </td>
+                <td class="text-ambient"> <i class="fas fa-smog"</i> </td>
                 <td class="font-monospace"> volatileOrganicCompoundsConcentration </td>
                 <td class="font-monospace"> 0.065 </td>
                 <td> Number </td>
@@ -1375,7 +1487,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022-2025 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2022-2026 </a>
     </footer>
 
     <!-- Optional JavaScript -->
