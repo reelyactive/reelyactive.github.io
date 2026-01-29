@@ -539,9 +539,72 @@
             </div>
           </div>
           <h3 class="mt-4"> Member Services (16-bit UUID) </h3>
-          <p> Eddystone-TLM. </p>
-          <h3 class="mt-4"> Manufacturer Specific Data </h3>
-          <p> Espruino & DirAct. </p>
+          <p> Member services that are offered as open specifications for general use include BTHome and Eddystone. </p>
+          <h4> BTHome (<code>0xFCD2</code>) </h4>
+          <p class="text-body-secondary"> "<a href="https://bthome.io/" target="_blank"><i class="fas fa-external-link-alt"></i> BTHome</a> is an open standard for broadcasting sensor data and button presses over Bluetooth LE" </p>
+          <p> The <a href="https://bthome.io/format/" target="_blank"><i class="fas fa-external-link-alt"></i> BTHome v2 format</a> specifies an efficient means of encapsulating a variety of measurements (and other data types) in a single advertising packet.<sup>*</sup> </p>
+          <p class="small text-body-secondary text-end"> <sup>*</sup> The data is interpreted by <a href="https://github.com/Bluetooth-Devices/bthome-ble" target="_blank"><i class="fas fa-external-link-alt"></i> BTHome BLE</a> and the <a href="https://github.com/reelyactive/advlib-ble-services" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-ble-services</a> module of <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a>. </p>
+          <p>
+            <span class="badge text-bg-success">
+              <i class="fas fa-check"></i>
+            </span>
+            &nbsp; <span class="text-body-emphasis">BTHome</span> is the ideal choice, provided it supports all the required data types.
+          </p>
+          <h4> Eddystone-TLM (<code>0xFEAA</code>) </h4>
+          <p class="text-body-secondary"> "<a href="https://github.com/google/eddystone/" target="_blank"><i class="fas fa-external-link-alt"></i> Eddystone</a> is a protocol specification that defines a BLE message format for proximity beacon messages." </p>
+          <p> The <a href="https://github.com/google/eddystone/tree/master/eddystone-tlm" target="_blank"><i class="fas fa-external-link-alt"></i> Eddystone-TLM</a> frame includes the following telemetry (TLM) measurements: </p>  
+          <ul class="list-inline font-monospace text-center">
+            <li class="list-inline-item">
+              <i class="fas fa-battery-half"></i> batteryVoltage
+            </li>
+            <li class="list-inline-item">
+              <i class="fas fa-thermometer-half"></i> temperature
+            </li>
+            <li class="list-inline-item">
+              <i class="fas fa-satellite-dish"></i> txCount
+            </li>
+            <li class="list-inline-item">
+              <i class="fas fa-stopwatch"></i> uptime
+            </li>
+          </ul>
+          <p> The telemetry data can be encrypted, when interwoven with <a href="https://github.com/google/eddystone/tree/master/eddystone-eid" target="_blank"><i class="fas fa-external-link-alt"></i> Eddystone-TLM</a> frames. </p>
+          <p>
+            <span class="badge text-bg-success">
+              <i class="fas fa-check"></i>
+            </span>
+            &nbsp; <span class="text-body-emphasis">Eddystone-TLM</span> is arguably the most commonly supported telemetry format.
+          </p>
+          <h3 class="mt-4"> Manufacturer Specific Data (Company Code) </h3>
+          <p> Manufacturer-specific data offered as open specifications for general use include Espruino and DirAct. </p>
+          <h4> Espruino (<code>0x0590</code>) </h4>
+          <p class="text-body-secondary"> "Send up to 24 bytes of JSON on <a href="https://www.espruino.com" target="_blank"><i class="fas fa-external-link-alt"></i> Espruino</a>'s manufacturer ID." </p>
+          <p> See the <a href="https://www.espruino.com/Reference#l_NRF_setAdvertising" target="_blank"><i class="fas fa-external-link-alt"></i> NRF.setAdvertising()</a> documentation for details on advertising JSON data.<sup>*</sup> </p>
+          <p class="small text-body-secondary text-end"> <sup>*</sup> The data is interpreted as JSON by <a href="https://github.com/espruino/EspruinoHub" target="_blank"><i class="fas fa-external-link-alt"></i> EspruinoHub</a> and the <a href="https://github.com/reelyactive/advlib-ble-manufacturers" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-ble-manufacturers</a> module of <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a>. </p>
+          <p>
+            <span class="badge text-bg-success">
+              <i class="fas fa-check"></i>
+            </span>
+            &nbsp; <span class="text-body-emphasis">Espruino</span> JSON payloads are ideal for dev/test when using <em>official</em> Espruino devices.
+          </p>
+          <h4> DirAct (<code>0x0583</code>) </h4>
+          <p class="text-body-secondary"> "<a href="https://www.reelyactive.com/diract/" target="_blank"><i class="fas fa-external-link-alt"></i> DirAct</a> is open source embedded software for real-time proximity interaction detection." </p>
+          <p> The <a href="https://reelyactive.github.io/diract/" target="_blank"><i class="fas fa-external-link-alt"></i> DirAct specification</a> details how to populate an advertising packet<sup>*</sup> with the <i class="fas fa-barcode"></i> <span class="font-monospace">deviceId</span> and <i class="fas fa-signal"></i> <span class="font-monospace">rssi</span> of up to three nearby peer devices, using InteroperaBLE Identifiers (see <a href="#part04">Part 4</a> below), as well as: </p>
+          <ul class="list-inline font-monospace text-center">
+            <li class="list-inline-item">
+              <i class="fas fa-battery-half"></i> batteryPercentage
+            </li>
+            <li class="list-inline-item">
+              <i class="fas fa-rocket"></i> acceleration
+            </li>
+          </ul>
+          <p> Open source code is provided for Espruino devices: <a href="https://github.com/reelyactive/diract" target="_blank"><i class="fab fa-github"></i>/reelyactive/diract</a> </p>
+          <p class="small text-body-secondary text-end"> <sup>*</sup> The data is interpreted by the <a href="https://github.com/reelyactive/advlib-ble-manufacturers" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-ble-manufacturers</a> module of <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a>. </p>
+          <p>
+            <span class="badge text-bg-success">
+              <i class="fas fa-check"></i>
+            </span>
+            &nbsp; <span class="text-body-emphasis">DirAct</span> is ideal for non-commercial proximity identification applications.
+          </p>
           <p> The following section presents the InteroperaBLE Identifier as an <em>if-nothing-else-fits</em> option for representing data in a BLE advertising packet. </p>
           <!----- Part 4 of 4 ----->
           <div class="card hover-shadow mt-5 bg-body-secondary border-0">
@@ -662,7 +725,7 @@
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2024 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2020-2026 </a>
     </footer>
 
     <!-- Optional JavaScript -->
