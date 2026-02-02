@@ -674,8 +674,60 @@
             </li>
           </ul>
           <p class="mt-2"> Moreover, all defined InteroperaBLE Identifiers are interpreted by our <a href="https://github.com/reelyactive/advlib-interoperable" target="_blank"><i class="fab fa-github"></i>/advlib-interoperable</a> open source interpreter module which is included in our <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> open source IoT middleware. </p>
+          <h4> Implementation </h4>
+          <p> The InteroperaBLE Identifier can be implemented in a standard iBeacon or Eddystone-UID frame, as illustrated below. </p>
           <img src="images/interoperable-data-frames.png" class="img-fluid mb-3"
                alt="InteroperaBLE data BLE advertising frames">
+          <p> In the case of encapsulated data, the <em>Elided</em> UUID identifies the data type, as listed in the table below, with the identifier interpreted as data in certain cases. </p>
+          <table class="table table-sm table-hover">
+            <caption class="text-end"><sup>*</sup> as interpreted by Pareto Anywhere</caption>
+            <thead>
+              <tr>
+                <th scope="col"> <em>Elided</em> UUID </th>
+                <th scope="col"> Name </th>
+                <th scope="col"> Identifier </th>
+                <th scope="col"> Interpretation<sup>*</sup> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-monospace user-select-all">
+                  496f49445554462d3332
+                </td>
+                <td>
+                  Unicode Code Point
+                  <i class="fas fa-language text-body-secondary"></i>
+                </td>
+                <td class="font-monospace"> UTF-32 </td>
+                <td>
+                  <span class="text-body-secondary">ex:</span>
+                  <span class="font-monospace">0x001f989</span> = &#x1f989
+                </td>
+              </tr>
+              <tr>
+                <td class="font-monospace user-select-all">
+                  496f49444d6f74696f63
+                </td>
+                <td>
+                  Motion
+                  <i class="fas fa-walking text-body-secondary"></i>
+                </td>
+                <td class="text-body-secondary"> User-defined </td>
+                <td class="font-monospace"> isMotionDetected = [ true ] </td>
+              </tr>
+              <tr>
+                <td class="font-monospace user-select-all">
+                  496f4944427574746f6e
+                </td>
+                <td>
+                  Button
+                  <i class="fas fa-hand-pointer text-body-secondary"></i>
+                </td>
+                <td class="text-body-secondary"> User-defined </td>
+                <td class="font-monospace"> isButtonPressed = [ true ] </td>
+              </tr>
+            </tbody>
+          </table>
           <!----- Where to next ----->
           <hr class="my-4">
           <h2> Where to next? </h2>
