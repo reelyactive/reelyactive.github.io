@@ -544,8 +544,59 @@
           <p class="text-body-secondary"> "<a href="https://bthome.io/" target="_blank"><i class="fas fa-external-link-alt"></i> BTHome</a> is an open standard for broadcasting sensor data and button presses over Bluetooth LE" </p>
           <p> The <a href="https://bthome.io/format/" target="_blank"><i class="fas fa-external-link-alt"></i> BTHome v2 format</a> specifies an efficient means of encapsulating a variety of measurements (and other data types) in a single advertising packet.<sup>*</sup> </p>
           <p class="small text-body-secondary text-end"> <sup>*</sup> The data is interpreted by <a href="https://github.com/Bluetooth-Devices/bthome-ble" target="_blank"><i class="fas fa-external-link-alt"></i> BTHome BLE</a> and the <a href="https://github.com/reelyactive/advlib-ble-services" target="_blank"><i class="fas fa-external-link-alt"></i> advlib-ble-services</a> module of <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a>. </p>
+          <p> The BTHome v2 frame is illustrated below.  It consists of a Device Info byte followed by one or more measurements.  Each measurement begins with an Object ID byte which implicitly defines the type/length of the subsequent data bytes. </p>
           <img src="images/bthome-frame.png" class="img-fluid mb-3"
                alt="BTHome BLE advertising frame">
+          <p> The table below lists a subset of the supported measurement types and their corresponding interpretation.  For the complete, latest specification visit <a href="https://bthome.io/format/" target="_blank"><i class="fas fa-external-link-alt"></i> bthome.io/format</a>. </p>
+          <table class="table table-sm table-hover">
+            <caption class="text-end"><sup>*</sup> as interpreted by Pareto Anywhere<br><sup>1</sup> 0x00 = false | 0x01 = true<br><sup>2</sup> numerical values use little endian byte ordering</caption>
+            <thead>
+              <tr>
+                <th scope="col"> Name </th>
+                <th scope="col"> Measurement Bytes </th>
+                <th scope="col"> Data Type </th>
+                <th scope="col"> Interpretation<sup>*</sup> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> count </td>
+                <td class="font-monospace"> 09 XX </td>
+                <td> uint8 </td>
+                <td class="font-monospace"> count = 0xXX </td>
+              </tr>
+              <tr>
+                <td> gas </td>
+                <td class="font-monospace"> 1c BB<sup>1</sup> </td>
+                <td> uint8 </td>
+                <td class="font-monospace"> isGasDetected = [ true/false ] </td>
+              </tr>
+              <tr>
+                <td> count </td>
+                <td class="font-monospace"> 3d YY XX<sup>2</sup> </td>
+                <td> uint16 </td>
+                <td class="font-monospace"> count = 0xXXYY </td>
+              </tr>
+              <tr>
+                <td> duration </td>
+                <td class="font-monospace"> 42 ZZ YY XX<sup>2</sup> </td>
+                <td> uint24 </td>
+                <td class="font-monospace"> duration = 0xXXYYZZ </td>
+              </tr>
+              <tr>
+                <td> text </td>
+                <td class="font-monospace"> 53 LL XX YY ZZ ... </td>
+                <td> utf-8 </td>
+                <td class="font-monospace"> text = "xyz..." </td>
+              </tr>
+              <tr>
+                <td> raw </td>
+                <td class="font-monospace"> 54 LL XX YY ZZ ... </td>
+                <td> &mdash; </td>
+                <td class="font-monospace"> raw = "XXYYZZ..." </td>
+              </tr>
+            </tbody>
+          </table>
           <p>
             <span class="badge text-bg-success">
               <i class="fas fa-check"></i>
