@@ -49,6 +49,7 @@ https://reelyactive.github.io/diy/nicla-vision-dev/
 https://reelyactive.github.io/diy/nicla-vision-gauge-reader-config/
 https://reelyactive.github.io/diy/oio-config/
 https://reelyactive.github.io/diy/oio-wlan/
+https://reelyactive.github.io/diy/openmv-dev/
 https://reelyactive.github.io/diy/oss-packages/
 https://reelyactive.github.io/diy/pareto-anywhere-azure/
 https://reelyactive.github.io/diy/pareto-anywhere-azure-aruba/
