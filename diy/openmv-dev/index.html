@@ -502,7 +502,67 @@ isOccupancyDetected = 0
             Transmit images over WiFi
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
-          <p> Details to come using the record-silo of Pareto Anywhere. </p>
+          <p> The MicroPython <a href="https://docs.openmv.io/library/network.html" target="_blank" class="font-monospace"><i class="fas fa-external-link-alt"></i>network</a> module includes a <span class="font-monospace text-body-emphasis">WLAN</span> class which facilitates connection to a WiFi network.  The MicroPython <a href="https://docs.openmv.io/library/requests.html" target="_blank" class="font-monospace"><i class="fas fa-external-link-alt"></i>requests</a> module facilitates making HTTP requests, such as POSTing images as <span class="font-monospace">multipart/form-data</span>. </p>
+          <p> The following Python scripts will connect the camera to a WiFi network, and capture an image in JPEG format in the camera's memory to POST to the <a href="https://github.com/reelyactive/record-silo/" target="_blank"><i class="fab fa-github"></i>/record-silo</a> of a Pareto Anywhere instance. </p>
+          <div class="card-group mb-3">
+            <div class="card hover-shadow">
+              <h5 class="card-header"> Connect to WiFi </h5>
+              <div class="card-body">
+                <pre class="card-text">import network
+import time
+
+SSID = "<b>WiFi Network Name</b>"
+KEY = "<b>WiFi Network Password</b>"
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, KEY)
+
+while not wlan.isconnected():
+    time.sleep_ms(1000)
+
+print("WiFi Connected:", wlan.ifconfig())</pre>
+              </div>
+            </div>
+            <div class="card hover-shadow">
+              <h5 class="card-header"> POST /records </h5>
+              <div class="card-body">
+                <pre class="card-text">import image
+import requests
+import csi
+
+URL = "<b>.../records/device/{id}/{type}</b>"
+
+csi0 = csi.CSI()
+csi0.reset()
+csi0.pixformat(csi.RGB565)
+csi0.framesize(<b>csi.QVGA</b>)
+csi0.snapshot(time=2000)
+
+stream = image.ImageIO((<b>320</b>, <b>240</b>, csi.RGB565), 1)
+stream.write(csi0.snapshot().compress())
+stream.seek(0)
+
+files = { 'record': ('image.jpg', stream, 'image/jpeg') }
+r = requests.post(URL, files=files)
+
+print("POST status:", r.status_code, r.reason)
+</pre>
+              </div>
+            </div>
+          </div>
+          <p> Edit the <b>bold</b> fields in the above code as required.  When using Pareto Anywhere, the <span class="font-monospace text-body-emphasis">URL</span> combines the following elements: </p>
+          <dl class="row ms-4 mb-1">
+            <dt class="col-sm-4"> Pareto Anywhere base URL </dt>
+            <dd class="col-sm-8"> <span class="font-monospace">http://192.168.1.101:3001</span> <small class="text-body-secondary">(example)</small> </dd>
+            <dt class="col-sm-4"> record-silo device route </dt>
+            <dd class="col-sm-8"> <span class="font-monospace">/records/device</span> </dd>
+            <dt class="col-sm-4"> BLE address of cam<sup>*</sup> </dt>
+            <dd class="col-sm-8"> <span class="font-monospace">/112233445566</span> <small class="text-body-secondary">(example: lowercase, no dividers)</small> </dd>
+            <dt class="col-sm-4"> BLE address type of cam<sup>*</sup> </dt>
+            <dd class="col-sm-8"> <span class="font-monospace">/2</span> <small class="text-body-secondary">(2 = PUBLIC, 3 = RANDOM)</small> </dd>
+          </dl>
+          <p class="text-end small text-body-secondary"><sup>*</sup> can be obtained using <a href="https://docs.openmv.io/library/bluetooth.html#class-ble" target="_blank" class="font-monospace"><i class="fas fa-external-link-alt"></i>BLE.config()</a></p>
           <!----- Attribution ----->
           <div class="card hover-shadow bg-body-secondary border-0 my-5">
             <div class="row g-0">
