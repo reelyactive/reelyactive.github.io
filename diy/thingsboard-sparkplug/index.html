@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Configure the MQTT Sparkplug API in ThingsBoard to collect IoT data from Pareto Anywhere open source middleware by reelyActive.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> ThingsBoard Sparkplug Integration </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "ThingsBoard with Pareto Anywhere",
+      "description": "Configure the MQTT Sparkplug API in ThingsBoard to collect IoT data from Pareto Anywhere open source middleware by reelyActive.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/thingsboard-sparkplug/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "ThingsBoard Sparkplug Integration"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com">
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/">
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/">
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> ThingsBoard Sparkplug Integration </h1>
+          <p class="lead"> Configure the MQTT Sparkplug API to collect IoT data from Pareto Anywhere. </p>
+          <img src="images/header.png" class="img-fluid rounded"
+               alt="ThingsBoard MQTT Sparkplug API with Pareto Anywhere">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-body-secondary"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to configure MQTT Sparkplug in ThingsBoard to collect data from Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What's Pareto Anywhere? </dt>
+                <dd class="col-sm-9"> <a href="https://www.reelyactive.com/pareto/anywhere/" target="_blank"><i class="fas fa-external-link-alt"></i> Pareto Anywhere</a> is open source IoT middleware that makes the data from just about <em>any</em>thing usable. </dd>
+                <dt class="col-sm-3"> What's ThingsBoard? </dt>
+                <dd class="col-sm-9"> <a href="https://thingsboard.io/" target="_blank"><i class="fas fa-external-link-alt"></i> ThingsBoard</a> is an open-source IoT platform for data collection, processing, visualization, and device management. </dd>
+                <dt class="col-sm-3"> Why MQTT Sparkplug? </dt>
+                <dd class="col-sm-9"> Both ThingsBoard and Pareto Anywhere support <a href="https://projects.eclipse.org/projects/iot.sparkplug" target="_blank"><i class="fas fa-external-link-alt"></i> Sparkplug&reg;</a>, which facilitates standards-based integration. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> Pareto Anywhere <small>(with barnacles-sparkplug)</small> installed. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pc/">
+                <img src="../pareto-anywhere-pc/images/icon.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../pareto-anywhere-pc/">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Run Pareto Anywhere on a PC
+                </h5>
+              </a>
+              Our step-by-step guide to install and run on a Windows/Mac/Linux PC <small class="text-body-secondary">(or server).</small><sup>*</sup><br>
+              <p class="text-end small"> <sup>*</sup> Add the <a href="https://github.com/reelyactive/barnacles-sparkplug" target="_blank"><i class="fab fa-github"></i>/barnacles-sparkplug</a> module to act as MQTT Sparkplug client. </p>
+            </li>
+          </ul>
+          <!----- Step 1 of 2 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing ThingsBoard locally &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 2 </a>
+              </h2>
+              <p class="lead text-body-secondary"> [OPTIONAL] Install ThingsBoard on the same <i class="fab fa-linux"></i> Linux machine as Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why run locally? </dt>
+                <dd class="col-sm-9"> For standalone and PoC deployments, running ThingsBoard Community Edition alongside Pareto Anywhere simplifies integration and operation. </dd>
+                <dt class="col-sm-3"> Can I run remote? </dt>
+                <dd class="col-sm-9"> <em>Yes, of course!</em>  Skip this step and configure barnacles-sparkplug to connect to ThingsBoard's MQTT broker by specifying the remote server. </dd>
+              </dl>
+              <img src="images/thingsboard-local.png"
+                   class="card-img-bottom" alt="ThingsBoard local installation">
+            </div>
+          </div>
+          <p class="mt-4"> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span> <span class="text-body-emphasis">Skip this step</span> if using an <em>existing</em> ThingsBoard instance! </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Our instructions assume a Debian-based flavour of <i class="fab fa-linux"></i> Linux such as Ubuntu or <i class="fab fa-raspberry-pi"></i> Pi OS. <small>(<a href="https://thingsboard.io/docs/user-guide/install/installation-options/" target="_blank"><i class="fas fa-external-link-alt"></i> Official Guides</a>)</small> </p>
+          <h3 class="mt-4">
+            Install Java (OpenJDK)
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> ThingsBoard is programmed in Java, which may not be included by default in the given <i class="fab fa-linux"></i> Linux distribution. </p>
+          <p> On the <i class="fas fa-laptop"></i> local server, open a terminal <i class="fas fa-terminal"></i> and refresh the package index with the command <code class="user-select-all">sudo apt update</code> </p>
+          <p class="mb-0"> Then install the latest headless OpenJDK with the command <code class="user-select-all">sudo apt install openjdk-<b>21</b>-jdk-headless</code><sup>*</sup> </p>
+          <p class="text-end text-body-secondary small"> <sup>*</sup> Change the version number (ex: <b>21</b>) based on what is supported by the <i class="fab fa-linux"></i> Linux distribution. </p>
+          <p> Confirm that the installed OpenJDK version is the default with the command <code class="user-select-all">sudo update-alternatives --config java</code> </p>
+          <pre class="ms-5">There is 1 choice for the alternative java (providing /usr/bin/java).
+
+  Selection    Path                                         Priority   Status
+------------------------------------------------------------
+* 0            /usr/lib/jvm/java-21-openjdk-arm64/bin/java   2111      auto mode
+  1            /usr/lib/jvm/java-21-openjdk-arm64/bin/java   2111      manual mode
+
+Press enter to keep the current choice[*], or type selection number:</pre>
+          <p> At any time, it is possible to confirm the Java version with the command <code class="user-select-all">java -version</code> </p>
+          <h3 class="mt-4">
+            Install ThingsBoard
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> ThingsBoard v4.1 is recommended as the latest version which supports legacy Sparkplug clients <small>(pre-Sparkplug 3.0)</small>. </p>
+          <p class="mb-0"> In a terminal <i class="fas fa-terminal"></i> on the local server, download a specific version of ThingsBoard (<a href="https://thingsboard.io/docs/releases/releases-table/" target="_blank"><i class="fas fa-external-link-alt"></i> Releases Table</a>) with the command <code class="user-select-all">wget https://github.com/thingsboard/thingsboard/releases/download/v<b>4.1</b>/thingsboard-<b>4.1</b>.deb</code><sup>*</sup> </p>
+          <p class="text-end text-body-secondary small"> <sup>*</sup> Find the latest release download path on <a href="https://github.com/thingsboard/thingsboard/releases" target="_blank"><i class="fab fa-github"></i>/thingsboard/releases</a>. </p>
+          <p class="mb-0"> Then install the Debian package with the command <code class="user-select-all">sudo dpkg -i thingsboard-<b>4.1</b>.deb</code><sup>*</sup> </p>
+          <p class="text-end text-body-secondary small"> <sup>*</sup> Change the version number to match the downloaded package, if required. </p>
+          <h3 class="mt-4">
+            Install PostgreSQL
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> <span class="badge rounded-pill text-bg-warning"><i class="fas fa-exclamation-triangle"></i></span> <span class="text-body-emphasis">Skip this step</span> if a local PostgreSQL <i class="fas fa-database"></i> database was already installed with Pareto Anywhere! </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> ThingsBoard supports PostgreSQL and Cassandra <i class="fas fa-database"></i> databases.  PostgreSQL alone is sufficient for most local deployments. </p>
+          <p> In a terminal <i class="fas fa-terminal"></i> on the local server, install PostgreSQL with the command <code class="user-select-all">sudo apt install postgresql</code> </p>
+          <p> Then start the <i class="fas fa-database"></i> database with the command <code class="user-select-all">sudo service postgresql start</code> </p>
+          <p> The PostgreSQL <i class="fas fa-database"></i> database will run automatically in the background. </p>
+          <h3 class="mt-4">
+            Configure PostgreSQL
+            <small class="text-body-secondary"> Part 4 </small>
+          </h3>
+          <p> In a terminal <i class="fas fa-terminal"></i> on the local server, log into the database as the <span class="font-monospace">postgres</span> user with the command <code class="user-select-all">sudo -u postgres psql</code> </p>
+          <p> Once logged in, the terminal <i class="fas fa-terminal"></i> prompt should change to <span class="font-monospace fw-bold">postgres=#</span>, accepting database queries. Enter the following queries: </p>
+          <ul class="list-unstyled ms-4">
+            <li> <code class="user-select-all">CREATE USER tb WITH ENCRYPTED PASSWORD 'thinboar';</code> </li>
+            <li> <code class="user-select-all">CREATE DATABASE thingsboard WITH OWNER tb;</code> </li>
+            <li> <code class="user-select-all">exit</code> </li>
+          </ul>
+          <p> This will create a database called <i class="fas fa-database"></i> <b>thingsboard</b> owned by user <b>tb</b> with password <b>thinboar</b>. </p>
+          <h3 class="mt-4">
+            Configure ThingsBoard
+            <small class="text-body-secondary"> Part 5 </small>
+          </h3>
+          <p> In a terminal <i class="fas fa-terminal"></i> on the local server, edit the <span class="font-monospace">thingsboard.conf</span> file with the command <code class="user-select-all">sudo nano /etc/thingsboard/conf/thingsboard.conf</code> and add the following lines: </p>
+          <pre class="ms-5 user-select-all"># DB Configuration 
+export DATABASE_TS_TYPE=sql
+export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/thingsboard
+export SPRING_DATASOURCE_USERNAME=<b>tb</b>
+export SPRING_DATASOURCE_PASSWORD=<b>thinboar</b>
+# Partitioning size allowed values: DAYS, MONTHS, YEARS, INDEFINITE.
+export SQL_POSTGRES_TS_KV_PARTITIONING=DAYS
+# Restrict to 2G RAM (should not be more than half available RAM)
+export JAVA_OPTS="$JAVA_OPTS -Xms2G -Xmx2G"</pre>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Change the <span class="font-monospace">USERNAME/PASSWORD</span> if different from those suggested in Part 4 above. </p>
+          <p> Next, run the ThingsBoard installation script with the command <code class="user-select-all">sudo /usr/share/thingsboard/bin/install/install.sh</code> <span class="badge text-bg-info"><i class="fas fa-clock"></i> >1 min</span> </p>
+          <p> Finally, start the ThingsBoard service with the command <code class="user-select-all">sudo service thingsboard start</code> </p>
+          <p class="mt-3"> ThingsBoard should now be running and connected to the local PostgreSQL <i class="fas fa-database"></i> database, as will be validated in Step 2, below. </p>
+          <!----- Step 2 of 2 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Configuring MQTT Sparkplug &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 2 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Create a MQTT Sparkplug B Edge of Network node for Pareto Anywhere. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/thingsboard-sparkplug.png"
+                   class="card-img-bottom" alt="ThingsBoard MQTT Sparkplug">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Log in to ThingsBoard
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p class="mb-0"> Browse to the local ThingsBoard instance at <a href="http://localhost:8080" target="_blank"><i class="fas fa-external-link-alt"></i> localhost:8080</a>.<sup>*</sup> </p>
+          <p class="text-end text-body-secondary small"> <sup>*</sup> If connecting remotely, change <span class="font-monospace">localhost</span> to the IP address of the server. </p>
+          <div class="row">
+            <div class="col-md-6">
+              <img src="images/login.gif" class="img-fluid rounded mb-3"
+                   alt="Log in to ThingsBoard">
+            </div>
+            <div class="col-md-6">
+              <p> Log in to ThingsBoard using the e-mail address and password of the tenant administrator. </p>
+              <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> If this is the <em>first</em> login to ThingsBoard, use the default credentials <b>sysadmin@thingsboard.org</b> | <b>sysadmin</b> and then create a new tenant, and add a tenant administrator. </p>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Add Device Profile
+            <small class="text-body-secondary"> Part 2 </small>
+          </h3>
+          <p> In ThingsBoard, from the menu at left, select <i class="fas fa-mouse-pointer"></i> <b>Device profiles</b> from the <b>Profiles</b> category. </p>
+          <img src="images/device-profiles.png"
+               class="img-fluid rounded d-block mx-auto mb-3"
+               alt="ThingsBoard Device Profiles">
+          <p> From the <b>Device profiles</b> page, select <i class="fas fa-mouse-pointer"></i> <span class="badge rounded-pill text-bg-info fw-bold"> + </span> to add a device profile, then select <i class="fas fa-mouse-pointer"></i> <b>Create new device profile</b>. </p>
+          <div class="row">
+            <div class="col-md-4">
+              <p class="mb-1"> Configure the <b>profile</b> as follows: </p>
+              <dl class="row">
+                <dt class="col-md-5"> Name </dt>
+                <dd class="col-md-7"> MQTT EoN Node </dd>
+              </dl>
+              <p class="mb-1"> Configure the <b>transport</b> as follows: </p>
+              <dl class="row">
+                <dt class="col-md-5"> Transport </dt>
+                <dd class="col-md-7"> MQTT </dd>
+                <dt class="col-md-5"> Sparkplug B </dt>
+                <dd class="col-md-7"> <span class="badge text-bg-secondary"><i class="fas fa-check"></i></span> </dd>
+              </dl>
+              <p class="mb-1"> Configure <b>device provisioning</b> as follows: </p>
+              <dl class="row">
+                <dt class="col-md-5"> Provisioning </dt>
+                <dd class="col-md-7"> Disabled </dd>
+              </dl>
+              <p> Then click <i class="fas fa-mouse-pointer"></i> <b>Add</b>.  The profile should appear in the device profiles table. </p>
+            </div>
+            <div class="col-md-8">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="profile1tab"
+                          data-bs-toggle="tab" data-bs-target="#profile1content"
+                          type="button" role="tab" aria-controls="profile1tab"
+                          aria-selected="true"> 1 </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="profile2tab" data-bs-toggle="tab"
+                          data-bs-target="#profile2content" type="button"
+                          role="tab" aria-controls="profile2tab"
+                          aria-selected="false"> 2 </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="profile3tab" data-bs-toggle="tab"
+                          data-bs-target="#profile3content" type="button"
+                          role="tab"  aria-controls="profile3tab"
+                          aria-selected="false"> 3 </button>
+                </li>
+              </ul>
+              <div class="tab-content tab-content-border border-light-subtle">
+                <div class="tab-pane fade show active" id="profile1content"
+                     role="tabpanel" aria-labelledby="profile1tab">
+                  <img src="images/device-profile-1.png"
+                       class="img-fluid rounded">
+                  <p class="mt-2 mb-1"> </p>
+                </div>
+                <div class="tab-pane fade" id="profile2content" role="tabpanel"
+                     aria-labelledby="profile2tab">
+                  <img src="images/device-profile-2.png"
+                       class="img-fluid rounded">
+                </div>
+                <div class="tab-pane fade" id="profile3content" role="tabpanel"
+                     aria-labelledby="profile3tab">
+                  <img src="images/device-profile-3.png"
+                       class="img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Add Device
+            <small class="text-body-secondary"> Part 4 </small>
+          </h3>
+          <p> In ThingsBoard, from the menu at left, select <i class="fas fa-mouse-pointer"></i> <b>Devices</b> from the <b>Entities</b> category. </p>
+          <img src="images/devices.png"
+               class="img-fluid rounded d-block mx-auto mb-3"
+               alt="ThingsBoard Devices">
+          <div class="row">
+            <div class="col-md-4">
+              <p class="mb-1"> Configure the <b>Device details</b> as follows: </p>
+              <dl class="row">
+                <dt class="col-md-4"> Name </dt>
+                <dd class="col-md-8"> Pareto Anywhere </dd>
+                <dt class="col-md-4"> Profile </dt>
+                <dd class="col-md-8"> MQTT EoN Node </dd>
+                <dt class="col-md-4 text-truncate"> Is gateway </dt>
+                <dd class="col-md-8"> <span class="badge text-bg-secondary"><i class="fas fa-check"></i></span> </dd>
+              </dl>
+              <p class="mb-1"> Configure the <b>Credentials</b> as follows: </p>
+              <dl class="row">
+                <dt class="col-md-4"> Type </dt>
+                <dd class="col-md-8"> MQTT Basic </dd>
+                <dt class="col-md-4"> ClientId </dt>
+                <dd class="col-md-8"> ParetoAnywhereEdgeNode </dd>
+                <dt class="col-md-4"> User </dt>
+                <dd class="col-md-8 text-body-secondary"> (blank) </dd>
+                <dt class="col-md-4"> Password </dt>
+                <dd class="col-md-8 text-body-secondary"> (blank) </dd>
+              </dl>
+              <p> Then click <i class="fas fa-mouse-pointer"></i> <b>Add</b>.  The device should appear in the devices table. </p>
+            </div>
+            <div class="col-md-8">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="device1tab"
+                          data-bs-toggle="tab" data-bs-target="#device1content"
+                          type="button" role="tab" aria-controls="device1tab"
+                          aria-selected="true"> 1 </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="device2tab" data-bs-toggle="tab"
+                          data-bs-target="#device2content" type="button"
+                          role="tab" aria-controls="device2tab"
+                          aria-selected="false"> 2 </button>
+                </li>
+              </ul>
+              <div class="tab-content tab-content-border border-light-subtle">
+                <div class="tab-pane fade show active" id="device1content"
+                     role="tabpanel" aria-labelledby="device1tab">
+                  <img src="images/device-1.png" class="img-fluid rounded">
+                  <p class="mt-2 mb-1"> </p>
+                </div>
+                <div class="tab-pane fade" id="device2content" role="tabpanel"
+                     aria-labelledby="device2tab">
+                  <img src="images/device-2.png" class="img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mt-3"> The MQTT Sparkplug API is now configured for ThingsBoard to receive data from a local Pareto Anywhere instance, which will be validated in Step 3, below. </p>
+          <!----- Step 3 of 3 ----->
+          <div class="card hover-shadow bg-body-secondary border-0 mt-5">
+            <div class="card-body pt-4">
+              <h2 id="step03" class="card-title my-2">
+                Connecting Pareto Anywhere &nbsp;
+                <a href="#step03" class="badge bg-primary"> Step 3 of 3 </a>
+              </h2>
+              <p class="lead text-body-secondary"> Configure the barnacles-sparkplug module of Pareto Anywhere to connect to ThingsBoard. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> Question? </dt>
+                <dd class="col-sm-9"> Answer. </dd>
+              </dl>
+              <img src="images/barnacles-sparkplug.png"
+                   class="card-img-bottom" alt="barnacles-sparkplug">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Enjoy the real-time data
+            <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> Our cheatsheet details the standard properties of the <b class="font-monospace">dynamb</b> JSON output from Pareto Anywhere. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <img src="../cheatsheet/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/#dynamb">
+                <h5 class="mt-0 mb-1"> Developers Cheatsheet </h5>
+              </a>
+              "Owl" you need to know about Pareto Anywhere's core data structures.
+            </li>
+          </ul>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-body-secondary border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2026 </a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
