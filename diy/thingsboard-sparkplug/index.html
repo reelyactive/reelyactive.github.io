@@ -301,10 +301,10 @@ export JAVA_OPTS="$JAVA_OPTS -Xms2G -Xmx2G"</pre>
               <p class="lead text-body-secondary"> Create a MQTT Sparkplug B Edge of Network node for Pareto Anywhere. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's a EoN node? </dt>
+                <dd class="col-sm-9"> An Edge of Network node acts as a gateway between sensors/devices that do not natively support Sparkplug and the central MQTT broker <small class="text-body-secondary">(i.e. ThingsBoard)</small>. </dd>
+                <dt class="col-sm-3"> What's MQTT? </dt>
+                <dd class="col-sm-9"> MQTT is an open-standard publish/subscribe messaging protocol used by Sparkplug.  Sparkplug defines the payload encoding schemes. </dd>
               </dl>
               <img src="images/thingsboard-sparkplug.png"
                    class="card-img-bottom" alt="ThingsBoard MQTT Sparkplug">
@@ -332,7 +332,7 @@ export JAVA_OPTS="$JAVA_OPTS -Xms2G -Xmx2G"</pre>
           </h3>
           <p> In ThingsBoard, from the menu at left, select <i class="fas fa-mouse-pointer"></i> <b>Device profiles</b> from the <b>Profiles</b> category. </p>
           <img src="images/device-profiles.png"
-               class="img-fluid rounded d-block mx-auto mb-3"
+               class="img-fluid rounded d-block mx-auto mb-4"
                alt="ThingsBoard Device Profiles">
           <p> From the <b>Device profiles</b> page, select <i class="fas fa-mouse-pointer"></i> <span class="badge rounded-pill text-bg-info fw-bold"> + </span> to add a device profile, then select <i class="fas fa-mouse-pointer"></i> <b>Create new device profile</b>. </p>
           <div class="row">
@@ -403,7 +403,7 @@ export JAVA_OPTS="$JAVA_OPTS -Xms2G -Xmx2G"</pre>
           </h3>
           <p> In ThingsBoard, from the menu at left, select <i class="fas fa-mouse-pointer"></i> <b>Devices</b> from the <b>Entities</b> category. </p>
           <img src="images/devices.png"
-               class="img-fluid rounded d-block mx-auto mb-3"
+               class="img-fluid rounded d-block mx-auto mb-4"
                alt="ThingsBoard Devices">
           <div class="row">
             <div class="col-md-4">
@@ -457,7 +457,7 @@ export JAVA_OPTS="$JAVA_OPTS -Xms2G -Xmx2G"</pre>
               </div>
             </div>
           </div>
-          <p class="mt-3"> The MQTT Sparkplug API is now configured for ThingsBoard to receive data from a local Pareto Anywhere instance, which will be validated in Step 3, below. </p>
+          <p class="mt-3"> The MQTT Sparkplug API is now configured for ThingsBoard to receive data from a local Pareto Anywhere instance<em>&mdash;the Edge of Network node&mdash;</em>which will be validated in Step 3, below. </p>
           <!----- Step 3 of 3 ----->
           <div class="card hover-shadow bg-body-secondary border-0 mt-5">
             <div class="card-body pt-4">
@@ -468,18 +468,92 @@ export JAVA_OPTS="$JAVA_OPTS -Xms2G -Xmx2G"</pre>
               <p class="lead text-body-secondary"> Configure the barnacles-sparkplug module of Pareto Anywhere to connect to ThingsBoard. </p>
               <hr>
               <dl class="row">
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
-                <dt class="col-sm-3"> Question? </dt>
-                <dd class="col-sm-9"> Answer. </dd>
+                <dt class="col-sm-3"> What's barnacles-sparkplug? </dt>
+                <dd class="col-sm-9"> <a href="https://github.com/reelyactive/barnacles-sparkplug" target="_blank"><i class="fab fa-github"></i>/barnacles-sparkplug</a> is a module which translates the real-time data from Pareto Anywhere into Sparkplug B messages, which it publishes as a MQTT client. </dd>
+                <dt class="col-sm-3"> It's an EoN node? </dt>
+                <dd class="col-sm-9"> Yes, barnacles-sparkplug enables Pareto Anywhere to act as a Sparkplug B Edge of Network node. </dd>
               </dl>
               <img src="images/barnacles-sparkplug.png"
                    class="card-img-bottom" alt="barnacles-sparkplug">
             </div>
           </div>
           <h3 class="mt-4">
-            Enjoy the real-time data
+            Run Pareto Anywhere
+            <small class="text-body-secondary"> Part 1 </small>
+          </h3>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Pareto Anywhere includes a startup script which initiates a <em>local</em> MQTT Sparkplug connection. </p>
+          <p class="mb-0"> First, stop any running instance of Pareto Anywhere on the local server.  Then, open a terminal <i class="fas fa-terminal"></i> and browse to the <span class="text-body-emphasis font-monospace">pareto-anywhere</span> <i class="fas fa-folder"></i> folder to start the Sparkplug script with the command <code class="user-select-all">npm run sparkplug</code><sup>*</sup> </p>
+          <p class="text-end text-body-secondary small"> <sup>*</sup> If prompted, first run <code class="user-select-all">npm install barnacles-sparkplug</code> to install the module, then run the script again. </p>
+          <p> Once running, the Sparkplug script should produce console output which includes the following: </p>
+          <p class="font-monospace ms-5"> barnacles-sparkplug: connected to MQTT server </p>
+          <p> <span class="badge rounded-pill text-bg-success"><i class="fas fa-check"></i></span> This indicates that the connection is successful, with real-time IoT data automatically published to ThingsBoard. </p>
+          <h3 class="mt-4">
+            Configure MQTT Sparkplug
+            <small class="text-body-secondary"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p class="mb-1"> Additional configuration of barnacles-sparkplug is required in the case of connection to: </p>
+          <ul>
+            <li> a <em>remote</em> ThingsBoard instance </li>
+            <li> a <em>local</em> ThingsBoard instance using different credentials than those defined in Step 2, Part 4 </li>
+          </ul>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Skip to Part 3 if connection was successful in Part 1, above. </p>
+          <p> From the terminal <i class="fas fa-terminal"></i> browse again to the <span class="text-body-emphasis font-monospace">pareto-anywhere</span> <i class="fas fa-folder"></i> folder and copy the Sparkplug script with the command <code class="user-select-all">cp bin/pareto-anywhere-sparkplug bin/pareto-anywhere-thingsboard</code> </p>
+          <p> Open the copied script for editing with the command <code class="user-select-all">nano bin/pareto-anywhere-thingsboard</code> </p>
+          <pre class="ms-5 mb-3">#!/usr/bin/env node
+
+const ParetoAnywhere = require('../lib/paretoanywhere.js');
+
+<b class="user-select-all">const BARNACLES_SPARKPLUG_OPTIONS = {
+    url: "mqtt://localhost",
+    groupId: "iot",
+    edgeNodeId: "paretoanywhere",
+    clientId: "ParetoAnywhereEdgeNode",
+    username: null,
+    password: null
+};</b>
+
+// ----- Exit gracefully if the optional dependency is not found -----
+let BarnaclesSparkplug;
+try {
+  BarnaclesSparkplug = require('barnacles-sparkplug');
+}
+catch(err) {
+  console.log('This script requires the barnacles-sparkplug package.  Try installing with:');
+  console.log('\r\n    "npm install barnacles-sparkplug"\r\n');
+  return console.log('and then run this script again.');
+}
+// -------------------------------------------------------------------
+
+let pa = new ParetoAnywhere();
+
+// Add the Sparkplug interface
+pa.barnacles.addInterface(BarnaclesSparkplug, <b class="user-select-all">BARNACLES_SPARKPLUG_OPTIONS</b>);</pre>
+          <p> Add <em>both</em> snippets highlighted in <b>bold</b> above, and edit the properties of the <span class="font-monospace">BARNACLES_SPARKPLUG_OPTIONS</span> as required.  Then <i class="fas fa-save"></i> save the script. </p>
+          <p> From the terminal <i class="fas fa-terminal"></i> in the <span class="text-body-emphasis font-monospace">pareto-anywhere</span> <i class="fas fa-folder"></i> folder, run the edited script with the command <code class="user-select-all">node bin/pareto-anywhere-thingsboard</code> </p>
+          <p> Once running, the edited script should produce console output which includes the following: </p>
+          <p class="font-monospace ms-5"> barnacles-sparkplug: connected to MQTT server </p>
+          <p> <span class="badge rounded-pill text-bg-success"><i class="fas fa-check"></i></span> This indicates that the connection is successful, with real-time IoT data automatically published to ThingsBoard. </p>
+          <h3 class="mt-4">
+            Observe data in ThingsBoard
             <small class="text-body-secondary"> Part 3 </small>
+          </h3>
+          <p> In ThingsBoard, from the menu at left, select <i class="fas fa-mouse-pointer"></i> <b>Gateways</b> from the <b>Entities</b> category. </p>
+          <img src="images/gateway-active.png"
+               class="img-fluid rounded d-block mx-auto mb-4"
+               alt="Pareto Anywhere active gateway in ThingsBoard">
+          <p> <span class="text-body-emphasis">Pareto Anywhere</span> should appear in the list with status <span class="badge rounded-pill text-bg-info">Active</span>.  Click on <i class="fas fa-mouse-pointer"></i> <b>Pareto Anywhere</b> in the gateway list for more details. </p>
+          <img src="images/gateway-pareto-anywhere.png"
+               class="img-fluid rounded d-block mx-auto mb-4"
+               alt="Pareto Anywhere gateway details in ThingsBoard">
+          <p> If Pareto Anywhere has a source of real-time IoT data, the corresponding devices will appear in the Devices table as <span class="text-body-emphasis">MQTT EoN Node device</span>(s). </p>
+          <p> To view the most recent telemetry from any such device, from the menu at left, select <i class="fas fa-mouse-pointer"></i> <b>Devices</b> from the <b>Entities</b> category, then select a device from the list, and finally select the <i class="fas fa-mouse-pointer"></i> <b>Latest telemetry</b> tab from the device details overlay. </p>
+          <img src="images/devices-details-telemetry.png"
+               class="img-fluid rounded d-block mx-auto mb-4"
+               alt="MQTT EoN Node device telemetry in ThingsBoard">
+          <p> Pareto Anywhere will publish <a href="https://github.com/reelyactive/barnacles-sparkplug/#supported-dynamb-properties" target="_blank"><i class="fas fa-external-link-alt"></i> supported dynamb properties</a> to ThingsBoard as telemetry data. </p>
+          <h3 class="mt-4">
+            Enjoy the real-time data
+            <small class="text-body-secondary"> Part 4 </small>
           </h3>
           <p> Our cheatsheet details the standard properties of the <b class="font-monospace">dynamb</b> JSON output from Pareto Anywhere. </p>
           <ul class="list-group list-group-horizontal">
