@@ -487,6 +487,21 @@ export JAVA_OPTS="$JAVA_OPTS -Xms2G -Xmx2G"</pre>
           <p> Once running, the Sparkplug script should produce console output which includes the following: </p>
           <p class="font-monospace ms-5"> barnacles-sparkplug: connected to MQTT server </p>
           <p> <span class="badge rounded-pill text-bg-success"><i class="fas fa-check"></i></span> This indicates that the connection is successful, with real-time IoT data automatically published to ThingsBoard. </p>
+          <!-- Temporary warning -->
+          <div class="card hover-shadow bg-body-secondary border-0">
+            <div class="row g-0">
+              <div class="col-1 align-self-center">
+                <div class="card-body">
+                  <i class="fas fa-exclamation-triangle text-warning display-5"></i>
+                </div>
+              </div>
+              <div class="col-11 align-self-center">
+                <div class="card-body">
+                  <p class="card-text"> ThingsBoard versions >4.1 may not support the official sparkplug-client used by barnacles-sparkplug.  See <a href="https://github.com/thingsboard/thingsboard/issues/15492" target="_blank">this ThingsBoard issue</a> and <a href="https://github.com/eclipse-tahu/tahu/issues/442" target="_blank">this sparkplug-client issue</a> for a temporary workaround. </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <h3 class="mt-4">
             Configure MQTT Sparkplug
             <small class="text-body-secondary"> (OPTIONAL) Part 2 </small>
