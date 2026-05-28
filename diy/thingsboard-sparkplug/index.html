@@ -566,6 +566,21 @@ pa.barnacles.addInterface(BarnaclesSparkplug, <b class="user-select-all">BARNACL
                class="img-fluid rounded d-block mx-auto mb-4"
                alt="MQTT EoN Node device telemetry in ThingsBoard">
           <p> Pareto Anywhere will publish <a href="https://github.com/reelyactive/barnacles-sparkplug/#supported-dynamb-properties" target="_blank"><i class="fas fa-external-link-alt"></i> supported dynamb properties</a> to ThingsBoard as telemetry data. </p>
+          <!-- Temporary warning -->
+          <div class="card hover-shadow bg-body-secondary border-0">
+            <div class="row g-0">
+              <div class="col-1 align-self-center">
+                <div class="card-body">
+                  <i class="fas fa-exclamation-triangle text-warning display-5"></i>
+                </div>
+              </div>
+              <div class="col-11 align-self-center">
+                <div class="card-body">
+                  <p class="card-text"> ThingsBoard may not support telemetry using the Sparkplug B <b>DataSet</b> type.  DataSets are used by barnacles-sparkplug to represent multi-variable properties such as <span class="font-monospace">acceleration</span>, <span class="font-monospace">magneticField</span>, <span class="font-monospace">passageCounts</span> and <span class="font-monospace">position</span>.  Consult the <a href="https://github.com/reelyactive/barnacles-sparkplug/#supported-dynamb-properties" target="_blank"><i class="fas fa-external-link-alt"></i> supported dynamb properties</a> Data Type column for properties of interest. </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <h3 class="mt-4">
             Enjoy the real-time data
             <small class="text-body-secondary"> Part 4 </small>
