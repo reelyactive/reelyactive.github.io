@@ -300,7 +300,7 @@
   avg((dynamb->>'temperature')::float) AS avg,
   max((dynamb->>'temperature')::float) AS max
 FROM dynamb
-WHERE dynamb ? 'temperature'
+WHERE $__timeFilter(timestamp) AND dynamb ? 'temperature'
 GROUP BY 1
 ORDER BY $__timeGroup(timestamp, 15m);</pre>
                 </div>
@@ -318,7 +318,7 @@ ORDER BY $__timeGroup(timestamp, 15m);</pre>
   avg((dynamb->>'batteryPercentage')::float) AS avg,
   devicesignature
 FROM dynamb
-WHERE dynamb ? 'batteryPercentage'
+WHERE $__timeFilter(timestamp) AND dynamb ? 'batteryPercentage'
 GROUP BY 1, devicesignature
 ORDER BY $__timeGroup(timestamp, 1h);</pre>
                 </div>
