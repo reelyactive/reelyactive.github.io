@@ -285,6 +285,38 @@
                 <i class="fas fa-battery-half"></i>
               </button>
             </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="motiontab" data-bs-toggle="tab"
+                      data-bs-target="#motioncontent" type="button"
+                      role="tab" aria-controls="motiontab"
+                      aria-selected="false">
+                <i class="fas fa-walking"></i>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="co2tab" data-bs-toggle="tab"
+                      data-bs-target="#co2content" type="button"
+                      role="tab" aria-controls="co2tab"
+                      aria-selected="false">
+                <i class="fas fa-smog"></i>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="rxtab" data-bs-toggle="tab"
+                      data-bs-target="#rxcontent" type="button"
+                      role="tab" aria-controls="rxtab"
+                      aria-selected="false">
+                <i class="fas fa-broadcast-tower"></i>
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="rssitab" data-bs-toggle="tab"
+                      data-bs-target="#rssicontent" type="button"
+                      role="tab" aria-controls="rssitab"
+                      aria-selected="false">
+                <i class="fas fa-signal"></i>
+              </button>
+            </li>
           </ul>
           <div class="tab-content tab-content-border border-light-subtle py-0">
             <div class="tab-pane fade show active" id="temperaturecontent"
@@ -321,6 +353,77 @@ FROM dynamb
 WHERE $__timeFilter(timestamp) AND dynamb ? 'batteryPercentage'
 GROUP BY 1, devicesignature
 ORDER BY $__timeGroup(timestamp, 1h);</pre>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="motioncontent" role="tabpanel"
+                 aria-labelledby="motiontab">
+              <div class="row">
+                <div class="col-md-4">
+                  <p class="mt-2"> Motion detection as 1 or 0 <small class="text-body-secondary">(to facilitate visualisation)</small> per minute, specific to a beacon with random address <span class="font-monospace">bada55beac04</span>. </p>
+                </div>
+                <div class="col-md-8 bg-body-secondary">
+                  <pre class="my-2">SELECT
+  $__timeGroupAlias(timestamp, 1m),
+  CASE WHEN dynamb::json#>>'{isMotionDetected,0}' = 'true' THEN 1 ELSE 0 END as motion
+FROM dynamb
+WHERE $__timeFilter(timestamp) AND deviceSignature = 'bada55beac04/3'
+GROUP BY 1, 2
+ORDER BY $__timeGroup(timestamp, 1m);</pre>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="co2content" role="tabpanel"
+                 aria-labelledby="co2tab">
+              <div class="row">
+                <div class="col-md-4">
+                  <p class="mt-2"> Carbon dioxide levels averaged per 5-minute time window, specific to a beacon with random address <span class="font-monospace">bada55beac04</span>. </p>
+                </div>
+                <div class="col-md-8 bg-body-secondary">
+                  <pre class="my-2">SELECT
+  $__timeGroupAlias(timestamp, 5m),
+  avg((dynamb->>'carbonDioxideConcentration')::float) AS co2
+FROM dynamb
+WHERE $__timeFilter(timestamp) AND devicesignature = 'bada55beac04/3'
+GROUP BY 1, devicesignature
+ORDER BY $__timeGroup(timestamp, 5m);</pre>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="rxcontent" role="tabpanel"
+                 aria-labelledby="rxtab">
+              <div class="row">
+                <div class="col-md-4">
+                  <p class="mt-2"> Average number of received devices per 15-minute time window, with the device signature <small class="text-body-secondary">(id)</small> of each gateway/reader as label. </p>
+                </div>
+                <div class="col-md-8 bg-body-secondary">
+                  <pre class="my-2">SELECT
+  $__timeGroupAlias(timestamp, 15m),
+  avg((dynamb->>'numberOfReceivedDevices')::int) AS rx,
+  devicesignature
+FROM dynamb
+WHERE $__timeFilter(timestamp)
+GROUP BY 1, devicesignature
+ORDER BY $__timeGroup(timestamp, 15m);</pre>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="rssicontent" role="tabpanel"
+                 aria-labelledby="rssitab">
+              <div class="row">
+                <div class="col-md-4">
+                  <p class="mt-2"> Average rssi, receivers and distinct packets per 5-minute time window, specific to a beacon with random address <span class="font-monospace">bada55beac04</span>. </p>
+                </div>
+                <div class="col-md-8 bg-body-secondary">
+                  <pre class="my-2">SELECT
+  $__timeGroupAlias(timestamp, 5m),
+  avg((raddec->>'rssi')::int) AS rssi,
+  avg((raddec->>'numberOfReceivers')::int) AS receivers,
+  avg((raddec->>'numberOfDistinctPackets')::int) AS packets
+FROM raddec
+WHERE $__timeFilter(timestamp) AND transmittersignature = 'bada55beac04/3'
+GROUP BY 1
+ORDER BY $__timeGroup(timestamp, 5m);</pre>
                 </div>
               </div>
             </div>
