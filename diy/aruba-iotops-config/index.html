@@ -391,7 +391,7 @@
             <small class="text-body-secondary"> Part 2 </small>
           </h3>
           <p> Click <i class="fas fa-mouse-pointer"></i> <b>&#xff0b;</b> in the transports table to create a new transport profile.  An <b>Add Transport Profile</b> dialog should appear.  Complete the fields as follows: </p>
-          <div class="table-responsive">
+          <div class="table-responsive mb-0">
             <table class="table table-sm table-hover">
               <thead>
                 <tr>
@@ -440,7 +440,7 @@
                   <td> URL </td>
                   <th> wss://xxx.xxx.xxx.xxx:3001/aruba/aos10 </th>
                   <td class="text-body-secondary">
-                    <small> Specify the target IP & port </small>
+                    <small> Specify the target IP & port<sup>*</sup> </small>
                   </td>
                 </tr>
                 <tr>
@@ -460,6 +460,7 @@
               </tbody>
             </table>
           </div>
+          <p class="small text-body-secondary text-end"> <sup>*</sup> <b>do not</b> include a trailing slash (/) on the URL </p>
           <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> Add a subscription to the "EnOcean" Device Class, if using EnOcean Wireless Standard devices. </p>
           <p> Click <i class="fas fa-mouse-pointer"></i> <b>Create</b> to create the IoT transport profile. </p>
           <img src="images/create-transport.png" class="img-fluid rounded"
@@ -528,7 +529,13 @@
           <p> Click <i class="fas fa-mouse-pointer"></i> <b>Add</b> to upload the certificate. </p>
           <img src="images/add-certificate.png" class="img-fluid rounded"
                alt="Add CA certificate for Aruba IoT Transport">
-          <p class="mt-3"> The certificate will automatically be deployed to the IoT Controller, and the <em>secure</em> WebSocket connection will be attempted.  Observing data in Pareto Anywhere requires no additional action if an instance based on the pareto-anywhere package is running, or, for quick-and-dirty validation, run barnowl-aruba as described below. </p>
+          <p class="mt-3"> Browse again to the <b>IoT Operations</b> dashboard by selecting the target <b>AP Group</b>, <b>Applications</b> menu item and <b>IoT Operations</b> tab.  Click <i class="fas fa-mouse-pointer"></i> <b>Manage</b> in the <b>Transports</b> card. </p>
+          <p> Click <i class="fas fa-mouse-pointer"></i> <i class="fas fa-redo"></i> to <em>Sync certs to all Connectors</em>, as indicated in the screenshot below. </p>
+          <img src="images/sync-certificates.png"
+               class="img-fluid mx-auto d-block rounded"
+               alt="Sync certificates to all Aruba IoT Connectors">
+          <p class="mt-3"> The certificate will be deployed, and the <em>secure</em> WebSocket connection will be attempted.  Observing data in Pareto Anywhere requires no additional action if an instance based on the pareto-anywhere package is running, or, for quick-and-dirty validation, run barnowl-aruba as described below. </p>
+          <p> <span class="badge rounded-pill text-bg-primary"><i class="fas fa-info"></i></span> The pie chart icon next to the transport profile name displays the IoT WebSocket connection status for each connector. </p>
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="paretotab"
@@ -677,7 +684,7 @@ npm start</pre>
     <footer class="footer bg-dark bg-gradient">
       <a href="https://reelyactive.github.io"> reelyActive Developers </a>
       &nbsp; | &nbsp;
-      <a href="https://www.reelyactive.com"> &copy; reelyActive 2025 </a>
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2025-2026 </a>
     </footer>
 
     <!-- Optional JavaScript -->
