@@ -53,6 +53,7 @@ https://reelyactive.github.io/diy/openmv-dev/
 https://reelyactive.github.io/diy/oss-packages/
 https://reelyactive.github.io/diy/pareto-anywhere-azure/
 https://reelyactive.github.io/diy/pareto-anywhere-azure-aruba/
+https://reelyactive.github.io/diy/pareto-anywhere-docker-desktop/
 https://reelyactive.github.io/diy/pareto-anywhere-pc/
 https://reelyactive.github.io/diy/pareto-anywhere-pi/
 https://reelyactive.github.io/diy/pareto-anywhere-startup-script/

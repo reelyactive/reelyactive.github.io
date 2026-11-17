@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Step-by-step guide to run Pareto Anywhere open source IoT/RTLS middleware on a Windows/Mac/Linux computer using Docker Desktop.">
+    <link rel="stylesheet" href="../common/style/bootstrappyactive.min.css">
+    <script type="module" src="../common/js/color-modes.js"></script>
+    <title> Run Pareto Anywhere using Docker Desktop </title>
+    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org", 
+      "@type": "TechArticle",
+      "headline": "Run Pareto Anywhere on a personal computer",
+      "description": "Step-by-step guide to run Pareto Anywhere open source IoT/RTLS middleware on a Windows/Mac/Linux computer using Docker Desktop.",
+      "proficiencyLevel": "Beginner",
+      "genre": "tutorial",
+      "image": "https://reelyactive.github.io/diy/pareto-anywhere-docker-desktop/images/header.png",
+      "author": {
+        "@type": "Organization",
+        "url": "https://www.reelyactive.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "reelyActive Developers",
+        "item": "https://reelyactive.github.io"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Pareto Anywhere on Docker Desktop"
+      }]
+    }]
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="../common/images/reelyactive-developers-logo-nav.png"
+               width="135" height="30" alt="reelyActive Developers">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarItems" aria-controls="navbarItems"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Left-aligned navigation items -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          </ul>
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav">
+            <!-- Colour theme chooser -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-link nav-link dropdown-toggle"
+                      id="bd-theme" type="button" aria-expanded="false"
+                      data-bs-toggle="dropdown" data-bs-display="static"
+                      aria-label="Toggle theme (auto)">
+                <i class="fas fa-adjust"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                  aria-labelledby="bd-theme-text">
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="light" aria-pressed="false">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item"
+                          data-bs-theme-value="dark" aria-pressed="false">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item active"
+                          data-bs-theme-value="auto" aria-pressed="true">
+                    <i class="fas fa-adjust"></i> Auto
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarInfoDropdown"
+                 role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                 aria-expanded="false">
+                <i class="fas fa-question-circle"></i>
+              </a>
+              <!-- Info about tracking and open source software/licenses -->
+              <ul class="dropdown-menu dropdown-menu-end shadow"
+                   aria-labelledby="navbarInfoDropdown">
+                <li>
+                  <a class="dropdown-item"
+                     href="https://www.reelyactive.com/how-we-observe/#digital">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Privacy-centric metrics
+                    (<i class="fab fa-cloudflare"></i> beacon.js) &nbsp;
+                    <span class="badge bg-warning animate-breathing">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://getbootstrap.com" >
+                    <i class="fab fa-bootstrap"></i>
+                    Bootstrap 5 &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://fontawesome.com" >
+                    <i class="fab fa-font-awesome"></i>
+                    Font Awesome (Free) &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-creative-commons"></i>
+                      <i class="fab fa-osi"></i> MIT
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://github.com/reelyactive/web-style-guide/" >
+                    <i class="fas fa-code"></i>
+                    Web Style Guide &nbsp;
+                    <span class="badge bg-light text-dark">
+                      <i class="fab fa-osi"></i> MIT
+                   </span>
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" target="_blank"
+                     href="https://www.reelyactive.com/made-in-montreal/" >
+                    <i class="fab fa-canadian-maple-leaf"></i>
+                    Made in Montr&eacute;al &nbsp;
+                    <i class="fas fa-city"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
+          <h1 class="mt-4"> Run Pareto Anywhere using Docker Desktop </h1>
+          <p class="lead"> Our step-by-step guide to easily run as a container on a Windows/Mac/Linux computer. </p>
+          <img src="images/header.png" class="img-fluid"
+               alt="Run Pareto Anywhere using Docker Desktop">
+          <!----- The TL;DR ----->
+          <div class="card hover-shadow my-4">
+            <div class="card-body">
+              <h2>
+                The TL;DR
+                <small class="text-muted"> (Too Long; Didn't Read) </small>
+              </h2>
+              <p class="lead"> Learn how to run reelyActive's open source IoT/RTLS middleware via a friendly graphical interface. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> What will this accomplish? </dt>
+                <dd class="col-sm-9"> The <i class="fas fa-laptop"></i> computer will run Pareto Anywhere as a container managed via the easy-to-use Docker Desktop UI. </dd>
+                <dt class="col-sm-3"> Why use Docker Desktop? </dt>
+                <dd class="col-sm-9"> If you prefer graphical user interfaces ( <i class="fas fa-mouse-pointer"></i> ) over typing commands into a console ( <i class="fas fa-terminal"></i> ) , then Docker Desktop is the way you'll want to run Pareto Anywhere. </dd>
+                <dt class="col-sm-3"> What's the catch? </dt>
+                <dd class="col-sm-9"> Flexibility: should you need a custom configuration of Pareto Anywhere, you'll need to create a custom container, or run Pareto Anywhere another way. </dd>
+              </dl>
+            </div>
+          </div>
+          <!----- Prerequisites ----->
+          <h2 class="mt-4"> Prerequisites </h2>
+          <p class="lead"> A recent version of Docker Desktop installed. </p>
+          <p> <span class="badge rounded-pill bg-warning"><i class="fas fa-dollar-sign"></i></span> Commercial use of Docker Desktop in larger enterprises may require a paid subscription: <a href="https://www.docker.com/pricing/faq/" target="_blank"> <i class="fas fa-external-link-alt"></i> Pricing FAQ</a>. </p>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.docker.com/products/docker-desktop/">
+                <img src="../common/images/icon-docker-desktop-download.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.docker.com/products/docker-desktop/">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i>
+                  Download Docker Desktop
+                </h5>
+              </a>
+              Download and install Docker Desktop for your operating system and computing architecture.
+            </li>
+          </ul>
+          <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Docker Desktop on <i class="fab fa-windows"></i> Windows will require <a href="https://learn.microsoft.com//windows/wsl/install" target="_blank"> <i class="fas fa-external-link-alt"></i> Windows Subsystem for Linux</a>. <small class="text-body-secondary">( <code>wsl --install</code> )</small> </p>
+          <!----- Step 1 of 2 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step01" class="card-title my-2">
+                Installing Pareto Anywhere &nbsp;
+                <a href="#step01" class="badge bg-primary"> Step 1 of 2 </a>
+              </h2>
+              <p class="lead"> Pull the container from Docker Hub, configure and run. </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Why from Docker Hub? </dt>
+                <dd class="col-sm-9"> The latest version of Pareto Anywhere (on <i class="fab fa-github"></i> GitHub) is always automatically published to Docker Hub. </dd>
+                <dt class="col-sm-3"> Where will it run? </dt>
+                <dd class="col-sm-9"> The container will run on the computer that is running Docker Desktop. </dd>
+              </dl>
+              <img src="images/pull-and-run-pareto-anywhere.png"
+                   class="card-img-bottom"
+                   alt="Pull and run pareto-anywhere from Docker Hub">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Find Pareto Anywhere
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <p> Open Docker Desktop and then: </p>
+              <ol>
+                <li> select the <i class="fas fa-mouse-pointer"></i> <b>Docker Hub</b> panel </li>
+                <li> <i class="fas fa-search"></i> <b>search</b> for <span class="font-monospace">reelyactive/pareto-anywhere</span> </li>
+                <li> select the container from the search results </li>
+              </ol>
+            </div>
+            <div class="col-md-8">
+              <img src="images/docker-hub-search.png"
+                   class="img-fluid rounded mx-auto d-block mb-3"
+                   alt="Search for pareto-anywhere in Docker Hub">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Run Pareto Anywhere
+            <small class="text-muted"> Part 2 </small>
+          </h3>
+          <p> Select the version of Pareto Anywhere from the <i class="fas fa-mouse-pointer"></i> <b>Tag</b> pull-down, and then click <i class="fas fa-mouse-pointer"></i> <b>Run</b>. </p>
+          <img src="images/docker-hub-pareto-anywhere.png"
+               class="img-fluid rounded mx-auto d-block mb-3"
+               alt="Run pareto-anywhere in Docker Desktop">
+          <div class="row">
+            <div class="col-md-4">
+              <p> Configure the container: </p>
+              <ul>
+                <li> choose a meaningful container name <small class="text-body-secondary">(ex: <b>pareto-anywhere</b>)</small> </li>
+                <li> enter the default ports <small class="text-body-secondary">(or select alternatives if there's a conflict with another process running on the same machine)</small> </li>
+              </ul>
+              <p class="text-end"> Click <i class="fas fa-mouse-pointer"></i> <b>Run</b> to start the container. </p>
+            </div>
+            <div class="col-md-8">
+              <img src="images/container-configuration.png"
+                   class="img-fluid rounded mx-auto d-block mb-3"
+                   alt="Configure the pareto-anywhere container">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Observe the container
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <p> Select the <i class="fas fa-mouse-pointer"></i> <b>Containers</b> panel to observe the <strong class="font-monospace">pareto-anywhere</strong> container. </p>
+          <img src="images/container-operation.png"
+               class="img-fluid rounded mx-auto d-block mb-3"
+               alt="Pareto Anywhere container operation in Docker Desktop">
+          <p> The stop, start, and restart icons can be used to modify the operation of the <strong class="font-monospace">pareto-anywhere</strong> container, as required.  Confirm that the container is running, and proceed to Step 2 below. </p>
+
+          <!----- Step 2 of 2 ----->
+          <div class="card hover-shadow mt-5 bg-body-secondary border-0">
+            <div class="card-body pt-4">
+              <h2 id="step02" class="card-title my-2">
+                Use Pareto Anywhere &nbsp;
+                <a href="#step02" class="badge bg-primary"> Step 2 of 2 </a>
+              </h2>
+              <p class="lead"> Confirm that everything works! </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-sm-3"> Do I need IoT data? </dt>
+                <dd class="col-sm-9"> No.  Pareto Anywhere runs even in the absence of IoT source data. </dd>
+                <dt class="col-sm-3"> Can I test my IoT data source? </dt>
+                <dd class="col-sm-9"> Yes.  In the second part of this step you'll find how to quickly validate the integration with common hardware/modules. </dd>
+              </dl>
+              <img src="images/pareto-anywhere-on-container.png"
+                   class="card-img-bottom" alt="Pareto Anywhere on container">
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Browse to Pareto Anywhere
+            <small class="text-muted"> Part 1 </small>
+          </h3>
+          <p> On the computer running Docker Desktop, browse to <a href="http://localhost:3001">localhost:3001</a> to observe Pareto Anywhere running. </p>
+          <h3 class="mt-4">
+            Run and validate a specific configuration
+            <small class="text-muted"> (OPTIONAL) Part 2 </small>
+          </h3>
+          <p> Should a source of ambient IoT data be available (see the tabs below), it is possible to validate its integration with Pareto Anywhere, replacing <span class="text-primary">xxx.xxx.xxx.xxx</span> with the <i class="fas fa-laptop"></i> PC's IP address, where required. </p>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="gatewaystab"
+                      data-bs-toggle="tab" data-bs-target="#gatewayscontent"
+                      type="button" role="tab" aria-controls="gatewaystab"
+                      aria-selected="true"> Gateways </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="apstab" data-bs-toggle="tab"
+                      data-bs-target="#apscontent" type="button" role="tab"
+                      aria-controls="apstab"
+                      aria-selected="false"> APs </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="onboardtab" data-bs-toggle="tab"
+                      data-bs-target="#onboardcontent" type="button" role="tab"
+                      aria-controls="onboardtab"
+                      aria-selected="false"> <i class="fas fa-star animate-breathing"></i> Onboard Radio </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="reeltab" data-bs-toggle="tab"
+                      data-bs-target="#reelcontent" type="button" role="tab"
+                      aria-controls="reeltab"
+                      aria-selected="false"> Reel </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="readerstab" data-bs-toggle="tab"
+                      data-bs-target="#readerscontent" type="button" role="tab"
+                      aria-controls="readerstab"
+                      aria-selected="false"> Readers </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="enoceantab" data-bs-toggle="tab"
+                      data-bs-target="#enoceancontent" type="button" role="tab"
+                      aria-controls="enoceantab"
+                      aria-selected="false"> EnOcean </button>
+            </li>
+          </ul>
+          <div class="tab-content tab-content-border border-light-subtle">
+            <div class="tab-pane fade show active" id="gatewayscontent"
+                 role="tabpanel" aria-labelledby="gatewaystab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from reelyActive Owl-in-Ones and Minew gateways.  Follow the step-by-step tutorials below to forward data from these gateways. </p>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../minew-g1-config/">
+                    <img src="../minew-g1-config/images/icon.png"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../minew-g1-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Minew G1 Gateway </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg3-config/">
+                    <img src="../minew-mg3-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg3-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Minew MG3 Gateway </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg4-config/">
+                    <img src="../minew-mg4-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg4-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Minew MG4 Gateway </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal mb-2">
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg7-config/">
+                    <img src="../minew-mg7-config/images/icon.png"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../minew-mg7-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Minew MG7 Gateway </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward with the HTTP service to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>:3001/minew
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../oio-config/">
+                    <img src="../oio-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../oio-config/">
+                    <h5 class="mt-0 mb-1"> Configure an Owl-in-One </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets to the host <span class="text-primary">xxx.xxx.xxx.xxx</span> on port 50001 
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="apscontent" role="tabpanel"
+                 aria-labelledby="apstab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from compatible HPE Aruba Networking and Huawei APs.  Follow the step-by-step tutorials below to forward data from these access points. </p>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../aruba-iotops-config/">
+                    <img src="../aruba-iotops-config/images/icon.png"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../aruba-iotops-config/">
+                    <h5 class="mt-0 mb-1"> Configure Aruba IoT Operations </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward Telemetry Websocket data to wss://<span class="text-primary">xxx.xxx.xxx.xxx</span>/aruba/aos10
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../aruba-instant-config/">
+                    <img src="../aruba-instant-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../aruba-instant-config/">
+                    <h5 class="mt-0 mb-1"> Configure an Aruba Instant AP </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward Telemetry Websocket data to ws://<span class="text-primary">xxx.xxx.xxx.xxx</span>/aruba/aos8
+                </li>
+              </ul>
+              <p class="mt-4 mb-2"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward UDP packets from the Huawei AP to the <i class="fas fa-laptop"></i> PC on port 50010 </p>
+            </div>
+            <div class="tab-pane fade" id="onboardcontent" role="tabpanel"
+                 aria-labelledby="onboardtab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data from the <i class="fas fa-laptop"></i> PC's onboard radio<b>&mdash;if compatible&mdash;</b>provided an instance of <a href="https://github.com/reelyactive/barnowl-hci">barnowl-hci</a> is running and forwarding the data.  Follow the instructions below to install and run this option. </p>
+              <img src="images/barnowl-hci-pareto-anywhere.png"
+                   class="img-fluid mx-auto d-block mb-3"
+                   alt="barnowl-hci with Pareto Anywhere">
+              <h4> Install barnowl-hci </h4>
+              <p> Open a terminal <i class="fas fa-terminal"></i> and complete the following: </p>
+              <ol>
+                <li> Browse once again to the folder <i class="fas fa-folder"></i> in which you wish to download the source code. </li>
+                <li> Clone the barnowl-hci repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/barnowl-hci.git</code> </li>
+                <li> Change to the <b>barnowl-hci</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd barnowl-hci</code>
+                <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+              </ol>
+              <h4>
+                Assign radio privileges
+                <small class="text-muted"> (Linux <i class="fab fa-linux"></i>  only)</small>
+              </h4>
+              <p> Allow <i class="fab fa-node-js"></i> Node.js programs the privilege to initiate <i class="fab fa-bluetooth"></i> scans with the command <code class="user-select-all">sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)</code> </p>
+              <p> Run barnowl-hci once to confirm that it can listen for ambient data: </p>
+              <ul>
+                <li> <code class="user-select-all">npm start</code> will output radio decodings (raddecs) to the console for quick-and-dirty testing </li>
+                <li> <code class="user-select-all">npm run forwarder</code> will forward raddecs to a local Pareto Anywhere instance </li>
+              </ul>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Enter <kbd>Ctrl+C</kbd> to stop either program. </p>
+            </div>
+            <div class="tab-pane fade" id="reelcontent" role="tabpanel"
+                 aria-labelledby="reeltab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient <i class="fab fa-bluetooth"></i> Bluetooth Low Energy data forwarded from <a href="https://www.reelyactive.com/products/gateways/#content" target="_blank"><i class="fas fa-external-link-alt"></i> reelyActive reelceivers</a> on UDP port 50000. </p>
+            </div>
+            <div class="tab-pane fade" id="readerscontent" role="tabpanel"
+                 aria-labelledby="readerstab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient RAIN RFID data forwarded from compatible Impinj and RF Controls readers. </p>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../impinj-r700-config/">
+                    <img src="../impinj-r700-config/images/icon.jpg"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../impinj-r700-config/">
+                    <h5 class="mt-0 mb-1"> Configure an Impinj R700 Reader </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Forward IoT Device Interface event data to http://<span class="text-primary">xxx.xxx.xxx.xxx</span>/impinj
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">
+                  <a href="../zebra-fx9600-config/">
+                    <img src="../zebra-fx9600-config/images/icon.png"
+                         class="rounded-1">
+                  </a>
+                </li>
+                <li class="list-group-item border-0">
+                  <a href="../zebra-fx9600-config/">
+                    <h5 class="mt-0 mb-1"> Configure a Zebra FX9600 Reader </h5>
+                  </a>
+                  <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Publish Zebra IoT Connector event data to mqtt://<span class="text-primary">xxx.xxx.xxx.xxx</span>:1883
+                </li>
+              </ul>
+              <p class="mt-4 mb-2"> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Data from RFC OS will automatically be ingested if running on the same machine <small class="text-body-secondary">(see <a href="https://github.com/reelyactive/barnowl-rfcontrols" target="_blank"><i class="fas fa-external-link-alt"></i>barnowl-rfcontrols</a>).</small> </p>
+            </div>
+            <div class="tab-pane fade" id="enoceancontent" role="tabpanel"
+                 aria-labelledby="enoceantab">
+              <p class="mt-2"> Pareto Anywhere will automatically listen for ambient EnOcean Wireless Standard data from a USB dongle connected to the <i class="fas fa-laptop"></i> PC provided an instance of <a href="https://github.com/reelyactive/barnowl-enocean">barnowl-enocean</a> is running and forwarding the data.  Follow the instructions below to install and run automatically each time the <i class="fab fa-raspberry-pi"></i> Pi boots. </p>
+              <h4> Install barnowl-enocean </h4>
+              <p> Open a terminal <i class="fas fa-terminal"></i> and complete the following: </p>
+              <ol>
+                <li> Browse once again to the folder <i class="fas fa-folder"></i> in which you wish to download the source code. </li>
+                <li> Clone the barnowl-enocean repository with the command <code class="user-select-all">git clone https://github.com/reelyactive/barnowl-enocean.git</code> </li>
+                <li> Change to the <b>barnowl-enocean</b> <i class="fas fa-folder"></i> folder with the command <code class="user-select-all">cd barnowl-enocean</code>
+                <li> Install all package dependencies from <i class="fab fa-npm"></i> npm with the command <code class="user-select-all">npm install</code> &nbsp; <span class="badge bg-info"> <i class="fas fa-clock"></i> &nbsp; 1 min </span> </li>
+              </ol>
+              <h4>
+                Assign serial privileges
+                <small class="text-muted"> (Linux <i class="fab fa-linux"></i>  only)</small>
+              </h4>
+              <p> Include the user in the dialout group to facilitate serial access to the USB dongle with the command <code class="user-select-all">sudo usermod -a -G dialout $USER</code> </p>
+              <p> Run barnowl-enocean once to confirm that it can listen for ambient data: </p>
+              <ul>
+                <li> <code class="user-select-all">npm start</code> will output radio decodings (raddecs) to the console for quick-and-dirty testing </li>
+                <li> <code class="user-select-all">npm run forwarder</code> will forward raddecs to a local Pareto Anywhere instance </li>
+              </ul>
+              <p> <span class="badge rounded-pill bg-primary"><i class="fas fa-info"></i></span> Enter <kbd>Ctrl+C</kbd> to stop either program. </p>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            &#x1f44c; Celebrate
+            <small class="text-muted"> Part 3 </small>
+          </h3>
+          <div class="row d-flex align-items-center">
+            <div class="col-md-6">
+              <img src="images/pareto-anywhere-runs-at-the-edge.gif"
+                   class="img-fluid" alt="Pareto Anywhere Runs at the Edge">
+            </div>
+            <div class="col-md-6 text-center">
+              <p class="text-muted"> Pareto Anywhere now <b>#RunsAtTheEdge</b> on your machine! </p>
+              <figure>
+                <blockquote class="blockquote">
+                  <p> Feedback from our user community guides & motivates the continuous evolution of our open source technologies<em>&mdash;and our obscure memes&mdash;</em>so don't by shy to <a href="https://www.reelyactive.com/contact/" target="_blank">reach out</a> moving forward! </p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                  <a href="https://www.reelyactive.com/team/#jeffrey" target="_blank"> Jeffrey Dungen</a>, reelyActive
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <h3 class="mt-4">
+            Enjoy the data
+            <small class="text-muted"> Part 4 </small>
+          </h3>
+          <p> Our cheatsheet details the <b class="font-monospace">raddec</b>, <b class="font-monospace">dynamb</b> and <b class="font-monospace">spatem</b> JSON output from the Pareto Anywhere open source IoT middleware. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <img src="../cheatsheet/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../cheatsheet/">
+                <h5 class="mt-0 mb-1"> Developers Cheatsheet </h5>
+              </a>
+              "Owl" you need to know about Pareto Anywhere's core data structures.
+            </li>
+          </ul>
+          <!----- Attribution ----->
+          <div class="card hover-shadow bg-body-secondary border-0 my-5">
+            <div class="row g-0">
+              <div class="col-2 col-sm-1 align-self-center">
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2400">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="../common/images/jeffyactive-bubble-half.png"
+                           class="d-block w-100" alt="Contributor">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../common/images/herowl.png"
+                           class="d-block w-100" alt="reelyActive half-barnowl">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 offset-sm-1 align-self-center">
+                <div class="card-body">
+                  <p class="card-text lead"> Tutorial prepared with <span class="text-secondary animate-breathing">&hearts;</span> by <a href="https://github.com/jeffyactive" target="_blank">jeffyactive</a>. </p>
+                  <small class="card-text text-muted"> You can <i class="fas fa-hand-holding-heart"></i> <a href="https://www.reelyactive.com/" target="_blank">reelyActive</a>'s <b>open source</b> efforts <em>directly</em> by contributing code & docs, <em>collectively</em> by sharing across your network, and <em>commercially</em> through <a href="https://www.reelyactive.com/pricing/#content" target="_blank">our packages</a>. </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!----- Where to next ----->
+          <hr class="my-4">
+          <h2> Where to next? </h2>
+          <p class="lead"> Continue exploring our open architecture and all its applications. </p>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <img src="../devices/images/icon.gif" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../devices/">
+                <h5 class="mt-0 mb-1"> Directory of Devices </h5>
+              </a>
+              Browse all device configuration tutorials and development guides.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <img src="../common/images/icon.png" class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="../../">
+                <h5 class="mt-0 mb-1"> reelyActive Developers </h5>
+              </a>
+              Browse all developer documentation and tutorials.
+            </li>
+          </ul>
+          <ul class="list-group list-group-horizontal mb-4">
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <img src="../common/images/icon-reelyactive.png"
+                     class="rounded-1">
+              </a>
+            </li>
+            <li class="list-group-item border-0">
+              <a href="https://www.reelyactive.com" target="_blank">
+                <h5 class="mt-0 mb-1">
+                  <i class="fas fa-external-link-alt"></i> reelyActive
+                </h5>
+              </a>
+              Together, let's make sense of things.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-dark bg-gradient">
+      <a href="https://reelyactive.github.io"> reelyActive Developers </a>
+      &nbsp; | &nbsp;
+      <a href="https://www.reelyactive.com"> &copy; reelyActive 2026 </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script defer src="../common/js/fontawesome-reelyactive.min.js"></script>
+    <script src="../common/js/bootstrappyactive.bundle.min.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+            data-cf-beacon='{"token": "75099ede11644990a7ffdffc6c28f487"}'>
+    </script>
+  </body>
+</html>
